@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cacao Colab — Dashboard</title>
+<style>
+  :root {
+    --forest: #1A2E10; --yellow: #F2C830; --cream: #F7F1EE;
+    --pod: #87AA27; --mist: rgba(247,241,238,.07);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--forest); color: var(--cream); font-family: Arial, Helvetica, sans-serif; padding: 32px 24px; }
+  h1 { font-family: Georgia, serif; font-size: clamp(1.6rem, 4vw, 2.4rem); margin-bottom: 4px; }
+  .sub { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--pod); margin-bottom: 40px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 40px; }
+  .card { background: var(--mist); border: 1px solid rgba(247,241,238,.1); border-radius: 12px; padding: 20px; }
+  .card .num { font-family: Georgia, serif; font-size: 2.6rem; font-weight: 900; color: var(--yellow); line-height: 1; }
+  .card .label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(247,241,238,.45); margin-top: 6px; }
+  .card .status { font-size: 12px; margin-top: 10px; color: rgba(247,241,238,.6); }
+  h2 { font-family: Georgia, serif; font-size: 1.1rem; margin-bottom: 16px; color: var(--cream); }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 40px; font-size: 13px; }
+  th { text-align: left; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(247,241,238,.35); padding: 0 12px 10px 0; border-bottom: 1px solid rgba(247,241,238,.08); }
+  td { padding: 12px 12px 12px 0; border-bottom: 1px solid rgba(247,241,238,.05); vertical-align: top; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; }
+  .live   { background: rgba(135,170,39,.2);  color: #87AA27; }
+  .pend   { background: rgba(242,200,48,.15); color: #F2C830; }
+  .block  { background: rgba(220,60,60,.15);  color: #e05555; }
+  .back   { background: rgba(247,241,238,.07); color: rgba(247,241,238,.4); }
+  a { color: var(--yellow); text-decoration: none; }
+  .section { margin-bottom: 48px; }
+  .last { font-size: 11px; color: rgba(247,241,238,.25); margin-top: 40px; }
+</style>
+</head>
+<body>
+
+<h1>Cacao Colab</h1>
+<p class="sub">Dashboard · Spec v1 · 2026-06-17</p>
+
+<!-- KPIs -->
+<div class="section">
+  <h2>Indicadores clave</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="num">0</div>
+      <div class="label">Leads HubSpot (meta: 500)</div>
+      <div class="status">Pendiente: HUBSPOT_TOKEN en Vercel</div>
+    </div>
+    <div class="card">
+      <div class="num">2</div>
+      <div class="label">Marcas en marketplace</div>
+      <div class="status">CAÚA + Zurych. Lust: pendiente card</div>
+    </div>
+    <div class="card">
+      <div class="num">0</div>
+      <div class="label">Módulos Dualita completados (meta: 1.000)</div>
+      <div class="status">Analytics pendiente de implementar</div>
+    </div>
+    <div class="card">
+      <div class="num">Live</div>
+      <div class="label">Estado plataforma</div>
+      <div class="status"><a href="https://cacao-colab.vercel.app" target="_blank">cacao-colab.vercel.app ↗</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- Estado componentes -->
+<div class="section">
+  <h2>Estado de componentes</h2>
+  <table>
+    <tr>
+      <th>Componente</th><th>Estado</th><th>URL / Archivo</th><th>Próximo paso</th>
+    </tr>
+    <tr>
+      <td>Landing page /</td>
+      <td><span class="badge live">Live</span></td>
+      <td><a href="https://cacao-colab.vercel.app" target="_blank">cacao-colab.vercel.app</a></td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>Onboarding gate (5 pasos)</td>
+      <td><span class="badge live">Live</span></td>
+      <td>Cookie: colab_onboarded</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>API /api/onboarding → HubSpot</td>
+      <td><span class="badge pend">Código live, token falta</span></td>
+      <td>Vercel → Env vars</td>
+      <td>Agregar HUBSPOT_TOKEN</td>
+    </tr>
+    <tr>
+      <td>Marketplace /marketplace</td>
+      <td><span class="badge live">Live</span></td>
+      <td><a href="https://cacao-colab.vercel.app/marketplace" target="_blank">…/marketplace</a></td>
+      <td>Agregar card Chocolate Lust</td>
+    </tr>
+    <tr>
+      <td>Dualita /aprende</td>
+      <td><span class="badge live">Live</span></td>
+      <td><a href="https://cacao-colab.vercel.app/aprende" target="_blank">…/aprende</a></td>
+      <td>Links reales módulos Academy</td>
+    </tr>
+    <tr>
+      <td>Email seguimiento HubSpot</td>
+      <td><span class="badge live">Listo</span></td>
+      <td>colab-seguimiento-hubspot.html</td>
+      <td>Pegar en HubSpot y enviar</td>
+    </tr>
+    <tr>
+      <td>HoReCa landing</td>
+      <td><span class="badge pend">Solo local</span></td>
+      <td>horeca-final.html</td>
+      <td>Push a Shopify /pages/horeca</td>
+    </tr>
+    <tr>
+      <td>Chocolate Lust en marketplace</td>
+      <td><span class="badge block">Pendiente</span></td>
+      <td>lib/brands.ts</td>
+      <td>Agregar BrandCard colaborador</td>
+    </tr>
+  </table>
+</div>
+
+<!-- Actores -->
+<div class="section">
+  <h2>Actores del Colab</h2>
+  <table>
+    <tr><th>Marca</th><th>Tipo</th><th>Estado</th><th>Contribución</th></tr>
+    <tr>
+      <td><strong>CAÚA Colombia</strong></td>
+      <td>Owner</td>
+      <td><span class="badge live">Activo</span></td>
+      <td>Productos + Academy microlearning</td>
+    </tr>
+    <tr>
+      <td><strong>Chocolate Zurych</strong></td>
+      <td>Owner</td>
+      <td><span class="badge live">Activo</span></td>
+      <td>Coberturas + MOOC (en proceso)</td>
+    </tr>
+    <tr>
+      <td><strong>Chocolate Lust</strong></td>
+      <td>Colaborador</td>
+      <td><span class="badge pend">Card pendiente</span></td>
+      <td>Co-branding NIBS · Alimentec 2026</td>
+    </tr>
+  </table>
+</div>
+
+<!-- Pendientes -->
+<div class="section">
+  <h2>Pendientes prioritarios</h2>
+  <table>
+    <tr><th>#</th><th>Tarea</th><th>Prioridad</th><th>Dueño</th></tr>
+    <tr><td>P1</td><td>HUBSPOT_TOKEN en Vercel env vars</td><td><span class="badge block">Alta 🔴</span></td><td>Amaury</td></tr>
+    <tr><td>P2</td><td>BrandCard Chocolate Lust en marketplace</td><td><span class="badge pend">Media 🟡</span></td><td>Amaury</td></tr>
+    <tr><td>P3</td><td>Push horeca-final.html a Shopify</td><td><span class="badge pend">Media 🟡</span></td><td>Amaury</td></tr>
+    <tr><td>P4</td><td>Links reales módulos CAÚA Academy en /aprende</td><td><span class="badge pend">Media 🟡</span></td><td>Amaury</td></tr>
+    <tr><td>P5</td><td>OG image para redes (/public/og-cacao-colab.png)</td><td><span class="badge back">Baja 🟢</span></td><td>Diseño</td></tr>
+  </table>
+</div>
+
+<p class="last">Spec v1 · Última actualización: 2026-06-17 · Fuente de verdad: ~/Documents/Colab/00-SPEC.md</p>
+
+</body>
+</html>

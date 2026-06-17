@@ -9,6 +9,7 @@ export type Brand = {
   products: string[]
   ctaLabel: string
   ctaUrl: string
+  role?: 'owner' | 'colaborador'
 }
 
 export const brands: Brand[] = [
@@ -47,9 +48,26 @@ export const brands: Brand[] = [
     ctaLabel: "Conocer Zurych →",
     ctaUrl: "https://chocolatezurych.com",
   },
+  {
+    id: "lust",
+    name: "Chocolate Lust",
+    tagline: "Chocolate de autor colombiano.",
+    description:
+      "Tabletas y confitería de autor con cacao colombiano de origen. Colaborador del Colab desde Alimentec 2026 — co-creadores de los NIBS CAÚA × Zurych × Lust.",
+    accentColor: "#881C79",
+    bgColor: "#1A0F1A",
+    textColor: "#F7F1EE",
+    products: [
+      "Co-branding NIBS Oscuro × Lust",
+      "Co-branding NIBS Blanco × Lust",
+      "Tabletas de autor · origen Colombia",
+    ],
+    ctaLabel: "Conocer Lust →",
+    ctaUrl: "https://wa.me/573102227848?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20Chocolate%20Lust%20en%20el%20Cacao%20Colab.",
+    role: "colaborador",
+  },
 ]
 
 export const comingSoonSlots = [
-  { id: "slot-1", hint: "Marca de tableta de autor · Colombia" },
-  { id: "slot-2", hint: "Productor directo · Arauca" },
+  { id: "slot-1", hint: "Productor directo · Arauca" },
 ]

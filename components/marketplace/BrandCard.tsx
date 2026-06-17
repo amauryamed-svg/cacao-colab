@@ -9,7 +9,7 @@ export default function BrandCard({ brand }: { brand: Brand }) {
       {/* header */}
       <div className="px-6 pt-8 pb-4">
         <p className="text-[10px] font-bold tracking-[3px] uppercase font-sans mb-2" style={{ color: brand.accentColor }}>
-          Socio Cacao Colab
+          {brand.role === 'colaborador' ? 'Colaborador Cacao Colab' : 'Socio Cacao Colab'}
         </p>
         <h3 className="font-serif text-2xl font-bold leading-tight">{brand.name}</h3>
         <p className="text-sm mt-1 opacity-70 font-sans">{brand.tagline}</p>
