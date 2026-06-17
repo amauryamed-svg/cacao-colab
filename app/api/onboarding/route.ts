@@ -32,7 +32,8 @@ export async function POST(req: NextRequest) {
   }
 
   const body = await req.json()
-  const { nombre, operacion, tipo, interes, ciudad, email, whatsapp } = body
+  const { nombre, operacion, tipo, interes, ciudad, email, whatsapp,
+          utm_source, utm_medium, utm_campaign } = body
 
   if (!email || !email.includes('@')) {
     return NextResponse.json({ ok: false, error: 'email requerido' }, { status: 400 })
@@ -47,6 +48,9 @@ export async function POST(req: NextRequest) {
     jobtitle:       [TIPO_LABEL[tipo] || tipo, INTERES_LABEL[interes] || interes].filter(Boolean).join(' · '),
     lifecyclestage: 'lead',
     hs_lead_status: 'NEW',
+    ...(utm_source   && { hs_analytics_source: 'OTHER_CAMPAIGNS', hs_analytics_source_data_1: utm_source }),
+    ...(utm_campaign && { hs_analytics_source_data_2: utm_campaign }),
+    ...(utm_medium   && { hs_analytics_last_referrer: utm_medium }),
   }
 
   // try upsert (create or update by email)

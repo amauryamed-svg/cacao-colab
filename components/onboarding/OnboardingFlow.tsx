@@ -145,10 +145,12 @@ export default function OnboardingFlow({ onComplete }: { onComplete?: () => void
     if (!canAdvance || submitting) return
     setSubmitting(true)
     try {
+      let utms: Record<string, string> = {}
+      try { utms = JSON.parse(sessionStorage.getItem('colab_utms') ?? '{}') } catch (_) {}
       await fetch('/api/onboarding', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify(data),
+        body:    JSON.stringify({ ...data, ...utms }),
       })
     } catch (_) {
       // continue silently — HubSpot failure no debe bloquear al usuario

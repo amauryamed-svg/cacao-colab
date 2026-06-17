@@ -36,8 +36,6 @@ export default function ModuleCard({ module, track }: Props) {
         {module.status === "available" && module.url && (
           <a
             href={module.url}
-            target="_blank"
-            rel="noopener noreferrer"
             className="mt-2 text-[10px] font-bold font-sans text-colab-yellow hover:underline block"
           >
             Empezar →

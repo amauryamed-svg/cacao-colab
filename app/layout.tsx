@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import "./globals.css"
 import Navbar from "@/components/nav/Navbar"
 import OnboardingGate from "@/components/onboarding/OnboardingGate"
+import UTMCapture from "@/components/analytics/UTMCapture"
 
 export const metadata: Metadata = {
   title: "Cacao Colab · CAÚA × Zurych",
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es" className="h-full scroll-smooth">
       <body className="min-h-full flex flex-col antialiased">
+        <UTMCapture />
         <Navbar />
         <OnboardingGate>
           <main className="flex-1">{children}</main>

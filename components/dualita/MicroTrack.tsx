@@ -20,9 +20,7 @@ export default function MicroTrack() {
       </div>
       {/* cta */}
       <a
-        href="https://cauacolombia.co/pages/aprende"
-        target="_blank"
-        rel="noopener noreferrer"
+        href="/aprende/cacao-bioactivo"
         className="mt-1 block text-center text-sm font-bold py-3 px-5 rounded-full border-2 border-colab-green text-colab-pod hover:bg-colab-green hover:text-white transition-colors font-sans"
       >
         Empezar gratis →

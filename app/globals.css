@@ -38,3 +38,14 @@ body {
 
 .squirrel-bob { animation: squirrelBob 2.8s ease-in-out infinite; }
 .fade-up      { animation: fadeUp 0.6s ease both; }
+
+@keyframes confettiBurst {
+  0%   { transform: scale(0.4); opacity: 0; }
+  60%  { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
