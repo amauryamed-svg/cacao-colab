@@ -114,6 +114,64 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ══════════ ÚNETE CTA ══════════ */}
+      <section className="bg-colab-cream py-20 border-t border-colab-forest/8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="bg-colab-forest rounded-2xl px-8 md:px-14 py-14 flex flex-col md:flex-row items-center gap-10 relative overflow-hidden">
+            {/* decorative bg text */}
+            <div
+              aria-hidden
+              className="absolute right-0 top-0 bottom-0 flex items-center pointer-events-none select-none overflow-hidden"
+            >
+              <span
+                className="font-serif font-black text-white/[.03] leading-none pr-6"
+                style={{ fontSize: "clamp(8rem, 18vw, 18rem)" }}
+              >
+                ↗
+              </span>
+            </div>
+
+            <div className="relative flex-1 text-center md:text-left">
+              <SectionKicker className="mb-4">Cacao con propósito · HoReCa</SectionKicker>
+              <h2
+                className="font-serif font-black text-colab-cream leading-tight mb-4"
+                style={{ fontSize: "clamp(1.8rem, 4.5vw, 3.4rem)" }}
+              >
+                ¿Listo para llevar<br />cacao colombiano<br />
+                <span className="text-colab-yellow">a tu cocina?</span>
+              </h2>
+              <p
+                className="text-colab-cream/55 font-sans max-w-md mb-8"
+                style={{ fontSize: "clamp(0.9rem, 2vw, 1rem)" }}
+              >
+                Cuéntanos sobre tu operación. En 3 minutos sabemos si somos la combinación perfecta.
+              </p>
+              <a
+                href="/unete"
+                className="inline-flex items-center gap-2 bg-colab-yellow text-colab-forest font-bold text-sm px-8 py-4 rounded-full hover:bg-colab-amber transition-colors font-sans"
+              >
+                Únete al Colab →
+              </a>
+            </div>
+
+            <div className="relative flex-shrink-0 hidden md:flex flex-col items-center gap-4">
+              <SquirrelSVG size={140} className="squirrel-bob" />
+              <div className="flex gap-2">
+                {["Restaurante", "Hotel", "Cafetería", "Pastelería"].map((t) => (
+                  <span
+                    key={t}
+                    className="text-[10px] font-bold tracking-[2px] uppercase px-3 py-1.5 rounded-full"
+                    style={{ background: "rgba(242,200,48,.12)", color: "#F2C830", border: "1px solid rgba(242,200,48,.2)" }}
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ══════════ CTA FINAL ══════════ */}
       <section className="bg-colab-yellow py-20 relative overflow-hidden">
         <div

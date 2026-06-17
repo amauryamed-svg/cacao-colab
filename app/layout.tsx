@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import "./globals.css"
 import Navbar from "@/components/nav/Navbar"
+import OnboardingGate from "@/components/onboarding/OnboardingGate"
 
 export const metadata: Metadata = {
   title: "Cacao Colab · CAÚA × Zurych",
@@ -18,7 +19,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="es" className="h-full scroll-smooth">
       <body className="min-h-full flex flex-col antialiased">
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <OnboardingGate>
+          <main className="flex-1">{children}</main>
+        </OnboardingGate>
         <footer className="bg-colab-forest text-colab-cream/55 text-xs font-sans">
           <div className="max-w-6xl mx-auto px-4 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p>Cacao Colab · CAÚA Colombia SAS × Zurych · {new Date().getFullYear()}</p>
