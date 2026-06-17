@@ -63,7 +63,7 @@ export const brands: Brand[] = [
       "Tabletas de autor · origen Colombia",
     ],
     ctaLabel: "Conocer Lust →",
-    ctaUrl: "https://wa.me/573102227848?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20Chocolate%20Lust%20en%20el%20Cacao%20Colab.",
+    ctaUrl: "https://chocolatelust.com",
     role: "colaborador",
   },
 ]

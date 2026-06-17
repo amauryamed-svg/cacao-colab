@@ -35,6 +35,7 @@
 ### Chocolate Lust
 - **Tipo:** Colaborador
 - **Descripción:** Marca de chocolate de autor colombiano.
+- **Web:** chocolatelust.com
 - **Relación con el Colab:** Co-branding NIBS CAÚA × Zurych × Lust (lanzado Alimentec jun 2026). Presencia en marketplace como colaborador, no owner — sin participación en decisiones de plataforma.
 - **Acuerdo:** No exclusivo. Distribuido bajo la propuesta de valor del Colab sin royalty.
 - **Estado:** Activo desde Alimentec 2026-06-09.
