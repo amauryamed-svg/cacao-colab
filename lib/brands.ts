@@ -63,7 +63,7 @@ export const brands: Brand[] = [
       "Tabletas de autor · origen Colombia",
     ],
     ctaLabel: "Conocer Lust →",
-    ctaUrl: "https://chocolatelust.com",
+    ctaUrl: "https://chocolateslust.com",
     role: "colaborador",
   },
 ]
