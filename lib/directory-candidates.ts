@@ -1,13 +1,14 @@
 /**
  * Directorio de marcas candidatas — Cacao Colab.
  *
- * NO es el marketplace público (eso sigue viviendo en `brands.ts`, que solo
- * lista socios/colaboradores ya integrados: CAÚA, Zurych, Lust). Este es el
- * paso previo que pidió Amaury explícitamente (2026-07-22): "todavía no está
- * lista la app como para invitarlos formalmente, primero hay que crear el
- * directorio, luego el marketplace" — así que este archivo NO se importa
- * desde ninguna página pública todavía. Es la base de datos interna para
- * planear outreach, no un anuncio de que estas marcas ya son parte del Colab.
+ * NO es el marketplace admitido (eso sigue viviendo en `brands.ts`, que solo
+ * lista socios/colaboradores ya integrados: CAÚA, Zurych, Lust). Este
+ * directorio SÍ se muestra en la página del Market (2026-07-22, pedido
+ * explícito de Amaury) — pero como sección separada, marcada "candidatas,
+ * sin confirmar", sin CTA de "conocer marca" ni ningún lenguaje que implique
+ * que ya son parte del Colab. Ninguna de estas marcas fue contactada
+ * todavía — ver `publicBlurb` para el copy honesto que sí se renderiza, y
+ * `notes` para el research interno que NO se renderiza (no mezclar).
  *
  * Cada entrada fue verificada por búsqueda web real antes de guardarse aquí
  * (2026-07-22) — nada de datos inventados. `verified: false` significa que no
@@ -21,7 +22,11 @@ export type DirectoryCandidate = {
   name: string
   website: string | null
   sourceUrl: string | null
+  city: string
   origin: string | null
+  /** Copy público, corto, honesto — esto es lo único que se renderiza en la página del Market. */
+  publicBlurb: string
+  /** Research interno — NO renderizar, es para planear outreach. */
   notes: string
   status: DirectoryStatus
   verified: boolean
@@ -33,18 +38,22 @@ export const directoryCandidates: DirectoryCandidate[] = [
     name: "Cacao Disidente",
     website: "https://www.cacaodisidente.com",
     sourceUrl: "https://www.cacaodisidente.com/en/pages/nosotros",
+    city: "Origen múltiple",
     origin: "Arauca, Meta, Guaviare, Putumayo (según reportaje de Cambio Colombia)",
-    notes: "Chocolate de origen que ha llegado a restaurantes con estrella Michelin. Fuerte fit con el ángulo HoReCa fine-dining del Colab.",
+    publicBlurb: "Cacao de origen que ha llegado a restaurantes con estrella Michelin.",
+    notes: "Fuerte fit con el ángulo HoReCa fine-dining del Colab.",
     status: "candidato_sin_contactar",
     verified: true,
   },
   {
     id: "maki",
-    name: "Maki Cacao (Maki Natural)",
+    name: "Maki Cacao",
     website: "https://makinatural.com",
     sourceUrl: "https://makinatural.com",
+    city: "Caquetá / Sierra Nevada de Santa Marta",
     origin: "Caquetá y Sierra Nevada de Santa Marta",
-    notes: "Fundada 2019, sustitución de cultivos de coca por cacao. Barras (sal y coco 70%, lulo y romero 70%), bebidas funcionales con adaptógenos, chocolate caliente chai. Rango de precio $5.000-$35.000 COP. Confirmado 2026-07-22 vía makinatural.com (producto \"70% Dark Chocolate, Lulo y Romero\" coincide con la descripción encontrada en prensa).",
+    publicBlurb: "Cacao que sustituye cultivos de coca — barras, bebidas funcionales, chocolate caliente.",
+    notes: "Fundada 2019. Rango de precio $5.000-$35.000 COP. Confirmado 2026-07-22 vía makinatural.com.",
     status: "candidato_sin_contactar",
     verified: true,
   },
@@ -53,8 +62,10 @@ export const directoryCandidates: DirectoryCandidate[] = [
     name: "Chuculat",
     website: "https://chuculat.com",
     sourceUrl: "https://chuculat.com",
+    city: "Bogotá",
     origin: "Bogotá",
-    notes: "Tienda de chocolate premium online, Bogotá. Perfil retail/D2C más que HoReCa — revisar si el fit es con Segmento A (coberturas/chocolatería) del Colab.",
+    publicBlurb: "Chocolate premium, tienda online.",
+    notes: "Perfil retail/D2C más que HoReCa — revisar fit con Segmento A (coberturas/chocolatería).",
     status: "candidato_sin_contactar",
     verified: true,
   },
@@ -63,8 +74,10 @@ export const directoryCandidates: DirectoryCandidate[] = [
     name: "Legado Cacao Experience",
     website: "https://www.legadocacao.com",
     sourceUrl: "https://www.legadocacao.com/nosotros",
+    city: "Bogotá",
     origin: "Bogotá",
-    notes: "Fundada 2019 como iniciativa de construcción de paz. Centro de experiencia de cacao (catas guiadas, talleres) — fit natural con Dualita (aprendizaje), no solo marketplace de producto.",
+    publicBlurb: "Experiencia de cacao y catas guiadas — cacao como vehículo de paz.",
+    notes: "Fundada 2019 como iniciativa de construcción de paz. Fit natural con Dualita (aprendizaje).",
     status: "candidato_sin_contactar",
     verified: true,
   },
@@ -73,8 +86,10 @@ export const directoryCandidates: DirectoryCandidate[] = [
     name: "Suagu",
     website: "https://www.suagu.com",
     sourceUrl: "https://www.suagu.com",
+    city: "Tolima",
     origin: "Finca El Carmelo, Tolima",
-    notes: "Fundada 2016 por María Camila y Juan Diego Suárez. Barras 70% y 80%. Da de vuelta a la comunidad vía Fundación Dulce Futuro — alineación fuerte con el propósito social del Colab.",
+    publicBlurb: "Barras 70% y 80% desde Finca El Carmelo — con Fundación Dulce Futuro.",
+    notes: "Fundada 2016 por María Camila y Juan Diego Suárez. Alineación fuerte con el propósito social del Colab.",
     status: "candidato_sin_contactar",
     verified: true,
   },
@@ -83,33 +98,22 @@ export const directoryCandidates: DirectoryCandidate[] = [
     name: "Chocolate Gironés",
     website: "https://www.girones.com.co",
     sourceUrl: "https://www.girones.com.co/sobre-nosotros/quienes-somos",
+    city: "Santander",
     origin: "Santander",
-    notes: "La chocolatería más grande de Santander, operando desde 1970. Tiene sub-marca gourmet \"Davida\" con NIBS. Escala industrial vs. las demás candidatas (artesanales) — encaje probable en Coberturas/ingrediente, no marketplace boutique.",
+    publicBlurb: "La chocolatería más grande de Santander, operando desde 1970.",
+    notes: "Sub-marca gourmet \"Davida\" con NIBS. Escala industrial — encaje probable en Coberturas/ingrediente.",
     status: "candidato_sin_contactar",
     verified: true,
   },
-]
-
-/**
- * Segunda tanda — búsqueda completa de marcas de cacao/chocolate en Bogotá
- * (2026-07-22, pedido explícito de Amaury). Cada una se verificó por
- * búsqueda web + scrape real de su sitio antes de guardarse acá.
- *
- * `locationConfirmed: true` significa que una fuente real (prensa o el
- * propio sitio) dice Bogotá explícitamente. `false` significa que la marca
- * es colombiana real y verificada, pero no encontré confirmación clara de
- * que su sede sea Bogotá específicamente (podría ser origen del cacao en
- * otro departamento, no la ciudad de la marca) — no se infiere, se marca
- * honesto.
- */
-export const bogotaSearchCandidates: DirectoryCandidate[] = [
   {
     id: "tibito",
     name: "Tibitó",
     website: "https://tibito.co",
     sourceUrl: "https://tibito.co/es",
-    origin: "Colombia (curiosidad y exploración del cacao colombiano, fundada 2015)",
-    notes: "Entrega en Bogotá 1-2 días hábiles — confirma sede en Bogotá. Marca joven, 2015.",
+    city: "Bogotá",
+    origin: "Bogotá",
+    publicBlurb: "Chocolate colombiano artesanal, desde 2015.",
+    notes: "Entrega en Bogotá 1-2 días hábiles — confirma sede en Bogotá.",
     status: "candidato_sin_contactar",
     verified: true,
   },
@@ -118,8 +122,10 @@ export const bogotaSearchCandidates: DirectoryCandidate[] = [
     name: "Chocolate Andino",
     website: "https://www.chocolatesandino.com",
     sourceUrl: "https://www.chocolatesandino.com/",
+    city: "Bogotá",
     origin: "Bogotá",
-    notes: "Fábrica de chocolate en Bogotá desde 1931 — una de las más antiguas del listado. Línea de chocolates + cafés + maquila a la medida.",
+    publicBlurb: "Fábrica de chocolate en Bogotá desde 1931.",
+    notes: "Una de las más antiguas del listado. Línea de chocolates + cafés + maquila a la medida.",
     status: "candidato_sin_contactar",
     verified: true,
   },
@@ -128,8 +134,10 @@ export const bogotaSearchCandidates: DirectoryCandidate[] = [
     name: "Fruto de Cacao",
     website: "https://frutodecacao.com",
     sourceUrl: "https://frutodecacao.com/",
+    city: "Bogotá",
     origin: "Bogotá",
-    notes: "Chocolatería y pastelería artesanal en Bogotá. Barras, bean to bar, bombones, trufas.",
+    publicBlurb: "Chocolatería y pastelería artesanal.",
+    notes: "Barras, bean to bar, bombones, trufas.",
     status: "candidato_sin_contactar",
     verified: true,
   },
@@ -138,8 +146,10 @@ export const bogotaSearchCandidates: DirectoryCandidate[] = [
     name: "Truffelinos",
     website: "https://truffelinos.com.co",
     sourceUrl: "https://truffelinos.com.co/conocer-nuestra-marca/",
+    city: "Bogotá",
     origin: "Bogotá",
-    notes: "Chocolatería artesanal Bogotá desde 1979 — la más antigua confirmada del listado. Enfoque corporativo/regalos.",
+    publicBlurb: "Chocolatería artesanal desde 1979 — la más antigua del directorio.",
+    notes: "Enfoque corporativo/regalos.",
     status: "candidato_sin_contactar",
     verified: true,
   },
@@ -148,8 +158,10 @@ export const bogotaSearchCandidates: DirectoryCandidate[] = [
     name: "D'accord",
     website: "https://www.daccordchocolatvie.com",
     sourceUrl: "https://www.daccordchocolatvie.com/",
+    city: "Bogotá",
     origin: "Bogotá",
-    notes: "Bombonería en Bogotá, trabaja exclusivamente cacao al 70%. Sitio con poco detalle textual (plantilla Wix) — vale la pena verificar en persona antes de outreach.",
+    publicBlurb: "Bombonería que trabaja exclusivamente cacao al 70%.",
+    notes: "Sitio con poco detalle textual (plantilla Wix) — verificar en persona antes de outreach.",
     status: "candidato_sin_contactar",
     verified: true,
   },
@@ -158,8 +170,10 @@ export const bogotaSearchCandidates: DirectoryCandidate[] = [
     name: "Tartufi Cioccolati",
     website: "https://www.tartufi.co",
     sourceUrl: "https://www.tartufi.co/",
+    city: "Bogotá",
     origin: "Bogotá",
-    notes: "Chocolatería gourmet Bogotá — trufas y bombones, cacao \"fino y aromático\". Apareció en un listado de prensa de \"los 4 lugares en Bogotá para chocolatería fina\".",
+    publicBlurb: "Chocolatería gourmet — trufas y bombones de cacao fino y aromático.",
+    notes: "Apareció en un listado de prensa de \"los 4 lugares en Bogotá para chocolatería fina\".",
     status: "candidato_sin_contactar",
     verified: true,
   },
@@ -168,8 +182,10 @@ export const bogotaSearchCandidates: DirectoryCandidate[] = [
     name: "Bean to Bar Colombia",
     website: "https://www.beantobarcolombia.com",
     sourceUrl: "https://www.beantobarcolombia.com/",
+    city: "Bogotá",
     origin: "Bogotá",
-    notes: "Procesan su chocolate en Bogotá — expertos en transformación del grano, lotes especializados para evaluación de calidad.",
+    publicBlurb: "Transformación de grano de cacao, procesado en Bogotá.",
+    notes: "Lotes especializados para evaluación de calidad.",
     status: "candidato_sin_contactar",
     verified: true,
   },
@@ -178,8 +194,10 @@ export const bogotaSearchCandidates: DirectoryCandidate[] = [
     name: "Somos Cacao",
     website: "https://somoscacao.com",
     sourceUrl: "https://somoscacao.com/",
+    city: "Colombia (ciudad sin confirmar)",
     origin: "Norte de Santander (origen del cacao — sede de la marca sin confirmar)",
-    notes: "100% cacao colombiano sin azúcar ni aditivos. Ciudad de sede no confirmada — 'Norte de Santander' es el origen del cacao, no necesariamente dónde opera la marca. No asumir Bogotá sin confirmar.",
+    publicBlurb: "100% cacao colombiano, sin azúcar ni aditivos.",
+    notes: "'Norte de Santander' es el origen del cacao, no necesariamente dónde opera la marca. No asumir Bogotá.",
     status: "no_verificado",
     verified: true,
   },
@@ -188,8 +206,10 @@ export const bogotaSearchCandidates: DirectoryCandidate[] = [
     name: "Terra Dulce Chocolates",
     website: "https://terradulcechocolates.com.co",
     sourceUrl: "https://terradulcechocolates.com.co/",
+    city: "Colombia (ciudad sin confirmar)",
     origin: "Colombia (ciudad no confirmada)",
-    notes: "Cacao fino de aroma endulzado con panela orgánica, filosofía bean to bar. No se confirmó ciudad de sede en el scrape — no asumir Bogotá.",
+    publicBlurb: "Cacao fino de aroma, endulzado con panela orgánica.",
+    notes: "Filosofía bean to bar. No se confirmó ciudad de sede en el scrape.",
     status: "no_verificado",
     verified: true,
   },
@@ -198,8 +218,10 @@ export const bogotaSearchCandidates: DirectoryCandidate[] = [
     name: "Juan Choconat",
     website: "https://www.juanchoconat.com",
     sourceUrl: "https://www.juanchoconat.com/es-us",
+    city: "Colombia (ciudad sin confirmar)",
     origin: "Colombia (ciudad no confirmada)",
-    notes: "Premiado 2do lugar en América en Nueva York. 100% cacao colombiano, sin azúcar/aditivos (monk fruit o puro). Envíos a toda Colombia — no se confirmó ciudad de sede.",
+    publicBlurb: "Chocolate sin azúcar, premiado 2do lugar en América en Nueva York.",
+    notes: "100% cacao colombiano, sin aditivos (monk fruit o puro). Envíos a toda Colombia.",
     status: "no_verificado",
     verified: true,
   },
@@ -208,8 +230,10 @@ export const bogotaSearchCandidates: DirectoryCandidate[] = [
     name: "Maluwa Chocolate Company",
     website: "https://maluwa.co",
     sourceUrl: "https://maluwa.co/",
+    city: "Meta",
     origin: "Meta (110 productores del departamento)",
-    notes: "Origen Meta, ciudad de sede de la marca no confirmada — no asumir Bogotá.",
+    publicBlurb: "110 productores del Meta detrás de cada barra.",
+    notes: "Ciudad de sede de la marca no confirmada — no asumir Bogotá.",
     status: "no_verificado",
     verified: true,
   },
@@ -218,8 +242,10 @@ export const bogotaSearchCandidates: DirectoryCandidate[] = [
     name: "CHACHA",
     website: "https://chachacolombia.com",
     sourceUrl: "https://chachacolombia.com/",
+    city: "Colombia (ciudad sin confirmar)",
     origin: "Colombia (ciudad no confirmada)",
-    notes: "Chocolates sin azúcar, apto diabéticos, vegano, certificado sin gluten. Ciudad de sede no confirmada en el scrape.",
+    publicBlurb: "Chocolate sin azúcar, apto para diabéticos, vegano, certificado sin gluten.",
+    notes: "Ciudad de sede no confirmada en el scrape.",
     status: "no_verificado",
     verified: true,
   },
@@ -228,8 +254,10 @@ export const bogotaSearchCandidates: DirectoryCandidate[] = [
     name: "Color Cacao",
     website: "https://colorcacao.com",
     sourceUrl: "https://colorcacao.com/",
+    city: "Medellín",
     origin: "Medellín",
-    notes: "NO es Bogotá — fundada 2011 en Medellín. Se incluye porque salió en la búsqueda y es una marca real fuerte, pero fuera del alcance geográfico pedido (\"marcas de cacao en Bogotá\"). Decisión de incluir o no la deja Amaury.",
+    publicBlurb: "Chocolatería artesanal fina de origen colombiano.",
+    notes: "NO es Bogotá — fundada 2011 en Medellín. Fuera del alcance geográfico pedido, se incluye igual por transparencia.",
     status: "no_verificado",
     verified: true,
   },
@@ -241,6 +269,8 @@ export const bogotaSearchCandidates: DirectoryCandidate[] = [
  * completo de los ~130 expositores reportados en prensa; solo se pudieron
  * mapear estos stands individuales. Si Amaury tiene el PDF/listado del
  * "Market" que vio en la feria, se reemplaza esto por la lista real completa.
+ * No se renderiza en la página todavía — faltan datos (sin website
+ * individual verificado por stand).
  */
 export const chocoshowExhibitorsPartial = [
   { name: "Montes de Cacao", stand: "6827" },

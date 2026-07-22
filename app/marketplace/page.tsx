@@ -2,7 +2,9 @@ import type { Metadata } from "next"
 import SectionKicker from "@/components/ui/SectionKicker"
 import BrandCard from "@/components/marketplace/BrandCard"
 import ComingSoonSlot from "@/components/marketplace/ComingSoonSlot"
+import DirectoryCard from "@/components/marketplace/DirectoryCard"
 import { brands, comingSoonSlots } from "@/lib/brands"
+import { directoryCandidates } from "@/lib/directory-candidates"
 
 export const metadata: Metadata = {
   title: "Marketplace · Cacao Colab",
@@ -41,6 +43,22 @@ export default function MarketplacePage() {
           {comingSoonSlots.map((slot) => (
             <ComingSoonSlot key={slot.id} hint={slot.hint} />
           ))}
+        </div>
+
+        {/* directorio — candidatas, no confirmadas, no forman parte del marketplace */}
+        <div className="mt-16 border-t border-colab-ink/10 pt-12">
+          <SectionKicker className="mb-3 text-colab-ink/40">El directorio</SectionKicker>
+          <h2 className="font-serif font-bold text-colab-ink mb-3" style={{ fontSize: "clamp(1.4rem, 3.5vw, 2rem)" }}>
+            Marcas que seguimos de cerca.
+          </h2>
+          <p className="text-colab-ink/55 font-sans max-w-2xl mb-8 text-sm leading-relaxed">
+            Cacao y chocolate colombiano real que investigamos antes de invitar formalmente al marketplace — ninguna de estas marcas fue contactada todavía. No son socias ni colaboradoras del Colab; es nuestra lista de candidatas, honesta y pública.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {directoryCandidates.map((c) => (
+              <DirectoryCard key={c.id} candidate={c} />
+            ))}
+          </div>
         </div>
 
         {/* criteria */}
