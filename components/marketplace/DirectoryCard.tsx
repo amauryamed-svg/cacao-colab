@@ -17,21 +17,23 @@ export default function DirectoryCard({ candidate }: { candidate: DirectoryCandi
         <h4 className="font-serif text-lg font-bold text-colab-ink leading-tight">{candidate.name}</h4>
       </div>
       <p className="text-xs text-colab-ink/65 font-sans leading-relaxed flex-1">{candidate.publicBlurb}</p>
-      <div className="flex items-center justify-between pt-1">
-        <span className="text-[9px] font-bold tracking-[1.5px] uppercase font-sans text-colab-amber/80">
-          Candidata · sin confirmar
+      <span className="text-[9px] font-bold tracking-[1.5px] uppercase font-sans text-colab-amber/80">
+        Candidata · sin confirmar
+      </span>
+      {candidate.website ? (
+        <a
+          href={candidate.website}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block text-center text-xs font-bold py-2.5 px-4 rounded-full font-sans border-2 border-dashed border-colab-ink/25 text-colab-ink/70 hover:border-colab-ink/50 hover:text-colab-ink transition-colors"
+        >
+          Visitar sitio ↗
+        </a>
+      ) : (
+        <span className="block text-center text-xs font-sans py-2.5 px-4 text-colab-ink/30">
+          Sin sitio verificado
         </span>
-        {candidate.website && (
-          <a
-            href={candidate.website}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[11px] font-bold font-sans text-colab-ink/45 hover:text-colab-ink/80 transition-colors"
-          >
-            Sitio ↗
-          </a>
-        )}
-      </div>
+      )}
     </div>
   )
 }
