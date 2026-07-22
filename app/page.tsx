@@ -6,7 +6,7 @@ import ComingSoonSlot from "@/components/marketplace/ComingSoonSlot"
 import DualitaHero from "@/components/dualita/DualitaHero"
 import MOOCTrack from "@/components/dualita/MOOCTrack"
 import MicroTrack from "@/components/dualita/MicroTrack"
-import { brands, comingSoonSlots } from "@/lib/brands"
+import { founderBrands, collaboratorBrands, comingSoonSlots } from "@/lib/brands"
 
 const WA_MARCA =
   "https://wa.me/573102227848?text=Hola%20Cacao%20Colab%2C%20quiero%20postular%20mi%20marca%20de%20cacao%20al%20marketplace."
@@ -89,13 +89,25 @@ export default function Home() {
             Solo marcas con trazabilidad por lote, origen colombiano verificado y propuesta funcional para HoReCa y retail de especialidad.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {brands.map((brand) => (
+            {founderBrands.map((brand) => (
               <BrandCard key={brand.id} brand={brand} />
             ))}
             {comingSoonSlots.map((slot) => (
               <ComingSoonSlot key={slot.id} hint={slot.hint} />
             ))}
           </div>
+          {collaboratorBrands.length > 0 && (
+            <div className="mt-10 pt-8 border-t border-colab-ink/8">
+              <p className="text-[11px] font-bold tracking-[2px] uppercase font-sans text-colab-ink/35 mb-4">
+                Colaboradores del Colab
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                {collaboratorBrands.map((brand) => (
+                  <BrandCard key={brand.id} brand={brand} />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </section>
 

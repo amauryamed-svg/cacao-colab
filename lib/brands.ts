@@ -71,3 +71,9 @@ export const brands: Brand[] = [
 export const comingSoonSlots = [
   { id: "slot-1", hint: "Productor directo · Arauca" },
 ]
+
+/** Círculo fundador — solo CAÚA y Zurych (decisión de Amaury, 2026-07-22). */
+export const founderBrands = brands.filter((b) => b.role !== "colaborador")
+
+/** Colaboradores reales pero NO fundadores — hoy solo Lust (NIBS cobranding). */
+export const collaboratorBrands = brands.filter((b) => b.role === "colaborador")

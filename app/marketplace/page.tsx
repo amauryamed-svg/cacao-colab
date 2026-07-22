@@ -3,7 +3,7 @@ import SectionKicker from "@/components/ui/SectionKicker"
 import BrandCard from "@/components/marketplace/BrandCard"
 import ComingSoonSlot from "@/components/marketplace/ComingSoonSlot"
 import DirectoryCard from "@/components/marketplace/DirectoryCard"
-import { brands, comingSoonSlots } from "@/lib/brands"
+import { founderBrands, collaboratorBrands, comingSoonSlots } from "@/lib/brands"
 import { directoryCandidates } from "@/lib/directory-candidates"
 
 export const metadata: Metadata = {
@@ -36,14 +36,26 @@ export default function MarketplacePage() {
 
       {/* grid */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+        <SectionKicker className="mb-4 text-colab-ink/40">Círculo fundador</SectionKicker>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {brands.map((brand) => (
+          {founderBrands.map((brand) => (
             <BrandCard key={brand.id} brand={brand} />
           ))}
           {comingSoonSlots.map((slot) => (
             <ComingSoonSlot key={slot.id} hint={slot.hint} />
           ))}
         </div>
+
+        {collaboratorBrands.length > 0 && (
+          <div className="mt-12">
+            <SectionKicker className="mb-4 text-colab-ink/40">Colaboradores del Colab</SectionKicker>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {collaboratorBrands.map((brand) => (
+                <BrandCard key={brand.id} brand={brand} />
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* directorio — candidatas, no confirmadas, no forman parte del marketplace */}
         <div className="mt-16 border-t border-colab-ink/10 pt-12">
