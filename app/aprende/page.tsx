@@ -3,6 +3,7 @@ import SectionKicker from "@/components/ui/SectionKicker"
 import DualitaHero from "@/components/dualita/DualitaHero"
 import MOOCTrack from "@/components/dualita/MOOCTrack"
 import MicroTrack from "@/components/dualita/MicroTrack"
+import ProgressStrip from "@/components/aprende/ProgressStrip"
 
 export const metadata: Metadata = {
   title: "Dualita · Aprende cacao · Cacao Colab",
@@ -16,6 +17,7 @@ export default function AprendePage() {
       <div className="pt-16 pb-10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <DualitaHero />
+          <ProgressStrip />
         </div>
       </div>
 

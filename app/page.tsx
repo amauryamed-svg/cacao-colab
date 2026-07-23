@@ -1,12 +1,12 @@
 import SquirrelSVG from "@/components/brand/SquirrelSVG"
 import SectionKicker from "@/components/ui/SectionKicker"
 import Button from "@/components/ui/Button"
-import BrandCard from "@/components/marketplace/BrandCard"
-import ComingSoonSlot from "@/components/marketplace/ComingSoonSlot"
+import BrandNetwork from "@/components/marketplace/BrandNetwork"
 import DualitaHero from "@/components/dualita/DualitaHero"
 import MOOCTrack from "@/components/dualita/MOOCTrack"
 import MicroTrack from "@/components/dualita/MicroTrack"
 import { founderBrands, collaboratorBrands, comingSoonSlots } from "@/lib/brands"
+import { territories } from "@/lib/territories"
 
 const WA_MARCA =
   "https://wa.me/573102227848?text=Hola%20Cacao%20Colab%2C%20quiero%20postular%20mi%20marca%20de%20cacao%20al%20marketplace."
@@ -59,7 +59,7 @@ export default function Home() {
         <div className="border-t border-white/10 bg-black/20">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 py-5 grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[
-              { num: "4",  label: "regiones de origen" },
+              { num: "5",  label: "regiones de origen" },
               { num: "0",  label: "azúcar añadida" },
               { num: "2",  label: "marcas fundadoras" },
               { num: "6",  label: "módulos gratis" },
@@ -88,26 +88,12 @@ export default function Home() {
           <p className="text-colab-ink/60 font-sans max-w-xl mb-10" style={{ fontSize: "clamp(0.9rem, 2vw, 1rem)" }}>
             Solo marcas con trazabilidad por lote, origen colombiano verificado y propuesta funcional para HoReCa y retail de especialidad.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {founderBrands.map((brand) => (
-              <BrandCard key={brand.id} brand={brand} />
-            ))}
-            {comingSoonSlots.map((slot) => (
-              <ComingSoonSlot key={slot.id} hint={slot.hint} />
-            ))}
-          </div>
-          {collaboratorBrands.length > 0 && (
-            <div className="mt-10 pt-8 border-t border-colab-ink/8">
-              <p className="text-[11px] font-bold tracking-[2px] uppercase font-sans text-colab-ink/35 mb-4">
-                Colaboradores del Colab
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                {collaboratorBrands.map((brand) => (
-                  <BrandCard key={brand.id} brand={brand} />
-                ))}
-              </div>
-            </div>
-          )}
+          <BrandNetwork
+            founders={founderBrands}
+            collaborators={collaboratorBrands}
+            comingSoonSlots={comingSoonSlots}
+            territories={territories}
+          />
         </div>
       </section>
 

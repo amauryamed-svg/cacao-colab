@@ -237,10 +237,10 @@ export const lessons: Lesson[] = [
     emoji: '🌿',
     duration: '9 min',
     xp: 70,
-    companionIntro: '¡Módulo 5! Este es el corazón de CAÚA. Los Guardianes son agricultores reales con nombres reales — y sus granos están en tu cocina.',
+    companionIntro: '¡Módulo 5! Este es el corazón de CAÚA. Los Guardianes son agricultores reales de cinco regiones de Colombia — y sus granos están en tu cocina.',
     companionMid: 'La trazabilidad no es un certificado — es una historia que tu cliente puede rastrear. Ese es el poder del Colab.',
     companionQuiz: '¿Conoces los 5 orígenes del Cacao Colab? ¡Vamos a comprobarlo!',
-    companionComplete: '¡Ya conoces a los Guardianes! El cacao ahora tiene cara y nombre para ti. +70 XP 🎉',
+    companionComplete: '¡Ya conoces a los Guardianes! El cacao ahora tiene territorio y origen para ti. +70 XP 🎉',
     companionTips: [
       'Huila produce cacao con notas a frutas rojas y acidez brillante.',
       'El cacao de Arauca tiene notas a nuez y chocolate oscuro — más plano pero muy consistente.',
@@ -256,7 +256,7 @@ export const lessons: Lesson[] = [
       {
         kicker: 'Trazabilidad por lote',
         headline: 'Tu cliente puede rastrear su chocolate hasta el árbol.',
-        body: 'Cada lote CAÚA tiene código único: región, Guardián, fecha de fermentación, fecha de secado, peso. Esto permite que en tu menú puedas escribir "Ganache de cacao Huila, lote H-24-07, Lucho Díaz" — y tu cliente puede escanearlo y ver la finca. Eso no lo hace ningún chocolate industrial.',
+        body: 'Cada lote CAÚA tiene código único: región, Guardián, fecha de fermentación, fecha de secado, peso. Esto permite que en tu menú puedas escribir "Ganache de cacao Huila, lote H-24-07" — y tu cliente puede escanearlo y ver la finca. Eso no lo hace ningún chocolate industrial.',
         highlight: { label: 'información disponible por lote', value: '6 campos verificados' },
       },
       {
@@ -268,7 +268,7 @@ export const lessons: Lesson[] = [
       {
         kicker: 'En tu menú',
         headline: 'La historia de origen como diferenciador de precio.',
-        body: 'Un postre con "cobertura Zurych 85% panela de Santander, cacao del Guardián Ricardo Gómez" puede cobrarse 30–50% más que el mismo postre con "chocolate oscuro". La historia de origen justifica el precio y genera conversación en mesa. El Cacao Colab te da esa historia lista para usar.',
+        body: 'Un postre con "cobertura Zurych 85% panela de Santander, cacao trazable por lote" puede cobrarse 30–50% más que el mismo postre con "chocolate oscuro". La historia de origen justifica el precio y genera conversación en mesa. El Cacao Colab te da esa historia lista para usar.',
         highlight: { label: 'aumento de precio posible con narrativa de origen', value: '30–50%' },
       },
     ],
