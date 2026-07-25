@@ -1,0 +1,25 @@
+project_id = "cacao-colab"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "graphql_public"]
+
+[db]
+port = 54322
+major_version = 15
+
+[studio]
+enabled = true
+port = 54323
+
+[auth]
+enabled = true
+site_url = "http://localhost:3000"
+additional_redirect_urls = ["https://cacaocolab.co", "cacaocolab://"]
+
+[auth.sms]
+enable_signup = true
+enable_confirmations = false
+# Twilio para WhatsApp OTP — coherente con D10 (WhatsApp-first). Configurar SUPABASE_AUTH_SMS_TWILIO_*
+# como secrets del proyecto una vez exista, ver docs/06-ARQUITECTURA.md.

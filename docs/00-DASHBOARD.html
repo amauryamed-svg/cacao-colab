@@ -30,25 +30,35 @@
   a { color: var(--yellow); text-decoration: none; }
   .section { margin-bottom: 48px; }
   .last { font-size: 11px; color: rgba(247,241,238,.25); margin-top: 40px; }
+  .callout { background: rgba(224,85,85,.12); border: 1px solid rgba(224,85,85,.3); border-radius: 12px; padding: 16px 20px; margin-bottom: 40px; font-size: 13px; line-height: 1.5; }
+  .callout strong { color: #e05555; }
 </style>
 </head>
 <body>
 
 <h1>Cacao Colab</h1>
-<p class="sub">Dashboard · Spec v1 · 2026-06-17</p>
+<p class="sub">Dashboard · Spec v2 (pivote) · 2026-07-24</p>
 
-<!-- KPIs -->
+<div class="callout">
+  <strong>Pivote de tesis en curso.</strong> v1 (vitrina de leads) evoluciona a marketplace transaccional
+  + app nativa + pagos + CRM propio. Ver <code>00-SPEC.md</code> § 0 para el detalle completo, incluido
+  un bug de producción real encontrado y corregido (redirect ciego a caua.cloud/colab). Este dashboard
+  refleja el estado de la <strong>reestructuración técnica</strong>, no de la operación en vivo — la
+  plataforma v1 sigue corriendo sin interrupción mientras v2 se construye en la rama <code>v2-pivot</code>.
+</div>
+
+<!-- KPIs v1 heredados -->
 <div class="section">
-  <h2>Indicadores clave</h2>
+  <h2>Indicadores v1 (operación en vivo, sin cambios)</h2>
   <div class="grid">
     <div class="card">
       <div class="num">0</div>
       <div class="label">Leads HubSpot (meta: 500)</div>
-      <div class="status">Pendiente: HUBSPOT_TOKEN en Vercel</div>
+      <div class="status">Pendiente: HUBSPOT_ACCESS_TOKEN en Vercel (renombrado, D18)</div>
     </div>
     <div class="card">
       <div class="num">2</div>
-      <div class="label">Marcas en marketplace</div>
+      <div class="label">Marcas en marketplace (vitrina v1)</div>
       <div class="status">CAÚA + Zurych. Lust: pendiente card</div>
     </div>
     <div class="card">
@@ -58,110 +68,119 @@
     </div>
     <div class="card">
       <div class="num">Live</div>
-      <div class="label">Estado plataforma</div>
+      <div class="label">Estado plataforma v1</div>
       <div class="status"><a href="https://cacao-colab.vercel.app" target="_blank">cacao-colab.vercel.app ↗</a></div>
     </div>
   </div>
 </div>
 
-<!-- Estado componentes -->
+<!-- KPIs v2 nuevos -->
 <div class="section">
-  <h2>Estado de componentes</h2>
-  <table>
-    <tr>
-      <th>Componente</th><th>Estado</th><th>URL / Archivo</th><th>Próximo paso</th>
-    </tr>
-    <tr>
-      <td>Landing page /</td>
-      <td><span class="badge live">Live</span></td>
-      <td><a href="https://cacao-colab.vercel.app" target="_blank">cacao-colab.vercel.app</a></td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td>Onboarding gate (5 pasos)</td>
-      <td><span class="badge live">Live</span></td>
-      <td>Cookie: colab_onboarded</td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td>API /api/onboarding → HubSpot</td>
-      <td><span class="badge pend">Código live, token falta</span></td>
-      <td>Vercel → Env vars</td>
-      <td>Agregar HUBSPOT_TOKEN</td>
-    </tr>
-    <tr>
-      <td>Marketplace /marketplace</td>
-      <td><span class="badge live">Live</span></td>
-      <td><a href="https://cacao-colab.vercel.app/marketplace" target="_blank">…/marketplace</a></td>
-      <td>Agregar card Chocolate Lust</td>
-    </tr>
-    <tr>
-      <td>Dualita /aprende</td>
-      <td><span class="badge live">Live</span></td>
-      <td><a href="https://cacao-colab.vercel.app/aprende" target="_blank">…/aprende</a></td>
-      <td>Links reales módulos Academy</td>
-    </tr>
-    <tr>
-      <td>Email seguimiento HubSpot</td>
-      <td><span class="badge live">Listo</span></td>
-      <td>colab-seguimiento-hubspot.html</td>
-      <td>Pegar en HubSpot y enviar</td>
-    </tr>
-    <tr>
-      <td>HoReCa landing</td>
-      <td><span class="badge pend">Solo local</span></td>
-      <td>horeca-final.html</td>
-      <td>Push a Shopify /pages/horeca</td>
-    </tr>
-    <tr>
-      <td>Chocolate Lust en marketplace</td>
-      <td><span class="badge block">Pendiente</span></td>
-      <td>lib/brands.ts</td>
-      <td>Agregar BrandCard colaborador</td>
-    </tr>
-  </table>
+  <h2>Indicadores v2 (marketplace transaccional — sin datos aún)</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="num">—</div>
+      <div class="label">GMV transaccionado</div>
+      <div class="status">Sin cuenta Stripe Connect todavía</div>
+    </div>
+    <div class="card">
+      <div class="num">—</div>
+      <div class="label">MRR membresías</div>
+      <div class="status">Planes sin definir precio real todavía</div>
+    </div>
+    <div class="card">
+      <div class="num">0</div>
+      <div class="label">Vendedores activos (farmer/chocolatier/maquilador)</div>
+      <div class="status">Meta Fase 6: 20 · Fase 7: 100</div>
+    </div>
+    <div class="card">
+      <div class="num">8</div>
+      <div class="label">Migraciones Supabase escritas</div>
+      <div class="status">Sin proyecto real — falta <code>supabase login</code></div>
+    </div>
+  </div>
 </div>
 
-<!-- Actores -->
+<!-- Estado componentes v2 -->
 <div class="section">
-  <h2>Actores del Colab</h2>
+  <h2>Estado de componentes — reestructuración v2</h2>
   <table>
-    <tr><th>Marca</th><th>Tipo</th><th>Estado</th><th>Contribución</th></tr>
     <tr>
-      <td><strong>CAÚA Colombia</strong></td>
-      <td>Owner</td>
-      <td><span class="badge live">Activo</span></td>
-      <td>Productos + Academy microlearning</td>
+      <th>Componente</th><th>Estado</th><th>Ubicación</th><th>Próximo paso</th>
     </tr>
     <tr>
-      <td><strong>Chocolate Zurych</strong></td>
-      <td>Owner</td>
-      <td><span class="badge live">Activo</span></td>
-      <td>Coberturas + MOOC (en proceso)</td>
+      <td>Redirect ciego a caua.cloud/colab</td>
+      <td><span class="badge live">Corregido</span></td>
+      <td>apps/web/next.config.ts</td>
+      <td>—</td>
     </tr>
     <tr>
-      <td><strong>Chocolate Lust</strong></td>
-      <td>Colaborador</td>
-      <td><span class="badge pend">Card pendiente</span></td>
-      <td>Co-branding NIBS · Alimentec 2026</td>
+      <td>Monorepo pnpm + Turborepo</td>
+      <td><span class="badge live">Reestructurado</span></td>
+      <td>rama v2-pivot</td>
+      <td>pnpm install + build en verde</td>
+    </tr>
+    <tr>
+      <td>apps/api (headless)</td>
+      <td><span class="badge pend">Scaffold</span></td>
+      <td>apps/api/</td>
+      <td>Probar contra Supabase/Stripe reales</td>
+    </tr>
+    <tr>
+      <td>apps/mobile (Expo)</td>
+      <td><span class="badge pend">Scaffold</span></td>
+      <td>apps/mobile/</td>
+      <td>Assets reales (falta logo oficial) + expo install --fix</td>
+    </tr>
+    <tr>
+      <td>Migraciones Supabase (0001-0008)</td>
+      <td><span class="badge pend">Escritas, sin aplicar</span></td>
+      <td>supabase/migrations/</td>
+      <td><code>supabase login</code> → <code>db push</code></td>
+    </tr>
+    <tr>
+      <td>Companion Dualita con IA</td>
+      <td><span class="badge pend">Scaffold, patrón portado de Emily</span></td>
+      <td>packages/ai-companion/</td>
+      <td>Probar streaming end-to-end</td>
+    </tr>
+    <tr>
+      <td>Docs Spec-Driven v2 (PRD, SRS, 06-14)</td>
+      <td><span class="badge live">Completos</span></td>
+      <td>docs/</td>
+      <td>—</td>
+    </tr>
+    <tr>
+      <td>Repo privado + Oscar/Hellen invitados</td>
+      <td><span class="badge block">Pendiente</span></td>
+      <td>GitHub</td>
+      <td>Usernames/emails reales de Oscar y Hellen</td>
+    </tr>
+    <tr>
+      <td>Cuenta Stripe Connect (plataforma)</td>
+      <td><span class="badge block">Pendiente</span></td>
+      <td>—</td>
+      <td>KYC de entidad legal — Amaury</td>
     </tr>
   </table>
 </div>
 
 <!-- Pendientes -->
 <div class="section">
-  <h2>Pendientes prioritarios</h2>
+  <h2>Pendientes prioritarios (v2)</h2>
   <table>
     <tr><th>#</th><th>Tarea</th><th>Prioridad</th><th>Dueño</th></tr>
-    <tr><td>P1</td><td>HUBSPOT_TOKEN en Vercel env vars</td><td><span class="badge block">Alta 🔴</span></td><td>Amaury</td></tr>
-    <tr><td>P2</td><td>BrandCard Chocolate Lust en marketplace</td><td><span class="badge pend">Media 🟡</span></td><td>Amaury</td></tr>
-    <tr><td>P3</td><td>Push horeca-final.html a Shopify</td><td><span class="badge pend">Media 🟡</span></td><td>Amaury</td></tr>
-    <tr><td>P4</td><td>Links reales módulos CAÚA Academy en /aprende</td><td><span class="badge pend">Media 🟡</span></td><td>Amaury</td></tr>
-    <tr><td>P5</td><td>OG image para redes (/public/og-cacao-colab.png)</td><td><span class="badge back">Baja 🟢</span></td><td>Diseño</td></tr>
+    <tr><td>P1</td><td>Usernames/emails de Oscar y Hellen → invitar al repo privado</td><td><span class="badge block">Alta 🔴</span></td><td>Amaury</td></tr>
+    <tr><td>P2</td><td><code>supabase login</code> → proyecto real → <code>db push</code></td><td><span class="badge block">Alta 🔴</span></td><td>Amaury</td></tr>
+    <tr><td>P3</td><td>Emails de Oscar/Hellen → compartir carpeta Drive</td><td><span class="badge block">Alta 🔴</span></td><td>Amaury</td></tr>
+    <tr><td>P4</td><td>Cuenta Stripe Connect (KYC)</td><td><span class="badge block">Alta 🔴</span></td><td>Amaury</td></tr>
+    <tr><td>P5</td><td>Confirmar con Zurych el pivote de tesis (D11)</td><td><span class="badge block">Alta 🔴</span></td><td>Amaury</td></tr>
+    <tr><td>P6</td><td><code>HUBSPOT_ACCESS_TOKEN</code> real en Vercel</td><td><span class="badge pend">Media 🟡</span></td><td>Amaury</td></tr>
+    <tr><td>P7</td><td>Logo/ícono oficial para assets de la app</td><td><span class="badge pend">Media 🟡</span></td><td>Amaury / Diseño</td></tr>
   </table>
 </div>
 
-<p class="last">Spec v1 · Última actualización: 2026-06-17 · Fuente de verdad: ~/Documents/Colab/00-SPEC.md</p>
+<p class="last">Spec v2 · Última actualización: 2026-07-24 · Fuente de verdad: docs/00-SPEC.md (este repo, no ~/Documents/Colab)</p>
 
 </body>
 </html>

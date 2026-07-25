@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "Cacao Colab",
+    "slug": "cacao-colab",
+    "scheme": "cacaocolab",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "backgroundColor": "#1A2E10",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "backgroundColor": "#1A2E10"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "co.cacaocolab.app"
+    },
+    "android": {
+      "package": "co.cacaocolab.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#1A2E10"
+      }
+    },
+    "plugins": ["expo-router"],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

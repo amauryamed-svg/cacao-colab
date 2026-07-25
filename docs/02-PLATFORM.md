@@ -1,7 +1,10 @@
-# Cacao Colab — Plataforma técnica
+# Cacao Colab — Plataforma técnica de `apps/web` (heredado de v1)
 
-> Estado: v1 live en cacao-colab.vercel.app
-> Última actualización: 2026-06-16
+> Estado: v1, describe específicamente `apps/web` dentro del monorepo v2.
+> Última actualización: 2026-06-16 · **Rutas actualizadas a la ubicación v2: 2026-07-24**
+> Para la arquitectura completa del monorepo (apps/api, apps/mobile, packages/*, infra 10K
+> usuarios) ver **`06-ARQUITECTURA.md`** — este documento queda como referencia específica de
+> `apps/web`, no se borra porque sigue siendo preciso para esa app.
 
 ---
 
@@ -10,11 +13,11 @@
 | Capa | Tecnología | Versión |
 |------|-----------|---------|
 | Framework | Next.js App Router | 16.2.9 |
-| Estilos | Tailwind CSS | v4 (`@theme` tokens) |
+| Estilos | Tailwind CSS | v4 (`@theme` tokens, ahora poblado desde `packages/ui-tokens`) |
 | Lenguaje | TypeScript | — |
-| Deploy | Vercel | Auto en push a main |
-| CRM | HubSpot API v3 | Private App token |
-| Repo | github.com/amauryamed-svg/cacao-colab | branch: main |
+| Deploy | Vercel | Auto en push a main (proyecto separado de `apps/api`, ver `06-ARQUITECTURA.md`) |
+| CRM | HubSpot API v3 | Private App token, vía `packages/hubspot-client` (antes inline en la route) |
+| Repo | github.com/amauryamed-svg/cacao-colab | branch: `main` (trabajo en curso en `v2-pivot`), path: `apps/web/` |
 
 ---
 
@@ -41,6 +44,9 @@ Keyframes globales: `squirrelBob` (ardilla flotante) · `fadeUp` (reveal de paso
 ---
 
 ## 3. Árbol de rutas
+
+> Todas las rutas de abajo viven ahora bajo `apps/web/` (antes en la raíz del repo). Las rutas HTTP
+> no cambian, solo la ubicación de los archivos en disco.
 
 ```
 /                    → Landing (hero + marketplace + dualita + CTAs)
@@ -125,7 +131,7 @@ dismiss() → fade out overlay → unmount
 
 | Variable | Dónde | Descripción |
 |----------|-------|-------------|
-| `HUBSPOT_TOKEN` | Vercel env vars | Private App token HubSpot. Permisos: `crm.objects.contacts.write` + `read` |
+| `HUBSPOT_ACCESS_TOKEN` | Vercel env vars | Private App token HubSpot. Permisos: `crm.objects.contacts.write` + `read`. **Renombrado de `HUBSPOT_TOKEN` en v2 (D18)** — nunca se llegó a configurar en Vercel, sin riesgo de migración en vivo. |
 
 Archivo local: `.env.local` (en .gitignore, no commitear).
 
@@ -137,6 +143,9 @@ Para agregarlo en Vercel: Settings → Environment Variables → Production + Pr
 
 Push a `main` → Vercel detecta automáticamente → build + deploy en ~60s.
 
-URL producción: `https://cacao-colab.vercel.app`
+URL producción: `https://cacao-colab.vercel.app` (dominio propio pendiente — ver P6 en `00-SPEC.md`).
+**El redirect ciego a `caua.cloud/colab` que existía en producción fue eliminado en v2** — ver
+`00-SPEC.md` § 0.
 
-Para revisar builds: Vercel dashboard → proyecto cacao-colab → Deployments.
+Para revisar builds: Vercel dashboard → proyecto `cacao-colab-web` (nuevo, separado del proyecto
+`api`) → Deployments. Ver `06-ARQUITECTURA.md` § infraestructura.

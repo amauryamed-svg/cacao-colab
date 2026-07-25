@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+node_modules
 /.pnp
 .pnp.*
 .yarn/*
@@ -10,15 +10,28 @@
 !.yarn/releases
 !.yarn/versions
 
+# turborepo
+.turbo
+
 # testing
 /coverage
 
 # next.js
-/.next/
+.next/
 /out/
 
 # production
 /build
+/dist
+
+# expo / react native
+.expo/
+apps/mobile/.expo/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
 
 # misc
 .DS_Store
@@ -28,13 +41,19 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
+pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# env files (can opt-in para commitear .env.example)
+.env
+.env.local
+.env.*.local
 
 # vercel
 .vercel
+
+# supabase
+supabase/.branches
+supabase/.temp
 
 # typescript
 *.tsbuildinfo

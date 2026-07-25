@@ -1,12 +1,17 @@
 # Cacao Colab — Integración HubSpot
 
-> Última actualización: 2026-06-16
+> Última actualización: 2026-06-16 · **v2: 2026-07-24** — ver `14-CRM-INTERNO.md` para el CRM
+> interno nuevo que coexiste con esta integración (D16, `00-SPEC.md`).
 
 ---
 
 ## 1. Propósito
 
-HubSpot es el CRM central del Cacao Colab. Captura todos los leads del onboarding web y permite seguimiento por email y WA al equipo.
+HubSpot es el CRM **compartido con el resto de Caúa**. Captura todos los leads del onboarding web
+y del companion Dualita (`flagBuyerIntent`, ver `10-DUALITA-IA.md`), y permite seguimiento por
+email y WA al equipo. En v2 se suma un **CRM interno** (`crm_contacts` en Supabase) que los 3
+colaboradores operan día a día — HubSpot sigue siendo la fuente compartida con el resto de Caúa,
+no se reemplaza. Ver `14-CRM-INTERNO.md`.
 
 ---
 
@@ -16,7 +21,7 @@ HubSpot es el CRM central del Cacao Colab. Captura todos los leads del onboardin
 2. Crear app privada "Cacao Colab Platform".
 3. Permisos mínimos: `crm.objects.contacts.write` + `crm.objects.contacts.read`.
 4. Copiar el token generado.
-5. En Vercel → proyecto cacao-colab → Settings → Environment Variables → agregar `HUBSPOT_TOKEN`.
+5. En Vercel → proyectos `cacao-colab-web` y `cacao-colab-api` → Settings → Environment Variables → agregar `HUBSPOT_ACCESS_TOKEN` (renombrado de `HUBSPOT_TOKEN` en v2, D18 — ambos proyectos lo necesitan, no solo el original).
 
 ---
 
@@ -75,3 +80,13 @@ La cookie `colab_onboarded=done` se pone en todos los casos (incluso si HubSpot 
 - [ ] Crear lista segmentada: "Leads Cacao Colab 2026"
 - [ ] Workflow de nurturing: lead entra → email día 1 (bienvenida) → día 7 (Dualita) → día 14 (catálogo)
 - [ ] Propiedad personalizada `colab_interes` para filtrar por motivación sin depender de `jobtitle`
+
+---
+
+## 7. v2 — lógica de upsert generalizada + sync interno (nuevo)
+
+La lógica de la sección 4 vive ahora en `packages/hubspot-client` (`upsertContact()`), reusada por
+`apps/web/app/api/onboarding/route.ts` y por la tool `flagBuyerIntent` del companion Dualita
+(`packages/ai-companion`). El CRM interno (`14-CRM-INTERNO.md`) agrega `hubspot_sync_log`: cada
+push a HubSpot y cada webhook entrante de HubSpot se registra con un hash del payload, para que un
+webhook entrante no dispare inmediatamente un push saliente del mismo estado (anti-loop).

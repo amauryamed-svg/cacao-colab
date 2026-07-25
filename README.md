@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cacao Colab
 
-## Getting Started
+Marketplace transaccional + app nativa que conecta agricultores de cacao colombiano con
+chocolateros y maquiladores, con aprendizaje gamificado (**Dualita** — MOOC Zurych + microlearning
+CAÚA Academy). Iniciativa fundada por CAÚA Colombia × Chocolate Zurych.
 
-First, run the development server:
+**Método: Spec-Driven.** `docs/00-SPEC.md` es la fuente de verdad. Cualquier cambio de rumbo se
+escribe ahí *antes* de tocar código. Empieza por `docs/00-SPEC.md` → `docs/11-PRD.md` →
+`docs/12-SRS.md` si es tu primera vez en el repo.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Estructura
+
+```
+apps/
+  web/     Next.js — marketing, blog, marketplace (browse), admin. cacaocolab.co
+  api/     Next.js headless — /api/v1/*, lógica de negocio (listings, orders, pagos, LMS, Dualita IA)
+  mobile/  Expo (React Native) — app nativa iOS/Android
+packages/
+  types/            Zod schemas → tipos TS compartidos
+  ui-tokens/        Paleta y tipografía de marca (única fuente de verdad, web + mobile)
+  supabase-client/  Cliente Postgres/Supabase tipado
+  hubspot-client/   Sync con el HubSpot compartido de Caúa
+  stripe-client/    Stripe Connect (Express) — pagos del marketplace
+  ai-companion/     Dualita con IA real, patrón portado de Emily (caua-io)
+supabase/
+  migrations/       Esquema SQL
+docs/                Spec-Driven — PRD, SRS, arquitectura, modelo de datos, pagos, gamificación, etc.
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm install
+pnpm dev            # todas las apps
+pnpm dev:web         # solo apps/web
+pnpm dev:api         # solo apps/api
+pnpm dev:mobile      # solo apps/mobile (Expo)
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Requiere `.env.local` en cada app — ver `docs/06-ARQUITECTURA.md` § variables de entorno. Ninguna
+credencial real está commiteada.
 
-## Learn More
+## Equipo
 
-To learn more about Next.js, take a look at the following resources:
+- **Oscar** — Backend (`apps/api`, `packages/*-client`, `supabase/migrations`)
+- **Hellen** — Frontend (`apps/web`, `apps/mobile`, `packages/ui-tokens`)
+- **Amaury** — Marketing/Ventas, CTO, dueño del Spec
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Documentación completa
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Ver `docs/00-SPEC.md` para el índice completo de decisiones, PRD, SRS y arquitectura.

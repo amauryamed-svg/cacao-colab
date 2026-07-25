@@ -1,28 +1,22 @@
 {
-  "name": "cacao-colab",
-  "version": "0.1.0",
+  "name": "cacao-colab-monorepo",
+  "version": "2.0.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=20"
   },
-  "dependencies": {
-    "framer-motion": "^12.40.0",
-    "lucide-react": "^1.20.0",
-    "next": "16.2.9",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "dev:web": "turbo run dev --filter=@cacao-colab/web",
+    "dev:api": "turbo run dev --filter=@cacao-colab/api",
+    "dev:mobile": "turbo run dev --filter=@cacao-colab/mobile"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.9",
-    "tailwindcss": "^4",
+    "turbo": "^2.3.0",
     "typescript": "^5"
   }
 }
