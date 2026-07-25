@@ -80,7 +80,11 @@ típico no es "el compute no alcanza", es agotamiento de conexiones Postgres.
   menos que 3 personas operen; se escala a Trigger.dev/Vercel Cron solo si el volumen de jobs lo
   exige — no lo va a exigir a 10K usuarios.
 - **Observabilidad:** Vercel Logs/Analytics + Supabase Logs (ambos incluidos) + **Sentry** (tier
-  gratis, SDK sólido para Expo) en las 3 apps.
+  gratis, SDK sólido para Expo) en las 3 apps. `@sentry/nextjs` y `@sentry/react-native` ya están
+  en los `package.json` de las 3 apps (esta sesión) — falta correr `npx @sentry/wizard@latest -i
+  nextjs` (web/api) y el setup de `@sentry/react-native` (mobile) una vez exista un proyecto/DSN
+  real de Sentry. No se generó config de Sentry a mano sin DSN — el wizard oficial hace el wiring
+  correcto por versión exacta del SDK, un config escrito a ciegas podría quedar desalineado.
 - **Media:** Supabase Storage + transformación de imágenes (plan Pro) para fotos de listings.
 - **Push mobile:** Expo Push Notifications (gratis) + tabla `push_tokens` (agregar en Fase 5).
 

@@ -16,6 +16,7 @@
     "@cacao-colab/supabase-client": "workspace:*",
     "@cacao-colab/types": "workspace:*",
     "@cacao-colab/ui-tokens": "workspace:*",
+    "@sentry/react-native": "~6.5.0",
     "expo": "~53.0.0",
     "expo-router": "~4.0.0",
     "expo-status-bar": "~2.0.0",
