@@ -1,0 +1,16 @@
+{
+  "name": "@cacao-colab/ui-tokens",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Paleta de marca Cacao Colab compartida entre apps/web (Tailwind) y apps/mobile (tema React Native).",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "build": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5"
+  }
+}

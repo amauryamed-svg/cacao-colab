@@ -1,0 +1,18 @@
+{
+  "name": "@cacao-colab/hubspot-client",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Cliente HubSpot generalizado — puerto del patrón upsert-por-email de apps/web/app/api/onboarding/route.ts. Usado por el onboarding gate y por el panel de HubSpot del portal /equipo.",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "build": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20",
+    "typescript": "^5"
+  }
+}

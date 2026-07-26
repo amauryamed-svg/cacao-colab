@@ -1,0 +1,33 @@
+{
+  "name": "@cacao-colab/supabase-client",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Clientes Supabase (browser/server/middleware) compartidos. Sin proyecto Supabase real todavía — funciona en cuanto existan NEXT_PUBLIC_SUPABASE_URL/ANON_KEY (ver docs/06-ARQUITECTURA.md).",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./browser": "./src/browser.ts",
+    "./server": "./src/server.ts",
+    "./middleware": "./src/middleware.ts",
+    "./database.types": "./src/database.types.ts"
+  },
+  "scripts": {
+    "build": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@cacao-colab/types": "workspace:*",
+    "@supabase/ssr": "^0.12.3",
+    "@supabase/supabase-js": "^2.110.8",
+    "server-only": "^0.0.1"
+  },
+  "peerDependencies": {
+    "next": ">=15"
+  },
+  "devDependencies": {
+    "next": "16.2.9",
+    "typescript": "^5"
+  }
+}

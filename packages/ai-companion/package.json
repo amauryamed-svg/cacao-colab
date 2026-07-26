@@ -1,0 +1,22 @@
+{
+  "name": "@cacao-colab/ai-companion",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Companion IA de Dualita — puerto del patrón de Caua-Corp/caua-io/lib/emily-io/{model,firecrawl,prompts}.ts (streamText + tool() de Vercel AI SDK, anthropic('claude-sonnet-5'), sin AI Gateway). Ver docs/10-DUALITA-IA.md.",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "build": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@ai-sdk/anthropic": "^4.0.21",
+    "ai": "^7.0.37",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "typescript": "^5"
+  }
+}
