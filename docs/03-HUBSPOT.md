@@ -1,22 +1,33 @@
 # Cacao Colab — Integración HubSpot
 
-> Última actualización: 2026-06-16
+> Última actualización: 2026-07-26 (pivote v2)
+
+---
+
+## 0. Qué cambia en v2
+
+La lógica de este documento (mapeo de propiedades, upsert, email de seguimiento) **no cambia**. Lo que cambia:
+
+- El cliente HubSpot se generalizó a `packages/hubspot-client` (antes vivía inline en `app/api/onboarding/route.ts`). Ver `06-ARQUITECTURA.md`.
+- La env var se estandariza a **`HUBSPOT_ACCESS_TOKEN`** (nombre usado en el resto del ecosistema Caúa) — `HUBSPOT_TOKEN` sigue funcionando como fallback con warning de deprecación, para no romper el deploy actual mientras se actualiza Vercel.
+- Nuevo caso de uso: el portal interno `/equipo` (apps/web) usa el mismo cliente para mostrarle a cada team member su propio contacto/deals de HubSpot — ver `14-CRM-INTERNO.md`.
+- Nuevo dominio: CRM propio sincronizado bidireccionalmente con HubSpot (`crm_contacts`/`crm_activities`/`hubspot_sync_log`) — ver `07-MODELO-DATOS.md` y `14-CRM-INTERNO.md`.
 
 ---
 
 ## 1. Propósito
 
-HubSpot es el CRM central del Cacao Colab. Captura todos los leads del onboarding web y permite seguimiento por email y WA al equipo.
+HubSpot es el CRM central del Cacao Colab. Captura todos los leads del onboarding web, permite seguimiento por email y WA al equipo, y ahora también alimenta el panel de datos del portal interno `/equipo`.
 
 ---
 
 ## 2. Setup requerido
 
 1. Ir a HubSpot → Configuración → Integraciones → Aplicaciones privadas.
-2. Crear app privada "Cacao Colab Platform".
-3. Permisos mínimos: `crm.objects.contacts.write` + `crm.objects.contacts.read`.
+2. Crear app privada "Cacao Colab Platform" (o reusar la existente).
+3. Permisos mínimos: `crm.objects.contacts.write` + `crm.objects.contacts.read` + `crm.objects.deals.read` (nuevo — necesario para el panel de `/equipo`, que lista deals asociados al contacto).
 4. Copiar el token generado.
-5. En Vercel → proyecto cacao-colab → Settings → Environment Variables → agregar `HUBSPOT_TOKEN`.
+5. En Vercel → proyectos `cacao-colab-web` y `cacao-colab-api` → Settings → Environment Variables → agregar **`HUBSPOT_ACCESS_TOKEN`** (no `HUBSPOT_TOKEN`, aunque ese sigue funcionando).
 
 ---
 
@@ -75,3 +86,17 @@ La cookie `colab_onboarded=done` se pone en todos los casos (incluso si HubSpot 
 - [ ] Crear lista segmentada: "Leads Cacao Colab 2026"
 - [ ] Workflow de nurturing: lead entra → email día 1 (bienvenida) → día 7 (Dualita) → día 14 (catálogo)
 - [ ] Propiedad personalizada `colab_interes` para filtrar por motivación sin depender de `jobtitle`
+- [ ] Renombrar `HUBSPOT_TOKEN` → `HUBSPOT_ACCESS_TOKEN` en Vercel (ambos proyectos)
+- [ ] Agregar permiso `crm.objects.deals.read` a la Private App (necesario para el panel de `/equipo`)
+- [ ] Decidir si se da de alta un contacto de HubSpot para Oscar Gamboa (`amadooscarito@gmail.com`) — hoy no existe, ver `14-CRM-INTERNO.md`
+
+---
+
+## 7. Panel de HubSpot en el portal interno `/equipo` (nuevo en v2)
+
+`packages/hubspot-client` expone además:
+
+- `getContactByEmail(email)` — búsqueda exacta por email, devuelve `null` si no existe (nunca inventa datos).
+- `getDealsForContact(contactId)` — deals asociados vía `/crm/v3/objects/contacts/{id}/associations/deals` + batch read.
+
+`apps/web/app/equipo/page.tsx` usa ambas para renderizar el panel de cada team member, cruzando con `team_members.hubspot_contact_email` (Supabase). Ver `14-CRM-INTERNO.md` para el flujo completo, incluyendo el caso de Oscar (sin contacto en HubSpot todavía).

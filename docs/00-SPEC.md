@@ -1,62 +1,96 @@
-# Cacao Colab — Spec v1 (Master)
+# Cacao Colab — Spec v2 (Master)
 
 > **Método:** Spec-Driven. Este documento es la fuente de verdad del proyecto. Cualquier cambio de rumbo se reescribe aquí *antes* de tocar código, diseño o procesos.
 > **Owner principal:** Amaury Amed (CTO · CAÚA Colombia)
 > **Co-owner:** Equipo Zurych
 > **Fecha de corte v1:** 2026-06-16
+> **Fecha de corte v2 (pivote):** 2026-07-26
+> **Rama de trabajo:** `v2-pivot` (worktree aislado, sin merge a `main` todavía)
 
 ---
 
-## 1. Tesis estratégica
+## 0. Pivote v2 — de vitrina de leads a marketplace transaccional
 
-> **Cacao Colab es una iniciativa colaborativa entre actores de la escena del cacao colombiano con impacto social y ambiental — "Cacao con propósito."**
+Cacao Colab v1 era una landing de captura de leads HoReCa: sin transacciones, sin app, "no es joint venture legal". El 2026-07-26 el usuario confirmó un **pivote completo de tesis**: Cacao Colab pasa a ser un **marketplace transaccional** que conecta agricultores de cacao con chocolateros/maquiladores/compradores, con:
 
-No es un joint venture legal. Es una plataforma compartida de marca, distribución y aprendizaje que amplifica a cada participante sin diluir su identidad individual.
+- **App nativa** (React Native / Expo) además de la web.
+- **Dualita** como LMS gamificado real (no solo contenido estático) — MOOC Zurych + microlearning CAÚA, con XP/rachas/insignias/leaderboard portados del prototipo Python `amauryamed-svg/dualita`.
+- **Pagos internos** — modelo híbrido: membresía/suscripción por actor + comisión reducida por transacción, vía Stripe Connect Express.
+- **CRM propio** sincronizado bidireccionalmente con el HubSpot compartido del ecosistema Caúa.
+- **Blog de tendencias** estilo Callebaut/Valrhona.
+- **Infraestructura para 10K usuarios en 3 meses.**
 
-### Participantes fundadores
+Esta pasada (2026-07-26) construye la **fundación completa**: monorepo reestructurado, modelo de datos completo (migraciones SQL escritas, sin proyecto Supabase vivo todavía), scaffolding de las 3 apps, y toda la documentación Spec-Driven. No implementa el feature-set completo (listings reales, checkout funcional, contenido real del LMS) — eso es trabajo de semanas para Oscar (backend) y Hellen (frontend), con Amaury liderando marketing/ventas.
+
+**Hallazgo crítico corregido en esta pasada:** `cacao-colab.vercel.app` (el proyecto Vercel original, ligado a `main`) devolvía un 308 ciego hacia `caua.cloud/colab/*` desde el commit `chore: redirigir dominio standalone a caua.cloud/colab` — es decir, el repo real (activo, con commits hasta el 2026-07-23) no servía nada en producción; todo el tráfico caía en una copia pegada a mano dentro de `Caua-Corp/caua-io/app/colab/` sin tocar desde 2026-07-07. La rama `v2-pivot` quita ese redirect y despliega en proyectos Vercel nuevos y limpios (`cacao-colab-web`, `cacao-colab-api`). El proyecto viejo (`cacao-colab.vercel.app`, atado a `main`) sigue con el redirect hasta que este pivote se mergee — es intencional, no un descuido (ver `05-ROADMAP.md`).
+
+**Requerimiento agregado durante la ejecución (2026-07-26):** portal interno `/equipo` con login real (Supabase Auth, magic link) para Oscar y Hellen, con bienvenida personalizada y un panel de datos reales de HubSpot CRM debajo. Ver `14-CRM-INTERNO.md` para el detalle completo — incluye un hallazgo nuevo: Oscar Gamboa (`amadooscarito@gmail.com`) no tiene contacto en HubSpot todavía, a diferencia de Hellen (`hellenandba@gmail.com`), que sí.
+
+### Participantes fundadores (sin cambios)
 
 | Marca | Rol | Web |
 |-------|-----|-----|
 | **CAÚA Colombia** | Origen, producto, logística Colombia | cauacolombia.co |
 | **Chocolate Zurych** | Coberturas funcionales HoReCa | chocolatezurych.com |
 
-### Propósito del Colab
+### North Star v2
 
-1. **Marketplace** — vitrina conjunta para compradores HoReCa y retail de especialidad que buscan cacao colombiano trazable.
-2. **Dualita** — sistema de aprendizaje dual: MOOC largo (Zurych) + microlearning corto (CAÚA Academy, 6 módulos gratuitos).
-3. **Co-branding** — productos conjuntos puntuales (e.g. NIBS CAÚA × Zurych × Lust, lanzados en Alimentec 2026).
+**GMV transaccionado** (volumen de órdenes en el marketplace) y **take rate** (comisión + membresías) como métricas primarias de negocio, con **MRR** de membresías y **retención de learners** (Dualita) como métricas de salud de producto. El North Star de v1 (contactos HoReCa calificados) pasa a ser una métrica de entrada del funnel, no la métrica final — ver `11-PRD.md` §Métricas de éxito para el detalle completo.
 
-### North Star
+---
 
-**Contactos HoReCa calificados capturados** → convertidos en clientes de al menos una marca del Colab.
+## 1. Tesis estratégica
 
-Métrica secundaria: **engagement Dualita** (módulos completados + registros MOOC).
+> **Cacao Colab es un marketplace transaccional del ecosistema de cacao colombiano — agricultores, chocolateros y maquiladores conectados directamente, con aprendizaje gamificado y CRM propio — con impacto social y ambiental verificable.**
+
+Deja de ser "no un joint venture legal, solo una plataforma compartida de marca" (tesis v1) y pasa a ser una plataforma que **sí transacciona** dinero real entre actores reales, bajo el mismo espíritu de "amplificar sin diluir identidad individual" pero con infraestructura de pagos, cuentas y roles real detrás.
+
+### Propósito del Colab v2
+
+1. **Marketplace transaccional** — listings reales, órdenes, pagos vía Stripe Connect, comisión de plataforma.
+2. **Dualita** — LMS gamificado real: MOOC largo (Zurych) + microlearning (CAÚA Academy) + XP/rachas/insignias/leaderboard + companion IA.
+3. **Co-branding** — se mantiene igual que v1 (ej. NIBS CAÚA × Zurych × Lust).
+4. **CRM propio** — sincronizado con HubSpot, con panel interno para el equipo (`/equipo`).
+5. **Blog de tendencias** — contenido educativo estilo Callebaut/Valrhona, sin competir con el flujo de conversión (ver memoria de founder: "producto sobre blogging").
+6. **App nativa** — mismo marketplace y Dualita, en Expo/React Native.
 
 ---
 
 ## 2. Decisiones cerradas
 
-| # | Decisión | Valor | Implicación |
-|---|----------|-------|-------------|
-| D1 | Identidad del Colab | **Iniciativa colaborativa, no alianza de marca** | El copy habla de "actores de la escena del cacao colombiano", no de "alianza CAÚA × Zurych". |
-| D2 | Plataforma técnica | **Next.js 16 App Router + Tailwind v4 + Vercel** | Repo: github.com/amauryamed-svg/cacao-colab. Deploy automático en `cacao-colab.vercel.app`. |
-| D3 | CRM | **HubSpot** | Onboarding → contactos HubSpot vía API. Lifecycle = lead, status = NEW al entrar. |
-| D4 | Onboarding de entrada | **Gate fullscreen en primera visita** | Cookie `colab_onboarded` (1 año, servidor). Al completar → HubSpot. Skip → solo cookie. |
-| D5 | MOOC | **Pertenece a Zurych · en proceso** | No afirmar fecha de lanzamiento. Copy: "próximamente". Microlearning (CAÚA Academy) sí disponible y gratuito. |
-| D6 | Cupón Alimentec | **ALIMENTEC10 · tienda CAÚA · cauacolombia.co** | No aplicar al marketplace Zurych ni a Dualita. |
-| D7 | Emails HubSpot | **Body-only HTML sin DOCTYPE** | Archivo `colab-seguimiento-hubspot.html` es el que se pega en Source code del módulo texto enriquecido. `colab-seguimiento-body.html` es solo para preview local. |
-| D8 | Paleta visual | **Dark bg (#1A2E10 forest)** | CacaoFrutaBrutal = dark bg. No mezclar con Heirloom White de cauacolombia.co. |
-| D9 | Tipografía plataforma | **Georgia serif (display) + Arial (UI)** | Sin dependencias de Google Fonts en la plataforma Next.js v1. |
-| D10 | WhatsApp contacto | **+57 310 222 7848** | Número único del equipo Cacao Colab para pre-fills y CTAs. |
+> Las decisiones D1–D10 son de **Spec v1**. Se marcan **vigente** (siguen aplicando) o **superseded** (reemplazadas por una decisión v2) — nunca se borran, es historial de decisiones.
+
+| # | Decisión | Valor | Estado |
+|---|----------|-------|--------|
+| D1 | Identidad del Colab | Iniciativa colaborativa, no alianza de marca | **superseded por D11** — ahora sí hay transacciones reales entre actores. |
+| D2 | Plataforma técnica | Next.js 16 App Router + Tailwind v4 + Vercel | **vigente**, expandida por D12 (monorepo). |
+| D3 | CRM | HubSpot | **vigente**, expandida por D13 (CRM propio + sync). |
+| D4 | Onboarding de entrada | Gate fullscreen en primera visita | **vigente** — sigue viviendo en `apps/web`, sin cambios funcionales. |
+| D5 | MOOC | Pertenece a Zurych · en proceso | **vigente** — sin fecha de lanzamiento confirmada aún. |
+| D6 | Cupón Alimentec | ALIMENTEC10 · tienda CAÚA · cauacolombia.co | **vigente**, fuera del alcance del marketplace v2. |
+| D7 | Emails HubSpot | Body-only HTML sin DOCTYPE | **vigente**, sin cambios. |
+| D8 | Paleta visual | Dark bg (#1A2E10 forest) | **vigente** — portada a `packages/ui-tokens` como fuente única. |
+| D9 | Tipografía plataforma | Georgia serif (display) + Arial (UI) | **vigente**. |
+| D10 | WhatsApp contacto | +57 310 222 7848 | **vigente**. |
+| D11 | Identidad del Colab v2 | **Marketplace transaccional real**, no solo vitrina de marca | Reemplaza D1. Ver §1. |
+| D12 | Arquitectura de repo | **Monorepo pnpm + Turborepo** — `apps/{web,api,mobile}` + `packages/*` | Ver `06-ARQUITECTURA.md`. Repo sigue siendo `amauryamed-svg/cacao-colab`, reestructurado en rama `v2-pivot`. |
+| D13 | CRM v2 | **CRM propio (Postgres) sincronizado bidireccionalmente con HubSpot** | Ver `14-CRM-INTERNO.md`. Anti-loop por hash de payload. |
+| D14 | Modelo de negocio | **Híbrido: membresía/suscripción por actor + comisión reducida por transacción** | Stripe Connect Express, destination charges. Ver `08-PAGOS.md`. |
+| D15 | Base de datos | **Supabase (Postgres gestionado)** | Proyecto real pendiente de `supabase login` (interactivo, lo corre el usuario). Migraciones escritas y revisadas. Ver `07-MODELO-DATOS.md`. |
+| D16 | Visibilidad del repo | **Sigue público** hasta que el usuario confirme que el contenido de `v2-pivot` está listo para privatizar | Reversible al instante — no se cambia en esta pasada. |
+| D17 | Dominio propio | **Pendiente de decisión** (`cacaocolab.co` u otro) | Mientras tanto, deploy sirviendo directo en `*.vercel.app` (`cacao-colab-web.vercel.app`, `cacao-colab-api.vercel.app`). Redirect ciego a `caua.cloud/colab/*` retirado de `next.config.ts` en `apps/web`. |
+| D18 | Portal interno /equipo | **Login real (Supabase Auth, magic link) para Oscar y Hellen**, con panel de datos reales de HubSpot debajo del nombre | Agregado 2026-07-26 durante la ejecución. Ver `14-CRM-INTERNO.md`. Oscar (`amadooscarito@gmail.com`) sin contacto en HubSpot todavía — panel vacío explícito para él, no simulado. |
 
 ---
 
 ## 3. Requerimientos funcionales
 
-### RF-1 — Plataforma web (cacao-colab.vercel.app)
+> RF-1 a RF-5 son la línea base de **Spec v1**, documentados abajo tal cual (siguen vigentes, viven ahora en `apps/web`). La numeración **continúa sin reiniciar** en `12-SRS.md` (RF-6 en adelante) para todo el alcance nuevo del marketplace, Dualita gamificado, pagos, mobile y CRM interno — ver ese documento para el detalle completo.
+
+### RF-1 — Plataforma web (hoy `apps/web`, antes raíz del repo)
 
 - **Landing page** (`/`): Hero + Marketplace + Dualita + CTA Únete + CTA Marcas.
-- **Marketplace** (`/marketplace`): galería de marcas del Colab con BrandCard.
+- **Marketplace** (`/marketplace`): galería de marcas del Colab con BrandCard (evoluciona a listings reales — ver RF-9 en `12-SRS.md`).
 - **Aprende** (`/aprende`): hub Dualita — MOOC track + Microlearning track.
 - **Únete** (`/unete`): página standalone del onboarding (accesible también directamente).
 
@@ -71,48 +105,34 @@ Métrica secundaria: **engagement Dualita** (módulos completados + registros MO
 
 ### RF-3 — Integración HubSpot CRM
 
-- Variable de entorno: `HUBSPOT_TOKEN` (Private App, permisos `contacts.write` + `contacts.read`).
-- Propiedades mapeadas:
-
-| Campo onboarding | Propiedad HubSpot |
-|------------------|--------------------|
-| nombre | `firstname` |
-| email | `email` (dedup key) |
-| operacion | `company` |
-| ciudad | `city` |
-| whatsapp | `mobilephone` |
-| tipo + interes | `jobtitle` (concatenado con ` · `) |
-| — | `lifecyclestage = lead` |
-| — | `hs_lead_status = NEW` |
-
-- Upsert: si el email ya existe (409) → PATCH por ID.
+- Variable de entorno estandarizada: **`HUBSPOT_ACCESS_TOKEN`** (antes `HUBSPOT_TOKEN` — ver D-legacy en `03-HUBSPOT.md`; el cliente generalizado en `packages/hubspot-client` acepta ambas con warning de deprecación).
+- Propiedades mapeadas: sin cambios respecto a v1 (ver `03-HUBSPOT.md`).
+- Upsert: si el email ya existe (409) → PATCH por ID. Lógica ahora vive en `packages/hubspot-client`, reusada por el onboarding y por el panel de `/equipo`.
 
 ### RF-4 — Email seguimiento Alimentec
 
-- Archivo: `colab-seguimiento-hubspot.html` (body-only para HubSpot).
-- Secciones: saludo personalizado · marketplace · Dualita · NIBS co-branding · CTA · cupón ALIMENTEC10 · firma · footer.
-- Tokens válidos: `{{ contact.firstname }}`, `{{ contact.company }}`.
-- Sin `{{ unsubscribe_link }}` — HubSpot lo agrega automáticamente.
+- Sin cambios respecto a v1. Archivo `colab-seguimiento-hubspot.html`, fuera del repo de código (vive en `~/Documents/Caua/Alimentec/emails/`).
 
 ### RF-5 — HoReCa landing (cauacolombia.co/pages/horeca)
 
-- Archivo local: `~/Documents/Caua/Alimentec/emails/horeca-final.html`.
-- Diseño: brutalista luxury botanical. Google Fonts: Bebas Neue + DM Serif Display + DM Sans.
-- Pendiente: deploy a Shopify (página `/pages/horeca` en cauacolombia.co).
+- Sin cambios respecto a v1. Fuera del alcance de este repo.
 
 ---
 
-## 4. Estado actual (2026-06-16)
+## 4. Estado actual (2026-07-26, post-pivote)
 
 | Componente | Estado | Notas |
 |------------|--------|-------|
-| Landing `/` | ✅ Live | cacao-colab.vercel.app |
-| Onboarding gate + 5 pasos | ✅ Live | Cookie servidor |
-| API `/api/onboarding` → HubSpot | ✅ Código deploado | Pendiente: `HUBSPOT_TOKEN` en Vercel |
-| Marketplace `/marketplace` | ✅ Live | CAÚA + Zurych + 2 slots |
-| Dualita `/aprende` | ✅ Live | MOOC "próximamente", micro gratis |
-| Email seguimiento HubSpot | ✅ Listo para pegar | `colab-seguimiento-hubspot.html` |
-| HoReCa landing | ⚠️ Solo local | Pendiente push a Shopify |
+| Landing `/` (`apps/web`) | ✅ Live | `cacao-colab-web.vercel.app` — proyecto Vercel nuevo, sin el redirect de Spec v1 |
+| API headless (`apps/api`) | ✅ Live (stubs) | `cacao-colab-api.vercel.app` — `/api/v1/{listings,orders,memberships,dualita,webhooks}` responden con contratos validados, sin persistencia real (sin Supabase vivo) |
+| App móvil (`apps/mobile`) | ✅ Scaffold | Expo Router, 3 tabs placeholder (marketplace/aprende/perfil). Sin publicar a stores. |
+| Monorepo (pnpm + Turborepo) | ✅ Build + lint en verde | `apps/web`, `apps/api`, `apps/mobile` + 6 packages compartidos |
+| Modelo de datos (Supabase) | ✅ Migraciones escritas | 11 archivos SQL en `supabase/migrations/`, sin aplicar (sin proyecto real) |
+| Portal interno `/equipo` | ✅ Código completo, ⚠️ no operable en vivo | Login Supabase Auth + panel HubSpot — depende del proyecto Supabase real |
+| Stripe Connect | ⚠️ Stub sin credenciales | `packages/stripe-client` — sin cuenta ni datos legales de la entidad |
+| Sentry | ✅ SDK instalado en las 3 apps | Sin DSN todavía (no-op hasta crear el proyecto) |
+| Onboarding gate + HubSpot | ✅ Vigente sin cambios | Mismo comportamiento de v1 |
+| cacao-colab.vercel.app (proyecto viejo, `main`) | ⚠️ Sigue con el 308 a caua.cloud/colab | Intencional — se corrige al mergear `v2-pivot` a `main` |
 
 ---
 
@@ -120,12 +140,15 @@ Métrica secundaria: **engagement Dualita** (módulos completados + registros MO
 
 | # | Tarea | Prioridad | Owner |
 |---|-------|-----------|-------|
-| P1 | Agregar `HUBSPOT_TOKEN` en Vercel env vars | 🔴 Alta | Amaury |
-| P2 | Push `horeca-final.html` a Shopify (`/pages/horeca`) | 🟡 Media | Amaury |
-| P3 | Activar MOOC Zurych cuando esté listo | 🟢 Baja | Zurych |
-| P4 | Añadir página `/aprende` con contenido real de Academy | 🟡 Media | Amaury |
-| P5 | OG image para redes sociales (`/public/og-cacao-colab.png`) | 🟢 Baja | Diseño |
+| P1 | `supabase login` + crear proyecto real | 🔴 Alta | Amaury (interactivo, no delegable) |
+| P2 | Usernames/emails de GitHub de Oscar y Hellen para invitarlos al repo | 🔴 Alta | Amaury |
+| P3 | Decisión de dominio propio (`cacaocolab.co` u otro) | 🟡 Media | Amaury |
+| P4 | Cuenta Stripe Connect (KYC/entidad legal de la plataforma) | 🔴 Alta | Amaury |
+| P5 | Confirmar si el contacto de Oscar Gamboa se da de alta en HubSpot | 🟡 Media | Amaury |
+| P6 | Revisar y mergear `v2-pivot` → `main` cuando el contenido esté validado | 🟡 Media | Amaury |
+| P7 | Confirmar si `cacaofrutabrutal` (otro proyecto Vercel) es parte de este ecosistema | 🟢 Baja | Amaury |
+| P8 | Activar MOOC Zurych cuando esté listo | 🟢 Baja | Zurych |
 
 ---
 
-*Este Spec se actualiza con cada cambio de rumbo. Ver `05-ROADMAP.md` para detalle de fases.*
+*Este Spec se actualiza con cada cambio de rumbo. Ver `05-ROADMAP.md` para detalle de fases y `06-ARQUITECTURA.md`–`14-CRM-INTERNO.md` para el detalle técnico completo del pivote v2.*
