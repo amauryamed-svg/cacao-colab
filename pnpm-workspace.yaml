@@ -1,0 +1,11 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+publicHoistPattern:
+  - "*"
+allowBuilds:
+  '@sentry/cli': true
+  sharp: true
+  unrs-resolver: true
+minimumReleaseAgeExclude:
+  - '@ai-sdk/anthropic@4.0.21'

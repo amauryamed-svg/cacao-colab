@@ -1,0 +1,21 @@
+{
+  "name": "cacao-colab",
+  "version": "2.0.0",
+  "private": true,
+  "packageManager": "pnpm@11.17.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev:web": "pnpm --filter @cacao-colab/web dev",
+    "dev:api": "pnpm --filter @cacao-colab/api dev",
+    "dev:mobile": "pnpm --filter @cacao-colab/mobile start",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck"
+  },
+  "devDependencies": {
+    "turbo": "^2.10.7",
+    "typescript": "^5"
+  }
+}
