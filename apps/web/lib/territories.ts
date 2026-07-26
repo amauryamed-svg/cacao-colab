@@ -1,3 +1,6 @@
+// v2-pivot: seed/fallback local de la tabla `territories`
+// (supabase/migrations/0001_organizations_territories.sql), tipada como
+// `Territory` en @cacao-colab/types. Ver docs/07-MODELO-DATOS.md.
 export type Territory = {
   id: string
   name: string

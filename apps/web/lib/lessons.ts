@@ -1,3 +1,6 @@
+// v2-pivot: seed/fallback local de `lessons` + `quizzes`
+// (supabase/migrations/0006_lms_dualita.sql), tipado como `Lesson`/`Quiz`
+// en @cacao-colab/types. Ver docs/07-MODELO-DATOS.md.
 export type LessonCard = {
   kicker: string
   headline: string

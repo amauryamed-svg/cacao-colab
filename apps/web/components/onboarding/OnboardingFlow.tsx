@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import SquirrelSVG from '@/components/brand/SquirrelSVG'
 
 /* ─── types ─── */
@@ -146,13 +147,17 @@ export default function OnboardingFlow({ onComplete }: { onComplete?: () => void
     setSubmitting(true)
     try {
       let utms: Record<string, string> = {}
-      try { utms = JSON.parse(sessionStorage.getItem('colab_utms') ?? '{}') } catch (_) {}
+      try {
+        utms = JSON.parse(sessionStorage.getItem('colab_utms') ?? '{}')
+      } catch {
+        // sin UTMs guardados — seguimos sin ellos
+      }
       await fetch('/api/onboarding', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
         body:    JSON.stringify({ ...data, ...utms }),
       })
-    } catch (_) {
+    } catch {
       // continue silently — HubSpot failure no debe bloquear al usuario
     } finally {
       setSubmitting(false)
@@ -324,11 +329,11 @@ export default function OnboardingFlow({ onComplete }: { onComplete?: () => void
             style={{ background: '#F2C830', color: '#1A2E10', cursor: 'pointer' }}>
             Ver el marketplace →
           </button>
-          <a href="/aprende"
+          <Link href="/aprende"
             className="w-full py-4 rounded-xl font-bold text-base text-center transition-all duration-200"
             style={{ background: 'rgba(247,241,238,.06)', border: '1.5px solid rgba(247,241,238,.14)', color: '#F7F1EE', display: 'block' }}>
             Empezar CAÚA Academy gratis
-          </a>
+          </Link>
         </div>
       </StepWrap>
     </div>

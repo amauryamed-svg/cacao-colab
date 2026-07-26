@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { type Lesson } from '@/lib/lessons'
 import LessonCard from './LessonCard'
 import QuizCard from './QuizCard'
@@ -24,7 +25,9 @@ export default function LessonPlayer({ lesson }: Props) {
       data[lesson.slug] = true
       data['xp'] = (data['xp'] ?? 0) + lesson.xp
       localStorage.setItem('colab_progress', JSON.stringify(data))
-    } catch (_) {}
+    } catch {
+      // localStorage puede fallar en modo privado / SSR — no bloquea la lección.
+    }
   }, [phase, lesson.slug, lesson.xp])
 
   const totalCards = lesson.cards.length
@@ -52,7 +55,7 @@ export default function LessonPlayer({ lesson }: Props) {
         className="sticky top-0 z-40 w-full px-4 py-3 flex items-center gap-4"
         style={{ background: 'rgba(26,46,16,.95)', backdropFilter: 'blur(8px)', borderBottom: '1px solid rgba(247,241,238,.08)' }}
       >
-        <a href="/aprende" className="text-xs font-bold uppercase tracking-[2px] shrink-0" style={{ color: 'rgba(247,241,238,.4)', fontFamily: 'Arial, sans-serif' }}>← Hub</a>
+        <Link href="/aprende" className="text-xs font-bold uppercase tracking-[2px] shrink-0" style={{ color: 'rgba(247,241,238,.4)', fontFamily: 'Arial, sans-serif' }}>← Hub</Link>
         <div className="flex-1 h-2 rounded-full overflow-hidden" style={{ background: 'rgba(247,241,238,.1)' }}>
           <div
             className="h-full rounded-full transition-all duration-700"

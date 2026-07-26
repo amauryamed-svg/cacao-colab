@@ -1,3 +1,6 @@
+// v2-pivot: seed/fallback local de `courses` → `modules`
+// (supabase/migrations/0006_lms_dualita.sql), tipado como `Course`/`LmsModule`
+// en @cacao-colab/types. Ver docs/07-MODELO-DATOS.md y docs/09-GAMIFICACION.md.
 export type Module = {
   id: string
   number: number

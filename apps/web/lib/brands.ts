@@ -1,3 +1,8 @@
+// v2-pivot (docs/07-MODELO-DATOS.md): este array es seed/fallback local.
+// La tabla real es `organizations` (supabase/migrations/0001_organizations_territories.sql),
+// tipada en @cacao-colab/types como `Organization`. Se reemplaza por una
+// query real cuando exista el proyecto Supabase — hasta entonces la UI
+// sigue funcionando con estos datos, que ya son consistentes con ese shape.
 export type Brand = {
   id: string
   name: string

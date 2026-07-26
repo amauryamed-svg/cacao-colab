@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { microModules } from "@/lib/dualita"
 import ModuleCard from "./ModuleCard"
 
@@ -19,12 +20,12 @@ export default function MicroTrack() {
         ))}
       </div>
       {/* cta */}
-      <a
+      <Link
         href="/aprende/cacao-bioactivo"
         className="mt-1 block text-center text-sm font-bold py-3 px-5 rounded-full border-2 border-colab-green text-colab-pod hover:bg-colab-green hover:text-white transition-colors font-sans"
       >
         Empezar gratis →
-      </a>
+      </Link>
       <p className="text-[10px] text-center text-white/35 font-sans -mt-1">Sin costo · para todo tu equipo HoReCa</p>
     </div>
   )

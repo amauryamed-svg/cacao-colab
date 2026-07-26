@@ -1,5 +1,6 @@
 import OnboardingFlow from '@/components/onboarding/OnboardingFlow'
 import type { Metadata } from 'next'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Únete al Colab · Cacao Colab',
@@ -15,12 +16,12 @@ export default function UnetePage() {
     >
       {/* top bar */}
       <div className="w-full border-b border-white/8 py-4 px-6 flex items-center justify-between">
-        <a
+        <Link
           href="/"
           className="text-xs font-bold tracking-[3px] uppercase text-colab-cream/40 hover:text-colab-cream/70 transition-colors"
         >
           ← Cacao Colab
-        </a>
+        </Link>
         <span
           className="text-xs font-bold tracking-[3px] uppercase"
           style={{ color: '#87AA27' }}
