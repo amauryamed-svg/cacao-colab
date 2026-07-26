@@ -1,0 +1,33 @@
+{
+  "name": "@cacao-colab/api",
+  "version": "2.0.0",
+  "private": true,
+  "description": "API transaccional headless (Next.js route handlers). Ciclo de deploy independiente de apps/web — ver docs/06-ARQUITECTURA.md.",
+  "scripts": {
+    "dev": "next dev --port 3001",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@cacao-colab/hubspot-client": "workspace:*",
+    "@cacao-colab/stripe-client": "workspace:*",
+    "@cacao-colab/supabase-client": "workspace:*",
+    "@cacao-colab/types": "workspace:*",
+    "@sentry/nextjs": "^10.68.0",
+    "@supabase/supabase-js": "^2.110.8",
+    "next": "16.2.9",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.9",
+    "typescript": "^5"
+  }
+}
