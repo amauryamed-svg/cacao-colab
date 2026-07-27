@@ -30,6 +30,13 @@ export default function Navbar() {
           >
             Dualita
           </Link>
+          <Link
+            href="/equipo/login"
+            className="hidden sm:inline text-xs font-semibold text-colab-cream/35 hover:text-colab-cream/70 font-sans tracking-wide transition-colors"
+            title="Portal del equipo (Oscar, Hellen, Amaury)"
+          >
+            Equipo
+          </Link>
           <a
             href={WA_URL}
             target="_blank"
