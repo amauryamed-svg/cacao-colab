@@ -1,17 +1,24 @@
-import { StyleSheet, Text, View } from "react-native";
+import { useState } from "react";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { colabColors } from "@cacao-colab/ui-tokens";
 
 export default function PerfilScreen() {
+  const [care, setCare] = useState(0);
+  const stage = care >= 8 ? "Floración" : care >= 4 ? "Árbol joven" : care >= 2 ? "Plántula" : "Semilla";
+
   return (
     <View style={styles.screen}>
       <Text style={styles.kicker}>CACAO GOTCHI · PERFIL</Text>
-      <View style={styles.avatar}><Text style={styles.avatarText}>◉</Text></View>
-      <Text style={styles.title}>Aprendiz de pulpa</Text>
-      <Text style={styles.stats}>0 XP  ·  0 días de racha  ·  rango 01</Text>
+      <View style={styles.avatar}><Text style={styles.avatarText}>{care >= 2 ? "♧" : "●"}</Text></View>
+      <Text style={styles.title}>{stage}</Text>
+      <Text style={styles.stats}>{care * 15} XP  ·  {care} cuidados  ·  rango 01</Text>
       <Text style={styles.note}>
-        Tu identidad de farmer, chocolatier, maquilador o buyer se sincronizará
-        con Supabase Auth. Hasta entonces, el progreso vive localmente.
+        Cuida tu parcela virtual y entrena el criterio de observación. Esta
+        demo reinicia al cerrar la app; la sincronización llega con Supabase.
       </Text>
+      <Pressable style={styles.action} onPress={() => setCare((value) => value + 1)}>
+        <Text style={styles.actionText}>◎ Observar y cuidar · +15 XP</Text>
+      </Pressable>
     </View>
   );
 }
@@ -24,4 +31,6 @@ const styles = StyleSheet.create({
   title: { fontFamily: "serif", fontSize: 28, fontWeight: "800", color: colabColors.forest, marginBottom: 6 },
   stats: { fontSize: 11, color: colabColors.green, fontWeight: "700", marginBottom: 18 },
   note: { fontSize: 13, color: colabColors.ink, opacity: 0.65, textAlign: "center" },
+  action: { marginTop: 24, borderRadius: 999, paddingVertical: 13, paddingHorizontal: 20, backgroundColor: colabColors.forest },
+  actionText: { color: colabColors.yellow, fontWeight: "800", fontSize: 12 },
 });

@@ -1,4 +1,5 @@
 import { type Brand } from "@/lib/brands"
+import Link from "next/link"
 
 export default function BrandCard({ brand }: { brand: Brand }) {
   return (
@@ -9,10 +10,13 @@ export default function BrandCard({ brand }: { brand: Brand }) {
       {/* header */}
       <div className="px-6 pt-8 pb-4">
         <p className="text-[10px] font-bold tracking-[3px] uppercase font-sans mb-2" style={{ color: brand.accentColor }}>
-          {brand.role === 'colaborador' ? 'Colaborador Cacao Colab' : 'Socio Cacao Colab'}
+          {brand.role === "epicenter" ? "Epicentro educativo · ownership Amaury Amed" : "Nodo regional · círculo abierto"}
         </p>
         <h3 className="font-serif text-2xl font-bold leading-tight">{brand.name}</h3>
         <p className="text-sm mt-1 opacity-70 font-sans">{brand.tagline}</p>
+        <p className="text-[10px] mt-3 uppercase tracking-[.16em] font-bold font-sans" style={{ color: brand.accentColor }}>
+          {brand.location}
+        </p>
       </div>
 
       {/* divider */}
@@ -34,15 +38,25 @@ export default function BrandCard({ brand }: { brand: Brand }) {
 
       {/* cta */}
       <div className="px-6 pb-7">
-        <a
-          href={brand.ctaUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block text-center text-sm font-bold py-3 px-5 rounded-full transition-opacity hover:opacity-80 font-sans"
-          style={{ background: brand.accentColor, color: brand.bgColor }}
-        >
-          {brand.ctaLabel}
-        </a>
+        {brand.ctaUrl.startsWith("/") ? (
+          <Link
+            href={brand.ctaUrl}
+            className="block text-center text-sm font-bold py-3 px-5 rounded-full transition-opacity hover:opacity-80 font-sans"
+            style={{ background: brand.accentColor, color: brand.bgColor }}
+          >
+            {brand.ctaLabel}
+          </Link>
+        ) : (
+          <a
+            href={brand.ctaUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-center text-sm font-bold py-3 px-5 rounded-full transition-opacity hover:opacity-80 font-sans"
+            style={{ background: brand.accentColor, color: brand.bgColor }}
+          >
+            {brand.ctaLabel}
+          </a>
+        )}
       </div>
     </div>
   )

@@ -366,6 +366,415 @@ body {
   margin-top: .25rem;
 }
 
+.ecosystem-map {
+  margin-inline: auto;
+  max-width: 68rem;
+}
+
+.map-panel {
+  border-radius: 1.4rem;
+  min-height: 28rem;
+  overflow: hidden;
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.map-world {
+  background:
+    radial-gradient(circle at 30% 65%, rgba(242, 200, 48, .12), transparent 25%),
+    #101D0B;
+}
+
+.map-colombia {
+  background:
+    radial-gradient(circle at 53% 56%, rgba(242, 200, 48, .11), transparent 16%),
+    #FFFFFF;
+  border: 1px solid rgba(26, 46, 16, .08);
+}
+
+.map-index {
+  color: rgba(247, 241, 238, .08);
+  font-family: var(--font-display);
+  font-size: 3.4rem;
+  font-style: italic;
+  font-weight: 900;
+  line-height: .8;
+}
+
+.world-land {
+  fill: #F7F1EE;
+  stroke: rgba(247, 241, 238, .35);
+  stroke-width: .6;
+}
+
+.map-chip {
+  align-items: center;
+  border: 1px solid rgba(26, 46, 16, .1);
+  border-radius: 999px;
+  color: rgba(26, 46, 16, .55);
+  display: inline-flex;
+  font-size: .62rem;
+  font-weight: 700;
+  gap: .4rem;
+  padding: .42rem .65rem;
+  transition: all .2s;
+}
+
+.map-chip span {
+  border-radius: 50%;
+  height: .42rem;
+  width: .42rem;
+}
+
+.map-chip:hover,
+.map-chip-active {
+  background: #1A2E10;
+  border-color: #1A2E10;
+  color: #F7F1EE;
+}
+
+.open-circle-card {
+  background: #1A2E10;
+  border-radius: 1.4rem;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.open-slot {
+  align-items: center;
+  border: 1px dashed rgba(242, 200, 48, .3);
+  border-radius: .75rem;
+  color: rgba(247, 241, 238, .65);
+  display: flex;
+  font-size: .7rem;
+  font-weight: 700;
+  gap: .65rem;
+  padding: .8rem;
+  transition: all .2s;
+}
+
+.open-slot:hover {
+  background: rgba(242, 200, 48, .08);
+  border-color: #F2C830;
+  color: #F2C830;
+}
+
+.game-hero {
+  background:
+    radial-gradient(circle at 80% 60%, rgba(134, 182, 107, .16), transparent 24%),
+    linear-gradient(145deg, #101D0B, #1A2E10);
+  border-bottom: 1px solid rgba(247, 241, 238, .07);
+}
+
+.gotchi-shell {
+  background: #10200c;
+  border: 1px solid rgba(247, 241, 238, .1);
+  border-radius: 1.7rem;
+  padding: clamp(1rem, 3vw, 1.5rem);
+}
+
+.gotchi-pet,
+.gotchi-console {
+  border-radius: 1.15rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.gotchi-pet {
+  background:
+    radial-gradient(circle at 50% 40%, rgba(242, 200, 48, .14), transparent 30%),
+    #172b11;
+}
+
+.gotchi-console {
+  background: #F7F1EE;
+}
+
+.gotchi-day {
+  border: 1px solid rgba(247, 241, 238, .12);
+  border-radius: 999px;
+  color: rgba(247, 241, 238, .55);
+  font-size: .65rem;
+  font-weight: 700;
+  padding: .4rem .65rem;
+}
+
+.gotchi-orb {
+  align-items: center;
+  background: rgba(247, 241, 238, .04);
+  border: 1px solid rgba(242, 200, 48, .14);
+  border-radius: 50%;
+  display: flex;
+  height: 11rem;
+  justify-content: center;
+  margin: 2.5rem auto 1.5rem;
+  position: relative;
+  width: 11rem;
+}
+
+.gotchi-orb > span {
+  color: #F2C830;
+  font-family: var(--font-display);
+  font-size: 4.7rem;
+  position: relative;
+  z-index: 2;
+}
+
+.gotchi-orb i {
+  animation: gotchiPulse 2.8s ease-out infinite;
+  border: 1px solid rgba(242, 200, 48, .3);
+  border-radius: 50%;
+  inset: 10%;
+  position: absolute;
+}
+
+@keyframes gotchiPulse {
+  0% { opacity: .5; transform: scale(.7); }
+  100% { opacity: 0; transform: scale(1.45); }
+}
+
+.gotchi-message {
+  background: rgba(247, 241, 238, .055);
+  border-left: 2px solid #F2C830;
+  color: rgba(247, 241, 238, .62);
+  font-size: .7rem;
+  line-height: 1.55;
+  min-height: 3.8rem;
+  padding: .75rem;
+}
+
+.gotchi-stat {
+  color: rgba(247, 241, 238, .4);
+  font-size: .58rem;
+}
+
+.gotchi-stat strong {
+  color: #F7F1EE;
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  margin-top: .15rem;
+}
+
+.gotchi-stat > div {
+  background: rgba(247, 241, 238, .08);
+  border-radius: 999px;
+  height: 3px;
+  margin-top: .35rem;
+  overflow: hidden;
+}
+
+.gotchi-stat > div i {
+  display: block;
+  height: 100%;
+}
+
+.gotchi-score {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.gotchi-score strong {
+  color: #1A2E10;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.gotchi-score span {
+  color: rgba(26, 46, 16, .4);
+  font-size: .58rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.gotchi-progress {
+  background: rgba(26, 46, 16, .08);
+  border-radius: 999px;
+  height: .45rem;
+  overflow: hidden;
+}
+
+.gotchi-progress i {
+  background: #F2C830;
+  border-radius: inherit;
+  display: block;
+  height: 100%;
+  transition: width .5s ease;
+}
+
+.care-action {
+  align-items: center;
+  background: white;
+  border: 1px solid rgba(26, 46, 16, .09);
+  border-radius: .9rem;
+  color: #1A2E10;
+  display: flex;
+  gap: .8rem;
+  padding: .85rem;
+  text-align: left;
+  transition: all .2s;
+}
+
+.care-action:hover {
+  border-color: #86B66B;
+  box-shadow: 0 8px 24px rgba(26, 46, 16, .08);
+  transform: translateY(-2px);
+}
+
+.care-action > span:first-child {
+  align-items: center;
+  background: rgba(134, 182, 107, .13);
+  border-radius: 50%;
+  color: #3D7A2C;
+  display: flex;
+  flex: 0 0 2.35rem;
+  font-size: 1.1rem;
+  height: 2.35rem;
+  justify-content: center;
+}
+
+.care-action strong,
+.care-action small {
+  display: block;
+}
+
+.care-action strong {
+  font-size: .72rem;
+}
+
+.care-action small {
+  color: rgba(26, 46, 16, .42);
+  font-size: .58rem;
+  margin-top: .16rem;
+}
+
+.stage-rail {
+  display: grid;
+  gap: .35rem;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.stage-rail div {
+  align-items: center;
+  background: rgba(247, 241, 238, .035);
+  border-radius: .7rem;
+  color: rgba(247, 241, 238, .25);
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  padding: .65rem .2rem;
+}
+
+.stage-rail div.stage-done {
+  background: rgba(242, 200, 48, .08);
+  color: #F2C830;
+}
+
+.stage-rail small {
+  font-size: .55rem;
+}
+
+.audience-card {
+  --audience-color: #F2C830;
+  background: white;
+  border: 1px solid rgba(26, 46, 16, .08);
+  border-radius: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 18rem;
+  padding: 1.4rem;
+  transition: all .25s;
+}
+
+.audience-card:hover {
+  border-color: var(--audience-color);
+  box-shadow: 0 18px 45px rgba(26, 46, 16, .08);
+  transform: translateY(-4px);
+}
+
+.audience-icon {
+  align-items: center;
+  background: color-mix(in srgb, var(--audience-color) 16%, transparent);
+  border-radius: 50%;
+  color: var(--audience-color);
+  display: flex;
+  font-size: 1.25rem;
+  height: 3rem;
+  justify-content: center;
+  width: 3rem;
+}
+
+.audience-card h3 {
+  color: #1A2E10;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin-top: 2rem;
+}
+
+.audience-card p {
+  color: rgba(26, 46, 16, .55);
+  font-size: .72rem;
+  line-height: 1.6;
+  margin-top: .55rem;
+}
+
+.audience-card a {
+  color: #1A2E10;
+  font-size: .68rem;
+  font-weight: 800;
+  margin-top: auto;
+  padding-top: 1.5rem;
+}
+
+.builder-card {
+  background: rgba(247, 241, 238, .05);
+  border: 1px solid rgba(247, 241, 238, .09);
+  border-radius: 1rem;
+  padding: 1.1rem;
+}
+
+.builder-card > span {
+  align-items: center;
+  background: #F2C830;
+  border-radius: 50%;
+  color: #1A2E10;
+  display: flex;
+  font-family: var(--font-display);
+  font-size: .75rem;
+  font-weight: 900;
+  height: 2.5rem;
+  justify-content: center;
+  width: 2.5rem;
+}
+
+.builder-card h3 {
+  color: #F7F1EE;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-top: 1.5rem;
+}
+
+.builder-card strong {
+  color: #F2C830;
+  display: block;
+  font-size: .58rem;
+  margin-top: .25rem;
+  text-transform: uppercase;
+}
+
+.builder-card p {
+  color: rgba(247, 241, 238, .4);
+  font-size: .65rem;
+  line-height: 1.5;
+  margin-top: .65rem;
+}
+
+@media (max-width: 640px) {
+  .stage-rail { grid-template-columns: repeat(3, 1fr); }
+}
+
 @media (max-width: 640px) {
   .display-title { font-size: clamp(3rem, 17vw, 5rem); }
   .mission-card { gap: .75rem; }

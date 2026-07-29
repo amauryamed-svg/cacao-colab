@@ -1,8 +1,8 @@
 /**
  * Directorio de marcas candidatas — Cacao Colab.
  *
- * NO es el marketplace admitido (eso sigue viviendo en `brands.ts`, que solo
- * lista socios/colaboradores ya integrados: CAÚA, Zurych, Lust). Este
+ * NO es la red regional activa (eso sigue viviendo en `brands.ts`, que
+ * lista el epicentro cacaotier y los nodos indicados por Amaury). Este
  * directorio SÍ se muestra en la página del Market (2026-07-22, pedido
  * explícito de Amaury) — pero como sección separada, marcada "candidatas,
  * sin confirmar", sin CTA de "conocer marca" ni ningún lenguaje que implique

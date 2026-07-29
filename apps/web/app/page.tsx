@@ -123,15 +123,16 @@ export default function Home() {
       {/* ══════════ MARKETPLACE ══════════ */}
       <section id="marketplace" className="bg-colab-cream py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <SectionKicker className="mb-3 text-colab-ink/50">Las marcas del Colab</SectionKicker>
+          <SectionKicker className="mb-3 text-colab-ink/50">Mapa vivo · Colombia al mundo</SectionKicker>
           <h2
             className="font-serif font-bold text-colab-ink mb-3"
             style={{ fontSize: "clamp(1.8rem, 4.5vw, 3rem)" }}
           >
-            Cacao de especialidad,<br />seleccionado.
+            Seis nodos.<br />Un círculo abierto.
           </h2>
           <p className="text-colab-ink/60 font-sans max-w-xl mb-10" style={{ fontSize: "clamp(0.9rem, 2vw, 1rem)" }}>
-            Solo marcas con trazabilidad por lote, origen colombiano verificado y propuesta funcional para HoReCa y retail de especialidad.
+            cacaotier conecta Bogotá con Landázuri, Arbeláez, Paicol, Tame y Guamal.
+            Cada marca conserva su identidad mientras comparte conocimiento y abre oportunidades.
           </p>
           <BrandNetwork
             founders={founderBrands}
