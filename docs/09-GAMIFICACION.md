@@ -3,6 +3,17 @@
 > Nuevo en v2. Última actualización: 2026-07-26.
 > Mapea el prototipo Python `amauryamed-svg/dualita` a la implementación real en Supabase + React/React Native. Este documento no fue verificado contra el código del prototipo Python directamente (no estaba en el alcance de exploración de esta pasada) — el mapeo de abajo es la interpretación funcional de cada componente nombrado en el pedido original, a validar con Oscar/Hellen antes de implementar.
 
+> **Actualización:** la capa evoluciona a edutainment. XP conserva el significado pedagógico; **Mazorcas Doradas** es el programa de fidelidad. Ver `16-MAZORCAS-DORADAS.md`.
+
+## XP vs. Mazorcas Doradas
+
+| Unidad | Mide | Canjeable |
+|---|---|---|
+| XP | avance educativo, retos y dominio | No |
+| Mazorcas Doradas | fidelidad por actividad propia verificable | Sí, solo en beneficios activos |
+
+No hay puntos por referidos, reclutamiento ni actividad de una red descendente.
+
 ---
 
 ## 1. Componentes del prototipo → tabla/UI real

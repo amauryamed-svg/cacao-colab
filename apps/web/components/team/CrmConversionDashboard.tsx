@@ -31,12 +31,14 @@ export default function CrmConversionDashboard({
   hubspot,
   hubspotError,
   dataError,
+  loyalty,
 }: {
   metrics: Metrics
   contacts: ContactRow[]
   hubspot: HubspotFunnelSnapshot | null
   hubspotError: string | null
   dataError: string | null
+  loyalty: { issued: number; redeemed: number; pending: number }
 }) {
   const funnel = [
     { label: "Visitas", value: metrics.uniqueVisitors, rate: "100%", color: "#F2C830" },
@@ -69,6 +71,12 @@ export default function CrmConversionDashboard({
         ].map(([label, value]) => (
           <article key={String(label)}><span>{label}</span><strong>{value}</strong></article>
         ))}
+      </div>
+
+      <div className="grid sm:grid-cols-3 gap-3 mt-4">
+        <div className="crm-conversion-card"><span>Mazorcas emitidas</span><strong>{loyalty.issued}</strong><small>Créditos históricos del ledger</small></div>
+        <div className="crm-conversion-card"><span>Mazorcas redimidas</span><strong>{loyalty.redeemed}</strong><small>Débitos confirmados</small></div>
+        <div className="crm-conversion-card"><span>Canjes pendientes</span><strong>{loyalty.pending}</strong><small>Requieren fulfillment o conector activo</small></div>
       </div>
 
       <div className="grid lg:grid-cols-[1.35fr_.65fr] gap-4 mt-4">

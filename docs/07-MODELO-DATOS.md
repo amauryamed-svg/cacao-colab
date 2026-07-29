@@ -26,6 +26,9 @@
 | Blog | `posts`, `tags`, `post_tags` | `0009_blog.sql` | (nuevo) |
 | CRM interno | `crm_contacts`, `crm_activities`, `hubspot_sync_log` | `0010_crm.sql` | (nuevo) |
 | Portal interno /equipo | `team_members` | `0011_team_auth.sql` | (nuevo, agregado 2026-07-26 durante la ejecución) |
+| Campus registrado | `campus_progress`, `gotchi_runs` | `0012_campus_registered_progress.sql` | Progreso local |
+| CRM funnel | `analytics_events` + superadmin | `0013_unified_admin_crm_funnel.sql` | Analytics disperso |
+| Edutainment loyalty | `mazorca_wallets`, `mazorca_ledger`, `community_ranks`, `benefit_*`, `brand_commerce_adapters` | `0014_mazorcas_doradas_loyalty.sql` | XP no canjeable |
 
 ---
 

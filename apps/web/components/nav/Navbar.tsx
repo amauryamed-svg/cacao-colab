@@ -22,6 +22,12 @@ export default function Navbar() {
             Mercado
           </Link>
           <Link
+            href="/marketplace/beneficios"
+            className="hidden lg:inline text-xs font-bold text-colab-cream/70 hover:text-colab-yellow font-sans tracking-wide transition-colors"
+          >
+            Beneficios
+          </Link>
+          <Link
             href="/aprende"
             className="hidden sm:inline text-xs font-bold text-colab-cream/70 hover:text-colab-yellow font-sans tracking-wide transition-colors"
           >

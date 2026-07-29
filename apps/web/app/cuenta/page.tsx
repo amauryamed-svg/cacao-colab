@@ -2,6 +2,7 @@ import { createSupabaseServerClient } from "@cacao-colab/supabase-client/server"
 import Link from "next/link"
 import { redirect } from "next/navigation"
 import { signOutCampus } from "./actions"
+import { resolveRank } from "@/lib/loyalty"
 
 export const metadata = { title: "Mi cuenta · Campus cacaotier", robots: { index: false, follow: false } }
 export const dynamic = "force-dynamic"
@@ -20,6 +21,12 @@ export default async function CuentaPage() {
   if (teamMember?.access_level === "superadmin") redirect("/equipo")
 
   const displayName = user.user_metadata?.full_name ?? user.email?.split("@")[0] ?? "Learner"
+  const { data: wallet } = await supabase
+    .from("mazorca_wallets")
+    .select("balance,lifetime_earned")
+    .eq("profile_id", user.id)
+    .maybeSingle()
+  const rank = resolveRank(wallet?.lifetime_earned ?? 0)
 
   return (
     <div className="min-h-[80vh] bg-colab-cream px-4 py-16">
@@ -34,8 +41,9 @@ export default async function CuentaPage() {
             <button className="text-xs font-bold text-colab-forest/45 hover:text-colab-forest">Cerrar sesión</button>
           </form>
         </div>
-        <div className="grid md:grid-cols-3 gap-3 mt-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3 mt-10">
           {[
+            { title: "Mazorcas Doradas", body: `${wallet?.balance ?? 0} MD · rango ${rank.name}.`, href: "/cuenta/mazorcas", cta: "Ver wallet y beneficios" },
             { title: "Arquitecto de Fermentación", body: "Seis misiones con Dualita y 700 XP.", href: "/campus/arquitecto-fermentacion", cta: "Continuar curso" },
             { title: "Cacao Gotchi", body: "Tu árbol, nodo y lote FEAR 5.", href: "/juega", cta: "Cuidar árbol" },
             { title: "Campus Dualita", body: "MOOC, cacao funcional y Masterclasses.", href: "/aprende", cta: "Ver rutas" },

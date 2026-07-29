@@ -79,8 +79,8 @@ export default function CacaotierCoursePage() {
               El XP reconoce avance; la bitácora demuestra competencia.
             </p>
             <div className="quest-status mt-7">
-              <div><span>Rango actual</span><strong>Aprendiz de pulpa</strong></div>
-              <div><span>Siguiente rango</span><strong>Guardián térmico</strong></div>
+              <div><span>Rango comunitario</span><strong>Semilla</strong></div>
+              <div><span>Siguiente rango</span><strong>Brote · 100 MD</strong></div>
             </div>
           </div>
           <div className="space-y-3">

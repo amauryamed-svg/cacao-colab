@@ -1,0 +1,16 @@
+{
+  "name": "@cacao-colab/commerce-connectors",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Contratos de ecommerce para beneficios Mazorcas Doradas; sin credenciales ni conectores activos.",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "build": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5"
+  }
+}

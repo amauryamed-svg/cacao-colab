@@ -6,7 +6,7 @@ import CacaoGotchiLab from "@/components/gamify/CacaoGotchiLab"
 
 export const metadata: Metadata = {
   title: "Cacao Gotchi · Laboratorio virtual",
-  description: "Cuida una parcela virtual, aprende el ciclo de siembra y cosecha y gana XP tomando decisiones.",
+  description: "Cuida una labranza virtual, aprende siembra y cosecha y gana Mazorcas Doradas tomando decisiones.",
 }
 
 const gameLoops = [
@@ -39,8 +39,8 @@ export default async function JuegaPage() {
             <div>
               <h1 className="display-title text-colab-cream">Cuida el cacao.<br /><em>Entrena tu criterio.</em></h1>
               <p className="text-colab-cream/55 max-w-2xl mt-7 leading-relaxed">
-                Cacao Gotchi convierte el ciclo de siembra y cosecha en una campaña pedagógica.
-                Tu parcela evoluciona con cada decisión; tu competencia crece cuando puedes explicar por qué la tomaste.
+                Cacao Gotchi convierte siembra, cuidado y cosecha en una campaña generacional.
+                Tu labranza evoluciona por hora; el conocimiento y las Mazorcas Doradas reconocen decisiones trazables.
               </p>
             </div>
             <div className="flex lg:justify-end gap-3">

@@ -41,6 +41,7 @@ export default async function EquipoPage() {
     lifecycleStage: string | null; hubspotContactId: string | null; createdAt: string;
   }> = []
   let dataError: string | null = null
+  let loyalty = { issued: 0, redeemed: 0, pending: 0 }
 
   try {
     const admin = createSupabaseAdminClient()
@@ -53,6 +54,8 @@ export default async function EquipoPage() {
       onboardingResult,
       recentContactsResult,
       completedResult,
+      mazorcaResult,
+      pendingRedemptionsResult,
     ] = await Promise.all([
       admin.from("analytics_events").select("visitor_id").limit(1000),
       admin.from("analytics_events").select("id", { count: "exact", head: true }).eq("event_type", "page_view"),
@@ -62,6 +65,8 @@ export default async function EquipoPage() {
       admin.from("crm_contacts").select("id", { count: "exact", head: true }),
       admin.from("crm_contacts").select("*").order("created_at", { ascending: false }).limit(25),
       admin.from("campus_progress").select("id", { count: "exact", head: true }).not("completed_at", "is", null),
+      admin.from("mazorca_ledger").select("amount").limit(1000),
+      admin.from("benefit_redemptions").select("id", { count: "exact", head: true }).eq("status", "pending"),
     ])
     if (visitorsResult.error) throw visitorsResult.error
     const events = visitorsResult.data ?? []
@@ -84,6 +89,11 @@ export default async function EquipoPage() {
       hubspotContactId: contact.hubspot_contact_id,
       createdAt: contact.created_at,
     }))
+    loyalty = {
+      issued: (mazorcaResult.data ?? []).reduce((total, entry) => total + Math.max(0, entry.amount), 0),
+      redeemed: Math.abs((mazorcaResult.data ?? []).reduce((total, entry) => total + Math.min(0, entry.amount), 0)),
+      pending: pendingRedemptionsResult.count ?? 0,
+    }
   } catch (error) {
     dataError = error instanceof Error ? error.message : "No se pudo leer el CRM local."
   }
@@ -122,6 +132,7 @@ export default async function EquipoPage() {
             hubspot={hubspot}
             hubspotError={hubspotError}
             dataError={dataError}
+            loyalty={loyalty}
           />
         </div>
 

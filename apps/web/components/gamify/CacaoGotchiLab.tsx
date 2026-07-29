@@ -27,6 +27,13 @@ type GotchiState = {
   genotype: "FEAR 5 · Trinitario comercial"
   treatment: "Fermentación controlada Cacaotier" | null
   fermentationHour: number
+  labranzaName: string
+  generation: "primera" | "heredada" | "comunitaria"
+  plantingSystem: "agroforesteria" | "sombra-regulada" | "demostrativa"
+  biodiversity: number
+  waterReserve: number
+  pollinators: number
+  soilCover: number
 }
 
 const now = () => new Date().toISOString()
@@ -54,6 +61,13 @@ const initialState: GotchiState = {
   genotype: "FEAR 5 · Trinitario comercial",
   treatment: null,
   fermentationHour: 0,
+  labranzaName: "Labranza #001",
+  generation: "heredada",
+  plantingSystem: "agroforesteria",
+  biodiversity: 68,
+  waterReserve: 58,
+  pollinators: 52,
+  soilCover: 72,
 }
 
 const stages = [
@@ -66,10 +80,11 @@ const stages = [
 ]
 
 const actions = [
-  { id: "water", label: "Regular agua", icon: "⌁", xp: 12, moisture: 16, nutrition: 0, shade: 0, health: 2, knowledge: 1 },
-  { id: "shade", label: "Ajustar sombra", icon: "☼", xp: 15, moisture: -2, nutrition: 0, shade: 12, health: 6, knowledge: 2 },
-  { id: "observe", label: "Medir y registrar", icon: "◎", xp: 20, moisture: -1, nutrition: 0, shade: 0, health: 1, knowledge: 12 },
-  { id: "soil", label: "Nutrir el suelo", icon: "≋", xp: 18, moisture: 3, nutrition: 14, shade: 0, health: 7, knowledge: 4 },
+  { id: "water", label: "Regular agua", icon: "⌁", xp: 12, moisture: 16, nutrition: 0, shade: 0, health: 2, knowledge: 1, biodiversity: 0, pollinators: 0, soilCover: 0, waterReserve: -5 },
+  { id: "shade", label: "Ajustar sombra", icon: "☼", xp: 15, moisture: -2, nutrition: 0, shade: 12, health: 6, knowledge: 2, biodiversity: 3, pollinators: 2, soilCover: 0, waterReserve: 1 },
+  { id: "observe", label: "Medir y registrar", icon: "◎", xp: 20, moisture: -1, nutrition: 0, shade: 0, health: 1, knowledge: 12, biodiversity: 0, pollinators: 0, soilCover: 0, waterReserve: 0 },
+  { id: "soil", label: "Nutrir y cubrir suelo", icon: "≋", xp: 18, moisture: 3, nutrition: 14, shade: 0, health: 7, knowledge: 4, biodiversity: 4, pollinators: 0, soilCover: 12, waterReserve: 4 },
+  { id: "pollinate", label: "Cuidar polinizadores", icon: "✣", xp: 18, moisture: -2, nutrition: 0, shade: 2, health: 4, knowledge: 5, biodiversity: 5, pollinators: 14, soilCover: 2, waterReserve: 0 },
 ]
 
 const fermentationCurve = [
@@ -93,7 +108,8 @@ function applyElapsedGrowth(state: GotchiState, forcedHours?: number): GotchiSta
   if (state.phase !== "cultivation") return state
   const elapsed = forcedHours ?? Math.floor((Date.now() - new Date(state.lastGrowthAt).getTime()) / 3_600_000)
   if (elapsed < 1) return state
-  const balance = (state.health + state.moisture + state.nutrition + (100 - Math.abs(60 - state.shade))) / 400
+  const ecological = (state.biodiversity + state.waterReserve + state.pollinators + state.soilCover) / 4
+  const balance = (state.health + state.moisture + state.nutrition + (100 - Math.abs(60 - state.shade)) + ecological) / 500
   const nextAge = state.ageHours + elapsed
   return {
     ...state,
@@ -106,6 +122,8 @@ function applyElapsedGrowth(state: GotchiState, forcedHours?: number): GotchiSta
     leaves: state.leaves + Math.floor(elapsed * balance / 2.5),
     flowers: nextAge >= 30 ? state.flowers + Math.floor(elapsed * balance / 5) : state.flowers,
     pods: nextAge >= 54 ? state.pods + Math.floor(elapsed * balance / 10) : state.pods,
+    waterReserve: clamp(state.waterReserve - elapsed * .3),
+    pollinators: clamp(state.pollinators + (state.biodiversity > 65 ? elapsed * .18 : -elapsed * .2)),
   }
 }
 
@@ -113,8 +131,12 @@ function isGotchiState(value: unknown): value is GotchiState {
   return Boolean(value && typeof value === "object" && "phase" in value && "ageHours" in value)
 }
 
+function normalizeState(value: GotchiState): GotchiState {
+  return { ...initialState, ...value }
+}
+
 export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteState?: unknown }) {
-  const [state, setState] = useState<GotchiState>(() => isGotchiState(initialRemoteState) ? initialRemoteState : initialState)
+  const [state, setState] = useState<GotchiState>(() => isGotchiState(initialRemoteState) ? normalizeState(initialRemoteState) : initialState)
   const [message, setMessage] = useState("Dualita: selecciona un nodo y observa antes de intervenir.")
   const [loaded, setLoaded] = useState(false)
   const [sync, setSync] = useState<"idle" | "saving" | "saved" | "local">("idle")
@@ -125,7 +147,7 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
         const saved = localStorage.getItem("cacao_gotchi_v2")
         if (!initialRemoteState && saved) {
           const parsed: unknown = JSON.parse(saved)
-          if (isGotchiState(parsed)) setState(applyElapsedGrowth(parsed))
+          if (isGotchiState(parsed)) setState(applyElapsedGrowth(normalizeState(parsed)))
         } else {
           setState((current) => applyElapsedGrowth(current))
         }
@@ -183,6 +205,10 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
       health: clamp(current.health + action.health),
       knowledge: clamp(current.knowledge + action.knowledge),
       soilPh: clamp(current.soilPh + (action.id === "soil" ? .03 : 0), 4, 8),
+      biodiversity: clamp(current.biodiversity + action.biodiversity),
+      pollinators: clamp(current.pollinators + action.pollinators),
+      soilCover: clamp(current.soilCover + action.soilCover),
+      waterReserve: clamp(current.waterReserve + action.waterReserve),
       actions: current.actions + 1,
       streak: isNewDay
         ? (current.lastActionDate === yesterday.toISOString().slice(0, 10) ? current.streak + 1 : 1)
@@ -191,7 +217,7 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
     })
     setState(next)
     persist(next)
-    setMessage(`Dualita: ${action.label} suma +${action.xp} XP. Ahora observa la respuesta del árbol.`)
+    setMessage(`Dualita: ${action.label} suma +${action.xp} XP y puede acreditar 5 Mazorcas Doradas (tope diario).`)
   }
 
   function simulateHours(hours: number) {
@@ -237,11 +263,33 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
     const next = { ...initialState, plantedAt: now(), lastGrowthAt: now() }
     setState(next)
     persist(next)
-    setMessage("Nueva parcela creada. Elige nodo y registra la línea base.")
+    setMessage("Nueva labranza creada. Elige nodo y registra la línea base.")
   }
 
   return (
     <div className="gotchi-shell">
+      <div className="labranza-planner">
+        <div>
+          <p className="eyebrow text-colab-yellow">Identidad de la labranza</p>
+          <h2>Siembra para la siguiente generación.</h2>
+          <p>Elige cómo quieres cuidar suelo, sombra, agua y memoria familiar antes de acelerar el tiempo.</p>
+        </div>
+        <div className="labranza-fields">
+          <label><span>Nombre</span><input value={state.labranzaName} onChange={(event) => setState({ ...state, labranzaName: event.target.value.slice(0, 50) })} /></label>
+          <label><span>Continuidad</span>
+            <select value={state.generation} onChange={(event) => setState({ ...state, generation: event.target.value as GotchiState["generation"] })}>
+              <option value="heredada">Labranza heredada</option><option value="primera">Primera generación</option><option value="comunitaria">Labranza comunitaria</option>
+            </select>
+          </label>
+          <label><span>Sistema</span>
+            <select value={state.plantingSystem} onChange={(event) => setState({ ...state, plantingSystem: event.target.value as GotchiState["plantingSystem"] })}>
+              <option value="agroforesteria">Agroforestería diversa</option><option value="sombra-regulada">Sombra regulada</option><option value="demostrativa">Labranza demostrativa</option>
+            </select>
+          </label>
+          <button type="button" onClick={() => persist(state)}>Guardar identidad</button>
+        </div>
+      </div>
+
       <div className="gotchi-node-picker">
         <div>
           <p className="eyebrow text-colab-yellow">Nodo de aprendizaje</p>
@@ -261,7 +309,7 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
         <section className="gotchi-pet">
           <div className="flex justify-between items-start">
             <div>
-              <p className="eyebrow text-colab-yellow">Cacao Gotchi · crecimiento horario</p>
+          <p className="eyebrow text-colab-yellow">Cacao Gotchi · {state.labranzaName}</p>
               <h2 className="font-serif text-3xl font-bold text-colab-cream mt-2">
                 {state.phase === "cultivation" ? stage.name : state.phase === "complete" ? "Lote fermentado" : "Fermentando"}
               </h2>
@@ -316,6 +364,8 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
                 {[
                   ["Altura", `${state.heightCm} cm`], ["Hojas", state.leaves], ["Flores", state.flowers],
                   ["Mazorca", state.pods], ["Nutrición", `${Math.round(state.nutrition)}%`], ["Sombra", `${Math.round(state.shade)}%`],
+                  ["Biodiversidad", `${Math.round(state.biodiversity)}%`], ["Polinizadores", `${Math.round(state.pollinators)}%`],
+                  ["Cobertura", `${Math.round(state.soilCover)}%`], ["Reserva agua", `${Math.round(state.waterReserve)}%`],
                   ["pH suelo", state.soilPh.toFixed(2)], ["Edad", `${state.ageHours} h`],
                 ].map(([label, value]) => <div key={String(label)}><span>{label}</span><strong>{value}</strong></div>)}
               </div>
@@ -329,7 +379,7 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
               <div className="grid sm:grid-cols-2 gap-3 mt-6">
                 {actions.map((action) => (
                   <button key={action.id} type="button" onClick={() => care(action)} className="care-action">
-                    <span>{action.icon}</span><span><strong>{action.label}</strong><small>+{action.xp} XP · decisión de cuidado</small></span>
+                    <span>{action.icon}</span><span><strong>{action.label}</strong><small>+{action.xp} XP · hasta +5 MD</small></span>
                   </button>
                 ))}
               </div>

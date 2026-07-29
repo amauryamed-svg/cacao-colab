@@ -265,6 +265,156 @@ export interface Database {
         };
         Relationships: [];
       };
+      mazorca_wallets: {
+        Row: {
+          profile_id: string;
+          balance: number;
+          lifetime_earned: number;
+          updated_at: string;
+        };
+        Insert: {
+          profile_id: string;
+          balance?: number;
+          lifetime_earned?: number;
+          updated_at?: string;
+        };
+        Update: {
+          balance?: number;
+          lifetime_earned?: number;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      mazorca_ledger: {
+        Row: {
+          id: string;
+          profile_id: string;
+          amount: number;
+          category: string;
+          reason_code: string;
+          idempotency_key: string;
+          source_type: string | null;
+          source_id: string | null;
+          metadata: Json;
+          reversal_of_id: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          profile_id: string;
+          amount: number;
+          category: string;
+          reason_code: string;
+          idempotency_key: string;
+          source_type?: string | null;
+          source_id?: string | null;
+          metadata?: Json;
+          reversal_of_id?: string | null;
+          created_at?: string;
+        };
+        Update: Record<string, never>;
+        Relationships: [];
+      };
+      community_ranks: {
+        Row: {
+          slug: string;
+          name: string;
+          description: string;
+          icon: string;
+          min_lifetime_md: number;
+          sort_order: number;
+        };
+        Insert: {
+          slug: string;
+          name: string;
+          description: string;
+          icon: string;
+          min_lifetime_md: number;
+          sort_order: number;
+        };
+        Update: {
+          name?: string;
+          description?: string;
+          icon?: string;
+          min_lifetime_md?: number;
+          sort_order?: number;
+        };
+        Relationships: [];
+      };
+      benefit_catalog_items: {
+        Row: {
+          id: string;
+          brand_key: string;
+          slug: string;
+          title: string;
+          description: string;
+          cost_md: number;
+          fulfillment_type: string;
+          min_rank_slug: string | null;
+          stock_qty: number | null;
+          per_user_limit: number;
+          status: string;
+          terms: string;
+          metadata: Json;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          brand_key: string;
+          slug: string;
+          title: string;
+          description: string;
+          cost_md: number;
+          fulfillment_type: string;
+          min_rank_slug?: string | null;
+          stock_qty?: number | null;
+          per_user_limit?: number;
+          status?: string;
+          terms: string;
+          metadata?: Json;
+          created_at?: string;
+        };
+        Update: {
+          title?: string;
+          description?: string;
+          cost_md?: number;
+          status?: string;
+          terms?: string;
+          metadata?: Json;
+        };
+        Relationships: [];
+      };
+      benefit_redemptions: {
+        Row: {
+          id: string;
+          profile_id: string;
+          catalog_item_id: string;
+          cost_md: number;
+          status: string;
+          ledger_debit_id: string | null;
+          fulfillment_payload: Json;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          profile_id: string;
+          catalog_item_id: string;
+          cost_md: number;
+          status?: string;
+          ledger_debit_id?: string | null;
+          fulfillment_payload?: Json;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          status?: string;
+          ledger_debit_id?: string | null;
+          fulfillment_payload?: Json;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: {

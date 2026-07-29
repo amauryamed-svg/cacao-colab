@@ -26,7 +26,7 @@ export default function AprendePage() {
               </p>
             </div>
             <div className="grid grid-cols-3 gap-2">
-              {[["0", "racha"], ["0", "XP hoy"], ["Aprendiz", "rango"]].map(([value, label]) => (
+              {[["6", "rangos"], ["MD", "fidelidad"], ["Dualita", "guía"]].map(([value, label]) => (
                 <div key={label} className="bg-white/[.05] border border-white/10 rounded-xl p-3 text-center">
                   <strong className="block font-serif text-xl text-colab-yellow">{value}</strong>
                   <small className="text-[9px] uppercase tracking-wider text-colab-cream/35">{label}</small>

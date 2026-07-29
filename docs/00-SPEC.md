@@ -104,6 +104,9 @@ Deja de ser "no un joint venture legal, solo una plataforma compartida de marca"
 | D28 | Entrada unificada | `/cuenta/entrar` es la única puerta para learners y builders | `claim_team_membership()` reconoce los tres emails internos y los dirige al dashboard superadmin sin fusionar `profiles` y `team_members`. |
 | D29 | CRM de conversión | Eventos first-party + contactos locales + snapshot agregado de HubSpot | Mide visitas, registros, onboarding y clics hacia Microlearning CAÚA / MOOC Zurych. No equipara clic con compra. |
 | D30 | Privacidad analytics | IDs pseudónimos de visitante/sesión; sin IP en `analytics_events` | CRM y analytics solo se consultan con `service_role` tras validar superadmin. |
+| D31 | Fidelidad | **Mazorcas Doradas** como puntos canjeables separados del XP | Ledger append-only, sin valor en efectivo y sin recompensas por reclutamiento. |
+| D32 | Rangos comunitarios | Semilla → Brote → Labrador → Guardián → Maestro → Legado | Se asciende por actividad propia verificable; nunca por tamaño de red. |
+| D33 | Ecommerce de beneficios | Adaptadores por marca, inactivos por defecto | No se publica un canje como activo sin acuerdo, credenciales, stock, términos y prueba de fulfillment. |
 
 ---
 

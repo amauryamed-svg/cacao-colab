@@ -5,6 +5,7 @@ export * from "./orders";
 export * from "./memberships";
 export * from "./lms";
 export * from "./gamification";
+export * from "./edutainment";
 export * from "./companion";
 export * from "./blog";
 export * from "./crm";

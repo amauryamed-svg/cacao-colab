@@ -11,9 +11,9 @@ export default function PerfilScreen() {
       <Text style={styles.kicker}>CACAO GOTCHI · PERFIL</Text>
       <View style={styles.avatar}><Text style={styles.avatarText}>{care >= 2 ? "♧" : "●"}</Text></View>
       <Text style={styles.title}>{stage}</Text>
-      <Text style={styles.stats}>{care * 15} XP  ·  {care} cuidados  ·  rango 01</Text>
+      <Text style={styles.stats}>{care * 15} XP  ·  {care * 5} Mazorcas Doradas  ·  Semilla</Text>
       <Text style={styles.note}>
-        Cuida tu parcela virtual y entrena el criterio de observación. Esta
+        Cuida tu labranza virtual y entrena el criterio de observación. Esta
         demo reinicia al cerrar la app; la sincronización llega con Supabase.
       </Text>
       <Pressable style={styles.action} onPress={() => setCare((value) => value + 1)}>

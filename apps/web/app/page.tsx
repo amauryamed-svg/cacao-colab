@@ -75,8 +75,8 @@ export default function Home() {
             {[
               { num: "3",  label: "líneas comparadas" },
               { num: "45°", label: "protocolo de precisión" },
-              { num: "700", label: "XP de campo" },
-              { num: "2",  label: "maestrías conectadas" },
+              { num: "6", label: "rangos comunitarios" },
+              { num: "MD", label: "Mazorcas Doradas" },
             ].map(({ num, label }) => (
               <div key={label} className="text-center">
                 <p className="font-serif font-black text-colab-yellow" style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}>
@@ -106,8 +106,8 @@ export default function Home() {
               {[
                 { step: "01", title: "Master Cacaotier", body: "Fermentación, finca, datos y calidad Fine-Flavor." },
                 { step: "02", title: "Master Chocolatier", body: "Tostión, formulación, aplicaciones y creación sensorial." },
-                { step: "03", title: "Cacao Gotchi", body: "Cuida un lote virtual, toma decisiones y conserva tu racha." },
-                { step: "04", title: "Cacao Colab", body: "Publica evidencia, conecta actores y lleva productos al mercado." },
+                { step: "03", title: "Cacao Gotchi", body: "Cuida una labranza, gana Mazorcas Doradas y construye legado." },
+                { step: "04", title: "Cacao Colab", body: "Conecta marcas, beneficios y territorio con reglas transparentes." },
               ].map((item) => (
                 <article key={item.step} className="bg-white/[.035] border border-white/10 rounded-2xl p-6 hover:border-colab-yellow/30 transition-colors">
                   <span className="font-serif italic text-3xl text-colab-yellow/35">{item.step}</span>

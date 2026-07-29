@@ -14,6 +14,7 @@ export default function TabsLayout() {
     >
       <Tabs.Screen name="index" options={{ title: "Mercado", headerTitle: "Cacao Colab" }} />
       <Tabs.Screen name="aprende" options={{ title: "Campus", headerTitle: "cacaotier" }} />
+      <Tabs.Screen name="beneficios" options={{ title: "Mazorcas", headerTitle: "Beneficios Colab" }} />
       <Tabs.Screen name="perfil" options={{ title: "Mi lote", headerTitle: "Cacao Gotchi" }} />
     </Tabs>
   );

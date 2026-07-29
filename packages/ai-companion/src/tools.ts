@@ -39,7 +39,44 @@ export const redirectToMarketplaceTool = tool({
   },
 });
 
+export const explainMazorcasPolicyTool = tool({
+  description:
+    "Explica cómo se ganan y usan las Mazorcas Doradas, diferenciándolas de XP y evitando cualquier mecánica de reclutamiento.",
+  inputSchema: z.object({ topic: z.enum(["earn", "ranks", "redeem", "anti-fraud"]).default("earn") }),
+  execute: async ({ topic }: { topic: "earn" | "ranks" | "redeem" | "anti-fraud" }) => ({
+    topic,
+    currency: "Mazorcas Doradas",
+    cashValue: false,
+    referralRewards: false,
+    earningSources: ["aprendizaje verificado", "cuidado con límites", "aporte comunitario aprobado", "compra verificada"],
+    note: "XP mide progreso educativo; Mazorcas Doradas son puntos de fidelidad sujetos a términos y disponibilidad.",
+  }),
+});
+
+export const redirectToBenefitsTool = tool({
+  description: "Genera el enlace al catálogo transparente de beneficios de Mazorcas Doradas.",
+  inputSchema: z.object({ brandKey: z.string().optional() }),
+  execute: async ({ brandKey }: { brandKey?: string }) => ({
+    url: brandKey ? `/marketplace/beneficios?marca=${encodeURIComponent(brandKey)}` : "/marketplace/beneficios",
+  }),
+});
+
+export const getBrandConnectorStatusTool = tool({
+  description:
+    "Informa si una marca tiene integración ecommerce activa. Nunca afirma cupones, stock ni descuentos no configurados.",
+  inputSchema: z.object({ brandKey: z.string() }),
+  execute: async ({ brandKey }: { brandKey: string }) => ({
+    brandKey,
+    status: "inactive",
+    redeemableNow: false,
+    note: "Los conectores permanecen inactivos hasta acuerdo, credenciales, términos y prueba de fulfillment.",
+  }),
+});
+
 export const dualitaTools = {
   getLessonTip: getLessonTipTool,
   redirectToMarketplace: redirectToMarketplaceTool,
+  explainMazorcasPolicy: explainMazorcasPolicyTool,
+  redirectToBenefits: redirectToBenefitsTool,
+  getBrandConnectorStatus: getBrandConnectorStatusTool,
 };
