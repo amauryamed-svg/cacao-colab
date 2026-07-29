@@ -8,6 +8,8 @@
 -- Emails confirmados por Amaury el 2026-07-26.
 insert into public.team_members (email, full_name, team_role, hubspot_contact_email)
 values
+  -- Founder de cacaotier y builder de Cacao Colab.
+  ('amauryamed@gmail.com', 'Amaury Amed', 'founder', 'amauryamed@gmail.com'),
   -- Hellen SÍ tiene contacto real en HubSpot — el panel de /equipo le
   -- muestra datos reales (contacto + deals asociados).
   ('hellenandba@gmail.com', 'Hellen Bareño', 'engineering_frontend', 'hellenandba@gmail.com'),

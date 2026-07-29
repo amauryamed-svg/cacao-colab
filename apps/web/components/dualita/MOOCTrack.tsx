@@ -11,8 +11,8 @@ export default function MOOCTrack() {
       <div className="flex items-center gap-3">
         <div className="w-3 h-3 rounded-full bg-colab-yellow" />
         <div>
-          <p className="text-[10px] font-bold tracking-[2.5px] uppercase font-sans text-colab-yellow">Track MOOC</p>
-          <p className="text-xs font-sans text-white/50 mt-0.5">Formación profunda · 4 módulos · ~4 horas</p>
+          <p className="text-[10px] font-bold tracking-[2.5px] uppercase font-sans text-colab-yellow">MOOC Contexto Cacao · patrocinado por Zurych</p>
+          <p className="text-xs font-sans text-white/50 mt-0.5">Historia, territorio y cultura · 4 módulos · ~4 horas</p>
         </div>
       </div>
       {/* modules */}
@@ -28,9 +28,9 @@ export default function MOOCTrack() {
         rel="noopener noreferrer"
         className="mt-1 block text-center text-sm font-bold py-3 px-5 rounded-full bg-colab-yellow text-colab-forest hover:bg-colab-amber transition-colors font-sans"
       >
-        Pre-registrarme en el MOOC →
+        Quiero aprender la historia →
       </a>
-      <p className="text-[10px] text-center text-white/35 font-sans -mt-1">Lanzamiento 2026 · cupos limitados</p>
+      <p className="text-[10px] text-center text-white/35 font-sans -mt-1">Presentado por Zurych · espacio de patrocinio educativo</p>
     </div>
   )
 }

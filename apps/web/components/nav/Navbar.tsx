@@ -37,6 +37,12 @@ export default function Navbar() {
             Cacao Gotchi
           </Link>
           <Link
+            href="/cuenta"
+            className="hidden sm:inline text-xs font-bold text-colab-cream/70 hover:text-colab-yellow font-sans tracking-wide transition-colors"
+          >
+            Mi cuenta
+          </Link>
+          <Link
             href="/equipo/login"
             className="hidden sm:inline text-xs font-semibold text-colab-cream/35 hover:text-colab-cream/70 font-sans tracking-wide transition-colors"
             title="Portal del equipo (Oscar, Hellen, Amaury)"

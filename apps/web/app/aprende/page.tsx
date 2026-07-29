@@ -20,8 +20,8 @@ export default function AprendePage() {
             <div>
               <h1 className="display-title text-colab-cream">Aprende haciendo.<br /><em>Sube de rango.</em></h1>
               <p className="text-colab-cream/55 max-w-xl mt-6 leading-relaxed">
-                Una ruta conecta finca, laboratorio, chocolate y mercado. Misiones cortas para actuar hoy;
-                maestrías profundas para construir una competencia que se pueda demostrar.
+                Contexto, hábitos, oficio y territorio sincronizados. Entra con una sola cuenta para conservar
+                XP, racha, Cacao Gotchi y evidencia de tus misiones.
               </p>
             </div>
             <div className="grid grid-cols-3 gap-2">
@@ -39,12 +39,12 @@ export default function AprendePage() {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-20">
         <div className="grid md:grid-cols-2 gap-5 mt-10 mb-16">
-          <Link href="/aprende/cacaotier" className="group rounded-3xl bg-colab-yellow p-7 md:p-9 min-h-80 flex flex-col text-colab-forest transition-transform hover:-translate-y-1">
+          <Link href="/campus/arquitecto-fermentacion" className="group rounded-3xl bg-colab-yellow p-7 md:p-9 min-h-80 flex flex-col text-colab-forest transition-transform hover:-translate-y-1">
             <div className="flex justify-between">
               <span className="eyebrow">Ruta de finca</span><span className="text-2xl">↗</span>
             </div>
             <div className="mt-auto">
-              <p className="text-xs font-bold uppercase tracking-wider opacity-55">Nivel 01 · disponible</p>
+              <p className="text-xs font-bold uppercase tracking-wider opacity-55">Nivel 01 · campus registrado</p>
               <h2 className="font-serif text-4xl font-black mt-3">Master<br />Cacaotier</h2>
               <p className="text-sm opacity-65 mt-4 max-w-sm">Fermentación de precisión, trazabilidad y calidad Fine-Flavor. Empieza con FEAR 5.</p>
             </div>
@@ -63,11 +63,45 @@ export default function AprendePage() {
 
         <div className="flex items-end justify-between gap-6 mb-6">
           <div>
-            <p className="eyebrow text-colab-pod">Biblioteca abierta</p>
-            <h2 className="font-serif text-3xl font-bold text-colab-cream mt-2">Explora Dualita</h2>
+            <p className="eyebrow text-colab-pod">Dos rutas patrocinables</p>
+            <h2 className="font-serif text-3xl font-bold text-colab-cream mt-2">Contexto + hábitos con Dualita</h2>
           </div>
-          <p className="hidden md:block text-xs text-colab-cream/35 max-w-xs">Contenido complementario de cacao, aplicaciones HoReCa y negocio.</p>
+          <p className="hidden md:block text-xs text-colab-cream/35 max-w-xs">Cada sponsor aporta contenido explícito sin ocultar su participación.</p>
         </div>
+
+        <section className="mt-10 grid md:grid-cols-4 gap-3">
+          {[
+            { step: "01", owner: "Zurych", title: "MOOC Contexto Cacao", body: "Historia, territorio y cultura para comprender de dónde viene el chocolate." },
+            { step: "02", owner: "CAÚA", title: "Cacao funcional", body: "Microlearning sobre elección, hábitos y consumo saludable en contexto." },
+            { step: "03", owner: "cacaotier", title: "Masterclasses", body: "Competencia profesional desde fermentación hasta aplicaciones." },
+            { step: "04", owner: "Nodos", title: "Territorio activo", body: "Lotes, retos y evidencia de Landázuri, Arbeláez, Paicol, Tame y Guamal." },
+          ].map((route) => (
+            <article key={route.step} className="learning-sync-card">
+              <div><span>{route.step}</span><strong>{route.owner}</strong></div>
+              <h3>{route.title}</h3>
+              <p>{route.body}</p>
+            </article>
+          ))}
+        </section>
+
+        <section className="mt-10 rounded-3xl border border-colab-yellow/25 bg-colab-yellow/[.07] p-7 md:p-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+          <div>
+            <p className="eyebrow text-colab-yellow">El círculo se está formando ahora</p>
+            <h2 className="font-serif text-3xl font-bold text-colab-cream mt-3">Tu marca puede enseñar, retar o activar un territorio.</h2>
+            <p className="text-sm text-colab-cream/50 leading-relaxed mt-3 max-w-2xl">
+              La pauta no compra una credencial científica: financia una experiencia claramente identificada.
+              Los primeros aliados definen retos, becas y presencia antes de cerrar cada cohorte.
+            </p>
+          </div>
+          <a
+            href="https://wa.me/573102227848?text=Hola%20Cacao%20Colab%2C%20quiero%20patrocinar%20una%20ruta%2C%20reto%20o%20nodo."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shrink-0 bg-colab-yellow text-colab-forest rounded-full px-7 py-4 text-sm font-bold"
+          >
+            Reservar participación →
+          </a>
+        </section>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="bg-white/[.04] border border-colab-yellow/15 rounded-2xl p-7">
             <MOOCTrack />
@@ -92,7 +126,7 @@ export default function AprendePage() {
           <div className="bg-white/[.04] border border-white/10 rounded-xl p-6">
             <p className="text-colab-yellow font-bold text-xs tracking-wider uppercase font-sans mb-3">El equipo Cacao Colab</p>
             <ul className="space-y-2 text-sm font-sans text-colab-cream/65">
-              <li><strong className="text-colab-cream">Amaury Amed</strong> · Founder y owner de cacaotier</li>
+              <li><strong className="text-colab-cream">Amaury Amed</strong> · Founder de cacaotier + builder del Colab</li>
               <li><strong className="text-colab-cream">Hellen Bareño</strong> · Builder · chocolatería y experiencia</li>
               <li><strong className="text-colab-cream">Oscar Gamboa</strong> · Builder · desarrollo y operación</li>
             </ul>

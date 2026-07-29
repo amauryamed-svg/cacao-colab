@@ -107,4 +107,4 @@ Ningún estado inventa datos — es la regla explícita que motivó este diseño
 3. `NEXT_PUBLIC_SUPABASE_URL`/`NEXT_PUBLIC_SUPABASE_ANON_KEY`/`NEXT_PUBLIC_SITE_URL` en Vercel (`cacao-colab-web`).
 4. `HUBSPOT_ACCESS_TOKEN` con permiso `crm.objects.deals.read` agregado (ver `03-HUBSPOT.md`).
 5. Decidir si Oscar se da de alta como contacto en HubSpot (pendiente del usuario, no se hace unilateralmente).
-6. Agregar la fila de Amaury a `supabase/seed.sql` cuando se defina su email/flujo para `/equipo` (hoy solo están Oscar y Hellen sembrados).
+6. Amaury está incluido como founder en `supabase/seed.sql` y en la migración de campus 0012; aplicar `supabase db push` para reflejarlo en el proyecto vivo.

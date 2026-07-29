@@ -2,7 +2,9 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { colabColors } from "@cacao-colab/ui-tokens";
 
 const tracks = [
-  { id: "cacaotier", label: "Master Cacaotier", status: "6 misiones · 700 XP", color: colabColors.yellow },
+  { id: "mooc", label: "MOOC Contexto Cacao", status: "Historia · patrocinado por Zurych", color: colabColors.yellow },
+  { id: "functional", label: "Microlearning Cacao Funcional", status: "Hábitos saludables · por CAÚA", color: colabColors.pod },
+  { id: "cacaotier", label: "Master Cacaotier", status: "6 misiones · 700 XP", color: "#E3A12B" },
   { id: "chocolatier", label: "Master Chocolatier", status: "próximamente", color: "#B9583B" },
 ];
 

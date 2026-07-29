@@ -9,7 +9,13 @@ import { NextResponse } from "next/server";
 export async function GET() {
   return NextResponse.json({
     data: {
-      tracks: ["mooc", "micro"],
+      tracks: [
+        { id: "mooc-contexto", owner: "Zurych", purpose: "historia, territorio y cultura" },
+        { id: "micro-funcional", owner: "CAÚA", purpose: "cacao funcional y hábitos saludables" },
+        { id: "master-cacaotier", owner: "Amaury Amed", purpose: "competencia profesional de finca y bioprocesos" },
+        { id: "master-chocolatier", owner: "Amaury Amed", purpose: "transformación y aplicaciones" },
+      ],
+      registeredRoutes: ["/campus/arquitecto-fermentacion", "/juega"],
       note:
         "Contenido real de módulos vive hoy en apps/web/lib/dualita.ts y lessons.ts " +
         "como seed local. Migra a Supabase (courses/modules/lessons) cuando exista el proyecto.",

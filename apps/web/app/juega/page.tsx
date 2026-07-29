@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { redirect } from "next/navigation"
+import { createSupabaseServerClient } from "@cacao-colab/supabase-client/server"
 import CacaoGotchiLab from "@/components/gamify/CacaoGotchiLab"
 
 export const metadata: Metadata = {
@@ -14,7 +16,20 @@ const gameLoops = [
   { icon: "↗", title: "Conecta", body: "Comparte evidencia y abre oportunidades dentro del Colab." },
 ]
 
-export default function JuegaPage() {
+export const dynamic = "force-dynamic"
+
+export default async function JuegaPage() {
+  const supabase = await createSupabaseServerClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) redirect("/cuenta/entrar?next=/juega")
+
+  const { data: saved } = await supabase
+    .from("gotchi_runs")
+    .select("state")
+    .eq("profile_id", user.id)
+    .eq("slot", 1)
+    .maybeSingle()
+
   return (
     <div className="min-h-screen bg-colab-forest">
       <header className="game-hero">
@@ -38,7 +53,7 @@ export default function JuegaPage() {
       </header>
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-        <CacaoGotchiLab />
+        <CacaoGotchiLab initialRemoteState={saved?.state} />
 
         <section className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-16">
           {gameLoops.map((loop, index) => (
@@ -56,8 +71,8 @@ export default function JuegaPage() {
             <h2 className="font-serif text-4xl font-black text-colab-forest mt-3">Tu próxima misión ocurre en campo.</h2>
           </div>
           <p className="text-sm leading-relaxed text-colab-forest/65">
-            La versión alpha guarda progreso en este dispositivo. La siguiente fase conectará bitácoras reales,
-            clima, fotos, badges verificables y retos regionales sin convertir el XP en sustituto de evidencia.
+            El campus intenta sincronizar cada decisión con tu cuenta y conserva una copia local para resiliencia.
+            El crecimiento horario es una simulación comprimida; no representa una predicción agronómica.
           </p>
         </section>
       </main>

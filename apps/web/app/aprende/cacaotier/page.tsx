@@ -41,6 +41,14 @@ export default function CacaotierCoursePage() {
                 Aprende a pilotar la fermentación como bioproceso: lee temperatura, pH y ventanas de
                 precursores; compara tres líneas y convierte cada decisión de finca en evidencia repetible.
               </p>
+              <div className="flex flex-wrap gap-3 mt-8">
+                <Link href="/campus/arquitecto-fermentacion" className="bg-colab-yellow text-colab-forest rounded-full px-7 py-3.5 text-sm font-bold">
+                  Empezar campaña con Dualita →
+                </Link>
+                <Link href="/cuenta/entrar?next=/campus/arquitecto-fermentacion" className="border border-white/20 text-colab-cream rounded-full px-7 py-3.5 text-sm font-bold">
+                  Entrar al campus
+                </Link>
+              </div>
             </div>
             <div className="credential-card">
               <div className="flex justify-between items-start">
