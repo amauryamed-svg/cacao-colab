@@ -9,9 +9,12 @@ type PlaceholderOrg = {
 };
 
 const placeholderOrgs: PlaceholderOrg[] = [
-  { name: "CAÚA Colombia", tagline: "Cacao de origen. Cero azúcar añadida.", role: "owner" },
-  { name: "Chocolate Zurych", tagline: "Coberturas funcionales para el profesional.", role: "owner" },
-  { name: "Chocolate Lust", tagline: "Chocolate de autor colombiano.", role: "colaborador" },
+  { name: "cacaotier", tagline: "Bogotá · epicentro educativo y builder.", role: "owner" },
+  { name: "Zurych", tagline: "Landázuri · Santander.", role: "colaborador" },
+  { name: "La Querencia", tagline: "Arbeláez · Cundinamarca.", role: "colaborador" },
+  { name: "La Lomita", tagline: "Paicol · Huila.", role: "colaborador" },
+  { name: "Quara Cacao", tagline: "Tame · Arauca.", role: "colaborador" },
+  { name: "Chocolover", tagline: "Guamal · Meta.", role: "colaborador" },
 ];
 
 export default function MarketplaceScreen() {
@@ -21,15 +24,15 @@ export default function MarketplaceScreen() {
       <Text style={styles.kicker}>CACAO FINE-FLAVOR · MERCADO</Text>
       <Text style={styles.title}>Del conocimiento al mercado.</Text>
       <Text style={styles.note}>
-        Descubre marcas, orígenes y actores del ecosistema Cacao Colab.
-        Los catálogos son demostrativos hasta conectar Supabase.
+        Recorre los nodos regionales del ecosistema. Cada marca conserva su
+        identidad; el círculo permanece abierto.
       </Text>
 
       {placeholderOrgs.map((org) => (
         <View key={org.name} style={styles.card}>
           <Text style={styles.cardTitle}>{org.name}</Text>
           <Text style={styles.cardTagline}>{org.tagline}</Text>
-          <Text style={styles.badge}>{org.role === "owner" ? "FUNDADOR" : "COLABORADOR"}</Text>
+          <Text style={styles.badge}>{org.role === "owner" ? "EPICENTRO" : "NODO REGIONAL"}</Text>
         </View>
       ))}
     </ScrollView>

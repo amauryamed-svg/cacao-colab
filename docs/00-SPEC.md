@@ -1,8 +1,8 @@
 # Cacao Colab — Spec v2 (Master)
 
 > **Método:** Spec-Driven. Este documento es la fuente de verdad del proyecto. Cualquier cambio de rumbo se reescribe aquí *antes* de tocar código, diseño o procesos.
-> **Owner principal:** Amaury Amed (CTO · CAÚA Colombia)
-> **Co-owner:** Equipo Zurych
+> **Owner de cacaotier:** Amaury Amed
+> **Builders de Cacao Colab:** Amaury Amed · Hellen Bareño · Oscar Gamboa
 > **Fecha de corte v1:** 2026-06-16
 > **Fecha de corte v2 (pivote):** 2026-07-26
 > **Rama de trabajo:** `v2-pivot` (worktree aislado, sin merge a `main` todavía)
@@ -26,12 +26,24 @@ Esta pasada (2026-07-26) construye la **fundación completa**: monorepo reestruc
 
 **Requerimiento agregado durante la ejecución (2026-07-26):** portal interno `/equipo` con login real (Supabase Auth, magic link) para Oscar y Hellen, con bienvenida personalizada y un panel de datos reales de HubSpot CRM debajo. Ver `14-CRM-INTERNO.md` para el detalle completo — incluye un hallazgo nuevo: Oscar Gamboa (`amadooscarito@gmail.com`) no tiene contacto en HubSpot todavía, a diferencia de Hellen (`hellenandba@gmail.com`), que sí.
 
-### Participantes fundadores (sin cambios)
+### Ownership, builders y círculo abierto
 
-| Marca | Rol | Web |
-|-------|-----|-----|
-| **CAÚA Colombia** | Origen, producto, logística Colombia | cauacolombia.co |
-| **Chocolate Zurych** | Coberturas funcionales HoReCa | chocolatezurych.com |
+| Actor | Rol | Alcance |
+|-------|-----|---------|
+| **Amaury Amed** | Founder y owner de cacaotier | Master Cacaotier, Master Chocolatier, bioprocesos, producto y visión |
+| **Hellen Bareño** | Builder de Cacao Colab | Chocolatería y experiencia |
+| **Oscar Gamboa** | Builder de Cacao Colab | Desarrollo y operación |
+
+El círculo de nodos permanece abierto. Las marcas regionales conservan su identidad y propiedad; participar en Cacao Colab no transfiere ownership de marca ni convierte automáticamente a un nodo en socio legal de la plataforma.
+
+| Nodo | Territorio |
+|------|------------|
+| Zurych | Landázuri, Santander |
+| La Querencia | Arbeláez, Cundinamarca |
+| La Lomita | Paicol, Huila |
+| Quara Cacao | Tame, Arauca |
+| Chocolover | Guamal, Meta |
+| cacaotier | Bogotá D.C. · epicentro educativo |
 
 ### North Star v2
 
@@ -83,6 +95,9 @@ Deja de ser "no un joint venture legal, solo una plataforma compartida de marca"
 | D19 | Marca educativa | **cacaotier** (siempre en minúsculas), proyecto de Amaury Amed | Identidad profesional sobre el motor pedagógico Dualita; Cacao Fine-Flavor es el núcleo y Cacao Colab la capa de mercado. |
 | D20 | Oferta formativa | **Master Cacaotier + Master Chocolatier** | Dos rutas pagas conectadas por microlearning abierto, misiones, XP, rangos, bitácora y proyecto verificable. |
 | D21 | Rigor científico | Cada dato educativo se clasifica como **publicado, observado, propuesto o calculado** | La línea híbrida en tanque adaptado se presenta como piloto, no como resultado de AGROSAVIA. Ver `15-CACAOTIER-MASTER-SCHOOL.md`. |
+| D22 | Ownership cacaotier | **Amaury Amed** es founder y owner de la marca educativa y sus Masterclasses | Hellen Bareño y Oscar Gamboa son builders de Cacao Colab; no se presenta a las marcas regionales como copropietarias. |
+| D23 | Red regional | **Cinco nodos territoriales + Bogotá como epicentro** | Landázuri, Arbeláez, Paicol, Tame, Guamal y Bogotá. El círculo permanece abierto. |
+| D24 | Cacao Gotchi | Laboratorio virtual de siembra/cosecha con decisiones, estado, XP y progresión | La simulación es pedagógica; no reemplaza asistencia agronómica. Progreso web local en alpha. |
 
 ---
 

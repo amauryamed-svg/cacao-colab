@@ -1,14 +1,10 @@
-'use client'
+"use client"
 
-import { useRef, useState } from 'react'
-import { motion, useInView } from 'framer-motion'
-import { type Brand } from '@/lib/brands'
-import { type Territory } from '@/lib/territories'
-import BrandCard from './BrandCard'
-import ComingSoonSlot from './ComingSoonSlot'
-import TerritoryDetail from './TerritoryDetail'
-
-const sp = { type: 'spring' as const, stiffness: 90, damping: 18 }
+import { useMemo, useState } from "react"
+import { motion } from "framer-motion"
+import type { Brand } from "@/lib/brands"
+import type { Territory } from "@/lib/territories"
+import BrandCard from "./BrandCard"
 
 type ComingSoon = { id: string; hint: string }
 
@@ -19,256 +15,202 @@ type Props = {
   territories: Territory[]
 }
 
-type NodeKind = 'territory' | 'founder' | 'collaborator' | 'coming-soon'
-type Selected = { kind: NodeKind; id: string } | null
+const colombiaPath =
+  "M183 20 L221 31 L250 58 L274 68 L286 98 L276 129 L293 157 L279 189 L260 215 L251 249 L225 281 L204 266 L190 237 L166 218 L157 189 L139 164 L144 129 L129 105 L144 75 L159 58 Z"
 
-type PositionedNode = {
-  kind: NodeKind
-  id: string
-  label: string
-  color: string
-  angle: number
-  orbit: number
-  r: number
-}
+const worldPaths = [
+  "M22 83 L50 58 L93 51 L121 66 L137 91 L121 111 L92 113 L76 143 L52 132 L42 106 Z",
+  "M116 145 L143 149 L155 178 L144 218 L126 251 L110 230 L103 190 Z",
+  "M204 62 L235 50 L269 60 L286 79 L313 72 L349 88 L375 111 L363 136 L329 137 L306 125 L287 145 L261 132 L243 105 L213 102 Z",
+  "M268 148 L294 151 L306 182 L293 226 L273 244 L252 213 L249 175 Z",
+  "M351 190 L380 179 L401 194 L397 218 L368 226 L348 211 Z",
+]
 
-/**
- * Red de nodos en círculos concéntricos — reemplaza el grid plano de
- * BrandCard. Mismo técnica que EcosistemaIllustration en
- * ~/caua-io/app/components/TrackIllustrations.tsx (SVG a mano + framer-motion,
- * sin librería de gráficos — no hay d3/visx/react-flow en este stack).
- *
- * Anillos, de adentro hacia afuera — cada uno cuenta una historia real:
- *   1. Territorios — la tierra es la raíz (Huila, Santander, Meta, Arauca, Cundinamarca)
- *   2. Marcas fundadoras — se construyen directo sobre ese origen (CAÚA, Zurych)
- *   3. Colaboradoras + próximamente — el borde en crecimiento del Colab (Lust, slots abiertos)
- *
- * `directoryCandidates` (el Market Directory) NO entra acá a propósito —
- * son candidatas sin confirmar, meterlas en la red implicaría que ya fueron
- * admitidas.
- */
+const worldTargets = [
+  { label: "Norteamérica", x: 89, y: 91 },
+  { label: "Europa", x: 257, y: 92 },
+  { label: "Asia", x: 346, y: 112 },
+]
+
 export default function BrandNetwork({ founders, collaborators, comingSoonSlots, territories }: Props) {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-60px' })
-  const [selected, setSelected] = useState<Selected>(
-    founders[0] ? { kind: 'founder', id: founders[0].id } : null,
-  )
-
-  const cx = 230
-  const cy = 230
-
-  const territoryNodes: PositionedNode[] = territories.map((t, i) => ({
-    kind: 'territory',
-    id: t.id,
-    label: t.name,
-    color: t.accentColor,
-    angle: -90 + i * (360 / territories.length),
-    orbit: 62,
-    r: 24,
-  }))
-
-  const founderAngles = [-45, 135, 15, -165] // enough spread for up to 4 founders
-  const founderNodes: PositionedNode[] = founders.map((b, i) => ({
-    kind: 'founder',
-    id: b.id,
-    label: b.name,
-    color: b.accentColor,
-    angle: founderAngles[i % founderAngles.length],
-    orbit: 122,
-    r: 34,
-  }))
-
-  const outerItems: PositionedNode[] = [
-    ...collaborators.map((b, i) => ({
-      kind: 'collaborator' as const,
-      id: b.id,
-      label: b.name,
-      color: b.accentColor,
-      angle: i * 90,
-      orbit: 165,
-      r: 28,
-    })),
-    ...comingSoonSlots.map((s, i) => ({
-      kind: 'coming-soon' as const,
-      id: s.id,
-      label: s.hint,
-      color: '#E8E0DA',
-      angle: 180 + i * 90,
-      orbit: 165,
-      r: 24,
-    })),
-  ]
-
-  const allNodes = [...territoryNodes, ...founderNodes, ...outerItems]
-
-  function selectNode(n: PositionedNode) {
-    setSelected({ kind: n.kind, id: n.id })
-  }
-
-  function renderDetail() {
-    if (!selected) return null
-    if (selected.kind === 'territory') {
-      const t = territories.find((x) => x.id === selected.id)
-      return t ? <TerritoryDetail territory={t} /> : null
-    }
-    if (selected.kind === 'coming-soon') {
-      const s = comingSoonSlots.find((x) => x.id === selected.id)
-      return s ? <ComingSoonSlot hint={s.hint} /> : null
-    }
-    const b = [...founders, ...collaborators].find((x) => x.id === selected.id)
-    return b ? <BrandCard brand={b} /> : null
-  }
+  const [selectedId, setSelectedId] = useState("bogota")
+  const selectedTerritory = territories.find((territory) => territory.id === selectedId) ?? territories[0]
+  const brands = useMemo(() => [...founders, ...collaborators], [founders, collaborators])
+  const selectedBrand = brands.find((brand) => brand.territoryId === selectedTerritory?.id)
+  const center = territories.find((territory) => territory.id === "bogota")
 
   return (
-    <div ref={ref}>
-      {/* ══ desktop / tablet — red concéntrica en SVG ══ */}
-      <div className="hidden md:flex justify-center py-4 select-none">
-        <svg viewBox="0 0 460 460" width="460" height="460" role="group" aria-label="Red de marcas y territorios del Cacao Colab">
-          {[62, 122, 178].map((radius, i) => (
-            <motion.circle
-              key={radius}
-              cx={cx}
-              cy={cy}
-              r={radius}
-              fill="none"
-              stroke="rgba(247,241,238,0.12)"
-              strokeWidth={1}
-              strokeDasharray="5 8"
-              initial={{ scale: 0 }}
-              animate={inView ? { scale: 1 } : {}}
-              transition={{ ...sp, delay: i * 0.08 }}
-              style={{ transformOrigin: `${cx}px ${cy}px` }}
-            />
-          ))}
-
-          {allNodes.map((n, i) => {
-            const rad = (n.angle * Math.PI) / 180
-            const nx = cx + n.orbit * Math.cos(rad)
-            const ny = cy + n.orbit * Math.sin(rad)
-            const isSelected = selected?.kind === n.kind && selected.id === n.id
-            return (
-              <g key={`${n.kind}-${n.id}`}>
-                <motion.line
-                  x1={cx}
-                  y1={cy}
-                  x2={nx}
-                  y2={ny}
-                  stroke={n.color}
-                  strokeWidth={1}
-                  strokeOpacity={0.25}
-                  strokeDasharray="100"
-                  strokeDashoffset="100"
-                  animate={inView ? { strokeDashoffset: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.2 + i * 0.06, ease: 'easeOut' }}
+    <div className="ecosystem-map">
+      <div className="grid lg:grid-cols-[.78fr_1.22fr] gap-4">
+        <section className="map-panel map-world" aria-labelledby="world-title">
+          <div className="flex justify-between items-start gap-4">
+            <div>
+              <p className="eyebrow text-colab-yellow">Escala global</p>
+              <h3 id="world-title" className="font-serif text-2xl font-bold text-colab-cream mt-2">
+                Colombia conectada<br />con el mundo.
+              </h3>
+            </div>
+            <span className="map-index">01</span>
+          </div>
+          <svg viewBox="0 0 430 280" className="w-full mt-4" role="img" aria-label="Mapa mundial con Colombia como origen">
+            {worldPaths.map((path, index) => (
+              <path key={path} d={path} className="world-land" style={{ opacity: .2 + index * .03 }} />
+            ))}
+            {worldTargets.map((target, index) => (
+              <g key={target.label}>
+                <motion.path
+                  d={`M133 174 Q${(133 + target.x) / 2} ${Math.min(35, target.y - 45)} ${target.x} ${target.y}`}
+                  fill="none"
+                  stroke="#F2C830"
+                  strokeWidth="1"
+                  strokeDasharray="4 5"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  whileInView={{ pathLength: 1, opacity: .45 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1, delay: index * .15 }}
                 />
+                <circle cx={target.x} cy={target.y} r="3" fill="#F2C830" opacity=".7" />
+              </g>
+            ))}
+            <motion.circle
+              cx="133"
+              cy="174"
+              r="7"
+              fill="#F2C830"
+              animate={{ r: [6, 10, 6], opacity: [1, .45, 1] }}
+              transition={{ duration: 2.4, repeat: Infinity }}
+            />
+            <text x="145" y="179" fill="#F7F1EE" fontSize="10" fontWeight="700">COLOMBIA</text>
+          </svg>
+          <p className="text-xs leading-relaxed text-colab-cream/45">
+            La red nace en territorios colombianos. Las líneas muestran mercados por conectar, no exportaciones confirmadas.
+          </p>
+        </section>
+
+        <section className="map-panel map-colombia" aria-labelledby="colombia-title">
+          <div className="flex justify-between items-start gap-4 relative z-10">
+            <div>
+              <p className="eyebrow text-colab-green">Red territorial</p>
+              <h3 id="colombia-title" className="font-serif text-2xl font-bold text-colab-ink mt-2">
+                Un país.<br />Seis nodos vivos.
+              </h3>
+            </div>
+            <span className="map-index text-colab-ink/15">02</span>
+          </div>
+          <svg viewBox="0 0 420 310" className="w-full -mt-7" role="group" aria-label="Mapa de nodos regionales de Cacao Colab">
+            <path d={colombiaPath} fill="#1A2E10" opacity=".06" stroke="#1A2E10" strokeWidth="1.2" />
+            {center && territories.filter((territory) => territory.id !== "bogota").map((territory, index) => (
+              <motion.line
+                key={territory.id}
+                x1={center.mapX}
+                y1={center.mapY}
+                x2={territory.mapX}
+                y2={territory.mapY}
+                stroke={territory.accentColor}
+                strokeWidth="1.2"
+                strokeDasharray="4 4"
+                initial={{ pathLength: 0, opacity: 0 }}
+                whileInView={{ pathLength: 1, opacity: .55 }}
+                viewport={{ once: true }}
+                transition={{ duration: .7, delay: index * .08 }}
+              />
+            ))}
+            {territories.map((territory, index) => {
+              const active = territory.id === selectedId
+              const isCenter = territory.id === "bogota"
+              return (
                 <motion.g
+                  key={territory.id}
                   role="button"
                   tabIndex={0}
-                  aria-label={n.label}
-                  aria-pressed={isSelected}
-                  onClick={() => selectNode(n)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault()
-                      selectNode(n)
+                  aria-label={`${territory.nodeName}, ${territory.city}, ${territory.name}`}
+                  aria-pressed={active}
+                  onClick={() => setSelectedId(territory.id)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault()
+                      setSelectedId(territory.id)
                     }
                   }}
-                  style={{ cursor: 'pointer', outline: 'none', transformOrigin: `${nx}px ${ny}px` }}
+                  className="cursor-pointer"
                   initial={{ scale: 0, opacity: 0 }}
-                  animate={inView ? { scale: 1, opacity: 1 } : {}}
+                  whileInView={{ scale: 1, opacity: 1 }}
                   whileHover={{ scale: 1.08 }}
-                  whileTap={{ scale: 0.96 }}
-                  whileFocus={{ scale: 1.08 }}
-                  transition={{ ...sp, delay: 0.25 + i * 0.06 }}
+                  viewport={{ once: true }}
+                  transition={{ type: "spring", stiffness: 120, delay: .2 + index * .07 }}
+                  style={{ transformOrigin: `${territory.mapX}px ${territory.mapY}px` }}
                 >
+                  {active && <circle cx={territory.mapX} cy={territory.mapY} r={isCenter ? 20 : 15} fill={territory.accentColor} opacity=".14" />}
                   <circle
-                    cx={nx}
-                    cy={ny}
-                    r={n.r}
-                    fill={isSelected ? `${n.color}30` : `${n.color}14`}
-                    stroke={n.color}
-                    strokeWidth={isSelected ? 2 : 1.2}
+                    cx={territory.mapX}
+                    cy={territory.mapY}
+                    r={isCenter ? 9 : 6}
+                    fill={territory.accentColor}
+                    stroke={isCenter ? "#1A2E10" : "#F7F1EE"}
+                    strokeWidth={active ? 3 : 2}
                   />
                   <text
-                    x={nx}
-                    y={ny + 3}
-                    textAnchor="middle"
-                    fontSize={n.kind === 'territory' ? 8 : 9}
-                    fontWeight="700"
-                    fill={n.color}
-                    style={{ fontFamily: 'Arial, sans-serif', pointerEvents: 'none' }}
+                    x={territory.mapX + (territory.mapX > 240 ? 11 : -11)}
+                    y={territory.mapY - 9}
+                    textAnchor={territory.mapX > 240 ? "start" : "end"}
+                    fill="#1C3B26"
+                    fontSize={isCenter ? "10" : "9"}
+                    fontWeight="800"
                   >
-                    {(() => {
-                      // Máximo de caracteres proporcional al radio del nodo — evita
-                      // que etiquetas largas ("Productor directo · Arauca") se
-                      // salgan del círculo, sin depender de un solo umbral fijo.
-                      const maxChars = Math.max(6, Math.floor(n.r / 2))
-                      return n.label.length > maxChars ? `${n.label.slice(0, maxChars - 2)}…` : n.label
-                    })()}
+                    {territory.nodeName}
+                  </text>
+                  <text
+                    x={territory.mapX + (territory.mapX > 240 ? 11 : -11)}
+                    y={territory.mapY + 3}
+                    textAnchor={territory.mapX > 240 ? "start" : "end"}
+                    fill="#1C3B26"
+                    opacity=".5"
+                    fontSize="7"
+                  >
+                    {territory.city}
                   </text>
                 </motion.g>
-              </g>
-            )
-          })}
-
-          <circle cx={cx} cy={cy} r={20} fill="#1A2E1230" stroke="#1A2E12" strokeWidth={1} />
-          <text x={cx} y={cy + 3} textAnchor="middle" fontSize={7} fontWeight="700" fill="#1C3B26" style={{ fontFamily: 'Georgia, serif' }}>
-            Colab
-          </text>
-        </svg>
+              )
+            })}
+          </svg>
+          <div className="flex flex-wrap gap-2">
+            {territories.map((territory) => (
+              <button
+                key={territory.id}
+                type="button"
+                onClick={() => setSelectedId(territory.id)}
+                className={`map-chip ${selectedId === territory.id ? "map-chip-active" : ""}`}
+              >
+                <span style={{ background: territory.accentColor }} />{territory.name}
+              </button>
+            ))}
+          </div>
+        </section>
       </div>
 
-      {/* ══ mobile — filas de botones reales, mismo comportamiento ══ */}
-      <div className="md:hidden flex flex-col gap-5">
-        <div>
-          <p className="text-[10px] font-bold tracking-[2px] uppercase font-sans text-colab-ink/40 mb-2">Territorios</p>
-          <div className="flex gap-2 overflow-x-auto pb-1">
-            {territoryNodes.map((n) => (
-              <button
-                key={n.id}
-                onClick={() => selectNode(n)}
-                className="shrink-0 rounded-full px-4 py-2 text-xs font-bold font-sans border-2"
-                style={{ borderColor: n.color, color: n.color, background: selected?.id === n.id ? `${n.color}20` : 'transparent' }}
+      <div className="grid lg:grid-cols-[1fr_.62fr] gap-4 mt-4">
+        {selectedBrand ? <BrandCard brand={selectedBrand} /> : null}
+        <aside className="open-circle-card">
+          <p className="eyebrow text-colab-yellow">Círculo abierto</p>
+          <h3 className="font-serif text-3xl font-bold text-colab-cream mt-3">El próximo nodo puede ser el tuyo.</h3>
+          <p className="text-sm leading-relaxed text-colab-cream/55 mt-4">
+            No necesitas ceder tu identidad. Trae trazabilidad, voluntad de aprender y algo real que aportar al ecosistema.
+          </p>
+          <div className="space-y-2 mt-6">
+            {comingSoonSlots.map((slot) => (
+              <a
+                key={slot.id}
+                href="https://wa.me/573102227848?text=Hola%20Cacao%20Colab%2C%20quiero%20abrir%20un%20nodo%20o%20pautar%20mi%20marca."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="open-slot"
               >
-                {n.label}
-              </button>
+                <span>＋</span>{slot.hint}
+              </a>
             ))}
           </div>
-        </div>
-        <div>
-          <p className="text-[10px] font-bold tracking-[2px] uppercase font-sans text-colab-ink/40 mb-2">Círculo fundador</p>
-          <div className="grid grid-cols-2 gap-2">
-            {founderNodes.map((n) => (
-              <button
-                key={n.id}
-                onClick={() => selectNode(n)}
-                className="rounded-xl px-4 py-3 text-sm font-bold font-sans border-2 text-left"
-                style={{ borderColor: n.color, color: n.color, background: selected?.id === n.id ? `${n.color}20` : 'transparent' }}
-              >
-                {n.label}
-              </button>
-            ))}
-          </div>
-        </div>
-        <div>
-          <p className="text-[10px] font-bold tracking-[2px] uppercase font-sans text-colab-ink/40 mb-2">Colaboradoras &amp; próximamente</p>
-          <div className="grid grid-cols-2 gap-2">
-            {outerItems.map((n) => (
-              <button
-                key={n.id}
-                onClick={() => selectNode(n)}
-                className="rounded-xl px-4 py-3 text-xs font-bold font-sans border-2 border-dashed text-left"
-                style={{ borderColor: n.color, color: n.color, background: selected?.id === n.id ? `${n.color}20` : 'transparent' }}
-              >
-                {n.label}
-              </button>
-            ))}
-          </div>
-        </div>
+        </aside>
       </div>
-
-      {/* ══ panel de detalle, compartido entre desktop y mobile ══ */}
-      <div className="mt-8 max-w-md mx-auto">{renderDetail()}</div>
     </div>
   )
 }

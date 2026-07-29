@@ -92,9 +92,9 @@ export default function AprendePage() {
           <div className="bg-white/[.04] border border-white/10 rounded-xl p-6">
             <p className="text-colab-yellow font-bold text-xs tracking-wider uppercase font-sans mb-3">El equipo Cacao Colab</p>
             <ul className="space-y-2 text-sm font-sans text-colab-cream/65">
-              <li><strong className="text-colab-cream">Amaury Amed</strong> · CAÚA Colombia · Co-founder</li>
-              <li><strong className="text-colab-cream">Hellen Bareño</strong> · Zurych · Chocolatería</li>
-              <li><strong className="text-colab-cream">Oscar Gamboa</strong> · Zurych · Desarrollo</li>
+              <li><strong className="text-colab-cream">Amaury Amed</strong> · Founder y owner de cacaotier</li>
+              <li><strong className="text-colab-cream">Hellen Bareño</strong> · Builder · chocolatería y experiencia</li>
+              <li><strong className="text-colab-cream">Oscar Gamboa</strong> · Builder · desarrollo y operación</li>
             </ul>
             <a
               href="https://wa.me/573102227848?text=Hola%20Cacao%20Colab%2C%20tengo%20preguntas%20sobre%20Dualita."

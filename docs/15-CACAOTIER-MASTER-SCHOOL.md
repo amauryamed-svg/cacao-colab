@@ -5,6 +5,14 @@
 > Plataforma: **Cacao Colab**  
 > Estado: experiencia web y base móvil implementadas; comercio, pagos y sincronización LMS dependen de servicios externos.
 
+## Ownership y builders
+
+- **Amaury Amed** es founder y owner de `cacaotier`, Master Cacaotier y Master Chocolatier.
+- **Amaury Amed, Hellen Bareño y Oscar Gamboa** son los tres builders visibles de Cacao Colab.
+- Las marcas regionales son nodos de una red abierta; su participación no transfiere propiedad ni implica sociedad legal.
+- Epicentro: `cacaotier`, Bogotá.
+- Nodos: Zurych (Landázuri), La Querencia (Arbeláez), La Lomita (Paicol), Quara Cacao (Tame) y Chocolover (Guamal).
+
 ## 1. Tesis de producto
 
 **cacaotier** es la identidad educativa profesional del ecosistema Cacao Colab. Conecta cuatro ciclos:
@@ -191,3 +199,18 @@ Todo valor mostrado debe marcarse como:
 - **calculado**: transformación explícita de datos.
 
 Esta taxonomía evita convertir una visualización pedagógica en una recomendación agronómica universal.
+
+## 11. Cacao Gotchi alpha
+
+Ruta web: `/juega`.
+
+La primera alpha implementa:
+
+- estados desde semilla hasta cosecha;
+- decisiones de agua, sombra, observación y suelo;
+- humedad, vitalidad y conocimiento;
+- XP, racha local y progresión por acciones;
+- persistencia en `localStorage` bajo `cacao_gotchi_v1`;
+- demo móvil de cuidado en la pestaña `Mi lote`.
+
+La simulación no representa un modelo agronómico calibrado. La siguiente fase debe conectar observaciones reales, clima, fotos, bitácoras y badges verificables. El XP reconoce participación; no certifica calidad por sí solo.
