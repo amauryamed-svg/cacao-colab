@@ -11,6 +11,14 @@ export default async function CuentaPage() {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect("/cuenta/entrar?next=/cuenta")
 
+  await supabase.rpc("claim_team_membership")
+  const { data: teamMember } = await supabase
+    .from("team_members")
+    .select("access_level")
+    .eq("user_id", user.id)
+    .maybeSingle()
+  if (teamMember?.access_level === "superadmin") redirect("/equipo")
+
   const displayName = user.user_metadata?.full_name ?? user.email?.split("@")[0] ?? "Learner"
 
   return (

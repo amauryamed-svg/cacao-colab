@@ -21,11 +21,16 @@ export const crmContactSchema = z.object({
 export type CrmContact = z.infer<typeof crmContactSchema>;
 
 export const crmActivityTypeSchema = z.enum([
+  "onboarding_started",
   "onboarding_submitted",
+  "account_registered",
+  "microlearning_link_clicked",
+  "mooc_link_clicked",
   "listing_viewed",
   "order_placed",
   "lesson_completed",
   "membership_started",
+  "sponsor_interest",
   "note",
 ]);
 export type CrmActivityType = z.infer<typeof crmActivityTypeSchema>;

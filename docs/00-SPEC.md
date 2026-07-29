@@ -101,6 +101,9 @@ Deja de ser "no un joint venture legal, solo una plataforma compartida de marca"
 | D25 | Arquitectura pedagógica | **MOOC Zurych = contexto e historia; Microlearning CAÚA = cacao funcional y hábitos; cacaotier = Masterclasses profesionales** | Dualita guía las tres velocidades y los nodos aportan retos/evidencia territorial. |
 | D26 | Campus registrado | Google, Apple o magic link para learners; magic link separado para los tres builders | `/campus/*` y `/juega` requieren sesión. OAuth exige habilitar providers y redirect URLs en Supabase. |
 | D27 | Progreso sincronizado | `campus_progress` y `gotchi_runs`, con RLS por `auth.uid()` y respaldo local | La migración `20260729190012_campus_registered_progress.sql` debe aplicarse al proyecto Supabase. |
+| D28 | Entrada unificada | `/cuenta/entrar` es la única puerta para learners y builders | `claim_team_membership()` reconoce los tres emails internos y los dirige al dashboard superadmin sin fusionar `profiles` y `team_members`. |
+| D29 | CRM de conversión | Eventos first-party + contactos locales + snapshot agregado de HubSpot | Mide visitas, registros, onboarding y clics hacia Microlearning CAÚA / MOOC Zurych. No equipara clic con compra. |
+| D30 | Privacidad analytics | IDs pseudónimos de visitante/sesión; sin IP en `analytics_events` | CRM y analytics solo se consultan con `service_role` tras validar superadmin. |
 
 ---
 

@@ -3,6 +3,8 @@
 > Nuevo en v2. Última actualización: 2026-07-26.
 > Cubre dos cosas relacionadas pero distintas: (1) el CRM propio sincronizado con HubSpot (`crm_contacts`/`crm_activities`/`hubspot_sync_log`) y (2) el portal interno `/equipo` con login real y panel de HubSpot — este segundo fue un **requerimiento agregado durante la ejecución** de este mismo pivote (2026-07-26), no parte del pedido original.
 
+> **Actualización 2026-07-29:** la entrada se unificó en `/cuenta/entrar`; los tres builders son `superadmin`. `/equipo` ahora muestra funnel first-party, leads locales, clics CAÚA/Zurych y snapshot agregado de HubSpot. Requiere aplicar la migración 0013 y configurar `SUPABASE_SERVICE_ROLE_KEY`.
+
 ---
 
 ## 1. CRM propio — por qué no alcanza con HubSpot solo
@@ -31,11 +33,34 @@ Webhook entrante de HubSpot (contact.propertyChange)
 mismo patrón, comparando contra (crm_contact_id, 'from_hubspot')
 ```
 
-Implementado hoy: el webhook receptor (`apps/api/app/api/v1/webhooks/hubspot/route.ts`) calcula el hash y lo devuelve — el paso de comparar-contra-el-último-hash-y-decidir-si-escribir no está implementado todavía (requiere Supabase real para leer `hubspot_sync_log`). Es Fase 3 (ver `05-ROADMAP.md`).
+Implementado hoy: onboarding hace upsert en HubSpot mediante el package compartido y, en paralelo, escribe `crm_contacts` + `crm_activities`. El webhook receptor todavía solo calcula el hash; la sincronización webhook bidireccional completa sigue pendiente.
+
+### Funnel first-party
+
+`analytics_events` registra:
+
+- `page_view`;
+- `onboarding_started` / `onboarding_submitted`;
+- `microlearning_link_clicked`;
+- `mooc_link_clicked`;
+- `lesson_completed`;
+- `sponsor_interest`.
+
+`visitor_id` y `session_id` son UUID pseudónimos generados en navegador. No se guarda IP. Los eventos se insertan server-side con `service_role`; ninguna policy permite leer el CRM desde el cliente.
 
 ---
 
-## 2. Portal interno `/equipo` (requerimiento agregado 2026-07-26)
+## 2. Portal interno `/equipo`
+
+### Entrada y autorización actuales
+
+1. Learners y builders usan `/cuenta/entrar`.
+2. Después de OAuth o magic link, `claim_team_membership()` vincula por email.
+3. Una fila `team_members.access_level = 'superadmin'` redirige a `/equipo`.
+4. Los demás usuarios conservan su dashboard learner.
+5. `/equipo/login` solo redirige a la entrada unificada.
+
+La UX está unificada; las tablas siguen separadas para preservar RLS.
 
 ### 2.1 Qué se pidió
 

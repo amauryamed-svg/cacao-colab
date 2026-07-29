@@ -85,3 +85,37 @@ export async function getContactByEmail(
 
   return { id: hit.id, properties: hit.properties };
 }
+
+async function countContacts(lifecycleStage?: string): Promise<number> {
+  const res = await hubspotFetch<{ total: number }>(`${CONTACTS_PATH}/search`, {
+    method: "POST",
+    body: JSON.stringify({
+      filterGroups: lifecycleStage
+        ? [{ filters: [{ propertyName: "lifecyclestage", operator: "EQ", value: lifecycleStage }] }]
+        : [],
+      properties: ["email"],
+      limit: 1,
+    }),
+  });
+  if (!res.ok) throw new Error(`HubSpot contacts search falló (${res.status})`);
+  return res.data?.total ?? 0;
+}
+
+export type HubspotFunnelSnapshot = {
+  totalContacts: number;
+  leads: number;
+  marketingQualified: number;
+  salesQualified: number;
+  customers: number;
+};
+
+export async function getHubspotFunnelSnapshot(): Promise<HubspotFunnelSnapshot> {
+  const [totalContacts, leads, marketingQualified, salesQualified, customers] = await Promise.all([
+    countContacts(),
+    countContacts("lead"),
+    countContacts("marketingqualifiedlead"),
+    countContacts("salesqualifiedlead"),
+    countContacts("customer"),
+  ]);
+  return { totalContacts, leads, marketingQualified, salesQualified, customers };
+}

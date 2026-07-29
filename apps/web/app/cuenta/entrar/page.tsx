@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default async function CampusLoginPage({
   searchParams,
 }: {
-  searchParams: Promise<{ next?: string; error?: string }>
+  searchParams: Promise<{ next?: string; error?: string; intent?: string }>
 }) {
   const query = await searchParams
   const next = query.next?.startsWith("/") ? query.next : "/aprende"
@@ -34,9 +34,13 @@ export default async function CampusLoginPage({
         </section>
         <section className="campus-auth-form">
           <div>
-            <p className="eyebrow text-colab-green">Crear cuenta o entrar</p>
-            <h2 className="font-serif text-3xl font-bold text-colab-forest mt-2">Continúa tu campaña</h2>
-            <p className="text-xs text-colab-forest/50 mt-3">Sin contraseña. Elige un método seguro.</p>
+            <p className="eyebrow text-colab-green">{query.intent === "team" ? "Acceso de builders" : "Crear cuenta o entrar"}</p>
+            <h2 className="font-serif text-3xl font-bold text-colab-forest mt-2">
+              {query.intent === "team" ? "Panel superadministrador" : "Continúa tu campaña"}
+            </h2>
+            <p className="text-xs text-colab-forest/50 mt-3">
+              Una sola identidad. Los permisos internos se asignan únicamente a emails mapeados en team_members.
+            </p>
           </div>
 
           {query.error && (

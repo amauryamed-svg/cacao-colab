@@ -20,6 +20,18 @@ export async function GET(request: NextRequest) {
     const supabase = await createSupabaseServerClient();
     const { error } = await supabase.auth.exchangeCodeForSession(code);
     if (!error) {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        await supabase.rpc("claim_team_membership");
+        const { data: teamMember } = await supabase
+          .from("team_members")
+          .select("id,access_level")
+          .eq("user_id", user.id)
+          .maybeSingle();
+        if (teamMember?.access_level === "superadmin") {
+          return NextResponse.redirect(`${origin}/equipo`);
+        }
+      }
       return NextResponse.redirect(`${origin}${next}`);
     }
   }

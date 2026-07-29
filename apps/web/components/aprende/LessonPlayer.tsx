@@ -7,6 +7,7 @@ import LessonCard from './LessonCard'
 import QuizCard from './QuizCard'
 import LessonComplete from './LessonComplete'
 import DualitaCompanion from './DualitaCompanion'
+import { trackColabEvent } from '@/lib/analytics'
 
 type Phase = 'cards' | 'quiz' | 'complete'
 
@@ -28,6 +29,7 @@ export default function LessonPlayer({ lesson }: Props) {
     } catch {
       // localStorage puede fallar en modo privado / SSR — no bloquea la lección.
     }
+    trackColabEvent('lesson_completed', { target: lesson.slug, source: 'microlearning-caua' })
   }, [phase, lesson.slug, lesson.xp])
 
   const totalCards = lesson.cards.length

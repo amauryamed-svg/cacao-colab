@@ -9,6 +9,7 @@
     ".": "./src/index.ts",
     "./browser": "./src/browser.ts",
     "./server": "./src/server.ts",
+    "./admin": "./src/admin.ts",
     "./middleware": "./src/middleware.ts",
     "./database.types": "./src/database.types.ts"
   },
