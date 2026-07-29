@@ -38,7 +38,7 @@ export const lessons: Lesson[] = [
   {
     slug: 'cacao-bioactivo',
     number: 1,
-    title: 'El cacao que activa tu cerebro',
+    title: 'Cacao funcional: aprende a elegir',
     emoji: '🧠',
     duration: '8 min',
     xp: 50,
@@ -89,7 +89,7 @@ export const lessons: Lesson[] = [
   {
     slug: 'fermentacion-controlada',
     number: 2,
-    title: 'La fermentación: donde nace el sabor',
+    title: 'Fermentación, sabor y funcionalidad',
     emoji: '🦠',
     duration: '7 min',
     xp: 60,
@@ -140,7 +140,7 @@ export const lessons: Lesson[] = [
   {
     slug: 'coberturas-zurych',
     number: 3,
-    title: 'Coberturas funcionales: tu nueva herramienta',
+    title: 'Coberturas funcionales: lee la etiqueta',
     emoji: '🍫',
     duration: '6 min',
     xp: 55,
@@ -191,7 +191,7 @@ export const lessons: Lesson[] = [
   {
     slug: 'nibs-vivos',
     number: 4,
-    title: 'NIBS vivos en tu cocina',
+    title: 'NIBS: un hábito simple y consciente',
     emoji: '✨',
     duration: '5 min',
     xp: 45,
@@ -236,7 +236,7 @@ export const lessons: Lesson[] = [
   {
     slug: 'origen-guardianes',
     number: 5,
-    title: 'Cacao con historia: los Guardianes',
+    title: 'Origen, confianza y consumo',
     emoji: '🌿',
     duration: '9 min',
     xp: 70,
@@ -287,7 +287,7 @@ export const lessons: Lesson[] = [
   {
     slug: 'tu-operacion-cacao',
     number: 6,
-    title: 'Tu operación + cacao: los números',
+    title: 'Diseña tu ritual de cacao',
     emoji: '📊',
     duration: '8 min',
     xp: 65,

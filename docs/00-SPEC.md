@@ -98,6 +98,9 @@ Deja de ser "no un joint venture legal, solo una plataforma compartida de marca"
 | D22 | Ownership cacaotier | **Amaury Amed** es founder y owner de la marca educativa y sus Masterclasses | Hellen Bareño y Oscar Gamboa son builders de Cacao Colab; no se presenta a las marcas regionales como copropietarias. |
 | D23 | Red regional | **Cinco nodos territoriales + Bogotá como epicentro** | Landázuri, Arbeláez, Paicol, Tame, Guamal y Bogotá. El círculo permanece abierto. |
 | D24 | Cacao Gotchi | Laboratorio virtual de siembra/cosecha con decisiones, estado, XP y progresión | La simulación es pedagógica; no reemplaza asistencia agronómica. Progreso web local en alpha. |
+| D25 | Arquitectura pedagógica | **MOOC Zurych = contexto e historia; Microlearning CAÚA = cacao funcional y hábitos; cacaotier = Masterclasses profesionales** | Dualita guía las tres velocidades y los nodos aportan retos/evidencia territorial. |
+| D26 | Campus registrado | Google, Apple o magic link para learners; magic link separado para los tres builders | `/campus/*` y `/juega` requieren sesión. OAuth exige habilitar providers y redirect URLs en Supabase. |
+| D27 | Progreso sincronizado | `campus_progress` y `gotchi_runs`, con RLS por `auth.uid()` y respaldo local | La migración `20260729190012_campus_registered_progress.sql` debe aplicarse al proyecto Supabase. |
 
 ---
 

@@ -17,6 +17,14 @@
  * en `.from(...)` — si falta alguna, TypeScript cae a `never` en vez de
  * marcar error, y falla en silencio recién en el call site.
  */
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json | undefined }
+  | Json[];
+
 export interface Database {
   public: {
     Tables: {
@@ -59,6 +67,70 @@ export interface Database {
             | "design";
           hubspot_contact_email?: string | null;
           created_at?: string;
+        };
+        Relationships: [];
+      };
+      campus_progress: {
+        Row: {
+          id: string;
+          profile_id: string;
+          course_slug: string;
+          state: Json;
+          xp_total: number;
+          completed_at: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          profile_id: string;
+          course_slug: string;
+          state?: Json;
+          xp_total?: number;
+          completed_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          state?: Json;
+          xp_total?: number;
+          completed_at?: string | null;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      gotchi_runs: {
+        Row: {
+          id: string;
+          profile_id: string;
+          slot: number;
+          selected_node: string | null;
+          genotype: string;
+          treatment: string | null;
+          state: Json;
+          xp_total: number;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          profile_id: string;
+          slot?: number;
+          selected_node?: string | null;
+          genotype?: string;
+          treatment?: string | null;
+          state?: Json;
+          xp_total?: number;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          selected_node?: string | null;
+          genotype?: string;
+          treatment?: string | null;
+          state?: Json;
+          xp_total?: number;
+          updated_at?: string;
         };
         Relationships: [];
       };

@@ -85,7 +85,7 @@ export default function MarketplacePage() {
           </div>
           <div className="grid sm:grid-cols-3 gap-3">
             {[
-              { initials: "AA", name: "Amaury Amed", role: "Founder · cacaotier", focus: "Bioprocesos, producto y visión" },
+              { initials: "AA", name: "Amaury Amed", role: "Founder cacaotier · Builder Colab", focus: "Bioprocesos, producto y visión" },
               { initials: "HB", name: "Hellen Bareño", role: "Builder · Cacao Colab", focus: "Chocolatería y experiencia" },
               { initials: "OG", name: "Oscar Gamboa", role: "Builder · Cacao Colab", focus: "Desarrollo y operación" },
             ].map((builder) => (

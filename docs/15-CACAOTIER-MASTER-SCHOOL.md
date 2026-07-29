@@ -214,3 +214,66 @@ La primera alpha implementa:
 - demo móvil de cuidado en la pestaña `Mi lote`.
 
 La simulación no representa un modelo agronómico calibrado. La siguiente fase debe conectar observaciones reales, clima, fotos, bitácoras y badges verificables. El XP reconoce participación; no certifica calidad por sí solo.
+
+## 12. Sincronía pedagógica
+
+| Capa | Propósito | Participación visible |
+|---|---|---|
+| MOOC Contexto Cacao | Historia, territorio, cultura y futuro del cacao | Patrocinado por Zurych |
+| Microlearning Cacao Funcional | Elección de producto, hábitos y consumo saludable en contexto | Contenido educativo CAÚA |
+| Master Cacaotier / Chocolatier | Competencia profesional, proyecto y evidencia | Marca fundada por Amaury Amed |
+| Nodos regionales | Retos, lotes y conocimiento territorial | Zurych, La Querencia, La Lomita, Quara Cacao y Chocolover |
+
+Una pauta o patrocinio debe identificarse como tal. Financiar contenido no compra una conclusión científica, una credencial ni un claim de salud.
+
+## 13. Campus registrado
+
+Rutas:
+
+- `/cuenta/entrar`: Google, Apple y magic link;
+- `/cuenta`: identidad y accesos del learner;
+- `/campus/arquitecto-fermentacion`: seis misiones guiadas por Dualita;
+- `/juega`: Cacao Gotchi registrado.
+
+La migración `20260729190012_campus_registered_progress.sql` crea:
+
+- `campus_progress`: estado y XP por campaña;
+- `gotchi_runs`: nodo, genotipo, tratamiento y estado del árbol/lote;
+- RLS para que cada persona solo gestione sus propias filas;
+- registro idempotente de Amaury Amed como tercer builder del portal interno.
+
+Configuración externa obligatoria:
+
+1. Habilitar Email, Google y Apple en Supabase Auth.
+2. Agregar `https://cacao-colab.vercel.app/auth/callback` y URLs de preview permitidas.
+3. Configurar credenciales OAuth de Google.
+4. Configurar Service ID, Team ID y key de Apple.
+5. Ejecutar `supabase db push` para aplicar la migración.
+
+Sin estos pasos, el código compila pero OAuth o el guardado remoto responderán con un error explícito.
+
+## 14. Arquitecto de Fermentación
+
+La campaña completa contiene 18 tarjetas, seis retos y 700 XP:
+
+1. línea base y trazabilidad;
+2. diseño de tres rutas;
+3. curvas de temperatura y pH;
+4. precursores de aroma;
+5. punto de corte;
+6. réplica, evaluación y claim responsable.
+
+Dualita mantiene tres corazones por reto, ofrece feedback y desbloquea las misiones secuencialmente. El avance se guarda en `campus_progress`; `localStorage` conserva una copia resiliente.
+
+## 15. Crecimiento horario y fermentación Gotchi
+
+Cacao Gotchi v2 registra edad en horas, altura, hojas, flores, mazorcas, humedad, nutrición, pH de suelo, sombra, salud y conocimiento. El modelo:
+
+- aplica crecimiento según tiempo real transcurrido;
+- ofrece avance comprimido de 12 h para entrenamiento;
+- permite elegir uno de los cinco nodos;
+- usa FEAR 5 Trinitario comercial como escenario declarado, no como disponibilidad confirmada;
+- desbloquea “Fermentación controlada Cacaotier” después de cosecha;
+- recorre controles a 0, 24, 48, 72, 96 y 120 h.
+
+No es un modelo agronómico predictivo ni demuestra que FEAR 5 esté cultivado o disponible en cada nodo.

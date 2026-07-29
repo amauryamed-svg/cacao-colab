@@ -11,7 +11,7 @@ interface Props {
 
 // Rutas internas (portal de equipo, auth) nunca deben mostrar el popup de
 // captura de leads HoReCa — no son visitantes a calificar, son Oscar/Hellen/Amaury.
-const EXCLUDED_PREFIXES = ['/equipo', '/auth']
+const EXCLUDED_PREFIXES = ['/equipo', '/auth', '/cuenta', '/campus', '/juega']
 
 export default function OnboardingGateClient({ alreadyOnboarded, children }: Props) {
   const pathname = usePathname()

@@ -19,9 +19,9 @@
 
 ## 2. Qué se porta a React Native (`apps/mobile`) y qué no, en esta fundación
 
-**Se porta ahora (Fase 0, placeholder):** la pantalla `aprende` existe con los tracks listados (MOOC/micro), sin XP ni progreso real — ver `13-MOBILE.md`.
+**Implementado:** campus web con XP, corazones, desbloqueo secuencial, persistencia local/remota y Cacao Gotchi. Mobile incorpora una interacción Gotchi básica; la paridad completa sigue pendiente.
 
-**No se porta todavía (Fase 2+):** XP bar, streak counter, badges, leaderboard. Razón: requieren `learner_progress`/`xp_ledger` poblados desde uso real, que a su vez requiere el proyecto Supabase vivo y contenido real de lecciones — ninguno existe todavía. Construir la UI de gamificación antes de tener datos reales que mostrar sería trabajo especulativo.
+**Pendiente en mobile:** OAuth nativo, sincronización offline, badges y leaderboard. La web usa `campus_progress`/`gotchi_runs`; aplicar la migración 0012 es obligatorio para persistencia multidispositivo.
 
 ---
 
@@ -43,6 +43,10 @@ Reglas pendientes de decisión (no inventadas en esta pasada):
 
 ---
 
-## 5. Estado de esta pasada
+## 5. Estado actual
 
-Ninguna tabla de gamificación tiene datos — las migraciones (`0007_gamification.sql`) están escritas y el mapeo de arriba documentado, pero no hay implementación de UI de XP/streaks/badges/leaderboard todavía (ver `05-ROADMAP.md` Fase 2). Es trabajo explícitamente fuera del alcance de esta fundación.
+- Arquitecto de Fermentación: seis misiones, 18 tarjetas, seis retos, corazones y 700 XP.
+- Cacao Gotchi: crecimiento horario, parámetros de árbol, nodo, FEAR 5 y fase de fermentación.
+- Campus Auth: Google, Apple y magic link implementados en código.
+- Persistencia: tablas y RLS en migración 0012; fallback local resiliente.
+- Pendiente operativo: habilitar proveedores OAuth y aplicar migraciones en el Supabase vivo.

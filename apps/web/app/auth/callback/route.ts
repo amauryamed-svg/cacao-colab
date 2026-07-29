@@ -10,7 +10,11 @@ import { NextResponse, type NextRequest } from "next/server";
 export async function GET(request: NextRequest) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get("code");
-  const next = searchParams.get("next") ?? "/equipo";
+  const requestedNext = searchParams.get("next") ?? "/aprende";
+  const allowedPrefixes = ["/equipo", "/aprende", "/campus", "/juega", "/cuenta"];
+  const next = allowedPrefixes.some((prefix) => requestedNext.startsWith(prefix))
+    ? requestedNext
+    : "/aprende";
 
   if (code) {
     const supabase = await createSupabaseServerClient();
@@ -20,5 +24,6 @@ export async function GET(request: NextRequest) {
     }
   }
 
-  return NextResponse.redirect(`${origin}/equipo/login?error=auth_callback_failed`);
+  const errorPath = next.startsWith("/equipo") ? "/equipo/login" : "/cuenta/entrar";
+  return NextResponse.redirect(`${origin}${errorPath}?error=auth_callback_failed`);
 }
