@@ -30,28 +30,42 @@ export default function Home() {
 
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-20 pb-16 flex flex-col md:flex-row items-center gap-10">
           <div className="flex-1 text-center md:text-left">
-            <SectionKicker className="mb-4">CAÚA × Zurych · Est. 2026</SectionKicker>
+            <SectionKicker className="mb-4">Cacao Fine-Flavor · by Amaury Amed</SectionKicker>
             <h1
               className="font-serif font-black text-colab-cream leading-[.95] mb-6"
               style={{ fontSize: "clamp(3rem, 9vw, 7rem)" }}
             >
-              El mejor<br />
-              cacao<br />
-              <span className="text-colab-yellow">colombiano.</span>
+              Cultiva<br />
+              conocimiento.<br />
+              <span className="text-colab-yellow">Cosecha sabor.</span>
             </h1>
             <p
               className="text-colab-cream/65 font-sans leading-relaxed mb-8 max-w-md mx-auto md:mx-0"
               style={{ fontSize: "clamp(1rem, 2.2vw, 1.2rem)" }}
             >
-              Ahora aprendes con él. Marketplace de especialidad + sistema de aprendizaje dual Dualita: MOOC profundo y microlearning aplicado.
+              cacaotier es la escuela futurista donde agricultores y chocolateros dominan el bioproceso,
+              construyen reputación y llevan cada lote colombiano al mercado Fine-Flavor.
             </p>
             <div className="flex flex-wrap gap-3 justify-center md:justify-start">
-              <Button href="#marketplace">Explorar el colab →</Button>
-              <Button variant="outline" href="#dualita">Conocer Dualita</Button>
+              <Button href="/aprende/cacaotier">Entrar al laboratorio →</Button>
+              <Button variant="outline" href="#ecosistema">Ver el ecosistema</Button>
             </div>
           </div>
-          <div className="flex-shrink-0">
-            <SquirrelSVG size={220} className="squirrel-bob" />
+          <div className="flex-shrink-0 relative">
+            <div className="absolute inset-0 bg-colab-yellow/20 blur-3xl rounded-full" />
+            <div className="relative border border-white/10 bg-white/[.04] rounded-[2rem] p-8">
+              <p className="eyebrow text-colab-yellow mb-5">Lote vivo · 72 h</p>
+              <div className="flex items-end gap-5">
+                <div><strong className="font-serif text-6xl text-colab-cream">45°</strong><small className="block text-colab-cream/35 mt-1">temperatura</small></div>
+                <div><strong className="font-serif text-4xl text-colab-yellow">4.5</strong><small className="block text-colab-cream/35 mt-1">pH interno</small></div>
+              </div>
+              <div className="h-16 mt-7 flex items-end gap-1" aria-hidden>
+                {[22, 30, 38, 49, 58, 64, 64, 64, 64, 64, 64, 64].map((height, index) => (
+                  <span key={index} className="flex-1 bg-colab-yellow/70 rounded-t" style={{ height }} />
+                ))}
+              </div>
+              <p className="text-xs text-colab-cream/45 mt-4">FEAR 5 · protocolo de precisión</p>
+            </div>
           </div>
         </div>
 
@@ -59,10 +73,10 @@ export default function Home() {
         <div className="border-t border-white/10 bg-black/20">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 py-5 grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[
-              { num: "5",  label: "regiones de origen" },
-              { num: "0",  label: "azúcar añadida" },
-              { num: "2",  label: "marcas fundadoras" },
-              { num: "6",  label: "módulos gratis" },
+              { num: "3",  label: "líneas comparadas" },
+              { num: "45°", label: "protocolo de precisión" },
+              { num: "700", label: "XP de campo" },
+              { num: "2",  label: "maestrías conectadas" },
             ].map(({ num, label }) => (
               <div key={label} className="text-center">
                 <p className="font-serif font-black text-colab-yellow" style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}>
@@ -71,6 +85,37 @@ export default function Home() {
                 <p className="text-[11px] font-sans text-colab-cream/45 uppercase tracking-wider mt-0.5">{label}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="ecosistema" className="bg-[#101d0b] py-20 border-t border-white/5">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-[.75fr_1.25fr] gap-12">
+            <div>
+              <SectionKicker className="mb-4">El núcleo builder</SectionKicker>
+              <h2 className="font-serif font-bold text-colab-cream leading-[1.02]" style={{ fontSize: "clamp(2.3rem, 5vw, 4rem)" }}>
+                De la finca<br />al futuro del cacao.
+              </h2>
+              <p className="text-colab-cream/50 text-sm leading-relaxed mt-5 max-w-sm">
+                Formación, experimentación y comercio en un mismo ciclo. Lo aprendido mejora el lote;
+                el lote construye reputación; la reputación abre mercado.
+              </p>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-3">
+              {[
+                { step: "01", title: "Master Cacaotier", body: "Fermentación, finca, datos y calidad Fine-Flavor." },
+                { step: "02", title: "Master Chocolatier", body: "Tostión, formulación, aplicaciones y creación sensorial." },
+                { step: "03", title: "Cacao Gotchi", body: "Cuida un lote virtual, toma decisiones y conserva tu racha." },
+                { step: "04", title: "Cacao Colab", body: "Publica evidencia, conecta actores y lleva productos al mercado." },
+              ].map((item) => (
+                <article key={item.step} className="bg-white/[.035] border border-white/10 rounded-2xl p-6 hover:border-colab-yellow/30 transition-colors">
+                  <span className="font-serif italic text-3xl text-colab-yellow/35">{item.step}</span>
+                  <h3 className="font-serif font-bold text-xl text-colab-cream mt-7">{item.title}</h3>
+                  <p className="text-xs text-colab-cream/45 leading-relaxed mt-2">{item.body}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>

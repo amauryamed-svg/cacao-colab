@@ -80,6 +80,9 @@ Deja de ser "no un joint venture legal, solo una plataforma compartida de marca"
 | D16 | Visibilidad del repo | **Sigue público** hasta que el usuario confirme que el contenido de `v2-pivot` está listo para privatizar | Reversible al instante — no se cambia en esta pasada. |
 | D17 | Dominio propio | **Pendiente de decisión** (`cacaocolab.co` u otro) | Mientras tanto, deploy sirviendo directo en `*.vercel.app` (`cacao-colab-web.vercel.app`, `cacao-colab-api.vercel.app`). Redirect ciego a `caua.cloud/colab/*` retirado de `next.config.ts` en `apps/web`. |
 | D18 | Portal interno /equipo | **Login real (Supabase Auth, magic link) para Oscar y Hellen**, con panel de datos reales de HubSpot debajo del nombre | Agregado 2026-07-26 durante la ejecución. Ver `14-CRM-INTERNO.md`. Oscar (`amadooscarito@gmail.com`) sin contacto en HubSpot todavía — panel vacío explícito para él, no simulado. |
+| D19 | Marca educativa | **cacaotier** (siempre en minúsculas), proyecto de Amaury Amed | Identidad profesional sobre el motor pedagógico Dualita; Cacao Fine-Flavor es el núcleo y Cacao Colab la capa de mercado. |
+| D20 | Oferta formativa | **Master Cacaotier + Master Chocolatier** | Dos rutas pagas conectadas por microlearning abierto, misiones, XP, rangos, bitácora y proyecto verificable. |
+| D21 | Rigor científico | Cada dato educativo se clasifica como **publicado, observado, propuesto o calculado** | La línea híbrida en tanque adaptado se presenta como piloto, no como resultado de AGROSAVIA. Ver `15-CACAOTIER-MASTER-SCHOOL.md`. |
 
 ---
 
@@ -132,6 +135,7 @@ Deja de ser "no un joint venture legal, solo una plataforma compartida de marca"
 | Stripe Connect | ⚠️ Stub sin credenciales | `packages/stripe-client` — sin cuenta ni datos legales de la entidad |
 | Sentry | ✅ SDK instalado en las 3 apps | Sin DSN todavía (no-op hasta crear el proyecto) |
 | Onboarding gate + HubSpot | ✅ Vigente sin cambios | Mismo comportamiento de v1 |
+| cacaotier / Master Cacaotier | ✅ Primera experiencia implementada | Campus, curso FEAR 5, laboratorio comparativo y base visual móvil. Persistencia LMS pendiente. |
 | cacao-colab.vercel.app (proyecto viejo, `main`) | ⚠️ Sigue con el 308 a caua.cloud/colab | Intencional — se corrige al mergear `v2-pivot` a `main` |
 
 ---

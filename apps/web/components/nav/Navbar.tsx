@@ -12,8 +12,8 @@ export default function Navbar() {
         <Link href="/" className="flex items-center gap-2">
           <SquirrelSVG size={30} />
           <CacaoColabWordmark size="sm" inverted />
-          <span className="hidden sm:inline text-[10px] font-bold tracking-[2px] uppercase text-colab-yellow/60 ml-1 font-sans">
-            CAÚA × Zurych
+          <span className="hidden lg:inline text-[9px] font-bold tracking-[2px] uppercase text-colab-yellow/50 ml-1 font-sans">
+            by Amaury Amed
           </span>
         </Link>
 
@@ -22,13 +22,13 @@ export default function Navbar() {
             href="/marketplace"
             className="hidden sm:inline text-xs font-bold text-colab-cream/70 hover:text-colab-yellow font-sans tracking-wide transition-colors"
           >
-            Marcas
+            Mercado
           </Link>
           <Link
             href="/aprende"
             className="hidden sm:inline text-xs font-bold text-colab-cream/70 hover:text-colab-yellow font-sans tracking-wide transition-colors"
           >
-            Dualita
+            Campus
           </Link>
           <Link
             href="/equipo/login"
@@ -43,7 +43,7 @@ export default function Navbar() {
             rel="noopener noreferrer"
             className="bg-colab-yellow text-colab-forest text-xs font-bold px-4 py-2 rounded-full hover:bg-colab-amber transition-colors font-sans"
           >
-            Hablar con el equipo
+            Unirme
           </a>
         </div>
       </div>
