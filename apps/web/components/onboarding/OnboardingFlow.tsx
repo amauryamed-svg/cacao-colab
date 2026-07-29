@@ -1,8 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import SquirrelSVG from '@/components/brand/SquirrelSVG'
+import { getAnalyticsIdentity, trackColabEvent } from '@/lib/analytics'
 
 /* ─── types ─── */
 type OperationType = 'restaurante' | 'hotel' | 'cafeteria' | 'pasteleria' | 'otra' | ''
@@ -129,6 +130,10 @@ export default function OnboardingFlow({ onComplete }: { onComplete?: () => void
     tipo: '', nombre: '', operacion: '', interes: '', ciudad: '', email: '', whatsapp: '',
   })
 
+  useEffect(() => {
+    trackColabEvent('onboarding_started', { target: 'onboarding-flow', source: 'gate-or-unete' })
+  }, [])
+
   const set = (k: keyof FormData, v: string) => setData(d => ({ ...d, [k]: v }))
 
   const canAdvance = ([
@@ -155,7 +160,7 @@ export default function OnboardingFlow({ onComplete }: { onComplete?: () => void
       await fetch('/api/onboarding', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ ...data, ...utms }),
+        body:    JSON.stringify({ ...data, ...utms, ...getAnalyticsIdentity() }),
       })
     } catch {
       // continue silently — HubSpot failure no debe bloquear al usuario

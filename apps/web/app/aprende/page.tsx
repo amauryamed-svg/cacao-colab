@@ -4,6 +4,7 @@ import SectionKicker from "@/components/ui/SectionKicker"
 import MOOCTrack from "@/components/dualita/MOOCTrack"
 import MicroTrack from "@/components/dualita/MicroTrack"
 import ProgressStrip from "@/components/aprende/ProgressStrip"
+import TrackedLink from "@/components/analytics/TrackedLink"
 
 export const metadata: Metadata = {
   title: "Campus · Master Cacaotier + Master Chocolatier",
@@ -93,14 +94,16 @@ export default function AprendePage() {
               Los primeros aliados definen retos, becas y presencia antes de cerrar cada cohorte.
             </p>
           </div>
-          <a
+          <TrackedLink
             href="https://wa.me/573102227848?text=Hola%20Cacao%20Colab%2C%20quiero%20patrocinar%20una%20ruta%2C%20reto%20o%20nodo."
-            target="_blank"
-            rel="noopener noreferrer"
+            external
+            event="sponsor_interest"
+            targetName="sponsor-colab"
+            source="campus-fomo"
             className="shrink-0 bg-colab-yellow text-colab-forest rounded-full px-7 py-4 text-sm font-bold"
           >
             Reservar participación →
-          </a>
+          </TrackedLink>
         </section>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="bg-white/[.04] border border-colab-yellow/15 rounded-2xl p-7">

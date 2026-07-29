@@ -1,5 +1,6 @@
 import { moocModules } from "@/lib/dualita"
 import ModuleCard from "./ModuleCard"
+import TrackedLink from "@/components/analytics/TrackedLink"
 
 const WA_MOOC =
   "https://wa.me/573102227848?text=Hola%20Cacao%20Colab%2C%20quiero%20inscribirme%20al%20MOOC%20Dualita."
@@ -22,14 +23,16 @@ export default function MOOCTrack() {
         ))}
       </div>
       {/* cta */}
-      <a
+      <TrackedLink
         href={WA_MOOC}
-        target="_blank"
-        rel="noopener noreferrer"
+        external
+        event="mooc_link_clicked"
+        targetName="zurych-mooc"
+        source="mooc-track-cta"
         className="mt-1 block text-center text-sm font-bold py-3 px-5 rounded-full bg-colab-yellow text-colab-forest hover:bg-colab-amber transition-colors font-sans"
       >
         Quiero aprender la historia →
-      </a>
+      </TrackedLink>
       <p className="text-[10px] text-center text-white/35 font-sans -mt-1">Presentado por Zurych · espacio de patrocinio educativo</p>
     </div>
   )

@@ -1,8 +1,12 @@
 'use client'
 
 import { useEffect } from 'react'
+import { usePathname } from 'next/navigation'
+import { trackColabEvent } from '@/lib/analytics'
 
 export default function UTMCapture() {
+  const pathname = usePathname()
+
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
     const utms: Record<string, string> = {}
@@ -13,7 +17,8 @@ export default function UTMCapture() {
     if (Object.keys(utms).length > 0) {
       sessionStorage.setItem('colab_utms', JSON.stringify(utms))
     }
-  }, [])
+    trackColabEvent('page_view', { pathname: pathname ?? window.location.pathname })
+  }, [pathname])
 
   return null
 }

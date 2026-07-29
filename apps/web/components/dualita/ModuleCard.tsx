@@ -3,6 +3,7 @@
 import { Check } from "lucide-react"
 import { type Module } from "@/lib/dualita"
 import { useColabProgress } from "@/lib/hooks/useColabProgress"
+import TrackedLink from "@/components/analytics/TrackedLink"
 
 type Props = { module: Module; track: "mooc" | "micro" }
 
@@ -44,12 +45,15 @@ export default function ModuleCard({ module, track }: Props) {
           ))}
         </ul>
         {module.status === "available" && module.url && (
-          <a
+          <TrackedLink
             href={module.url}
+            event={track === "micro" ? "microlearning_link_clicked" : "mooc_link_clicked"}
+            targetName={track === "micro" ? "caua-microlearning" : "zurych-mooc"}
+            source={`module-${module.slug ?? module.id}`}
             className="mt-2 text-[10px] font-bold font-sans text-colab-yellow hover:underline block"
           >
             Empezar →
-          </a>
+          </TrackedLink>
         )}
       </div>
     </div>

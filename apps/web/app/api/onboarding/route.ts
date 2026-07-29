@@ -1,103 +1,99 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from "next/server"
+import { upsertContactByEmail } from "@cacao-colab/hubspot-client"
+import { createSupabaseAdminClient } from "@cacao-colab/supabase-client/admin"
+import type { Json } from "@cacao-colab/supabase-client/database.types"
 
-const COOKIE_NAME = 'colab_onboarded'
-const COOKIE_OPTS = 'Path=/; Max-Age=31536000; SameSite=Lax'
-
-function withOnboardedCookie(res: NextResponse) {
-  res.headers.set('Set-Cookie', `${COOKIE_NAME}=done; ${COOKIE_OPTS}`)
-  return res
-}
-
-const HS_TOKEN = process.env.HUBSPOT_TOKEN
-const HS_BASE  = 'https://api.hubapi.com/crm/v3/objects/contacts'
-
+const COOKIE_NAME = "colab_onboarded"
 const TIPO_LABEL: Record<string, string> = {
-  restaurante: 'Restaurante',
-  hotel:       'Hotel & Glamping',
-  cafeteria:   'Cafetería & Bar de cacao',
-  pasteleria:  'Pastelería & Chocolatería',
-  otra:        'Otra operación',
+  restaurante: "Restaurante", hotel: "Hotel & Glamping", cafeteria: "Cafetería & Bar de cacao",
+  pasteleria: "Pastelería & Chocolatería", otra: "Otra operación",
 }
-
 const INTERES_LABEL: Record<string, string> = {
-  productos:   'Productos CAÚA',
-  aprendizaje: 'Aprendizaje Dualita',
-  marca:       'Marketplace — postular marca',
-  todo:        'Todo el ecosistema',
+  productos: "Productos CAÚA", aprendizaje: "Aprendizaje Dualita",
+  marca: "Marketplace — postular marca", todo: "Todo el ecosistema",
 }
 
-export async function POST(req: NextRequest) {
-  if (!HS_TOKEN) {
-    return NextResponse.json({ ok: false, error: 'HUBSPOT_TOKEN not set' }, { status: 500 })
+function done(response: NextResponse) {
+  response.cookies.set(COOKIE_NAME, "done", { path: "/", maxAge: 31_536_000, sameSite: "lax" })
+  return response
+}
+
+export async function POST(request: NextRequest) {
+  const body = await request.json().catch(() => null)
+  if (!body?.email || !String(body.email).includes("@")) {
+    return NextResponse.json({ ok: false, error: "email requerido" }, { status: 400 })
   }
 
-  const body = await req.json()
-  const { nombre, operacion, tipo, interes, ciudad, email, whatsapp,
-          utm_source, utm_medium, utm_campaign } = body
-
-  if (!email || !email.includes('@')) {
-    return NextResponse.json({ ok: false, error: 'email requerido' }, { status: 400 })
-  }
-
+  const email = String(body.email).trim().toLowerCase()
   const properties: Record<string, string> = {
-    firstname:      nombre   || '',
-    email:          email,
-    company:        operacion || '',
-    city:           ciudad   || '',
-    mobilephone:    whatsapp || '',
-    jobtitle:       [TIPO_LABEL[tipo] || tipo, INTERES_LABEL[interes] || interes].filter(Boolean).join(' · '),
-    lifecyclestage: 'lead',
-    hs_lead_status: 'NEW',
-    ...(utm_source   && { hs_analytics_source: 'OTHER_CAMPAIGNS', hs_analytics_source_data_1: utm_source }),
-    ...(utm_campaign && { hs_analytics_source_data_2: utm_campaign }),
-    ...(utm_medium   && { hs_analytics_last_referrer: utm_medium }),
+    firstname: String(body.nombre ?? ""),
+    email,
+    company: String(body.operacion ?? ""),
+    city: String(body.ciudad ?? ""),
+    mobilephone: String(body.whatsapp ?? ""),
+    jobtitle: [TIPO_LABEL[body.tipo] || body.tipo, INTERES_LABEL[body.interes] || body.interes].filter(Boolean).join(" · "),
+    lifecyclestage: "lead",
+    hs_lead_status: "NEW",
+    ...(body.utm_source && { hs_analytics_source: "OTHER_CAMPAIGNS", hs_analytics_source_data_1: String(body.utm_source) }),
+    ...(body.utm_campaign && { hs_analytics_source_data_2: String(body.utm_campaign) }),
+    ...(body.utm_medium && { hs_analytics_last_referrer: String(body.utm_medium) }),
   }
 
-  // try upsert (create or update by email)
-  const createRes = await fetch(HS_BASE, {
-    method:  'POST',
-    headers: {
-      Authorization:  `Bearer ${HS_TOKEN}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ properties }),
-  })
+  let hubspot: Awaited<ReturnType<typeof upsertContactByEmail>> | null = null
+  let localStored = false
+  try {
+    hubspot = await upsertContactByEmail(properties)
+  } catch (error) {
+    hubspot = { ok: false, error: error instanceof Error ? error.message : "HubSpot no disponible" }
+  }
 
-  // 409 = contact already exists → patch by email search then update
-  if (createRes.status === 409) {
-    const searchRes = await fetch(`${HS_BASE}/search`, {
-      method:  'POST',
-      headers: {
-        Authorization:  `Bearer ${HS_TOKEN}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        filterGroups: [{ filters: [{ propertyName: 'email', operator: 'EQ', value: email }] }],
-        properties: ['email'],
-        limit: 1,
-      }),
-    })
-    const searchData = await searchRes.json()
-    const contactId  = searchData?.results?.[0]?.id
+  try {
+    const admin = createSupabaseAdminClient()
+    const { data: contact, error } = await admin
+      .from("crm_contacts")
+      .upsert({
+        hubspot_contact_id: hubspot?.ok ? hubspot.contactId : null,
+        full_name: String(body.nombre || email.split("@")[0]),
+        email,
+        phone: body.whatsapp ? String(body.whatsapp) : null,
+        company: body.operacion ? String(body.operacion) : null,
+        city: body.ciudad ? String(body.ciudad) : null,
+        lifecycle_stage: "lead",
+      }, { onConflict: "email" })
+      .select("id")
+      .single()
+    if (error) throw error
 
-    if (contactId) {
-      await fetch(`${HS_BASE}/${contactId}`, {
-        method:  'PATCH',
-        headers: {
-          Authorization:  `Bearer ${HS_TOKEN}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ properties }),
-      })
+    const metadata: Json = {
+      tipo: String(body.tipo ?? ""),
+      interes: String(body.interes ?? ""),
+      utm_source: String(body.utm_source ?? ""),
+      hubspot_ok: Boolean(hubspot?.ok),
     }
-
-    return withOnboardedCookie(NextResponse.json({ ok: true, action: 'updated' }))
+    await Promise.all([
+      admin.from("crm_activities").insert({ crm_contact_id: contact.id, type: "onboarding_submitted", metadata }),
+      body.visitorId && body.sessionId
+        ? admin.from("analytics_events").insert({
+            visitor_id: String(body.visitorId).slice(0, 80),
+            session_id: String(body.sessionId).slice(0, 80),
+            event_type: "onboarding_submitted",
+            target: String(body.interes ?? ""),
+            pathname: "/unete",
+            utm_source: body.utm_source ? String(body.utm_source) : null,
+            utm_medium: body.utm_medium ? String(body.utm_medium) : null,
+            utm_campaign: body.utm_campaign ? String(body.utm_campaign) : null,
+            metadata,
+          })
+        : Promise.resolve(),
+    ])
+    localStored = true
+  } catch {
+    // HubSpot puede seguir capturando aunque el CRM local aún no esté migrado.
   }
 
-  if (!createRes.ok) {
-    const err = await createRes.text()
-    return NextResponse.json({ ok: false, error: err }, { status: createRes.status })
-  }
-
-  return withOnboardedCookie(NextResponse.json({ ok: true, action: 'created' }))
+  return done(NextResponse.json({
+    ok: Boolean(hubspot?.ok || localStored),
+    hubspot: hubspot?.ok ? hubspot.action : "unavailable",
+    crm: localStored ? "stored" : "unavailable",
+  }))
 }

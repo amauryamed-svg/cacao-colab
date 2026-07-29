@@ -39,6 +39,7 @@ export interface Database {
             | "engineering_backend"
             | "engineering_frontend"
             | "design";
+          access_level: "superadmin";
           hubspot_contact_email: string | null;
           created_at: string;
         };
@@ -52,6 +53,7 @@ export interface Database {
             | "engineering_backend"
             | "engineering_frontend"
             | "design";
+          access_level?: "superadmin";
           hubspot_contact_email?: string | null;
           created_at?: string;
         };
@@ -65,6 +67,7 @@ export interface Database {
             | "engineering_backend"
             | "engineering_frontend"
             | "design";
+          access_level?: "superadmin";
           hubspot_contact_email?: string | null;
           created_at?: string;
         };
@@ -134,9 +137,142 @@ export interface Database {
         };
         Relationships: [];
       };
+      profiles: {
+        Row: {
+          id: string;
+          organization_id: string | null;
+          full_name: string;
+          email: string;
+          phone: string | null;
+          city: string | null;
+          avatar_url: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id: string;
+          organization_id?: string | null;
+          full_name: string;
+          email: string;
+          phone?: string | null;
+          city?: string | null;
+          avatar_url?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          organization_id?: string | null;
+          full_name?: string;
+          email?: string;
+          phone?: string | null;
+          city?: string | null;
+          avatar_url?: string | null;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      crm_contacts: {
+        Row: {
+          id: string;
+          hubspot_contact_id: string | null;
+          profile_id: string | null;
+          full_name: string;
+          email: string;
+          phone: string | null;
+          company: string | null;
+          city: string | null;
+          lifecycle_stage: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          hubspot_contact_id?: string | null;
+          profile_id?: string | null;
+          full_name: string;
+          email: string;
+          phone?: string | null;
+          company?: string | null;
+          city?: string | null;
+          lifecycle_stage?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          hubspot_contact_id?: string | null;
+          profile_id?: string | null;
+          full_name?: string;
+          phone?: string | null;
+          company?: string | null;
+          city?: string | null;
+          lifecycle_stage?: string | null;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      crm_activities: {
+        Row: {
+          id: string;
+          crm_contact_id: string;
+          type: string;
+          metadata: Json;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          crm_contact_id: string;
+          type: string;
+          metadata?: Json;
+          created_at?: string;
+        };
+        Update: {
+          metadata?: Json;
+        };
+        Relationships: [];
+      };
+      analytics_events: {
+        Row: {
+          id: string;
+          visitor_id: string;
+          session_id: string;
+          profile_id: string | null;
+          event_type: string;
+          target: string | null;
+          pathname: string | null;
+          utm_source: string | null;
+          utm_medium: string | null;
+          utm_campaign: string | null;
+          metadata: Json;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          visitor_id: string;
+          session_id: string;
+          profile_id?: string | null;
+          event_type: string;
+          target?: string | null;
+          pathname?: string | null;
+          utm_source?: string | null;
+          utm_medium?: string | null;
+          utm_campaign?: string | null;
+          metadata?: Json;
+          created_at?: string;
+        };
+        Update: {
+          target?: string | null;
+          metadata?: Json;
+        };
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
-    Functions: Record<string, never>;
+    Functions: {
+      claim_team_membership: {
+        Args: Record<PropertyKey, never>;
+        Returns: boolean;
+      };
+    };
     Enums: Record<string, never>;
     CompositeTypes: Record<string, never>;
   };

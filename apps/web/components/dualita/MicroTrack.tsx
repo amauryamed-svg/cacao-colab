@@ -1,6 +1,6 @@
-import Link from "next/link"
 import { microModules } from "@/lib/dualita"
 import ModuleCard from "./ModuleCard"
+import TrackedLink from "@/components/analytics/TrackedLink"
 
 export default function MicroTrack() {
   return (
@@ -20,12 +20,15 @@ export default function MicroTrack() {
         ))}
       </div>
       {/* cta */}
-      <Link
+      <TrackedLink
         href="/aprende/cacao-bioactivo"
+        event="microlearning_link_clicked"
+        targetName="caua-microlearning"
+        source="micro-track-cta"
         className="mt-1 block text-center text-sm font-bold py-3 px-5 rounded-full border-2 border-colab-green text-colab-pod hover:bg-colab-green hover:text-white transition-colors font-sans"
       >
         Crear un hábito saludable →
-      </Link>
+      </TrackedLink>
       <p className="text-[10px] text-center text-white/35 font-sans -mt-1">Contenido educativo CAÚA · no sustituye consejo médico</p>
     </div>
   )

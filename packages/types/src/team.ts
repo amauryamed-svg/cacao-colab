@@ -19,6 +19,7 @@ export const teamRoleSchema = z.enum([
   "design",
 ]);
 export type TeamRole = z.infer<typeof teamRoleSchema>;
+export const teamAccessLevelSchema = z.literal("superadmin");
 
 export const teamMemberSchema = z.object({
   id: z.string().uuid(),
@@ -26,6 +27,7 @@ export const teamMemberSchema = z.object({
   email: z.string().email(),
   fullName: z.string().min(1),
   teamRole: teamRoleSchema,
+  accessLevel: teamAccessLevelSchema,
   hubspotContactEmail: z.string().email().nullable(),
   createdAt: z.string().datetime(),
 });
