@@ -1,19 +1,16 @@
 import { StyleSheet, Text, View } from "react-native";
 import { colabColors } from "@cacao-colab/ui-tokens";
 
-/**
- * Placeholder de Fase 0. El login de marketplace (profiles + actor_roles,
- * Supabase Auth) llega en Fase 1 — distinto del login del portal /equipo
- * (apps/web/app/equipo), que es exclusivo del equipo interno y no vive en
- * esta app. Ver docs/13-MOBILE.md.
- */
 export default function PerfilScreen() {
   return (
     <View style={styles.screen}>
-      <Text style={styles.title}>Tu perfil</Text>
+      <Text style={styles.kicker}>CACAO GOTCHI · PERFIL</Text>
+      <View style={styles.avatar}><Text style={styles.avatarText}>◉</Text></View>
+      <Text style={styles.title}>Aprendiz de pulpa</Text>
+      <Text style={styles.stats}>0 XP  ·  0 días de racha  ·  rango 01</Text>
       <Text style={styles.note}>
-        Sin login todavía. El registro de farmer/chocolatier/maquilador/buyer
-        se conecta a Supabase Auth en Fase 1 (docs/07-MODELO-DATOS.md).
+        Tu identidad de farmer, chocolatier, maquilador o buyer se sincronizará
+        con Supabase Auth. Hasta entonces, el progreso vive localmente.
       </Text>
     </View>
   );
@@ -21,6 +18,10 @@ export default function PerfilScreen() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, alignItems: "center", justifyContent: "center", padding: 24, backgroundColor: colabColors.cream },
-  title: { fontSize: 22, fontWeight: "800", color: colabColors.forest, marginBottom: 8 },
+  kicker: { fontSize: 10, letterSpacing: 2, color: colabColors.pod, fontWeight: "800", marginBottom: 22 },
+  avatar: { width: 84, height: 84, borderRadius: 42, backgroundColor: colabColors.yellow, alignItems: "center", justifyContent: "center", marginBottom: 18 },
+  avatarText: { fontSize: 34, color: colabColors.forest },
+  title: { fontFamily: "serif", fontSize: 28, fontWeight: "800", color: colabColors.forest, marginBottom: 6 },
+  stats: { fontSize: 11, color: colabColors.green, fontWeight: "700", marginBottom: 18 },
   note: { fontSize: 13, color: colabColors.ink, opacity: 0.65, textAlign: "center" },
 });

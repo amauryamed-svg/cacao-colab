@@ -1,0 +1,193 @@
+# cacaotier · Master School
+
+> Producto y autoría: **Amaury Amed**  
+> Núcleo: **Cacao Fine-Flavor**  
+> Plataforma: **Cacao Colab**  
+> Estado: experiencia web y base móvil implementadas; comercio, pagos y sincronización LMS dependen de servicios externos.
+
+## 1. Tesis de producto
+
+**cacaotier** es la identidad educativa profesional del ecosistema Cacao Colab. Conecta cuatro ciclos:
+
+1. **Master Cacaotier**: cultivo, poscosecha, fermentación, secado, datos y calidad.
+2. **Master Chocolatier**: tostión, molienda, formulación, sensorial y aplicaciones.
+3. **Cacao Gotchi**: capa de hábito; el learner cuida un lote virtual, mantiene racha y toma decisiones.
+4. **Cacao Colab**: capa de mercado; evidencia, reputación, actores y productos Fine-Flavor.
+
+Dualita sigue siendo el motor pedagógico de doble velocidad:
+
+- microlearning para una decisión aplicable en menos de 10 minutos;
+- MOOC/maestría para competencia profunda y proyecto verificable.
+
+La progresión usa misiones, XP, rangos y credenciales. El XP motiva; la bitácora de lote demuestra la competencia.
+
+## 2. Primer curso: fermentación de precisión
+
+Ruta web: `/aprende/cacaotier`.
+
+### Resultado de aprendizaje
+
+El learner puede comparar tres diseños de fermentación, leer curvas de temperatura y pH, reconocer ventanas de formación de precursores y diseñar un piloto trazable sin confundir una guía con un setpoint universal.
+
+### Seis misiones
+
+| # | Misión | Competencia | XP |
+|---|---|---|---:|
+| 01 | Leer el lote | Línea base y trazabilidad | 80 |
+| 02 | Dominar las tres rutas | Diseño experimental | 100 |
+| 03 | Pilotar temperatura + pH | Curvas y decisiones | 120 |
+| 04 | Cazar precursores | Metabolitos de aroma | 110 |
+| 05 | Elegir el punto de corte | Calidad y riesgo | 130 |
+| 06 | Convertir grano en evidencia | Secado, chocolate y réplica | 160 |
+
+Total: **700 XP**.
+
+## 3. Base científica y límites
+
+### Fuente principal
+
+Santander, M. et al. (2025). “Influence of driven fermentation of cacao in bioreactors on quality: decoding the effect of temperature, mixing, and pH on metabolomic, sensory, and volatile profiles”. *LWT—Food Science and Technology*, 231, 118313.
+
+- ScienceDirect: https://www.sciencedirect.com/science/article/pii/S0023643825009971
+- DOI: https://doi.org/10.1016/j.lwt.2025.118313
+
+El estudio trabajó con FEAR 5 Trinitario de una finca de Arauquita, un lote homogeneizado, aproximadamente 17 % de remoción de pulpa, biorreactores con 4,5 kg y un control de 60 kg en cajón. Comparó 45 °C constante contra gradiente 35→40→45 °C, dos frecuencias de mezcla y pH espontáneo contra acidificación inicial.
+
+Hallazgos usados en el curso:
+
+- la temperatura y la acidificación inicial fueron los factores dominantes;
+- la condición 45 °C constante sin ácido añadido fue la mejor valorada entre las ensayadas;
+- el pH interno descendió aproximadamente de 6,3–6,7 a 4,3;
+- una acidificación rápida se asoció con mayor amargor y astringencia;
+- el cajón llegó aproximadamente a 45 °C y pH 4,5 hacia 96 h;
+- después de 144 h aumentaron señales asociadas a sobrefermentación;
+- la ventana de 72 h del biorreactor es una inferencia metabolómica: el chocolate de esos tratamientos se evaluó a 120 h.
+
+### Fuente regional complementaria
+
+Llano, S. et al. (2025). “Metabolomic insights into flavour precursor dynamics during fermentation of cacao beans cultivated in diverse climatic production zones in Colombia”. *Food Research International*, 205, 115978. DOI: https://doi.org/10.1016/j.foodres.2025.115978
+
+Incluyó 180 fincas de Arauca y mezclas de materiales, no FEAR 5 puro. El compromiso a 96 h no debe presentarse como óptimo específico de FEAR 5.
+
+### Lo que no se debe afirmar
+
+- que 45 °C/72 h sea óptimo universal;
+- que el estudio validó escala industrial;
+- que los triplicados analíticos equivalen a réplicas independientes de fermentación;
+- que “pH controlado” significó realimentación continua: fue acidificación inicial;
+- que la línea de cantina/tanque cervecero fue ensayada por AGROSAVIA.
+
+La concentración de ácido tiene una inconsistencia entre el texto metodológico y la tabla del artículo. La app no prescribe esa dosificación.
+
+## 4. Tres líneas de aprendizaje
+
+### A. Biorreactor isotérmico a 45 °C
+
+Reproduce visualmente la condición publicada más favorable. Es referencia de precisión a pequeña escala, no receta universal. La réplica inicial debe conservar el cierre a 120 h para hacer comparable el chocolate; después se pueden comparar cortes experimentales.
+
+### B. Cantina de leche o tanque cervecero adaptado
+
+Es una **hipótesis de transferencia tecnológica**. Propone permitir la sucesión inicial y aplicar control térmico gradual desde 48 h. “Control de pH” significa medir y tomar decisiones; no agregar ácido automáticamente. Requiere validar:
+
+- acero inoxidable y aptitud alimentaria;
+- geometría, drenaje y limpieza;
+- masa mínima/máxima;
+- uniformidad centro–pared;
+- cizalla de la agitación;
+- inocuidad;
+- cortes a 96 y 120 h.
+
+### C. Cajón tradicional de madera
+
+Es la referencia de finca. La masa, la geometría, el ambiente y los volteos cambian la curva. Debe medirse en centro, periferia y, si aplica, diferentes alturas.
+
+## 5. Arquitectura implementada
+
+### Web
+
+- `apps/web/app/page.tsx`: nueva narrativa del ecosistema.
+- `apps/web/app/aprende/page.tsx`: campus Master Cacaotier/Master Chocolatier.
+- `apps/web/app/aprende/cacaotier/page.tsx`: curso y laboratorio.
+- `apps/web/components/cacaotier/FermentationLab.tsx`: simulador cliente, curvas SVG y línea temporal.
+- `apps/web/lib/cacaotier-course.ts`: contenido tipado, métodos, datos didácticos, misiones y fuentes.
+- `apps/web/proxy.ts`: convención de Next.js 16 para refresco de Supabase Auth.
+
+### Mobile
+
+El scaffold Expo presenta la misma arquitectura conceptual:
+
+- Mercado: directorio Cacao Colab;
+- Campus: maestrías y campaña;
+- Mi lote: identidad Cacao Gotchi.
+
+No duplica todavía toda la simulación web. La siguiente extracción debe mover `cacaotier-course.ts` a un package compartido, separando datos puros de URLs web.
+
+## 6. Ejecución plug-and-play
+
+Requisitos: Node 20.9+ y pnpm 11.
+
+```bash
+pnpm install
+pnpm dev:web
+```
+
+Web: `http://localhost:3000`  
+Curso: `http://localhost:3000/aprende/cacaotier`
+
+Validación:
+
+```bash
+pnpm lint
+pnpm typecheck
+pnpm build
+```
+
+Mobile:
+
+```bash
+pnpm dev:mobile
+```
+
+## 7. Variables externas
+
+La experiencia pública y el curso funcionan sin credenciales. Para funciones conectadas:
+
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY` solo en servidor
+- `HUBSPOT_ACCESS_TOKEN`
+- `STRIPE_SECRET_KEY` y secretos de webhooks cuando exista cuenta Connect
+- `ANTHROPIC_API_KEY` para el companion
+- `NEXT_PUBLIC_SENTRY_DSN`/DSN por app, opcional
+
+Nunca exponer claves de servicio en Expo ni en variables `NEXT_PUBLIC_*`.
+
+## 8. Camino a App Store
+
+1. Extraer contenido compartido a `packages/course-content`.
+2. Persistir progreso, XP y rachas en Supabase con cola offline.
+3. Implementar autenticación de learners y migración del progreso local.
+4. Construir el laboratorio con `react-native-svg`.
+5. Añadir descarga offline de lecciones y bitácora de campo.
+6. Implementar compras según reglas de Apple/Google; no asumir que Stripe web puede vender contenido digital dentro de la app.
+7. Configurar EAS Build, identificadores, privacidad, borrado de cuenta y revisión de store.
+
+## 9. Próximos contratos funcionales
+
+- `Course`, `Mission`, `Observation`, `Batch`, `CurveSample`, `AssessmentAttempt`.
+- `Observation`: hora, temperatura centro/periferia, pH interno, olor, corte, operador y timestamp.
+- modo offline-first con UUID local e idempotencia al sincronizar;
+- evidencia adjunta por lote;
+- certificado solo tras evaluación y proyecto, no por XP;
+- catálogo marketplace con claims verificables y trazabilidad visible.
+
+## 10. Criterio editorial
+
+Todo valor mostrado debe marcarse como:
+
+- **publicado**: trazable a fuente;
+- **observado**: dato de un lote del usuario;
+- **propuesto**: hipótesis o diseño piloto;
+- **calculado**: transformación explícita de datos.
+
+Esta taxonomía evita convertir una visualización pedagógica en una recomendación agronómica universal.

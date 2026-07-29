@@ -8,10 +8,6 @@ type PlaceholderOrg = {
   role: OrganizationRole;
 };
 
-// Placeholder explícito — NO son datos reales de Supabase (que todavía no
-// existe). Mismo contenido que apps/web/lib/brands.ts, solo para
-// visualizar el shape de `Organization` (@cacao-colab/types) en la app
-// nativa. Ver docs/13-MOBILE.md.
 const placeholderOrgs: PlaceholderOrg[] = [
   { name: "CAÚA Colombia", tagline: "Cacao de origen. Cero azúcar añadida.", role: "owner" },
   { name: "Chocolate Zurych", tagline: "Coberturas funcionales para el profesional.", role: "owner" },
@@ -21,11 +17,12 @@ const placeholderOrgs: PlaceholderOrg[] = [
 export default function MarketplaceScreen() {
   return (
     <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
-      <Text style={styles.kicker}>MARKETPLACE · SOLO LECTURA</Text>
-      <Text style={styles.title}>Marcas del Colab</Text>
+      <Text style={styles.brand}>cacaotier</Text>
+      <Text style={styles.kicker}>CACAO FINE-FLAVOR · MERCADO</Text>
+      <Text style={styles.title}>Del conocimiento al mercado.</Text>
       <Text style={styles.note}>
-        Placeholder de Fase 0 — sin conexión a Supabase todavía. Estos datos
-        no son en vivo.
+        Descubre marcas, orígenes y actores del ecosistema Cacao Colab.
+        Los catálogos son demostrativos hasta conectar Supabase.
       </Text>
 
       {placeholderOrgs.map((org) => (
@@ -42,8 +39,9 @@ export default function MarketplaceScreen() {
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colabColors.cream },
   content: { padding: 20, gap: 12 },
+  brand: { fontFamily: "serif", fontSize: 20, fontWeight: "800", color: colabColors.forest },
   kicker: { fontSize: 11, letterSpacing: 2, color: colabColors.pod, fontWeight: "700" },
-  title: { fontSize: 26, fontWeight: "800", color: colabColors.forest, marginBottom: 4 },
+  title: { fontFamily: "serif", fontSize: 32, lineHeight: 36, fontWeight: "800", color: colabColors.forest, marginBottom: 4 },
   note: { fontSize: 13, color: colabColors.ink, opacity: 0.6, marginBottom: 16 },
   card: {
     backgroundColor: "white",
