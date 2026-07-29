@@ -54,13 +54,16 @@ export default function CacaoGotchiLab() {
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem("cacao_gotchi_v1")
-      if (saved) setState({ ...initialState, ...JSON.parse(saved) })
-    } catch {
-      // El laboratorio sigue disponible sin persistencia.
-    }
-    setLoaded(true)
+    const hydrationTimer = window.setTimeout(() => {
+      try {
+        const saved = localStorage.getItem("cacao_gotchi_v1")
+        if (saved) setState({ ...initialState, ...JSON.parse(saved) })
+      } catch {
+        // El laboratorio sigue disponible sin persistencia.
+      }
+      setLoaded(true)
+    }, 0)
+    return () => window.clearTimeout(hydrationTimer)
   }, [])
 
   useEffect(() => {
