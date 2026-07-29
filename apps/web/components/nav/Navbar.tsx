@@ -12,9 +12,6 @@ export default function Navbar() {
         <Link href="/" className="flex items-center gap-2">
           <SquirrelSVG size={30} />
           <CacaoColabWordmark size="sm" inverted />
-          <span className="hidden lg:inline text-[9px] font-bold tracking-[2px] uppercase text-colab-yellow/50 ml-1 font-sans">
-            by Amaury Amed
-          </span>
         </Link>
 
         <div className="flex items-center gap-3">
