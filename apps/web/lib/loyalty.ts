@@ -7,6 +7,17 @@ export const communityRanks = [
   { slug: "legado", name: "Legado Cacaotier", icon: "◉", threshold: 3000, benefit: "Mentoría y transferencia generacional" },
 ] as const
 
+// Las Mazorcas Doradas no son XP. El XP desbloquea contenido; MD es saldo de
+// fidelidad, así que los montos se declaran aquí y no se derivan del XP.
+export const mazorcaRewards = {
+  microLesson: 40,
+  architectMission: 30,
+  architectCourseComplete: 120,
+  gotchiCare: 5,
+  gotchiHarvest: 60,
+  gotchiCareDailyCap: 50,
+} as const
+
 export const plannedBenefits = [
   {
     brandKey: "cacaotier", brand: "cacaotier", title: "Reto avanzado de Arquitecto",

@@ -1,12 +1,14 @@
 import SquirrelSVG from '@/components/brand/SquirrelSVG'
 import { type Lesson, lessons } from '@/lib/lessons'
+import type { MicroLessonResult } from '@/lib/microlearning'
 
 interface Props {
   lesson: Lesson
+  loyalty?: MicroLessonResult | null
   onContinue: () => void
 }
 
-export default function LessonComplete({ lesson, onContinue }: Props) {
+export default function LessonComplete({ lesson, loyalty, onContinue }: Props) {
   const nextLesson = lessons.find(l => l.number === lesson.number + 1)
 
   return (
@@ -41,6 +43,29 @@ export default function LessonComplete({ lesson, onContinue }: Props) {
         Módulo {lesson.number} de 6 completado.
         {nextLesson ? ` Siguiente: ${nextLesson.title}.` : ' ¡Has completado toda la Academia Dualita!'}
       </p>
+
+      {loyalty?.status === 'guest' && (
+        <div className="lesson-loyalty-note">
+          <strong>Este avance vive solo en este navegador.</strong>
+          <p>Entra con tu cuenta para guardar el progreso del campus y acumular Mazorcas Doradas.</p>
+          <a href={`/cuenta/entrar?next=/aprende/${lesson.slug}`}>Crear cuenta o entrar →</a>
+        </div>
+      )}
+
+      {loyalty?.status === 'saved' && (
+        <div className="lesson-loyalty-note">
+          <strong>
+            Progreso guardado · {loyalty.completedCount}/{loyalty.totalLessons} módulos
+          </strong>
+          <p>
+            {loyalty.awarded > 0
+              ? `Ganaste ${loyalty.awarded} Mazorcas Doradas por este módulo.`
+              : 'Ya habías ganado las Mazorcas Doradas de este módulo, así que no se acreditan de nuevo.'}
+            {loyalty.balance !== null && ` Saldo actual: ${loyalty.balance} MD.`}
+          </p>
+          <a href="/cuenta/mazorcas">Ver mi wallet →</a>
+        </div>
+      )}
 
       <div className="flex flex-col gap-3 w-full mt-2">
         {nextLesson ? (

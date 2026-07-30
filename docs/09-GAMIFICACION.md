@@ -40,6 +40,8 @@ No hay puntos por referidos, reclutamiento ni actividad de una red descendente.
 
 Los valores de XP por lección **ya existen** en el seed local (`apps/web/lib/lessons.ts` — cada lección tiene un campo `xp`, valores entre 45 y 70). Estos se portan tal cual a la columna `lessons.xp` cuando se migre el contenido a Supabase (Fase 2) — no se inventan valores nuevos.
 
+El XP no se convierte en Mazorcas Doradas. Las MD se acreditan con los montos declarados en `apps/web/lib/loyalty.ts` (`mazorcaRewards`) y quedan registradas en `mazorca_ledger` con clave idempotente — ver `16-MAZORCAS-DORADAS.md`. Completar un módulo de microlearning con sesión activa guarda además `campus_progress` bajo `course_slug = microlearning-caua`.
+
 Reglas pendientes de decisión (no inventadas en esta pasada):
 
 - ¿Se otorga XP por completar el quiz correctamente al primer intento, o también con reintentos (con menos XP)?

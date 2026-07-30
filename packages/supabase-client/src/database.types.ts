@@ -415,6 +415,32 @@ export interface Database {
         };
         Relationships: [];
       };
+      brand_commerce_adapters: {
+        Row: {
+          brand_key: string;
+          adapter_type: string;
+          status: string;
+          public_config: Json;
+          last_sync_at: string | null;
+          updated_at: string;
+        };
+        Insert: {
+          brand_key: string;
+          adapter_type?: string;
+          status?: string;
+          public_config?: Json;
+          last_sync_at?: string | null;
+          updated_at?: string;
+        };
+        Update: {
+          adapter_type?: string;
+          status?: string;
+          public_config?: Json;
+          last_sync_at?: string | null;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: {

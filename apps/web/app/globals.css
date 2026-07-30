@@ -1588,6 +1588,19 @@ body {
 
 .loyalty-config-warning { background: #FFF2D9; border: 1px solid #E3A12B; border-radius: .8rem; color: #694A14; font-size: .65rem; margin-top: 1rem; padding: .8rem; }
 
+.lesson-loyalty-note {
+  background: rgba(242, 200, 48, .08);
+  border: 1px solid rgba(242, 200, 48, .22);
+  border-radius: .9rem;
+  padding: .9rem 1rem;
+  text-align: left;
+  width: 100%;
+}
+
+.lesson-loyalty-note strong { color: #F2C830; display: block; font-family: Arial, sans-serif; font-size: .72rem; }
+.lesson-loyalty-note p { color: rgba(247, 241, 238, .55); font-family: Arial, sans-serif; font-size: .68rem; line-height: 1.5; margin-top: .35rem; }
+.lesson-loyalty-note a { color: #87AA27; display: inline-block; font-family: Arial, sans-serif; font-size: .68rem; font-weight: 700; margin-top: .5rem; }
+
 .rank-card,
 .loyalty-ledger {
   border-radius: 1.2rem;
@@ -1676,7 +1689,9 @@ body {
 .benefit-card dl div { display: flex; justify-content: space-between; }
 .benefit-card dt { color: rgba(26, 46, 16, .4); font-size: .55rem; }
 .benefit-card dd { color: #1A2E10; font-size: .55rem; font-weight: 800; }
+.benefit-terms { color: rgba(26, 46, 16, .38); font-size: .52rem; line-height: 1.5; margin-top: 1rem; }
 .benefit-card button { background: rgba(26, 46, 16, .08); border-radius: 99px; color: rgba(26, 46, 16, .35); cursor: not-allowed; font-size: .6rem; font-weight: 800; margin-top: auto; padding: .75rem; }
+.benefit-card button:not(:disabled) { background: #F2C830; color: #1A2E10; cursor: pointer; }
 
 .community-rank-grid { display: grid; gap: .5rem; grid-template-columns: repeat(6, 1fr); }
 .community-rank-grid article { background: white; border: 1px solid rgba(26, 46, 16, .08); border-radius: .8rem; padding: .9rem; }

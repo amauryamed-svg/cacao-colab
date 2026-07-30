@@ -8,9 +8,11 @@ export const dynamic = "force-dynamic"
 
 const reasonLabels: Record<string, string> = {
   campus_mission_complete: "Misión Master Cacaotier",
+  campus_course_complete: "Curso Arquitecto de Fermentación completado",
   gotchi_care: "Cuidado de la labranza",
   gotchi_harvest_fermented: "Cosecha y fermentación completadas",
   lesson_completed: "Microlearning completado",
+  benefit_redemption: "Canje de beneficio",
 }
 
 export default async function MazorcasPage() {

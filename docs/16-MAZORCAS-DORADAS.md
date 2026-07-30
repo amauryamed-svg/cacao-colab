@@ -23,14 +23,23 @@ Los rangos dependen exclusivamente de actividad propia verificable.
 
 ## 3. Fuentes de puntos
 
-| Categoría | Ejemplo | Validación |
-|---|---|---|
-| Aprendizaje | misión Master Cacaotier | misión permitida + idempotencia |
-| Cuidado | acción Cacao Gotchi | tope diario server-side |
-| Comunidad | evidencia de campo | moderación pendiente |
-| Compra verificada | orden pagada | webhook de comercio futuro |
+| Categoría | Ejemplo | MD | Validación |
+|---|---|---|---|
+| Aprendizaje | módulo de Microlearning CAÚA | 40 | slug permitido + `micro:<slug>` |
+| Aprendizaje | misión Arquitecto de Fermentación | 30 | misión permitida + `campus:<curso>:<slug>` |
+| Aprendizaje | curso Arquitecto completo | 120 | una sola vez por learner |
+| Cuidado | acción Cacao Gotchi | 5 | tope diario de 50 MD server-side |
+| Cuidado | cosecha + fermentación completas | 60 | estado `complete` del run |
+| Comunidad | evidencia de campo | — | moderación pendiente |
+| Compra verificada | orden pagada | — | webhook de comercio futuro |
+
+Los montos viven en `apps/web/lib/loyalty.ts` (`mazorcaRewards`) y **no** se derivan del XP: un módulo entrega 50 XP y 40 MD porque miden cosas distintas.
 
 El ledger `mazorca_ledger` es append-only. Cada evento usa una clave idempotente para impedir doble acreditación.
+
+## 3.1 Progreso registrado del microlearning
+
+Al terminar un módulo, `completeMicroLesson()` guarda `campus_progress` con `course_slug = microlearning-caua` y acredita MD. Sin sesión el módulo sigue funcionando: el avance queda solo en `localStorage` y la pantalla final lo dice explícitamente en vez de prometer puntos.
 
 ## 4. Rangos
 
@@ -78,4 +87,9 @@ El minijuego usa “labranza” para representar continuidad familiar y comunita
 
 ## 9. Estado operativo
 
-La migración `20260729213014_mazorcas_doradas_loyalty.sql` debe aplicarse. Ningún ecommerce está conectado todavía. El catálogo web muestra esta condición explícitamente y bloquea la redención de beneficios planeados.
+Migraciones requeridas en el proyecto Supabase:
+
+1. `20260729213014_mazorcas_doradas_loyalty.sql` — wallets, ledger, rangos, catálogo, redenciones y adaptadores.
+2. `20260730170013_benefit_catalog_seed.sql` — seis beneficios en estado `planned` y adaptadores `inactive` por marca.
+
+`/marketplace/beneficios` lee el catálogo real cuando existe: muestra estado, conector y términos tal como están en la base. Si la migración no está aplicada, la página lo declara y usa la lista en código. El botón de canje solo se habilita cuando el ítem está `active` **y** su conector está `active`; hoy ninguna marca cumple ambas condiciones.

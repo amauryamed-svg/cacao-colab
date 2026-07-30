@@ -3,6 +3,7 @@
 import { createSupabaseServerClient } from "@cacao-colab/supabase-client/server"
 import type { Json } from "@cacao-colab/supabase-client/database.types"
 import { architectMissions } from "@/lib/architect-course"
+import { mazorcaRewards } from "@/lib/loyalty"
 import { awardMazorcas } from "@/lib/loyalty-server"
 
 type SaveResult = { ok: true } | { ok: false; error: string }
@@ -37,7 +38,7 @@ export async function saveArchitectProgress(state: unknown, xpTotal: number, com
         return mission
           ? awardMazorcas({
               profileId: user.id,
-              amount: mission.xp,
+              amount: mazorcaRewards.architectMission,
               category: "learning",
               reasonCode: "campus_mission_complete",
               idempotencyKey: `campus:arquitecto-fermentacion:${slug}`,
@@ -46,6 +47,17 @@ export async function saveArchitectProgress(state: unknown, xpTotal: number, com
             })
           : Promise.resolve({ awarded: 0 })
       }))
+      if (complete) {
+        await awardMazorcas({
+          profileId: user.id,
+          amount: mazorcaRewards.architectCourseComplete,
+          category: "learning",
+          reasonCode: "campus_course_complete",
+          idempotencyKey: "campus:arquitecto-fermentacion:course",
+          sourceType: "campus_course",
+          sourceId: "arquitecto-fermentacion",
+        })
+      }
     } catch {
       // El progreso académico no falla si loyalty aún no está migrado.
     }
@@ -83,19 +95,19 @@ export async function saveGotchiRun(
       if (actions > 0) {
         await awardMazorcas({
           profileId: user.id,
-          amount: 5,
+          amount: mazorcaRewards.gotchiCare,
           category: "care",
           reasonCode: "gotchi_care",
           idempotencyKey: `gotchi:care:${new Date().toISOString().slice(0, 10)}:${actions}`,
           sourceType: "gotchi_run",
           sourceId: "slot-1",
-          dailyCap: 50,
+          dailyCap: mazorcaRewards.gotchiCareDailyCap,
         })
       }
       if (parsed.phase === "complete") {
         await awardMazorcas({
           profileId: user.id,
-          amount: 60,
+          amount: mazorcaRewards.gotchiHarvest,
           category: "care",
           reasonCode: "gotchi_harvest_fermented",
           idempotencyKey: `gotchi:complete:slot-1:${fermentationHour}`,

@@ -107,6 +107,8 @@ Deja de ser "no un joint venture legal, solo una plataforma compartida de marca"
 | D31 | Fidelidad | **Mazorcas Doradas** como puntos canjeables separados del XP | Ledger append-only, sin valor en efectivo y sin recompensas por reclutamiento. |
 | D32 | Rangos comunitarios | Semilla → Brote → Labrador → Guardián → Maestro → Legado | Se asciende por actividad propia verificable; nunca por tamaño de red. |
 | D33 | Ecommerce de beneficios | Adaptadores por marca, inactivos por defecto | No se publica un canje como activo sin acuerdo, credenciales, stock, términos y prueba de fulfillment. |
+| D34 | Montos de MD declarados | Las recompensas viven en `mazorcaRewards`, no se calculan desde el XP | 40 MD por módulo de microlearning, 30 por misión, 120 por curso, 5 por cuidado (tope 50/día) y 60 por cosecha fermentada. |
+| D35 | Microlearning registrado | Completar un módulo escribe `campus_progress` (`microlearning-caua`) y acredita MD | Sin sesión el módulo funciona igual, pero la pantalla final avisa que el avance es local y no acredita puntos. |
 
 ---
 

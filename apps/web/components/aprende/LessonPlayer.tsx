@@ -8,6 +8,8 @@ import QuizCard from './QuizCard'
 import LessonComplete from './LessonComplete'
 import DualitaCompanion from './DualitaCompanion'
 import { trackColabEvent } from '@/lib/analytics'
+import { completeMicroLesson } from '@/app/aprende/actions'
+import type { MicroLessonResult } from '@/lib/microlearning'
 
 type Phase = 'cards' | 'quiz' | 'complete'
 
@@ -16,6 +18,7 @@ interface Props { lesson: Lesson }
 export default function LessonPlayer({ lesson }: Props) {
   const [cardIndex, setCardIndex] = useState(0)
   const [phase,     setPhase]     = useState<Phase>('cards')
+  const [loyalty,   setLoyalty]   = useState<MicroLessonResult | null>(null)
 
   // save progress to localStorage on complete
   useEffect(() => {
@@ -30,6 +33,7 @@ export default function LessonPlayer({ lesson }: Props) {
       // localStorage puede fallar en modo privado / SSR — no bloquea la lección.
     }
     trackColabEvent('lesson_completed', { target: lesson.slug, source: 'microlearning-caua' })
+    completeMicroLesson(lesson.slug).then(setLoyalty).catch(() => setLoyalty(null))
   }, [phase, lesson.slug, lesson.xp])
 
   const totalCards = lesson.cards.length
@@ -102,6 +106,7 @@ export default function LessonPlayer({ lesson }: Props) {
         {phase === 'complete' && (
           <LessonComplete
             lesson={lesson}
+            loyalty={loyalty}
             onContinue={() => { window.location.href = '/aprende' }}
           />
         )}
