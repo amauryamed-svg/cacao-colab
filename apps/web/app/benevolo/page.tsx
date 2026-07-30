@@ -20,8 +20,11 @@ export default function BenevoloPage() {
           <p className="eyebrow text-[#FF6A3D]">Output · Master Chocolatier · lente COEX</p>
           <div className="grid lg:grid-cols-[1fr_1.15fr] gap-8 lg:gap-12 items-end mt-6">
             <div className="pb-10 md:pb-16">
-              <p className="text-[11px] font-bold tracking-[0.22em] uppercase text-[#E8C9A0]/benevoloProduct.domain}</p>
-              <h1 className="font-serif text-[clamp(3.2rem,9vw,6.5rem)] font-black leading-[0.88] tracking-[-0.05em] mt-4">
+              <p className="text-[11px] font-bold tracking-[0.22em] uppercase text-[#E8C9A0]">{benevoloProduct.domain}</p>
+              <h1
+                className="font-serif font-black leading-[0.88] mt-4"
+                style={{ fontSize: "clamp(3.2rem, 9vw, 6.5rem)", letterSpacing: "-0.05em" }}
+              >
                 Chocolate<br />
                 <em className="text-[#FF6A3D] not-italic">Benevolo</em>
               </h1>
