@@ -39,16 +39,16 @@ export default function Home() {
               conocimiento.<br />
               <span className="text-colab-yellow">Cosecha sabor.</span>
             </h1>
-            <p
-              className="text-colab-cream/65 font-sans leading-relaxed mb-8 max-w-md mx-auto md:mx-0"
+              <p className="text-colab-cream/65 font-sans leading-relaxed mb-8 max-w-md mx-auto md:mx-0"
               style={{ fontSize: "clamp(1rem, 2.2vw, 1.2rem)" }}
             >
               cacaotier es la escuela futurista donde agricultores y chocolateros dominan el bioproceso,
-              construyen reputación y llevan cada lote colombiano al mercado Fine-Flavor.
+              construyen reputación y llevan cada lote colombiano al mercado Fine-Flavor — hasta Benevolo,
+              la barra que traduce ese conocimiento a la mesa.
             </p>
             <div className="flex flex-wrap gap-3 justify-center md:justify-start">
               <Button href="/aprende/cacaotier">Entrar al laboratorio →</Button>
-              <Button variant="outline" href="#ecosistema">Ver el ecosistema</Button>
+              <Button variant="outline" href="/benevolo">Preordenar Benevolo</Button>
             </div>
           </div>
           <div className="flex-shrink-0 relative">
@@ -123,6 +123,33 @@ export default function Home() {
       {/* ══════════ MARKETPLACE ══════════ */}
       <section id="marketplace" className="bg-colab-cream py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="mb-14 grid lg:grid-cols-[1.2fr_.8fr] gap-8 items-end">
+            <div>
+              <SectionKicker className="mb-3 text-colab-ink/50">Punta de lanza</SectionKicker>
+              <h2
+                className="font-serif font-bold text-colab-ink"
+                style={{ fontSize: "clamp(1.8rem, 4.5vw, 3rem)" }}
+              >
+                Conocimiento avanzado.<br />
+                <span className="text-colab-green">Soluciones comestibles.</span>
+              </h2>
+              <p className="text-colab-ink/60 font-sans max-w-xl mt-4" style={{ fontSize: "clamp(0.9rem, 2vw, 1rem)" }}>
+                EUDR, orgánico, calidad internacional y genética FEAR 5 convergen en Ecoyuma, el campus
+                cacaotier y Benevolo: la barra que traduce el bioproceso a la mesa.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <Button href="/conocimiento">Base de conocimiento →</Button>
+              <Button
+                variant="outline"
+                href="https://tienda.ecoyuma.com.co/11-plantulas-de-cacao"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Vivero Ecoyuma
+              </Button>
+            </div>
+          </div>
           <SectionKicker className="mb-3 text-colab-ink/50">Mapa vivo · Colombia al mundo</SectionKicker>
           <h2
             className="font-serif font-bold text-colab-ink mb-3"

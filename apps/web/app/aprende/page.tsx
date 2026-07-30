@@ -78,7 +78,7 @@ export default async function AprendePage() {
             { step: "01", owner: "Zurych", title: "MOOC Contexto Cacao", body: "Historia, territorio y cultura para comprender de dónde viene el chocolate." },
             { step: "02", owner: "CAÚA", title: "Cacao funcional", body: "Microlearning sobre elección, hábitos y consumo saludable en contexto." },
             { step: "03", owner: "cacaotier", title: "Masterclasses", body: "Competencia profesional desde fermentación hasta aplicaciones." },
-            { step: "04", owner: "Nodos", title: "Territorio activo", body: "Lotes, retos y evidencia de Landázuri, Arbeláez, Paicol, Tame y Guamal." },
+            { step: "04", owner: "Colab", title: "Conocimiento → mesa", body: "EUDR, Ecoyuma, COEX y Benevolo: la ruta que convierte evidencia en producto." },
           ].map((route) => (
             <article key={route.step} className="learning-sync-card">
               <div><span>{route.step}</span><strong>{route.owner}</strong></div>

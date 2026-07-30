@@ -124,6 +124,46 @@ export const brands: Brand[] = [
     ctaUrl: "https://wa.me/573102227848?text=Hola%20Cacao%20Colab%2C%20quiero%20conectar%20con%20Chocolover.",
     role: "regional-node",
   },
+  {
+    id: "benevolo",
+    name: "Benevolo Cacao",
+    tagline: "Salida práctica de cacaotier · FEAR 5.",
+    description:
+      "Barra de leche con marañón y cacao FEAR 5 fermentado de forma controlada. Traduce el campus de bioproceso a un producto preordenable para el mercado real.",
+    location: "Bogotá D.C. · cacaotier",
+    territoryId: "bogota",
+    accentColor: "#E8C9A0",
+    bgColor: "#1A120C",
+    textColor: "#F7F1EE",
+    products: [
+      "Barra leche + marañón + FEAR 5",
+      "Preventa / pre-order",
+      "Ruta de marcas colaboradoras",
+    ],
+    ctaLabel: "Preordenar Benevolo →",
+    ctaUrl: "/benevolo",
+    role: "regional-node",
+  },
+  {
+    id: "ecoyuma",
+    name: "Ecoyuma",
+    tagline: "Vivero y material vegetal · plántulas injertadas.",
+    description:
+      "Catálogo externo de plántulas y semillas. Puerta de siembra para FEAR 5, TCS 19, TCS 06 y otros clones. Stock y precios los define tienda.ecoyuma.com.co.",
+    location: "Colombia · catálogo online",
+    territoryId: "bogota",
+    accentColor: "#86B66B",
+    bgColor: "#142016",
+    textColor: "#F7F1EE",
+    products: [
+      "Plántula FEAR-5",
+      "Plántulas TCS-19 y TCS-06",
+      "Semillas y material de siembra",
+    ],
+    ctaLabel: "Abrir tienda Ecoyuma →",
+    ctaUrl: "https://tienda.ecoyuma.com.co/11-plantulas-de-cacao",
+    role: "regional-node",
+  },
 ]
 
 export const comingSoonSlots = [

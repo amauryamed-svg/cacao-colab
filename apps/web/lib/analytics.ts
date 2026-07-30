@@ -7,6 +7,9 @@ export type ColabAnalyticsEvent =
   | "mooc_link_clicked"
   | "lesson_completed"
   | "sponsor_interest"
+  | "knowledge_link_clicked"
+  | "ecoyuma_link_clicked"
+  | "benevolo_interest"
 
 function id(prefix: string) {
   return `${prefix}_${crypto.randomUUID()}`

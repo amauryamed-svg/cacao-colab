@@ -110,6 +110,9 @@ Deja de ser "no un joint venture legal, solo una plataforma compartida de marca"
 | D34 | Montos de MD declarados | Las recompensas viven en `mazorcaRewards`, no se calculan desde el XP | 40 MD por módulo de microlearning, 30 por misión, 120 por curso, 5 por cuidado (tope 50/día) y 60 por cosecha fermentada. |
 | D35 | Microlearning registrado | Completar un módulo escribe `campus_progress` (`microlearning-caua`) y acredita MD | Sin sesión el módulo funciona igual, pero la pantalla final avisa que el avance es local y no acredita puntos. |
 | D36 | Progreso visible con su origen | `/aprende` y `/cuenta` muestran el progreso de la cuenta cuando hay sesión y declaran cuándo es solo local | Ninguna superficie muestra ceros como si el learner no hubiera avanzado: si la base no responde, cae al progreso local y lo dice. |
+| D37 | Base de conocimiento | `/conocimiento` integra regulación, genética, calidad internacional y producto | Cada ficha declara nivel de evidencia; no inventa DO registrada ni alianzas firmadas. |
+| D38 | Ecoyuma | Catálogo externo de plántulas (FEAR 5, TCS 19, TCS 06) | Stock/precio viven en tienda.ecoyuma.com.co; el Colab enlaza y rastrea clics. |
+| D39 | Benevolo Cacao | Barra leche + marañón + FEAR 5 como salida práctica de cacaotier | Preventa por WhatsApp mientras no haya checkout/stock confirmado. |
 
 ---
 

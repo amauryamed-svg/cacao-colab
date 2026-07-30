@@ -31,6 +31,9 @@ export const crmActivityTypeSchema = z.enum([
   "lesson_completed",
   "membership_started",
   "sponsor_interest",
+  "knowledge_link_clicked",
+  "ecoyuma_link_clicked",
+  "benevolo_interest",
   "note",
 ]);
 export type CrmActivityType = z.infer<typeof crmActivityTypeSchema>;
