@@ -129,10 +129,11 @@ export const benevoloFormulation = {
 
 export const chocolatierTotalXp = chocolatierMissions.reduce((total, mission) => total + mission.xp, 0)
 
+/** Principios didácticos inspirados en Cacao of Excellence (cacaoofexcellence.org). No implican premio ni afiliación. */
 export const coexPrinciples = [
   {
     title: "Ciego primero",
-    body: "Evalúa grano y chocolate sin depender de la marca. COEX juzga la muestra, no el pitch.",
+    body: "Evalúa grano y chocolate sin depender de la marca. CoEx juzga la muestra, no el pitch.",
   },
   {
     title: "Defectos no se negocian",
@@ -147,3 +148,5 @@ export const coexPrinciples = [
     body: "Nodo, clon, fermentación y tostión deben poder reconstruirse. Benevolo declara Quara × FEAR 5.",
   },
 ]
+
+export const coexOfficialUrl = "https://www.cacaoofexcellence.org/"

@@ -185,30 +185,40 @@ export const knowledgeTopics: KnowledgeTopic[] = [
   },
   {
     slug: "cacao-of-excellence",
-    title: "Cacao of Excellence · Roma y la calidad internacional",
-    eyebrow: "COEX · Bioversity / CIAT · Escobar",
+    title: "Cacao of Excellence · Awards, lab y calidad global",
+    eyebrow: "CoEx · Awards · Training & Lab · Research",
     summary:
-      "Cacao of Excellence es el programa de referencia mundial para evaluar y premiar cacaos de origen. Su laboratorio de calidad está ligado a la Alliance of Bioversity International and CIAT; Sebastián Escobar Parra ha liderado trabajo de fermentación, flavour science y calidad en esa órbita.",
+      "Cacao of Excellence mejora la calidad del cacao y el reconocimiento de mercado: Awards (Best 50), entrenamiento y laboratorio R&D, investigación y recursos. El Colab usa su lente sensorial en Master Chocolatier sin atribuir medallas a Benevolo.",
     evidence: "public_program",
     body: [
-      "COEX no «certifica fincas» como un sello orgánico: selecciona y evalúa muestras bajo protocolos sensoriales e instrumentales exigentes, con sede histórica asociada a Roma/Italia y eventos internacionales.",
-      "Sebastián Escobar Parra (fermentación, bioprocesos, flavour chemistry) conecta la tradición investigativa colombiana —incluidos trabajos sobre calidad intermedia a 120 h y cadenas de valor— con la plataforma global de calidad. El campus cacaotier cita su línea cuando habla de biomarcadores y ventanas temporales.",
-      "Para marcas del Colab, la lección operativa es: prepara muestra ciega, documenta genotipo/fermentación/secado, y trata un premio o shortlist como evidencia puntual, no como DO ni como permiso de exportar a la UE.",
-      "La traducción Colab: lo que un paper o un panel COEX mide en laboratorio, Benevolo y las marcas colaboradoras deben poder explicar en una barra, una ficha de lote y una conversación con el consumidor.",
+      "Sitio oficial: cacaoofexcellence.org. Su misión es desbloquear el potencial de la calidad para mejorar medios de vida, biodiversidad y cadenas equitativas — Awards, training, lab y estándares compartidos.",
+      "No «certifica fincas» como un sello orgánico: celebra muestras excepcionales (Best 50 desde 2009), forma capacidad en evaluación sensorial en el CoEx R&D Lab y publica investigación/recursos sobre flavour y mercados.",
+      "Sebastián Escobar Parra (fermentación, bioprocesos, flavour chemistry) conecta la tradición investigativa colombiana con esa órbita de calidad. El campus cacaotier cita su línea en biomarcadores y ventanas temporales.",
+      "Lección operativa para el Colab: muestra ciega, genotipo/fermentación/secado documentados, tipicidad sin defectos. Un premio o shortlist es evidencia puntual — no DO ni permiso EUDR. Master Chocolatier entrena el lente; Benevolo no reclama la medalla.",
     ],
     links: [
       {
         label: "Cacao of Excellence",
-        href: "https://www.cacaofexcellence.org/",
+        href: "https://www.cacaoofexcellence.org/",
         note: "Programa oficial",
+      },
+      {
+        label: "Mission & Vision",
+        href: "https://www.cacaoofexcellence.org/about/",
+        note: "Pilares CoEx",
       },
       {
         label: "Alliance Bioversity–CIAT · Escobar",
         href: "https://alliancebioversityciat.org/who-we-are/sebastian-escobar-parra",
         note: "Perfil institucional",
       },
+      {
+        label: "Master Chocolatier",
+        href: "/aprende/chocolatier",
+        note: "Lente CoEx en campus",
+      },
     ],
-    relatedCampus: ["/aprende/cacaotier", "/campus/arquitecto-fermentacion", "/benevolo"],
+    relatedCampus: ["/aprende/chocolatier", "/aprende/cacaotier", "/benevolo"],
   },
   {
     slug: "fear5-ecoyuma",
