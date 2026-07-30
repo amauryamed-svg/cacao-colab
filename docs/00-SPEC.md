@@ -109,6 +109,7 @@ Deja de ser "no un joint venture legal, solo una plataforma compartida de marca"
 | D33 | Ecommerce de beneficios | Adaptadores por marca, inactivos por defecto | No se publica un canje como activo sin acuerdo, credenciales, stock, términos y prueba de fulfillment. |
 | D34 | Montos de MD declarados | Las recompensas viven en `mazorcaRewards`, no se calculan desde el XP | 40 MD por módulo de microlearning, 30 por misión, 120 por curso, 5 por cuidado (tope 50/día) y 60 por cosecha fermentada. |
 | D35 | Microlearning registrado | Completar un módulo escribe `campus_progress` (`microlearning-caua`) y acredita MD | Sin sesión el módulo funciona igual, pero la pantalla final avisa que el avance es local y no acredita puntos. |
+| D36 | Progreso visible con su origen | `/aprende` y `/cuenta` muestran el progreso de la cuenta cuando hay sesión y declaran cuándo es solo local | Ninguna superficie muestra ceros como si el learner no hubiera avanzado: si la base no responde, cae al progreso local y lo dice. |
 
 ---
 
