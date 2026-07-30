@@ -28,6 +28,18 @@ export default function Navbar() {
             Beneficios
           </Link>
           <Link
+            href="/conocimiento"
+            className="hidden md:inline text-xs font-bold text-colab-cream/70 hover:text-colab-yellow font-sans tracking-wide transition-colors"
+          >
+            Conocimiento
+          </Link>
+          <Link
+            href="/benevolo"
+            className="hidden lg:inline text-xs font-bold text-colab-cream/70 hover:text-colab-yellow font-sans tracking-wide transition-colors"
+          >
+            Benevolo
+          </Link>
+          <Link
             href="/aprende"
             className="hidden sm:inline text-xs font-bold text-colab-cream/70 hover:text-colab-yellow font-sans tracking-wide transition-colors"
           >
