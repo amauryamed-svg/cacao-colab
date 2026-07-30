@@ -148,8 +148,18 @@ export default function MasterChocolatierPage() {
               Abrir página Benevolo →
             </Link>
             <Link href="/conocimiento/cacao-of-excellence" className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold">
-              Criterios COEX
+              Criterios CoEx
             </Link>
+            <TrackedLink
+              href="https://www.cacaoofexcellence.org/"
+              event="knowledge_link_clicked"
+              targetName="cacao-of-excellence"
+              source="master-chocolatier-capstone"
+              external
+              className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold"
+            >
+              cacaoofexcellence.org →
+            </TrackedLink>
           </div>
         </section>
 

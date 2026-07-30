@@ -20,11 +20,11 @@ Traducir conocimiento especializado (biotecnología de fermentación, regulació
 - **Orgánico ≠ libre de deforestación.**
 - **Denominación de origen araucana** se presenta como proceso territorial en curso, no como DO ya registrada.
 - **Swisscontact / FAO / UE** aparecen como actores del ecosistema público, no como contratos firmados del Colab salvo evidencia explícita.
-- **Cacao of Excellence** y el trabajo de Sebastián Escobar se enlazan como referencia de calidad/investigación.
+- **Cacao of Excellence** (oficial: [cacaoofexcellence.org](https://www.cacaoofexcellence.org/)) y el trabajo de Sebastián Escobar se enlazan como referencia de calidad/investigación (Awards, Training & Lab, Research).
 - **Ecoyuma** es catálogo externo: stock y precio viven en `tienda.ecoyuma.com.co`.
 - En Ecoyuma los códigos son **TCS-19** y **TCS-06**; en campo a veces se dicen TSS.
 - **Benevolo** es preventa: no se simula checkout ni stock.
-- **COEX lens**: usamos criterios de Cacao of Excellence (ciego, tipicidad, cero defectos negociables); no atribuimos medalla COEX a la SKU.
+- **CoEx lens**: usamos criterios de Cacao of Excellence (ciego, tipicidad, cero defectos negociables); no atribuimos medalla CoEx a la SKU ni afiliación institucional.
 - **Quara Cacao** (Tame · Arauca) es el nodo FEAR 5 del Colab para Benevolo.
 
 ## 4. Eventos analytics
