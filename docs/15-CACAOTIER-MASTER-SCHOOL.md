@@ -50,7 +50,38 @@ El learner puede comparar tres diseños de fermentación, leer curvas de tempera
 
 Total: **700 XP**.
 
-## 3. Base científica y límites
+## 3. Segundo curso: Master Chocolatier · bean-to-bar COEX
+
+Ruta web: `/aprende/chocolatier`.
+
+### Resultado de aprendizaje
+
+El learner formula chocolate bean-to-bar con rigor defendible ante un panel estilo Cacao of Excellence: lee el grano, diseña tostión, produce licor limpio, cata a ciegas, formula duja de marañón y entrega **Chocolate Benevolo** como capstone de mercado (preventa).
+
+### Seis misiones
+
+| # | Misión | Competencia | XP |
+|---|---|---|---:|
+| 01 | Leer el grano FEAR 5 | Materia prima + trazabilidad | 90 |
+| 02 | Diseñar la tostión | Tostión + precursores | 110 |
+| 03 | Licor, refino y textura | Proceso bean-to-bar | 120 |
+| 04 | Panel a la altura COEX | Sensorial + vocabulario | 100 |
+| 05 | Formulación duja de marañón | Gianduja + innovación | 140 |
+| 06 | Capstone · Chocolate Benevolo | Producto + mercado | 160 |
+
+Total: **720 XP**.
+
+### Output: Chocolate Benevolo
+
+- FEAR 5 del nodo **Quara Cacao** (Tame · Arauca)
+- Alianza de transformación **Zurych**
+- Duja de marañón local, leche en polvo orgánica, alulosa y stevia
+- Formato Bars. 80 g · preventa en `/benevolo`
+- Lente COEX (criterios), no medalla atribuida a la SKU
+
+Código: `apps/web/lib/chocolatier-course.ts`, `apps/web/app/aprende/chocolatier/page.tsx`.
+
+## 4. Base científica y límites
 
 ### Fuente principal
 
@@ -110,7 +141,7 @@ Incluyó 180 fincas de Arauca y mezclas de materiales, no FEAR 5 puro. El compro
 
 La concentración de ácido tiene una inconsistencia entre el texto metodológico y la tabla del artículo. La app no prescribe esa dosificación.
 
-## 4. Tres líneas de aprendizaje
+## 5. Tres líneas de aprendizaje
 
 ### A. Biorreactor isotérmico a 45 °C
 
@@ -132,15 +163,17 @@ Es una **hipótesis de transferencia tecnológica**. Propone permitir la sucesi�
 
 Es la referencia de finca. La masa, la geometría, el ambiente y los volteos cambian la curva. Debe medirse en centro, periferia y, si aplica, diferentes alturas.
 
-## 5. Arquitectura implementada
+## 6. Arquitectura implementada
 
 ### Web
 
 - `apps/web/app/page.tsx`: nueva narrativa del ecosistema.
 - `apps/web/app/aprende/page.tsx`: campus Master Cacaotier/Master Chocolatier.
 - `apps/web/app/aprende/cacaotier/page.tsx`: curso y laboratorio.
+- `apps/web/app/aprende/chocolatier/page.tsx`: bean-to-bar COEX y capstone Benevolo.
 - `apps/web/components/cacaotier/FermentationLab.tsx`: simulador cliente, curvas SVG y línea temporal.
 - `apps/web/lib/cacaotier-course.ts`: contenido tipado, métodos, datos didácticos, misiones y fuentes.
+- `apps/web/lib/chocolatier-course.ts`: misiones, formulación Benevolo y principios COEX.
 - `apps/web/proxy.ts`: convención de Next.js 16 para refresco de Supabase Auth.
 
 ### Mobile
@@ -153,7 +186,7 @@ El scaffold Expo presenta la misma arquitectura conceptual:
 
 No duplica todavía toda la simulación web. La siguiente extracción debe mover `cacaotier-course.ts` a un package compartido, separando datos puros de URLs web.
 
-## 6. Ejecución plug-and-play
+## 7. Ejecución plug-and-play
 
 Requisitos: Node 20.9+ y pnpm 11.
 
@@ -179,7 +212,7 @@ Mobile:
 pnpm dev:mobile
 ```
 
-## 7. Variables externas
+## 8. Variables externas
 
 La experiencia pública y el curso funcionan sin credenciales. Para funciones conectadas:
 
@@ -193,7 +226,7 @@ La experiencia pública y el curso funcionan sin credenciales. Para funciones co
 
 Nunca exponer claves de servicio en Expo ni en variables `NEXT_PUBLIC_*`.
 
-## 8. Camino a App Store
+## 9. Camino a App Store
 
 1. Extraer contenido compartido a `packages/course-content`.
 2. Persistir progreso, XP y rachas en Supabase con cola offline.
@@ -203,7 +236,7 @@ Nunca exponer claves de servicio en Expo ni en variables `NEXT_PUBLIC_*`.
 6. Implementar compras según reglas de Apple/Google; no asumir que Stripe web puede vender contenido digital dentro de la app.
 7. Configurar EAS Build, identificadores, privacidad, borrado de cuenta y revisión de store.
 
-## 9. Próximos contratos funcionales
+## 10. Próximos contratos funcionales
 
 - `Course`, `Mission`, `Observation`, `Batch`, `CurveSample`, `AssessmentAttempt`.
 - `Observation`: hora, temperatura centro/periferia, pH interno, olor, corte, operador y timestamp.
@@ -212,7 +245,7 @@ Nunca exponer claves de servicio en Expo ni en variables `NEXT_PUBLIC_*`.
 - certificado solo tras evaluación y proyecto, no por XP;
 - catálogo marketplace con claims verificables y trazabilidad visible.
 
-## 10. Criterio editorial
+## 11. Criterio editorial
 
 Todo valor mostrado debe marcarse como:
 
@@ -223,7 +256,7 @@ Todo valor mostrado debe marcarse como:
 
 Esta taxonomía evita convertir una visualización pedagógica en una recomendación agronómica universal.
 
-## 11. Cacao Gotchi alpha
+## 12. Cacao Gotchi alpha
 
 Ruta web: `/juega`.
 
@@ -238,7 +271,7 @@ La primera alpha implementa:
 
 La simulación no representa un modelo agronómico calibrado. La siguiente fase debe conectar observaciones reales, clima, fotos, bitácoras y badges verificables. El XP reconoce participación; no certifica calidad por sí solo.
 
-## 12. Sincronía pedagógica
+## 13. Sincronía pedagógica
 
 | Capa | Propósito | Participación visible |
 |---|---|---|
@@ -249,7 +282,7 @@ La simulación no representa un modelo agronómico calibrado. La siguiente fase 
 
 Una pauta o patrocinio debe identificarse como tal. Financiar contenido no compra una conclusión científica, una credencial ni un claim de salud.
 
-## 13. Campus registrado
+## 14. Campus registrado
 
 Rutas:
 
@@ -275,7 +308,7 @@ Configuración externa obligatoria:
 
 Sin estos pasos, el código compila pero OAuth o el guardado remoto responderán con un error explícito.
 
-## 14. Arquitecto de Fermentación
+## 15. Arquitecto de Fermentación
 
 La campaña completa contiene 18 tarjetas, seis retos y 700 XP:
 
@@ -288,7 +321,7 @@ La campaña completa contiene 18 tarjetas, seis retos y 700 XP:
 
 Dualita mantiene tres corazones por reto, ofrece feedback y desbloquea las misiones secuencialmente. El avance se guarda en `campus_progress`; `localStorage` conserva una copia resiliente.
 
-## 15. Crecimiento horario y fermentación Gotchi
+## 16. Crecimiento horario y fermentación Gotchi
 
 Cacao Gotchi v2 registra edad en horas, altura, hojas, flores, mazorcas, humedad, nutrición, pH de suelo, sombra, salud y conocimiento. El modelo:
 

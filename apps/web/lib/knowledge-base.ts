@@ -247,49 +247,70 @@ export const knowledgeTopics: KnowledgeTopic[] = [
   },
   {
     slug: "benevolo-traduccion",
-    title: "Benevolo · del paper a la mesa",
-    eyebrow: "Salida práctica de cacaotier",
+    title: "Chocolate Benevolo · output Master Chocolatier",
+    eyebrow: "Bean-to-bar · lente COEX · Aceleración Colab",
     summary:
-      "Benevolo Cacao es la barra de leche con marañón y cacao FEAR 5 fermentado de forma controlada: la traducción comestible de diez años de ruta y del conocimiento de bioproceso.",
+      "Chocolate Benevolo Bars. es el capstone de Master Chocolatier: duja de marañón sobre FEAR 5 del nodo Quara (Arauca), alianza Zurych, preventa aspiracional.",
     evidence: "cacaotier_product",
     body: [
-      "El Colab no termina en un PDF. Benevolo demuestra que un clon, un protocolo de fermentación y una tendencia de mercado (leche + marañón + Fine-Flavor) pueden encontrarse en un producto que la gente compra.",
-      "Es la punta de lanza para marcas colaboradoras: si una marca entra a la ruta cacaotier, puede subir calidad, innovación y narrativa sin perder identidad.",
-      "La preventa / pre-order es el mecanismo honesto mientras se cierra producción. No se simula un checkout inventado: se captura interés real y se informa alcance.",
+      "Benevolo no lleva tilde: se lee igual en español y en italiano. Chocolate Benevolo le pone las tildes a la e — acentúa la marca con un producto que se desea preordenar.",
+      "Es el output del módulo Master Chocolatier: formulaciones bean-to-bar a la altura de Cacao of Excellence (panel ciego, tipicidad, cero defectos negociables).",
+      "Cacao FEAR 5 del nodo Quara Cacao en Tame (Arauca), el nodo del Colab ligado a ese material genético y a su estudio de fermentación. Zurych aporta cultura de transformación.",
+      "Fórmula: duja de marañón local (gianduja reinterpretada), leche en polvo orgánica, alulosa y stevia. Neto 80 g. Preventa honesta mientras se cierra el primer lote.",
     ],
     links: [
-      { label: "Abrir Benevolo", href: "/benevolo", note: "Producto + pre-order" },
-      { label: "Campus fermentación", href: "/aprende/cacaotier" },
+      { label: "Preordenar Chocolate Benevolo", href: "/benevolo", note: "Aspiracional máximo" },
+      { label: "Master Chocolatier", href: "/aprende/chocolatier", note: "Curso bean-to-bar" },
+      { label: "Zurych", href: "https://chocolatezurych.com", note: "Aliado de transformación" },
+      { label: "Cacao of Excellence", href: "/conocimiento/cacao-of-excellence" },
     ],
-    relatedCampus: ["/benevolo", "/marketplace"],
+    relatedCampus: ["/benevolo", "/aprende/chocolatier", "/marketplace"],
   },
 ]
 
 export const benevoloProduct = {
-  brand: "Benevolo Cacao",
-  owner: "cacaotier",
-  tagline: "Leche, marañón y FEAR 5 fermentado con criterio.",
+  brand: "Chocolate Benevolo",
+  wordmark: "Benevolo",
+  owner: "master-chocolatier",
+  domain: "ChocolateBenevolo.co",
+  format: "Chocolatina de leche con frutos secos · Neto 80 g",
+  tagline: "Duja de marañón. FEAR 5 de Quara. Se lee igual en español y en italiano.",
+  accentLine: "Benevolo sin tilde. Chocolate Benevolo le pone las tildes a la e.",
   description:
-    "Barra de chocolate con leche, marañón y cacao FEAR 5 fermentado de forma controlada. Es la salida práctica de cacaotier: convierte papers, curvas de pH y diez años de ruta en un alimento que la gente puede preordenar.",
-  claims: [
-    { label: "Genética", value: "FEAR 5 · Trinitario comercial" },
-    { label: "Proceso", value: "Fermentación controlada documentada" },
-    { label: "Fórmula", value: "Leche + marañón + cacao Fine-Flavor" },
-    { label: "Intención", value: "Traducir biotech a cocina cotidiana" },
+    "Capstone de Master Chocolatier: chocolatina de leche con duja de marañón inspirada en la gianduja, cacao FEAR 5 del nodo Quara (Tame · Arauca) fermentado con criterio, leche en polvo orgánica, alulosa y stevia. Formulación bean-to-bar defendible a la altura de un panel COEX y deseable en preventa.",
+  alliances: [
+    { name: "Zurych", role: "Cultura bean-to-bar y transformación", place: "Landázuri · Santander", href: "https://chocolatezurych.com" },
+    { name: "Quara Cacao", role: "Nodo FEAR 5 · origen Arauca", place: "Tame · Arauca", href: "/marketplace" },
+    { name: "Master Chocolatier", role: "Formulación · output de aceleración", place: "Campus cacaotier", href: "/aprende/chocolatier" },
   ],
+  formula: [
+    { label: "Cacao", value: "FEAR 5 · Quara / Arauca · fermentación controlada" },
+    { label: "Duja", value: "Marañón local · inspiración gianduja" },
+    { label: "Leche", value: "Leche en polvo orgánica" },
+    { label: "Dulzor", value: "Alulosa + stevia" },
+  ],
+  claims: [
+    { label: "Genética", value: "FEAR 5 · Quara · Arauca" },
+    { label: "Alianza", value: "Zurych × Quara Cacao" },
+    { label: "Formato", value: "Bars. · 80 g" },
+    { label: "Salida", value: "Master Chocolatier · COEX lens" },
+  ],
+  heroImage: "/benevolo/bars-fear5.png",
   status: "preorder" as const,
   whatIsReady: [
-    "Narrativa y ficha de producto",
-    "Vínculo con el campus de fermentación",
-    "Canal de preventa por WhatsApp / cuenta",
+    "Identidad Chocolate Benevolo y empaque aspiracional",
+    "Módulo Master Chocolatier con capstone Benevolo",
+    "Alianza Zurych × Quara (nodo FEAR 5)",
+    "Fórmula: FEAR 5, duja de marañón, leche orgánica, alulosa, stevia",
+    "Canal de preorden / preventa",
   ],
   whatIsNotReady: [
-    "Checkout automático con stock confirmado",
-    "Claim de DO o premio COEX sobre esta barra",
-    "Certificación orgánica automática del SKU",
+    "Checkout automático con inventario confirmado",
+    "Medalla COEX atribuida a esta SKU (usamos el lente, no el premio)",
+    "Certificación orgánica del producto terminado completa",
   ],
   preorderWhatsapp:
-    "https://wa.me/573102227848?text=Hola%20Benevolo%20Cacao%2C%20quiero%20preordenar%20la%20barra%20de%20leche%20con%20mara%C3%B1%C3%B3n%20y%20FEAR%205.",
+    "https://wa.me/573102227848?text=Hola%20Chocolate%20Benevolo%2C%20quiero%20preordenar%20Bars.%20FEAR%205%20Quara%20con%20duja%20de%20mara%C3%B1%C3%B3n%20(80g).",
 }
 
 export const ecosystemSpearhead = {
@@ -299,7 +320,7 @@ export const ecosystemSpearhead = {
     { n: "01", title: "Sembrar con criterio", href: "/conocimiento/fear5-ecoyuma", cta: "FEAR 5 · Ecoyuma" },
     { n: "02", title: "Fermentar con evidencia", href: "/aprende/cacaotier", cta: "Campus cacaotier" },
     { n: "03", title: "Cumplir el mercado", href: "/conocimiento/eudr-deforestacion", cta: "EUDR y orgánico" },
-    { n: "04", title: "Llevarlo a la mesa", href: "/benevolo", cta: "Preordenar Benevolo" },
+    { n: "04", title: "Formular a la mesa", href: "/aprende/chocolatier", cta: "Master Chocolatier · Benevolo" },
   ],
 }
 
