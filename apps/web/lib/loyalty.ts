@@ -18,6 +18,9 @@ export const mazorcaRewards = {
   gotchiCareDailyCap: 50,
 } as const
 
+// Espejo de supabase/migrations/20260730170013_benefit_catalog_seed.sql: solo
+// se usa cuando la base de fidelidad no está migrada. Editar ambos o el
+// catálogo mostrará algo distinto a lo que existe en Postgres.
 export const plannedBenefits = [
   {
     brandKey: "cacaotier", brand: "cacaotier", title: "Reto avanzado de Arquitecto",

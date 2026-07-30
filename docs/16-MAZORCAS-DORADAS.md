@@ -41,6 +41,17 @@ El ledger `mazorca_ledger` es append-only. Cada evento usa una clave idempotente
 
 Al terminar un módulo, `completeMicroLesson()` guarda `campus_progress` con `course_slug = microlearning-caua` y acredita MD. Sin sesión el módulo sigue funcionando: el avance queda solo en `localStorage` y la pantalla final lo dice explícitamente en vez de prometer puntos.
 
+Dónde se ve ese progreso:
+
+| Superficie | Fuente | Qué declara |
+|---|---|---|
+| `/aprende` (`ProgressStrip`) | `campus_progress` con sesión, `localStorage` sin ella | Dice si el avance vive en la cuenta o solo en el navegador |
+| `/cuenta` | `campus_progress` | Módulos guardados del microlearning |
+| `/cuenta/mazorcas` | `mazorca_wallets` + `mazorca_ledger` | Saldo, rango y movimientos con su motivo |
+| `/equipo` | agregados con `service_role` | MD emitidas, redimidas y canjes pendientes |
+
+La lista de respaldo de beneficios en `apps/web/lib/loyalty.ts` es un espejo de la migración de seed: si se edita una, hay que editar la otra.
+
 ## 4. Rangos
 
 Semilla → Brote → Labrador del cacao → Guardián de origen → Maestro Fine-Flavor → Legado Cacaotier.
