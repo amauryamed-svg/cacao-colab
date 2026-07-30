@@ -18,14 +18,23 @@ export async function completeMicroLesson(slug: string): Promise<MicroLessonResu
   }
   if (!lesson) return { ...base, status: "unavailable" }
 
-  const supabase = await createSupabaseServerClient()
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) return base
+  // Supabase puede no estar configurado (o la sesión puede fallar) sin que eso
+  // rompa la lección: el módulo ya se completó del lado del learner.
+  let supabase: Awaited<ReturnType<typeof createSupabaseServerClient>>
+  let userId: string
+  try {
+    supabase = await createSupabaseServerClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) return base
+    userId = user.id
+  } catch {
+    return { ...base, status: "unavailable" }
+  }
 
   const { data: existing } = await supabase
     .from("campus_progress")
     .select("state")
-    .eq("profile_id", user.id)
+    .eq("profile_id", userId)
     .eq("course_slug", MICRO_COURSE_SLUG)
     .maybeSingle()
 
@@ -45,7 +54,7 @@ export async function completeMicroLesson(slug: string): Promise<MicroLessonResu
 
   const { error } = await supabase.from("campus_progress").upsert(
     {
-      profile_id: user.id,
+      profile_id: userId,
       course_slug: MICRO_COURSE_SLUG,
       state: { completed: completedSlugs, lastSlug: lesson.slug } as Json,
       xp_total: xpTotal,
@@ -59,7 +68,7 @@ export async function completeMicroLesson(slug: string): Promise<MicroLessonResu
   let balance: number | null = null
   try {
     const result = await awardMazorcas({
-      profileId: user.id,
+      profileId: userId,
       amount: mazorcaRewards.microLesson,
       category: "learning",
       reasonCode: "lesson_completed",
@@ -71,7 +80,7 @@ export async function completeMicroLesson(slug: string): Promise<MicroLessonResu
     const { data: wallet } = await supabase
       .from("mazorca_wallets")
       .select("balance")
-      .eq("profile_id", user.id)
+      .eq("profile_id", userId)
       .maybeSingle()
     balance = wallet?.balance ?? null
   } catch {
