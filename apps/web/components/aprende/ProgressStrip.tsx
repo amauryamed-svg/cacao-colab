@@ -1,14 +1,15 @@
 'use client'
 
 import { useColabProgress } from '@/lib/hooks/useColabProgress'
+import type { RegisteredMicroProgress } from '@/lib/microlearning'
 
 /**
- * Superficie el progreso que LessonPlayer.tsx ya guarda en localStorage
- * pero que hoy no se muestra en ningún lado. Sin racha ni leaderboard —
- * eso requeriría sync de servidor, queda para una fase futura.
+ * Muestra el progreso de la cuenta cuando hay sesión, y el de localStorage
+ * cuando el learner navega sin registrarse. Sin racha ni leaderboard todavía.
  */
-export default function ProgressStrip() {
-  const { xp, completedCount, totalLessons } = useColabProgress()
+export default function ProgressStrip({ registered }: { registered?: RegisteredMicroProgress | null }) {
+  const local = useColabProgress()
+  const { xp, completedCount, totalLessons } = registered ?? local
   const pct = Math.round((completedCount / totalLessons) * 100)
 
   return (
@@ -23,6 +24,11 @@ export default function ProgressStrip() {
           style={{ width: `${pct}%`, background: '#F2C830' }}
         />
       </div>
+      <p className="text-[10px] font-sans text-colab-cream/35 mt-2">
+        {registered
+          ? 'Progreso guardado en tu cuenta · disponible en cualquier dispositivo.'
+          : 'Progreso local de este navegador · entra con tu cuenta para conservarlo.'}
+      </p>
     </div>
   )
 }

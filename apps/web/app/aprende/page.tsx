@@ -5,13 +5,16 @@ import MOOCTrack from "@/components/dualita/MOOCTrack"
 import MicroTrack from "@/components/dualita/MicroTrack"
 import ProgressStrip from "@/components/aprende/ProgressStrip"
 import TrackedLink from "@/components/analytics/TrackedLink"
+import { getRegisteredMicroProgress } from "@/lib/microlearning-server"
 
 export const metadata: Metadata = {
   title: "Campus · Master Cacaotier + Master Chocolatier",
   description: "Formación dual gamificada para dominar cacao Fine-Flavor desde el bioproceso hasta el chocolate.",
 }
 
-export default function AprendePage() {
+export default async function AprendePage() {
+  const registered = await getRegisteredMicroProgress()
+
   return (
     <div className="bg-colab-forest min-h-screen">
       <div className="pt-16 pb-12 course-hero">
@@ -34,7 +37,7 @@ export default function AprendePage() {
               ))}
             </div>
           </div>
-          <ProgressStrip />
+          <ProgressStrip registered={registered} />
         </div>
       </div>
 

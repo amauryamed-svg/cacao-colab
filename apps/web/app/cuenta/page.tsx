@@ -3,6 +3,7 @@ import Link from "next/link"
 import { redirect } from "next/navigation"
 import { signOutCampus } from "./actions"
 import { resolveRank } from "@/lib/loyalty"
+import { getRegisteredMicroProgress } from "@/lib/microlearning-server"
 
 export const metadata = { title: "Mi cuenta · Campus cacaotier", robots: { index: false, follow: false } }
 export const dynamic = "force-dynamic"
@@ -27,6 +28,7 @@ export default async function CuentaPage() {
     .eq("profile_id", user.id)
     .maybeSingle()
   const rank = resolveRank(wallet?.lifetime_earned ?? 0)
+  const micro = await getRegisteredMicroProgress()
 
   return (
     <div className="min-h-[80vh] bg-colab-cream px-4 py-16">
@@ -46,7 +48,14 @@ export default async function CuentaPage() {
             { title: "Mazorcas Doradas", body: `${wallet?.balance ?? 0} MD · rango ${rank.name}.`, href: "/cuenta/mazorcas", cta: "Ver wallet y beneficios" },
             { title: "Arquitecto de Fermentación", body: "Seis misiones con Dualita y 700 XP.", href: "/campus/arquitecto-fermentacion", cta: "Continuar curso" },
             { title: "Cacao Gotchi", body: "Tu árbol, nodo y lote FEAR 5.", href: "/juega", cta: "Cuidar árbol" },
-            { title: "Campus Dualita", body: "MOOC, cacao funcional y Masterclasses.", href: "/aprende", cta: "Ver rutas" },
+            {
+              title: "Campus Dualita",
+              body: micro
+                ? `Microlearning CAÚA: ${micro.completedCount}/${micro.totalLessons} módulos guardados.`
+                : "MOOC, cacao funcional y Masterclasses.",
+              href: "/aprende",
+              cta: "Ver rutas",
+            },
           ].map((item) => (
             <Link key={item.title} href={item.href} className="bg-white rounded-2xl border border-colab-forest/10 p-6 hover:-translate-y-1 transition-transform">
               <h2 className="font-serif text-xl font-bold text-colab-forest">{item.title}</h2>
