@@ -404,7 +404,7 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
               {state.phase !== "complete" ? (
                 <button type="button" onClick={advanceFermentation} className="gotchi-ferment mt-6">Registrar siguiente control +24 h →</button>
               ) : (
-                <div className="mt-6 bg-colab-yellow/30 rounded-xl p-4 text-sm font-bold text-colab-forest">✦ Lote cerrado a 120 h. Desbloqueaste la comparación sensorial.</div>
+                <div className="mt-6 bg-colab-yellow/30 rounded-xl p-4 text-sm font-bold text-colab-forest">✦ Lote cerrado a 120 h (ancla sensorial del paper). El óptimo metabolómico Tc-pH propuesto es 72 h.</div>
               )}
             </div>
           )}

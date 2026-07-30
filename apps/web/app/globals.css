@@ -288,6 +288,69 @@ body {
   padding: 1rem;
 }
 
+.precursor-card.window-tone-metabolomic { border-left-color: #F2C830; }
+.precursor-card.window-tone-sensory { border-left-color: #86B66B; background: rgba(134, 182, 107, .08); }
+.precursor-card.window-tone-risk { border-left-color: #DC775F; background: rgba(220, 119, 95, .08); }
+
+.window-strip {
+  display: grid;
+  gap: .5rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.window-strip div {
+  background: rgba(247, 241, 238, .04);
+  border: 1px solid rgba(247, 241, 238, .08);
+  border-radius: .8rem;
+  padding: .85rem;
+}
+
+.window-strip span {
+  color: rgba(247, 241, 238, .35);
+  display: block;
+  font-size: .52rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.window-strip strong {
+  color: #F7F1EE;
+  display: block;
+  font-size: .72rem;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-top: .4rem;
+}
+
+.biomarker-list {
+  display: grid;
+  gap: .55rem;
+}
+
+.biomarker-list li {
+  border-top: 1px solid rgba(247, 241, 238, .08);
+  padding-top: .55rem;
+}
+
+.biomarker-list strong {
+  color: #F2C830;
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .68rem;
+}
+
+.biomarker-list span {
+  color: rgba(247, 241, 238, .48);
+  display: block;
+  font-size: .62rem;
+  line-height: 1.45;
+  margin-top: .2rem;
+}
+
+@media (max-width: 820px) {
+  .window-strip { grid-template-columns: 1fr 1fr; }
+}
+
 .mini-metric {
   background: rgba(247, 241, 238, .04);
   border-radius: .7rem;
