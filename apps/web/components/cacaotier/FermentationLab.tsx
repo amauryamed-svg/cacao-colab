@@ -4,7 +4,9 @@ import { useMemo, useState } from "react"
 import {
   fermentationHours,
   fermentationMethods,
-  precursorStages,
+  inferiorBiomarkers,
+  resolvePrecursorStage,
+  superiorBiomarkers,
   type FermentationMethod,
 } from "@/lib/cacaotier-course"
 
@@ -83,14 +85,16 @@ export default function FermentationLab() {
   const [selected, setSelected] = useState<FermentationMethod["id"]>("precision")
   const [hour, setHour] = useState(72)
   const method = fermentationMethods.find((item) => item.id === selected) ?? fermentationMethods[0]
-  const stage = useMemo(
-    () => [...precursorStages].reverse().find((item) => item.hour <= hour) ?? precursorStages[0],
-    [hour],
-  )
+  const stage = useMemo(() => resolvePrecursorStage(hour), [hour])
   const dataIndex = Math.min(
     method.temperatures.length - 1,
-    fermentationHours.findIndex((value) => value >= hour),
+    Math.max(0, fermentationHours.findIndex((value) => value >= hour)),
   )
+  const windowTone =
+    hour <= 72 && selected === "precision" ? "metabolomic"
+    : hour === 120 && selected !== "wood" ? "sensory"
+    : hour >= 144 ? "risk"
+    : "neutral"
 
   return (
     <section className="lab-shell" aria-labelledby="lab-title">
@@ -98,12 +102,12 @@ export default function FermentationLab() {
         <div>
           <p className="eyebrow">Simulador de lote · FEAR 5</p>
           <h2 id="lab-title" className="display-title text-colab-cream mt-3">
-            Tres caminos.<br /><em>Una decisión trazable.</em>
+            Tres caminos.<br /><em>Tres relojes distintos.</em>
           </h2>
         </div>
         <p className="max-w-md text-sm leading-relaxed text-colab-cream/55">
-          Curvas didácticas para comparar estrategias. Los valores publicados son aproximaciones visuales del artículo;
-          la línea híbrida es una hipótesis de piloto y debe validarse con tu equipo, masa y cosecha.
+          72 h (Tc-pH) es un óptimo metabolómico propuesto. 120 h es el ancla sensorial del chocolate
+          de biorreactor publicado. 96–120 h es la ventana propuesta del cajón. No son el mismo tipo de evidencia.
         </p>
       </div>
 
@@ -123,6 +127,25 @@ export default function FermentationLab() {
             </span>
           </button>
         ))}
+      </div>
+
+      <div className="window-strip mt-5">
+        <div>
+          <span>Óptimo propuesto</span>
+          <strong>{method.windows.proposedOptimum}</strong>
+        </div>
+        <div>
+          <span>Pico metabolómico</span>
+          <strong>{method.windows.metabolomicPeak}</strong>
+        </div>
+        <div>
+          <span>Ancla sensorial</span>
+          <strong>{method.windows.sensoryComparable}</strong>
+        </div>
+        <div>
+          <span>Riesgo inferior</span>
+          <strong>{method.windows.inferiorRisk}</strong>
+        </div>
       </div>
 
       <div className="grid lg:grid-cols-[1.45fr_.75fr] gap-5 mt-5">
@@ -155,11 +178,16 @@ export default function FermentationLab() {
           <div className="flex items-center justify-between gap-3 mb-3">
             <div>
               <p className="eyebrow text-colab-cream/40">Acidificación interna</p>
-              <h3 className="text-lg font-bold text-colab-cream mt-1">Descenso gradual del pH</h3>
+              <h3 className="text-lg font-bold text-colab-cream mt-1">Velocidad del pH, no solo el valor</h3>
             </div>
             <span className="data-pill">pH</span>
           </div>
           <CurveChart metric="ph" selected={selected} />
+          <p className="text-xs leading-relaxed text-colab-cream/40 mt-4">
+            En todos los biorreactores el pH interno bajó de ~6,3 a ~4,3. Lo que cambió el sabor fue la
+            velocidad: caída rápida (~4,6 en 48–72 h) → amargor/astringencia; descenso más gradual hacia 72–96 h →
+            atributos superiores.
+          </p>
         </div>
 
         <div className="lab-panel flex flex-col">
@@ -174,26 +202,59 @@ export default function FermentationLab() {
             className="time-slider mt-7"
             type="range"
             min="0"
-            max="120"
+            max="192"
             step="24"
             value={hour}
             onChange={(event) => setHour(Number(event.target.value))}
             aria-label="Hora de fermentación"
           />
           <div className="flex justify-between text-[10px] text-colab-cream/35 mt-2">
-            <span>0 h</span><span>24</span><span>48</span><span>72</span><span>96</span><span>120 h</span>
+            <span>0</span><span>48</span><span>72</span><span>96</span><span>120</span><span>144</span><span>192 h</span>
           </div>
-          <div className="precursor-card mt-6">
+          <div className={`precursor-card mt-6 window-tone-${windowTone}`}>
             <p className="text-xs uppercase tracking-[.18em] text-colab-yellow">Se acumula / transforma</p>
             <p className="text-sm leading-relaxed text-colab-cream mt-2">{stage.compounds}</p>
           </div>
           <p className="text-sm leading-relaxed text-colab-cream/60 mt-4">
             <strong className="text-colab-cream">Misión:</strong> {stage.action}
           </p>
+          <p className="text-sm leading-relaxed text-colab-cream/50 mt-3">
+            <strong className="text-colab-yellow">{method.shortName}:</strong> {stage.byMethod[selected]}
+          </p>
           <div className="grid grid-cols-2 gap-3 mt-auto pt-6">
             <div className="mini-metric"><span>Temperatura guía</span><strong>{method.temperatures[dataIndex]} °C</strong></div>
             <div className="mini-metric"><span>pH guía</span><strong>{method.ph[dataIndex]?.toFixed(2)}</strong></div>
           </div>
+        </div>
+      </div>
+
+      <div className="grid lg:grid-cols-2 gap-5 mt-5">
+        <div className="lab-panel">
+          <p className="eyebrow text-colab-yellow">Biomarcadores · calidad superior</p>
+          <h3 className="text-lg font-bold text-colab-cream mt-2">Más abundantes en Tc-pH (45 °C, pH espontáneo)</h3>
+          <ul className="biomarker-list mt-4">
+            {superiorBiomarkers.map((marker) => (
+              <li key={marker.id}>
+                <strong>{marker.id}</strong>
+                <span>{marker.note}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="lab-panel">
+          <p className="eyebrow text-colab-cream/45">Biomarcadores · calidad inferior</p>
+          <h3 className="text-lg font-bold text-colab-cream mt-2">Amargor, astringencia y sabores extraños</h3>
+          <ul className="biomarker-list mt-4">
+            {inferiorBiomarkers.map((marker) => (
+              <li key={marker.id}>
+                <strong>{marker.id}</strong>
+                <span>{marker.note}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="text-xs leading-relaxed text-colab-cream/40 mt-4">
+            Intensidad alta en cajón a 144–168 h y en tratamientos con acidificación inicial (Tc/Tg-pH_C).
+          </p>
         </div>
       </div>
 

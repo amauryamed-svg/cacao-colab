@@ -54,7 +54,7 @@ export default function Home() {
           <div className="flex-shrink-0 relative">
             <div className="absolute inset-0 bg-colab-yellow/20 blur-3xl rounded-full" />
             <div className="relative border border-white/10 bg-white/[.04] rounded-[2rem] p-8">
-              <p className="eyebrow text-colab-yellow mb-5">Lote vivo · 72 h</p>
+              <p className="eyebrow text-colab-yellow mb-5">Lote vivo · 72 h metabolómicas</p>
               <div className="flex items-end gap-5">
                 <div><strong className="font-serif text-6xl text-colab-cream">45°</strong><small className="block text-colab-cream/35 mt-1">temperatura</small></div>
                 <div><strong className="font-serif text-4xl text-colab-yellow">4.5</strong><small className="block text-colab-cream/35 mt-1">pH interno</small></div>
@@ -64,7 +64,7 @@ export default function Home() {
                   <span key={index} className="flex-1 bg-colab-yellow/70 rounded-t" style={{ height }} />
                 ))}
               </div>
-              <p className="text-xs text-colab-cream/45 mt-4">FEAR 5 · protocolo de precisión</p>
+              <p className="text-xs text-colab-cream/45 mt-4">FEAR 5 · Tc-pH · chocolate del paper a 120 h</p>
             </div>
           </div>
         </div>

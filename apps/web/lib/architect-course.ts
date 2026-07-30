@@ -52,9 +52,9 @@ export const architectMissions: ArchitectMission[] = [
     dualitaIntro: "Hoy no buscamos un ganador universal. Buscamos entender qué variable mueve cada resultado.",
     dualitaSuccess: "¡Diseño listo! Ya separas evidencia publicada, referencia de finca e hipótesis de transferencia.",
     steps: [
-      { kicker: "Precisión", title: "Biorreactor isotérmico a 45 °C.", body: "El tratamiento publicado con mejor valoración fue 45 °C constante, pH espontáneo y sin ácido añadido. Trabajó con 4,5 kg y cerró a 120 h para chocolate.", fieldAction: "Marca esta ruta como publicada y conserva sus límites de escala." },
+      { kicker: "Precisión", title: "Biorreactor isotérmico a 45 °C.", body: "El tratamiento publicado con mejor valoración fue 45 °C constante, pH espontáneo y sin ácido añadido (Tc-pH). Trabajó con 4,5 kg. Óptimo metabolómico propuesto: 72 h. Chocolate y redes sensoriales: 120 h.", fieldAction: "Marca esta ruta como publicada y conserva sus límites de escala." },
       { kicker: "Puente", title: "Tanque adaptado desde el día 2.", body: "La línea de cantina o tanque cervecero es un piloto propuesto: ascenso natural inicial y aproximación gradual a 45 °C desde 48 h. No fue evaluada en el paper.", fieldAction: "Valida drenaje, limpieza, cizalla y uniformidad térmica." },
-      { kicker: "Finca", title: "Cajón de madera como referencia.", body: "En el control publicado de 60 kg la temperatura permaneció bajo 35 °C las primeras 48 h y llegó cerca de 45 °C hacia 96 h.", fieldAction: "Mide centro, periferia y altura; no uses un único sensor." },
+      { kicker: "Finca", title: "Cajón de madera como referencia.", body: "En el control publicado de 60 kg la temperatura permaneció bajo 35 °C las primeras 48 h y llegó cerca de 45 °C hacia 96 h. Óptimo propuesto: 96–120 h.", fieldAction: "Mide centro, periferia y altura; no uses un único sensor." },
     ],
     quiz: {
       question: "¿Cuál ruta es una hipótesis de transferencia y no un tratamiento del artículo?",
@@ -75,7 +75,7 @@ export const architectMissions: ArchitectMission[] = [
     dualitaSuccess: "¡Curvas dominadas! Ya sabes cuándo observar, cuándo comparar y cuándo no intervenir.",
     steps: [
       { kicker: "Temperatura", title: "Lee transferencia, no solo setpoint.", body: "La chaqueta puede marcar 45 °C mientras el centro y la pared difieren. Registra al menos dos posiciones y la temperatura ambiente con hora exacta.", fieldAction: "Grafica centro, periferia y setpoint en la misma escala." },
-      { kicker: "pH interno", title: "La velocidad de caída importa.", body: "El estudio asoció una acidificación rápida, cerca de pH 4,6 en 48–72 h, con mayor amargor y astringencia. El mejor perfil mostró un descenso más gradual.", fieldAction: "Muestrea de forma consistente sin contaminar el lote." },
+      { kicker: "pH interno", title: "La velocidad de caída importa.", body: "En todos los biorreactores el pH interno bajó de ~6,3 a ~4,3. Una acidificación rápida (~pH 4,6 en 48–72 h) se asoció con amargor y astringencia; reducciones más lentas hacia 72–96 h produjeron perfiles superiores.", fieldAction: "Muestrea de forma consistente sin contaminar el lote." },
       { kicker: "Control", title: "Medir no significa dosificar.", body: "El llamado pH controlado fue acidificación inicial, no realimentación continua. La concentración reportada es inconsistente; este curso no prescribe ácido.", fieldAction: "Define límites de observación y escalamiento, no una corrección automática." },
     ],
     quiz: {
@@ -94,17 +94,32 @@ export const architectMissions: ArchitectMission[] = [
     skill: "Metabolitos + sabor",
     xp: 110,
     dualitaIntro: "Los aromas no están terminados en el grano húmedo. Vamos a seguir las piezas que el tostado transformará.",
-    dualitaSuccess: "Ya conectas fermentación con Maillard sin prometer que un marcador aislado produce el mejor chocolate.",
+    dualitaSuccess: "Ya conectas fermentación con Maillard sin confundir un pico metabolómico con un panel sensorial.",
     steps: [
-      { kicker: "Sustratos", title: "Azúcares y proteínas cambian.", body: "Sacarosa, glucosa, fructosa y proteínas de reserva se transforman. Proteólisis y difusión generan péptidos y aminoácidos que después participan en reacciones de Maillard.", fieldAction: "Conserva muestras por hora bajo un código trazable." },
-      { kicker: "Ventana 72 h", title: "Candidato metabolómico, no veredicto sensorial.", body: "En 45 °C/pH espontáneo se propuso 72 h por biomarcadores. Sin embargo, el chocolate de biorreactor se elaboró a 120 h.", fieldAction: "No declares superioridad sensorial de 72 h sin elaborar y evaluar ese corte." },
-      { kicker: "Perfil conjunto", title: "Más de un compuesto no siempre es mejor.", body: "El tratamiento favorable mostró mayores grupos frutales y de nuez, pero no maximizó todos los volátiles. El aroma emerge de relaciones, umbrales y procesamiento posterior.", fieldAction: "Relaciona química con corte, tostión y panel sensorial." },
+      {
+        kicker: "Proteólisis",
+        title: "De vicilina a péptidos discriminantes.",
+        body: "En Tc-pH abundaron derivados de vicilina como FASKDQPLNA y FASKDQPL (aa 476–), además de LAIN, IFVPHYNSKAT, GINDYRL, ESYF y FGVPSKL. Se correlacionaron positivamente con aroma superior y negativamente con acidez, astringencia y amargor.",
+        fieldAction: "Si no tienes metabolómica, conserva muestra por hora y documenta olor, pH y corte.",
+      },
+      {
+        kicker: "Ventana 72 h",
+        title: "Óptimo metabolómico propuesto, no veredicto de taza.",
+        body: "En 45 °C/pH espontáneo los marcadores superiores peakan entre 72–120 h y el paper propone 72 h como óptimo. El chocolate de biorreactor, sin embargo, se elaboró y evaluó a 120 h; las redes péptido–volátil (Fig. 6) son de ese punto.",
+        fieldAction: "No declares superioridad sensorial de 72 h sin elaborar y evaluar ese corte con el mismo secado/tostión.",
+      },
+      {
+        kicker: "Redes a 120 h",
+        title: "Péptido ↔ volátil ↔ atributo.",
+        body: "FASKDQPLNA correlacionó con acetato de etilo (piña), heptan-2-ol (cítrico) y notas especiadas/vegetales. FGVPSKL con linalol, furfural, 2-acetilpirrol y 2-fenilacetaldehído. Un marcador aislado no «hace» el sabor: define una hipótesis.",
+        fieldAction: "Relaciona química con corte, tostión y panel; no con un único m/z.",
+      },
     ],
     quiz: {
-      question: "¿Qué demuestra la ventana candidata de 72 h?",
+      question: "¿Qué demuestra la ventana candidata de 72 h en Tc-pH?",
       options: [
-        { id: "a", text: "Que el chocolate a 72 h fue el mejor del panel", correct: false, explanation: "Ese chocolate no fue evaluado sensorialmente en el estudio." },
-        { id: "b", text: "Que ciertos biomarcadores alcanzaron una ventana de interés", correct: true, explanation: "Correcto: es una inferencia metabolómica." },
+        { id: "a", text: "Que el chocolate a 72 h fue el mejor del panel", correct: false, explanation: "Ese chocolate no fue evaluado sensorialmente; el panel usó 120 h." },
+        { id: "b", text: "Que ciertos biomarcadores de calidad superior alcanzaron una ventana de interés", correct: true, explanation: "Correcto: es una inferencia metabolómica temporal, no un veredicto de taza." },
         { id: "c", text: "Que todo FEAR 5 debe detenerse a 72 h", correct: false, explanation: "Una finca y una cosecha no definen un óptimo universal." },
       ],
     },
@@ -118,16 +133,31 @@ export const architectMissions: ArchitectMission[] = [
     dualitaIntro: "Detener también es una decisión de proceso. Hoy vas a construir un criterio, no a obedecer un reloj.",
     dualitaSuccess: "¡Buen corte! Usaste múltiples señales y mantuviste una muestra comparable.",
     steps: [
-      { kicker: "Ventanas", title: "72, 96 y 120 h responden preguntas distintas.", body: "72 h fue una ventana metabolómica candidata en biorreactor; 96–120 h fue la ventana candidata del cajón; 120 h es el punto sensorial comparable del biorreactor publicado.", fieldAction: "Define qué hipótesis prueba cada corte." },
-      { kicker: "Sobrefermentación", title: "Más tiempo también acumula defectos.", body: "En el cajón aumentaron volátiles asociados a defecto de 120 a 192 h. Después de 144 h el pH volvió hacia 5 y aparecieron señales de sobrefermentación.", fieldAction: "Activa alarma por olor, pH ascendente y duración, sin depender de una sola señal." },
-      { kicker: "Cierre", title: "Secado común o comparación perdida.", body: "Un punto de corte solo se interpreta si secado, almacenamiento, tostión y formulación se mantienen comparables.", fieldAction: "Reserva muestra testigo y registra humedad final." },
+      {
+        kicker: "Tres óptimos",
+        title: "El paper propone tiempos distintos por régimen.",
+        body: "72 h para biorreactor 45 °C/pH espontáneo; 48–72 h cuando hubo pH controlado; 96–120 h para fermentación estándar. 120 h es, además, el ancla sensorial del chocolate de biorreactor publicado.",
+        fieldAction: "Define qué hipótesis prueba cada corte: metabolómica, finca o comparabilidad con el paper.",
+      },
+      {
+        kicker: "Marcadores inferiores",
+        title: "Más tiempo también acumula defectos.",
+        body: "En biorreactor los marcadores de calidad inferior se intensifican entre 96–120 h; en cajón entre 144–192 h (p. ej. m/z 349.2124 / Desconocido 15). Después de 144 h el pH del cajón volvió hacia ~5 y crecieron señales de sobrefermentación.",
+        fieldAction: "Activa alarma por olor, pH ascendente y duración, sin depender de una sola señal.",
+      },
+      {
+        kicker: "Cierre",
+        title: "Secado común o comparación perdida.",
+        body: "Un punto de corte solo se interpreta si secado, almacenamiento, tostión y formulación se mantienen comparables. Primero replica 120 h; luego prueba 72 h como experimento declarado.",
+        fieldAction: "Reserva muestra testigo y registra humedad final.",
+      },
     ],
     quiz: {
       question: "¿Cuál es el punto comparable con la evaluación sensorial del biorreactor publicado?",
       options: [
-        { id: "a", text: "72 h", correct: false, explanation: "Fue una inferencia metabolómica." },
-        { id: "b", text: "96 h", correct: false, explanation: "Es relevante para la ventana del cajón." },
-        { id: "c", text: "120 h", correct: true, explanation: "Exacto: el chocolate de biorreactor se preparó con la muestra de 120 h." },
+        { id: "a", text: "72 h", correct: false, explanation: "Fue el óptimo metabolómico propuesto, no el chocolate evaluado." },
+        { id: "b", text: "96 h", correct: false, explanation: "Es relevante para la ventana del cajón / evidencia regional." },
+        { id: "c", text: "120 h", correct: true, explanation: "Exacto: el chocolate de biorreactor y las redes Fig. 6 se construyeron a 120 h." },
       ],
     },
   },

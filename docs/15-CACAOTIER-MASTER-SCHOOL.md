@@ -59,17 +59,40 @@ Santander, M. et al. (2025). “Influence of driven fermentation of cacao in bio
 - ScienceDirect: https://www.sciencedirect.com/science/article/pii/S0023643825009971
 - DOI: https://doi.org/10.1016/j.lwt.2025.118313
 
-El estudio trabajó con FEAR 5 Trinitario de una finca de Arauquita, un lote homogeneizado, aproximadamente 17 % de remoción de pulpa, biorreactores con 4,5 kg y un control de 60 kg en cajón. Comparó 45 °C constante contra gradiente 35→40→45 °C, dos frecuencias de mezcla y pH espontáneo contra acidificación inicial.
+El estudio trabajó con FEAR 5 Trinitario de una finca de Arauquita, un lote homogeneizado, aproximadamente 17 % de remoción de pulpa, biorreactores con 4,5 kg y un control de 60 kg en cajón. Comparó 45 °C constante (Tc) contra gradiente 35→40→45 °C (Tg), dos frecuencias de mezcla y pH espontáneo (pH) contra acidificación inicial (pH_C).
 
 Hallazgos usados en el curso:
 
-- la temperatura y la acidificación inicial fueron los factores dominantes;
-- la condición 45 °C constante sin ácido añadido fue la mejor valorada entre las ensayadas;
-- el pH interno descendió aproximadamente de 6,3–6,7 a 4,3;
-- una acidificación rápida se asoció con mayor amargor y astringencia;
+- la temperatura y la acidificación inicial fueron los factores dominantes; la mezcla mecánica tuvo efecto limitado;
+- la condición Tc-pH (45 °C constante, pH espontáneo) fue la mejor valorada entre las ensayadas;
+- el pH interno descendió aproximadamente de 6,3–6,7 a 4,3; **la velocidad** de caída importó más que el valor final;
+- una acidificación rápida (~pH 4,6 en 48–72 h) se asoció con mayor amargor y astringencia;
+- reducciones más lentas hacia 72–96 h produjeron chocolates con atributos superiores (frutal, nuez, floral, especiado);
 - el cajón llegó aproximadamente a 45 °C y pH 4,5 hacia 96 h;
-- después de 144 h aumentaron señales asociadas a sobrefermentación;
-- la ventana de 72 h del biorreactor es una inferencia metabolómica: el chocolate de esos tratamientos se evaluó a 120 h.
+- después de 144 h aumentaron señales asociadas a sobrefermentación y biomarcadores de calidad inferior.
+
+### Tiempos: no hay un solo reloj
+
+| Régimen | Óptimo propuesto (paper) | Pico de marcadores superiores | Evidencia sensorial de chocolate |
+|---|---|---|---|
+| Tc-pH (45 °C, pH espontáneo) | **72 h** | 72–120 h | Chocolateado a **120 h** (Fig. 6) |
+| Biorreactor con pH controlado | **48–72 h** | 24–72 h | No usar como receta de dosificación |
+| Cajón estándar (Sg-pH) | **96–120 h** | 72–96 h | Coherente con máximos regionales ~96 h (Llano 2025) |
+
+**Por qué aparece 120 h:** no porque sea el óptimo de precursores en Tc-pH, sino porque ahí se elaboró el chocolate de biorreactor y se correlacionaron péptidos, volátiles y atributos sensoriales. 72 h es una inferencia metabolómica; 120 h es el ancla comparable del panel.
+
+Marcadores de calidad inferior se intensifican entre **96–120 h** en biorreactor y entre **144–192 h** en cajón (p. ej. m/z 349.2124 / Desconocido 15 de Llano et al. 2025).
+
+### Biomarcadores de calidad superior (más abundantes en Tc-pH)
+
+FASKDQPLNA, FASKDQPL, LAIN, ESYF, GINDYRL, IFVPHYNSKAT, FGVPSKL y varios iones m/z asociados. Derivados de vicilina (p. ej. FASKDQPLNAVAF aa 476–488). Correlacionan positivamente con aroma superior y negativamente con acidez, astringencia y amargor.
+
+Redes a 120 h (ejemplos didácticos):
+
+- FASKDQPLNA ↔ acetato de etilo, heptan-2-ol, notas especiadas/vegetales;
+- FGVPSKL ↔ linalol, furfural, 2-acetilpirrol, 2-fenilacetaldehído.
+
+Estos marcadores son candidatos; el paper pide validación futura (p. ej. ensayos Maillard in vitro). La app los enseña como hipótesis trazables, no como setpoints de finca.
 
 ### Fuente regional complementaria
 
@@ -91,7 +114,7 @@ La concentración de ácido tiene una inconsistencia entre el texto metodológic
 
 ### A. Biorreactor isotérmico a 45 °C
 
-Reproduce visualmente la condición publicada más favorable. Es referencia de precisión a pequeña escala, no receta universal. La réplica inicial debe conservar el cierre a 120 h para hacer comparable el chocolate; después se pueden comparar cortes experimentales.
+Reproduce visualmente la condición publicada más favorable (Tc-pH). Es referencia de precisión a pequeña escala, no receta universal. La réplica inicial debe conservar el cierre a **120 h** para hacer comparable el chocolate del paper; después se pueden comparar cortes experimentales a **72 h** (óptimo metabolómico propuesto).
 
 ### B. Cantina de leche o tanque cervecero adaptado
 

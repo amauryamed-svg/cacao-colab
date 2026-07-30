@@ -39,7 +39,8 @@ export default function CacaotierCoursePage() {
               </h1>
               <p className="mt-7 max-w-2xl text-base md:text-lg leading-relaxed text-colab-cream/60">
                 Aprende a pilotar la fermentación como bioproceso: lee temperatura, pH y ventanas de
-                precursores; compara tres líneas y convierte cada decisión de finca en evidencia repetible.
+                precursores. Distingue 72 h (óptimo metabolómico Tc-pH), 96–120 h (cajón) y 120 h
+                (ancla sensorial del chocolate de biorreactor publicado).
               </p>
               <div className="flex flex-wrap gap-3 mt-8">
                 <Link href="/campus/arquitecto-fermentacion" className="bg-colab-yellow text-colab-forest rounded-full px-7 py-3.5 text-sm font-bold">
@@ -104,6 +105,36 @@ export default function CacaotierCoursePage() {
         </section>
 
         <FermentationLab />
+
+        <section className="mt-16 rounded-3xl border border-white/10 bg-[#101d0b] p-7 md:p-10">
+          <p className="eyebrow text-colab-yellow">Lectura del paper · §3.4.3 y conclusiones</p>
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-colab-cream mt-3">
+            Por qué aparecen dos tiempos a la vez.
+          </h2>
+          <div className="grid md:grid-cols-3 gap-5 mt-8">
+            <article>
+              <strong className="text-colab-yellow text-sm">72 h · Tc-pH</strong>
+              <p className="text-sm leading-relaxed text-colab-cream/55 mt-3">
+                Óptimo metabolómico propuesto a 45 °C con pH espontáneo. Ahí peakean péptidos de
+                calidad superior (FASKDQPLNA, FGVPSKL, LAIN…). No hubo panel sensorial de chocolate a 72 h.
+              </p>
+            </article>
+            <article>
+              <strong className="text-colab-yellow text-sm">120 h · ancla sensorial</strong>
+              <p className="text-sm leading-relaxed text-colab-cream/55 mt-3">
+                Punto en el que se elaboró el chocolate de biorreactor y se construyeron las redes
+                péptido–volátil–atributo (Fig. 6). Sirve para replicar el paper, no para confundirlo con el óptimo de precursores.
+              </p>
+            </article>
+            <article>
+              <strong className="text-colab-yellow text-sm">96–120 h · cajón</strong>
+              <p className="text-sm leading-relaxed text-colab-cream/55 mt-3">
+                Óptimo propuesto para fermentación estándar. Más allá de 144 h se intensifican biomarcadores
+                de calidad inferior. Con pH controlado el paper propuso 48–72 h, con el riesgo de amargor si la acidificación fue demasiado rápida.
+              </p>
+            </article>
+          </div>
+        </section>
 
         <section className="grid lg:grid-cols-2 gap-6 mt-24">
           <div className="field-card">
