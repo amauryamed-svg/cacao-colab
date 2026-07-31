@@ -90,6 +90,7 @@ La cookie `colab_onboarded=done` se pone en todos los casos (incluso si HubSpot 
   - día 14 → `emails/seguimiento/14-maestria-repeticion.html`
 - [ ] Crear props custom `colab_md_*`, `colab_rank`, `colab_micro_completed`, `colab_sembrar_*` (sync desde `followup-sync.ts`)
 - [ ] Propiedad personalizada `colab_interes` para filtrar por motivación sin depender de `jobtitle`
+- [ ] Mapear marketing opt-in del onboarding/cuenta a suscripciones HubSpot (ver `23-PRIVACIDAD-Y-OPTIN.md`) — no inventar internal names hasta confirmar el portal
 - [ ] Renombrar `HUBSPOT_TOKEN` → `HUBSPOT_ACCESS_TOKEN` en Vercel (ambos proyectos)
 - [ ] Agregar permiso `crm.objects.deals.read` a la Private App (necesario para el panel de `/equipo`)
 - [ ] Decidir si se da de alta un contacto de HubSpot para Oscar Gamboa (`amadooscarito@gmail.com`) — hoy no existe, ver `14-CRM-INTERNO.md`

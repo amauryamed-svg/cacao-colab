@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import SquirrelSVG from '@/components/brand/SquirrelSVG'
+import AuthConsentFields, { consentIsReady } from '@/components/legal/AuthConsentFields'
+import { hasAnalyticsConsentClient } from '@/lib/cookie-prefs'
 import { getAnalyticsIdentity, trackColabEvent } from '@/lib/analytics'
 
 /* ─── types ─── */
@@ -246,6 +248,9 @@ function PrimaryBtn({
 export default function OnboardingFlow({ onComplete }: { onComplete?: () => void }) {
   const [step, setStep] = useState(0)
   const [submitting, setSubmitting] = useState(false)
+  const [privacyAccepted, setPrivacyAccepted] = useState(false)
+  const [termsAccepted, setTermsAccepted] = useState(false)
+  const [marketingOptIn, setMarketingOptIn] = useState(false)
   const [data, setData] = useState<FormData>({
     tipo: '',
     nombre: '',
@@ -270,7 +275,7 @@ export default function OnboardingFlow({ onComplete }: { onComplete?: () => void
         data.nombre.trim().length > 1,
         data.interes !== '',
         data.ciudad.trim().length > 1,
-        data.email.includes('@'),
+        data.email.includes('@') && consentIsReady(privacyAccepted, termsAccepted),
       ] as boolean[]
     )[step] ?? true
 
@@ -291,10 +296,18 @@ export default function OnboardingFlow({ onComplete }: { onComplete?: () => void
       } catch {
         // sin UTMs
       }
+      const analytics = hasAnalyticsConsentClient() ? getAnalyticsIdentity() : {}
       await fetch('/api/onboarding', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...data, ...utms, ...getAnalyticsIdentity() }),
+        body: JSON.stringify({
+          ...data,
+          ...utms,
+          ...analytics,
+          privacy_accepted: privacyAccepted,
+          terms_accepted: termsAccepted,
+          marketing_opt_in: marketingOptIn,
+        }),
       })
     } catch {
       // HubSpot failure no bloquea
@@ -525,9 +538,17 @@ export default function OnboardingFlow({ onComplete }: { onComplete?: () => void
               optional
             />
           </div>
-          <p className="mt-5 text-xs leading-relaxed" style={{ color: 'rgba(247,241,238,.28)' }}>
-            Tus datos van al equipo Cacao Colab. Solo los usamos para acompañarte en la aceleración.
-          </p>
+          <div className="mt-6">
+            <AuthConsentFields
+              privacyAccepted={privacyAccepted}
+              termsAccepted={termsAccepted}
+              marketingOptIn={marketingOptIn}
+              onPrivacyChange={setPrivacyAccepted}
+              onTermsChange={setTermsAccepted}
+              onMarketingChange={setMarketingOptIn}
+              tone="dark"
+            />
+          </div>
           <div className="flex gap-3 mt-8">
             <BackBtn onClick={back} />
             <button

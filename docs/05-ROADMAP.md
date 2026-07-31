@@ -89,6 +89,7 @@ Esta fase es nueva — es el trabajo hecho en la rama `v2-pivot` para preparar e
 | Jobs nativos (`pg_cron`/`pgmq`) — refresh de `leaderboard_weekly`, digest de CRM | 🟢 Backlog | Oscar | Jobs corriendo en Supabase real |
 | App móvil transaccional (no solo lectura) | 🟢 Backlog | Hellen | Checkout funcionando en Expo Go / build nativo |
 | Publicación en stores (App Store / Play Store) | 🟡 Docs + scaffolding | Amaury (cuentas) · Hellen (UI/assets) · Oscar (EAS) | `docs/21-APP-STORES.md` + `apps/mobile/eas.json`; Expo Go ya usable vía plug-and-play |
+| Políticas legales + opt-in cuenta (UE/EE.UU./CO) | 🟢 En código | Amaury (revisión legal) · Oscar (migración) · Hellen (UI) | `/legal/*`, banner cookies, opt-in `/cuenta/entrar` — `docs/23-PRIVACIDAD-Y-OPTIN.md` |
 
 ---
 

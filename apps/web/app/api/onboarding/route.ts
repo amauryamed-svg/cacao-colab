@@ -36,6 +36,16 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: false, error: "email requerido" }, { status: 400 })
   }
 
+  const privacyOk = body.privacy_accepted === true || body.privacy_accepted === "true"
+  const termsOk = body.terms_accepted === true || body.terms_accepted === "true"
+  if (!privacyOk || !termsOk) {
+    return NextResponse.json(
+      { ok: false, error: "opt-in de privacidad y términos requerido" },
+      { status: 400 },
+    )
+  }
+
+  const marketingOptIn = body.marketing_opt_in === true || body.marketing_opt_in === "true"
   const email = String(body.email).trim().toLowerCase()
   const properties: Record<string, string> = {
     firstname: String(body.nombre ?? ""),
@@ -81,23 +91,42 @@ export async function POST(request: NextRequest) {
       interes: String(body.interes ?? ""),
       utm_source: String(body.utm_source ?? ""),
       hubspot_ok: Boolean(hubspot?.ok),
+      privacy_accepted: true,
+      terms_accepted: true,
+      marketing_opt_in: marketingOptIn,
     }
-    await Promise.all([
-      admin.from("crm_activities").insert({ crm_contact_id: contact.id, type: "onboarding_submitted", metadata }),
-      body.visitorId && body.sessionId
-        ? admin.from("analytics_events").insert({
-            visitor_id: String(body.visitorId).slice(0, 80),
-            session_id: String(body.sessionId).slice(0, 80),
-            event_type: "onboarding_submitted",
-            target: String(body.interes ?? ""),
-            pathname: "/unete",
-            utm_source: body.utm_source ? String(body.utm_source) : null,
-            utm_medium: body.utm_medium ? String(body.utm_medium) : null,
-            utm_campaign: body.utm_campaign ? String(body.utm_campaign) : null,
-            metadata,
-          })
-        : Promise.resolve(),
-    ])
+    await admin.from("crm_activities").insert({
+      crm_contact_id: contact.id,
+      type: "onboarding_submitted",
+      metadata,
+    })
+    try {
+      await admin.from("privacy_consents").insert({
+        email,
+        event: "lead_onboarding_opt_in",
+        policy_version: "2026-07-31",
+        source: "onboarding",
+        metadata: {
+          marketing_opt_in: marketingOptIn,
+          hubspot_ok: Boolean(hubspot?.ok),
+        },
+      })
+    } catch {
+      // Migración privacy_consents puede no estar aplicada aún.
+    }
+    if (body.visitorId && body.sessionId) {
+      await admin.from("analytics_events").insert({
+        visitor_id: String(body.visitorId).slice(0, 80),
+        session_id: String(body.sessionId).slice(0, 80),
+        event_type: "onboarding_submitted",
+        target: String(body.interes ?? ""),
+        pathname: "/unete",
+        utm_source: body.utm_source ? String(body.utm_source) : null,
+        utm_medium: body.utm_medium ? String(body.utm_medium) : null,
+        utm_campaign: body.utm_campaign ? String(body.utm_campaign) : null,
+        metadata,
+      })
+    }
     localStored = true
   } catch {
     // HubSpot puede seguir capturando aunque el CRM local aún no esté migrado.

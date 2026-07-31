@@ -1,3 +1,5 @@
+import { hasAnalyticsConsentClient, hasGlobalPrivacyControl } from "@/lib/cookie-prefs"
+
 export type ColabAnalyticsEvent =
   | "page_view"
   | "onboarding_started"
@@ -16,6 +18,11 @@ export type ColabAnalyticsEvent =
 
 function id(prefix: string) {
   return `${prefix}_${crypto.randomUUID()}`
+}
+
+function analyticsAllowed() {
+  if (hasGlobalPrivacyControl()) return false
+  return hasAnalyticsConsentClient()
 }
 
 export function getAnalyticsIdentity() {
@@ -43,6 +50,7 @@ export function trackColabEvent(
   details: { target?: string; source?: string; pathname?: string } = {},
 ) {
   try {
+    if (!analyticsAllowed()) return
     const identity = getAnalyticsIdentity()
     const payload = JSON.stringify({
       event,
@@ -54,7 +62,12 @@ export function trackColabEvent(
     if (navigator.sendBeacon) {
       navigator.sendBeacon("/api/analytics/track", new Blob([payload], { type: "application/json" }))
     } else {
-      void fetch("/api/analytics/track", { method: "POST", headers: { "Content-Type": "application/json" }, body: payload, keepalive: true })
+      void fetch("/api/analytics/track", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: payload,
+        keepalive: true,
+      })
     }
   } catch {
     // Analytics es opcional.

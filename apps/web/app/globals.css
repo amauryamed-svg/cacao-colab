@@ -3710,3 +3710,172 @@ body {
   .colab-hero-packshot { width: min(100%, 22rem); margin-inline: auto; }
   .floating-pod--b { display: none; }
 }
+
+/* ─── Legal + cookies ─── */
+.legal-shell {
+  position: relative;
+  min-height: 70vh;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(135, 170, 39, 0.12), transparent 36%),
+    radial-gradient(circle at 88% 18%, rgba(242, 200, 48, 0.1), transparent 32%),
+    linear-gradient(180deg, #f7f1ee 0%, #efe6dc 100%);
+}
+.legal-shell__atmosphere {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231a2e10' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.legal-index-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.legal-index-list a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.1rem 1.25rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(26, 46, 16, 0.08);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.legal-index-list a:hover {
+  transform: translateY(-2px);
+  border-color: rgba(61, 107, 30, 0.35);
+}
+.legal-index-list strong {
+  font-family: var(--font-fraunces), serif;
+  font-size: 1.15rem;
+  color: #1a2e10;
+}
+.legal-index-list span {
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: rgba(26, 46, 16, 0.55);
+}
+.legal-doc__toc {
+  margin: 2rem 0;
+  padding: 1rem 1.15rem;
+  border-radius: 0.9rem;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(26, 46, 16, 0.08);
+}
+.legal-doc__toc ol {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.legal-doc__toc a {
+  font-size: 0.8rem;
+  color: #3d6b1e;
+}
+.legal-doc__section {
+  margin-top: 2rem;
+  scroll-margin-top: 5rem;
+}
+.legal-doc__section h2 {
+  font-family: var(--font-fraunces), serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #1a2e10;
+  margin-bottom: 0.75rem;
+}
+.legal-doc__section p,
+.legal-doc__section li {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: rgba(26, 46, 16, 0.78);
+  margin-bottom: 0.7rem;
+}
+.legal-doc__section ul {
+  padding-left: 1.2rem;
+  margin: 0.5rem 0 1rem;
+}
+.legal-doc__footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(26, 46, 16, 0.1);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #3d6b1e;
+}
+.cookie-banner {
+  position: fixed;
+  z-index: 80;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1rem;
+  pointer-events: none;
+}
+.cookie-banner__inner {
+  pointer-events: auto;
+  max-width: 56rem;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 1.1rem 1.25rem;
+  border-radius: 1.1rem;
+  background: rgba(16, 29, 11, 0.94);
+  color: #f7f1ee;
+  border: 1px solid rgba(242, 200, 48, 0.22);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+  animation: cookie-rise 0.45s ease both;
+}
+@keyframes cookie-rise {
+  from { transform: translateY(18px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.cookie-banner__title {
+  font-family: var(--font-fraunces), serif;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.35rem;
+}
+.cookie-banner__body {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: rgba(247, 241, 238, 0.65);
+  max-width: 36rem;
+}
+.cookie-banner__body a {
+  color: #f2c830;
+  text-decoration: underline;
+}
+.cookie-banner__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.cookie-banner__primary,
+.cookie-banner__ghost {
+  border-radius: 0.7rem;
+  padding: 0.65rem 0.95rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.cookie-banner__primary {
+  background: #f2c830;
+  color: #1a2e10;
+  border: none;
+}
+.cookie-banner__ghost {
+  background: transparent;
+  color: #f7f1ee;
+  border: 1px solid rgba(247, 241, 238, 0.28);
+}
