@@ -4125,3 +4125,41 @@ body {
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }
+
+.amaury-stages {
+  max-width: 72rem;
+  margin: 0 auto 2rem;
+  padding: 0 1.25rem 2.5rem;
+  display: grid;
+  gap: 1rem;
+}
+@media (min-width: 700px) {
+  .amaury-stages { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+}
+.amaury-stage {
+  padding-top: 1rem;
+  border-top: 1px solid rgba(242, 200, 48, 0.35);
+  animation: amaury-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.amaury-stage span {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(247, 241, 238, 0.4);
+}
+.amaury-stage strong {
+  display: block;
+  margin-top: 0.45rem;
+  font-family: var(--font-fraunces), serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f7f1ee;
+}
+.amaury-stage p {
+  margin: 0.4rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: rgba(247, 241, 238, 0.55);
+}

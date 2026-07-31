@@ -1,17 +1,20 @@
 /**
  * Perfil público Amaury Amed — Cacaotier & Chocolatier.
- * Pensado para recruiters / alianzas (p. ej. Barry Callebaut · Chocolate Academy).
+ * Fuentes: CV (AMEDCHEF I+D) + trayectoria Caúa / Colab.
+ * Pensado para Barry Callebaut · Chocolate Academy Barcelona / Gurb.
+ * No publica datos sensibles del CV (documento, domicilio, salario, referencias familiares).
  */
 
 export const amauryProfile = {
   name: "Amaury Amed",
   fullName: "Amaury Amed Blanquicet R.",
+  moniker: "AMEDCHEF I+D",
   title: "Cacaotier & Chocolatier",
-  roleLine: "Fundador cacaotier · Product Manager · Builder de Cacao Colab",
-  location: "Bogotá · Colombia → LatAm · mundo del cacao fino",
-  headline: "Traduzco el cacao de la finca al oficio — y del oficio al sistema.",
+  roleLine: "Chef · I+D gastronómico · Fundador cacaotier · Product Manager Cacao Colab",
+  location: "Bogotá · Colombia → disponible a tiempo completo · puente LatAm ↔ Europa",
+  headline: "Cacao premium, pastelería de oficio y ciencia — listo para la Academy.",
   lede:
-    "Chef de formación, científico de criterio y constructor de plataformas. Busco crecer junto a los grandes del chocolate mundial — y traer a Colombia la academia viva que el Fine-Flavor merece.",
+    "Chef de formación (Verde Oliva · Aula Máxima), con stage en ElChato y en el Celler de Can Roca (Girona). He liderado experiencias y productos alrededor del cacao premium colombiano (Legado Cacao), I+D de pastelería a escala nacional (Café Quindío) y hoy construyo Cacao Colab: el campus y el marketplace que llevan el Fine-Flavor de la finca al oficio. Busco nutrir mi carrera junto a los grandes del chocolate — y que Callebaut sea la primera marca corporativa que impulse este ecosistema.",
   email: "amauryamed@gmail.com",
   whatsapp: "https://wa.me/573102227848?text=Hola%20Amaury%2C%20vengo%20desde%20tu%20perfil%20Cacao%20Colab.",
   linkedin: "https://www.linkedin.com/in/amauryamed",
@@ -21,32 +24,41 @@ export const amauryProfile = {
   pillars: [
     {
       kicker: "Cacaotier",
-      title: "Origen con ciencia",
-      body: "Fermentación por genotipo, FEAR 5, CoEx, bioproceso. Domino el lenguaje del árbol antes del temple.",
+      title: "Origen que se prueba",
+      body: "En Legado Cacao: experiencias inmersivas, cataciones para turistas, expansión e-commerce y productos con nibs (macerados tipo whiskey de cacao). El árbol habla antes que la barra.",
     },
     {
       kicker: "Chocolatier",
-      title: "Oficio en la mesa",
-      body: "Cocina técnica, pastelería y chocolate con narrativa de origen. El paladar es el veredicto final.",
+      title: "Oficio con pedigree",
+      body: "Pastelería moderna, cocina de vanguardia y docencia. Stage en Celler de Can Roca (Girona) y ElChato (Bogotá). HarvardX: From Haute Cuisine to Soft Matter Science.",
     },
     {
       kicker: "Colab",
       title: "Sistema que escala",
-      body: "Cacao Colab: campus Dualita, Sembrar, Mazorcas Doradas, marketplace y R&D — para que el conocimiento no se quede en un solo laboratorio.",
+      body: "Cacao Colab + Caúa: Dualita, Sembrar, Mazorcas, R&D y marketplace. Ciencia biomolecular (Máster) + HubSpot + producto — para que el conocimiento no se quede en un solo lab.",
     },
   ],
+  stages: [
+    { place: "Celler de Can Roca", where: "Girona, España", note: "Stage — alta cocina europea" },
+    { place: "ElChato", where: "Bogotá", note: "Stage — cocina contemporánea" },
+    { place: "Chocolate Academy", where: "Gurb · Barcelona", note: "Destino: Chef Asistente" },
+  ],
   proof: [
-    "CTO & Co-Founder · Caúa Colombia — biotech upcycled · MucilageExtract™ · capa de IP del cacao fino",
-    "Fundador de cacaotier y Product Manager de Cacao Colab (builders: Hellen · Oscar · Amaury)",
-    "Puente CoEx / Ecoyuma / Zurych · formación Dualita Master Cacaotier & Master Chocolatier",
-    "Trayectoria T→M→G: cocina + biología molecular → biotech/IP → arquitectura de ecosistema Agrifoodtech",
-    "12+ años entre cocina, marca, R&D y capital paciente alrededor del cacao colombiano",
+    "Legado Cacao (2022–presente) — dirección de experiencias y productos con cacao premium colombiano; ferias internacionales y canales e-commerce",
+    "Café Quindío (2020–2021) — I+D pastelería para vitrinas nacionales; consulting a Operaciones e Innovación",
+    "Instituto Mariano Moreno — chef de eventos (cocina peruana, japonesa, española, vanguardia) y clases de pastelería/panadería",
+    "Aula Máxima Arte Culinario — chef backup / coordinación; pastelería tradicional y vanguardista",
+    "Cocineros al Límite (Utilísima / Fox Telecolombia) — representación Colombia, pastelería de vanguardia, catering de alto volumen",
+    "Máster en Ciencias Biomoleculares y Citogenética · Universidad Católica de Cuyo / Esneca",
+    "Tecnólogo en Cocina y Cultura Gastronómica · Academia Verde Oliva (prom. 4.5)",
+    "HarvardX — From Haute Cuisine to Soft Matter Science · HubSpot Inbound Marketing & Sales (cert.)",
+    "Fundador cacaotier · Product Manager Cacao Colab · CTO/Co-Founder Caúa Colombia",
   ],
   callebaut: {
-    eyebrow: "Para Barry Callebaut · Chocolate Academy",
-    title: "Listo para ser Chef Asistente — y para que Callebaut sea la primera marca corporativa del Colab.",
+    eyebrow: "Para Barry Callebaut · Chocolate Academy Barcelona",
+    title: "Ya caminé Girona. Ahora quiero Gurb — y llevar el Colab conmigo.",
     body:
-      "Vi la búsqueda de Chocolate Academy Barcelona: motivado, apasionado, con ganas de aprender junto a grandes profesionales en Gurb. Eso soy — y traigo algo más: un ecosistema vivo en Colombia que ya educa, practica y conecta finca–chocolate. Contratarme no es solo sumar un chef al equipo: es abrir la puerta a que Callebaut sea el ancla corporativa que lleve Cacao Colab a nuevas estratosferas del cacao mundial.",
-    ask: "Escribanme. Quiero crecer en la Academy — y construir con ustedes el puente Europa ↔ Colombia Fine-Flavor.",
+      "Chocolate Academy busca Chef Asistente: motivado, apasionado, con ganas de aprender junto a grandes profesionales. Mi CV lo respalda — stage en Can Roca, años enseñando y creando pastelería/I+D, y una operación viva de cacao premium en Colombia. Contratarme suma un chef al equipo de Gurb y abre la puerta a que Callebaut sea el ancla corporativa de Cacao Colab: la primera marca enorme que impulse esta iniciativa hacia nuevas estratosferas del cacao.",
+    ask: "Disponible a tiempo completo. Escríbanme — LinkedIn, Instagram @amaury.amed o amauryamed@gmail.com.",
   },
 } as const
