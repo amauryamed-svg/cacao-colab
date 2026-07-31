@@ -4,32 +4,42 @@ import TrackedLink from "@/components/analytics/TrackedLink"
 
 export default function MicroTrack() {
   return (
-    <div className="flex flex-col gap-4">
-      {/* track header */}
-      <div className="flex items-center gap-3">
-        <div className="w-3 h-3 rounded-full bg-colab-green" />
-        <div>
-          <p className="text-[10px] font-bold tracking-[2.5px] uppercase font-sans text-colab-pod">Microlearning Cacao Funcional · por CAÚA</p>
-          <p className="text-xs font-sans text-white/50 mt-0.5">Elección, hábitos y consumo saludable · 6 módulos</p>
-        </div>
-      </div>
-      {/* modules */}
-      <div className="flex flex-col gap-3">
-        {microModules.map((m) => (
-          <ModuleCard key={m.id} module={m} track="micro" />
+    <article className="dualita-column dualita-column--micro">
+      <header className="dualita-column-head">
+        <p className="dualita-column-eyebrow">Microlearning · por CAÚA</p>
+        <h3 className="dualita-column-brand">CAÚA</h3>
+        <p className="dualita-column-title">Protocolo diario de cacao</p>
+        <p className="dualita-column-lede">
+          Cacao funcional, no chocolate de góndola — orígenes Huila y Santander, cubos, coberturas
+          y hábito de 7 días, anclado a cauacolombia.co. Sin dosis clínicas ni márgenes inventados.
+        </p>
+        <p className="dualita-column-stats">6 módulos · ~40 min · Dualita Companion</p>
+      </header>
+
+      <ol className="dualita-spine">
+        {microModules.map((m, i) => (
+          <li
+            key={m.id}
+            className="dualita-spine-item"
+            style={{ animationDelay: `${0.08 * i + 0.12}s` }}
+          >
+            <ModuleCard module={m} track="micro" />
+          </li>
         ))}
-      </div>
-      {/* cta */}
+      </ol>
+
       <TrackedLink
         href="/aprende/cacao-bioactivo"
         event="microlearning_link_clicked"
         targetName="caua-microlearning"
         source="micro-track-cta"
-        className="mt-1 block text-center text-sm font-bold py-3 px-5 rounded-full border-2 border-colab-green text-colab-pod hover:bg-colab-green hover:text-white transition-colors font-sans"
+        className="dualita-column-cta dualita-column-cta--micro"
       >
-        Crear un hábito saludable →
+        Empezar protocolo CAÚA
       </TrackedLink>
-      <p className="text-[10px] text-center text-white/35 font-sans -mt-1">Contenido educativo CAÚA · no sustituye consejo médico</p>
-    </div>
+      <p className="dualita-column-footnote">
+        Contenido educativo CAÚA · no sustituye consejo médico
+      </p>
+    </article>
   )
 }

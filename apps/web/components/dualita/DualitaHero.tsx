@@ -1,33 +1,20 @@
-import SectionKicker from "@/components/ui/SectionKicker"
-
 export default function DualitaHero() {
   return (
-    <div className="text-center max-w-2xl mx-auto px-4">
-      <SectionKicker className="mb-4 justify-center">Sistema de aprendizaje · Dualita</SectionKicker>
-      <h2
-        className="font-serif font-bold leading-tight text-colab-cream mb-4"
-        style={{ fontSize: "clamp(2rem, 6vw, 3.5rem)" }}
-      >
-        Aprende cacao<br />
-        <span className="text-colab-yellow">de especialidad.</span>
+    <div className="dualita-hero">
+      <p className="dualita-hero-eyebrow">Sistema Dualita · CAÚA × Zurych</p>
+      <h2 className="dualita-hero-title">
+        Dos velocidades.
+        <em> Un criterio.</em>
       </h2>
-      <p className="text-colab-cream/65 font-sans leading-relaxed max-w-lg mx-auto"
-         style={{ fontSize: "clamp(0.9rem, 2vw, 1.1rem)" }}>
-        Dualita combina dos velocidades: el <strong className="text-colab-yellow">MOOC</strong> para formación profunda
-        en cacao, fermentación y negocio; y el <strong className="text-colab-pod">Microlearning</strong> de CAÚA Academy
-        para aplicación inmediata en cocina profesional.
+      <p className="dualita-hero-lede">
+        <strong>CAÚA</strong> entrena el hábito diario del cacao funcional.
+        <strong> Zurych</strong> abre el contexto bean-to-bar: territorio, agroecología y producto.
+        Dualita es la guía; tú construyes el oficio.
       </p>
-      {/* visual dual-track indicator */}
-      <div className="mt-8 flex items-center justify-center gap-4 text-xs font-sans font-bold">
-        <span className="flex items-center gap-1.5 text-colab-yellow">
-          <span className="w-2.5 h-2.5 rounded-full bg-colab-yellow inline-block" />
-          MOOC · Teoría profunda
-        </span>
-        <span className="text-white/20">×</span>
-        <span className="flex items-center gap-1.5 text-colab-pod">
-          <span className="w-2.5 h-2.5 rounded-full bg-colab-green inline-block" />
-          Microlearning · Práctica rápida
-        </span>
+      <div className="dualita-hero-flow" aria-hidden>
+        <span className="dualita-hero-chip dualita-hero-chip--micro">CAÚA · minutos</span>
+        <span className="dualita-hero-x">×</span>
+        <span className="dualita-hero-chip dualita-hero-chip--mooc">Zurych · profundidad</span>
       </div>
     </div>
   )

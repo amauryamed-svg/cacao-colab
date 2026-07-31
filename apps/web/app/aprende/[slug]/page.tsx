@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!lesson) return {}
   return {
     title: `${lesson.emoji} ${lesson.title} · Dualita · Cacao Colab`,
-    description: `Módulo ${lesson.number} de CAÚA Academy — ${lesson.duration} · ${lesson.xp} XP`,
+    description: `Módulo ${lesson.number} del protocolo CAÚA — ${lesson.duration} · ${lesson.xp} XP`,
   }
 }
 

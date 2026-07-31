@@ -2,38 +2,48 @@ import { moocModules } from "@/lib/dualita"
 import ModuleCard from "./ModuleCard"
 import TrackedLink from "@/components/analytics/TrackedLink"
 
-const WA_MOOC =
-  "https://wa.me/573102227848?text=Hola%20Cacao%20Colab%2C%20quiero%20inscribirme%20al%20MOOC%20Dualita."
+const firstAvailable =
+  moocModules.find((m) => m.status === "available" && m.url)?.url ??
+  "/aprende/mooc/zurych-territorio"
 
 export default function MOOCTrack() {
   return (
-    <div className="flex flex-col gap-4">
-      {/* track header */}
-      <div className="flex items-center gap-3">
-        <div className="w-3 h-3 rounded-full bg-colab-yellow" />
-        <div>
-          <p className="text-[10px] font-bold tracking-[2.5px] uppercase font-sans text-colab-yellow">MOOC Contexto Cacao · patrocinado por Zurych</p>
-          <p className="text-xs font-sans text-white/50 mt-0.5">Historia, territorio y cultura · 4 módulos · ~4 horas</p>
-        </div>
-      </div>
-      {/* modules */}
-      <div className="flex flex-col gap-3">
-        {moocModules.map((m) => (
-          <ModuleCard key={m.id} module={m} track="mooc" />
+    <article className="dualita-column dualita-column--mooc">
+      <header className="dualita-column-head">
+        <p className="dualita-column-eyebrow">MOOC · patrocinio Zurych</p>
+        <h3 className="dualita-column-brand">Zurych</h3>
+        <p className="dualita-column-title">Bean-to-bar con propósito</p>
+        <p className="dualita-column-lede">
+          De Santander a Bogotá: territorio, agroecología y portafolio real — con hechos de
+          chocolatezurych.com y @tiendazurych. Tres módulos jugables; el cuarto en apertura.
+        </p>
+        <p className="dualita-column-stats">4 módulos · ~3 h · Dualita Companion</p>
+      </header>
+
+      <ol className="dualita-spine">
+        {moocModules.map((m, i) => (
+          <li
+            key={m.id}
+            className="dualita-spine-item"
+            style={{ animationDelay: `${0.08 * i + 0.12}s` }}
+          >
+            <ModuleCard module={m} track="mooc" />
+          </li>
         ))}
-      </div>
-      {/* cta */}
+      </ol>
+
       <TrackedLink
-        href={WA_MOOC}
-        external
+        href={firstAvailable}
         event="mooc_link_clicked"
         targetName="zurych-mooc"
         source="mooc-track-cta"
-        className="mt-1 block text-center text-sm font-bold py-3 px-5 rounded-full bg-colab-yellow text-colab-forest hover:bg-colab-amber transition-colors font-sans"
+        className="dualita-column-cta dualita-column-cta--mooc"
       >
-        Quiero aprender la historia →
+        Abrir módulo 1 · Territorio
       </TrackedLink>
-      <p className="text-[10px] text-center text-white/35 font-sans -mt-1">Presentado por Zurych · espacio de patrocinio educativo</p>
-    </div>
+      <p className="dualita-column-footnote">
+        Presentado por Zurych · espacio de patrocinio educativo explícito
+      </p>
+    </article>
   )
 }
