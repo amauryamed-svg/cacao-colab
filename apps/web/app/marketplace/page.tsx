@@ -101,7 +101,7 @@ export default function MarketplacePage() {
                 name: "Amaury Amed",
                 role: "Cacaotier & Chocolatier · PM",
                 focus: "Spec, cacaotier y go-to-market",
-                href: "/amaury",
+                href: "/amauryamed",
               },
               {
                 initials: "HB",

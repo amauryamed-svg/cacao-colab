@@ -8,7 +8,10 @@ import path from "node:path";
 // u otro). No hay redirects configurados a propósito.
 const nextConfig: NextConfig = {
   async redirects() {
-    return [{ source: "/perfil/amaury", destination: "/amaury", permanent: false }]
+    return [
+      { source: "/amaury", destination: "/amauryamed", permanent: false },
+      { source: "/perfil/amaury", destination: "/amauryamed", permanent: false },
+    ]
   },
   turbopack: {
     // Raíz del monorepo (no solo apps/web) — necesario para que Turbopack
