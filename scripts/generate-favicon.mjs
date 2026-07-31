@@ -17,9 +17,9 @@ async function png(size) {
   return sharp(svg).resize(size, size).png().toBuffer()
 }
 
-function pngToIco(pngBuffers) {
+function pngToIco(images) {
   // ICO with multiple PNG images (Vista+)
-  const count = pngBuffers.length
+  const count = images.length
   const headerSize = 6
   const dirEntrySize = 16
   const header = Buffer.alloc(headerSize)
@@ -29,12 +29,11 @@ function pngToIco(pngBuffers) {
 
   const entries = []
   let offset = headerSize + dirEntrySize * count
-  for (const buf of pngBuffers) {
+  for (const { size, buf } of images) {
     const meta = Buffer.alloc(dirEntrySize)
-    // 0 = 256 in ICO width/height bytes
-    const dim = 0
-    meta[0] = dim
-    meta[1] = dim
+    // Width/height byte: 0 means 256
+    meta[0] = size >= 256 ? 0 : size
+    meta[1] = size >= 256 ? 0 : size
     meta[2] = 0
     meta[3] = 0
     meta.writeUInt16LE(1, 4)
@@ -44,12 +43,12 @@ function pngToIco(pngBuffers) {
     entries.push(meta)
     offset += buf.length
   }
-  return Buffer.concat([header, ...entries, ...pngBuffers])
+  return Buffer.concat([header, ...entries, ...images.map((image) => image.buf)])
 }
 
 const sizes = [16, 32, 48]
-const pngs = await Promise.all(sizes.map(png))
-const ico = pngToIco(pngs)
+const images = await Promise.all(sizes.map(async (size) => ({ size, buf: await png(size) })))
+const ico = pngToIco(images)
 fs.writeFileSync(path.join(webApp, "favicon.ico"), ico)
 
 const apple = await png(180)
