@@ -6,9 +6,12 @@ import MOOCTrack from "@/components/dualita/MOOCTrack"
 import MicroTrack from "@/components/dualita/MicroTrack"
 import ProgressStrip from "@/components/aprende/ProgressStrip"
 import TrackedLink from "@/components/analytics/TrackedLink"
+import AtmospherePlane from "@/components/atmosphere/AtmospherePlane"
+import FloatingPods from "@/components/atmosphere/FloatingPods"
 import { getRegisteredMicroProgress } from "@/lib/microlearning-server"
 import CourseIntroPlayer from "@/components/aprende/CourseIntroPlayer"
 import { getCourseVideo } from "@/lib/course-videos"
+import { shotById } from "@/lib/atmosphere"
 
 export const metadata: Metadata = {
   title: "Campus · Master Cacaotier + Master Chocolatier",
@@ -21,15 +24,21 @@ export default async function AprendePage() {
 
   return (
     <div className="bg-colab-forest min-h-screen">
-      <div className="pt-16 pb-12 course-hero">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="pt-16 pb-12 course-hero relative overflow-hidden">
+        <AtmospherePlane src={shotById("powder").src} alt="" overlay="forest" />
+        <FloatingPods variant="stage" />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-[1]">
           <p className="eyebrow text-colab-yellow">cacaotier campus · formación dual</p>
           <div className="grid lg:grid-cols-[1fr_.65fr] gap-10 items-end mt-4">
             <div>
-              <h1 className="display-title text-colab-cream">Aprende haciendo.<br /><em>Sube de rango.</em></h1>
-              <p className="text-colab-cream/55 max-w-xl mt-6 leading-relaxed">
-                Contexto, hábitos, oficio y territorio sincronizados. Entra con una sola cuenta para conservar
-                XP, racha, Sembrar (Ecoyuma) y evidencia de tus misiones.
+              <h1 className="display-title text-colab-cream">
+                Aprende haciendo.
+                <br />
+                <em>Sube de rango.</em>
+              </h1>
+              <p className="text-colab-cream/65 max-w-xl mt-6 leading-relaxed">
+                Contexto, hábitos, oficio y territorio sincronizados — con la emoción de un chocolate
+                que se gana. Conserva XP, racha, Sembrar y evidencia de tus misiones.
               </p>
             </div>
             <div className="grid grid-cols-3 gap-2">

@@ -3,6 +3,9 @@ import Link from "next/link"
 import { redirect } from "next/navigation"
 import { createSupabaseServerClient } from "@cacao-colab/supabase-client/server"
 import CacaoGotchiLab from "@/components/gamify/CacaoGotchiLab"
+import AtmospherePlane from "@/components/atmosphere/AtmospherePlane"
+import FloatingPods from "@/components/atmosphere/FloatingPods"
+import { shotById } from "@/lib/atmosphere"
 
 export const metadata: Metadata = {
   title: "Sembrar · Ecoyuma × Cacao Colab",
@@ -35,8 +38,10 @@ export default async function JuegaPage() {
 
   return (
     <div className="min-h-screen bg-colab-forest">
-      <header className="game-hero">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-24">
+      <header className="game-hero relative overflow-hidden">
+        <AtmospherePlane src={shotById("powder").src} alt="" overlay="forest" />
+        <FloatingPods variant="stage" />
+        <div className="relative z-[1] max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-24">
           <p className="eyebrow text-colab-yellow">Sembrar · vivero Ecoyuma × aceleración Colab</p>
           <div className="grid lg:grid-cols-[1fr_.62fr] gap-10 items-end mt-4">
             <div>

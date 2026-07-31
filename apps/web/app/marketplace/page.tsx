@@ -2,9 +2,12 @@ import type { Metadata } from "next"
 import SectionKicker from "@/components/ui/SectionKicker"
 import BrandNetwork from "@/components/marketplace/BrandNetwork"
 import DirectoryCard from "@/components/marketplace/DirectoryCard"
+import AtmospherePlane from "@/components/atmosphere/AtmospherePlane"
+import FloatingPods from "@/components/atmosphere/FloatingPods"
 import { founderBrands, collaboratorBrands, comingSoonSlots } from "@/lib/brands"
 import { directoryCandidates } from "@/lib/directory-candidates"
 import { territories } from "@/lib/territories"
+import { shotById } from "@/lib/atmosphere"
 
 export const metadata: Metadata = {
   title: "Ecosistema regional · Cacao Colab",
@@ -17,18 +20,20 @@ const WA_MARCA =
 export default function MarketplacePage() {
   return (
     <div className="bg-colab-cream min-h-screen">
-      {/* header */}
-      <div className="bg-colab-forest py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="page-hero-photo py-16 md:py-20">
+        <AtmospherePlane src={shotById("temper").src} alt="" overlay="forest" priority />
+        <FloatingPods variant="stage" />
+        <div className="page-hero-photo-inner max-w-6xl mx-auto px-4 sm:px-6">
           <SectionKicker className="mb-4">Mapa vivo · Cacao Colab</SectionKicker>
           <h1
             className="font-serif font-black text-colab-cream leading-tight"
             style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
           >
-            Tu territorio<br />
+            Tu territorio
+            <br />
             <span className="text-colab-yellow">no está solo.</span>
           </h1>
-          <p className="text-colab-cream/55 font-sans mt-4 max-w-lg">
+          <p className="text-colab-cream/65 font-sans mt-4 max-w-lg">
             Agricultores, chocolateros, amantes y marcas de cacao conectados por conocimiento,
             evidencia y oportunidades. Conservas tu identidad; construimos capacidad juntos.
           </p>

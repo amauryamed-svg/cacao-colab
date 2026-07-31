@@ -1,8 +1,6 @@
 /**
- * Paleta ya fijada de Cacao Colab (docs/02-PLATFORM.md D8/D9). Fuente
- * única de verdad — apps/web la vuelca a `@theme` de Tailwind v4 en
- * globals.css, apps/mobile la consume directo como objeto JS/TS para
- * StyleSheet / NativeWind.
+ * Paleta Cacao Colab — fuente única (docs/02-PLATFORM.md).
+ * Ampliada 2026-07-31: tonos cacao/coral estilo Bars para universo dopaminérgico.
  */
 export const colabColors = {
   yellow: "#F2C830",
@@ -13,13 +11,20 @@ export const colabColors = {
   pod: "#87AA27",
   ink: "#1C3B26",
   mist: "#E8E0DA",
+  /** Benevolo / Bars accents */
+  coral: "#FF6A3D",
+  champagne: "#E8C9A0",
+  cocoa: "#3D2418",
+  cocoaDeep: "#140e0a",
+  clay: "#B9583B",
 } as const;
 
 export type ColabColorName = keyof typeof colabColors;
 
 export const colabFonts = {
-  display: "Georgia, 'Times New Roman', serif",
-  ui: "Arial, Helvetica, sans-serif",
+  /** Expressive display — Fraunces wired in apps/web layout */
+  display: "var(--font-fraunces), Fraunces, Georgia, 'Times New Roman', serif",
+  ui: "var(--font-outfit), Outfit, 'Segoe UI', sans-serif",
 } as const;
 
 /** Tema plano para React Native (StyleSheet no entiende CSS var/font-stack). */
