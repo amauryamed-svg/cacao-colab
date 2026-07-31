@@ -3,18 +3,18 @@ import Link from "next/link"
 import TrackedLink from "@/components/analytics/TrackedLink"
 import CourseIntroPlayer from "@/components/aprende/CourseIntroPlayer"
 import {
-  benevoloFormulation,
   chocolatierMissions,
   chocolatierTotalXp,
   coexPrinciples,
   grownChocolateStance,
 } from "@/lib/chocolatier-course"
+import { benevoloFormulation } from "@/lib/benevolo-brand"
 import { getCourseVideo } from "@/lib/course-videos"
 
 export const metadata: Metadata = {
-  title: "Master Chocolatier · bean-to-bar COEX",
+  title: "Master Chocolatier · barra 70 % CoEx",
   description:
-    "Refino, conchado, Fedecacao, CoEx, bombonería y postura frente al grown chocolate. Capstone Benevolo + invitación a la generación Colab.",
+    "Ruta 70 % estilo CoEx/Chocolate Awards: excelencia, puesta en escena, vidas, rachas y diploma digital. Benevolo duja es marca acelerada hermana.",
 }
 
 export default function MasterChocolatierPage() {
@@ -33,24 +33,25 @@ export default function MasterChocolatierPage() {
                 <span className="course-chip">Nivel 02</span>
                 <span className="course-chip">6 misiones</span>
                 <span className="course-chip">{chocolatierTotalXp} XP</span>
-                <span className="course-chip">COEX lens</span>
+                <span className="course-chip">70 % · CoEx lens</span>
+                <span className="course-chip">Diploma LinkedIn</span>
               </div>
               <p className="eyebrow text-[#FF6A3D]">Master Chocolatier · Protocolo 02</p>
               <h1 className="display-title text-colab-cream mt-4 max-w-3xl">
-                Del grano FEAR 5<br />a la <em>gianduja</em>.
+                Del grano FEAR 5<br />a la barra <em>70 %</em>.
               </h1>
               <p className="mt-7 max-w-2xl text-base leading-relaxed text-white/55">
-                Bean-to-bar con rigor CoEx: tostión, refino, conchado, panel ciego, formulaciones modernas y
-                bombonería. El capstone es <strong className="text-[#E8C9A0]">Chocolate Benevolo</strong> —
-                y una postura clara frente al grown chocolate que amenaza la especialidad. Hablamos a la
-                generación que hereda tierra y oficio: entren al Colab.
+                Ruta de excelencia estilo CoEx y Chocolate Awards: tostión, refino, conchado, panel
+                ciego y formulación dark 70 % con contexto de origen. Aspira a la medalla — y celebra
+                el reconocimiento de hacer un muy buen chocolate de especialidad. Vidas, rachas y
+                diploma digital para compartir en LinkedIn con enlace al Colab.
               </p>
               <div className="flex flex-wrap gap-3 mt-8">
                 <Link
                   href="/campus/maestro-chocolatier"
                   className="bg-[#FF6A3D] text-[#140e0a] rounded-full px-7 py-3.5 text-sm font-bold"
                 >
-                  Empezar campaña con Dualita →
+                  Empezar campaña Dualita →
                 </Link>
                 <Link
                   href="/cuenta/entrar?next=/campus/maestro-chocolatier"
@@ -58,8 +59,11 @@ export default function MasterChocolatierPage() {
                 >
                   Entrar al campus
                 </Link>
-                <Link href="/benevolo" className="border border-white/20 text-colab-cream rounded-full px-7 py-3.5 text-sm font-bold">
-                  Ver output Benevolo
+                <Link
+                  href="/benevolo"
+                  className="border border-white/20 text-colab-cream rounded-full px-7 py-3.5 text-sm font-bold"
+                >
+                  Marca Benevolo (duja) →
                 </Link>
               </div>
               {intro && (
@@ -71,14 +75,16 @@ export default function MasterChocolatierPage() {
             <div className="credential-card !bg-[#FF6A3D] !text-[#140e0a]">
               <div className="flex justify-between items-start">
                 <span className="text-4xl">◈</span>
-                <span className="eyebrow opacity-60">Credencial 02</span>
+                <span className="eyebrow opacity-60">Diploma digital</span>
               </div>
               <p className="font-serif text-3xl font-bold mt-10">Master Chocolatier</p>
               <p className="text-sm opacity-70 mt-3 leading-relaxed">
-                Completa las seis misiones bean-to-bar y entrega Benevolo como producto defendible ante un panel COEX y ante el mercado.
+                Aprueba con rigor edutainment: ♥ vidas diarias, 🔥 rachas y nota por primer intento.
+                Comparte en LinkedIn — Coursera vibes, onda cacao.
               </p>
               <div className="mt-8 pt-4 border-t border-black/15 flex justify-between text-xs font-bold uppercase tracking-wider">
-                <span>Zurych × Quara</span><span>FEAR 5</span>
+                <span>70 % dark</span>
+                <span>FEAR 5</span>
               </div>
             </div>
           </div>
@@ -87,8 +93,12 @@ export default function MasterChocolatierPage() {
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-24">
         <section className="mb-20">
-          <p className="eyebrow text-[#E8C9A0]">Lente COEX</p>
-          <h2 className="font-serif text-4xl font-bold mt-3">Criterios a la altura de Cacao of Excellence</h2>
+          <p className="eyebrow text-[#E8C9A0]">Lente COEX · Awards</p>
+          <h2 className="font-serif text-4xl font-bold mt-3">Excelencia y puesta en escena</h2>
+          <p className="text-white/45 mt-3 max-w-2xl text-sm leading-relaxed">
+            La paradoja Colab: entrenamos para medalla y para el reconocimiento cotidiano de un
+            chocolate de especialidad muy bien hecho. Ambos cuentan.
+          </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
             {coexPrinciples.map((item) => (
               <article key={item.title} className="benevolo-claim">
@@ -103,10 +113,10 @@ export default function MasterChocolatierPage() {
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <div>
               <p className="eyebrow text-[#FF6A3D]">Tu campaña</p>
-              <h2 className="font-serif text-4xl font-bold mt-3">Seis misiones bean-to-bar</h2>
+              <h2 className="font-serif text-4xl font-bold mt-3">Seis misiones · barra 70 %</h2>
               <p className="text-white/45 mt-3 max-w-xl text-sm leading-relaxed">
-                Cada misión tiene pasos de oficio, un reto de criterio y Dualita. Incluye Fedecacao × CoEx,
-                tiempos de refino/conchado y bombonería. El progreso vive en el campus registrado.
+                Retos con vidas. Primer intento limpio sube tu diploma (Excelencia / Especialidad). La
+                duja vive en Benevolo, no aquí.
               </p>
             </div>
             <Link
@@ -118,26 +128,22 @@ export default function MasterChocolatierPage() {
           </div>
           <div className="space-y-3 mt-8">
             {chocolatierMissions.map((mission, index) => (
-              <article key={mission.slug} className={`mission-card ${index === 0 ? "mission-card-live" : ""}`}>
+              <article
+                key={mission.slug}
+                className={`mission-card ${index === 0 ? "mission-card-live" : ""}`}
+              >
                 <span className="mission-number">{mission.number}</span>
                 <div className="flex-1 min-w-0">
                   <p className="eyebrow text-colab-cream/35">{mission.skill}</p>
-                  <h3 className="font-serif text-xl md:text-2xl font-bold text-colab-cream mt-1">{mission.title}</h3>
+                  <h3 className="font-serif text-xl md:text-2xl font-bold text-colab-cream mt-1">
+                    {mission.title}
+                  </h3>
                   <p className="text-xs text-colab-cream/45 mt-2 leading-relaxed">{mission.summary}</p>
-                  <p className="text-[11px] text-[#E8C9A0]/70 mt-2 leading-relaxed">
-                    <strong>COEX:</strong> {mission.coexLens}
-                  </p>
-                  <p className="text-[11px] text-colab-cream/35 mt-1">
-                    <strong>Práctica:</strong> {mission.practice}
-                  </p>
                 </div>
                 <div className="text-right shrink-0">
                   <strong className="block text-[#FF6A3D]">{mission.xp} XP</strong>
                   <small className="text-colab-cream/40">{mission.duration}</small>
                 </div>
-                <span className="mission-lock" aria-label={index === chocolatierMissions.length - 1 ? "Capstone" : index === 0 ? "Disponible" : "Secuencial"}>
-                  {index === chocolatierMissions.length - 1 ? "★" : index === 0 ? "→" : "◇"}
-                </span>
               </article>
             ))}
           </div>
@@ -151,96 +157,49 @@ export default function MasterChocolatierPage() {
           <p className="text-white/55 mt-5 max-w-2xl leading-relaxed text-sm">
             {grownChocolateStance.lede}
           </p>
-          <div className="grid md:grid-cols-2 gap-8 mt-10">
-            <div>
-              <p className="eyebrow text-white/35">Rechazamos</p>
-              <ul className="mt-4 space-y-3">
-                {grownChocolateStance.reject.map((item) => (
-                  <li key={item} className="text-sm text-white/50 leading-relaxed border-l border-[#FF6A3D]/40 pl-4">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p className="eyebrow text-[#E8C9A0]">Defendemos</p>
-              <ul className="mt-4 space-y-3">
-                {grownChocolateStance.defend.map((item) => (
-                  <li key={item} className="text-sm text-white/70 leading-relaxed border-l border-[#E8C9A0]/50 pl-4">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          <p className="mt-10 max-w-2xl text-[#E8C9A0] text-sm leading-relaxed font-medium">
+          <p className="mt-8 max-w-2xl text-[#E8C9A0] text-sm leading-relaxed font-medium">
             {grownChocolateStance.callToGeneration}
           </p>
           <div className="flex flex-wrap gap-3 mt-8">
             <Link href="/unete" className="bg-[#FF6A3D] text-[#140e0a] rounded-full px-7 py-3.5 text-sm font-bold">
-              Únete al colectivo Colab →
-            </Link>
-            <Link href="/juega" className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold">
-              Sembrar · Ecoyuma
+              Únete al colectivo →
             </Link>
           </div>
         </section>
 
         <section className="rounded-3xl border border-[#FF6A3D]/30 bg-[#FF6A3D]/[0.06] p-7 md:p-10 mb-20">
-          <p className="eyebrow text-[#FF6A3D]">Capstone · Output Master Chocolatier</p>
+          <p className="eyebrow text-[#FF6A3D]">Marca hermana · no es el capstone</p>
           <h2 className="font-serif text-3xl md:text-4xl font-bold mt-3">{benevoloFormulation.name}</h2>
           <p className="text-white/55 mt-4 max-w-2xl leading-relaxed">
-            {benevoloFormulation.style}. {benevoloFormulation.inspiration}. Cacao{" "}
-            {benevoloFormulation.cacao.genotype} del nodo {benevoloFormulation.cacao.node} (
-            {benevoloFormulation.cacao.place}).
+            {benevoloFormulation.style}. Aceleración cacaotier que conecta tendencias (gianduja,
+            dulzor moderno) con el oficio del chocolatier. Track Dualita propio en{" "}
+            <Link href="/campus/benevolo" className="text-[#E8C9A0] underline">
+              /campus/benevolo
+            </Link>
+            .
           </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3 mt-8">
-            {benevoloFormulation.targets.map((target) => (
-              <article key={target.label} className="benevolo-claim">
-                <span>{target.label}</span>
-                <strong>{target.value}</strong>
+          <div className="grid md:grid-cols-3 gap-3 mt-8">
+            {benevoloFormulation.trends.map((t) => (
+              <article key={t.title} className="benevolo-claim">
+                <strong>{t.title}</strong>
+                <p className="text-xs text-white/45 mt-2 leading-relaxed">{t.body}</p>
               </article>
             ))}
           </div>
-          <div className="mt-8">
-            <p className="eyebrow text-[#E8C9A0]">Fórmula declarada</p>
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {benevoloFormulation.ingredients.map((item) => (
-                <li key={item} className="rounded-full border border-white/15 px-4 py-2 text-xs text-white/70">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
           <div className="flex flex-wrap gap-3 mt-10">
             <Link href="/benevolo" className="bg-[#FF6A3D] text-[#140e0a] rounded-full px-7 py-3.5 text-sm font-bold">
-              Abrir página Benevolo →
-            </Link>
-            <Link href="/conocimiento/cacao-of-excellence" className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold">
-              Criterios CoEx
+              Abrir Chocolate Benevolo →
             </Link>
             <TrackedLink
               href="https://www.cacaoofexcellence.org/"
               event="knowledge_link_clicked"
               targetName="cacao-of-excellence"
-              source="master-chocolatier-capstone"
+              source="master-chocolatier-syllabus"
               external
               className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold"
             >
               cacaoofexcellence.org →
             </TrackedLink>
-          </div>
-        </section>
-
-        <section>
-          <p className="eyebrow text-[#E8C9A0]">Quién sostiene el output</p>
-          <div className="grid md:grid-cols-3 gap-4 mt-6">
-            {benevoloFormulation.partners.map((partner) => (
-              <article key={partner.name} className="benevolo-ally">
-                <strong>{partner.name}</strong>
-                <p>{partner.role}</p>
-              </article>
-            ))}
           </div>
         </section>
       </main>

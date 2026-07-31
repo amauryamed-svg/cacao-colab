@@ -15,6 +15,8 @@ export const mazorcaRewards = {
   architectCourseComplete: 120,
   chocolatierMission: 30,
   chocolatierCourseComplete: 120,
+  benevoloMission: 25,
+  benevoloCourseComplete: 80,
   gotchiCare: 5,
   gotchiHarvest: 60,
   gotchiCareDailyCap: 50,

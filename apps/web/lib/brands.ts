@@ -45,7 +45,7 @@ export const brands: Brand[] = [
     name: "Zurych",
     tagline: "Nodo Landázuri · Santander.",
     description:
-      "Nodo regional del Colab en Landázuri. Cultura bean-to-bar aliada del capstone Chocolate Benevolo (Master Chocolatier) junto al FEAR 5 de Quara.",
+      "Nodo regional del Colab en Landázuri. Cultura bean-to-bar aliada de Chocolate Benevolo (marca acelerada) y del Master Chocolatier 70 % con FEAR 5 de Quara.",
     location: "Landázuri, Santander",
     territoryId: "santander",
     accentColor: "#F2C830",

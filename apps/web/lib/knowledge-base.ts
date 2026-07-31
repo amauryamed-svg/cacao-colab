@@ -263,21 +263,22 @@ export const knowledgeTopics: KnowledgeTopic[] = [
     title: "Chocolate Benevolo · output Master Chocolatier",
     eyebrow: "Bean-to-bar · lente COEX · Aceleración Colab",
     summary:
-      "Chocolate Benevolo Bars. es el capstone de Master Chocolatier: duja de marañón sobre FEAR 5 del nodo Quara (Arauca), alianza Zurych, preventa aspiracional.",
+      "Chocolate Benevolo es la marca acelerada cacaotier (separada del Master Chocolatier 70 %): duja de marañón FEAR 5 Quara × Zurych, tendencias y preorden.",
     evidence: "cacaotier_product",
     body: [
       "Benevolo no lleva tilde: se lee igual en español y en italiano. Chocolate Benevolo le pone las tildes a la e — acentúa la marca con un producto que se desea preordenar.",
-      "Es el output del módulo Master Chocolatier: formulaciones bean-to-bar a la altura de Cacao of Excellence (panel ciego, tipicidad, cero defectos negociables).",
-      "Cacao FEAR 5 del nodo Quara Cacao en Tame (Arauca), el nodo del Colab ligado a ese material genético y a su estudio de fermentación. Zurych aporta cultura de transformación.",
-      "Fórmula: duja de marañón local (gianduja reinterpretada), leche en polvo orgánica, alulosa y stevia. Neto 80 g. Preventa honesta mientras se cierra el primer lote.",
+      "Ya no es el capstone del Master Chocolatier. El Master entrena barra 70 % estilo CoEx/Awards; Benevolo acelera una SKU tendencia (gianduja/marañón) con el mismo criterio de origen.",
+      "Cacao FEAR 5 del nodo Quara (Tame · Arauca). Zurych aporta cultura de transformación. Track Dualita en /campus/benevolo con diploma compartible.",
+      "Fórmula: duja de marañón local, leche en polvo orgánica, alulosa y stevia. Neto 80 g. Preventa honesta mientras se cierra el primer lote.",
     ],
     links: [
-      { label: "Preordenar Chocolate Benevolo", href: "/benevolo", note: "Aspiracional máximo" },
-      { label: "Master Chocolatier", href: "/aprende/chocolatier", note: "Curso bean-to-bar" },
+      { label: "Preordenar Chocolate Benevolo", href: "/benevolo", note: "Marca acelerada" },
+      { label: "Track Dualita Benevolo", href: "/campus/benevolo", note: "Aceleración" },
+      { label: "Master Chocolatier 70 %", href: "/aprende/chocolatier", note: "Ruta hermana" },
       { label: "Zurych", href: "https://chocolatezurych.com", note: "Aliado de transformación" },
       { label: "Cacao of Excellence", href: "/conocimiento/cacao-of-excellence" },
     ],
-    relatedCampus: ["/benevolo", "/aprende/chocolatier", "/marketplace"],
+    relatedCampus: ["/benevolo", "/campus/benevolo", "/aprende/chocolatier", "/marketplace"],
   },
 ]
 
@@ -290,11 +291,12 @@ export const benevoloProduct = {
   tagline: "Duja de marañón. FEAR 5 de Quara. Se lee igual en español y en italiano.",
   accentLine: "Benevolo sin tilde. Chocolate Benevolo le pone las tildes a la e.",
   description:
-    "Capstone de Master Chocolatier: chocolatina de leche con duja de marañón inspirada en la gianduja, cacao FEAR 5 del nodo Quara (Tame · Arauca) fermentado con criterio, leche en polvo orgánica, alulosa y stevia. Formulación bean-to-bar defendible a la altura de un panel COEX y deseable en preventa.",
+    "Marca acelerada cacaotier: chocolatina de leche con duja de marañón inspirada en la gianduja, cacao FEAR 5 del nodo Quara (Tame · Arauca), leche en polvo orgánica, alulosa y stevia. Hermana del Master Chocolatier 70 % — tendencia + oficio + preventa.",
   alliances: [
     { name: "Zurych", role: "Cultura bean-to-bar y transformación", place: "Landázuri · Santander", href: "https://chocolatezurych.com" },
     { name: "Quara Cacao", role: "Nodo FEAR 5 · origen Arauca", place: "Tame · Arauca", href: "/marketplace" },
-    { name: "Master Chocolatier", role: "Formulación · output de aceleración", place: "Campus cacaotier", href: "/aprende/chocolatier" },
+    { name: "Master Chocolatier 70 %", role: "Ruta hermana de excelencia", place: "Campus cacaotier", href: "/aprende/chocolatier" },
+    { name: "Track Benevolo", role: "Aceleración Dualita", place: "Campus", href: "/campus/benevolo" },
   ],
   formula: [
     { label: "Cacao", value: "FEAR 5 · Quara / Arauca · fermentación controlada" },
@@ -312,10 +314,10 @@ export const benevoloProduct = {
   status: "preorder" as const,
   whatIsReady: [
     "Identidad Chocolate Benevolo y empaque aspiracional",
-    "Módulo Master Chocolatier con capstone Benevolo",
+    "Track Dualita Benevolo (marca acelerada separada del Master 70 %)",
     "Alianza Zurych × Quara (nodo FEAR 5)",
     "Fórmula: FEAR 5, duja de marañón, leche orgánica, alulosa, stevia",
-    "Canal de preorden / preventa",
+    "Canal de preorden / preventa + diploma compartible",
   ],
   whatIsNotReady: [
     "Checkout automático con inventario confirmado",

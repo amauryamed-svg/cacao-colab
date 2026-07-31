@@ -5,9 +5,9 @@ import TrackedLink from "@/components/analytics/TrackedLink"
 import { benevoloProduct, priorityVarieties } from "@/lib/knowledge-base"
 
 export const metadata: Metadata = {
-  title: "Chocolate Benevolo · Bars. FEAR 5",
+  title: "Chocolate Benevolo · marca acelerada cacaotier",
   description:
-    "Output de Master Chocolatier: chocolatina de leche con duja de marañón y cacao FEAR 5 de Quara. Alianza Zurych × Quara. Formulaciones bean-to-bar a la altura de COEX.",
+    "Duja de marañón FEAR 5 Quara × Zurych. Marca acelerada separada del Master Chocolatier 70 %. Tendencias + oficio + preorden.",
 }
 
 export default function BenevoloPage() {
@@ -17,7 +17,7 @@ export default function BenevoloPage() {
     <div className="bg-[#140e0a] min-h-screen text-colab-cream">
       <header className="benevolo-hero">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-10 md:pt-14 pb-0">
-          <p className="eyebrow text-[#FF6A3D]">Output · Master Chocolatier · lente COEX</p>
+          <p className="eyebrow text-[#FF6A3D]">Marca acelerada cacaotier · duja × tendencia</p>
           <div className="grid lg:grid-cols-[1fr_1.15fr] gap-8 lg:gap-12 items-end mt-6">
             <div className="pb-10 md:pb-16">
               <p className="text-[11px] font-bold tracking-[0.22em] uppercase text-[#E8C9A0]">{benevoloProduct.domain}</p>
@@ -44,10 +44,16 @@ export default function BenevoloPage() {
                   Preordenar Bars. →
                 </TrackedLink>
                 <Link
+                  href="/campus/benevolo"
+                  className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold text-white/80"
+                >
+                  Track Dualita Benevolo →
+                </Link>
+                <Link
                   href="/aprende/chocolatier"
                   className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold text-white/80"
                 >
-                  Ver el curso →
+                  Hermano · Master 70 % →
                 </Link>
               </div>
             </div>
@@ -83,9 +89,9 @@ export default function BenevoloPage() {
             </h2>
             <p className="text-white/55 leading-relaxed mt-5">{benevoloProduct.description}</p>
             <p className="text-white/40 leading-relaxed mt-4 text-sm">
-              Zurych aporta cultura bean-to-bar. Quara Cacao ancla el FEAR 5 en Arauca —
-              el nodo del Colab ligado a ese material genético. Master Chocolatier formula y
-              defiende el producto con lente Cacao of Excellence.
+              Zurych aporta cultura bean-to-bar. Quara ancla el FEAR 5 en Arauca. Benevolo es la
+              marca acelerada que traduce tendencias (gianduja, dulzor moderno) al oficio — hermana
+              del Master Chocolatier 70 %, no su capstone.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 gap-3">
@@ -153,14 +159,14 @@ export default function BenevoloPage() {
             )}
           </article>
           <article>
-            <p className="eyebrow text-[#FF6A3D]">02 · Formulación</p>
-            <h3 className="font-serif text-2xl font-bold mt-3">Master Chocolatier</h3>
+            <p className="eyebrow text-[#FF6A3D]">02 · Aceleración</p>
+            <h3 className="font-serif text-2xl font-bold mt-3">Track Dualita Benevolo</h3>
             <p className="text-sm text-white/45 mt-3 leading-relaxed">
-              Seis misiones bean-to-bar: leer grano, tostión, licor, panel COEX, duja de marañón y
-              Benevolo como capstone.
+              Tres misiones: tendencia × territorio, formulación duja, preorden y colectivo. Diploma
+              digital compartible. El 70 % CoEx vive en Master Chocolatier.
             </p>
-            <Link href="/aprende/chocolatier" className="inline-block mt-5 text-sm font-bold text-[#FF6A3D]">
-              Entrar al curso →
+            <Link href="/campus/benevolo" className="inline-block mt-5 text-sm font-bold text-[#FF6A3D]">
+              Abrir aceleración →
             </Link>
           </article>
           <article>

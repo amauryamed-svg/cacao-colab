@@ -7,7 +7,7 @@ export type CampusAuthResult = { ok: true } | { ok: false; error: string }
 
 function safeNext(value: FormDataEntryValue | null) {
   const next = String(value ?? "/aprende")
-  const allowed = ["/aprende", "/campus", "/juega", "/sembrar", "/cuenta"]
+  const allowed = ["/aprende", "/campus", "/juega", "/sembrar", "/cuenta", "/benevolo", "/credencial"]
   return allowed.some((prefix) => next.startsWith(prefix)) ? next : "/aprende"
 }
 
