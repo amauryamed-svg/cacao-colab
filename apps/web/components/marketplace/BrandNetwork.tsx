@@ -18,19 +18,108 @@ type Props = {
 const colombiaPath =
   "M183 20 L221 31 L250 58 L274 68 L286 98 L276 129 L293 157 L279 189 L260 215 L251 249 L225 281 L204 266 L190 237 L166 218 L157 189 L139 164 L144 129 L129 105 L144 75 L159 58 Z"
 
-const worldPaths = [
-  "M22 83 L50 58 L93 51 L121 66 L137 91 L121 111 L92 113 L76 143 L52 132 L42 106 Z",
-  "M116 145 L143 149 L155 178 L144 218 L126 251 L110 230 L103 190 Z",
-  "M204 62 L235 50 L269 60 L286 79 L313 72 L349 88 L375 111 L363 136 L329 137 L306 125 L287 145 L261 132 L243 105 L213 102 Z",
-  "M268 148 L294 151 L306 182 L293 226 L273 244 L252 213 L249 175 Z",
-  "M351 190 L380 179 L401 194 L397 218 L368 226 L348 211 Z",
+/** Siluetas continentales más legibles (vista estilizada 2D) */
+const continents = [
+  {
+    id: "americas",
+    d: "M48 72 C62 48 88 42 108 58 C122 70 118 92 104 108 C96 118 88 138 78 152 C70 164 58 168 50 156 C42 140 36 118 40 98 C42 86 40 78 48 72 Z M96 158 C108 162 118 182 112 204 C106 222 94 238 82 228 C74 210 78 186 86 170 C90 162 92 158 96 158 Z",
+  },
+  {
+    id: "europe-africa",
+    d: "M218 58 C238 48 258 52 268 68 C274 80 266 92 252 96 C240 88 228 78 218 70 Z M232 108 C248 104 266 118 270 142 C274 168 262 198 246 214 C232 226 218 218 214 196 C210 168 216 132 232 108 Z",
+  },
+  {
+    id: "asia-oceania",
+    d: "M292 62 C318 48 352 54 372 78 C388 98 392 122 378 138 C360 142 338 134 320 122 C308 112 296 96 292 78 Z M348 158 C368 152 390 168 386 188 C382 204 360 210 346 198 C338 186 340 166 348 158 Z M400 216 C412 212 424 224 418 236 C410 244 398 240 396 228 Z",
+  },
 ]
 
-const worldTargets = [
-  { label: "Norteamérica", x: 89, y: 91 },
-  { label: "Europa", x: 257, y: 92 },
-  { label: "Asia", x: 346, y: 112 },
+const worldRoutes = [
+  {
+    id: "na",
+    label: "Norteamérica",
+    market: "Fine-Flavor",
+    path: "M152 168 C120 120 100 96 86 88",
+    end: { x: 86, y: 88 },
+    color: "#F2C830",
+  },
+  {
+    id: "eu",
+    label: "Europa",
+    market: "Bean-to-bar",
+    path: "M152 168 C190 110 230 78 252 72",
+    end: { x: 252, y: 72 },
+    color: "#E8C9A0",
+  },
+  {
+    id: "as",
+    label: "Asia",
+    market: "HoReCa",
+    path: "M152 168 C210 140 280 118 348 108",
+    end: { x: 348, y: 108 },
+    color: "#FF6A3D",
+  },
+  {
+    id: "af",
+    label: "África",
+    market: "Origen ↔ intercambio",
+    path: "M152 168 C190 160 220 170 248 188",
+    end: { x: 248, y: 188 },
+    color: "#87AA27",
+  },
 ]
+
+const COL = { x: 152, y: 168 }
+
+function MapIconDefs() {
+  return (
+    <defs>
+      <filter id="mapGlow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="2.2" result="b" />
+        <feMerge>
+          <feMergeNode in="b" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+      {/* Mazorca Colab — icono vectorial */}
+      <symbol id="icon-mazorca" viewBox="0 0 24 32">
+        <ellipse cx="12" cy="28" rx="5" ry="1.4" fill="currentColor" opacity=".25" />
+        <path
+          d="M12 2.5c4.2 2 6.8 9 6.8 15.5 0 5.5-2.6 9.5-6.8 11C7.8 27.5 5.2 23.5 5.2 18 5.2 11.5 7.8 4.5 12 2.5Z"
+          fill="currentColor"
+        />
+        <path
+          d="M12 5c2.4 1.6 4 7 4 13 0 4.2-1.4 7.2-4 8.5"
+          stroke="#1A2E10"
+          strokeWidth="1"
+          fill="none"
+          opacity=".35"
+        />
+        <path
+          d="M9 9c.6 2.4.6 6 0 11M15 10c-.5 2.2-.5 5.5 0 10"
+          stroke="#1A2E10"
+          strokeWidth=".7"
+          fill="none"
+          opacity=".3"
+        />
+      </symbol>
+      {/* Ardilla simplificada — marca Colab */}
+      <symbol id="icon-squirrel" viewBox="0 0 32 30">
+        <path d="M10 24 C2 20 1 12 5 7 C8 3 14 5 13 10 C12 14 10 17 11 20 C12 22 11 24 10 24Z" fill="#C8A010" />
+        <ellipse cx="15" cy="22" rx="6" ry="6.5" fill="#F2C830" />
+        <circle cx="19" cy="11" r="6" fill="#F2C830" />
+        <path d="M14 7 Q13 2 17 1.5 Q21 1.2 19.5 7Z" fill="#F2C830" />
+        <circle cx="21" cy="10" r="1.3" fill="#1A2E10" />
+        <ellipse cx="26" cy="13.5" rx="2.2" ry="1.6" fill="#A05E10" />
+        <ellipse cx="27.5" cy="20" rx="3.2" ry="4.2" fill="#3D7A2C" />
+      </symbol>
+      <linearGradient id="routeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stopColor="#F2C830" stopOpacity=".9" />
+        <stop offset="100%" stopColor="#FF6A3D" stopOpacity=".7" />
+      </linearGradient>
+    </defs>
+  )
+}
 
 export default function BrandNetwork({ founders, collaborators, comingSoonSlots, territories }: Props) {
   const [selectedId, setSelectedId] = useState("bogota")
@@ -47,43 +136,148 @@ export default function BrandNetwork({ founders, collaborators, comingSoonSlots,
             <div>
               <p className="eyebrow text-colab-yellow">Escala global</p>
               <h3 id="world-title" className="font-serif text-2xl font-bold text-colab-cream mt-2">
-                Colombia conectada<br />con el mundo.
+                Colombia conectada
+                <br />
+                con el mundo.
               </h3>
             </div>
             <span className="map-index">01</span>
           </div>
-          <svg viewBox="0 0 430 280" className="w-full mt-4" role="img" aria-label="Mapa mundial con Colombia como origen">
-            {worldPaths.map((path, index) => (
-              <path key={path} d={path} className="world-land" style={{ opacity: .2 + index * .03 }} />
+
+          <svg
+            viewBox="0 0 430 280"
+            className="w-full mt-3 world-map-svg"
+            role="img"
+            aria-label="Mapamundi animado: Colombia irradia hacia mercados globales con iconos Colab"
+          >
+            <MapIconDefs />
+
+            {/* Océano / atmósfera */}
+            <rect width="430" height="280" fill="url(#ocean)" opacity="0" />
+            <circle cx="215" cy="140" r="118" className="world-orbit" />
+            <circle cx="215" cy="140" r="118" className="world-orbit world-orbit--delay" />
+
+            {continents.map((c, index) => (
+              <motion.path
+                key={c.id}
+                d={c.d}
+                className="world-land"
+                initial={{ opacity: 0, scale: 0.96 }}
+                whileInView={{ opacity: 0.22 + index * 0.04, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: index * 0.12 }}
+                style={{ transformOrigin: "215px 140px" }}
+              />
             ))}
-            {worldTargets.map((target, index) => (
-              <g key={target.label}>
+
+            {/* Rutas animadas + paquetes mazorca */}
+            {worldRoutes.map((route, index) => (
+              <g key={route.id} className="world-route">
                 <motion.path
-                  d={`M133 174 Q${(133 + target.x) / 2} ${Math.min(35, target.y - 45)} ${target.x} ${target.y}`}
+                  id={`route-${route.id}`}
+                  d={route.path}
                   fill="none"
-                  stroke="#F2C830"
-                  strokeWidth="1"
-                  strokeDasharray="4 5"
+                  stroke={route.color}
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeDasharray="5 7"
                   initial={{ pathLength: 0, opacity: 0 }}
-                  whileInView={{ pathLength: 1, opacity: .45 }}
+                  whileInView={{ pathLength: 1, opacity: 0.75 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 1, delay: index * .15 }}
+                  transition={{ duration: 1.2, delay: 0.2 + index * 0.15 }}
+                  className="world-route-line"
                 />
-                <circle cx={target.x} cy={target.y} r="3" fill="#F2C830" opacity=".7" />
+                {/* Pulso viajero a lo largo de la ruta */}
+                <circle r="3.5" fill={route.color} filter="url(#mapGlow)" className="world-packet">
+                  <animateMotion
+                    dur={`${3.2 + index * 0.4}s`}
+                    repeatCount="indefinite"
+                    path={route.path}
+                    begin={`${index * 0.35}s`}
+                  />
+                </circle>
+                {/* Icono mazorca en destino */}
+                <motion.g
+                  initial={{ scale: 0, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ type: "spring", stiffness: 160, delay: 0.55 + index * 0.12 }}
+                  style={{ transformOrigin: `${route.end.x}px ${route.end.y}px` }}
+                >
+                  <circle cx={route.end.x} cy={route.end.y} r="11" fill="#101D0B" stroke={route.color} strokeWidth="1.4" />
+                  <use
+                    href="#icon-mazorca"
+                    x={route.end.x - 6}
+                    y={route.end.y - 9}
+                    width="12"
+                    height="16"
+                    color={route.color}
+                  />
+                  <text
+                    x={route.end.x}
+                    y={route.end.y + 22}
+                    textAnchor="middle"
+                    fill="#F7F1EE"
+                    fontSize="8"
+                    fontWeight="800"
+                    opacity=".85"
+                  >
+                    {route.label}
+                  </text>
+                  <text
+                    x={route.end.x}
+                    y={route.end.y + 32}
+                    textAnchor="middle"
+                    fill={route.color}
+                    fontSize="6.5"
+                    fontWeight="700"
+                    opacity=".7"
+                  >
+                    {route.market}
+                  </text>
+                </motion.g>
               </g>
             ))}
-            <motion.circle
-              cx="133"
-              cy="174"
-              r="7"
-              fill="#F2C830"
-              animate={{ r: [6, 10, 6], opacity: [1, .45, 1] }}
-              transition={{ duration: 2.4, repeat: Infinity }}
-            />
-            <text x="145" y="179" fill="#F7F1EE" fontSize="10" fontWeight="700">COLOMBIA</text>
+
+            {/* Origen Colombia · ardilla Colab */}
+            <g className="world-origin">
+              <motion.circle
+                cx={COL.x}
+                cy={COL.y}
+                r="22"
+                fill="none"
+                stroke="#F2C830"
+                strokeWidth="1"
+                initial={{ opacity: 0.15, scale: 0.8 }}
+                animate={{ opacity: [0.15, 0.45, 0.15], scale: [0.85, 1.15, 0.85] }}
+                transition={{ duration: 2.8, repeat: Infinity }}
+                style={{ transformOrigin: `${COL.x}px ${COL.y}px` }}
+              />
+              <motion.circle
+                cx={COL.x}
+                cy={COL.y}
+                r="14"
+                fill="none"
+                stroke="#FF6A3D"
+                strokeWidth="1"
+                animate={{ opacity: [0.2, 0.55, 0.2], scale: [1, 1.25, 1] }}
+                transition={{ duration: 2.8, delay: 0.4, repeat: Infinity }}
+                style={{ transformOrigin: `${COL.x}px ${COL.y}px` }}
+              />
+              <circle cx={COL.x} cy={COL.y} r="13" fill="#1A2E10" stroke="#F2C830" strokeWidth="1.8" filter="url(#mapGlow)" />
+              <use href="#icon-squirrel" x={COL.x - 12} y={COL.y - 12} width="24" height="22" />
+              <text x={COL.x + 18} y={COL.y - 4} fill="#F7F1EE" fontSize="10" fontWeight="800">
+                COLOMBIA
+              </text>
+              <text x={COL.x + 18} y={COL.y + 8} fill="#F2C830" fontSize="7" fontWeight="700">
+                epicentro Colab
+              </text>
+            </g>
           </svg>
-          <p className="text-xs leading-relaxed text-colab-cream/45">
-            La red nace en territorios colombianos. Las líneas muestran mercados por conectar, no exportaciones confirmadas.
+
+          <p className="text-xs leading-relaxed text-colab-cream/45 mt-1">
+            La red nace en territorios colombianos. Las mazorcas marcan mercados por conectar — no
+            exportaciones confirmadas.
           </p>
         </section>
 
@@ -92,29 +286,36 @@ export default function BrandNetwork({ founders, collaborators, comingSoonSlots,
             <div>
               <p className="eyebrow text-colab-green">Red territorial</p>
               <h3 id="colombia-title" className="font-serif text-2xl font-bold text-colab-ink mt-2">
-                Un país.<br />Seis nodos vivos.
+                Un país.
+                <br />
+                Seis nodos vivos.
               </h3>
             </div>
             <span className="map-index text-colab-ink/15">02</span>
           </div>
           <svg viewBox="0 0 420 310" className="w-full -mt-7" role="group" aria-label="Mapa de nodos regionales de Cacao Colab">
+            <MapIconDefs />
             <path d={colombiaPath} fill="#1A2E10" opacity=".06" stroke="#1A2E10" strokeWidth="1.2" />
-            {center && territories.filter((territory) => territory.id !== "bogota").map((territory, index) => (
-              <motion.line
-                key={territory.id}
-                x1={center.mapX}
-                y1={center.mapY}
-                x2={territory.mapX}
-                y2={territory.mapY}
-                stroke={territory.accentColor}
-                strokeWidth="1.2"
-                strokeDasharray="4 4"
-                initial={{ pathLength: 0, opacity: 0 }}
-                whileInView={{ pathLength: 1, opacity: .55 }}
-                viewport={{ once: true }}
-                transition={{ duration: .7, delay: index * .08 }}
-              />
-            ))}
+            {center &&
+              territories
+                .filter((territory) => territory.id !== "bogota")
+                .map((territory, index) => (
+                  <motion.line
+                    key={territory.id}
+                    x1={center.mapX}
+                    y1={center.mapY}
+                    x2={territory.mapX}
+                    y2={territory.mapY}
+                    stroke={territory.accentColor}
+                    strokeWidth="1.2"
+                    strokeDasharray="4 4"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    whileInView={{ pathLength: 1, opacity: 0.55 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.7, delay: index * 0.08 }}
+                    className="colombia-link"
+                  />
+                ))}
             {territories.map((territory, index) => {
               const active = territory.id === selectedId
               const isCenter = territory.id === "bogota"
@@ -132,25 +333,51 @@ export default function BrandNetwork({ founders, collaborators, comingSoonSlots,
                       setSelectedId(territory.id)
                     }
                   }}
-                  className="cursor-pointer"
+                  className="cursor-pointer colombia-node"
                   initial={{ scale: 0, opacity: 0 }}
                   whileInView={{ scale: 1, opacity: 1 }}
-                  whileHover={{ scale: 1.08 }}
+                  whileHover={{ scale: 1.1 }}
                   viewport={{ once: true }}
-                  transition={{ type: "spring", stiffness: 120, delay: .2 + index * .07 }}
+                  transition={{ type: "spring", stiffness: 120, delay: 0.2 + index * 0.07 }}
                   style={{ transformOrigin: `${territory.mapX}px ${territory.mapY}px` }}
                 >
-                  {active && <circle cx={territory.mapX} cy={territory.mapY} r={isCenter ? 20 : 15} fill={territory.accentColor} opacity=".14" />}
+                  {active && (
+                    <circle
+                      cx={territory.mapX}
+                      cy={territory.mapY}
+                      r={isCenter ? 22 : 17}
+                      fill={territory.accentColor}
+                      opacity=".16"
+                    />
+                  )}
                   <circle
                     cx={territory.mapX}
                     cy={territory.mapY}
-                    r={isCenter ? 9 : 6}
-                    fill={territory.accentColor}
-                    stroke={isCenter ? "#1A2E10" : "#F7F1EE"}
-                    strokeWidth={active ? 3 : 2}
+                    r={isCenter ? 12 : 10}
+                    fill="#F7F1EE"
+                    stroke={territory.accentColor}
+                    strokeWidth={active ? 2.5 : 1.6}
                   />
+                  {isCenter ? (
+                    <use
+                      href="#icon-squirrel"
+                      x={territory.mapX - 9}
+                      y={territory.mapY - 9}
+                      width="18"
+                      height="17"
+                    />
+                  ) : (
+                    <use
+                      href="#icon-mazorca"
+                      x={territory.mapX - 5}
+                      y={territory.mapY - 8}
+                      width="10"
+                      height="14"
+                      color={territory.accentColor}
+                    />
+                  )}
                   <text
-                    x={territory.mapX + (territory.mapX > 240 ? 11 : -11)}
+                    x={territory.mapX + (territory.mapX > 240 ? 14 : -14)}
                     y={territory.mapY - 9}
                     textAnchor={territory.mapX > 240 ? "start" : "end"}
                     fill="#1C3B26"
@@ -160,7 +387,7 @@ export default function BrandNetwork({ founders, collaborators, comingSoonSlots,
                     {territory.nodeName}
                   </text>
                   <text
-                    x={territory.mapX + (territory.mapX > 240 ? 11 : -11)}
+                    x={territory.mapX + (territory.mapX > 240 ? 14 : -14)}
                     y={territory.mapY + 3}
                     textAnchor={territory.mapX > 240 ? "start" : "end"}
                     fill="#1C3B26"
@@ -181,7 +408,8 @@ export default function BrandNetwork({ founders, collaborators, comingSoonSlots,
                 onClick={() => setSelectedId(territory.id)}
                 className={`map-chip ${selectedId === territory.id ? "map-chip-active" : ""}`}
               >
-                <span style={{ background: territory.accentColor }} />{territory.name}
+                <span style={{ background: territory.accentColor }} />
+                {territory.name}
               </button>
             ))}
           </div>
@@ -192,9 +420,12 @@ export default function BrandNetwork({ founders, collaborators, comingSoonSlots,
         {selectedBrand ? <BrandCard brand={selectedBrand} /> : null}
         <aside className="open-circle-card">
           <p className="eyebrow text-colab-yellow">Círculo abierto</p>
-          <h3 className="font-serif text-3xl font-bold text-colab-cream mt-3">El próximo nodo puede ser el tuyo.</h3>
+          <h3 className="font-serif text-3xl font-bold text-colab-cream mt-3">
+            El próximo nodo puede ser el tuyo.
+          </h3>
           <p className="text-sm leading-relaxed text-colab-cream/55 mt-4">
-            No necesitas ceder tu identidad. Trae trazabilidad, voluntad de aprender y algo real que aportar al ecosistema.
+            No necesitas ceder tu identidad. Trae trazabilidad, voluntad de aprender y algo real que
+            aportar al ecosistema.
           </p>
           <div className="space-y-2 mt-6">
             {comingSoonSlots.map((slot) => (
@@ -205,7 +436,8 @@ export default function BrandNetwork({ founders, collaborators, comingSoonSlots,
                 rel="noopener noreferrer"
                 className="open-slot"
               >
-                <span>＋</span>{slot.hint}
+                <span>＋</span>
+                {slot.hint}
               </a>
             ))}
           </div>

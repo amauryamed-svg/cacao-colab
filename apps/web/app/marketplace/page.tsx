@@ -21,7 +21,12 @@ export default function MarketplacePage() {
   return (
     <div className="bg-colab-cream min-h-screen">
       <div className="page-hero-photo py-16 md:py-20">
-        <AtmospherePlane src={shotById("temper").src} alt="" overlay="forest" priority />
+        <AtmospherePlane
+          src={shotById("cacao-pods-close").src}
+          alt={shotById("cacao-pods-close").alt}
+          overlay="forest"
+          priority
+        />
         <FloatingPods variant="stage" />
         <div className="page-hero-photo-inner max-w-6xl mx-auto px-4 sm:px-6">
           <SectionKicker className="mb-4">Mapa vivo · Cacao Colab</SectionKicker>

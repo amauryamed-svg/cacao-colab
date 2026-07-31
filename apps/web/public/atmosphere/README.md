@@ -1,7 +1,15 @@
 # Atmosphere · universo visual Colab
 
-Fotos ambientadas (chocolate / ritual de cacao) usadas como planos full-bleed detrás de heroes y secciones. Ilustraciones SVG de mazorca viven en `components/atmosphere/MazorcaSVG.tsx`.
+## Cultivos / origen
+| Archivo | Fuente |
+|---------|--------|
+| `ecoyuma-fear5.jpg` | Eco Yuma — mazorcas FEAR-5 |
+| `ecoyuma-tcs06.jpg` / `ecoyuma-tcs19.jpg` / `ecoyuma-ccn51.jpg` | Eco Yuma — material vegetal |
+| `coex-home.jpg` | Cacao of Excellence — mazorca abierta en cosecha |
+| `cacao-pods-tree.jpg` / `cacao-pods-close.jpg` / `cacao-tree-pods.jpg` / `cacao-roadside.jpg` / `cacao-harvest.jpg` | Wikimedia Commons — cultivo Theobroma |
+
+## Chocolate / deseo
+`chocolate-broken.jpg`, `chocolate-shards.jpg`, `chocolate-drizzle.jpg`, `chocolate-temper.jpg`, `chocolate-stack.jpg`  
+Benevolo packshot: `/benevolo/bars-fear5.png`
 
 Catálogo tipado: `lib/atmosphere.ts`.
-
-Créditos: imágenes de stock (Unsplash / Pexels) licenciadas para uso editorial; Benevolo packshot en `/benevolo/bars-fear5.png`.

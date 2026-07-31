@@ -517,8 +517,53 @@ body {
 
 .map-world {
   background:
-    radial-gradient(circle at 30% 65%, rgba(242, 200, 48, .12), transparent 25%),
-    #101D0B;
+    radial-gradient(circle at 35% 60%, rgba(242, 200, 48, .16), transparent 28%),
+    radial-gradient(circle at 78% 30%, rgba(255, 106, 61, .08), transparent 22%),
+    linear-gradient(160deg, #0c1609, #101D0B 55%, #140e0a);
+}
+
+@keyframes worldDash {
+  to { stroke-dashoffset: -48; }
+}
+
+@keyframes worldOrbitSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.world-map-svg { overflow: visible; }
+
+.world-orbit {
+  fill: none;
+  stroke: rgba(242, 200, 48, .12);
+  stroke-width: .8;
+  stroke-dasharray: 3 10;
+  transform-origin: 215px 140px;
+  animation: worldOrbitSpin 48s linear infinite;
+}
+
+.world-orbit--delay {
+  stroke: rgba(255, 106, 61, .1);
+  stroke-dasharray: 2 14;
+  animation-duration: 72s;
+  animation-direction: reverse;
+}
+
+.world-route-line {
+  animation: worldDash 2.8s linear infinite;
+}
+
+.world-packet {
+  opacity: .95;
+}
+
+.colombia-link {
+  animation: worldDash 3.5s linear infinite;
+}
+
+.colombia-node:focus-visible {
+  outline: 2px solid #F2C830;
+  outline-offset: 2px;
 }
 
 .map-colombia {
