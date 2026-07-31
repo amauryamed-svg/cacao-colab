@@ -1,7 +1,8 @@
 # Cacao Colab — Roadmap
 
-> Última actualización: 2026-07-26 (pivote v2)
+> Última actualización: 2026-07-31 (builders fundadores + plug-and-play + stores)
 > Método: Spec-Driven. Cada ítem tiene dueño y criterio de cierre.
+> Dueños por defecto: Amaury (PM) · Hellen (Frontend) · Oscar (Backend) — ver `19-BUILDERS-FOUNDERS.md`.
 
 ---
 
@@ -87,7 +88,7 @@ Esta fase es nueva — es el trabajo hecho en la rama `v2-pivot` para preparar e
 | Rate limiting (Upstash) | 🟢 Backlog | Oscar | Middleware de rate limit en `apps/api` |
 | Jobs nativos (`pg_cron`/`pgmq`) — refresh de `leaderboard_weekly`, digest de CRM | 🟢 Backlog | Oscar | Jobs corriendo en Supabase real |
 | App móvil transaccional (no solo lectura) | 🟢 Backlog | Hellen | Checkout funcionando en Expo Go / build nativo |
-| Publicación en stores (App Store / Play Store) | 🟢 Backlog | Amaury + Hellen | EAS Build configurado, apps enviadas a review |
+| Publicación en stores (App Store / Play Store) | 🟡 Docs + scaffolding | Amaury (cuentas) · Hellen (UI/assets) · Oscar (EAS) | `docs/21-APP-STORES.md` + `apps/mobile/eas.json`; Expo Go ya usable vía plug-and-play |
 
 ---
 

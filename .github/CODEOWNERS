@@ -1,0 +1,25 @@
+# Builders fundadores — revisión por dominio
+# Amaury Amed (PM) · Hellen Bareño (Frontend) · Oscar Gamboa (Backend)
+
+*       @amauryamed-svg
+
+# Frontend — Hellen
+/apps/web/                          @HellenBareno-eng @amauryamed-svg
+/apps/mobile/                       @HellenBareno-eng @amauryamed-svg
+/packages/ui-tokens/                @HellenBareno-eng @amauryamed-svg
+/apps/video/                        @HellenBareno-eng @amauryamed-svg
+
+# Backend — Oscar
+/apps/api/                          @oscargamboa68 @amauryamed-svg
+/supabase/                          @oscargamboa68 @amauryamed-svg
+/packages/supabase-client/          @oscargamboa68 @amauryamed-svg
+/packages/hubspot-client/           @oscargamboa68 @amauryamed-svg
+/packages/stripe-client/            @oscargamboa68 @amauryamed-svg
+/packages/types/                    @oscargamboa68 @HellenBareno-eng @amauryamed-svg
+/packages/ai-companion/             @oscargamboa68 @amauryamed-svg
+
+# Product / Spec — Amaury
+/docs/                              @amauryamed-svg @HellenBareno-eng @oscargamboa68
+/README.md                          @amauryamed-svg
+/CONTRIBUTORS.md                    @amauryamed-svg
+/CONTRIBUTING.md                    @amauryamed-svg

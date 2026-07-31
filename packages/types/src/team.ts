@@ -1,11 +1,10 @@
 import { z } from "zod";
 
 /**
- * `team_members` — cuenta interna del equipo Cacao Colab (Oscar, Hellen,
- * Amaury), distinta de `profiles` (cuentas de marketplace). Respalda el
- * login real de /equipo en apps/web (Supabase Auth, magic link) y el
- * panel de HubSpot embebido ahí. Ver docs/06-ARQUITECTURA.md §Auth y
- * docs/14-CRM-INTERNO.md.
+ * `team_members` — Builders fundadores del Colab (Amaury PM, Hellen
+ * Frontend, Oscar Backend), distinta de `profiles` (marketplace).
+ * GitHub: amauryamed-svg · HellenBareno-eng · oscargamboa68.
+ * Ver docs/19-BUILDERS-FOUNDERS.md y docs/14-CRM-INTERNO.md.
  *
  * `hubspotContactEmail` es nullable a propósito: no todo team member tiene
  * un contacto real en HubSpot. Nunca se debe intentar "adivinar" o crear

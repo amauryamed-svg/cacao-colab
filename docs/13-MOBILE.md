@@ -96,4 +96,4 @@ Escanear el QR con la app Expo Go (iOS/Android) — debería mostrar las 3 tabs 
 - Conexión real a `apps/api` para listings/aprende (hoy 100% placeholder local).
 - Gamificación (XP/rachas/badges) — ver `09-GAMIFICACION.md`.
 - Checkout transaccional (Fase 3-4).
-- Publicación en App Store / Play Store vía EAS Build (Fase 4).
+- Publicación en App Store / Play Store vía EAS Build — **documentado en** `21-APP-STORES.md` (cuentas Amaury · UI Hellen · EAS Oscar). Scaffolding: `apps/mobile/eas.json`.

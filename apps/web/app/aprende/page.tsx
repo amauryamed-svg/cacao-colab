@@ -139,9 +139,9 @@ export default async function AprendePage() {
           <div className="border-l border-white/10 pl-6">
             <p className="text-colab-yellow font-bold text-xs tracking-wider uppercase font-sans mb-3">El equipo Cacao Colab</p>
             <ul className="space-y-2 text-sm font-sans text-colab-cream/65">
-              <li><strong className="text-colab-cream">Amaury Amed</strong> · Founder de cacaotier + builder del Colab</li>
-              <li><strong className="text-colab-cream">Hellen Bareño</strong> · Builder · chocolatería y experiencia</li>
-              <li><strong className="text-colab-cream">Oscar Gamboa</strong> · Builder · desarrollo y operación</li>
+              <li><strong className="text-colab-cream">Amaury Amed</strong> · Product Manager · Builder fundador</li>
+              <li><strong className="text-colab-cream">Hellen Bareño</strong> · Frontend Lead · Builder fundadora</li>
+              <li><strong className="text-colab-cream">Oscar Gamboa</strong> · Backend Lead · Builder fundador</li>
             </ul>
             <a
               href="https://wa.me/573102227848?text=Hola%20Cacao%20Colab%2C%20tengo%20preguntas%20sobre%20Dualita."
