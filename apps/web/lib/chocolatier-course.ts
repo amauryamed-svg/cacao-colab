@@ -181,7 +181,7 @@ export const chocolatierMissions: ChocolatierMission[] = [
       {
         kicker: "Refino",
         title: "Ventana de finura, no superstición.",
-        body: "Busca sedosidad sin arenilla. En laboratorio Colab documentamos tiempo de refino y prueba de lengua; no inventamos micrones de máquina si no los mides. Si la partícula queda alta, la duja amplifica el defecto.",
+        body: "Busca sedosidad sin arenilla. En laboratorio Colab documentamos tiempo de refino y prueba de lengua; no inventamos micrones de máquina si no los mides. Si la partícula queda alta, la barra 70 % amplifica el defecto en snap y retrogusto.",
         fieldAction: "Bitácora: minutos de refino · °C · prueba lengua (sin arenilla / grasa sucia).",
       },
       {
