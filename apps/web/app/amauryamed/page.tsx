@@ -105,6 +105,48 @@ export default async function AmauryProfilePage() {
           ))}
         </section>
 
+        {/* Orinoquía — reel vertical en marco de teléfono + CTA a Instagram */}
+        <section className="amaury-phone-section" aria-label="Sígueme en Instagram">
+          <div className="amaury-phone-frame">
+            <div className="amaury-phone-notch" aria-hidden />
+            <div className="amaury-phone-screen">
+              <video
+                className="amaury-phone-video"
+                src="/videos/amaury/callebaut-instagram.mp4"
+                poster="/videos/amaury/poster.jpg"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+              />
+            </div>
+          </div>
+          <div className="amaury-phone-copy">
+            <p className="eyebrow text-colab-yellow">5.000 años de cacao · Orinoquía colombiana</p>
+            <h2 className="amaury-section__h amaury-section__h--tight">
+              El cacao nació aquí.
+              <br />
+              <span>Yo aprendí a hablarle.</span>
+            </h2>
+            <p className="amaury-section__body">
+              Cada video documenta el oficio con cacao Fine-Flavor de la Orinoquía colombiana — una de
+              las cunas más antiguas del cacao, con raíces de hasta 5.000 años. Camino a la Chocolate
+              Academy, sigo mostrando el proceso completo: de la mazorca al chocolate.
+            </p>
+            <div className="amaury-hero__ctas mt-4">
+              <a
+                href={p.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="amaury-cta amaury-cta--primary"
+              >
+                Seguir @amaury.amed →
+              </a>
+            </div>
+          </div>
+        </section>
+
         {/* Callebaut — oportunidad */}
         <section className="amaury-callebaut">
           {craft && (
