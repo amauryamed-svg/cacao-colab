@@ -28,8 +28,8 @@ export default function ConocimientoPage() {
             {ecosystemSpearhead.body}
           </p>
           <div className="flex flex-wrap gap-3 mt-8">
-            <Link href="/benevolo" className="bg-colab-yellow text-colab-forest rounded-full px-7 py-3.5 text-sm font-bold">
-              Conocer Benevolo →
+            <Link href="/rd" className="bg-colab-yellow text-colab-forest rounded-full px-7 py-3.5 text-sm font-bold">
+              R&D · Benevolo + coberturas →
             </Link>
             <TrackedLink
               href="https://tienda.ecoyuma.com.co/11-plantulas-de-cacao"

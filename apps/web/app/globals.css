@@ -3159,3 +3159,229 @@ body {
   border-color: rgba(247, 241, 238, .3);
   transform: translateY(-1px);
 }
+
+/* ── R&D hub · Benevolo + coberturas CAÚA × Zurych ── */
+@keyframes rdRise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes rdSheen {
+  from { background-position: 0% 50%; }
+  to   { background-position: 100% 50%; }
+}
+
+.rd-hero {
+  background:
+    radial-gradient(ellipse 70% 55% at 12% 0%, rgba(242, 200, 48, .14), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 90% 20%, rgba(135, 170, 39, .1), transparent 50%),
+    linear-gradient(165deg, #1a2e10 0%, #12200c 45%, #0d1609 100%);
+  border-bottom: 1px solid rgba(247, 241, 238, .08);
+  animation: rdRise .7s ease both;
+}
+
+.rd-hero--coberturas {
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 10%, rgba(196, 164, 132, .16), transparent 50%),
+    radial-gradient(ellipse 45% 40% at 10% 30%, rgba(242, 200, 48, .1), transparent 45%),
+    linear-gradient(165deg, #1f1612 0%, #152010 50%, #0d1609 100%);
+}
+
+.rd-panel {
+  display: block;
+  padding: 1.6rem 1.5rem 1.4rem;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(247, 241, 238, .1);
+  background: rgba(247, 241, 238, .04);
+  transition: transform .25s ease, border-color .25s ease, background .25s ease;
+  animation: rdRise .8s ease both;
+  animation-delay: .08s;
+}
+
+.rd-panel:hover {
+  transform: translateY(-3px);
+  border-color: rgba(242, 200, 48, .35);
+  background: rgba(242, 200, 48, .06);
+}
+
+.rd-panel--benevolo:hover {
+  border-color: rgba(255, 106, 61, .4);
+  background: rgba(255, 106, 61, .07);
+}
+
+.rd-panel h2 {
+  font-family: var(--font-display, Georgia, serif);
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  font-weight: 800;
+  margin-top: .55rem;
+  line-height: 1.1;
+}
+
+.rd-panel p {
+  color: rgba(247, 241, 238, .5);
+  font-size: .85rem;
+  line-height: 1.55;
+  margin-top: .75rem;
+}
+
+.rd-panel span {
+  display: inline-block;
+  margin-top: 1.25rem;
+  color: #F2C830;
+  font-size: .8rem;
+  font-weight: 800;
+}
+
+.rd-panel--benevolo span { color: #FF6A3D; }
+
+.rd-sku {
+  background: rgba(247, 241, 238, .04);
+  border: 1px solid rgba(247, 241, 238, .1);
+  border-radius: 1rem;
+  padding: 1.15rem 1.2rem;
+  transition: border-color .2s ease, transform .2s ease;
+}
+
+.rd-sku:hover {
+  border-color: rgba(242, 200, 48, .3);
+  transform: translateY(-2px);
+}
+
+.rd-sku--row {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .rd-sku--row {
+    grid-template-columns: 1.4fr .9fr;
+    align-items: center;
+  }
+}
+
+.rd-sku h3 {
+  font-family: var(--font-display, Georgia, serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-top: .35rem;
+  line-height: 1.2;
+}
+
+.rd-sku p {
+  color: rgba(247, 241, 238, .45);
+  font-size: .75rem;
+  line-height: 1.45;
+  margin-top: .45rem;
+}
+
+.rd-sku small {
+  color: rgba(247, 241, 238, .35);
+  font-size: .65rem;
+}
+
+.rd-sku-nodes {
+  color: #F2C830 !important;
+  font-size: .62rem !important;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-top: 0 !important;
+}
+
+.rd-sku-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-top: .9rem;
+}
+
+.rd-sku-actions a,
+.rd-btn-shop,
+.rd-btn-wa {
+  font-size: .72rem;
+  font-weight: 800;
+  padding: .45rem .85rem;
+  border-radius: 999px;
+  transition: background .2s ease, color .2s ease;
+}
+
+.rd-sku-actions a:first-child,
+.rd-btn-shop {
+  background: #F2C830;
+  color: #1A2E10;
+}
+
+.rd-sku-actions a:last-child,
+.rd-btn-wa {
+  border: 1px solid rgba(247, 241, 238, .2);
+  color: rgba(247, 241, 238, .8);
+}
+
+.rd-sku-actions a:hover { filter: brightness(1.08); }
+
+.rd-contact {
+  display: block;
+  padding: 1.1rem 1.15rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(247, 241, 238, .1);
+  background: rgba(247, 241, 238, .03);
+  transition: border-color .2s ease, transform .2s ease;
+}
+
+.rd-contact:hover {
+  border-color: rgba(242, 200, 48, .35);
+  transform: translateY(-2px);
+}
+
+.rd-contact strong {
+  display: block;
+  font-size: .9rem;
+}
+
+.rd-contact span {
+  display: block;
+  color: rgba(247, 241, 238, .4);
+  font-size: .7rem;
+  margin-top: .35rem;
+  line-height: 1.4;
+}
+
+.rd-node-card {
+  display: block;
+  padding: 1.25rem 1.2rem;
+  border-radius: 1.1rem;
+  border: 1px solid rgba(247, 241, 238, .1);
+  background:
+    linear-gradient(135deg, rgba(242, 200, 48, .06), transparent 55%),
+    rgba(247, 241, 238, .03);
+  background-size: 200% 200%;
+  animation: rdSheen 8s ease infinite alternate, rdRise .75s ease both;
+  transition: transform .25s ease, border-color .25s ease;
+}
+
+.rd-node-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(242, 200, 48, .4);
+}
+
+.rd-node-card > span {
+  color: #F2C830;
+  font-size: .6rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.rd-node-card strong {
+  display: block;
+  font-family: var(--font-display, Georgia, serif);
+  font-size: 1.2rem;
+  margin-top: .5rem;
+}
+
+.rd-node-card p {
+  color: rgba(247, 241, 238, .45);
+  font-size: .75rem;
+  line-height: 1.5;
+  margin-top: .55rem;
+}

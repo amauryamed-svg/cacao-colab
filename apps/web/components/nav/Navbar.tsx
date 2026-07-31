@@ -34,10 +34,10 @@ export default function Navbar() {
             Conocimiento
           </Link>
           <Link
-            href="/benevolo"
+            href="/rd"
             className="hidden lg:inline text-xs font-bold text-colab-cream/70 hover:text-colab-yellow font-sans tracking-wide transition-colors"
           >
-            Benevolo
+            R&D
           </Link>
           <Link
             href="/aprende"

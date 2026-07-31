@@ -33,6 +33,8 @@ export const crmActivityTypeSchema = z.enum([
   "sponsor_interest",
   "knowledge_link_clicked",
   "ecoyuma_link_clicked",
+  "caua_shop_clicked",
+  "zurych_shop_clicked",
   "benevolo_interest",
   "note",
 ]);
