@@ -17,7 +17,7 @@ Tokens custom (crear props primero — ver `docs/22-EMAIL-SEGUIMIENTO-CONSISTENC
 - `{{ contact.colab_rank }}`
 - `{{ contact.colab_micro_completed }}`
 - `{{ contact.colab_sembrar_stage }}`
-- `{{ contact.colab_sembrar_genotype }}`
+- `{{ contact.colab_sembrar_meta }}` — genotipo + fase combinados (ej. "FEAR 5 · fase fermentación"); consolidado por el límite de 10 props custom del portal, ver nota en `apps/web/lib/followup-sync.ts`.
 
 El motor de consejo en código: `apps/web/lib/followup-advice.ts`  
 Sync automático tras lección/Sembrar: `apps/web/lib/followup-sync.ts`

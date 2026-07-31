@@ -27,6 +27,16 @@ Sustituye / amplía el checklist anterior “día 1 Dualita / día 14 catálogo�
 
 ## 3. Propiedades HubSpot a crear
 
+> **Actualización 2026-07-31 (creación real):** el portal comparte un límite
+> de 10 propiedades custom con todo el ecosistema CAÚA — con 9 slots ya
+> ocupados (arquetipo/tarot, `caua_completed_orders`, etc.) solo quedó **1
+> libre** para las 3 que faltaban. Se consolidó `colab_sembrar_genotype` +
+> `colab_sembrar_phase` en una sola `colab_sembrar_meta` (ej. `"FEAR 5 · fase
+> fermentación"`), y se sacó `colab_last_advice` del sync a HubSpot por
+> completo — ningún email la usa como token, y el texto ya queda logueado en
+> `crm_activities.metadata.advice` (Supabase). La tabla de abajo refleja lo
+> que **existe de verdad** en el portal, ya no el diseño original de 8.
+
 Settings → Properties → Contact → create (tipo texto / número según aplique):
 
 | Internal name | Label | Tipo |
@@ -36,16 +46,17 @@ Settings → Properties → Contact → create (tipo texto / número según apli
 | `colab_rank` | Colab rango | single-line text |
 | `colab_micro_completed` | Colab módulos Dualita | number |
 | `colab_sembrar_stage` | Colab Sembrar etapa | single-line text |
-| `colab_sembrar_phase` | Colab Sembrar fase | single-line text |
-| `colab_sembrar_genotype` | Colab Sembrar genotipo | single-line text |
-| `colab_last_advice` | Colab último consejo | multi-line text |
+| `colab_sembrar_meta` | Colab Sembrar detalle | single-line text |
 
 El sync las escribe vía `upsertContactByEmail` desde `apps/web/lib/followup-sync.ts` tras:
 
 - completar módulo microlearning (`completeMicroLesson`)
 - guardar labranza Sembrar (`saveGotchiRun`)
 
-Si la propiedad aún no existe en HubSpot, el PATCH falla en silencio (no rompe la lección).
+Si alguna propiedad no existe en HubSpot, el PATCH completo falla en
+silencio (no rompe la lección) — por eso el nombre interno debe coincidir
+**exacto** con lo creado en HubSpot, HubSpot rechaza el request entero si
+una sola key del payload no existe, no ignora solo esa key.
 
 ---
 
@@ -69,7 +80,7 @@ Cada sync inserta `crm_activities` tipo `note` con `metadata.kind = followup_adv
 
 ## 6. Checklist Amaury (HubSpot UI)
 
-- [ ] Crear las 8 propiedades custom
+- [x] Crear las 6 propiedades custom (consolidadas, ver §3) — hecho 2026-07-31
 - [ ] Pegar las 3 plantillas HTML (Source)
 - [ ] Workflow: enroll al crear contacto Colab / lista “Leads Cacao Colab”
 - [ ] Delay 0 → email día 1

@@ -13,8 +13,16 @@ import { lessons } from "@/lib/lessons"
 import { MICRO_COURSE_SLUG } from "@/lib/microlearning"
 
 /**
- * Propiedades personalizadas HubSpot (crear en Settings → Properties).
+ * Propiedades personalizadas HubSpot (Settings → Properties → Contact).
  * Si aún no existen, el PATCH falla en silencio y no bloquea al learner.
+ *
+ * El portal comparte un límite de 10 propiedades custom con el resto del
+ * ecosistema CAÚA (arquetipo/tarot, caua_completed_orders, etc.) — con 9 ya
+ * ocupadas solo quedaba 1 slot libre para las 3 que faltaban
+ * (genotype/phase/last_advice). Se consolidó genotype+phase en
+ * `colab_sembrar_meta` (ver buildSembrarMeta) y se sacó last_advice del
+ * sync a HubSpot — ningún email la usa como token `{{ }}`, y el texto
+ * completo ya queda logueado en `crm_activities.metadata.advice`.
  */
 export const HUBSPOT_COLAB_PROPS = {
   mdBalance: "colab_md_balance",
@@ -22,10 +30,21 @@ export const HUBSPOT_COLAB_PROPS = {
   rank: "colab_rank",
   microCompleted: "colab_micro_completed",
   sembrarStage: "colab_sembrar_stage",
-  sembrarGenotype: "colab_sembrar_genotype",
-  sembrarPhase: "colab_sembrar_phase",
-  lastAdvice: "colab_last_advice",
+  sembrarMeta: "colab_sembrar_meta",
 } as const
+
+const SEMBRAR_PHASE_LABEL: Record<SembrarSnapshot["phase"], string> = {
+  none: "",
+  cultivation: "cultivo",
+  fermentation: "fermentación",
+  complete: "cosecha",
+}
+
+function buildSembrarMeta(sembrar: SembrarSnapshot): string {
+  const phaseLabel = SEMBRAR_PHASE_LABEL[sembrar.phase]
+  const parts = [sembrar.genotypeCode, phaseLabel ? `fase ${phaseLabel}` : null].filter(Boolean)
+  return parts.join(" · ")
+}
 
 function parseSembrarState(raw: unknown): SembrarSnapshot {
   if (!raw || typeof raw !== "object") return emptySembrarSnapshot()
@@ -133,9 +152,7 @@ export async function syncLearnerFollowup(profileId: string, trigger: string) {
       [HUBSPOT_COLAB_PROPS.rank]: advice.rankName,
       [HUBSPOT_COLAB_PROPS.microCompleted]: String(snap.microCompleted),
       [HUBSPOT_COLAB_PROPS.sembrarStage]: snap.sembrar.stageName,
-      [HUBSPOT_COLAB_PROPS.sembrarPhase]: snap.sembrar.phase,
-      [HUBSPOT_COLAB_PROPS.sembrarGenotype]: snap.sembrar.genotypeCode ?? "",
-      [HUBSPOT_COLAB_PROPS.lastAdvice]: plain.slice(0, 65000),
+      [HUBSPOT_COLAB_PROPS.sembrarMeta]: buildSembrarMeta(snap.sembrar),
     }
     if (profile?.full_name) props.firstname = profile.full_name.split(/\s+/)[0] ?? ""
 
