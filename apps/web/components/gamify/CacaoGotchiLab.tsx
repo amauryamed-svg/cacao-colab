@@ -1,8 +1,34 @@
 "use client"
 
 import { useEffect, useMemo, useState } from "react"
+import Link from "next/link"
 import { saveGotchiRun } from "@/app/campus/actions"
 import { territories } from "@/lib/territories"
+import {
+  agroforestryModels,
+  bitacoraPrompts,
+  cartografiaLayers,
+  planningMilestones,
+  plantulaFor,
+  sembrarCatalogHref,
+  sembrarGenerationCopy,
+  sembrarPlantulas,
+  type SembrarGenotype,
+} from "@/lib/sembrar"
+
+type BitacoraEntry = {
+  id: string
+  at: string
+  promptId: string
+  note: string
+}
+
+type FarmMap = {
+  parcelas: string
+  agua: string
+  sombra: string
+  social: string
+}
 
 type GotchiState = {
   phase: "cultivation" | "fermentation" | "complete"
@@ -24,19 +50,26 @@ type GotchiState = {
   streak: number
   lastActionDate: string | null
   selectedNode: string
-  genotype: "FEAR 5 · Trinitario comercial"
+  genotype: string
+  genotypeCode: SembrarGenotype
   treatment: "Fermentación controlada Cacaotier" | null
   fermentationHour: number
   labranzaName: string
   generation: "primera" | "heredada" | "comunitaria"
-  plantingSystem: "agroforesteria" | "sombra-regulada" | "demostrativa"
+  plantingSystem: "agroforesteria" | "sombra-regulada" | "demostrativa" | "comunitaria-estratos"
   biodiversity: number
   waterReserve: number
   pollinators: number
   soilCover: number
+  bitacora: BitacoraEntry[]
+  farmMap: FarmMap
+  planNotes: string
+  activePromptId: string
 }
 
 const now = () => new Date().toISOString()
+
+const emptyMap: FarmMap = { parcelas: "", agua: "", sombra: "", social: "" }
 
 const initialState: GotchiState = {
   phase: "cultivation",
@@ -58,31 +91,36 @@ const initialState: GotchiState = {
   streak: 0,
   lastActionDate: null,
   selectedNode: "arauca",
-  genotype: "FEAR 5 · Trinitario comercial",
+  genotype: "FEAR 5 · Trinitario comercial Fedecacao",
+  genotypeCode: "FEAR 5",
   treatment: null,
   fermentationHour: 0,
   labranzaName: "Labranza #001",
-  generation: "heredada",
+  generation: "primera",
   plantingSystem: "agroforesteria",
   biodiversity: 68,
   waterReserve: 58,
   pollinators: 52,
   soilCover: 72,
+  bitacora: [],
+  farmMap: emptyMap,
+  planNotes: "",
+  activePromptId: "b0",
 }
 
 const stages = [
-  { name: "Semilla", icon: "●", threshold: 0, mission: "Selecciona nodo, genotipo y registra la siembra." },
-  { name: "Plántula", icon: "♧", threshold: 1, mission: "Equilibra agua, sombra y nutrición." },
-  { name: "Árbol joven", icon: "♣", threshold: 12, mission: "Protege suelo y observa la respuesta por hora." },
-  { name: "Floración", icon: "✣", threshold: 30, mission: "Cuida salud y sombra para sostener flores." },
+  { name: "Semilla", icon: "●", threshold: 0, mission: "Elige plántula Ecoyuma, nodo y cartografía base." },
+  { name: "Plántula", icon: "♧", threshold: 1, mission: "Equilibra agua, sombra y registra la bitácora de trasplante." },
+  { name: "Árbol joven", icon: "♣", threshold: 12, mission: "Cubre suelo, observa sanidad y ajusta el modelo agroforestal." },
+  { name: "Floración", icon: "✣", threshold: 30, mission: "Cuida polinizadores y sombra para sostener flores." },
   { name: "Mazorca", icon: "◉", threshold: 54, mission: "Lleva la mazorca a madurez sin forzar el árbol." },
-  { name: "Cosecha", icon: "◆", threshold: 78, mission: "Abre un lote trazable y aplica el tratamiento Cacaotier." },
+  { name: "Cosecha", icon: "◆", threshold: 78, mission: "Abre un lote trazable y aplica fermentación Cacaotier." },
 ]
 
 const actions = [
   { id: "water", label: "Regular agua", icon: "⌁", xp: 12, moisture: 16, nutrition: 0, shade: 0, health: 2, knowledge: 1, biodiversity: 0, pollinators: 0, soilCover: 0, waterReserve: -5 },
   { id: "shade", label: "Ajustar sombra", icon: "☼", xp: 15, moisture: -2, nutrition: 0, shade: 12, health: 6, knowledge: 2, biodiversity: 3, pollinators: 2, soilCover: 0, waterReserve: 1 },
-  { id: "observe", label: "Medir y registrar", icon: "◎", xp: 20, moisture: -1, nutrition: 0, shade: 0, health: 1, knowledge: 12, biodiversity: 0, pollinators: 0, soilCover: 0, waterReserve: 0 },
+  { id: "observe", label: "Medir y bitácora", icon: "◎", xp: 20, moisture: -1, nutrition: 0, shade: 0, health: 1, knowledge: 12, biodiversity: 0, pollinators: 0, soilCover: 0, waterReserve: 0 },
   { id: "soil", label: "Nutrir y cubrir suelo", icon: "≋", xp: 18, moisture: 3, nutrition: 14, shade: 0, health: 7, knowledge: 4, biodiversity: 4, pollinators: 0, soilCover: 12, waterReserve: 4 },
   { id: "pollinate", label: "Cuidar polinizadores", icon: "✣", xp: 18, moisture: -2, nutrition: 0, shade: 2, health: 4, knowledge: 5, biodiversity: 5, pollinators: 14, soilCover: 2, waterReserve: 0 },
 ]
@@ -116,14 +154,14 @@ function applyElapsedGrowth(state: GotchiState, forcedHours?: number): GotchiSta
     ageHours: nextAge,
     lastGrowthAt: now(),
     moisture: clamp(state.moisture - elapsed * 1.2),
-    nutrition: clamp(state.nutrition - elapsed * .45),
-    health: clamp(state.health + (balance > .68 ? elapsed * .35 : -elapsed * .5)),
-    heightCm: Math.round((state.heightCm + elapsed * .42 * Math.max(.25, balance)) * 10) / 10,
-    leaves: state.leaves + Math.floor(elapsed * balance / 2.5),
-    flowers: nextAge >= 30 ? state.flowers + Math.floor(elapsed * balance / 5) : state.flowers,
-    pods: nextAge >= 54 ? state.pods + Math.floor(elapsed * balance / 10) : state.pods,
-    waterReserve: clamp(state.waterReserve - elapsed * .3),
-    pollinators: clamp(state.pollinators + (state.biodiversity > 65 ? elapsed * .18 : -elapsed * .2)),
+    nutrition: clamp(state.nutrition - elapsed * 0.45),
+    health: clamp(state.health + (balance > 0.68 ? elapsed * 0.35 : -elapsed * 0.5)),
+    heightCm: Math.round((state.heightCm + elapsed * 0.42 * Math.max(0.25, balance)) * 10) / 10,
+    leaves: state.leaves + Math.floor((elapsed * balance) / 2.5),
+    flowers: nextAge >= 30 ? state.flowers + Math.floor((elapsed * balance) / 5) : state.flowers,
+    pods: nextAge >= 54 ? state.pods + Math.floor((elapsed * balance) / 10) : state.pods,
+    waterReserve: clamp(state.waterReserve - elapsed * 0.3),
+    pollinators: clamp(state.pollinators + (state.biodiversity > 65 ? elapsed * 0.18 : -elapsed * 0.2)),
   }
 }
 
@@ -132,14 +170,32 @@ function isGotchiState(value: unknown): value is GotchiState {
 }
 
 function normalizeState(value: GotchiState): GotchiState {
-  return { ...initialState, ...value }
+  const code = (value.genotypeCode as SembrarGenotype) || "FEAR 5"
+  const plant = plantulaFor(code)
+  return {
+    ...initialState,
+    ...value,
+    genotypeCode: code,
+    genotype: value.genotype || plant.label,
+    bitacora: Array.isArray(value.bitacora) ? value.bitacora : [],
+    farmMap: { ...emptyMap, ...(value.farmMap ?? {}) },
+    planNotes: value.planNotes ?? "",
+    activePromptId: value.activePromptId || "b0",
+    plantingSystem: value.plantingSystem || "agroforesteria",
+  }
 }
 
 export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteState?: unknown }) {
-  const [state, setState] = useState<GotchiState>(() => isGotchiState(initialRemoteState) ? normalizeState(initialRemoteState) : initialState)
-  const [message, setMessage] = useState("Dualita: selecciona un nodo y observa antes de intervenir.")
+  const [state, setState] = useState<GotchiState>(() =>
+    isGotchiState(initialRemoteState) ? normalizeState(initialRemoteState) : initialState,
+  )
+  const [message, setMessage] = useState(
+    "Dualita: elige plántula Ecoyuma y dibuja tu finca antes de acelerar el tiempo.",
+  )
   const [loaded, setLoaded] = useState(false)
   const [sync, setSync] = useState<"idle" | "saving" | "saved" | "local">("idle")
+  const [bitacoraDraft, setBitacoraDraft] = useState("")
+  const [panel, setPanel] = useState<"cuidado" | "bitacora" | "mapa" | "plan">("cuidado")
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -152,7 +208,7 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
           setState((current) => applyElapsedGrowth(current))
         }
       } catch {
-        // La sesión remota sigue disponible.
+        // sesión remota
       }
       setLoaded(true)
     }, 0)
@@ -169,7 +225,7 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
     try {
       localStorage.setItem("cacao_gotchi_v2", JSON.stringify(state))
     } catch {
-      // No bloquea la simulación.
+      // no bloquea
     }
   }, [loaded, state])
 
@@ -183,11 +239,19 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
     ? ((state.ageHours - stage.threshold) / (nextStage.threshold - stage.threshold)) * 100
     : 100
   const selectedTerritory = territories.find((territory) => territory.id === state.selectedNode)
-  const fermentationPoint = fermentationCurve.find((point) => point.hour === state.fermentationHour) ?? fermentationCurve[0]
+  const fermentationPoint =
+    fermentationCurve.find((point) => point.hour === state.fermentationHour) ?? fermentationCurve[0]
+  const plantula = plantulaFor(state.genotypeCode)
+  const agroModel =
+    agroforestryModels.find((m) => m.id === state.plantingSystem) ?? agroforestryModels[0]
+  const activePrompt =
+    bitacoraPrompts.find((p) => p.id === state.activePromptId) ?? bitacoraPrompts[0]
 
   function persist(next: GotchiState) {
     setSync("saving")
-    void saveGotchiRun(next, next.xp, next.selectedNode, next.treatment).then((result) => setSync(result.ok ? "saved" : "local"))
+    void saveGotchiRun(next, next.xp, next.selectedNode, next.treatment).then((result) =>
+      setSync(result.ok ? "saved" : "local"),
+    )
   }
 
   function care(action: (typeof actions)[number]) {
@@ -204,33 +268,67 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
       shade: clamp(current.shade + action.shade),
       health: clamp(current.health + action.health),
       knowledge: clamp(current.knowledge + action.knowledge),
-      soilPh: clamp(current.soilPh + (action.id === "soil" ? .03 : 0), 4, 8),
+      soilPh: clamp(current.soilPh + (action.id === "soil" ? 0.03 : 0), 4, 8),
       biodiversity: clamp(current.biodiversity + action.biodiversity),
       pollinators: clamp(current.pollinators + action.pollinators),
       soilCover: clamp(current.soilCover + action.soilCover),
       waterReserve: clamp(current.waterReserve + action.waterReserve),
       actions: current.actions + 1,
       streak: isNewDay
-        ? (current.lastActionDate === yesterday.toISOString().slice(0, 10) ? current.streak + 1 : 1)
+        ? current.lastActionDate === yesterday.toISOString().slice(0, 10)
+          ? current.streak + 1
+          : 1
         : current.streak,
       lastActionDate: currentDate,
     })
     setState(next)
     persist(next)
-    setMessage(`Dualita: ${action.label} suma +${action.xp} XP y puede acreditar 5 Mazorcas Doradas (tope diario).`)
+    if (action.id === "observe") setPanel("bitacora")
+    setMessage(
+      `Dualita: ${action.label} suma +${action.xp} XP. Observar y registrar es el oficio del agricultor que quiere tipicidad.`,
+    )
   }
 
   function simulateHours(hours: number) {
     const next = applyElapsedGrowth(state, hours)
     setState(next)
     persist(next)
-    setMessage(`Modo entrenamiento: avanzaste ${hours} h. El crecimiento real sigue el reloj del dispositivo.`)
+    setMessage(`Modo entrenamiento: avanzaste ${hours} h. En campo real, la bitácora sigue el calendario.`)
   }
 
   function chooseNode(nodeId: string) {
     const next = { ...state, selectedNode: nodeId }
     setState(next)
     persist(next)
+  }
+
+  function chooseGenotype(code: SembrarGenotype) {
+    const plant = plantulaFor(code)
+    const next = { ...state, genotypeCode: code, genotype: plant.label }
+    setState(next)
+    persist(next)
+    setMessage(`Dualita: ${plant.code} seleccionado. Verifica la plántula en Ecoyuma antes de comprar.`)
+  }
+
+  function saveBitacora() {
+    const note = bitacoraDraft.trim()
+    if (note.length < 3) return
+    const entry: BitacoraEntry = {
+      id: `${Date.now()}`,
+      at: now(),
+      promptId: activePrompt.id,
+      note: note.slice(0, 400),
+    }
+    const next: GotchiState = {
+      ...state,
+      bitacora: [entry, ...state.bitacora].slice(0, 40),
+      knowledge: clamp(state.knowledge + 8),
+      xp: state.xp + 15,
+    }
+    setState(next)
+    persist(next)
+    setBitacoraDraft("")
+    setMessage(`Bitácora guardada · ${activePrompt.title}. Así se construye cacao de finca idónea.`)
   }
 
   function startFermentation() {
@@ -244,7 +342,7 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
     }
     setState(next)
     persist(next)
-    setMessage("Dualita: lote abierto. Aplicamos el escenario controlado Cacaotier sin dosificación automática de ácido.")
+    setMessage("Dualita: lote abierto. Fermenta con evidencia — el genotipo Ecoyuma ya no basta solo.")
   }
 
   function advanceFermentation() {
@@ -263,62 +361,178 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
     const next = { ...initialState, plantedAt: now(), lastGrowthAt: now() }
     setState(next)
     persist(next)
-    setMessage("Nueva labranza creada. Elige nodo y registra la línea base.")
+    setMessage("Nueva labranza. Empieza por cartografía y plántula Ecoyuma.")
   }
 
   return (
     <div className="gotchi-shell">
       <div className="labranza-planner">
         <div>
-          <p className="eyebrow text-colab-yellow">Identidad de la labranza</p>
-          <h2>Siembra para la siguiente generación.</h2>
-          <p>Elige cómo quieres cuidar suelo, sombra, agua y memoria familiar antes de acelerar el tiempo.</p>
+          <p className="eyebrow text-colab-yellow">Sembrar · Ecoyuma × Colab</p>
+          <h2>{sembrarGenerationCopy.headline}</h2>
+          <p>{sembrarGenerationCopy.body}</p>
         </div>
         <div className="labranza-fields">
-          <label><span>Nombre</span><input value={state.labranzaName} onChange={(event) => setState({ ...state, labranzaName: event.target.value.slice(0, 50) })} /></label>
-          <label><span>Continuidad</span>
-            <select value={state.generation} onChange={(event) => setState({ ...state, generation: event.target.value as GotchiState["generation"] })}>
-              <option value="heredada">Labranza heredada</option><option value="primera">Primera generación</option><option value="comunitaria">Labranza comunitaria</option>
+          <label>
+            <span>Nombre de labranza</span>
+            <input
+              value={state.labranzaName}
+              onChange={(event) =>
+                setState({ ...state, labranzaName: event.target.value.slice(0, 50) })
+              }
+            />
+          </label>
+          <label>
+            <span>Continuidad</span>
+            <select
+              value={state.generation}
+              onChange={(event) =>
+                setState({
+                  ...state,
+                  generation: event.target.value as GotchiState["generation"],
+                })
+              }
+            >
+              <option value="primera">Primera generación · recién empieza</option>
+              <option value="heredada">Labranza heredada</option>
+              <option value="comunitaria">Labranza comunitaria</option>
             </select>
           </label>
-          <label><span>Sistema</span>
-            <select value={state.plantingSystem} onChange={(event) => setState({ ...state, plantingSystem: event.target.value as GotchiState["plantingSystem"] })}>
-              <option value="agroforesteria">Agroforestería diversa</option><option value="sombra-regulada">Sombra regulada</option><option value="demostrativa">Labranza demostrativa</option>
+          <label>
+            <span>Modelo agroforestal</span>
+            <select
+              value={state.plantingSystem}
+              onChange={(event) =>
+                setState({
+                  ...state,
+                  plantingSystem: event.target.value as GotchiState["plantingSystem"],
+                })
+              }
+            >
+              {agroforestryModels.map((m) => (
+                <option key={m.id} value={m.id}>
+                  {m.name}
+                </option>
+              ))}
             </select>
           </label>
-          <button type="button" onClick={() => persist(state)}>Guardar identidad</button>
+          <button
+            type="button"
+            onClick={() => {
+              persist(state)
+              setMessage("Identidad de finca guardada. Sigue con cartografía y bitácora.")
+            }}
+          >
+            Guardar identidad
+          </button>
         </div>
       </div>
+
+      <section className="sembrar-plantulas">
+        <div className="sembrar-plantulas-head">
+          <div>
+            <p className="eyebrow text-colab-yellow">Plántulas Ecoyuma</p>
+            <h3>Elige el material de tu finca idónea</h3>
+            <p>
+              Catálogo externo — Cacao Colab no inventa stock. FEAR 5 es el eje; TCS 19 y TCS 06
+              contrastan tipicidad bajo el mismo protocolo.
+            </p>
+          </div>
+          <a href={sembrarCatalogHref} target="_blank" rel="noopener noreferrer" className="sembrar-ext-link">
+            Ver vivero Ecoyuma →
+          </a>
+        </div>
+        <div className="sembrar-plantula-grid">
+          {sembrarPlantulas.map((plant) => (
+            <button
+              key={plant.code}
+              type="button"
+              className={plant.code === state.genotypeCode ? "active" : ""}
+              onClick={() => chooseGenotype(plant.code)}
+            >
+              <strong>{plant.code}</strong>
+              <span>{plant.family}</span>
+              <small>{plant.why}</small>
+            </button>
+          ))}
+        </div>
+        <p className="sembrar-plantula-note">
+          Seleccionado: <strong>{plantula.label}</strong> · {plantula.ecoyumaSkuNote} ·{" "}
+          <a href={plantula.ecoyumaHref} target="_blank" rel="noopener noreferrer">
+            abrir SKU
+          </a>
+        </p>
+      </section>
 
       <div className="gotchi-node-picker">
         <div>
           <p className="eyebrow text-colab-yellow">Nodo de aprendizaje</p>
-          <strong>{selectedTerritory?.nodeName} · {selectedTerritory?.city}</strong>
-          <small>{state.genotype} · escenario didáctico; confirma disponibilidad real con el nodo.</small>
+          <strong>
+            {selectedTerritory?.nodeName} · {selectedTerritory?.city}
+          </strong>
+          <small>
+            {state.genotype} · escenario didáctico; confirma material real con Ecoyuma y el nodo.
+          </small>
         </div>
         <div>
-          {territories.filter((territory) => territory.id !== "bogota").map((territory) => (
-            <button key={territory.id} type="button" onClick={() => chooseNode(territory.id)} className={territory.id === state.selectedNode ? "active" : ""}>
-              {territory.nodeName}
-            </button>
-          ))}
+          {territories
+            .filter((territory) => territory.id !== "bogota")
+            .map((territory) => (
+              <button
+                key={territory.id}
+                type="button"
+                onClick={() => chooseNode(territory.id)}
+                className={territory.id === state.selectedNode ? "active" : ""}
+              >
+                {territory.nodeName}
+              </button>
+            ))}
         </div>
       </div>
+
+      <aside className="sembrar-agro-strip">
+        <div>
+          <p className="eyebrow text-colab-yellow">Modelo activo</p>
+          <h3>{agroModel.name}</h3>
+          <p>{agroModel.intent}</p>
+        </div>
+        <ul>
+          {agroModel.strata.map((s) => (
+            <li key={s}>{s}</li>
+          ))}
+        </ul>
+        <p className="sembrar-agro-for">{agroModel.forWhom}</p>
+      </aside>
 
       <div className="grid lg:grid-cols-[.72fr_1.28fr] gap-5 mt-4">
         <section className="gotchi-pet">
           <div className="flex justify-between items-start">
             <div>
-          <p className="eyebrow text-colab-yellow">Cacao Gotchi · {state.labranzaName}</p>
+              <p className="eyebrow text-colab-yellow">
+                Sembrar · {state.labranzaName}
+              </p>
               <h2 className="font-serif text-3xl font-bold text-colab-cream mt-2">
-                {state.phase === "cultivation" ? stage.name : state.phase === "complete" ? "Lote fermentado" : "Fermentando"}
+                {state.phase === "cultivation"
+                  ? stage.name
+                  : state.phase === "complete"
+                    ? "Lote fermentado"
+                    : "Fermentando"}
               </h2>
             </div>
-            <span className="gotchi-day">{state.phase === "cultivation" ? `${state.ageHours} h` : `${state.fermentationHour} h`}</span>
+            <span className="gotchi-day">
+              {state.phase === "cultivation" ? `${state.ageHours} h` : `${state.fermentationHour} h`}
+            </span>
           </div>
-          <div className="gotchi-orb" aria-label={state.phase === "cultivation" ? stage.name : "Lote FEAR 5"}>
-            <span>{state.phase === "cultivation" ? stage.icon : state.phase === "complete" ? "✦" : "◈"}</span>
-            {[0, 1, 2].map((ring) => <i key={ring} style={{ animationDelay: `${ring * .45}s` }} />)}
+          <div
+            className="gotchi-orb"
+            aria-label={state.phase === "cultivation" ? stage.name : state.genotypeCode}
+          >
+            <span>
+              {state.phase === "cultivation" ? stage.icon : state.phase === "complete" ? "✦" : "◈"}
+            </span>
+            {[0, 1, 2].map((ring) => (
+              <i key={ring} style={{ animationDelay: `${ring * 0.45}s` }} />
+            ))}
           </div>
           <div className="gotchi-message">{message}</div>
           <div className="grid grid-cols-3 gap-2 mt-5">
@@ -335,8 +549,11 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
                 ]
             ).map((metric) => (
               <div key={metric.label} className="gotchi-stat">
-                <span>{metric.label}</span><strong>{metric.value}</strong>
-                <div><i style={{ width: `${clamp(metric.bar)}%`, background: metric.color }} /></div>
+                <span>{metric.label}</span>
+                <strong>{metric.value}</strong>
+                <div>
+                  <i style={{ width: `${clamp(metric.bar)}%`, background: metric.color }} />
+                </div>
               </div>
             ))}
           </div>
@@ -346,74 +563,294 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
               <p className="eyebrow text-colab-green">
-                {state.phase === "cultivation" ? "Laboratorio de siembra + cosecha" : "Tratamiento Cacaotier · FEAR 5"}
+                {state.phase === "cultivation"
+                  ? "Oficio de quien recién siembra"
+                  : `Tratamiento Cacaotier · ${state.genotypeCode}`}
               </p>
               <h2 className="font-serif text-3xl font-bold text-colab-ink mt-2">
-                {state.phase === "cultivation" ? "El árbol responde por hora." : fermentationPoint.stage}
+                {state.phase === "cultivation" ? "Bitácora, mapa y cuidado." : fermentationPoint.stage}
               </h2>
             </div>
             <div className="flex gap-4">
-              <div className="gotchi-score"><strong>{state.xp}</strong><span>XP</span></div>
-              <div className="gotchi-score"><strong>{state.streak}</strong><span>racha</span></div>
+              <div className="gotchi-score">
+                <strong>{state.xp}</strong>
+                <span>XP</span>
+              </div>
+              <div className="gotchi-score">
+                <strong>{state.streak}</strong>
+                <span>racha</span>
+              </div>
             </div>
           </div>
 
-          {state.phase === "cultivation" ? (
+          {state.phase === "cultivation" && (
+            <div className="sembrar-tabs" role="tablist">
+              {(
+                [
+                  ["cuidado", "Cuidado"],
+                  ["bitacora", "Bitácora"],
+                  ["mapa", "Cartografía"],
+                  ["plan", "Planeación"],
+                ] as const
+              ).map(([id, label]) => (
+                <button
+                  key={id}
+                  type="button"
+                  role="tab"
+                  aria-selected={panel === id}
+                  className={panel === id ? "active" : ""}
+                  onClick={() => setPanel(id)}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {state.phase === "cultivation" && panel === "cuidado" && (
             <>
               <div className="gotchi-parameters mt-6">
                 {[
-                  ["Altura", `${state.heightCm} cm`], ["Hojas", state.leaves], ["Flores", state.flowers],
-                  ["Mazorca", state.pods], ["Nutrición", `${Math.round(state.nutrition)}%`], ["Sombra", `${Math.round(state.shade)}%`],
-                  ["Biodiversidad", `${Math.round(state.biodiversity)}%`], ["Polinizadores", `${Math.round(state.pollinators)}%`],
-                  ["Cobertura", `${Math.round(state.soilCover)}%`], ["Reserva agua", `${Math.round(state.waterReserve)}%`],
-                  ["pH suelo", state.soilPh.toFixed(2)], ["Edad", `${state.ageHours} h`],
-                ].map(([label, value]) => <div key={String(label)}><span>{label}</span><strong>{value}</strong></div>)}
+                  ["Altura", `${state.heightCm} cm`],
+                  ["Hojas", state.leaves],
+                  ["Flores", state.flowers],
+                  ["Mazorca", state.pods],
+                  ["Nutrición", `${Math.round(state.nutrition)}%`],
+                  ["Sombra", `${Math.round(state.shade)}%`],
+                  ["Biodiversidad", `${Math.round(state.biodiversity)}%`],
+                  ["Polinizadores", `${Math.round(state.pollinators)}%`],
+                  ["Cobertura", `${Math.round(state.soilCover)}%`],
+                  ["Reserva agua", `${Math.round(state.waterReserve)}%`],
+                  ["pH suelo", state.soilPh.toFixed(2)],
+                  ["Edad", `${state.ageHours} h`],
+                ].map(([label, value]) => (
+                  <div key={String(label)}>
+                    <span>{label}</span>
+                    <strong>{value}</strong>
+                  </div>
+                ))}
               </div>
               <div className="mt-6">
                 <div className="flex justify-between text-xs font-bold text-colab-ink/50">
-                  <span>{stage.name}</span><span>{nextStage ? `Siguiente: ${nextStage.name}` : "Cosecha disponible"}</span>
+                  <span>{stage.name}</span>
+                  <span>{nextStage ? `Siguiente: ${nextStage.name}` : "Cosecha disponible"}</span>
                 </div>
-                <div className="gotchi-progress mt-2"><i style={{ width: `${clamp(stageProgress)}%` }} /></div>
-                <p className="text-sm text-colab-ink/60 mt-4"><strong className="text-colab-ink">Misión:</strong> {stage.mission}</p>
+                <div className="gotchi-progress mt-2">
+                  <i style={{ width: `${clamp(stageProgress)}%` }} />
+                </div>
+                <p className="text-sm text-colab-ink/60 mt-4">
+                  <strong className="text-colab-ink">Misión:</strong> {stage.mission}
+                </p>
               </div>
               <div className="grid sm:grid-cols-2 gap-3 mt-6">
                 {actions.map((action) => (
                   <button key={action.id} type="button" onClick={() => care(action)} className="care-action">
-                    <span>{action.icon}</span><span><strong>{action.label}</strong><small>+{action.xp} XP · hasta +5 MD</small></span>
+                    <span>{action.icon}</span>
+                    <span>
+                      <strong>{action.label}</strong>
+                      <small>+{action.xp} XP · hasta +5 MD</small>
+                    </span>
                   </button>
                 ))}
               </div>
               <div className="flex flex-wrap gap-2 mt-5">
-                <button type="button" onClick={() => simulateHours(12)} className="gotchi-simulate">Entrenamiento: avanzar 12 h</button>
-                <button type="button" disabled={state.ageHours < 78} onClick={startFermentation} className="gotchi-ferment">
-                  {state.ageHours < 78 ? `Cosecha en ${78 - state.ageHours} h` : "Cosechar + fermentar Cacaotier →"}
+                <button type="button" onClick={() => simulateHours(12)} className="gotchi-simulate">
+                  Entrenamiento: avanzar 12 h
+                </button>
+                <button
+                  type="button"
+                  disabled={state.ageHours < 78}
+                  onClick={startFermentation}
+                  className="gotchi-ferment"
+                >
+                  {state.ageHours < 78
+                    ? `Cosecha en ${78 - state.ageHours} h`
+                    : "Cosechar + fermentar Cacaotier →"}
                 </button>
               </div>
             </>
-          ) : (
+          )}
+
+          {state.phase === "cultivation" && panel === "bitacora" && (
+            <div className="sembrar-panel mt-6">
+              <p className="text-sm text-colab-ink/60 leading-relaxed">
+                La bitácora es el músculo del agricultor que quiere el mejor cacao posible: observar,
+                fechar, decidir. Usa las guías Ecoyuma × Colab.
+              </p>
+              <label className="sembrar-field mt-4">
+                <span>Guía activa</span>
+                <select
+                  value={state.activePromptId}
+                  onChange={(e) => setState({ ...state, activePromptId: e.target.value })}
+                >
+                  {bitacoraPrompts.map((p) => (
+                    <option key={p.id} value={p.id}>
+                      {p.week} · {p.title}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <p className="sembrar-prompt">
+                <strong>{activePrompt.ask}</strong>
+                <small>{activePrompt.tip}</small>
+              </p>
+              <textarea
+                value={bitacoraDraft}
+                onChange={(e) => setBitacoraDraft(e.target.value)}
+                placeholder="Escribe lo que viste hoy en la labranza…"
+                rows={4}
+              />
+              <button type="button" className="gotchi-ferment mt-3" onClick={saveBitacora}>
+                Registrar en bitácora · +15 XP
+              </button>
+              <ul className="sembrar-log">
+                {state.bitacora.length === 0 && (
+                  <li className="empty">Aún no hay entradas. Empieza por la línea base (semana 0).</li>
+                )}
+                {state.bitacora.map((entry) => {
+                  const prompt = bitacoraPrompts.find((p) => p.id === entry.promptId)
+                  return (
+                    <li key={entry.id}>
+                      <strong>{prompt?.title ?? "Nota"}</strong>
+                      <time>{entry.at.slice(0, 10)}</time>
+                      <p>{entry.note}</p>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          )}
+
+          {state.phase === "cultivation" && panel === "mapa" && (
+            <div className="sembrar-panel mt-6">
+              <p className="text-sm text-colab-ink/60 leading-relaxed">
+                Cartografía social de la finca: no solo polígono GPS — también vecinos, agua y
+                acuerdos. Así diseñas tipicidad con territorio.
+              </p>
+              {cartografiaLayers.map((layer) => {
+                const key = layer.id as keyof FarmMap
+                return (
+                  <label key={layer.id} className="sembrar-field mt-4">
+                    <span>{layer.name}</span>
+                    <textarea
+                      value={state.farmMap[key]}
+                      onChange={(e) =>
+                        setState({
+                          ...state,
+                          farmMap: { ...state.farmMap, [key]: e.target.value.slice(0, 500) },
+                        })
+                      }
+                      placeholder={layer.prompt}
+                      rows={2}
+                    />
+                  </label>
+                )
+              })}
+              <button
+                type="button"
+                className="gotchi-ferment mt-4"
+                onClick={() => {
+                  const next = { ...state, knowledge: clamp(state.knowledge + 6), xp: state.xp + 12 }
+                  setState(next)
+                  persist(next)
+                  setMessage("Cartografía guardada. El mapa social es parte de tu finca idónea.")
+                }}
+              >
+                Guardar cartografía · +12 XP
+              </button>
+            </div>
+          )}
+
+          {state.phase === "cultivation" && panel === "plan" && (
+            <div className="sembrar-panel mt-6">
+              <ol className="sembrar-milestones">
+                {planningMilestones.map((m) => (
+                  <li key={m.id}>
+                    <strong>{m.title}</strong>
+                    <p>{m.body}</p>
+                  </li>
+                ))}
+              </ol>
+              <label className="sembrar-field mt-4">
+                <span>Tu plan de finca (notas)</span>
+                <textarea
+                  value={state.planNotes}
+                  onChange={(e) => setState({ ...state, planNotes: e.target.value.slice(0, 800) })}
+                  placeholder="Meta a 5 años, calendario de siembra Ecoyuma, quién hereda el criterio…"
+                  rows={4}
+                />
+              </label>
+              <button
+                type="button"
+                className="gotchi-ferment mt-3"
+                onClick={() => {
+                  persist(state)
+                  setMessage("Plan guardado. La siguiente generación necesita un mapa, no solo un deseo.")
+                }}
+              >
+                Guardar planeación
+              </button>
+              <div className="sembrar-collective mt-5">
+                <p>{sembrarGenerationCopy.body}</p>
+                <Link href="/unete">{sembrarGenerationCopy.ctaCollective} →</Link>
+              </div>
+            </div>
+          )}
+
+          {state.phase !== "cultivation" && (
             <div className="fermentation-console">
               <div className="grid grid-cols-3 gap-3 mt-7">
-                <div><span>Hora</span><strong>{state.fermentationHour} h</strong></div>
-                <div><span>Temperatura guía</span><strong>{fermentationPoint.temperature} °C</strong></div>
-                <div><span>pH guía</span><strong>{fermentationPoint.ph.toFixed(1)}</strong></div>
+                <div>
+                  <span>Hora</span>
+                  <strong>{state.fermentationHour} h</strong>
+                </div>
+                <div>
+                  <span>Temperatura guía</span>
+                  <strong>{fermentationPoint.temperature} °C</strong>
+                </div>
+                <div>
+                  <span>pH guía</span>
+                  <strong>{fermentationPoint.ph.toFixed(1)}</strong>
+                </div>
               </div>
-              <div className="gotchi-progress mt-6"><i style={{ width: `${state.fermentationHour / 1.2}%` }} /></div>
+              <div className="gotchi-progress mt-6">
+                <i style={{ width: `${state.fermentationHour / 1.2}%` }} />
+              </div>
               <p className="text-sm leading-relaxed text-colab-ink/60 mt-5">
-                Escenario educativo basado en la ruta de precisión. El nodo seleccionado no implica que el artículo haya validado allí FEAR 5 ni esta escala.
+                Escenario educativo. El genotipo {state.genotypeCode} de Ecoyuma no implica que el
+                paper haya validado este nodo a esta escala — documenta tu lote real en Master
+                Cacaotier.
               </p>
               {state.phase !== "complete" ? (
-                <button type="button" onClick={advanceFermentation} className="gotchi-ferment mt-6">Registrar siguiente control +24 h →</button>
+                <button type="button" onClick={advanceFermentation} className="gotchi-ferment mt-6">
+                  Registrar siguiente control +24 h →
+                </button>
               ) : (
-                <div className="mt-6 bg-colab-yellow/30 rounded-xl p-4 text-sm font-bold text-colab-forest">✦ Lote cerrado a 120 h (ancla sensorial del paper). El óptimo metabolómico Tc-pH propuesto es 72 h.</div>
+                <div className="mt-6 bg-colab-yellow/30 rounded-xl p-4 text-sm font-bold text-colab-forest">
+                  ✦ Lote cerrado a 120 h. Siguiente paso colectivo: campus + /unete — tipicidad se
+                  defiende en red.
+                </div>
               )}
             </div>
           )}
 
           <div className="flex flex-wrap items-center justify-between gap-4 mt-8 pt-5 border-t border-colab-ink/10">
             <p className="text-[11px] text-colab-ink/45">
-              {sync === "saving" ? "Sincronizando…" : sync === "saved" ? "✓ Guardado en tu cuenta" : sync === "local" ? "Guardado local; aplica la migración de campus." : "Crecimiento comprimido para aprendizaje."}
+              {sync === "saving"
+                ? "Sincronizando…"
+                : sync === "saved"
+                  ? "✓ Guardado en tu cuenta"
+                  : sync === "local"
+                    ? "Guardado local; aplica la migración de campus."
+                    : "Sembrar · simulación comprimida para aprendizaje."}
             </p>
-            <button type="button" onClick={reset} className="text-[10px] font-bold uppercase tracking-wider text-colab-ink/35 hover:text-colab-ink">Reiniciar lote</button>
+            <button
+              type="button"
+              onClick={reset}
+              className="text-[10px] font-bold uppercase tracking-wider text-colab-ink/35 hover:text-colab-ink"
+            >
+              Reiniciar labranza
+            </button>
           </div>
         </section>
       </div>
@@ -421,7 +858,10 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
       <div className="stage-rail mt-5">
         {stages.map((item, index) => (
           <div key={item.name} className={index <= stageIndex ? "stage-done" : ""}>
-            <span>{index < stageIndex ? "✓" : item.icon}</span><small>{item.name} · {item.threshold} h</small>
+            <span>{index < stageIndex ? "✓" : item.icon}</span>
+            <small>
+              {item.name} · {item.threshold} h
+            </small>
           </div>
         ))}
       </div>

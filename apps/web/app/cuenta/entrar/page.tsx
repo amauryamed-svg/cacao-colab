@@ -28,7 +28,7 @@ export default async function CampusLoginPage({
               Tu criterio<br />también se cultiva.
             </h1>
             <p className="text-sm leading-relaxed text-colab-cream/50 mt-5 max-w-sm">
-              Guarda XP, racha, Cacao Gotchi y progreso del Arquitecto de Fermentación en una identidad única.
+              Guarda XP, racha, Sembrar y progreso del Arquitecto de Fermentación en una identidad única.
             </p>
           </div>
         </section>

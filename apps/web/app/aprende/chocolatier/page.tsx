@@ -7,13 +7,14 @@ import {
   chocolatierMissions,
   chocolatierTotalXp,
   coexPrinciples,
+  grownChocolateStance,
 } from "@/lib/chocolatier-course"
 import { getCourseVideo } from "@/lib/course-videos"
 
 export const metadata: Metadata = {
   title: "Master Chocolatier · bean-to-bar COEX",
   description:
-    "Formulaciones bean-to-bar a la altura de Cacao of Excellence. Capstone: Chocolate Benevolo Bars. con FEAR 5 de Quara Cacao.",
+    "Refino, conchado, Fedecacao, CoEx, bombonería y postura frente al grown chocolate. Capstone Benevolo + invitación a la generación Colab.",
 }
 
 export default function MasterChocolatierPage() {
@@ -39,9 +40,10 @@ export default function MasterChocolatierPage() {
                 Del grano FEAR 5<br />a la <em>gianduja</em>.
               </h1>
               <p className="mt-7 max-w-2xl text-base leading-relaxed text-white/55">
-                Bean-to-bar con rigor de Cacao of Excellence: tostión, licor, panel ciego y formulación.
-                El capstone es <strong className="text-[#E8C9A0]">Chocolate Benevolo Bars.</strong> —
-                duja de marañón, leche orgánica, alulosa y stevia sobre cacao FEAR 5 del nodo Quara (Arauca).
+                Bean-to-bar con rigor CoEx: tostión, refino, conchado, panel ciego, formulaciones modernas y
+                bombonería. El capstone es <strong className="text-[#E8C9A0]">Chocolate Benevolo</strong> —
+                y una postura clara frente al grown chocolate que amenaza la especialidad. Hablamos a la
+                generación que hereda tierra y oficio: entren al Colab.
               </p>
               <div className="flex flex-wrap gap-3 mt-8">
                 <Link
@@ -103,7 +105,8 @@ export default function MasterChocolatierPage() {
               <p className="eyebrow text-[#FF6A3D]">Tu campaña</p>
               <h2 className="font-serif text-4xl font-bold mt-3">Seis misiones bean-to-bar</h2>
               <p className="text-white/45 mt-3 max-w-xl text-sm leading-relaxed">
-                Cada misión tiene 3 pasos, un reto de criterio y Dualita. El progreso vive en el campus registrado.
+                Cada misión tiene pasos de oficio, un reto de criterio y Dualita. Incluye Fedecacao × CoEx,
+                tiempos de refino/conchado y bombonería. El progreso vive en el campus registrado.
               </p>
             </div>
             <Link
@@ -137,6 +140,49 @@ export default function MasterChocolatierPage() {
                 </span>
               </article>
             ))}
+          </div>
+        </section>
+
+        <section className="mb-20 border-t border-white/10 pt-16">
+          <p className="eyebrow text-[#FF6A3D]">{grownChocolateStance.title}</p>
+          <h2 className="font-serif text-3xl md:text-4xl font-bold mt-3 max-w-3xl">
+            Especialidad frente a lo genérico.
+          </h2>
+          <p className="text-white/55 mt-5 max-w-2xl leading-relaxed text-sm">
+            {grownChocolateStance.lede}
+          </p>
+          <div className="grid md:grid-cols-2 gap-8 mt-10">
+            <div>
+              <p className="eyebrow text-white/35">Rechazamos</p>
+              <ul className="mt-4 space-y-3">
+                {grownChocolateStance.reject.map((item) => (
+                  <li key={item} className="text-sm text-white/50 leading-relaxed border-l border-[#FF6A3D]/40 pl-4">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p className="eyebrow text-[#E8C9A0]">Defendemos</p>
+              <ul className="mt-4 space-y-3">
+                {grownChocolateStance.defend.map((item) => (
+                  <li key={item} className="text-sm text-white/70 leading-relaxed border-l border-[#E8C9A0]/50 pl-4">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <p className="mt-10 max-w-2xl text-[#E8C9A0] text-sm leading-relaxed font-medium">
+            {grownChocolateStance.callToGeneration}
+          </p>
+          <div className="flex flex-wrap gap-3 mt-8">
+            <Link href="/unete" className="bg-[#FF6A3D] text-[#140e0a] rounded-full px-7 py-3.5 text-sm font-bold">
+              Únete al colectivo Colab →
+            </Link>
+            <Link href="/juega" className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold">
+              Sembrar · Ecoyuma
+            </Link>
           </div>
         </section>
 

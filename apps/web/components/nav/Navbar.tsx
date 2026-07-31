@@ -49,7 +49,7 @@ export default function Navbar() {
             href="/juega"
             className="hidden md:inline text-xs font-bold text-colab-cream/70 hover:text-colab-yellow font-sans tracking-wide transition-colors"
           >
-            Cacao Gotchi
+            Sembrar
           </Link>
           <Link
             href="/cuenta"

@@ -231,7 +231,8 @@ export const knowledgeTopics: KnowledgeTopic[] = [
       "Sin material vegetal sano no hay Fine-Flavor repetible. El Colab enlaza el vivero con el campus: compras la plántula, registras la labranza y aprendes a fermentar el lote.",
       "FEAR 5 (Trinitario comercial Fedecacao) es el genotipo del paper de biorreactor y el corazón de Benevolo. TCS 19 y TCS 06 permiten comparar sanidad, rendimiento y perfil bajo el mismo protocolo.",
       "Ecoyuma es un catálogo externo. Precios, stock y logística los define la tienda; Cacao Colab no inventa disponibilidad. Verifica siempre el producto en tienda.ecoyuma.com.co antes de planear siembra.",
-      "La ruta recomendada: FEAR 5 como eje → TCS 19 / TCS 06 como contraste → bitácora Gotchi/campus → fermentación controlada → producto o pre-order Benevolo.",
+      "La ruta recomendada: FEAR 5 como eje → TCS 19 / TCS 06 como contraste → Sembrar (bitácora, cartografía, agroforestería) → fermentación controlada → producto o pre-order Benevolo.",
+      "Sembrar entrena al agricultor que recién empieza: planeación de finca idónea, cartografía social (parcelas, agua, vecinos) y modelos de agroforestería comunitaria — sin inventar stock Ecoyuma.",
     ],
     links: [
       {
@@ -252,8 +253,10 @@ export const knowledgeTopics: KnowledgeTopic[] = [
         label: "Plántula TCS-06",
         href: "https://tienda.ecoyuma.com.co/cacao-injertado-regional/42-plantula-de-cacao-tcs-06.html",
       },
+      { label: "Abrir Sembrar", href: "/juega", note: "Laboratorio de siembra" },
+      { label: "Únete al Colab", href: "/unete", note: "Colectivo generacional" },
     ],
-    relatedCampus: ["/juega", "/aprende/cacaotier", "/benevolo"],
+    relatedCampus: ["/juega", "/sembrar", "/aprende/cacaotier", "/benevolo"],
   },
   {
     slug: "benevolo-traduccion",
@@ -327,7 +330,7 @@ export const ecosystemSpearhead = {
   title: "La confluencia real de Cacao Colab",
   body: "Conocimiento avanzado (papers, EUDR, COEX, genética) → práctica de finca (Ecoyuma, labranza, fermentación) → producto que la gente come (Benevolo y marcas colaboradoras). Sin esa traducción no hay valor agregado; solo discurso.",
   steps: [
-    { n: "01", title: "Sembrar con criterio", href: "/conocimiento/fear5-ecoyuma", cta: "FEAR 5 · Ecoyuma" },
+    { n: "01", title: "Sembrar con criterio", href: "/juega", cta: "Sembrar · Ecoyuma" },
     { n: "02", title: "Fermentar con evidencia", href: "/aprende/cacaotier", cta: "Campus cacaotier" },
     { n: "03", title: "Cumplir el mercado", href: "/conocimiento/eudr-deforestacion", cta: "EUDR y orgánico" },
     { n: "04", title: "Formular a la mesa", href: "/aprende/chocolatier", cta: "Master Chocolatier · Benevolo" },
