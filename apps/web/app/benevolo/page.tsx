@@ -17,7 +17,10 @@ export default function BenevoloPage() {
     <div className="bg-[#140e0a] min-h-screen text-colab-cream">
       <header className="benevolo-hero">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-10 md:pt-14 pb-0">
-          <p className="eyebrow text-[#FF6A3D]">Marca acelerada cacaotier · duja × tendencia</p>
+          <Link href="/rd" className="eyebrow text-[#E8C9A0]/40 hover:text-[#FF6A3D]">
+            ← R&D Colab
+          </Link>
+          <p className="eyebrow text-[#FF6A3D] mt-4">R&D · marca acelerada cacaotier · duja × tendencia</p>
           <div className="grid lg:grid-cols-[1fr_1.15fr] gap-8 lg:gap-12 items-end mt-6">
             <div className="pb-10 md:pb-16">
               <p className="text-[11px] font-bold tracking-[0.22em] uppercase text-[#E8C9A0]">{benevoloProduct.domain}</p>
@@ -30,7 +33,8 @@ export default function BenevoloPage() {
               </h1>
               <p className="mt-5 text-sm font-bold text-[#E8C9A0]">{benevoloProduct.accentLine}</p>
               <p className="mt-5 max-w-md text-base leading-relaxed text-white/55">
-                {benevoloProduct.tagline} {benevoloProduct.format}.
+                {benevoloProduct.tagline} {benevoloProduct.format}. Vive en el laboratorio R&D junto a
+                coberturas CAÚA × Zurych.
               </p>
               <div className="flex flex-wrap gap-3 mt-8">
                 <TrackedLink
@@ -50,10 +54,10 @@ export default function BenevoloPage() {
                   Track Dualita Benevolo →
                 </Link>
                 <Link
-                  href="/aprende/chocolatier"
+                  href="/rd/coberturas"
                   className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold text-white/80"
                 >
-                  Hermano · Master 70 % →
+                  Coberturas CAÚA × Zurych →
                 </Link>
               </div>
             </div>

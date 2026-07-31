@@ -48,7 +48,7 @@ export default function Home() {
             </p>
             <div className="flex flex-wrap gap-3 justify-center md:justify-start">
               <Button href="/aprende/cacaotier">Entrar al laboratorio →</Button>
-              <Button variant="outline" href="/benevolo">Preordenar Benevolo</Button>
+              <Button variant="outline" href="/rd">R&D · Benevolo + coberturas</Button>
             </div>
           </div>
           <div className="flex-shrink-0 relative">

@@ -260,25 +260,26 @@ export const knowledgeTopics: KnowledgeTopic[] = [
   },
   {
     slug: "benevolo-traduccion",
-    title: "Chocolate Benevolo · output Master Chocolatier",
-    eyebrow: "Bean-to-bar · lente COEX · Aceleración Colab",
+    title: "Chocolate Benevolo · R&D Colab",
+    eyebrow: "R&D · marca acelerada · Aceleración Colab",
     summary:
-      "Chocolate Benevolo es la marca acelerada cacaotier (separada del Master Chocolatier 70 %): duja de marañón FEAR 5 Quara × Zurych, tendencias y preorden.",
+      "Chocolate Benevolo vive en R&D: marca acelerada cacaotier (separada del Master Chocolatier 70 %) con duja FEAR 5 Quara × Zurych, junto a coberturas CAÚA.",
     evidence: "cacaotier_product",
     body: [
       "Benevolo no lleva tilde: se lee igual en español y en italiano. Chocolate Benevolo le pone las tildes a la e — acentúa la marca con un producto que se desea preordenar.",
-      "Ya no es el capstone del Master Chocolatier. El Master entrena barra 70 % estilo CoEx/Awards; Benevolo acelera una SKU tendencia (gianduja/marañón) con el mismo criterio de origen.",
+      "Vive en /rd junto a la convergencia de coberturas CAÚA × Zurych. El Master entrena barra 70 % CoEx/Awards; Benevolo acelera una SKU tendencia (gianduja/marañón).",
       "Cacao FEAR 5 del nodo Quara (Tame · Arauca). Zurych aporta cultura de transformación. Track Dualita en /campus/benevolo con diploma compartible.",
       "Fórmula: duja de marañón local, leche en polvo orgánica, alulosa y stevia. Neto 80 g. Preventa honesta mientras se cierra el primer lote.",
     ],
     links: [
+      { label: "Hub R&D Colab", href: "/rd", note: "Benevolo + coberturas" },
       { label: "Preordenar Chocolate Benevolo", href: "/benevolo", note: "Marca acelerada" },
+      { label: "Coberturas CAÚA × Zurych", href: "/rd/coberturas", note: "Shop cauacolombia.co" },
       { label: "Track Dualita Benevolo", href: "/campus/benevolo", note: "Aceleración" },
       { label: "Master Chocolatier 70 %", href: "/aprende/chocolatier", note: "Ruta hermana" },
       { label: "Zurych", href: "https://chocolatezurych.com", note: "Aliado de transformación" },
-      { label: "Cacao of Excellence", href: "/conocimiento/cacao-of-excellence" },
     ],
-    relatedCampus: ["/benevolo", "/campus/benevolo", "/aprende/chocolatier", "/marketplace"],
+    relatedCampus: ["/rd", "/benevolo", "/campus/benevolo", "/aprende/chocolatier", "/marketplace"],
   },
 ]
 
@@ -294,8 +295,8 @@ export const benevoloProduct = {
     "Marca acelerada cacaotier: chocolatina de leche con duja de marañón inspirada en la gianduja, cacao FEAR 5 del nodo Quara (Tame · Arauca), leche en polvo orgánica, alulosa y stevia. Hermana del Master Chocolatier 70 % — tendencia + oficio + preventa.",
   alliances: [
     { name: "Zurych", role: "Cultura bean-to-bar y transformación", place: "Landázuri · Santander", href: "https://chocolatezurych.com" },
+    { name: "CAÚA", role: "Coberturas y nibs · shop convergente", place: "Santander · cauacolombia.co", href: "/rd/coberturas" },
     { name: "Quara Cacao", role: "Nodo FEAR 5 · origen Arauca", place: "Tame · Arauca", href: "/marketplace" },
-    { name: "Master Chocolatier 70 %", role: "Ruta hermana de excelencia", place: "Campus cacaotier", href: "/aprende/chocolatier" },
     { name: "Track Benevolo", role: "Aceleración Dualita", place: "Campus", href: "/campus/benevolo" },
   ],
   formula: [
@@ -308,7 +309,7 @@ export const benevoloProduct = {
     { label: "Genética", value: "FEAR 5 · Quara · Arauca" },
     { label: "Alianza", value: "Zurych × Quara Cacao" },
     { label: "Formato", value: "Bars. · 80 g" },
-    { label: "Salida", value: "Master Chocolatier · COEX lens" },
+    { label: "Casa", value: "R&D Colab · marca acelerada" },
   ],
   heroImage: "/benevolo/bars-fear5.png",
   status: "preorder" as const,
