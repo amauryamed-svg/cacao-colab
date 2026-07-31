@@ -28,7 +28,7 @@ La web ([cacao-colab.vercel.app](https://cacao-colab.vercel.app)) ya es la super
 | **Apple Developer Program** | developer.apple.com | ~99 USD/año | Requiere entidad o persona; D-U-N-S si es company |
 | **Google Play Console** | play.google.com/console | ~25 USD una vez | Cuenta de desarrollador |
 | **Expo / EAS** | expo.dev | Free tier → Production | Proyecto ligado a `apps/mobile` |
-| **Privacy policy URL** | `https://cacao-colab.vercel.app/legal/privacidad` | — | Obligatorio en ambas stores · ver `23-PRIVACIDAD-Y-OPTIN.md` |
+| **Privacy policy URL** | `https://cacaocolab.org/legal/privacidad` | — | Obligatorio en ambas stores · ver `23-PRIVACIDAD-Y-OPTIN.md` · DNS docs/24 |
 
 Sin estas cuentas no se puede completar el “paso de descarga” en las tiendas; sí se puede seguir desarrollando con **Expo Go**.
 

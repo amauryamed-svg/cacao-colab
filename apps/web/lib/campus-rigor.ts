@@ -155,5 +155,5 @@ export function linkedInShareUrl(diplomaPageUrl: string) {
 
 export function siteOrigin() {
   if (typeof window !== "undefined") return window.location.origin
-  return process.env.NEXT_PUBLIC_SITE_URL ?? "https://cacao-colab.vercel.app"
+  return process.env.NEXT_PUBLIC_SITE_URL ?? "https://cacaocolab.org"
 }

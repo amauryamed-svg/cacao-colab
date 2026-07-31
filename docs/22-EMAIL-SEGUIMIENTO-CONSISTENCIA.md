@@ -29,11 +29,10 @@ Los correos no empujan “más contenido”, empujan el **mismo gesto** (módulo
 > que `apps/web/lib/followup-email-render.ts` lee con `fs` para renderizar
 > el envío real vía Resend — un solo origen, dos destinos.
 >
-> Sandbox: sin dominio propio de Cacao Colab verificado en Resend
-> (`cauaculture.co` queda fuera a propósito, es de otro producto CAÚA), el
-> remitente `onboarding@resend.dev` solo entrega al email dueño de la cuenta
-> Resend. El envío a usuarios reales queda pausado hasta verificar un
-> dominio propio — ver `apps/web/lib/resend.ts`.
+> Dominio canónico **cacaocolab.org** (comprado 2026-07-31). Remitente
+> objetivo: `seguimiento@cacaocolab.org` — requiere Verify en Resend + DNS.
+> Checklist DNS/Vercel/Supabase: `docs/24-DOMINIO-CACAOCOLAB-ORG.md`.
+> (`cauaculture.co` queda fuera a propósito, es de otro producto CAÚA.)
 
 | Día | Plantilla | Disparo | Mensaje |
 |-----|-----------|---------|---------|
@@ -119,8 +118,10 @@ Cada sync inserta `crm_activities` tipo `note` con `metadata.kind = followup_adv
 
 ### Pendiente real (bloquea usuarios finales)
 
-- [ ] **Dominio propio de Cacao Colab verificado en Resend** (hoy sandbox `onboarding@resend.dev`, solo entrega a la cuenta dueña). No usar `cauaculture.co` (otro producto CAÚA). Luego actualizar `FOLLOWUP_FROM` en `apps/web/lib/resend.ts`.
-- [ ] **Rotar `RESEND_API_KEY`** — la key quedó expuesta en chat; generar una nueva en Resend, actualizar Vercel + Supabase secrets, revocar la anterior. No commitear la key al repo (hoy solo `env(RESEND_API_KEY)` / `process.env`).
+- [ ] **DNS + Vercel** para `cacaocolab.org` / `www` — ver `docs/24-DOMINIO-CACAOCOLAB-ORG.md`
+- [ ] **Resend: verificar `cacaocolab.org`** → FROM `seguimiento@cacaocolab.org` (`RESEND_FROM` en Vercel). Código ya apunta ahí.
+- [ ] **Supabase** Site URL + Redirect URLs → `https://cacaocolab.org/**`
+- [ ] **Rotar `RESEND_API_KEY`** si sigue la key expuesta en chat; actualizar Vercel + Supabase secrets.
 
 ---
 
@@ -132,7 +133,7 @@ Ver `16-MAZORCAS-DORADAS.md`. Los montos no cambian. El email **narra** lifetime
 
 ## 8. Fuera de alcance / siguiente
 
-- Dominio propio verificado en Resend (único bloqueo para nurture a usuarios reales)
+- Completar Verify DNS Resend + env Vercel (docs/24) — único bloqueo restante para nurture masivo
 - `pg_cron` digest semanal (roadmap Fase 4)
 - Emails por rank-up instantáneo (evento adicional, no ligado a los 3 checkpoints de días)
 - Reactivar HubSpot Workflow si algún día se sube de plan (los 3 correos ya quedaron pegados como borradores, listos)

@@ -9,7 +9,7 @@ export const LEGAL_CONTROLLER = {
   operator: "Amaury Amed",
   email: "amauryamed@gmail.com",
   whatsapp: "+57 310 222 7848",
-  site: "https://cacao-colab.vercel.app",
+  site: "https://cacaocolab.org",
   brandSite: "https://cauacolombia.co",
   jurisdictionPrimary: "Colombia",
   dpoContact: "amauryamed@gmail.com",

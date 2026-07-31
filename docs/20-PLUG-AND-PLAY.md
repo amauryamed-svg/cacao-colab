@@ -64,7 +64,7 @@ pnpm --filter @cacao-colab/mobile start   # móvil Expo
 | Deploy móvil | EAS Build → App Store / Google Play | ver `21-APP-STORES.md` |
 | Monorepo | pnpm workspaces + Turborepo | — |
 
-Producto live: [https://cacao-colab.vercel.app](https://cacao-colab.vercel.app)
+Producto live: [https://cacaocolab.org](https://cacaocolab.org)
 
 ---
 
@@ -108,6 +108,9 @@ Copia de referencia (no commitear secretos):
 ```bash
 # apps/web (.env.local)
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
+# Producción (Vercel): NEXT_PUBLIC_SITE_URL=https://cacaocolab.org
+# Tras Verify Resend: RESEND_FROM=Cacao Colab <seguimiento@cacaocolab.org>
+# Ver docs/24-DOMINIO-CACAOCOLAB-ORG.md
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_ROLE_KEY=
@@ -130,7 +133,7 @@ pnpm --filter @cacao-colab/mobile typecheck
 
 ## Invitar a alguien al Colab (producto)
 
-1. Abrir [cacao-colab.vercel.app](https://cacao-colab.vercel.app)  
+1. Abrir [cacao-colab.vercel.app](https://cacaocolab.org)  
 2. CTA **Unirme** / onboarding purpose-led  
 3. WhatsApp del site para nodos y marcas  
 4. Developers: este repo + `./scripts/bootstrap.sh`

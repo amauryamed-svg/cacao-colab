@@ -9,7 +9,7 @@
 
 | Builder | GitHub | Rol de producto | Foco técnico | Email interno (`team_members`) |
 |---------|--------|-----------------|--------------|--------------------------------|
-| **Amaury Amed** | [`amauryamed-svg`](https://github.com/amauryamed-svg) | **Product Manager** · Founder cacaotier · visión Colab | Spec-Driven, priorización, nodos, go-to-market | `amauryamed@gmail.com` · perfil público [`/amauryamed`](https://cacao-colab.vercel.app/amauryamed) · [LinkedIn](https://www.linkedin.com/in/amauryamed) · [IG @amaury.amed](https://www.instagram.com/amaury.amed/) |
+| **Amaury Amed** | [`amauryamed-svg`](https://github.com/amauryamed-svg) | **Product Manager** · Founder cacaotier · visión Colab | Spec-Driven, priorización, nodos, go-to-market | `amauryamed@gmail.com` · perfil público [`/amauryamed`](https://cacaocolab.org/amauryamed) · [LinkedIn](https://www.linkedin.com/in/amauryamed) · [IG @amaury.amed](https://www.instagram.com/amaury.amed/) |
 | **Hellen Bareño** | [`HellenBareno-eng`](https://github.com/HellenBareno-eng) | **Frontend Lead** · Builder fundadora | `apps/web`, `apps/mobile`, Dualita UI, design system | `hellenandba@gmail.com` |
 | **Oscar Gamboa** | [`oscargamboa68`](https://github.com/oscargamboa68) | **Backend Lead** · Builder fundador | `apps/api`, Supabase, HubSpot, Stripe, CRM `/equipo` | `amadooscarito@gmail.com` |
 
@@ -71,7 +71,7 @@ Login unificado: `/cuenta/entrar` → magic link → `claim_team_membership()`.
 Cacao Colab no es un club cerrado de marcas: el círculo de **nodos** permanece abierto.  
 Quien quiera aportar (finca, marca, cocina, código o aprendizaje) puede:
 
-1. Entrar en [cacao-colab.vercel.app](https://cacao-colab.vercel.app) → **Unirme**
+1. Entrar en [cacao-colab.vercel.app](https://cacaocolab.org) → **Unirme**
 2. Escribir por WhatsApp al CTA del site
 3. Clonar el repo y correr el bootstrap plug-and-play (`docs/20-PLUG-AND-PLAY.md`)
 

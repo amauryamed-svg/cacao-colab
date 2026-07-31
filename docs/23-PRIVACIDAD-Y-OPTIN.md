@@ -16,7 +16,7 @@
 | Cookies | `/legal/cookies` |
 | Ejercicio de derechos (DSAR) | `/legal/derechos` |
 
-Prod: `https://cacao-colab.vercel.app/legal/privacidad` (usar esta URL en Apple / Google Play).
+Prod: `https://cacaocolab.org/legal/privacidad` (usar esta URL en Apple / Google Play). Mientras DNS propaga, el deploy también responde en `*.vercel.app`.
 
 Fuente de copy: `apps/web/lib/legal/*`. Versión vigente: `LEGAL_POLICY_VERSION` en `versions.ts`.
 
