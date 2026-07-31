@@ -60,7 +60,7 @@ export default function MarketplacePage() {
             {[
               { icon: "♧", title: "Soy agricultor", body: "Quiero mejorar mi lote, documentar calidad y conectar con compradores.", cta: "Entrar al laboratorio", href: "/aprende/cacaotier", color: "#86B66B" },
               { icon: "◆", title: "Soy chocolatier", body: "Quiero encontrar origen, dominar transformación y crear mejores aplicaciones.", cta: "Ver la ruta profesional", href: "/aprende", color: "#B9583B" },
-              { icon: "♡", title: "Amo el cacao", body: "Quiero aprender, jugar, catar y conocer a quienes hacen posible cada chocolate.", cta: "Cuidar mi Cacao Gotchi", href: "/juega", color: "#E3A12B" },
+              { icon: "♡", title: "Amo el cacao", body: "Quiero aprender, sembrar, catar y conocer a quienes hacen posible cada chocolate.", cta: "Abrir Sembrar", href: "/juega", color: "#E3A12B" },
               { icon: "↗", title: "Tengo una marca", body: "Quiero abrir un nodo, pautar con transparencia y aportar valor a la comunidad.", cta: "Pautar o postular", href: WA_MARCA, color: "#3D7A2C", external: true },
             ].map((audience) => (
               <article key={audience.title} className="audience-card" style={{ "--audience-color": audience.color } as React.CSSProperties}>

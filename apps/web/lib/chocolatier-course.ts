@@ -158,59 +158,71 @@ export const chocolatierMissions: ChocolatierMission[] = [
   {
     number: "03",
     slug: "licor-y-refino",
-    title: "Licor, refino y textura",
-    duration: "12 min",
+    title: "Licor, refino y conchado",
+    duration: "14 min",
     xp: 120,
     skill: "Proceso bean-to-bar",
     summary:
-      "Del nib al licor: tamaño de partícula, viscosidad y tiempo de conchado. Define un protocolo repetible antes de formular inclusiones.",
+      "Del nib al licor: finura de partícula, ventanas de refino, tiempos de conchado y viscosidad. Protocolo repetible antes de bombonería o duja.",
     coexLens:
-      "La excelencia sensorial exige limpieza técnica. Un buen FEAR 5 mal refinado se lee como astringencia o grasa sucia.",
-    practice: "Licor 100 % FEAR 5 con tiempo, temperatura y finura documentados.",
+      "La excelencia sensorial exige limpieza técnica. Un FEAR 5 Fedecacao mal refinado se lee como astringencia o grasa sucia — el panel CoEx no perdona textura sucia.",
+    practice: "Licor 100 % FEAR 5 con °C, minutos de refino/conchado y finura documentados.",
     dualitaIntro:
-      "Sin licor limpio no hay duja noble. Protocolo primero; marañón después.",
+      "Sin licor limpio no hay duja ni bombón noble. Tiempos y finura primero; marañón después.",
     dualitaSuccess:
-      "Ya tienes un licor 100 % FEAR 5 repetible. Esa es la base de Benevolo.",
+      "Ya tienes un licor 100 % FEAR 5 repetible. Esa es la base de Benevolo y de cualquier fórmula moderna.",
     steps: [
       {
         kicker: "Nib → licor",
         title: "Controla lo que mueles.",
-        body: "Descascara, separa cáscara y define carga. Registra temperatura de molino, tiempo y finura objetivo. Un licor sucio arrastra astringencia a toda la barra.",
+        body: "Descascara, separa cáscara y define carga. Registra temperatura de molino, tiempo y finura objetivo. Un licor sucio arrastra astringencia a barra y a bombón.",
         fieldAction: "Protocolo mínimo: carga, °C, minutos, finura percibida.",
       },
       {
         kicker: "Refino",
-        title: "Textura es evidencia táctil.",
-        body: "Busca sedosidad sin arenilla. Si el tamaño de partícula queda alto, la duja de marañón amplificará el defecto. Refina hasta que el licor sea el estándar de la casa.",
-        fieldAction: "Prueba de lengua: sin arenilla · sin grasa sucia · aroma limpio.",
+        title: "Ventana de finura, no superstición.",
+        body: "Busca sedosidad sin arenilla. En laboratorio Colab documentamos tiempo de refino y prueba de lengua; no inventamos micrones de máquina si no los mides. Si la partícula queda alta, la duja amplifica el defecto.",
+        fieldAction: "Bitácora: minutos de refino · °C · prueba lengua (sin arenilla / grasa sucia).",
+      },
+      {
+        kicker: "Conchado",
+        title: "Tiempo que redondea, no que borra el origen.",
+        body: "El conchado volatiliza ácidos indeseables y redondea textura. Demasiado corto deja aristas; demasiado largo puede aplanar tipicidad FEAR 5. Define una ventana de casa (p. ej. correlacionada a tu molino) y no la alargues ‘por si acaso’.",
+        fieldAction: "Declara ventana de conchado A/B y aroma a mitad/final.",
+      },
+      {
+        kicker: "Fedecacao × CoEx",
+        title: "Genética de referencia, panel ciego.",
+        body: "FEAR 5 es Trinitario comercial Fedecacao — material de referencia del Colab. Eso no es medalla: es genotipo. El nivel CoEx se gana en limpieza y tipicidad del licor, no en el nombre del clon.",
+        fieldAction: "Ficha: Fedecacao FEAR 5 · lote · refino · conchado · listo para panel.",
       },
       {
         kicker: "Testigo",
         title: "Guarda un 100 % antes de formular.",
-        body: "Conserva licor testigo FEAR 5. Toda inclusión (leche, duja, alulosa) se juzga contra ese control. Sin testigo no sabes qué tapó la fórmula.",
-        fieldAction: "Etiqueta testigo: lote · curva · fecha · finura.",
+        body: "Conserva licor testigo FEAR 5. Toda inclusión (leche, duja, bombón, alulosa) se juzga contra ese control. Sin testigo no sabes qué tapó la fórmula.",
+        fieldAction: "Etiqueta testigo: lote · curva · refino · conchado · fecha.",
       },
     ],
     quiz: {
-      question: "¿Por qué guardar un licor 100 % FEAR 5 antes de la duja?",
+      question: "¿Qué documenta un protocolo serio de refino/conchado antes de formular?",
       options: [
         {
           id: "a",
-          text: "Porque la leche siempre mejora cualquier defecto",
+          text: "Solo el nombre del molino y un claim de ‘bean-to-bar artesanal’",
           correct: false,
-          explanation: "La leche puede enmascarar, no justificar, defectos.",
+          explanation: "Sin tiempos, °C y prueba de finura no hay protocolo.",
         },
         {
           id: "b",
-          text: "Para comparar tipicidad y detectar si la fórmula tapa el origen",
+          text: "Tiempos/°C de refino y conchado, finura percibida y licor testigo 100 %",
           correct: true,
-          explanation: "Exacto: el testigo es tu control CoEx-interno.",
+          explanation: "Exacto: repetibilidad + control para CoEx-interno.",
         },
         {
           id: "c",
-          text: "Solo por marketing de bean-to-bar",
+          text: "Conchar el máximo posible para borrar el origen Fedecacao",
           correct: false,
-          explanation: "Es una necesidad técnica de control de calidad.",
+          explanation: "Aplanar tipicidad destruye el punto Fine-Flavor.",
         },
       ],
     },
@@ -278,47 +290,53 @@ export const chocolatierMissions: ChocolatierMission[] = [
   {
     number: "05",
     slug: "formulacion-duja",
-    title: "Formulación duja de marañón",
-    duration: "14 min",
+    title: "Formulaciones modernas y bombonería",
+    duration: "16 min",
     xp: 140,
-    skill: "Gianduja + innovación",
+    skill: "Gianduja + bombón + innovación",
     summary:
-      "Hibrida la cultura italiana de la gianduja con marañón local: proporción cacao/nuez/leche, dulzor con alulosa y stevia, y textura de duja sin enmascarar el FEAR 5.",
+      "Duja de marañón, ratios modernos (alulosa/stevia) y puerta a bombonería: inclusión sin tapar FEAR 5. Innovar sin rendirse al chocolate genérico de industria.",
     coexLens:
-      "La innovación no disculpa defectos. Si la duja tapa el origen, perdiste el punto Fine-Flavor.",
-    practice: "Tres ratios de duja; elige el que deja leer FEAR 5 y marañón a la vez.",
+      "La innovación no disculpa defectos. Si duja o ganache tapan el origen, perdiste Fine-Flavor — aunque el bombón ‘brille’ en vitrina.",
+    practice: "Tres ratios de duja + un brief de bombón que deje leer FEAR 5.",
     dualitaIntro:
-      "Gianduja italiana, marañón colombiano. La duja debe dejar hablar al FEAR 5.",
+      "Gianduja, marañón, bombón. La fórmula moderna debe dejar hablar al FEAR 5 — no sustituirlo por dulzor industrial.",
     dualitaSuccess:
-      "Encontraste un ratio donde origen y marañón conviven. Eso es Benevolo en potencia.",
+      "Encontraste ratios y un brief de bombonería donde origen y oficio conviven. Benevolo en potencia.",
     steps: [
       {
         kicker: "Ratio",
         title: "Tres fórmulas, un lote.",
-        body: "Prueba tres balances licor FEAR 5 / duja de marañón / leche en polvo orgánica. Mantén constante el proceso del licor. Cambia solo la proporción de inclusión.",
+        body: "Prueba tres balances licor FEAR 5 / duja de marañón / leche en polvo orgánica. Mantén constante el perfil del licor. Cambia solo la proporción de inclusión.",
         fieldAction: "Matriz A/B/C con % cacao, % duja, % leche.",
       },
       {
-        kicker: "Dulzor",
+        kicker: "Dulzor moderno",
         title: "Alulosa + stevia sin maquillaje.",
-        body: "El dulzor debe sostener la leche y la duja sin tapar tipicidad. Evita picos metálicos o vacío dulce. Documenta percepción a 0, 30 y 60 segundos.",
+        body: "Las formulaciones modernas pueden bajar azúcar refinada. El dulzor debe sostener leche y duja sin tapar tipicidad ni dejar pico metálico. Documenta percepción a 0, 30 y 60 s.",
         fieldAction: "Nota: dulzor pico · retrogusto · ¿se lee el cacao?",
+      },
+      {
+        kicker: "Bombonería",
+        title: "Ganache y cáscara al servicio del origen.",
+        body: "Un bombón Fine-Flavor declara el licor o la cobertura de origen; no esconde un cacao mediocre bajo praliné ruidoso. Define cáscara (cobertura FEAR 5 o aliada), ganache y proporción para que el primer y segundo mordisco lean tipicidad.",
+        fieldAction: "Brief de bombón: cáscara · ganache · % origen · claim honesto.",
       },
       {
         kicker: "Decisión",
         title: "Elige la que deja leer ambos.",
-        body: "Gana el ratio donde FEAR 5 y marañón se perciben juntos, con textura sedosa y sin defectos. Si solo sabes a dulce o solo a nuez, descarta.",
-        fieldAction: "Declara el ratio ganador y por qué sobrevive a cata ciega.",
+        body: "Gana el ratio (y el brief) donde FEAR 5 y marañón se perciben juntos, con textura sedosa y sin defectos. Si solo sabes a dulce o solo a nuez, descarta.",
+        fieldAction: "Declara ratio ganador + brief bombón y por qué sobreviven a cata ciega.",
       },
     ],
     quiz: {
-      question: "¿Cuándo una duja de marañón falla el criterio Fine-Flavor?",
+      question: "¿Cuándo una formulación moderna o un bombón falla el criterio Fine-Flavor?",
       options: [
         {
           id: "a",
-          text: "Cuando el marañón se nota junto al FEAR 5",
+          text: "Cuando el marañón o la ganache se notan junto al FEAR 5",
           correct: false,
-          explanation: "Eso es el objetivo de la formulación.",
+          explanation: "Eso puede ser el objetivo si el origen sigue legible.",
         },
         {
           id: "b",
@@ -338,59 +356,65 @@ export const chocolatierMissions: ChocolatierMission[] = [
   {
     number: "06",
     slug: "benevolo-capstone",
-    title: "Capstone · Chocolate Benevolo",
-    duration: "16 min",
+    title: "Capstone · Benevolo y la generación Colab",
+    duration: "18 min",
     xp: 160,
-    skill: "Producto + mercado",
+    skill: "Producto + postura + colectivo",
     summary:
-      "Entrega Bars. 80 g: leche en polvo orgánica, alulosa, stevia, duja de marañón y FEAR 5. Alianza Zurych × Quara. Preorden como prueba de demanda real.",
+      "Entrega Bars. 80 g Benevolo y toma postura frente al grown chocolate industrial que amenaza el cacao de especialidad. Invita a la nueva generación a competir en colectivo con Cacao Colab.",
     coexLens:
-      "El output Master Chocolatier debe poder explicarse a un panel COEX y a un consumidor: evidencia arriba, deseo abajo.",
-    practice: "Ficha de producto + claim honestos + CTA de preorden Benevolo.",
+      "El output Master Chocolatier se explica a un panel CoEx y a un consumidor: evidencia arriba, deseo abajo — sin disfrazar commodity con storytelling de origen falso.",
+    practice: "Ficha Benevolo + claims honestos + manifiesto anti–grown chocolate + CTA al Colab.",
     dualitaIntro:
-      "Capstone: convierte evidencia en producto deseable. Benevolo sin tilde; Chocolate Benevolo le pone las tildes a la e.",
+      "Capstone: producto deseable y voz de generación. Benevolo sin tilde; ustedes ponen las tildes al oficio.",
     dualitaSuccess:
-      "Credencial lista. Ahora tu output tiene ficha, claims honestos y un canal de preorden real.",
+      "Credencial lista: ficha, postura y un llamado al colectivo. El cacao de especialidad se defiende en red.",
     steps: [
       {
         kicker: "Ficha",
         title: "Producto con evidencia arriba.",
-        body: "Documenta Bars. 80 g: FEAR 5 Quara, duja de marañón, leche orgánica, alulosa, stevia. Alianza Zurych × Quara. Declara lo que está listo y lo que no (sin medalla CoEx atribuida).",
+        body: "Documenta Bars. 80 g: FEAR 5 Quara, duja de marañón, leche orgánica, alulosa, stevia. Alianza Zurych × Quara. Declara lo listo y lo que no (sin medalla CoEx atribuida).",
         fieldAction: "Completa ficha: ingredientes · origen · formato · honestidad CoEx.",
       },
       {
-        kicker: "Claims",
-        title: "Deseo abajo, sin inventar sellos.",
-        body: "Benevolo se lee igual en español e italiano. Puedes hablar de lente CoEx, no de premio ganado. Preventa WhatsApp es prueba de demanda, no inventario fingido.",
-        fieldAction: "Escribe 2 claims permitidos y 1 claim prohibido.",
+        kicker: "Postura",
+        title: "Grown chocolate no es nuestro norte.",
+        body: "La industria empuja cacao ‘crecido’ a escala que aplana tipicidad, desconecta finca y mesa, y educa paladares a dulzor genérico. Eso amenaza el cacao de especialidad como lo conocemos. Tu postura Colab: origen legible, genética Fedecacao/clones con bitácora, fermentación y formulación que no borren el territorio.",
+        fieldAction: "Escribe 3 líneas: qué rechazas del grown chocolate y qué defiendes.",
       },
       {
-        kicker: "Mercado",
-        title: "Cierra el círculo Colab.",
-        body: "El capstone conecta campus → nodo → mesa. Comparte la página Benevolo o el CTA de preorden. La aceleración se mide en interés real, no solo en XP.",
-        fieldAction: "Abre /benevolo y registra tu CTA de salida (preorden o ficha).",
+        kicker: "Generación",
+        title: "Habla a quien hereda la tierra y el oficio.",
+        body: "Chocolateros y agricultores que vienen: no compitan solos. Sembrar (Ecoyuma), fermentar (Cacaotier) y formular (Chocolatier) son una misma aceleración. El Colab es la red donde el sibarismo con criterio se vuelve competitividad colectiva.",
+        fieldAction: "Redacta tu invitación a un par de tu generación (5 líneas).",
+      },
+      {
+        kicker: "Colectivo",
+        title: "Cierra el círculo en Cacao Colab.",
+        body: "Comparte Benevolo, entra a /unete o trae a alguien al campus. La aceleración se mide en interés real y en manos que siembran y formulan juntas — no solo en XP.",
+        fieldAction: "CTA de salida: /benevolo · /unete · /aprende · Sembrar (/juega).",
       },
     ],
     quiz: {
-      question: "¿Qué afirmación es honesta para Chocolate Benevolo?",
+      question: "¿Cuál es la postura Colab frente al grown chocolate industrial?",
       options: [
         {
           id: "a",
-          text: "Ganó medalla Cacao of Excellence",
+          text: "Adoptarlo porque escala más barato y el origen ya no importa",
           correct: false,
-          explanation: "Usamos lente CoEx; no atribuimos medalla a la SKU.",
+          explanation: "Eso aplana tipicidad y amenaza la especialidad.",
         },
         {
           id: "b",
-          text: "Formulación bean-to-bar FEAR 5 Quara × Zurych en preventa, con criterios estilo CoEx",
+          text: "Defender origen legible, oficio y colectivo frente al cacao genérico que borra territorio",
           correct: true,
-          explanation: "Correcto: evidencia + deseo sin sellos inventados.",
+          explanation: "Correcto: especialidad + generación + Cacao Colab.",
         },
         {
           id: "c",
-          text: "Checkout con stock confirmado disponible hoy",
+          text: "Atribuir medalla CoEx a cualquier barra con FEAR 5 en el empaque",
           correct: false,
-          explanation: "Aún es preorden; no se simula inventario.",
+          explanation: "Lente CoEx ≠ medalla; no inventamos premios.",
         },
       ],
     },
@@ -452,8 +476,29 @@ export const coexPrinciples = [
 
 export const coexOfficialUrl = "https://www.cacaoofexcellence.org/"
 
+/** Postura pública Master Chocolatier frente al cacao genérico de escala industrial. */
+export const grownChocolateStance = {
+  title: "Nuestra postura frente al grown chocolate",
+  lede: "El cacao de especialidad no es nostalgia: es competitividad con tipicidad. Cuando la industria educa el paladar a un chocolate genérico ‘crecido’ a escala, se borra el territorio — y con él la razón de que nuevas generaciones hereden la tierra con orgullo.",
+  reject: [
+    "Origen decorativo sin bitácora de lote",
+    "Formulaciones que tapan defecto con dulzor y grasa",
+    "Escala que sacrifica tipicidad Fedecacao / Fine-Flavor por commodity",
+  ],
+  defend: [
+    "Genética y vivero con criterio (Ecoyuma · FEAR 5 / TCS)",
+    "Fermentación y conchado documentados, panel estilo CoEx",
+    "Bombonería y barras que dejan leer el cacao",
+    "Colectivo Cacao Colab: finca + oficio + marca en red",
+  ],
+  callToGeneration:
+    "Si heredas tierra o estás aprendiendo a formular: no entres solo a un mercado que premia lo genérico. Entra al Colab. Sembrar, fermentar y chocolatear en colectivo es cómo subimos la competitividad de nuestro cacao.",
+}
+
 export const chocolatierCompanionTips = [
   "Lente CoEx ≠ medalla CoEx. Nunca atribuyas un premio a Benevolo sin evidencia.",
   "El XP mide avance educativo; la ficha de lote y la cata ciega demuestran criterio.",
-  "Si la duja tapa el FEAR 5, la fórmula falló aunque sepa ‘rica’.",
+  "Si la duja o el bombón tapan el FEAR 5, la fórmula falló aunque sepa ‘rica’.",
+  "Grown chocolate genérico amenaza la especialidad: tu oficio es la resistencia con evidencia.",
+  "Invita a tu generación al Colab — la tipicidad se defiende en red.",
 ]

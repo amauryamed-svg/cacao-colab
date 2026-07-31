@@ -205,7 +205,7 @@ export default function ArchitectCoursePlayer({
               <h2>Arquitecto de Fermentación</h2>
               <p>Completaste seis misiones y {architectTotalXp} XP. Ahora convierte el criterio en una bitácora real.</p>
               <div className="flex flex-wrap justify-center gap-3">
-                <Link href="/juega">Aplicar a Cacao Gotchi →</Link>
+                <Link href="/juega">Aplicar en Sembrar →</Link>
                 <Link href="/aprende/cacaotier">Abrir laboratorio de curvas</Link>
               </div>
             </div>

@@ -11,8 +11,8 @@ const paths = {
     cta: "Abrir campus",
   },
   cuidar: {
-    label: "Quiero cuidar mi labranza",
-    response: "Cacao Gotchi reconoce cuidado con un tope diario. Sombra, suelo, agua, biodiversidad y polinizadores pesan más que hacer clic sin criterio.",
+    label: "Quiero Sembrar mi labranza",
+    response: "Sembrar reconoce cuidado y bitácora con tope diario. Plántulas Ecoyuma, sombra, suelo, agua y cartografía pesan más que hacer clic sin criterio.",
     href: "/juega",
     cta: "Ir a la labranza",
   },

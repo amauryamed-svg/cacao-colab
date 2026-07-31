@@ -106,7 +106,7 @@ export default function Home() {
               {[
                 { step: "01", title: "Master Cacaotier", body: "Fermentación, finca, datos y calidad Fine-Flavor." },
                 { step: "02", title: "Master Chocolatier", body: "Tostión, formulación, aplicaciones y creación sensorial." },
-                { step: "03", title: "Cacao Gotchi", body: "Cuida una labranza, gana Mazorcas Doradas y construye legado." },
+                { step: "03", title: "Sembrar", body: "Plántulas Ecoyuma, bitácora y agroforestería para tu finca idónea." },
                 { step: "04", title: "Cacao Colab", body: "Conecta marcas, beneficios y territorio con reglas transparentes." },
               ].map((item) => (
                 <article key={item.step} className="bg-white/[.035] border border-white/10 rounded-2xl p-6 hover:border-colab-yellow/30 transition-colors">

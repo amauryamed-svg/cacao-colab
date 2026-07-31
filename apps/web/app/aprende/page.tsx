@@ -29,7 +29,7 @@ export default async function AprendePage() {
               <h1 className="display-title text-colab-cream">Aprende haciendo.<br /><em>Sube de rango.</em></h1>
               <p className="text-colab-cream/55 max-w-xl mt-6 leading-relaxed">
                 Contexto, hábitos, oficio y territorio sincronizados. Entra con una sola cuenta para conservar
-                XP, racha, Cacao Gotchi y evidencia de tus misiones.
+                XP, racha, Sembrar (Ecoyuma) y evidencia de tus misiones.
               </p>
             </div>
             <div className="grid grid-cols-3 gap-2">

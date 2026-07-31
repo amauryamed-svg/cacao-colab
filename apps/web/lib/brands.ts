@@ -34,7 +34,7 @@ export const brands: Brand[] = [
     products: [
       "Master Cacaotier · finca y bioprocesos",
       "Master Chocolatier · transformación y aplicaciones",
-      "Laboratorio virtual + Cacao Gotchi",
+      "Sembrar · laboratorio Ecoyuma × Colab",
     ],
     ctaLabel: "Entrar al campus →",
     ctaUrl: "/aprende",
