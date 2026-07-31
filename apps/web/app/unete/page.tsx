@@ -5,16 +5,12 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'Únete al Colab · Cacao Colab',
   description:
-    'Forma parte de la iniciativa colaborativa de cacao colombiano. Cuéntanos tu operación y te acompañamos.',
+    'Plataforma de aceleración del cacao colombiano. Educarte en excelencia y especialidad, subir competitividad colaborativa y dar propósito a nuevas generaciones.',
 }
 
 export default function UnetePage() {
   return (
-    <main
-      className="min-h-screen bg-colab-forest flex flex-col"
-      style={{ fontFamily: 'Arial, Helvetica, sans-serif' }}
-    >
-      {/* top bar */}
+    <main className="onboard-page min-h-screen bg-colab-forest flex flex-col">
       <div className="w-full border-b border-white/8 py-4 px-6 flex items-center justify-between">
         <Link
           href="/"
@@ -22,33 +18,23 @@ export default function UnetePage() {
         >
           ← Cacao Colab
         </Link>
-        <span
-          className="text-xs font-bold tracking-[3px] uppercase"
-          style={{ color: '#87AA27' }}
-        >
-          Únete
+        <span className="text-xs font-bold tracking-[3px] uppercase text-colab-pod">
+          Aceleración
         </span>
       </div>
 
-      {/* onboarding area */}
-      <div className="flex-1 flex flex-col items-center justify-center px-4 py-16">
-        <OnboardingFlow />
+      <div className="flex-1 flex flex-col items-center justify-center px-4 py-14 md:py-20">
+        <div className="w-full max-w-xl">
+          <OnboardingFlow />
+        </div>
       </div>
 
-      {/* bottom note */}
       <div className="w-full border-t border-white/8 py-5 px-6 text-center">
-        <p className="text-xs" style={{ color: 'rgba(247,241,238,.2)' }}>
-          Cacao Colab · CAÚA × Zurych · Cacao con propósito · Colombia
+        <p className="text-xs text-colab-cream/20 max-w-md mx-auto leading-relaxed">
+          Cacao Colab · aceleración colaborativa del cacao y el chocolate colombiano · Dualita ·
+          nodos · marcas
         </p>
       </div>
-
-      {/* fadeUp keyframe injection (already in globals.css, this is just the style tag for the animation reference in OnboardingFlow) */}
-      <style>{`
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(24px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
     </main>
   )
 }

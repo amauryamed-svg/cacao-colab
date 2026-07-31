@@ -5,12 +5,24 @@ import type { Json } from "@cacao-colab/supabase-client/database.types"
 
 const COOKIE_NAME = "colab_onboarded"
 const TIPO_LABEL: Record<string, string> = {
-  restaurante: "Restaurante", hotel: "Hotel & Glamping", cafeteria: "Cafetería & Bar de cacao",
-  pasteleria: "Pastelería & Chocolatería", otra: "Otra operación",
+  finca: "Finca / cacaocultor",
+  transformacion: "Transformación bean-to-bar",
+  restaurante: "Restaurante",
+  hotel: "Hotel & experiencia",
+  cafeteria: "Cafetería & Bar de cacao",
+  pasteleria: "Pastelería & Chocolatería",
+  marca: "Marca / comercio",
+  "nueva-generacion": "Nueva generación",
+  otra: "Otra vía",
 }
 const INTERES_LABEL: Record<string, string> = {
-  productos: "Productos CAÚA", aprendizaje: "Aprendizaje Dualita",
-  marca: "Marketplace — postular marca", todo: "Todo el ecosistema",
+  excelencia: "Hablar cacao de excelencia",
+  productos: "Productos con origen",
+  aprendizaje: "Educarme con Dualita",
+  competitividad: "Subir competitividad colaborativa",
+  legado: "Legado generacional",
+  marca: "Sumar marca al Colab",
+  todo: "Todo el ecosistema",
 }
 
 function done(response: NextResponse) {
