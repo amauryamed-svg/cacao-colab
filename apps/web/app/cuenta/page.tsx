@@ -43,10 +43,11 @@ export default async function CuentaPage() {
             <button className="text-xs font-bold text-colab-forest/45 hover:text-colab-forest">Cerrar sesión</button>
           </form>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3 mt-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 mt-10">
           {[
             { title: "Mazorcas Doradas", body: `${wallet?.balance ?? 0} MD · rango ${rank.name}.`, href: "/cuenta/mazorcas", cta: "Ver wallet y beneficios" },
             { title: "Arquitecto de Fermentación", body: "Seis misiones con Dualita y 700 XP.", href: "/campus/arquitecto-fermentacion", cta: "Continuar curso" },
+            { title: "Master Chocolatier", body: "Bean-to-bar CoEx · 720 XP · capstone Benevolo.", href: "/campus/maestro-chocolatier", cta: "Continuar campaña" },
             { title: "Cacao Gotchi", body: "Tu árbol, nodo y lote FEAR 5.", href: "/juega", cta: "Cuidar árbol" },
             {
               title: "Campus Dualita",

@@ -9,7 +9,6 @@ import {
   coexPrinciples,
 } from "@/lib/chocolatier-course"
 import { getCourseVideo } from "@/lib/course-videos"
-import { benevoloProduct } from "@/lib/knowledge-base"
 
 export const metadata: Metadata = {
   title: "Master Chocolatier · bean-to-bar COEX",
@@ -45,19 +44,21 @@ export default function MasterChocolatierPage() {
                 duja de marañón, leche orgánica, alulosa y stevia sobre cacao FEAR 5 del nodo Quara (Arauca).
               </p>
               <div className="flex flex-wrap gap-3 mt-8">
-                <Link href="/benevolo" className="bg-[#FF6A3D] text-[#140e0a] rounded-full px-7 py-3.5 text-sm font-bold">
-                  Ver output Benevolo →
+                <Link
+                  href="/campus/maestro-chocolatier"
+                  className="bg-[#FF6A3D] text-[#140e0a] rounded-full px-7 py-3.5 text-sm font-bold"
+                >
+                  Empezar campaña con Dualita →
                 </Link>
-                <TrackedLink
-                  href={benevoloProduct.preorderWhatsapp}
-                  event="benevolo_interest"
-                  targetName="benevolo-preorder"
-                  source="master-chocolatier-hero"
-                  external
+                <Link
+                  href="/cuenta/entrar?next=/campus/maestro-chocolatier"
                   className="border border-white/20 text-colab-cream rounded-full px-7 py-3.5 text-sm font-bold"
                 >
-                  Preordenar Bars.
-                </TrackedLink>
+                  Entrar al campus
+                </Link>
+                <Link href="/benevolo" className="border border-white/20 text-colab-cream rounded-full px-7 py-3.5 text-sm font-bold">
+                  Ver output Benevolo
+                </Link>
               </div>
               {intro && (
                 <div className="mt-10">
@@ -97,8 +98,21 @@ export default function MasterChocolatierPage() {
         </section>
 
         <section className="mb-20">
-          <p className="eyebrow text-[#FF6A3D]">Tu campaña</p>
-          <h2 className="font-serif text-4xl font-bold mt-3">Seis misiones bean-to-bar</h2>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div>
+              <p className="eyebrow text-[#FF6A3D]">Tu campaña</p>
+              <h2 className="font-serif text-4xl font-bold mt-3">Seis misiones bean-to-bar</h2>
+              <p className="text-white/45 mt-3 max-w-xl text-sm leading-relaxed">
+                Cada misión tiene 3 pasos, un reto de criterio y Dualita. El progreso vive en el campus registrado.
+              </p>
+            </div>
+            <Link
+              href="/campus/maestro-chocolatier"
+              className="bg-[#FF6A3D] text-[#140e0a] rounded-full px-7 py-3.5 text-sm font-bold shrink-0"
+            >
+              Abrir campaña →
+            </Link>
+          </div>
           <div className="space-y-3 mt-8">
             {chocolatierMissions.map((mission, index) => (
               <article key={mission.slug} className={`mission-card ${index === 0 ? "mission-card-live" : ""}`}>

@@ -1363,6 +1363,50 @@ body {
 .architect-options button.muted { opacity: .3; }
 .architect-feedback { color: rgba(247, 241, 238, .55); font-size: .7rem; margin-top: 1rem; }
 
+.chocolatier-player {
+  background:
+    radial-gradient(circle at 82% 12%, rgba(255, 106, 61, .14), transparent 28%),
+    linear-gradient(160deg, #24170f, #1a120c 55%, #120d09);
+}
+
+.chocolatier-player .architect-progress i,
+.chocolatier-player .architect-step-dots i.active,
+.chocolatier-player .architect-mission-rail button.active > span:first-child,
+.chocolatier-player .architect-mission-rail button.done > span:first-child,
+.chocolatier-player .architect-complete > span {
+  background: #FF6A3D;
+  color: #140e0a;
+}
+
+.chocolatier-player .architect-progress i { display: block; height: 100%; }
+.chocolatier-player .architect-complete > span {
+  background: transparent;
+  color: #FF6A3D;
+}
+
+.chocolatier-player .architect-next,
+.chocolatier-player .architect-complete button,
+.chocolatier-player .architect-complete a {
+  background: #FF6A3D;
+  color: #140e0a;
+}
+
+.chocolatier-player .architect-mission-rail button.active {
+  border-color: rgba(255, 106, 61, .45);
+  background: rgba(255, 106, 61, .1);
+}
+
+.chocolatier-coex-note {
+  color: rgba(232, 201, 160, .62);
+  font-size: .68rem;
+  line-height: 1.5;
+  margin: 1rem 0 1.25rem;
+}
+
+.chocolatier-coex-note strong {
+  color: #E8C9A0;
+}
+
 .architect-complete {
   color: rgba(247, 241, 238, .58);
   max-width: 38rem;
