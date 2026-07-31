@@ -1,12 +1,14 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import TrackedLink from "@/components/analytics/TrackedLink"
+import CourseIntroPlayer from "@/components/aprende/CourseIntroPlayer"
 import {
   benevoloFormulation,
   chocolatierMissions,
   chocolatierTotalXp,
   coexPrinciples,
 } from "@/lib/chocolatier-course"
+import { getCourseVideo } from "@/lib/course-videos"
 import { benevoloProduct } from "@/lib/knowledge-base"
 
 export const metadata: Metadata = {
@@ -16,6 +18,8 @@ export const metadata: Metadata = {
 }
 
 export default function MasterChocolatierPage() {
+  const intro = getCourseVideo("master-chocolatier")
+
   return (
     <div className="bg-[#1a120c] min-h-screen text-colab-cream">
       <header className="benevolo-hero">
@@ -55,6 +59,11 @@ export default function MasterChocolatierPage() {
                   Preordenar Bars.
                 </TrackedLink>
               </div>
+              {intro && (
+                <div className="mt-10">
+                  <CourseIntroPlayer video={intro} source="master-chocolatier-hero" />
+                </div>
+              )}
             </div>
             <div className="credential-card !bg-[#FF6A3D] !text-[#140e0a]">
               <div className="flex justify-between items-start">

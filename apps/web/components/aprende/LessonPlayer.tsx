@@ -7,9 +7,11 @@ import LessonCard from './LessonCard'
 import QuizCard from './QuizCard'
 import LessonComplete from './LessonComplete'
 import DualitaCompanion from './DualitaCompanion'
+import CourseIntroPlayer from './CourseIntroPlayer'
 import { trackColabEvent } from '@/lib/analytics'
 import { completeMicroLesson } from '@/app/aprende/actions'
 import type { MicroLessonResult } from '@/lib/microlearning'
+import { getLessonIntroVideo } from '@/lib/course-videos'
 
 type Phase = 'cards' | 'quiz' | 'complete'
 
@@ -19,6 +21,7 @@ export default function LessonPlayer({ lesson }: Props) {
   const [cardIndex, setCardIndex] = useState(0)
   const [phase,     setPhase]     = useState<Phase>('cards')
   const [loyalty,   setLoyalty]   = useState<MicroLessonResult | null>(null)
+  const introVideo = getLessonIntroVideo(lesson.slug)
 
   // save progress to localStorage on complete
   useEffect(() => {
@@ -75,13 +78,21 @@ export default function LessonPlayer({ lesson }: Props) {
 
       {/* lesson title band */}
       {phase === 'cards' && cardIndex === 0 && (
-        <div className="px-4 pt-10 pb-6 max-w-lg mx-auto w-full" style={{ animation: 'fadeUp .4s ease both' }}>
+        <div
+          className={`px-4 pt-10 pb-6 mx-auto w-full ${introVideo ? "max-w-3xl" : "max-w-lg"}`}
+          style={{ animation: 'fadeUp .4s ease both' }}
+        >
           <p className="text-xs font-bold tracking-[3px] uppercase mb-2" style={{ color: '#87AA27', fontFamily: 'Arial, sans-serif' }}>
             Módulo {lesson.number} · {lesson.duration}
           </p>
           <h1 className="font-serif text-colab-cream" style={{ fontSize: 'clamp(1.4rem, 5vw, 2rem)', fontWeight: 900 }}>
             {lesson.title}
           </h1>
+          {introVideo && (
+            <div className="mt-6">
+              <CourseIntroPlayer video={introVideo} source={`lesson-${lesson.slug}`} />
+            </div>
+          )}
         </div>
       )}
 

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #142016; }
+      body { font-family: "Source Sans 3", sans-serif; color: #F7F1EE; }
+      #root {
+        position: relative; width: 1920px; height: 1080px;
+        background:
+          radial-gradient(ellipse at 18% 20%, rgba(242, 200, 48, 0.16), transparent 42%),
+          radial-gradient(ellipse at 85% 75%, rgba(134, 182, 107, 0.12), transparent 40%),
+          linear-gradient(155deg, #1a2a16 0%, #142016 48%, #0f1812 100%);
+      }
+      .clip { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 120px 140px; }
+      .kicker {
+        font-size: 18px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase;
+        color: #F2C830; margin-bottom: 28px;
+      }
+      .title {
+        font-family: "Fraunces", serif; font-weight: 900; font-size: 92px; line-height: 0.95;
+        letter-spacing: -0.03em; max-width: 1400px;
+      }
+      .title em { font-style: italic; color: #F2C830; }
+      .support { margin-top: 36px; font-size: 28px; line-height: 1.35; color: rgba(247,241,238,0.58); max-width: 900px; font-weight: 400; }
+      .steps { display: flex; gap: 28px; margin-top: 48px; }
+      .step {
+        flex: 1; border-top: 1px solid rgba(242,200,48,0.35); padding-top: 22px;
+      }
+      .step strong {
+        display: block; font-family: "Fraunces", serif; font-size: 36px; font-weight: 700; margin-bottom: 10px;
+      }
+      .step span { font-size: 20px; color: rgba(247,241,238,0.5); line-height: 1.4; }
+      .cta {
+        font-family: "Fraunces", serif; font-size: 64px; font-weight: 700;
+      }
+      .brand {
+        position: absolute; left: 140px; bottom: 80px; font-size: 16px; letter-spacing: 0.2em;
+        text-transform: uppercase; color: rgba(247,241,238,0.35); font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="24" data-width="1920" data-height="1080">
+      <section id="s1" class="clip" data-start="0" data-duration="3.0" data-track-index="1">
+        <p class="kicker">cacaotier campus · Dualita</p>
+        <h1 class="title">Bienvenido.</h1>
+        <p class="support">Edutainment con rigor: contexto, hábito y oficio.</p>
+      </section>
+
+      <section id="s2" class="clip" data-start="3.0" data-duration="6.0" data-track-index="1">
+        <p class="kicker">Una escuela</p>
+        <h1 class="title">Dos velocidades.<br /><em>Una escuela.</em></h1>
+        <p class="support">Profundidad cuando hace falta. Decisiones cuando urge.</p>
+      </section>
+
+      <section id="s3" class="clip" data-start="9.0" data-duration="5.5" data-track-index="1">
+        <p class="kicker">MOOC · Zurych</p>
+        <h1 class="title">Historia y territorio.</h1>
+        <p class="support">El mapa cultural del cacao antes del oficio.</p>
+      </section>
+
+      <section id="s4" class="clip" data-start="14.5" data-duration="5.0" data-track-index="1">
+        <p class="kicker">Microlearning · CAÚA</p>
+        <h1 class="title">Hábito en minutos.</h1>
+        <div class="steps">
+          <div class="step"><strong>01</strong><span>Una idea clara</span></div>
+          <div class="step"><strong>02</strong><span>Una decisión útil</span></div>
+          <div class="step"><strong>03</strong><span>Un quiz que fija</span></div>
+        </div>
+      </section>
+
+      <section id="s5" class="clip" data-start="19.5" data-duration="4.5" data-track-index="1">
+        <p class="kicker">Siguiente paso</p>
+        <h1 class="cta">Entra. Haz.<br />Sube de rango.</h1>
+        <p class="brand">Cacao Colab · Dualita</p>
+      </section>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      ["s1","s2","s3","s4","s5"].forEach((id) => {
+        const el = document.getElementById(id);
+        const start = parseFloat(el.dataset.start);
+        tl.fromTo(el.querySelectorAll(".kicker, .title, .support, .steps, .cta, .brand"),
+          { opacity: 0, y: 28 },
+          { opacity: 1, y: 0, duration: 0.85, stagger: 0.08, ease: "power2.out" },
+          start + 0.1
+        );
+        tl.to(el.querySelectorAll(".kicker, .title, .support, .steps, .cta, .brand"),
+          { opacity: 0, y: -16, duration: 0.45, ease: "power1.in" },
+          start + parseFloat(el.dataset.duration) - 0.5
+        );
+      });
+      window.__timelines.main = tl;
+    </script>
+  </body>
+</html>

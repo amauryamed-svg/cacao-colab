@@ -113,6 +113,7 @@ Deja de ser "no un joint venture legal, solo una plataforma compartida de marca"
 | D37 | Base de conocimiento | `/conocimiento` integra regulación, genética, calidad internacional y producto | Cada ficha declara nivel de evidencia; no inventa DO registrada ni alianzas firmadas. |
 | D38 | Ecoyuma | Catálogo externo de plántulas (FEAR 5, TCS 19, TCS 06) | Stock/precio viven en tienda.ecoyuma.com.co; el Colab enlaza y rastrea clics. |
 | D39 | Chocolate Benevolo | Capstone Master Chocolatier: Bars. leche + duja de marañón + FEAR 5 (Quara × Zurych), lente COEX | Preventa por WhatsApp; curso en `/aprende/chocolatier`. Sin checkout/stock inventado ni medalla COEX atribuida. |
+| D40 | Edutainment video | Intros MOOC/Micro/Masters con HyperFrames (HTML→MP4), estilo Anthropic Academy | Studio en `apps/video`; player en campus. Remotion/Higgsfield solo como reserva/B-roll. Ver `18-EDUTAINMENT-VIDEO.md`. |
 
 ---
 

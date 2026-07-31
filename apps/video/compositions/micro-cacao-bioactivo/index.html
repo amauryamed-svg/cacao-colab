@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #142016; }
+      body { font-family: "Source Sans 3", sans-serif; color: #F7F1EE; }
+      #root {
+        width: 1920px; height: 1080px; position: relative;
+        background:
+          radial-gradient(circle at 70% 30%, rgba(134,182,107,.18), transparent 35%),
+          linear-gradient(160deg, #18301c, #142016 55%, #10180f);
+      }
+      .clip { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 120px 140px; }
+      .kicker { font-size: 18px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: #86B66B; margin-bottom: 28px; }
+      .title { font-family: "Fraunces", serif; font-weight: 900; font-size: 88px; line-height: .95; letter-spacing: -.03em; max-width: 1500px; }
+      .support { margin-top: 34px; font-size: 28px; color: rgba(247,241,238,.55); max-width: 920px; }
+      .pills { display: flex; gap: 18px; margin-top: 42px; flex-wrap: wrap; }
+      .pill {
+        border: 1px solid rgba(134,182,107,.4); border-radius: 999px; padding: 14px 26px;
+        font-size: 22px; font-weight: 600; color: #F7F1EE;
+      }
+      .cta { font-family: "Fraunces", serif; font-size: 64px; font-weight: 700; color: #F2C830; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="20" data-width="1920" data-height="1080">
+      <section id="s1" class="clip" data-start="0" data-duration="3.0" data-track-index="1">
+        <p class="kicker">Microlearning · Módulo 01 · CAÚA</p>
+        <h1 class="title">Cacao funcional.</h1>
+      </section>
+      <section id="s2" class="clip" data-start="3.0" data-duration="5.0" data-track-index="1">
+        <p class="kicker">Idea central</p>
+        <h1 class="title">Cacao no es<br />chocolate industrial.</h1>
+        <p class="support">El proceso cambia lo que tu cuerpo y tu cliente reciben.</p>
+      </section>
+      <section id="s3" class="clip" data-start="8.0" data-duration="5.5" data-track-index="1">
+        <p class="kicker">Lo que vas a dominar</p>
+        <h1 class="title">Lee el perfil,<br />no el eslogan.</h1>
+        <div class="pills">
+          <span class="pill">Teobromina</span>
+          <span class="pill">Flavanoles</span>
+          <span class="pill">Origen</span>
+        </div>
+      </section>
+      <section id="s4" class="clip" data-start="13.5" data-duration="3.5" data-track-index="1">
+        <p class="kicker">Resultado</p>
+        <h1 class="title">Elige con evidencia.</h1>
+      </section>
+      <section id="s5" class="clip" data-start="17.0" data-duration="3.0" data-track-index="1">
+        <p class="kicker">Acción</p>
+        <h1 class="cta">Empieza el módulo →</h1>
+      </section>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      ["s1","s2","s3","s4","s5"].forEach((id) => {
+        const el = document.getElementById(id);
+        const start = parseFloat(el.dataset.start);
+        tl.fromTo(el.querySelectorAll(".kicker, .title, .support, .pills, .cta"),
+          { opacity: 0, y: 26 },
+          { opacity: 1, y: 0, duration: 0.8, stagger: 0.07, ease: "power2.out" },
+          start + 0.08);
+        tl.to(el.querySelectorAll(".kicker, .title, .support, .pills, .cta"),
+          { opacity: 0, y: -14, duration: 0.4, ease: "power1.in" },
+          start + parseFloat(el.dataset.duration) - 0.45);
+      });
+      window.__timelines.main = tl;
+    </script>
+  </body>
+</html>

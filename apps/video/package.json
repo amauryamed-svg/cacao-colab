@@ -1,0 +1,22 @@
+{
+  "name": "@cacao-colab/video",
+  "version": "0.1.0",
+  "private": true,
+  "description": "HyperFrames edutainment studio — MOOC + Microlearning intros for Cacao Colab",
+  "scripts": {
+    "doctor": "hyperframes doctor",
+    "lint:dualita": "hyperframes lint compositions/dualita-campus",
+    "lint:micro": "hyperframes lint compositions/micro-cacao-bioactivo",
+    "lint:cacaotier": "hyperframes lint compositions/master-cacaotier",
+    "lint:chocolatier": "hyperframes lint compositions/master-chocolatier",
+    "render:dualita": "hyperframes render compositions/dualita-campus --output ../../apps/web/public/videos/intros/dualita-campus.mp4",
+    "render:micro": "hyperframes render compositions/micro-cacao-bioactivo --output ../../apps/web/public/videos/intros/micro-cacao-bioactivo.mp4",
+    "render:cacaotier": "hyperframes render compositions/master-cacaotier --output ../../apps/web/public/videos/intros/master-cacaotier.mp4",
+    "render:chocolatier": "hyperframes render compositions/master-chocolatier --output ../../apps/web/public/videos/intros/master-chocolatier.mp4",
+    "render:all": "pnpm render:dualita && pnpm render:micro && pnpm render:cacaotier && pnpm render:chocolatier",
+    "snapshot:dualita": "hyperframes snapshot compositions/dualita-campus"
+  },
+  "devDependencies": {
+    "hyperframes": "^0.7.86"
+  }
+}

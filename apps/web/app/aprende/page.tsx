@@ -6,6 +6,8 @@ import MicroTrack from "@/components/dualita/MicroTrack"
 import ProgressStrip from "@/components/aprende/ProgressStrip"
 import TrackedLink from "@/components/analytics/TrackedLink"
 import { getRegisteredMicroProgress } from "@/lib/microlearning-server"
+import CourseIntroPlayer from "@/components/aprende/CourseIntroPlayer"
+import { getCourseVideo } from "@/lib/course-videos"
 
 export const metadata: Metadata = {
   title: "Campus · Master Cacaotier + Master Chocolatier",
@@ -14,6 +16,7 @@ export const metadata: Metadata = {
 
 export default async function AprendePage() {
   const registered = await getRegisteredMicroProgress()
+  const campusIntro = getCourseVideo("dualita-campus")
 
   return (
     <div className="bg-colab-forest min-h-screen">
@@ -37,6 +40,11 @@ export default async function AprendePage() {
               ))}
             </div>
           </div>
+          {campusIntro && (
+            <div className="mt-10">
+              <CourseIntroPlayer video={campusIntro} source="aprende-hub" />
+            </div>
+          )}
           <ProgressStrip registered={registered} />
         </div>
       </div>
