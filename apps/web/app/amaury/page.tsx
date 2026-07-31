@@ -7,10 +7,10 @@ import { shotById } from "@/lib/atmosphere"
 export const metadata: Metadata = {
   title: "Amaury Amed · Cacaotier & Chocolatier",
   description:
-    "Perfil de Amaury Amed en Cacao Colab: Cacaotier & Chocolatier, fundador cacaotier. LinkedIn, Instagram y puerta abierta a Barry Callebaut · Chocolate Academy.",
+    "Amaury Amed — Cacaotier & Chocolatier · AMEDCHEF I+D. Stage Can Roca · Legado Cacao · Cacao Colab. Perfil para Barry Callebaut · Chocolate Academy.",
   openGraph: {
     title: "Amaury Amed · Cacaotier & Chocolatier · Cacao Colab",
-    description: amauryProfile.lede,
+    description: amauryProfile.headline,
     url: "/amaury",
     locale: "es_CO",
     type: "profile",
@@ -45,7 +45,9 @@ export default function AmauryProfilePage() {
             <br />
             <em>Amed</em>
           </h1>
-          <p className="amaury-hero__title">{p.title}</p>
+          <p className="amaury-hero__title">
+            {p.title} · {p.moniker}
+          </p>
           <p className="amaury-hero__lede">{p.headline}</p>
           <div className="amaury-hero__ctas">
             <a href={p.linkedin} target="_blank" rel="noopener noreferrer" className="amaury-cta amaury-cta--primary">
@@ -82,6 +84,17 @@ export default function AmauryProfilePage() {
               <h3>{pillar.title}</h3>
               <p>{pillar.body}</p>
             </article>
+          ))}
+        </section>
+
+        {/* Stages — puente España (Can Roca → Academy Gurb) */}
+        <section className="amaury-stages" aria-label="Stages y destino Academy">
+          {p.stages.map((stage) => (
+            <div key={stage.place} className="amaury-stage">
+              <span>{stage.where}</span>
+              <strong>{stage.place}</strong>
+              <p>{stage.note}</p>
+            </div>
           ))}
         </section>
 
