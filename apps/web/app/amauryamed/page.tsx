@@ -7,7 +7,7 @@ import { shotById } from "@/lib/atmosphere"
 export const metadata: Metadata = {
   title: "Amaury Amed · Cacaotier & Chocolatier",
   description:
-    "Amaury Amed — Cacaotier & Chocolatier · AMEDCHEF I+D. Stage Can Roca · Legado Cacao · Cacao Colab. Perfil para Barry Callebaut · Chocolate Academy.",
+    "Amaury Amed — Cacaotier & Chocolatier · AMEDCHEF I+D. Legado Cacao · Cacao Colab. Perfil para Barry Callebaut · Chocolate Academy.",
   openGraph: {
     title: "Amaury Amed · Cacaotier & Chocolatier · Cacao Colab",
     description: amauryProfile.headline,
@@ -84,17 +84,6 @@ export default function AmauryProfilePage() {
               <h3>{pillar.title}</h3>
               <p>{pillar.body}</p>
             </article>
-          ))}
-        </section>
-
-        {/* Stages — puente España (Can Roca → Academy Gurb) */}
-        <section className="amaury-stages" aria-label="Stages y destino Academy">
-          {p.stages.map((stage) => (
-            <div key={stage.place} className="amaury-stage">
-              <span>{stage.where}</span>
-              <strong>{stage.place}</strong>
-              <p>{stage.note}</p>
-            </div>
           ))}
         </section>
 
