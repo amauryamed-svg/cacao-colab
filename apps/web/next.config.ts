@@ -13,6 +13,15 @@ const nextConfig: NextConfig = {
     // que viven fuera de apps/web pero se importan desde acá.
     root: path.join(__dirname, "../.."),
   },
+  // El cron de seguimiento (apps/web/lib/followup-email-render.ts) lee los
+  // HTML de emails/seguimiento/ en runtime con fs — viven fuera de apps/web
+  // (misma fuente que se pega a mano en HubSpot), así que hay que forzar
+  // que el output tracing de Vercel los incluya en el bundle de esa función,
+  // porque una ruta armada con path.join no siempre se detecta sola.
+  outputFileTracingRoot: path.join(__dirname, "../.."),
+  outputFileTracingIncludes: {
+    "/api/cron/followup-emails/route": ["../../emails/seguimiento/*.html"],
+  },
   // Los paquetes internos del monorepo se transpilan desde TS fuente,
   // no se prebuildean — más simple para Oscar/Hellen mientras el monorepo
   // es joven.

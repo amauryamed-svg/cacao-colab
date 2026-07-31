@@ -761,6 +761,45 @@ export type Database = {
           },
         ]
       }
+      followup_email_log: {
+        Row: {
+          email_key: string
+          id: string
+          profile_id: string
+          resend_id: string | null
+          sent_at: string
+        }
+        Insert: {
+          email_key: string
+          id?: string
+          profile_id: string
+          resend_id?: string | null
+          sent_at?: string
+        }
+        Update: {
+          email_key?: string
+          id?: string
+          profile_id?: string
+          resend_id?: string | null
+          sent_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "followup_email_log_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "leaderboard_weekly"
+            referencedColumns: ["profile_id"]
+          },
+          {
+            foreignKeyName: "followup_email_log_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       gotchi_runs: {
         Row: {
           created_at: string
@@ -1510,6 +1549,54 @@ export type Database = {
           },
         ]
       }
+      privacy_consents: {
+        Row: {
+          created_at: string
+          email: string | null
+          event: string
+          id: string
+          metadata: Json
+          policy_version: string | null
+          profile_id: string | null
+          source: string | null
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          event: string
+          id?: string
+          metadata?: Json
+          policy_version?: string | null
+          profile_id?: string | null
+          source?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          event?: string
+          id?: string
+          metadata?: Json
+          policy_version?: string | null
+          profile_id?: string | null
+          source?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "privacy_consents_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "leaderboard_weekly"
+            referencedColumns: ["profile_id"]
+          },
+          {
+            foreignKeyName: "privacy_consents_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profile_badges: {
         Row: {
           badge_id: string
@@ -1611,47 +1698,6 @@ export type Database = {
             columns: ["organization_id"]
             isOneToOne: false
             referencedRelation: "organizations"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      privacy_consents: {
-        Row: {
-          created_at: string
-          email: string | null
-          event: string
-          id: string
-          metadata: Json
-          policy_version: string | null
-          profile_id: string | null
-          source: string | null
-        }
-        Insert: {
-          created_at?: string
-          email?: string | null
-          event: string
-          id?: string
-          metadata?: Json
-          policy_version?: string | null
-          profile_id?: string | null
-          source?: string | null
-        }
-        Update: {
-          created_at?: string
-          email?: string | null
-          event?: string
-          id?: string
-          metadata?: Json
-          policy_version?: string | null
-          profile_id?: string | null
-          source?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "privacy_consents_profile_id_fkey"
-            columns: ["profile_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
         ]

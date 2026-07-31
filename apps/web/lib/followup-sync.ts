@@ -11,6 +11,8 @@ import {
 } from "@/lib/followup-advice"
 import { lessons } from "@/lib/lessons"
 import { MICRO_COURSE_SLUG } from "@/lib/microlearning"
+import { FOLLOWUP_SUBJECT, renderFollowupTemplate, type FollowupEmailKey } from "@/lib/followup-email-render"
+import { FOLLOWUP_FROM, getResendClient } from "@/lib/resend"
 
 /**
  * Propiedades personalizadas HubSpot (Settings → Properties → Contact).
@@ -165,5 +167,69 @@ export async function syncLearnerFollowup(profileId: string, trigger: string) {
     return { ok: true as const, advice, snap }
   } catch {
     return { ok: false as const, reason: "sync_failed" }
+  }
+}
+
+/**
+ * Envío real del correo de seguimiento (día1/7/14) vía Resend. HubSpot
+ * Workflows/correos automatizados están bloqueados por el plan del portal
+ * (Marketing Hub Pro / Suite Starter) — esta función asume ese trabajo,
+ * `syncLearnerFollowup` sigue siendo lo único que le escribe a HubSpot
+ * (solo las props colab_*, nunca el envío en sí).
+ *
+ * Idempotente vía followup_email_log (constraint unique profile_id+email_key)
+ * y respeta profiles.marketing_opt_in — nunca manda nurture sin consentimiento.
+ */
+export async function sendFollowupEmail(profileId: string, emailKey: FollowupEmailKey) {
+  try {
+    const admin = createSupabaseAdminClient()
+
+    const { data: already } = await admin
+      .from("followup_email_log")
+      .select("id")
+      .eq("profile_id", profileId)
+      .eq("email_key", emailKey)
+      .maybeSingle()
+    if (already) return { ok: false as const, reason: "already_sent" }
+
+    const { data: profile } = await admin
+      .from("profiles")
+      .select("email,full_name,marketing_opt_in")
+      .eq("id", profileId)
+      .maybeSingle()
+    if (!profile?.email) return { ok: false as const, reason: "no_email" }
+    if (!profile.marketing_opt_in) return { ok: false as const, reason: "no_consent" }
+
+    const sync = await syncLearnerFollowup(profileId, `email:${emailKey}`)
+    if (!sync.ok) return { ok: false as const, reason: sync.reason }
+
+    const html = renderFollowupTemplate(emailKey, {
+      firstname: profile.full_name?.split(/\s+/)[0] ?? "cacaotier",
+      colab_md_lifetime: String(sync.snap.mdLifetime),
+      colab_md_balance: String(sync.snap.mdBalance),
+      colab_rank: sync.advice.rankName,
+      colab_micro_completed: String(sync.snap.microCompleted),
+      colab_sembrar_stage: sync.snap.sembrar.stageName,
+      colab_sembrar_meta: buildSembrarMeta(sync.snap.sembrar),
+    })
+
+    const resend = getResendClient()
+    const { data: sent, error } = await resend.emails.send({
+      from: FOLLOWUP_FROM,
+      to: profile.email,
+      subject: FOLLOWUP_SUBJECT[emailKey],
+      html,
+    })
+    if (error) return { ok: false as const, reason: `resend_error:${error.message}` }
+
+    await admin.from("followup_email_log").insert({
+      profile_id: profileId,
+      email_key: emailKey,
+      resend_id: sent?.id ?? null,
+    })
+
+    return { ok: true as const, resendId: sent?.id ?? null }
+  } catch (err) {
+    return { ok: false as const, reason: err instanceof Error ? err.message : "send_failed" }
   }
 }
