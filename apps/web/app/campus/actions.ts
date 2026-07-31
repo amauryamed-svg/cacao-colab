@@ -7,6 +7,7 @@ import { CHOCOLATIER_COURSE_SLUG, chocolatierMissions, chocolatierTotalXp } from
 import { BENEVOLO_COURSE_SLUG, benevoloMissions, benevoloTotalXp } from "@/lib/benevolo-brand"
 import { mazorcaRewards } from "@/lib/loyalty"
 import { awardMazorcas } from "@/lib/loyalty-server"
+import { syncLearnerFollowup } from "@/lib/followup-sync"
 
 type SaveResult = { ok: true } | { ok: false; error: string }
 
@@ -239,6 +240,7 @@ export async function saveGotchiRun(
           sourceId: "slot-1",
         })
       }
+      void syncLearnerFollowup(user.id, "sembrar_save")
     } catch {
       // Cuidado y progreso siguen guardándose aunque loyalty esté pendiente.
     }

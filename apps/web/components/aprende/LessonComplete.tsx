@@ -69,6 +69,8 @@ export default function LessonComplete({ lesson, loyalty, onContinue }: Props) {
             {loyalty.balance !== null && ` Saldo actual: ${loyalty.balance} MD.`}
           </p>
           <a href="/cuenta/mazorcas">Ver mi wallet →</a>
+          {" · "}
+          <a href="/cuenta/consejo">Consejo de avance →</a>
         </div>
       )}
 

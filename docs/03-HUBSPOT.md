@@ -84,7 +84,11 @@ La cookie `colab_onboarded=done` se pone en todos los casos (incluso si HubSpot 
 ## 6. Pendientes HubSpot
 
 - [ ] Crear lista segmentada: "Leads Cacao Colab 2026"
-- [ ] Workflow de nurturing: lead entra → email día 1 (bienvenida) → día 7 (Dualita) → día 14 (catálogo)
+- [ ] Workflow de nurturing por **consistencia** (ver `22-EMAIL-SEGUIMIENTO-CONSISTENCIA.md`):
+  - día 1 → `emails/seguimiento/01-bienvenida-semilla.html`
+  - día 7 → `emails/seguimiento/07-consistencia-mazorcas.html` (MD + tip Sembrar)
+  - día 14 → `emails/seguimiento/14-maestria-repeticion.html`
+- [ ] Crear props custom `colab_md_*`, `colab_rank`, `colab_micro_completed`, `colab_sembrar_*` (sync desde `followup-sync.ts`)
 - [ ] Propiedad personalizada `colab_interes` para filtrar por motivación sin depender de `jobtitle`
 - [ ] Renombrar `HUBSPOT_TOKEN` → `HUBSPOT_ACCESS_TOKEN` en Vercel (ambos proyectos)
 - [ ] Agregar permiso `crm.objects.deals.read` a la Private App (necesario para el panel de `/equipo`)

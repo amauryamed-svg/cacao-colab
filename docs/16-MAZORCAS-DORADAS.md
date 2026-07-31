@@ -50,7 +50,9 @@ Dónde se ve ese progreso:
 | `/aprende` (`ProgressStrip`) | `campus_progress` con sesión, `localStorage` sin ella | Dice si el avance vive en la cuenta o solo en el navegador |
 | `/cuenta` | `campus_progress` | Módulos guardados del microlearning |
 | `/cuenta/mazorcas` | `mazorca_wallets` + `mazorca_ledger` | Saldo, rango y movimientos con su motivo |
+| `/cuenta/consejo` | wallet + Dualita + Sembrar | Consejo de avance: MD + tip Sembrar (consistencia estudiar/practicar) |
 | `/equipo` | agregados con `service_role` | MD emitidas, redimidas y canjes pendientes |
+| Emails HubSpot | props `colab_md_*` / `colab_sembrar_*` | Secuencia día 1/7/14 — ver `22-EMAIL-SEGUIMIENTO-CONSISTENCIA.md` |
 
 La lista de respaldo de beneficios en `apps/web/lib/loyalty.ts` es un espejo de la migración de seed: si se edita una, hay que editar la otra.
 

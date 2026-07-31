@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get("code");
   const requestedNext = searchParams.get("next") ?? "/aprende";
-  const allowedPrefixes = ["/equipo", "/aprende", "/campus", "/juega", "/sembrar", "/cuenta", "/benevolo", "/rd", "/credencial"];
+  const allowedPrefixes = ["/equipo", "/aprende", "/campus", "/juega", "/sembrar", "/cuenta", "/benevolo", "/rd", "/credencial", "/cuenta/consejo"];
   const next = allowedPrefixes.some((prefix) => requestedNext.startsWith(prefix))
     ? requestedNext
     : "/aprende";
