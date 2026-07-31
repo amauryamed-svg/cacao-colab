@@ -2,10 +2,10 @@
 
 > **Método:** Spec-Driven. Este documento es la fuente de verdad del proyecto. Cualquier cambio de rumbo se reescribe aquí *antes* de tocar código, diseño o procesos.
 > **Owner de cacaotier:** Amaury Amed
-> **Builders de Cacao Colab:** Amaury Amed · Hellen Bareño · Oscar Gamboa
+> **Builders fundadores:** Amaury Amed (PM) · Hellen Bareño (Frontend · `HellenBareno-eng`) · Oscar Gamboa (Backend · `oscargamboa68`)
 > **Fecha de corte v1:** 2026-06-16
 > **Fecha de corte v2 (pivote):** 2026-07-26
-> **Rama de trabajo:** `v2-pivot` (worktree aislado, sin merge a `main` todavía)
+> **Docs builders / plug-and-play / stores:** `19-BUILDERS-FOUNDERS.md` · `20-PLUG-AND-PLAY.md` · `21-APP-STORES.md`
 
 ---
 
@@ -20,7 +20,7 @@ Cacao Colab v1 era una landing de captura de leads HoReCa: sin transacciones, si
 - **Blog de tendencias** estilo Callebaut/Valrhona.
 - **Infraestructura para 10K usuarios en 3 meses.**
 
-Esta pasada (2026-07-26) construye la **fundación completa**: monorepo reestructurado, modelo de datos completo (migraciones SQL escritas, sin proyecto Supabase vivo todavía), scaffolding de las 3 apps, y toda la documentación Spec-Driven. No implementa el feature-set completo (listings reales, checkout funcional, contenido real del LMS) — eso es trabajo de semanas para Oscar (backend) y Hellen (frontend), con Amaury liderando marketing/ventas.
+Esta pasada (2026-07-26) construye la **fundación completa**: monorepo reestructurado, modelo de datos completo (migraciones SQL escritas, sin proyecto Supabase vivo todavía), scaffolding de las 3 apps, y toda la documentación Spec-Driven. No implementa el feature-set completo (listings reales, checkout funcional, contenido real del LMS) — eso es trabajo continuo de **Oscar (Backend Lead)** y **Hellen (Frontend Lead)**, con **Amaury como Product Manager** y founder de cacaotier. Los tres son los **Builders fundadores** del Colab.
 
 **Hallazgo crítico corregido en esta pasada:** `cacao-colab.vercel.app` (el proyecto Vercel original, ligado a `main`) devolvía un 308 ciego hacia `caua.cloud/colab/*` desde el commit `chore: redirigir dominio standalone a caua.cloud/colab` — es decir, el repo real (activo, con commits hasta el 2026-07-23) no servía nada en producción; todo el tráfico caía en una copia pegada a mano dentro de `Caua-Corp/caua-io/app/colab/` sin tocar desde 2026-07-07. La rama `v2-pivot` quita ese redirect y despliega en proyectos Vercel nuevos y limpios (`cacao-colab-web`, `cacao-colab-api`). El proyecto viejo (`cacao-colab.vercel.app`, atado a `main`) sigue con el redirect hasta que este pivote se mergee — es intencional, no un descuido (ver `05-ROADMAP.md`).
 
@@ -28,11 +28,11 @@ Esta pasada (2026-07-26) construye la **fundación completa**: monorepo reestruc
 
 ### Ownership, builders y círculo abierto
 
-| Actor | Rol | Alcance |
-|-------|-----|---------|
-| **Amaury Amed** | Founder y owner de cacaotier | Master Cacaotier, Master Chocolatier, bioprocesos, producto y visión |
-| **Hellen Bareño** | Builder de Cacao Colab | Chocolatería y experiencia |
-| **Oscar Gamboa** | Builder de Cacao Colab | Desarrollo y operación |
+| Actor | Rol | GitHub | Alcance |
+|-------|-----|--------|---------|
+| **Amaury Amed** | Product Manager · Founder cacaotier · Builder fundador | [`amauryamed-svg`](https://github.com/amauryamed-svg) | Spec, roadmap, Masterclasses, nodos, go-to-market, cuentas App Store / Play |
+| **Hellen Bareño** | Frontend Lead · Builder fundadora | [`HellenBareno-eng`](https://github.com/HellenBareno-eng) | `apps/web`, `apps/mobile`, Dualita UI, experiencia de marca |
+| **Oscar Gamboa** | Backend Lead · Builder fundador | [`oscargamboa68`](https://github.com/oscargamboa68) | `apps/api`, Supabase, HubSpot, Stripe, CRM `/equipo` |
 
 El círculo de nodos permanece abierto. Las marcas regionales conservan su identidad y propiedad; participar en Cacao Colab no transfiere ownership de marca ni convierte automáticamente a un nodo en socio legal de la plataforma.
 
@@ -176,7 +176,7 @@ Deja de ser "no un joint venture legal, solo una plataforma compartida de marca"
 | # | Tarea | Prioridad | Owner |
 |---|-------|-----------|-------|
 | P1 | `supabase login` + crear proyecto real | 🔴 Alta | Amaury (interactivo, no delegable) |
-| P2 | Usernames/emails de GitHub de Oscar y Hellen para invitarlos al repo | 🔴 Alta | Amaury |
+| P2 | Invitar collaborators GitHub (`HellenBareno-eng`, `oscargamboa68`) — usernames ya documentados en `19-BUILDERS-FOUNDERS.md` | 🟡 Media | Amaury (UI GitHub Settings; el token del agente no puede invitar) |
 | P3 | Decisión de dominio propio (`cacaocolab.co` u otro) | 🟡 Media | Amaury |
 | P4 | Cuenta Stripe Connect (KYC/entidad legal de la plataforma) | 🔴 Alta | Amaury |
 | P5 | Confirmar si el contacto de Oscar Gamboa se da de alta en HubSpot | 🟡 Media | Amaury |

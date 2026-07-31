@@ -8,7 +8,7 @@
 ## Ownership y builders
 
 - **Amaury Amed** es founder y owner de `cacaotier`, Master Cacaotier y Master Chocolatier.
-- **Amaury Amed, Hellen Bareño y Oscar Gamboa** son los tres builders visibles de Cacao Colab.
+- **Amaury Amed (PM), Hellen Bareño (Frontend) y Oscar Gamboa (Backend)** son los tres **Builders fundadores** de Cacao Colab (`amauryamed-svg` · `HellenBareno-eng` · `oscargamboa68`).
 - Las marcas regionales son nodos de una red abierta; su participación no transfiere propiedad ni implica sociedad legal.
 - Epicentro: `cacaotier`, Bogotá.
 - Nodos: Zurych (Landázuri), La Querencia (Arbeláez), La Lomita (Paicol), Quara Cacao (Tame) y Chocolover (Guamal).

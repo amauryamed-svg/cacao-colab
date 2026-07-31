@@ -12,7 +12,7 @@ Spec v1 solo tenía **Owner/Colaborador**, un concepto de gobernanza de marca. E
 |------|-------------------|--------|---------|
 | **Gobernanza de marca** | `organizations` | Quién controla decisiones de plataforma y admisión de nuevas marcas. Concepto institucional, ya existía en v1 (Owner/Colaborador). | CAÚA (Owner), Zurych (Owner), Lust (Colaborador) |
 | **Rol de marketplace** | `profiles` + `actor_roles` | Qué hace una *persona* dentro del marketplace transaccional — nuevo en v2. Una persona puede tener más de un rol. No tiene relación jerárquica con Owner/Colaborador: un chocolatier puede comprar cacao de un farmer sin que su organización sea "Colaborador" del Colab. | farmer, chocolatier, maquilador, buyer |
-| **Staff interno** | `team_members` | Quién trabaja *para* Cacao Colab (no es un actor del marketplace). Acceso al portal `/equipo`. Nuevo en v2, agregado durante la ejecución del pivote (2026-07-26). | Oscar Gamboa (backend), Hellen Bareño (frontend), Amaury Amed (founder) |
+| **Staff interno** | `team_members` | Quién trabaja *para* Cacao Colab (Builders fundadores). Acceso al portal `/equipo`. | Oscar Gamboa (Backend Lead · `oscargamboa68`), Hellen Bareño (Frontend Lead · `HellenBareno-eng`), Amaury Amed (Product Manager · `amauryamed-svg`) |
 
 La confusión que **`04-ACTORES.md` v1 no resolvía**: "Owner/Colaborador" describía organizaciones (marcas), pero el pedido de pivote habla de "farmer/chocolatier/maquilador/buyer", que son roles de **personas**, no de marcas. Ambos conceptos son reales y necesarios — por eso quedan en tablas separadas (`organizations` vs `profiles`/`actor_roles`) en vez de forzar uno dentro del otro. Ver `07-MODELO-DATOS.md` para el detalle de columnas y relaciones.
 
@@ -92,10 +92,12 @@ Un mismo profile puede ser `chocolatier` y `buyer` a la vez (ej. compra insumo y
 
 Distinto de `profiles`: es la cuenta de quien **trabaja en** Cacao Colab, no de quien participa **en** el marketplace. Acceso exclusivo al portal `/equipo` (login real vía Supabase Auth, magic link). Ver `14-CRM-INTERNO.md` para el detalle técnico completo.
 
-| Persona | Email | Rol (`team_role`) | Contacto HubSpot vinculado |
-|---------|-------|---------------------|------------------------------|
-| Oscar Gamboa | `amadooscarito@gmail.com` | `engineering_backend` | Ninguno — no existe como contacto en HubSpot (verificado 2026-07-26, buscado por nombre/apellido/compañía, cero resultados). Pendiente: decisión de Amaury de darlo de alta o no. |
-| Hellen Bareño | `hellenandba@gmail.com` | `engineering_frontend` | Sí — mismo email, contacto real confirmado en HubSpot. |
-| Amaury Amed | — | `founder` | (no seedeado todavía — agregar fila en `supabase/seed.sql` cuando se defina el flujo del founder para `/equipo`) |
+| Persona | GitHub | Email | Rol (`team_role`) | Contacto HubSpot vinculado |
+|---------|--------|-------|---------------------|------------------------------|
+| Amaury Amed | [`amauryamed-svg`](https://github.com/amauryamed-svg) | `amauryamed@gmail.com` | `founder` (Product Manager) | Sí — seedeado en `supabase/seed.sql` |
+| Hellen Bareño | [`HellenBareno-eng`](https://github.com/HellenBareno-eng) | `hellenandba@gmail.com` | `engineering_frontend` (Frontend Lead) | Sí — mismo email, contacto real confirmado en HubSpot. |
+| Oscar Gamboa | [`oscargamboa68`](https://github.com/oscargamboa68) | `amadooscarito@gmail.com` | `engineering_backend` (Backend Lead) | Ninguno — no existe como contacto en HubSpot (verificado 2026-07-26). Pendiente: decisión de Amaury de darlo de alta o no. |
+
+Detalle de roles y plug-and-play: `19-BUILDERS-FOUNDERS.md`, `20-PLUG-AND-PLAY.md`.
 
 **Regla dura:** el panel de HubSpot del portal nunca inventa datos. Si `hubspot_contact_email` es `null` (caso de Oscar), el panel muestra un estado vacío explícito — nunca un placeholder que parezca un dato real.
