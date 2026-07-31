@@ -1,4 +1,3 @@
-import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { getMoocZurychLesson, moocZurychLessons } from "@/lib/mooc-zurych"
 import LessonPlayer from "@/components/aprende/LessonPlayer"
