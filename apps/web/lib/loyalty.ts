@@ -13,6 +13,8 @@ export const mazorcaRewards = {
   microLesson: 40,
   architectMission: 30,
   architectCourseComplete: 120,
+  chocolatierMission: 30,
+  chocolatierCourseComplete: 120,
   gotchiCare: 5,
   gotchiHarvest: 60,
   gotchiCareDailyCap: 50,

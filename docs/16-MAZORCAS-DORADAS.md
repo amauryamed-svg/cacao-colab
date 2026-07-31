@@ -28,6 +28,8 @@ Los rangos dependen exclusivamente de actividad propia verificable.
 | Aprendizaje | módulo de Microlearning CAÚA | 40 | slug permitido + `micro:<slug>` |
 | Aprendizaje | misión Arquitecto de Fermentación | 30 | misión permitida + `campus:<curso>:<slug>` |
 | Aprendizaje | curso Arquitecto completo | 120 | una sola vez por learner |
+| Aprendizaje | misión Master Chocolatier | 30 | misión permitida + `campus:maestro-chocolatier:<slug>` |
+| Aprendizaje | curso Master Chocolatier completo | 120 | una sola vez por learner |
 | Cuidado | acción Cacao Gotchi | 5 | tope diario de 50 MD server-side |
 | Cuidado | cosecha + fermentación completas | 60 | estado `complete` del run |
 | Comunidad | evidencia de campo | — | moderación pendiente |

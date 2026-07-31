@@ -61,15 +61,15 @@ export default async function AprendePage() {
               <p className="text-sm opacity-65 mt-4 max-w-sm">Fermentación de precisión, trazabilidad y calidad Fine-Flavor. Empieza con FEAR 5.</p>
             </div>
           </Link>
-          <Link href="/aprende/chocolatier" className="group rounded-3xl bg-[#7b3729] border border-white/10 p-7 md:p-9 min-h-80 flex flex-col text-colab-cream transition-transform hover:-translate-y-1">
+          <Link href="/campus/maestro-chocolatier" className="group rounded-3xl bg-[#7b3729] border border-white/10 p-7 md:p-9 min-h-80 flex flex-col text-colab-cream transition-transform hover:-translate-y-1">
             <div className="flex justify-between">
               <span className="eyebrow text-colab-cream/70">Ruta de transformación</span><span className="text-2xl">↗</span>
             </div>
             <div className="mt-auto">
-              <p className="text-xs font-bold uppercase tracking-wider text-colab-cream/45">Nivel 02 · bean-to-bar COEX</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-colab-cream/45">Nivel 02 · campaña Dualita · 720 XP</p>
               <h2 className="font-serif text-4xl font-black mt-3">Master<br />Chocolatier</h2>
               <p className="text-sm text-colab-cream/55 mt-4 max-w-sm">
-                Formulaciones a la altura de Cacao of Excellence. Capstone: Chocolate Benevolo con FEAR 5 de Quara.
+                Bean-to-bar con lente CoEx. Capstone Benevolo · FEAR 5 Quara. Syllabus en /aprende/chocolatier.
               </p>
             </div>
           </Link>

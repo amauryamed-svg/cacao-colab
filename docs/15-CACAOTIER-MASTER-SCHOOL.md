@@ -52,7 +52,10 @@ Total: **700 XP**.
 
 ## 3. Segundo curso: Master Chocolatier · bean-to-bar COEX
 
-Ruta web: `/aprende/chocolatier`.
+| Capa | Ruta |
+|---|---|
+| Syllabus / marketing | `/aprende/chocolatier` |
+| Campaña Dualita (auth) | `/campus/maestro-chocolatier` |
 
 ### Resultado de aprendizaje
 
@@ -69,7 +72,7 @@ El learner formula chocolate bean-to-bar con rigor defendible ante un panel esti
 | 05 | Formulación duja de marañón | Gianduja + innovación | 140 |
 | 06 | Capstone · Chocolate Benevolo | Producto + mercado | 160 |
 
-Total: **720 XP**.
+Total: **720 XP**. Cada misión: 3 pasos + quiz + Dualita. Progreso en `campus_progress` (`maestro-chocolatier`) + Mazorcas Doradas (30 MD/misión, 120 MD al completar).
 
 ### Output: Chocolate Benevolo
 
@@ -79,7 +82,7 @@ Total: **720 XP**.
 - Formato Bars. 80 g · preventa en `/benevolo`
 - Lente COEX (criterios), no medalla atribuida a la SKU
 
-Código: `apps/web/lib/chocolatier-course.ts`, `apps/web/app/aprende/chocolatier/page.tsx`.
+Código: `apps/web/lib/chocolatier-course.ts`, `apps/web/components/campus/ChocolatierCoursePlayer.tsx`, `apps/web/app/campus/maestro-chocolatier/page.tsx`, `apps/web/app/aprende/chocolatier/page.tsx`.
 
 ## 4. Base científica y límites
 
@@ -170,7 +173,9 @@ Es la referencia de finca. La masa, la geometría, el ambiente y los volteos cam
 - `apps/web/app/page.tsx`: nueva narrativa del ecosistema.
 - `apps/web/app/aprende/page.tsx`: campus Master Cacaotier/Master Chocolatier.
 - `apps/web/app/aprende/cacaotier/page.tsx`: curso y laboratorio.
-- `apps/web/app/aprende/chocolatier/page.tsx`: bean-to-bar COEX y capstone Benevolo.
+- `apps/web/app/aprende/chocolatier/page.tsx`: syllabus bean-to-bar COEX y capstone Benevolo.
+- `apps/web/app/campus/maestro-chocolatier/page.tsx`: campaña Dualita auth-gated.
+- `apps/web/components/campus/ChocolatierCoursePlayer.tsx`: player de misiones, quiz y XP.
 - `apps/web/components/cacaotier/FermentationLab.tsx`: simulador cliente, curvas SVG y línea temporal.
 - `apps/web/lib/cacaotier-course.ts`: contenido tipado, métodos, datos didácticos, misiones y fuentes.
 - `apps/web/lib/chocolatier-course.ts`: misiones, formulación Benevolo y principios COEX.

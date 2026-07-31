@@ -3,6 +3,7 @@
 import { createSupabaseServerClient } from "@cacao-colab/supabase-client/server"
 import type { Json } from "@cacao-colab/supabase-client/database.types"
 import { architectMissions } from "@/lib/architect-course"
+import { CHOCOLATIER_COURSE_SLUG, chocolatierMissions, chocolatierTotalXp } from "@/lib/chocolatier-course"
 import { mazorcaRewards } from "@/lib/loyalty"
 import { awardMazorcas } from "@/lib/loyalty-server"
 
@@ -56,6 +57,67 @@ export async function saveArchitectProgress(state: unknown, xpTotal: number, com
           idempotencyKey: "campus:arquitecto-fermentacion:course",
           sourceType: "campus_course",
           sourceId: "arquitecto-fermentacion",
+        })
+      }
+    } catch {
+      // El progreso académico no falla si loyalty aún no está migrado.
+    }
+  }
+  return error ? { ok: false, error: error.message } : { ok: true }
+}
+
+export async function saveChocolatierProgress(
+  state: unknown,
+  xpTotal: number,
+  complete = false,
+): Promise<SaveResult> {
+  const supabase = await createSupabaseServerClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+  if (!user) return { ok: false, error: "auth_required" }
+
+  const { error } = await supabase.from("campus_progress").upsert(
+    {
+      profile_id: user.id,
+      course_slug: CHOCOLATIER_COURSE_SLUG,
+      state: toJson(state),
+      xp_total: Math.max(0, Math.min(chocolatierTotalXp, Math.round(xpTotal))),
+      completed_at: complete ? new Date().toISOString() : null,
+    },
+    { onConflict: "profile_id,course_slug" },
+  )
+  if (!error) {
+    try {
+      const parsed = state as { completed?: unknown }
+      const completed = Array.isArray(parsed?.completed)
+        ? parsed.completed.filter((slug): slug is string => typeof slug === "string")
+        : []
+      await Promise.all(
+        completed.map((slug) => {
+          const mission = chocolatierMissions.find((item) => item.slug === slug)
+          return mission
+            ? awardMazorcas({
+                profileId: user.id,
+                amount: mazorcaRewards.chocolatierMission,
+                category: "learning",
+                reasonCode: "campus_mission_complete",
+                idempotencyKey: `campus:${CHOCOLATIER_COURSE_SLUG}:${slug}`,
+                sourceType: "campus_mission",
+                sourceId: slug,
+              })
+            : Promise.resolve({ awarded: 0 })
+        }),
+      )
+      if (complete) {
+        await awardMazorcas({
+          profileId: user.id,
+          amount: mazorcaRewards.chocolatierCourseComplete,
+          category: "learning",
+          reasonCode: "campus_course_complete",
+          idempotencyKey: `campus:${CHOCOLATIER_COURSE_SLUG}:course`,
+          sourceType: "campus_course",
+          sourceId: CHOCOLATIER_COURSE_SLUG,
         })
       }
     } catch {
