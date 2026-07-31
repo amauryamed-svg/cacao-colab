@@ -25,7 +25,7 @@ export default async function AprendePage() {
   return (
     <div className="bg-colab-forest min-h-screen">
       <div className="pt-16 pb-12 course-hero relative overflow-hidden">
-        <AtmospherePlane src={shotById("powder").src} alt="" overlay="forest" />
+        <AtmospherePlane src={shotById("coex-home").src} alt={shotById("coex-home").alt} overlay="forest" />
         <FloatingPods variant="stage" />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-[1]">
           <p className="eyebrow text-colab-yellow">cacaotier campus · formación dual</p>

@@ -39,7 +39,7 @@ export default async function JuegaPage() {
   return (
     <div className="min-h-screen bg-colab-forest">
       <header className="game-hero relative overflow-hidden">
-        <AtmospherePlane src={shotById("powder").src} alt="" overlay="forest" />
+        <AtmospherePlane src={shotById("ecoyuma-fear5").src} alt={shotById("ecoyuma-fear5").alt} overlay="forest" />
         <FloatingPods variant="stage" />
         <div className="relative z-[1] max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-24">
           <p className="eyebrow text-colab-yellow">Sembrar · vivero Ecoyuma × aceleración Colab</p>
