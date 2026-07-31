@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
+import { createSupabaseAdminClient } from "@cacao-colab/supabase-client/admin"
 import { amauryProfile } from "@/lib/amaury-profile"
 import { shotById } from "@/lib/atmosphere"
 
@@ -20,7 +21,24 @@ export const metadata: Metadata = {
 const craft = shotById("broken")
 const origin = shotById("coex-home")
 
-export default function AmauryProfilePage() {
+async function logProfileView() {
+  try {
+    const admin = createSupabaseAdminClient()
+    await admin.from("analytics_events").insert({
+      visitor_id: `anon_${crypto.randomUUID()}`,
+      session_id: `anon_${crypto.randomUUID()}`,
+      event_type: "page_view",
+      target: "amauryamed_profile",
+      pathname: "/amauryamed",
+      metadata: { candidatura: "callebaut_chocolate_academy_barcelona" },
+    })
+  } catch {
+    // El registro de visita nunca debe bloquear el render de la página.
+  }
+}
+
+export default async function AmauryProfilePage() {
+  await logProfileView()
   const p = amauryProfile
 
   return (
