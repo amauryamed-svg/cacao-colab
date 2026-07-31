@@ -1,0 +1,77 @@
+{
+  "style": "anthropic-academy",
+  "engine": "hyperframes",
+  "alternatives": ["remotion", "higgsfield"],
+  "policy": {
+    "primary": "hyperframes",
+    "why": "Deterministic HTML→MP4, agent-native, brand tokens in repo. Remotion reserved if we need React compositions. Higgsfield only for optional cinematic B-roll with API keys — never for claims or evidence.",
+    "voice": "Calm, precise, one idea per beat. Dualita as guide, never as hype mascot."
+  },
+  "videos": [
+    {
+      "id": "dualita-campus",
+      "track": "campus",
+      "title": "Dos velocidades. Una escuela.",
+      "durationSec": 24,
+      "composition": "compositions/dualita-campus",
+      "publicPath": "/videos/intros/dualita-campus.mp4",
+      "surfaces": ["/aprende"],
+      "script": [
+        { "t": "0.0", "onScreen": "cacaotier campus", "voice": "Bienvenido al campus Dualita." },
+        { "t": "3.0", "onScreen": "Dos velocidades. Una escuela.", "voice": "Aprendes en dos velocidades: contexto profundo y decisiones rápidas." },
+        { "t": "9.0", "onScreen": "MOOC · historia y territorio", "voice": "El MOOC Zurych te da el mapa: historia, territorio y cultura del cacao." },
+        { "t": "14.5", "onScreen": "Micro · hábito en minutos", "voice": "El microlearning CAÚA te lleva a una decisión útil en minutos." },
+        { "t": "19.5", "onScreen": "Entra. Haz. Sube de rango.", "voice": "Entra, completa misiones y sube de rango con evidencia." }
+      ]
+    },
+    {
+      "id": "micro-cacao-bioactivo",
+      "track": "micro",
+      "title": "Cacao funcional: aprende a elegir",
+      "durationSec": 20,
+      "composition": "compositions/micro-cacao-bioactivo",
+      "publicPath": "/videos/intros/micro-cacao-bioactivo.mp4",
+      "lessonSlug": "cacao-bioactivo",
+      "surfaces": ["/aprende/cacao-bioactivo"],
+      "script": [
+        { "t": "0.0", "onScreen": "Microlearning · CAÚA", "voice": "Módulo uno: cacao funcional." },
+        { "t": "3.0", "onScreen": "Cacao no es chocolate industrial.", "voice": "No es lo mismo cacao que chocolate ultraprocesado." },
+        { "t": "8.0", "onScreen": "Teobromina · flavanoles · origen", "voice": "Vas a leer teobromina, flavanoles y origen con criterio." },
+        { "t": "13.5", "onScreen": "Elige con evidencia.", "voice": "Al final eliges con evidencia, no con marketing." },
+        { "t": "17.0", "onScreen": "Empieza el módulo →", "voice": "Empieza el módulo." }
+      ]
+    },
+    {
+      "id": "master-cacaotier",
+      "track": "master",
+      "title": "Diseña el sabor antes de tostarlo",
+      "durationSec": 26,
+      "composition": "compositions/master-cacaotier",
+      "publicPath": "/videos/intros/master-cacaotier.mp4",
+      "surfaces": ["/aprende/cacaotier", "/campus/arquitecto-fermentacion"],
+      "script": [
+        { "t": "0.0", "onScreen": "Master Cacaotier", "voice": "Master Cacaotier: fermentación de precisión." },
+        { "t": "3.5", "onScreen": "El sabor se diseña en el bioproceso.", "voice": "El sabor Fine-Flavor se diseña antes de tostar." },
+        { "t": "9.0", "onScreen": "Temperatura · pH · tiempo", "voice": "Lees temperatura, pH y ventanas de precursores." },
+        { "t": "15.0", "onScreen": "72 h metabolómico · 120 h sensorial", "voice": "Distingues óptimo metabolómico de ancla sensorial." },
+        { "t": "21.0", "onScreen": "Documenta el lote.", "voice": "Documenta el lote. La bitácora es tu credencial." }
+      ]
+    },
+    {
+      "id": "master-chocolatier",
+      "track": "master",
+      "title": "Del grano FEAR 5 a la gianduja",
+      "durationSec": 26,
+      "composition": "compositions/master-chocolatier",
+      "publicPath": "/videos/intros/master-chocolatier.mp4",
+      "surfaces": ["/aprende/chocolatier", "/benevolo"],
+      "script": [
+        { "t": "0.0", "onScreen": "Master Chocolatier · lente CoEx", "voice": "Master Chocolatier: bean to bar con lente Cacao of Excellence." },
+        { "t": "4.0", "onScreen": "Ciego. Tipicidad. Cero defectos.", "voice": "Panel ciego, tipicidad, defectos no negociables." },
+        { "t": "10.0", "onScreen": "FEAR 5 · Quara · Arauca", "voice": "Trabajas FEAR 5 del nodo Quara en Arauca." },
+        { "t": "16.0", "onScreen": "Duja de marañón · Benevolo", "voice": "Formulas duja de marañón. El capstone es Chocolate Benevolo." },
+        { "t": "21.5", "onScreen": "Evidencia arriba. Deseo abajo.", "voice": "Evidencia arriba, deseo abajo. Entra al curso." }
+      ]
+    }
+  ]
+}

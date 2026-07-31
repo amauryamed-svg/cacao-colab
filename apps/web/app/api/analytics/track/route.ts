@@ -15,6 +15,7 @@ const allowedEvents = new Set([
   "knowledge_link_clicked",
   "ecoyuma_link_clicked",
   "benevolo_interest",
+  "video_intro_played",
 ])
 
 function clean(value: unknown, max = 180) {

@@ -10,6 +10,7 @@
     "dev:web": "pnpm --filter @cacao-colab/web dev",
     "dev:api": "pnpm --filter @cacao-colab/api dev",
     "dev:mobile": "pnpm --filter @cacao-colab/mobile start",
+    "render:videos": "pnpm --filter @cacao-colab/video render:all",
     "build": "turbo run build",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck"

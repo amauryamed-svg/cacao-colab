@@ -99,6 +99,71 @@ body {
   text-transform: uppercase;
 }
 
+.course-intro-player {
+  background: rgba(247, 241, 238, .04);
+  border: 1px solid rgba(247, 241, 238, .1);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  width: 100%;
+}
+
+.course-intro-meta {
+  padding: 1.1rem 1.25rem 1rem;
+}
+
+.course-intro-stage {
+  background: #0f1812;
+  border-top: 1px solid rgba(247, 241, 238, .08);
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.course-intro-video {
+  aspect-ratio: 16 / 9;
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.course-intro-composition {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.course-intro-frame {
+  border: 0;
+  height: 1080px;
+  pointer-events: none;
+  transform-origin: top left;
+  width: 1920px;
+}
+
+.course-intro-note {
+  background: linear-gradient(transparent, rgba(15, 24, 18, .92));
+  bottom: 0;
+  color: rgba(247, 241, 238, .45);
+  font-size: .65rem;
+  left: 0;
+  padding: 1.5rem 1rem .75rem;
+  position: absolute;
+  right: 0;
+}
+
+.course-intro-note code {
+  color: #F2C830;
+}
+
+.course-intro-fallback {
+  align-items: center;
+  aspect-ratio: 16 / 9;
+  color: rgba(247, 241, 238, .4);
+  display: flex;
+  font-size: .85rem;
+  justify-content: center;
+}
+
 .credential-card {
   background: #F2C830;
   border-radius: 1.25rem;

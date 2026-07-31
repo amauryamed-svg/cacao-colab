@@ -1,7 +1,9 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import FermentationLab from "@/components/cacaotier/FermentationLab"
+import CourseIntroPlayer from "@/components/aprende/CourseIntroPlayer"
 import { cacaotierMissions, paperSources } from "@/lib/cacaotier-course"
+import { getCourseVideo } from "@/lib/course-videos"
 
 export const metadata: Metadata = {
   title: "Master Cacaotier · Fermentación de precisión",
@@ -19,6 +21,8 @@ const fieldKit = [
 ]
 
 export default function CacaotierCoursePage() {
+  const intro = getCourseVideo("master-cacaotier")
+
   return (
     <div className="bg-colab-forest min-h-screen">
       <header className="course-hero">
@@ -50,6 +54,11 @@ export default function CacaotierCoursePage() {
                   Entrar al campus
                 </Link>
               </div>
+              {intro && (
+                <div className="mt-10">
+                  <CourseIntroPlayer video={intro} source="master-cacaotier-hero" />
+                </div>
+              )}
             </div>
             <div className="credential-card">
               <div className="flex justify-between items-start">
