@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import TrackedLink from "@/components/analytics/TrackedLink"
+import AtmospherePlane from "@/components/atmosphere/AtmospherePlane"
+import FloatingPods from "@/components/atmosphere/FloatingPods"
 import {
   CAUA_SHOP_COLLECTION,
   coberturasConvergence,
@@ -8,6 +10,7 @@ import {
   shopContactPoints,
   waAskSku,
 } from "@/lib/caua-shop"
+import { shotById } from "@/lib/atmosphere"
 
 export const metadata: Metadata = {
   title: "R&D · Benevolo + coberturas CAÚA × Zurych",
@@ -18,8 +21,10 @@ export const metadata: Metadata = {
 export default function RdHubPage() {
   return (
     <div className="bg-colab-forest min-h-screen text-colab-cream">
-      <header className="rd-hero">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-24">
+      <header className="rd-hero relative overflow-hidden">
+        <AtmospherePlane src={shotById("shards").src} alt="" overlay="cocoa" />
+        <FloatingPods variant="stage" />
+        <div className="relative z-[1] max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-24">
           <p className="eyebrow text-colab-yellow">Cacao Colab · Research & Development</p>
           <h1 className="display-title mt-4 max-w-3xl">
             Del laboratorio
