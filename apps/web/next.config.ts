@@ -7,6 +7,9 @@ import path from "node:path";
 // propio *.vercel.app hasta que se decida un dominio propio (cacaocolab.co
 // u otro). No hay redirects configurados a propósito.
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [{ source: "/perfil/amaury", destination: "/amaury", permanent: false }]
+  },
   turbopack: {
     // Raíz del monorepo (no solo apps/web) — necesario para que Turbopack
     // pueda ver y compilar packages/* consumidos vía transpilePackages,

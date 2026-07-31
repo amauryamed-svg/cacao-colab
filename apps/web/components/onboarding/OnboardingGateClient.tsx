@@ -10,7 +10,7 @@ interface Props {
 }
 
 // Rutas internas / flujos propios no muestran el gate (evita doble onboarding).
-const EXCLUDED_PREFIXES = ['/equipo', '/auth', '/cuenta', '/campus', '/juega', '/sembrar', '/unete', '/credencial', '/rd', '/benevolo']
+const EXCLUDED_PREFIXES = ['/equipo', '/auth', '/cuenta', '/campus', '/juega', '/sembrar', '/unete', '/credencial', '/rd', '/benevolo', '/amaury', '/perfil']
 
 export default function OnboardingGateClient({ alreadyOnboarded, children }: Props) {
   const pathname = usePathname()

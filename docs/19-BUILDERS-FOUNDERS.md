@@ -9,7 +9,7 @@
 
 | Builder | GitHub | Rol de producto | Foco técnico | Email interno (`team_members`) |
 |---------|--------|-----------------|--------------|--------------------------------|
-| **Amaury Amed** | [`amauryamed-svg`](https://github.com/amauryamed-svg) | **Product Manager** · Founder cacaotier · visión Colab | Spec-Driven, priorización, nodos, go-to-market | `amauryamed@gmail.com` |
+| **Amaury Amed** | [`amauryamed-svg`](https://github.com/amauryamed-svg) | **Product Manager** · Founder cacaotier · visión Colab | Spec-Driven, priorización, nodos, go-to-market | `amauryamed@gmail.com` · perfil público [`/amaury`](https://cacao-colab.vercel.app/amaury) · [LinkedIn](https://www.linkedin.com/in/amauryamed) · [IG @amaury.amed](https://www.instagram.com/amaury.amed/) |
 | **Hellen Bareño** | [`HellenBareno-eng`](https://github.com/HellenBareno-eng) | **Frontend Lead** · Builder fundadora | `apps/web`, `apps/mobile`, Dualita UI, design system | `hellenandba@gmail.com` |
 | **Oscar Gamboa** | [`oscargamboa68`](https://github.com/oscargamboa68) | **Backend Lead** · Builder fundador | `apps/api`, Supabase, HubSpot, Stripe, CRM `/equipo` | `amadooscarito@gmail.com` |
 

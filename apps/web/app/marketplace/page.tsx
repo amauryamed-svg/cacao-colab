@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Link from "next/link"
 import SectionKicker from "@/components/ui/SectionKicker"
 import BrandNetwork from "@/components/marketplace/BrandNetwork"
 import DirectoryCard from "@/components/marketplace/DirectoryCard"
@@ -95,17 +96,42 @@ export default function MarketplacePage() {
           </div>
           <div className="grid sm:grid-cols-3 gap-3">
             {[
-              { initials: "AA", name: "Amaury Amed", role: "Product Manager · Builder fundador", focus: "Spec, cacaotier y go-to-market" },
-              { initials: "HB", name: "Hellen Bareño", role: "Frontend Lead · Builder fundadora", focus: "Web, móvil y experiencia Dualita" },
-              { initials: "OG", name: "Oscar Gamboa", role: "Backend Lead · Builder fundador", focus: "API, Supabase y operación" },
-            ].map((builder) => (
-              <article key={builder.initials} className="builder-card">
-                <span>{builder.initials}</span>
-                <h3>{builder.name}</h3>
-                <strong>{builder.role}</strong>
-                <p>{builder.focus}</p>
-              </article>
-            ))}
+              {
+                initials: "AA",
+                name: "Amaury Amed",
+                role: "Cacaotier & Chocolatier · PM",
+                focus: "Spec, cacaotier y go-to-market",
+                href: "/amaury",
+              },
+              {
+                initials: "HB",
+                name: "Hellen Bareño",
+                role: "Frontend Lead · Builder fundadora",
+                focus: "Web, móvil y experiencia Dualita",
+              },
+              {
+                initials: "OG",
+                name: "Oscar Gamboa",
+                role: "Backend Lead · Builder fundador",
+                focus: "API, Supabase y operación",
+              },
+            ].map((builder) =>
+              "href" in builder && builder.href ? (
+                <Link key={builder.initials} href={builder.href} className="builder-card">
+                  <span>{builder.initials}</span>
+                  <h3>{builder.name}</h3>
+                  <strong>{builder.role}</strong>
+                  <p>{builder.focus}</p>
+                </Link>
+              ) : (
+                <article key={builder.initials} className="builder-card">
+                  <span>{builder.initials}</span>
+                  <h3>{builder.name}</h3>
+                  <strong>{builder.role}</strong>
+                  <p>{builder.focus}</p>
+                </article>
+              ),
+            )}
           </div>
         </section>
 
