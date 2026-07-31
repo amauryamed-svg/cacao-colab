@@ -171,16 +171,12 @@ export default function Home() {
       </section>
 
       {/* ══════════ DUALITA ══════════ */}
-      <section id="dualita" className="bg-colab-forest py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <section id="dualita" className="dualita-stage">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-[1]">
           <DualitaHero />
-          <div className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white/[.04] border border-colab-yellow/15 rounded-2xl p-6">
-              <MOOCTrack />
-            </div>
-            <div className="bg-white/[.04] border border-colab-green/15 rounded-2xl p-6">
-              <MicroTrack />
-            </div>
+          <div className="dualita-rail">
+            <MOOCTrack />
+            <MicroTrack />
           </div>
         </div>
       </section>

@@ -15,9 +15,13 @@ import { getLessonIntroVideo } from '@/lib/course-videos'
 
 type Phase = 'cards' | 'quiz' | 'complete'
 
-interface Props { lesson: Lesson }
+interface Props {
+  lesson: Lesson
+  /** Default micro (CAÚA). MOOC Zurych uses a separate local progress key. */
+  track?: 'micro' | 'mooc'
+}
 
-export default function LessonPlayer({ lesson }: Props) {
+export default function LessonPlayer({ lesson, track = 'micro' }: Props) {
   const [cardIndex, setCardIndex] = useState(0)
   const [phase,     setPhase]     = useState<Phase>('cards')
   const [loyalty,   setLoyalty]   = useState<MicroLessonResult | null>(null)
@@ -27,17 +31,30 @@ export default function LessonPlayer({ lesson }: Props) {
   useEffect(() => {
     if (phase !== 'complete') return
     try {
-      const raw  = localStorage.getItem('colab_progress') ?? '{}'
-      const data = JSON.parse(raw)
-      data[lesson.slug] = true
-      data['xp'] = (data['xp'] ?? 0) + lesson.xp
-      localStorage.setItem('colab_progress', JSON.stringify(data))
+      if (track === 'mooc') {
+        const raw = localStorage.getItem('mooc_zurych_progress') ?? '{}'
+        const data = JSON.parse(raw)
+        data[lesson.slug] = true
+        data.xp = (data.xp ?? 0) + lesson.xp
+        localStorage.setItem('mooc_zurych_progress', JSON.stringify(data))
+      } else {
+        const raw  = localStorage.getItem('colab_progress') ?? '{}'
+        const data = JSON.parse(raw)
+        data[lesson.slug] = true
+        data['xp'] = (data['xp'] ?? 0) + lesson.xp
+        localStorage.setItem('colab_progress', JSON.stringify(data))
+      }
     } catch {
       // localStorage puede fallar en modo privado / SSR — no bloquea la lección.
     }
-    trackColabEvent('lesson_completed', { target: lesson.slug, source: 'microlearning-caua' })
-    completeMicroLesson(lesson.slug).then(setLoyalty).catch(() => setLoyalty(null))
-  }, [phase, lesson.slug, lesson.xp])
+    trackColabEvent('lesson_completed', {
+      target: lesson.slug,
+      source: track === 'mooc' ? 'mooc-zurych' : 'microlearning-caua',
+    })
+    if (track === 'micro') {
+      completeMicroLesson(lesson.slug).then(setLoyalty).catch(() => setLoyalty(null))
+    }
+  }, [phase, lesson.slug, lesson.xp, track])
 
   const totalCards = lesson.cards.length
 

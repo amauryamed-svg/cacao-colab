@@ -31,7 +31,7 @@ const TIPOS: { id: OperationType; label: string; emoji: string }[] = [
 
 const INTERESES: { id: InterestType; label: string; sub: string }[] = [
   { id: 'productos',   label: 'Los productos',    sub: 'Coberturas, NIBS y Ritual Cacao' },
-  { id: 'aprendizaje', label: 'El aprendizaje',   sub: 'Dualita: MOOC + CAÚA Academy'   },
+  { id: 'aprendizaje', label: 'El aprendizaje',   sub: 'Dualita: MOOC Zurych + protocolo CAÚA'   },
   { id: 'marca',       label: 'Sumar mi marca',   sub: 'Quiero estar en el marketplace'  },
   { id: 'todo',        label: 'Todo lo anterior', sub: 'Soy curioso/a por naturaleza'    },
 ]
@@ -337,7 +337,7 @@ export default function OnboardingFlow({ onComplete }: { onComplete?: () => void
           <Link href="/aprende"
             className="w-full py-4 rounded-xl font-bold text-base text-center transition-all duration-200"
             style={{ background: 'rgba(247,241,238,.06)', border: '1.5px solid rgba(247,241,238,.14)', color: '#F7F1EE', display: 'block' }}>
-            Empezar CAÚA Academy gratis
+            Empezar protocolo CAÚA gratis
           </Link>
         </div>
       </StepWrap>

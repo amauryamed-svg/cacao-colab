@@ -1,6 +1,12 @@
-// v2-pivot: seed/fallback local de `courses` → `modules`
-// (supabase/migrations/0006_lms_dualita.sql), tipado como `Course`/`LmsModule`
-// en @cacao-colab/types. Ver docs/07-MODELO-DATOS.md y docs/09-GAMIFICACION.md.
+/**
+ * Dualita Curriculum — CAÚA × Zurych
+ *
+ * Microlearning: grounded in cauacolombia.co
+ * MOOC: grounded in chocolatezurych.com + redes (Zurych chocolate saludable / @tiendazurych)
+ *
+ * Module shape kept for ModuleCard / useColabProgress consumers.
+ */
+
 export type Module = {
   id: string
   number: number
@@ -8,42 +14,65 @@ export type Module = {
   duration: string
   topics: string[]
   status: "available" | "coming-soon"
-  url?: string
   slug?: string
+  url?: string
 }
 
 export const moocModules: Module[] = [
   {
-    id: "m1",
+    id: "mooc-1",
     number: 1,
-    title: "El cacao antes del chocolate",
-    duration: "45 min",
-    topics: ["Historia y domesticación", "Botánica y diversidad", "Del fruto a la sociedad"],
-    status: "coming-soon",
+    title: "Territorio y bean-to-bar",
+    duration: "12 min",
+    topics: [
+      "Empresa familiar colombiana",
+      "Santander · Landázuri Colab",
+      "Trazabilidad bean-to-bar",
+    ],
+    status: "available",
+    slug: "zurych-territorio",
+    url: "/aprende/mooc/zurych-territorio",
   },
   {
-    id: "m2",
+    id: "mooc-2",
     number: 2,
-    title: "Colombia: territorio e historia",
-    duration: "60 min",
-    topics: ["Regiones cacaoteras", "Conflicto, paz y ruralidad", "Cacao Fine-Flavor"],
-    status: "coming-soon",
+    title: "Agroecología y planeta",
+    duration: "14 min",
+    topics: [
+      "Mercados agroeco Bogotá región",
+      "Sin agroquímicos en cultivo",
+      "Residuos y circularidad en planta",
+    ],
+    status: "available",
+    slug: "zurych-agroecologia",
+    url: "/aprende/mooc/zurych-agroecologia",
   },
   {
-    id: "m3",
+    id: "mooc-3",
     number: 3,
-    title: "Cómo nació el chocolate",
-    duration: "50 min",
-    topics: ["Transformaciones históricas", "Industria y oficio", "Lenguaje sensorial"],
-    status: "coming-soon",
+    title: "Chocolate saludable en la práctica",
+    duration: "14 min",
+    topics: [
+      "Coberturas 60–100 %",
+      "Chocolatinas y nibs",
+      "Sin azúcar añadida (nibs)",
+    ],
+    status: "available",
+    slug: "zurych-producto-saludable",
+    url: "/aprende/mooc/zurych-producto-saludable",
   },
   {
-    id: "m4",
+    id: "mooc-4",
     number: 4,
-    title: "El cacao que viene",
-    duration: "55 min",
-    topics: ["Trazabilidad y clima", "Nuevas economías del cacao", "Ecosistemas colaborativos"],
+    title: "Cultura, ferias y comunidad",
+    duration: "12 min",
+    topics: [
+      "Corferias y mercados",
+      "@tiendazurych",
+      "Contar origen sin inventar medallas",
+    ],
     status: "coming-soon",
+    slug: "zurych-cultura-cacao",
   },
 ]
 
@@ -51,9 +80,13 @@ export const microModules: Module[] = [
   {
     id: "micro-1",
     number: 1,
-    title: "Cacao funcional: aprende a elegir",
-    duration: "8 min",
-    topics: ["Teobromina y flavanoles", "Cacao vs. chocolate", "Claims con evidencia"],
+    title: "Cacao funcional, no chocolate",
+    duration: "7 min",
+    topics: [
+      "Protocolo diario CAÚA",
+      "~150 mg teobromina / cubo",
+      "~320 mg flavanols (promedio de lote)",
+    ],
     status: "available",
     slug: "cacao-bioactivo",
     url: "/aprende/cacao-bioactivo",
@@ -61,9 +94,13 @@ export const microModules: Module[] = [
   {
     id: "micro-2",
     number: 2,
-    title: "Fermentación y funcionalidad",
+    title: "Siete días en cajón de madera",
     duration: "7 min",
-    topics: ["Transformación de polifenoles", "Sabor y aceptación", "Proceso trazable"],
+    topics: [
+      "Fermentación natural 7 días",
+      "Secado al sol",
+      "Sin setpoints inventados",
+    ],
     status: "available",
     slug: "fermentacion-controlada",
     url: "/aprende/fermentacion-controlada",
@@ -71,9 +108,13 @@ export const microModules: Module[] = [
   {
     id: "micro-3",
     number: 3,
-    title: "Lee etiquetas sin caer en marketing",
+    title: "Lee la etiqueta de cobertura",
     duration: "6 min",
-    topics: ["Porcentaje real de cacao", "Azúcares y porción", "Ingredientes y contexto"],
+    topics: [
+      "100 % · 70 % panela · 85 %",
+      "60 % maltitol Santander",
+      "Qué mirar en el panel",
+    ],
     status: "available",
     slug: "coberturas-zurych",
     url: "/aprende/coberturas-zurych",
@@ -81,9 +122,13 @@ export const microModules: Module[] = [
   {
     id: "micro-4",
     number: 4,
-    title: "NIBS: hábito simple y consciente",
+    title: "Ritual diario y nibs",
     duration: "5 min",
-    topics: ["Cacao sin azúcar añadida", "Porción y frecuencia", "Aplicaciones cotidianas"],
+    topics: [
+      "Cubo ~8 g en agua/leche vegetal",
+      "Nibs Zurych 100 % sin azúcar",
+      "Hábito > complejidad",
+    ],
     status: "available",
     slug: "nibs-vivos",
     url: "/aprende/nibs-vivos",
@@ -91,9 +136,13 @@ export const microModules: Module[] = [
   {
     id: "micro-5",
     number: 5,
-    title: "Origen, confianza y consumo",
-    duration: "9 min",
-    topics: ["Trazabilidad de CAÚA", "Calidad y transparencia", "Comprar con criterio"],
+    title: "Origen: Huila y Santander",
+    duration: "8 min",
+    topics: [
+      "Hobo, Huila · Híbrido Acriollado",
+      "Landázuri · Santander",
+      "Red y precio justo (claim de marca)",
+    ],
     status: "available",
     slug: "origen-guardianes",
     url: "/aprende/origen-guardianes",
@@ -101,11 +150,21 @@ export const microModules: Module[] = [
   {
     id: "micro-6",
     number: 6,
-    title: "Diseña tu ritual de cacao",
-    duration: "8 min",
-    topics: ["Momento y porción", "Registro de hábito", "Consumo saludable en contexto"],
+    title: "Protocolo personal de 7 días",
+    duration: "7 min",
+    topics: [
+      "Una porción · una hora",
+      "Suscripción como diseño de hábito",
+      "Sin unit economics inventados",
+    ],
     status: "available",
     slug: "tu-operacion-cacao",
     url: "/aprende/tu-operacion-cacao",
   },
 ]
+
+export const DUALITA_WHATSAPP =
+  "https://wa.me/573102227848?text=" +
+  encodeURIComponent(
+    "Hola Cacao Colab — quiero cupo / info del MOOC Zurych Bean-to-Bar."
+  )

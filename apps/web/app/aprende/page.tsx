@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import SectionKicker from "@/components/ui/SectionKicker"
+import DualitaHero from "@/components/dualita/DualitaHero"
 import MOOCTrack from "@/components/dualita/MOOCTrack"
 import MicroTrack from "@/components/dualita/MicroTrack"
 import ProgressStrip from "@/components/aprende/ProgressStrip"
@@ -75,20 +76,12 @@ export default async function AprendePage() {
           </Link>
         </div>
 
-        <div className="flex items-end justify-between gap-6 mb-6">
-          <div>
-            <p className="eyebrow text-colab-pod">Dos rutas patrocinables</p>
-            <h2 className="font-serif text-3xl font-bold text-colab-cream mt-2">Contexto + hábitos con Dualita</h2>
-          </div>
-          <p className="hidden md:block text-xs text-colab-cream/35 max-w-xs">Cada sponsor aporta contenido explícito sin ocultar su participación.</p>
-        </div>
-
-        <section className="mt-10 grid md:grid-cols-4 gap-3">
+        <section className="mt-10 grid md:grid-cols-4 gap-3 mb-16">
           {[
-            { step: "01", owner: "Zurych", title: "MOOC Contexto Cacao", body: "Historia, territorio y cultura para comprender de dónde viene el chocolate." },
-            { step: "02", owner: "CAÚA", title: "Cacao funcional", body: "Microlearning sobre elección, hábitos y consumo saludable en contexto." },
-            { step: "03", owner: "cacaotier", title: "Masterclasses", body: "Competencia profesional desde fermentación hasta aplicaciones." },
-            { step: "04", owner: "Colab", title: "Conocimiento → mesa", body: "EUDR, Ecoyuma, COEX y Benevolo: la ruta que convierte evidencia en producto." },
+            { step: "01", owner: "Zurych", title: "MOOC bean-to-bar", body: "Territorio Santander, agroecología y portafolio real — chocolatezurych.com." },
+            { step: "02", owner: "CAÚA", title: "Protocolo diario", body: "Cacao funcional, orígenes Huila/Santander y hábito de 7 días — cauacolombia.co." },
+            { step: "03", owner: "cacaotier", title: "Masterclasses", body: "Competencia profesional desde fermentación hasta bean-to-bar Benevolo." },
+            { step: "04", owner: "Colab", title: "Conocimiento → mesa", body: "EUDR, Ecoyuma, CoEx y Benevolo: evidencia que se vuelve producto." },
           ].map((route) => (
             <article key={route.step} className="learning-sync-card">
               <div><span>{route.step}</span><strong>{route.owner}</strong></div>
@@ -97,8 +90,20 @@ export default async function AprendePage() {
             </article>
           ))}
         </section>
+      </div>
 
-        <section className="mt-10 rounded-3xl border border-colab-yellow/25 bg-colab-yellow/[.07] p-7 md:p-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+      <section className="dualita-stage" id="dualita">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-[1]">
+          <DualitaHero />
+          <div className="dualita-rail">
+            <MOOCTrack />
+            <MicroTrack />
+          </div>
+        </div>
+      </section>
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-20 pt-16">
+        <section className="rounded-3xl border border-colab-yellow/25 bg-colab-yellow/[.07] p-7 md:p-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
           <div>
             <p className="eyebrow text-colab-yellow">El círculo se está formando ahora</p>
             <h2 className="font-serif text-3xl font-bold text-colab-cream mt-3">Tu marca puede enseñar, retar o activar un territorio.</h2>
@@ -118,14 +123,6 @@ export default async function AprendePage() {
             Reservar participación →
           </TrackedLink>
         </section>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-white/[.04] border border-colab-yellow/15 rounded-2xl p-7">
-            <MOOCTrack />
-          </div>
-          <div className="bg-white/[.04] border border-colab-green/15 rounded-2xl p-7">
-            <MicroTrack />
-          </div>
-        </div>
 
         <div className="mt-14 border-t border-white/10 pt-12 grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div>
@@ -134,12 +131,12 @@ export default async function AprendePage() {
               Una escuela.<br />Dos velocidades.
             </h2>
             <p className="text-colab-cream/55 font-sans text-sm leading-relaxed">
-              El microlearning te lleva a una decisión útil en minutos. La maestría conecta esas decisiones
-              con ciencia, práctica de campo y un proyecto verificable. Dualita es el motor pedagógico;
+              CAÚA te lleva a una decisión de hábito en minutos. Zurych conecta territorio y producto.
+              Las masterclasses llevan eso a oficio verificable. Dualita es el motor pedagógico;
               cacaotier es la identidad profesional que construyes.
             </p>
           </div>
-          <div className="bg-white/[.04] border border-white/10 rounded-xl p-6">
+          <div className="border-l border-white/10 pl-6">
             <p className="text-colab-yellow font-bold text-xs tracking-wider uppercase font-sans mb-3">El equipo Cacao Colab</p>
             <ul className="space-y-2 text-sm font-sans text-colab-cream/65">
               <li><strong className="text-colab-cream">Amaury Amed</strong> · Founder de cacaotier + builder del Colab</li>
