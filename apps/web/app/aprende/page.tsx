@@ -70,7 +70,7 @@ export default async function AprendePage() {
               <p className="text-xs font-bold uppercase tracking-wider text-colab-cream/45">Nivel 02 · campaña Dualita · 720 XP</p>
               <h2 className="font-serif text-4xl font-black mt-3">Master<br />Chocolatier</h2>
               <p className="text-sm text-colab-cream/55 mt-4 max-w-sm">
-                Bean-to-bar con lente CoEx. Capstone Benevolo · FEAR 5 Quara. Syllabus en /aprende/chocolatier.
+                Barra 70 % CoEx/Awards · vidas, rachas y diploma. Benevolo duja es marca acelerada hermana.
               </p>
             </div>
           </Link>

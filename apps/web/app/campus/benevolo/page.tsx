@@ -1,31 +1,30 @@
 import { createSupabaseServerClient } from "@cacao-colab/supabase-client/server"
 import { redirect } from "next/navigation"
-import ChocolatierCoursePlayer from "@/components/campus/ChocolatierCoursePlayer"
-import { CHOCOLATIER_COURSE_SLUG } from "@/lib/chocolatier-course"
+import BenevoloCoursePlayer from "@/components/campus/BenevoloCoursePlayer"
+import { BENEVOLO_COURSE_SLUG } from "@/lib/benevolo-brand"
 
 export const metadata = {
-  title: "Master Chocolatier · Campus",
-  description:
-    "Campaña Dualita barra 70 % con lente CoEx/Awards, vidas, rachas y diploma digital.",
+  title: "Benevolo · Aceleración de marca",
+  description: "Track Dualita de Chocolate Benevolo: tendencia, duja FEAR 5 y preorden.",
   robots: { index: false, follow: false },
 }
 export const dynamic = "force-dynamic"
 
-export default async function MaestroChocolatierCampusPage() {
+export default async function BenevoloCampusPage() {
   const supabase = await createSupabaseServerClient()
   const {
     data: { user },
   } = await supabase.auth.getUser()
-  if (!user) redirect("/cuenta/entrar?next=/campus/maestro-chocolatier")
+  if (!user) redirect("/cuenta/entrar?next=/campus/benevolo")
 
   const { data: saved } = await supabase
     .from("campus_progress")
     .select("state,xp_total")
     .eq("profile_id", user.id)
-    .eq("course_slug", CHOCOLATIER_COURSE_SLUG)
+    .eq("course_slug", BENEVOLO_COURSE_SLUG)
     .maybeSingle()
 
   const learnerName = user.user_metadata?.full_name ?? user.email?.split("@")[0] ?? "Learner"
 
-  return <ChocolatierCoursePlayer learnerName={learnerName} initialState={saved?.state} />
+  return <BenevoloCoursePlayer learnerName={learnerName} initialState={saved?.state} />
 }

@@ -1363,6 +1363,171 @@ body {
 .architect-options button.muted { opacity: .3; }
 .architect-feedback { color: rgba(247, 241, 238, .55); font-size: .7rem; margin-top: 1rem; }
 
+.chocolatier-grade-pill {
+  display: inline-block;
+  margin-top: .75rem;
+  padding: .35rem .75rem;
+  border-radius: 999px;
+  background: rgba(255, 106, 61, .15);
+  border: 1px solid rgba(255, 106, 61, .35);
+  color: #E8C9A0;
+  font-size: .65rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.chocolatier-sister-link {
+  color: rgba(232, 201, 160, .7);
+  display: inline-block;
+  font-size: .68rem;
+  font-weight: 800;
+  margin-top: 1rem;
+}
+
+.diploma-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background:
+    radial-gradient(ellipse 70% 50% at 20% 0%, rgba(255, 106, 61, .18), transparent 55%),
+    #140e0a;
+  color: #F7F1EE;
+}
+
+.diploma-card {
+  width: 100%;
+  max-width: 36rem;
+  padding: clamp(1.75rem, 5vw, 2.75rem);
+  border: 1px solid rgba(232, 201, 160, .28);
+  border-radius: 1.25rem;
+  background: linear-gradient(165deg, rgba(255, 106, 61, .08), rgba(20, 14, 10, .95));
+  text-align: center;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, .45);
+}
+
+.diploma-card--benevolo {
+  background: linear-gradient(165deg, rgba(255, 106, 61, .14), rgba(20, 14, 10, .95));
+}
+
+.diploma-eyebrow {
+  color: rgba(232, 201, 160, .55);
+  font-size: .65rem;
+  font-weight: 800;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.diploma-brand {
+  color: #FF6A3D;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 7vw, 3.2rem);
+  font-weight: 900;
+  margin-top: .75rem;
+}
+
+.diploma-course {
+  color: rgba(247, 241, 238, .55);
+  font-size: .85rem;
+  margin-top: .35rem;
+}
+
+.diploma-certifies {
+  color: rgba(247, 241, 238, .35);
+  font-size: .7rem;
+  letter-spacing: .12em;
+  margin-top: 1.75rem;
+  text-transform: uppercase;
+}
+
+.diploma-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  font-weight: 800;
+  margin-top: .35rem;
+}
+
+.diploma-grade {
+  color: #F2C830;
+  font-size: .85rem;
+  font-weight: 800;
+  margin-top: .65rem;
+}
+
+.diploma-lede {
+  color: rgba(247, 241, 238, .5);
+  font-size: .82rem;
+  line-height: 1.6;
+  margin: 1.25rem auto 0;
+  max-width: 28rem;
+}
+
+.diploma-meta {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: .5rem;
+  margin-top: 1.5rem;
+}
+
+.diploma-meta dt {
+  color: rgba(247, 241, 238, .35);
+  font-size: .55rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.diploma-meta dd {
+  color: #F7F1EE;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 800;
+  margin-top: .2rem;
+}
+
+.diploma-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .65rem;
+  justify-content: center;
+  margin-top: 1.75rem;
+}
+
+.diploma-actions a {
+  border-radius: 999px;
+  font-size: .78rem;
+  font-weight: 800;
+  padding: .75rem 1.15rem;
+  text-decoration: none;
+}
+
+.diploma-li {
+  background: #0A66C2;
+  color: white;
+}
+
+.diploma-colab {
+  background: #FF6A3D;
+  color: #140e0a;
+}
+
+.diploma-actions a:not(.diploma-li):not(.diploma-colab) {
+  border: 1px solid rgba(247, 241, 238, .2);
+  color: #F7F1EE;
+}
+
+.diploma-footnote {
+  color: rgba(247, 241, 238, .28);
+  font-size: .62rem;
+  line-height: 1.45;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 640px) {
+  .diploma-meta { grid-template-columns: repeat(2, 1fr); }
+}
+
 .chocolatier-player {
   background:
     radial-gradient(circle at 82% 12%, rgba(255, 106, 61, .14), transparent 28%),

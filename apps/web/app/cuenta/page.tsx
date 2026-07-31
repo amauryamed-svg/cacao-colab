@@ -47,7 +47,8 @@ export default async function CuentaPage() {
           {[
             { title: "Mazorcas Doradas", body: `${wallet?.balance ?? 0} MD · rango ${rank.name}.`, href: "/cuenta/mazorcas", cta: "Ver wallet y beneficios" },
             { title: "Arquitecto de Fermentación", body: "Seis misiones con Dualita y 700 XP.", href: "/campus/arquitecto-fermentacion", cta: "Continuar curso" },
-            { title: "Master Chocolatier", body: "Bean-to-bar CoEx · 720 XP · capstone Benevolo.", href: "/campus/maestro-chocolatier", cta: "Continuar campaña" },
+            { title: "Master Chocolatier", body: "Barra 70 % · vidas · rachas · diploma LinkedIn.", href: "/campus/maestro-chocolatier", cta: "Continuar campaña" },
+            { title: "Benevolo", body: "Marca acelerada · duja FEAR 5 · tendencia.", href: "/campus/benevolo", cta: "Acelerar marca" },
             { title: "Sembrar", body: "Plántulas Ecoyuma, bitácora y finca idónea.", href: "/juega", cta: "Ir a Sembrar" },
             {
               title: "Campus Dualita",
