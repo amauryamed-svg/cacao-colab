@@ -5,6 +5,7 @@ import type { Json } from "@cacao-colab/supabase-client/database.types"
 import { lessons } from "@/lib/lessons"
 import { mazorcaRewards } from "@/lib/loyalty"
 import { awardMazorcas } from "@/lib/loyalty-server"
+import { syncLearnerFollowup } from "@/lib/followup-sync"
 import { MICRO_COURSE_SLUG, type MicroLessonResult } from "@/lib/microlearning"
 
 export async function completeMicroLesson(slug: string): Promise<MicroLessonResult> {
@@ -86,6 +87,8 @@ export async function completeMicroLesson(slug: string): Promise<MicroLessonResu
   } catch {
     // El progreso se guarda aunque la migración de fidelidad no esté aplicada.
   }
+
+  void syncLearnerFollowup(userId, `micro:${lesson.slug}`)
 
   return {
     status: "saved",
