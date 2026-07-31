@@ -1561,8 +1561,14 @@ export type Database = {
           email: string
           full_name: string
           id: string
+          marketing_opt_in: boolean
+          marketing_opt_in_at: string | null
           organization_id: string | null
           phone: string | null
+          privacy_accepted_at: string | null
+          privacy_policy_version: string | null
+          terms_accepted_at: string | null
+          terms_version: string | null
           updated_at: string
         }
         Insert: {
@@ -1572,8 +1578,14 @@ export type Database = {
           email: string
           full_name: string
           id: string
+          marketing_opt_in?: boolean
+          marketing_opt_in_at?: string | null
           organization_id?: string | null
           phone?: string | null
+          privacy_accepted_at?: string | null
+          privacy_policy_version?: string | null
+          terms_accepted_at?: string | null
+          terms_version?: string | null
           updated_at?: string
         }
         Update: {
@@ -1583,8 +1595,14 @@ export type Database = {
           email?: string
           full_name?: string
           id?: string
+          marketing_opt_in?: boolean
+          marketing_opt_in_at?: string | null
           organization_id?: string | null
           phone?: string | null
+          privacy_accepted_at?: string | null
+          privacy_policy_version?: string | null
+          terms_accepted_at?: string | null
+          terms_version?: string | null
           updated_at?: string
         }
         Relationships: [
@@ -1593,6 +1611,47 @@ export type Database = {
             columns: ["organization_id"]
             isOneToOne: false
             referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      privacy_consents: {
+        Row: {
+          created_at: string
+          email: string | null
+          event: string
+          id: string
+          metadata: Json
+          policy_version: string | null
+          profile_id: string | null
+          source: string | null
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          event: string
+          id?: string
+          metadata?: Json
+          policy_version?: string | null
+          profile_id?: string | null
+          source?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          event?: string
+          id?: string
+          metadata?: Json
+          policy_version?: string | null
+          profile_id?: string | null
+          source?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "privacy_consents_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
         ]

@@ -28,7 +28,7 @@ La web ([cacao-colab.vercel.app](https://cacao-colab.vercel.app)) ya es la super
 | **Apple Developer Program** | developer.apple.com | ~99 USD/año | Requiere entidad o persona; D-U-N-S si es company |
 | **Google Play Console** | play.google.com/console | ~25 USD una vez | Cuenta de desarrollador |
 | **Expo / EAS** | expo.dev | Free tier → Production | Proyecto ligado a `apps/mobile` |
-| **Privacy policy URL** | página pública | — | Obligatorio en ambas stores |
+| **Privacy policy URL** | `https://cacao-colab.vercel.app/legal/privacidad` | — | Obligatorio en ambas stores · ver `23-PRIVACIDAD-Y-OPTIN.md` |
 
 Sin estas cuentas no se puede completar el “paso de descarga” en las tiendas; sí se puede seguir desarrollando con **Expo Go**.
 
@@ -67,7 +67,7 @@ Checklist técnico:
 
 - [ ] Icono 1024×1024 y splash Colab (`#1A2E10`)  
 - [ ] Screenshots iPhone 6.7" / 6.5" y Android phone (usar también `docs/assets/screenshots/home-mobile.png` como referencia visual)  
-- [ ] Privacy policy + términos (URL live)  
+- [ ] Privacy policy + términos (URL live: `/legal/privacidad`, `/legal/terminos`)  
 - [ ] `version` / `ios.buildNumber` / `android.versionCode` bump por release  
 - [ ] Variables EAS: `EXPO_PUBLIC_API_URL`, Supabase anon key (nunca service role en el cliente)
 

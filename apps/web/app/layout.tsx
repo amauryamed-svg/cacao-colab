@@ -5,6 +5,7 @@ import "./globals.css"
 import Navbar from "@/components/nav/Navbar"
 import OnboardingGate from "@/components/onboarding/OnboardingGate"
 import UTMCapture from "@/components/analytics/UTMCapture"
+import CookieConsentBanner from "@/components/legal/CookieConsentBanner"
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -51,11 +52,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link href="/aprende/cacaotier">Master Cacaotier</Link>
+              <Link href="/legal/privacidad">Privacidad</Link>
+              <Link href="/legal/terminos">Términos</Link>
+              <Link href="/legal/cookies">Cookies</Link>
+              <Link href="/legal">Legal</Link>
               <a href="https://cauacolombia.co" target="_blank" rel="noopener noreferrer">
                 cauacolombia.co
-              </a>
-              <a href="https://chocolatezurych.com" target="_blank" rel="noopener noreferrer">
-                chocolatezurych.com
               </a>
               <a href="https://wa.me/573102227848" target="_blank" rel="noopener noreferrer">
                 WhatsApp
@@ -63,6 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
           </div>
         </footer>
+        <CookieConsentBanner />
       </body>
     </html>
   )
