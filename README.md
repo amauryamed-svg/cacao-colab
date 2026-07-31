@@ -4,7 +4,7 @@
 
 Marketplace + Dualita + Sembrar + R&D (Benevolo · coberturas CAÚA × Zurych) para el cacao Fine-Flavor colombiano.
 
-**Live:** [cacao-colab.vercel.app](https://cacao-colab.vercel.app)  
+**Live:** [cacaocolab.org](https://cacaocolab.org) · deploy [cacao-colab.vercel.app](https://cacao-colab.vercel.app)  
 **Repo:** [amauryamed-svg/cacao-colab](https://github.com/amauryamed-svg/cacao-colab)
 
 ---

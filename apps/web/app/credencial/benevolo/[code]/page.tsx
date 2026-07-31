@@ -21,7 +21,7 @@ export default async function BenevoloDiplomaPage({ params }: Props) {
   if (!diploma || diploma.course !== "benevolo-duja") notFound()
 
   const absolute =
-    (process.env.NEXT_PUBLIC_SITE_URL ?? "https://cacao-colab.vercel.app") +
+    (process.env.NEXT_PUBLIC_SITE_URL ?? "https://cacaocolab.org") +
     `/credencial/benevolo/${code}`
 
   return (

@@ -21,7 +21,7 @@ export const amauryProfile = {
   linkedin: "https://www.linkedin.com/in/amauryamed",
   instagram: "https://www.instagram.com/amaury.amed/",
   brandSite: "https://cauacolombia.co",
-  colabUrl: "https://cacao-colab.vercel.app/amauryamed",
+  colabUrl: "https://cacaocolab.org/amauryamed",
   pillars: [
     {
       kicker: "Cacaotier",

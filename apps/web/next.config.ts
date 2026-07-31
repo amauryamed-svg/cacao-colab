@@ -2,10 +2,8 @@ import type { NextConfig } from "next";
 import { withSentryConfig } from "@sentry/nextjs";
 import path from "node:path";
 
-// v2-pivot (2026-07-26): el 308 ciego hacia caua.cloud/colab/* de la Spec v1
-// queda retirado — ver docs/00-SPEC.md D11. El deploy sirve directo en su
-// propio *.vercel.app hasta que se decida un dominio propio (cacaocolab.co
-// u otro). No hay redirects configurados a propósito.
+// Dominio canónico: cacaocolab.org (docs/24-DOMINIO-CACAOCOLAB-ORG.md).
+// El redirect ciego a caua.cloud/colab/* de Spec v1 permanece retirado (D11).
 const nextConfig: NextConfig = {
   async redirects() {
     return [

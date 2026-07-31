@@ -31,7 +31,7 @@ export default async function ChocolatierDiplomaPage({ params }: Props) {
   const pagePath = `/credencial/maestro-chocolatier/${code}`
   // Absolute URL for LinkedIn — prefer public site
   const absolute =
-    (process.env.NEXT_PUBLIC_SITE_URL ?? "https://cacao-colab.vercel.app") + pagePath
+    (process.env.NEXT_PUBLIC_SITE_URL ?? "https://cacaocolab.org") + pagePath
   const issued = new Date(diploma.issuedAt).toLocaleDateString("es-CO", {
     year: "numeric",
     month: "long",
@@ -87,7 +87,7 @@ export default async function ChocolatierDiplomaPage({ params }: Props) {
           <Link href="/aprende/chocolatier">Ver el curso</Link>
         </div>
         <p className="diploma-footnote">
-          Edutainment cacao · verificar siempre en cacao-colab.vercel.app · lente CoEx ≠ premio CoEx
+          Edutainment cacao · verificar siempre en cacaocolab.org · lente CoEx ≠ premio CoEx
         </p>
       </div>
     </div>

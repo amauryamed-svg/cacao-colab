@@ -11,11 +11,14 @@ export function getResendClient(): Resend {
 }
 
 /**
- * Sandbox de Resend: sin dominio propio verificado para Cacao Colab
- * (cauaculture.co queda fuera a propósito, es de otro producto CAÚA),
- * `onboarding@resend.dev` solo entrega al email dueño de la cuenta Resend.
- * E2E verificado 2026-07-31 con envío real a esa cuenta + HubSpot sync.
- * Pendiente: dominio Colab verificado → cambiar FROM (ej. seguimiento@…)
- * y rotar RESEND_API_KEY si se expuso. Ver docs/22 §6.
+ * Remitente nurture.
+ * Tras verificar cacaocolab.org en Resend, setear en Vercel:
+ *   RESEND_FROM=Cacao Colab <seguimiento@cacaocolab.org>
+ * Sin esa env, se mantiene el sandbox (solo entrega a la cuenta dueña).
+ * Ver docs/24-DOMINIO-CACAOCOLAB-ORG.md.
  */
-export const FOLLOWUP_FROM = "Cacao Colab <onboarding@resend.dev>"
+export const FOLLOWUP_FROM =
+  process.env.RESEND_FROM?.trim() || "Cacao Colab <onboarding@resend.dev>"
+
+/** Remitente objetivo una vez el dominio esté Verified en Resend. */
+export const FOLLOWUP_FROM_PRODUCTION = "Cacao Colab <seguimiento@cacaocolab.org>"

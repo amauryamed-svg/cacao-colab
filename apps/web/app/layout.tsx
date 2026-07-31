@@ -20,7 +20,7 @@ const outfit = Outfit({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://cacao-colab-web.vercel.app"),
+  metadataBase: new URL("https://cacaocolab.org"),
   title: {
     default: "cacaotier · Cacao Fine-Flavor",
     template: "%s · cacaotier",

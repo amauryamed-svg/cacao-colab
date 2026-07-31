@@ -151,12 +151,12 @@ export function buildFollowupAdvice(snap: LearnerFollowupSnapshot): FollowupAdvi
       label: modulesLeft > 0 || snap.microCompleted === 0 ? "Continuar Dualita →" : "Abrir Master Cacaotier →",
       href:
         modulesLeft > 0 || snap.microCompleted === 0
-          ? "https://cacao-colab.vercel.app/aprende"
-          : "https://cacao-colab.vercel.app/aprende/cacaotier",
+          ? "https://cacaocolab.org/aprende"
+          : "https://cacaocolab.org/aprende/cacaotier",
     },
     ctaSecondary: {
       label: snap.sembrar.phase === "none" ? "Empezar Sembrar →" : "Cuidar labranza →",
-      href: "https://cacao-colab.vercel.app/juega",
+      href: "https://cacaocolab.org/juega",
     },
     emailSubject,
   }
