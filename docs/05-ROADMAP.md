@@ -59,7 +59,7 @@ Esta fase es nueva — es el trabajo hecho en la rama `v2-pivot` para preparar e
 |------|--------|-------|-------------------|
 | CAÚA Academy 6 módulos con links reales | 🟡 | Amaury | — |
 | MOOC Zurych lanzado | ⏳ Zurych | Zurych | — |
-| Email nurturing HubSpot (día 1 / 7 / 14 · MD + Sembrar + consistencia) | 🟡 Docs + sync código | Amaury (workflows) · Oscar (props) | Plantillas en `emails/seguimiento/`; sync `followup-sync.ts`; UI `/cuenta/consejo` |
+| Email nurturing día 1/7/14 (Resend + cron · MD + Sembrar) | 🟢 E2E verificado (sandbox) | Amaury (dominio Resend + rotar key) · Oscar (cron) | Cron `0 14 * * *` → Resend → `followup_email_log` → HubSpot `colab_*`; falta dominio Colab en Resend — `docs/22` |
 | Migrar `lessons`/`courses` de seed local (`lib/*.ts`) a Supabase real | 🟢 Backlog | Oscar | Proyecto Supabase existente + migraciones aplicadas |
 | XP/rachas/insignias/leaderboard (`09-GAMIFICACION.md`) | 🟢 Backlog | Oscar + Hellen | `learner_progress`/`xp_ledger` poblados desde uso real |
 | Companion IA con guardrails (`10-DUALITA-IA.md`) | 🟢 Backlog | Oscar | `ANTHROPIC_API_KEY` configurada + companion respondiendo en `/aprende` |

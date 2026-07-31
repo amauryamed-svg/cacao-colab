@@ -1,7 +1,8 @@
 # Emails de seguimiento · Mazorcas Doradas + Sembrar + consistencia
 
 > Última actualización: 2026-07-31  
-> Dueños: Amaury (copy / HubSpot workflows) · Oscar (sync props) · Hellen (UI consejo)
+> Estado: **E2E verificado** (cron → cálculo → Resend → `followup_email_log` → HubSpot props) con envío real a `amaury@cauaculture.co`  
+> Dueños: Amaury (copy / Resend dominio) · Oscar (cron + sync) · Hellen (UI consejo)
 
 ---
 
@@ -101,13 +102,25 @@ Cada sync inserta `crm_activities` tipo `note` con `metadata.kind = followup_adv
 
 ## 6. Checklist Amaury
 
-- [x] Crear las 6 propiedades custom en HubSpot (consolidadas, ver §3) — hecho 2026-07-31
-- [x] Pegar las 3 plantillas HTML en HubSpot como borradores (por si algún día se activa un workflow) — hecho 2026-07-31
-- [x] `RESEND_API_KEY` en Supabase secrets (SMTP de Auth) — hecho
-- [ ] `RESEND_API_KEY` en Vercel (env del cron) — pendiente de confirmar
-- [ ] Verificar dominio propio de Cacao Colab en Resend (hoy en sandbox, solo entrega a la cuenta dueña)
-- [ ] Confirmar cron activo tras el deploy (`vercel.json` → `0 14 * * *`, ~9am Bogotá)
-- [ ] Probar: crear/usar un profile con `marketing_opt_in = true` y disparar el cron manualmente
+### Cerrado y verificado (2026-07-31, contacto real HubSpot)
+
+- [x] Crear las 6 propiedades custom en HubSpot (consolidadas, ver §3)
+- [x] Pegar las 3 plantillas HTML en HubSpot como borradores (por si algún día se activa un workflow)
+- [x] `RESEND_API_KEY` en Supabase secrets (SMTP de Auth)
+- [x] `RESEND_API_KEY` en Vercel (env del cron) — envío real con `resend_id` confirmado
+- [x] Cron diario activo (`vercel.json` → `0 14 * * *`, ~9am Bogotá)
+- [x] Pipeline E2E: cron → cálculo real → Resend → `followup_email_log` → HubSpot
+- [x] Idempotencia: segunda corrida no reenvía
+- [x] Sync HubSpot con datos reales en `amaury@cauaculture.co`:
+  - `colab_md_lifetime: 5`
+  - `colab_rank: Semilla`
+  - `colab_sembrar_meta: "FEAR 5 · fase cultivo"`
+- [ ] Confirmar en bandeja de `amaury@cauaculture.co` que llegó el correo día 1 (solo Amaury puede verlo)
+
+### Pendiente real (bloquea usuarios finales)
+
+- [ ] **Dominio propio de Cacao Colab verificado en Resend** (hoy sandbox `onboarding@resend.dev`, solo entrega a la cuenta dueña). No usar `cauaculture.co` (otro producto CAÚA). Luego actualizar `FOLLOWUP_FROM` en `apps/web/lib/resend.ts`.
+- [ ] **Rotar `RESEND_API_KEY`** — la key quedó expuesta en chat; generar una nueva en Resend, actualizar Vercel + Supabase secrets, revocar la anterior. No commitear la key al repo (hoy solo `env(RESEND_API_KEY)` / `process.env`).
 
 ---
 
@@ -117,9 +130,9 @@ Ver `16-MAZORCAS-DORADAS.md`. Los montos no cambian. El email **narra** lifetime
 
 ---
 
-## 8. Fuera de alcance de esta pasada
+## 8. Fuera de alcance / siguiente
 
-- Dominio propio verificado en Resend (bloquea envío real a usuarios, no solo a Amaury)
+- Dominio propio verificado en Resend (único bloqueo para nurture a usuarios reales)
 - `pg_cron` digest semanal (roadmap Fase 4)
 - Emails por rank-up instantáneo (evento adicional, no ligado a los 3 checkpoints de días)
 - Reactivar HubSpot Workflow si algún día se sube de plan (los 3 correos ya quedaron pegados como borradores, listos)

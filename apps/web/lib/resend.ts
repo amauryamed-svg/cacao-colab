@@ -14,7 +14,8 @@ export function getResendClient(): Resend {
  * Sandbox de Resend: sin dominio propio verificado para Cacao Colab
  * (cauaculture.co queda fuera a propósito, es de otro producto CAÚA),
  * `onboarding@resend.dev` solo entrega al email dueño de la cuenta Resend.
- * Cambiar a un remitente real (ej. seguimiento@cacaocolab.co) en cuanto
- * exista un dominio verificado — ver docs/22-EMAIL-SEGUIMIENTO-CONSISTENCIA.md.
+ * E2E verificado 2026-07-31 con envío real a esa cuenta + HubSpot sync.
+ * Pendiente: dominio Colab verificado → cambiar FROM (ej. seguimiento@…)
+ * y rotar RESEND_API_KEY si se expuso. Ver docs/22 §6.
  */
 export const FOLLOWUP_FROM = "Cacao Colab <onboarding@resend.dev>"
