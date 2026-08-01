@@ -1,7 +1,6 @@
 "use server"
 
 import { createSupabaseServerClient } from "@cacao-colab/supabase-client/server"
-import { redirect } from "next/navigation"
 import {
   consentToUserMetadata,
   parseConsentForm,
@@ -51,32 +50,4 @@ export async function requestCampusMagicLink(formData: FormData): Promise<Campus
   } catch (error) {
     return { ok: false, error: error instanceof Error ? error.message : "No fue posible iniciar el acceso." }
   }
-}
-
-async function startOAuth(provider: "google" | "apple", formData: FormData) {
-  const consent = parseConsentForm(formData)
-  if ("error" in consent) {
-    redirect(`/cuenta/entrar?error=consent_required&next=${encodeURIComponent(safeNext(formData.get("next")))}`)
-  }
-  await stashAuthConsentCookie(consent)
-
-  const next = safeNext(formData.get("next"))
-  const supabase = await createSupabaseServerClient()
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider,
-    options: {
-      redirectTo: `${siteUrl}/auth/callback?next=${encodeURIComponent(next)}`,
-    },
-  })
-  if (error || !data.url) redirect(`/cuenta/entrar?error=oauth_${provider}`)
-  redirect(data.url)
-}
-
-export async function signInWithGoogle(formData: FormData) {
-  await startOAuth("google", formData)
-}
-
-export async function signInWithApple(formData: FormData) {
-  await startOAuth("apple", formData)
 }

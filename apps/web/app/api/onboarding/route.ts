@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from "next/server"
 import { upsertContactByEmail } from "@cacao-colab/hubspot-client"
 import { createSupabaseAdminClient } from "@cacao-colab/supabase-client/admin"
+import { createSupabaseServerClient } from "@cacao-colab/supabase-client/server"
 import type { Json } from "@cacao-colab/supabase-client/database.types"
+import { consentToUserMetadata } from "@/lib/legal/consent"
+import { LEGAL_POLICY_VERSION, TERMS_VERSION } from "@/lib/legal/versions"
 
 const COOKIE_NAME = "colab_onboarded"
 const TIPO_LABEL: Record<string, string> = {
@@ -132,9 +135,35 @@ export async function POST(request: NextRequest) {
     // HubSpot puede seguir capturando aunque el CRM local aún no esté migrado.
   }
 
+  let magicLink = false
+  try {
+    const supabase = await createSupabaseServerClient()
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
+    const { error } = await supabase.auth.signInWithOtp({
+      email,
+      options: {
+        shouldCreateUser: true,
+        emailRedirectTo: `${siteUrl}/auth/callback?next=${encodeURIComponent("/aprende")}`,
+        data: consentToUserMetadata({
+          privacyAccepted: true,
+          termsAccepted: true,
+          marketingOptIn,
+          policyVersion: LEGAL_POLICY_VERSION,
+          termsVersion: TERMS_VERSION,
+          source: "unete",
+          at: new Date().toISOString(),
+        }),
+      },
+    })
+    magicLink = !error
+  } catch {
+    // El magic link es best-effort — no bloquea el registro del lead en HubSpot/CRM.
+  }
+
   return done(NextResponse.json({
     ok: Boolean(hubspot?.ok || localStored),
     hubspot: hubspot?.ok ? hubspot.action : "unavailable",
     crm: localStored ? "stored" : "unavailable",
+    magicLink,
   }))
 }

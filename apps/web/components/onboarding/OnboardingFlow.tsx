@@ -585,9 +585,10 @@ export default function OnboardingFlow({ onComplete }: { onComplete?: () => void
           necesita tu <em>criterio.</em>
         </h2>
         <p className="onboard-lede mx-auto" style={{ textAlign: 'center' }}>
-          Te escribimos a <strong style={{ color: '#F7F1EE' }}>{data.email}</strong>. Mientras,
-          empieza a hablar el lenguaje de la excelencia: educa tu paladar, conecta territorio y da
-          razones para que la siguiente generación continúe.
+          Te enviamos un acceso sin contraseña a{" "}
+          <strong style={{ color: '#F7F1EE' }}>{data.email}</strong> — revisa tu correo para entrar
+          a tu cuenta del Colab. Mientras, empieza a hablar el lenguaje de la excelencia: educa tu
+          paladar, conecta territorio y da razones para que la siguiente generación continúe.
         </p>
         <div className="flex flex-col gap-3 mt-2">
           <Link

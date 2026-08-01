@@ -1,9 +1,8 @@
 "use client"
 
-import { useState, useTransition } from "react"
-import AuthConsentFields, { consentIsReady } from "@/components/legal/AuthConsentFields"
+import { useState } from "react"
+import AuthConsentFields from "@/components/legal/AuthConsentFields"
 import CampusLoginForm from "@/components/campus/CampusLoginForm"
-import { signInWithApple, signInWithGoogle } from "@/app/cuenta/entrar/actions"
 
 export default function CampusAuthPanel({
   next,
@@ -18,30 +17,6 @@ export default function CampusAuthPanel({
   const [termsAccepted, setTermsAccepted] = useState(false)
   const [marketingOptIn, setMarketingOptIn] = useState(false)
   const [consentError, setConsentError] = useState("")
-  const [pending, startTransition] = useTransition()
-  const ready = consentIsReady(privacyAccepted, termsAccepted)
-
-  function appendConsent(formData: FormData) {
-    formData.set("privacy_accepted", privacyAccepted ? "true" : "false")
-    formData.set("terms_accepted", termsAccepted ? "true" : "false")
-    formData.set("marketing_opt_in", marketingOptIn ? "true" : "false")
-    formData.set("consent_source", "cuenta_entrar")
-  }
-
-  function oauth(provider: "google" | "apple") {
-    if (!ready) {
-      setConsentError("Marca la casilla de Privacidad y Términos para continuar.")
-      return
-    }
-    setConsentError("")
-    const formData = new FormData()
-    formData.set("next", next)
-    appendConsent(formData)
-    startTransition(async () => {
-      if (provider === "google") await signInWithGoogle(formData)
-      else await signInWithApple(formData)
-    })
-  }
 
   return (
     <div className="space-y-5">
@@ -58,7 +33,7 @@ export default function CampusAuthPanel({
 
       {error && (
         <p className="rounded-lg bg-red-50 text-red-700 text-xs p-3">
-          No fue posible completar ese acceso. Verifica que el proveedor esté habilitado en Supabase.
+          No fue posible completar ese acceso. Solicita un nuevo magic link.
         </p>
       )}
 
@@ -73,29 +48,6 @@ export default function CampusAuthPanel({
 
       {consentError && <p className="text-xs text-red-700">{consentError}</p>}
 
-      <div className="grid grid-cols-2 gap-2">
-        <button
-          type="button"
-          className="campus-oauth-button"
-          disabled={!ready || pending}
-          onClick={() => oauth("google")}
-        >
-          <strong>G</strong> Google
-        </button>
-        <button
-          type="button"
-          className="campus-oauth-button"
-          disabled={!ready || pending}
-          onClick={() => oauth("apple")}
-        >
-          <strong>●</strong> Apple
-        </button>
-      </div>
-
-      <div className="auth-divider">
-        <span>o usa tu email</span>
-      </div>
-
       <CampusLoginForm
         next={next}
         privacyAccepted={privacyAccepted}
@@ -105,11 +57,6 @@ export default function CampusAuthPanel({
           setConsentError("Marca la casilla de Privacidad y Términos para continuar.")
         }
       />
-
-      <p className="text-[10px] leading-relaxed text-colab-forest/40">
-        Google y Apple requieren habilitación del proveedor en Supabase. El portal privado de los
-        tres builders conserva su magic link con el mismo opt-in legal.
-      </p>
     </div>
   )
 }

@@ -1086,25 +1086,6 @@ body {
   padding: clamp(1.5rem, 5vw, 4rem);
 }
 
-.campus-oauth-button {
-  align-items: center;
-  background: white;
-  border: 1px solid rgba(26, 46, 16, .12);
-  border-radius: .8rem;
-  color: #1A2E10;
-  display: flex;
-  font-size: .7rem;
-  font-weight: 800;
-  gap: .55rem;
-  justify-content: center;
-  padding: .8rem;
-  width: 100%;
-}
-
-.campus-oauth-button:hover {
-  border-color: rgba(26, 46, 16, .35);
-}
-
 .campus-auth-input {
   background: white;
   border: 1px solid rgba(26, 46, 16, .12);
@@ -1128,22 +1109,6 @@ body {
   font-weight: 800;
   padding: .85rem 1rem;
   width: 100%;
-}
-
-.auth-divider {
-  align-items: center;
-  color: rgba(26, 46, 16, .35);
-  display: flex;
-  font-size: .62rem;
-  gap: .7rem;
-}
-
-.auth-divider::before,
-.auth-divider::after {
-  background: rgba(26, 46, 16, .1);
-  content: "";
-  flex: 1;
-  height: 1px;
 }
 
 .campus-auth-message {
