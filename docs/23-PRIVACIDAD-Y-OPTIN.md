@@ -35,7 +35,7 @@ Fuente de copy: `apps/web/lib/legal/*`. Versión vigente: `LEGAL_POLICY_VERSION`
 
 ## 3. Opt-in al crear usuario
 
-Ruta real de cuenta: `/cuenta/entrar` (magic link / Google / Apple).
+Ruta real de cuenta: `/cuenta/entrar` (solo magic link / OTP por email).
 
 1. Casilla **obligatoria** (no pre-marcada): Privacidad + Tratamiento + Términos.
 2. Casilla **opcional**: marketing / nurturing.

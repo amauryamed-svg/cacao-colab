@@ -1111,6 +1111,29 @@ body {
   width: 100%;
 }
 
+.campus-auth-primary:disabled {
+  cursor: not-allowed;
+  opacity: .45;
+}
+
+.campus-auth-secondary {
+  background: transparent;
+  border: 1px solid rgba(26, 46, 16, .15);
+  border-radius: 999px;
+  color: rgba(26, 46, 16, .55);
+  font-size: .65rem;
+  font-weight: 700;
+  padding: .7rem 1rem;
+  width: 100%;
+}
+
+.campus-auth-footnote {
+  color: rgba(26, 46, 16, .4);
+  font-size: .55rem;
+  line-height: 1.45;
+  text-align: center;
+}
+
 .campus-auth-message {
   text-align: center;
 }

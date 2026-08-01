@@ -26,14 +26,15 @@ export default function CampusAuthPanel({
           {intent === "team" ? "Panel superadministrador" : "Continúa tu campaña"}
         </h2>
         <p className="text-xs text-colab-forest/50 mt-3">
-          Una sola identidad. Los permisos internos se asignan únicamente a emails mapeados en
-          team_members.
+          Acceso solo por correo (magic link / código). Sin Google ni Apple. Los permisos de{" "}
+          <code>/equipo</code> se asignan únicamente a emails en <code>team_members</code>.
         </p>
       </div>
 
       {error && (
         <p className="rounded-lg bg-red-50 text-red-700 text-xs p-3">
-          No fue posible completar ese acceso. Solicita un nuevo magic link.
+          No fue posible completar ese acceso. Pide un nuevo correo o usa el código OTP del mensaje
+          en este navegador.
         </p>
       )}
 

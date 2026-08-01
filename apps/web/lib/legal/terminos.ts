@@ -28,7 +28,7 @@ export const terminosDoc: LegalDocument = {
       id: "cuenta",
       title: "3. Cuenta y elegibilidad",
       paragraphs: [
-        "Debes proporcionar información veraz y mantener la seguridad de tu acceso (magic link u OAuth). Eres responsable de la actividad bajo tu cuenta. Debes tener capacidad legal para contratar; si actúas por una organización, declaras estar autorizado.",
+        "Debes proporcionar información veraz y mantener la seguridad de tu acceso (magic link / código por email). Eres responsable de la actividad bajo tu cuenta. Debes tener capacidad legal para contratar; si actúas por una organización, declaras estar autorizado.",
       ],
     },
     {

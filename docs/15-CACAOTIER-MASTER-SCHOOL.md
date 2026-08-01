@@ -291,7 +291,7 @@ Una pauta o patrocinio debe identificarse como tal. Financiar contenido no compr
 
 Rutas:
 
-- `/cuenta/entrar`: Google, Apple y magic link;
+- `/cuenta/entrar`: solo magic link / OTP por email (sin Google/Apple);
 - `/cuenta`: identidad y accesos del learner;
 - `/campus/arquitecto-fermentacion`: seis misiones guiadas por Dualita;
 - `/juega`: Cacao Gotchi registrado.
@@ -305,11 +305,10 @@ La migración `20260729190012_campus_registered_progress.sql` crea:
 
 Configuración externa obligatoria:
 
-1. Habilitar Email, Google y Apple en Supabase Auth.
-2. Agregar `https://cacao-colab.vercel.app/auth/callback` y URLs de preview permitidas.
-3. Configurar credenciales OAuth de Google.
-4. Configurar Service ID, Team ID y key de Apple.
-5. Ejecutar `supabase db push` para aplicar la migración.
+1. Habilitar Email (magic link) en Supabase Auth; Google/Apple deshabilitados — ver `27-MAGIC-LINK-AUTH.md`.
+2. Site URL + Redirect URLs: `https://cacaocolab.org/**` y `/auth/callback` (también en `config.toml`).
+3. `NEXT_PUBLIC_SITE_URL=https://cacaocolab.org` en Vercel.
+4. Ejecutar `supabase db push` para aplicar migraciones pendientes.
 
 Sin estos pasos, el código compila pero OAuth o el guardado remoto responderán con un error explícito.
 
