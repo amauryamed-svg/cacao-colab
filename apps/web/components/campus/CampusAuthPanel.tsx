@@ -42,12 +42,19 @@ export default function CampusAuthPanel({
         privacyAccepted={privacyAccepted}
         termsAccepted={termsAccepted}
         marketingOptIn={marketingOptIn}
-        onPrivacyChange={setPrivacyAccepted}
+        onPrivacyChange={(value) => {
+          setPrivacyAccepted(value)
+          if (value) setConsentError("")
+        }}
         onTermsChange={setTermsAccepted}
         onMarketingChange={setMarketingOptIn}
       />
 
-      {consentError && <p className="text-xs text-red-700">{consentError}</p>}
+      {consentError && (
+        <p className="text-xs text-red-700" role="alert" data-testid="auth-consent-error">
+          {consentError}
+        </p>
+      )}
 
       <CampusLoginForm
         next={next}
