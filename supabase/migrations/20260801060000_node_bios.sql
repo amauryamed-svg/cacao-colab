@@ -20,7 +20,7 @@ create table if not exists public.node_bios (
   whatsapp          text,
   instagram         text,
   website           text,
-  share_token       text not null default encode(gen_random_bytes(8), 'hex'),
+  share_token       text not null default encode(extensions.gen_random_bytes(8), 'hex'),
   created_at        timestamptz not null default now(),
   updated_at        timestamptz not null default now(),
   published_at      timestamptz

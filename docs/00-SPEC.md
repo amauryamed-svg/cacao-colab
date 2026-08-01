@@ -176,12 +176,12 @@ Deja de ser "no un joint venture legal, solo una plataforma compartida de marca"
 
 | # | Tarea | Prioridad | Owner |
 |---|-------|-----------|-------|
-| P1 | `supabase login` + crear proyecto real | 🔴 Alta | Amaury (interactivo, no delegable) |
+| ~~P1~~ | ~~`supabase login` + crear proyecto real~~ | ✅ Resuelto (2026-08-01) | Proyecto real `cacao-colab` (`pffwjwdsorwhlxgbcnvp`) linkeado y en producción vía Vercel. 21/21 migraciones aplicadas — incluye fix de `gen_random_bytes` sin calificar schema (`extensions.gen_random_bytes`, ver `supabase/migrations/20260801060000_node_bios.sql`). |
 | P2 | Invitar collaborators GitHub (`HellenBareno-eng`, `oscargamboa68`) — usernames ya documentados en `19-BUILDERS-FOUNDERS.md` | 🟡 Media | Amaury (UI GitHub Settings; el token del agente no puede invitar) |
-| P3 | Decisión de dominio propio (`cacaocolab.co` u otro) | 🟡 Media | Amaury |
+| ~~P3~~ | ~~Decisión de dominio propio~~ | ✅ Resuelto | `cacaocolab.org` comprado y wireado (D17), sirve 200 OK en producción. Ver `24-DOMINIO-CACAOCOLAB-ORG.md`. |
 | P4 | Cuenta Stripe Connect (KYC/entidad legal de la plataforma) | 🔴 Alta | Amaury |
 | P5 | Confirmar si el contacto de Oscar Gamboa se da de alta en HubSpot | 🟡 Media | Amaury |
-| P6 | Revisar y mergear `v2-pivot` → `main` cuando el contenido esté validado | 🟡 Media | Amaury |
+| ~~P6~~ | ~~Revisar y mergear `v2-pivot` → `main`~~ | ✅ Resuelto | Ya está en `main` (merge-base confirma `v2-pivot-foundation` es ancestro de `main`). Worktree `~/cacao-colab-v2-pivot` queda redundante, pendiente de limpieza. |
 | P7 | Confirmar si `cacaofrutabrutal` (otro proyecto Vercel) es parte de este ecosistema | 🟢 Baja | Amaury |
 | P8 | Activar MOOC Zurych cuando esté listo | 🟢 Baja | Zurych |
 
