@@ -42,7 +42,17 @@ export async function updateSupabaseSession(request: NextRequest) {
   // Importante: dispara la lectura/refresh de sesión. No usar getSession()
   // acá — getUser() valida el JWT contra Supabase Auth en vez de solo leer
   // la cookie (recomendación oficial de seguridad de Supabase SSR).
-  await supabase.auth.getUser();
+  //
+  // Si esta llamada falla (red, timeout, hiccup transitorio de Supabase),
+  // no debe tumbar el request completo — el middleware corre en /cuenta,
+  // /campus, /aprende, /juega y /equipo, así que un error acá se traducía
+  // en un 503 duro para cualquier página o Server Action bajo esas rutas
+  // (ej. el submit de magic link en /cuenta/entrar).
+  try {
+    await supabase.auth.getUser();
+  } catch {
+    return response;
+  }
 
   return response;
 }
