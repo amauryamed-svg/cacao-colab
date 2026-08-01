@@ -28,7 +28,8 @@
 | Portal interno /equipo | `team_members` | `0011_team_auth.sql` | (nuevo, agregado 2026-07-26 durante la ejecución) |
 | Campus registrado | `campus_progress`, `gotchi_runs` | `0012_campus_registered_progress.sql` | Progreso local |
 | CRM funnel | `analytics_events` + superadmin | `0013_unified_admin_crm_funnel.sql` | Analytics disperso |
-| Edutainment loyalty | `mazorca_wallets`, `mazorca_ledger`, `community_ranks`, `benefit_*`, `brand_commerce_adapters` | `0014_mazorcas_doradas_loyalty.sql` | XP no canjeable |
+| Edutainment loyalty | `mazorca_wallets`, `mazorca_ledger`, `community_ranks`, `benefit_*`, `brand_commerce_adapters` | `0014_mazorcas_doradas_loyalty.sql` | XP no canjeable 1:1 |
+| Economía MD scorecard | `mazorca_pack_intents`, `mazorca_scorecard_settlements` + sinks Colab | `20260801120000_economia_md_scorecard.sql` | Packs no suben rango; BSC anti-MLM |
 
 ---
 

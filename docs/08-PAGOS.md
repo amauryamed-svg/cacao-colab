@@ -50,6 +50,10 @@ En vez de "separate charges and transfers" (2 pasos, más superficie de error), 
 
 ---
 
+## 2.1 Packs de Mazorcas Doradas
+
+Además del marketplace, el Colab venderá packs de MD (Saco / Cesta / Cosecha) para canjear cursos y aceleraciones. Flujo: `mazorca_pack_intents` → Checkout Stripe → webhook acredita `pack_purchase` **sin** sumar a `lifetime_earned` (anti pay-to-win de rango). Detalle en `26-ECONOMIA-MD-SCORECARD.md`. Hasta existir `STRIPE_SECRET_KEY`, la UI solo registra la intención.
+
 ## 3. Membresías (Stripe Subscriptions)
 
 `membership_plans` define tiers (`free`/`pro`/`enterprise`) con `price_cents_monthly` y `commission_ratio_basis_points` propio (a menor comisión, mayor cuota mensual — el trade-off explícito del modelo híbrido). `memberships` trackea el estado (`trialing`/`active`/`past_due`/`cancelled`) sincronizado vía webhook de Stripe (`customer.subscription.updated`).
