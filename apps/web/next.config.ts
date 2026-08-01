@@ -9,6 +9,15 @@ const nextConfig: NextConfig = {
     return [
       { source: "/amaury", destination: "/amauryamed", permanent: false },
       { source: "/perfil/amaury", destination: "/amauryamed", permanent: false },
+      // *.vercel.app del mismo proyecto → dominio canónico (docs/24-DOMINIO-CACAOCOLAB-ORG.md).
+      // cacao-colab-web.vercel.app / cacao-colab-api.vercel.app son proyectos Vercel
+      // aparte del pivote, este redirect no los alcanza (ver Spec P-housekeeping).
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "cacao-colab.vercel.app" }],
+        destination: "https://cacaocolab.org/:path*",
+        permanent: true,
+      },
     ]
   },
   turbopack: {
