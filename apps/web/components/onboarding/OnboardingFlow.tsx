@@ -251,6 +251,7 @@ export default function OnboardingFlow({ onComplete }: { onComplete?: () => void
   const [privacyAccepted, setPrivacyAccepted] = useState(false)
   const [termsAccepted, setTermsAccepted] = useState(false)
   const [marketingOptIn, setMarketingOptIn] = useState(false)
+  const [submitError, setSubmitError] = useState('')
   const [data, setData] = useState<FormData>({
     tipo: '',
     nombre: '',
@@ -267,6 +268,9 @@ export default function OnboardingFlow({ onComplete }: { onComplete?: () => void
 
   const set = (k: keyof FormData, v: string) => setData((d) => ({ ...d, [k]: v }))
 
+  const emailReady = data.email.includes('@')
+  const consentReady = consentIsReady(privacyAccepted, termsAccepted)
+
   const canAdvance =
     (
       [
@@ -275,7 +279,10 @@ export default function OnboardingFlow({ onComplete }: { onComplete?: () => void
         data.nombre.trim().length > 1,
         data.interes !== '',
         data.ciudad.trim().length > 1,
-        data.email.includes('@') && consentIsReady(privacyAccepted, termsAccepted),
+        // Paso final: email basta para habilitar el botón; el consentimiento
+        // se valida en submit() para que un click siempre produzca feedback
+        // (si el botón está disabled, no hay POST ni mensaje de error).
+        emailReady,
       ] as boolean[]
     )[step] ?? true
 
@@ -287,7 +294,16 @@ export default function OnboardingFlow({ onComplete }: { onComplete?: () => void
   }
 
   async function submit() {
-    if (!canAdvance || submitting) return
+    if (submitting) return
+    if (!emailReady) {
+      setSubmitError('Ingresa un correo válido.')
+      return
+    }
+    if (!consentReady) {
+      setSubmitError('Marca la casilla de Privacidad y Términos para unirte.')
+      return
+    }
+    setSubmitError('')
     setSubmitting(true)
     try {
       let utms: Record<string, string> = {}
@@ -297,7 +313,7 @@ export default function OnboardingFlow({ onComplete }: { onComplete?: () => void
         // sin UTMs
       }
       const analytics = hasAnalyticsConsentClient() ? getAnalyticsIdentity() : {}
-      await fetch('/api/onboarding', {
+      const res = await fetch('/api/onboarding', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -309,11 +325,22 @@ export default function OnboardingFlow({ onComplete }: { onComplete?: () => void
           marketing_opt_in: marketingOptIn,
         }),
       })
+      if (!res.ok) {
+        const body = await res.json().catch(() => null)
+        setSubmitError(
+          typeof body?.error === 'string'
+            ? body.error
+            : 'No pudimos completar el registro. Intenta de nuevo.',
+        )
+        return
+      }
+      setStep(TOTAL_STEPS)
     } catch {
-      // HubSpot failure no bloquea
+      // Red caída: igual mostramos confirmación para no atrapar al lead localmente
+      // si HubSpot/CRM fallan de forma opaca; el API ya es best-effort.
+      setStep(TOTAL_STEPS)
     } finally {
       setSubmitting(false)
-      setStep(TOTAL_STEPS)
     }
   }
 
@@ -546,25 +573,44 @@ export default function OnboardingFlow({ onComplete }: { onComplete?: () => void
               privacyAccepted={privacyAccepted}
               termsAccepted={termsAccepted}
               marketingOptIn={marketingOptIn}
-              onPrivacyChange={setPrivacyAccepted}
+              onPrivacyChange={(value) => {
+                setPrivacyAccepted(value)
+                if (value) setSubmitError('')
+              }}
               onTermsChange={setTermsAccepted}
               onMarketingChange={setMarketingOptIn}
               tone="dark"
             />
           </div>
+          {submitError && (
+            <p className="text-xs text-red-300 mt-4" role="alert" data-testid="onboarding-error">
+              {submitError}
+            </p>
+          )}
+          {!consentReady && emailReady && !submitError && (
+            <p className="text-[11px] mt-4" style={{ color: 'rgba(247,241,238,.45)' }} data-testid="onboarding-consent-hint">
+              Marca la casilla de Privacidad y Términos para habilitar el registro.
+            </p>
+          )}
           <div className="flex gap-3 mt-8">
             <BackBtn onClick={back} />
             <button
+              type="button"
               onClick={submit}
-              disabled={!canAdvance || submitting}
+              disabled={!emailReady || submitting}
+              data-testid="onboarding-submit"
               className="flex-1 py-4 rounded-xl font-bold text-base transition-all duration-200"
               style={{
-                background: canAdvance && !submitting ? '#F2C830' : 'rgba(242,200,48,.2)',
-                color: canAdvance && !submitting ? '#1A2E10' : 'rgba(242,200,48,.4)',
-                cursor: canAdvance && !submitting ? 'pointer' : 'not-allowed',
+                background: emailReady && !submitting ? '#F2C830' : 'rgba(242,200,48,.2)',
+                color: emailReady && !submitting ? '#1A2E10' : 'rgba(242,200,48,.4)',
+                cursor: emailReady && !submitting ? 'pointer' : 'not-allowed',
               }}
             >
-              {submitting ? 'Enviando…' : 'Unirme al Colab →'}
+              {submitting
+                ? 'Enviando…'
+                : consentReady
+                  ? 'Unirme al Colab →'
+                  : 'Acepta privacidad y únete →'}
             </button>
           </div>
         </StepWrap>

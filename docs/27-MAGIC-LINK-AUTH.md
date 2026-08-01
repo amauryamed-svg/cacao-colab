@@ -80,8 +80,20 @@ Dashboard Supabase → Authentication → URL Configuration:
 
 ---
 
-## 6. Nota para agentes
+## 6. Nota para agentes (browser / Claude-in-chrome)
 
 No busques botones Google/Apple ni `signInWithOAuth`: fueron retirados a propósito.  
 No apuntes docs a `apps/web/app/equipo/login/actions.ts` (ya no existe): el login unificado es `/cuenta/entrar`.  
 Si el magic link “no llega”, prioriza Site URL + Resend + allow-list antes de reescribir el flujo.
+
+### Por qué a veces “no hay POST”
+
+El submit **no** se deshabilita por falta de consentimiento (eso hacía que un click no generara red ni error). Flujo correcto de prueba:
+
+1. `#colab-consent-privacy-terms` o `[data-testid="auth-consent-checkbox"]` → check  
+2. `[data-testid="auth-email-input"]` → email  
+3. `[data-testid="auth-submit"]` → click → debe verse server action / POST  
+4. Éxito → `[data-testid="auth-magic-link-sent"]`
+
+En `/unete` paso final: `[data-testid="onboarding-submit"]` tras el checkbox.  
+Los links legales son `<a target="_blank">` (sin `next/link`) para no llenar el network de prefetch RSC.

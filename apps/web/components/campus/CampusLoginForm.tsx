@@ -40,22 +40,35 @@ export default function CampusLoginForm({
 
   function submitMagicLink(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    // Importante: el botón NO se deshabilita por falta de consentimiento.
+    // Si está disabled, un click (humano o automatizado) no dispara submit
+    // ni POST — parece “roto”. En su lugar mostramos el error aquí.
     if (!ready) {
       onRequireConsent?.()
       setStatus("error")
-      setError("Debes aceptar Privacidad y Términos para continuar.")
+      setError("Marca la casilla de Privacidad y Términos para continuar.")
+      return
+    }
+    if (!email.includes("@")) {
+      setStatus("error")
+      setError("Ingresa un email válido.")
       return
     }
     const formData = new FormData()
     buildConsentFields(formData)
     startTransition(async () => {
-      const result = await requestCampusMagicLink(formData)
-      if (result.ok) {
-        setStatus("sent")
-        setError("")
-      } else {
+      try {
+        const result = await requestCampusMagicLink(formData)
+        if (result.ok) {
+          setStatus("sent")
+          setError("")
+        } else {
+          setStatus("error")
+          setError(result.error)
+        }
+      } catch (err) {
         setStatus("error")
-        setError(result.error)
+        setError(err instanceof Error ? err.message : "No fue posible enviar el acceso.")
       }
     })
   }
@@ -67,19 +80,23 @@ export default function CampusLoginForm({
     formData.set("token", otp)
     formData.set("next", next)
     startTransition(async () => {
-      const result = await verifyCampusEmailOtp(formData)
-      if (result.ok) {
-        router.push(result.redirectedTo ?? next)
-        router.refresh()
-      } else {
-        setError(result.error)
+      try {
+        const result = await verifyCampusEmailOtp(formData)
+        if (result.ok) {
+          router.push(result.redirectedTo ?? next)
+          router.refresh()
+        } else {
+          setError(result.error)
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "No fue posible validar el código.")
       }
     })
   }
 
   if (status === "sent") {
     return (
-      <div className="space-y-4">
+      <div className="space-y-4" data-testid="auth-magic-link-sent">
         <div className="campus-auth-message">
           <span>✦</span>
           <h2>Revisa tu correo</h2>
@@ -89,7 +106,7 @@ export default function CampusLoginForm({
           </p>
         </div>
 
-        <form onSubmit={submitOtp} className="space-y-3">
+        <form onSubmit={submitOtp} className="space-y-3" data-testid="auth-otp-form">
           <label className="block">
             <span className="eyebrow text-colab-forest/45">Código del correo</span>
             <input
@@ -101,10 +118,16 @@ export default function CampusLoginForm({
               placeholder="12345678"
               className="campus-auth-input"
               required
+              data-testid="auth-otp-input"
             />
           </label>
-          {error && <p className="text-xs text-red-700">{error}</p>}
-          <button type="submit" disabled={pending || otp.trim().length < 6} className="campus-auth-primary">
+          {error && <p className="text-xs text-red-700" data-testid="auth-error">{error}</p>}
+          <button
+            type="submit"
+            disabled={pending || otp.trim().length < 6}
+            className="campus-auth-primary"
+            data-testid="auth-otp-submit"
+          >
             {pending ? "Validando…" : "Entrar con el código →"}
           </button>
         </form>
@@ -126,7 +149,7 @@ export default function CampusLoginForm({
   }
 
   return (
-    <form onSubmit={submitMagicLink} className="space-y-3">
+    <form onSubmit={submitMagicLink} className="space-y-3" data-testid="auth-magic-link-form">
       <label className="block">
         <span className="eyebrow text-colab-forest/45">Email</span>
         <input
@@ -136,12 +159,28 @@ export default function CampusLoginForm({
           onChange={(event) => setEmail(event.target.value)}
           placeholder="tu@email.com"
           className="campus-auth-input"
+          data-testid="auth-email-input"
         />
       </label>
-      {status === "error" && <p className="text-xs text-red-700">{error}</p>}
-      <button type="submit" disabled={pending || !ready} className="campus-auth-primary">
-        {pending ? "Enviando…" : "Enviar acceso por correo →"}
+      {status === "error" && (
+        <p className="text-xs text-red-700" data-testid="auth-error" role="alert">
+          {error}
+        </p>
+      )}
+      <button
+        type="submit"
+        disabled={pending}
+        className="campus-auth-primary"
+        data-testid="auth-submit"
+        aria-disabled={!ready || pending}
+      >
+        {pending ? "Enviando…" : ready ? "Enviar acceso por correo →" : "Acepta privacidad y envía →"}
       </button>
+      {!ready && (
+        <p className="campus-auth-footnote" data-testid="auth-consent-hint">
+          Marca la casilla de Privacidad y Términos arriba para poder crear la cuenta.
+        </p>
+      )}
       <p className="campus-auth-footnote">
         Solo magic link por email. No usamos Google ni Apple para el registro.
       </p>
