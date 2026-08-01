@@ -60,6 +60,6 @@ Reglas pendientes de decisión (no inventadas en esta pasada):
 
 - Arquitecto de Fermentación: seis misiones, 18 tarjetas, seis retos, corazones y 700 XP.
 - Cacao Gotchi: crecimiento horario, parámetros de árbol, nodo, FEAR 5 y fase de fermentación.
-- Campus Auth: Google, Apple y magic link implementados en código.
+- Campus Auth: solo magic link / OTP por email (`/cuenta/entrar`). Google/Apple retirados — ver `27-MAGIC-LINK-AUTH.md`.
 - Persistencia: tablas y RLS en migración 0012; fallback local resiliente.
 - Pendiente operativo: habilitar proveedores OAuth y aplicar migraciones en el Supabase vivo.

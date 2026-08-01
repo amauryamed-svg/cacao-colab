@@ -5,6 +5,7 @@ import { createSupabaseServerClient } from "@cacao-colab/supabase-client/server"
 import type { Json } from "@cacao-colab/supabase-client/database.types"
 import { consentToUserMetadata } from "@/lib/legal/consent"
 import { LEGAL_POLICY_VERSION, TERMS_VERSION } from "@/lib/legal/versions"
+import { getSiteUrl } from "@/lib/site"
 
 const COOKIE_NAME = "colab_onboarded"
 const TIPO_LABEL: Record<string, string> = {
@@ -138,7 +139,8 @@ export async function POST(request: NextRequest) {
   let magicLink = false
   try {
     const supabase = await createSupabaseServerClient()
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
+    // getSiteUrl() cae a https://cacaocolab.org — nunca a localhost en prod.
+    const siteUrl = getSiteUrl()
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {

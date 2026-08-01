@@ -82,7 +82,7 @@ Dashboard Supabase → Authentication → URL Configuration:
 
 También en `supabase/config.toml` (`site_url` + `additional_redirect_urls`) para entornos locales/CLI.
 
-Google / Apple OAuth: agregar `https://cacaocolab.org/auth/callback` en cada consola de proveedor.
+Registro público: **solo magic link** (Google/Apple deshabilitados). Detalle ops: `27-MAGIC-LINK-AUTH.md`.
 
 ---
 
@@ -93,10 +93,10 @@ Google / Apple OAuth: agregar `https://cacaocolab.org/auth/callback` en cada con
 - [ ] Resend: dominio `cacaocolab.org` **Verified**
 - [ ] `RESEND_FROM=Cacao Colab <seguimiento@cacaocolab.org>` en Vercel Production
 - [ ] Rotar `RESEND_API_KEY` si sigue la key expuesta
-- [ ] Supabase Site URL + Redirect URLs
-- [ ] OAuth Google/Apple callback actualizado
+- [ ] Supabase Site URL + Redirect URLs (Email provider ON; Google/Apple OFF)
 - [ ] Probar: abrir https://cacaocolab.org/amauryamed
 - [ ] Probar: magic link llega y vuelve a `/auth/callback`
+- [ ] Probar: código OTP en `/cuenta/entrar` si el enlace se abre en otro dispositivo
 - [ ] Probar: correo de seguimiento a un email externo (no sandbox)
 - [ ] App Store privacy URL → `https://cacaocolab.org/legal/privacidad`
 

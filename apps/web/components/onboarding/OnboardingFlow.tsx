@@ -603,6 +603,9 @@ export default function OnboardingFlow({ onComplete }: { onComplete?: () => void
           >
             Crear bio de nodo →
           </Link>
+          <Link href="/cuenta/entrar?next=/aprende" className="onboard-cta-ghost" onClick={onComplete}>
+            Abrir el acceso por correo →
+          </Link>
           <Link href="/aprende" className="onboard-cta-ghost" onClick={onComplete}>
             Entrar al campus Dualita →
           </Link>

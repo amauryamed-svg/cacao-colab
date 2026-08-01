@@ -36,7 +36,7 @@ export const privacidadDoc: LegalDocument = {
       paragraphs: ["Según cómo uses el Colab, podemos tratar:"],
       bullets: [
         "Identidad y contacto: nombre, email, teléfono/WhatsApp, ciudad, organización.",
-        "Cuenta y autenticación: identificadores de Supabase Auth, proveedores OAuth (Google/Apple), metadatos de sesión.",
+        "Cuenta y autenticación: identificadores de Supabase Auth (magic link / OTP por email), metadatos de sesión.",
         "Progreso educativo: módulos Dualita, XP, rachas, Sembrar (gotchi), Mazorcas Doradas, bitácoras de fermentación.",
         "CRM y marketing con opt-in: motivación, tipo de operación, UTMs, notas de seguimiento, preferencias de correo.",
         "Técnicos: cookies esenciales, preferencias de consentimiento, IP aproximada/logs de seguridad, user-agent, eventos de analítica solo con consentimiento cuando la ley lo exige.",
@@ -61,7 +61,7 @@ export const privacidadDoc: LegalDocument = {
       id: "optin",
       title: "5. Opt-in al crear usuario",
       paragraphs: [
-        "No creamos cuenta educativa sin un acto afirmativo: debes marcar que aceptas la Política de Privacidad y los Términos antes de magic link, Google o Apple.",
+        "No creamos cuenta educativa sin un acto afirmativo: debes marcar que aceptas la Política de Privacidad y los Términos antes de solicitar el magic link / código por email.",
         "El marketing (emails de nurturing, newsletters) es un consentimiento separado y revocable. Sin ese opt-in no te incluimos en campañas promocionales; sí podemos enviarte mensajes transaccionales del servicio (acceso, seguridad, cambios materiales de políticas).",
         "Registramos versión de política, marca temporal y fuente del consentimiento (cuenta / onboarding / cookies).",
       ],
@@ -84,7 +84,6 @@ export const privacidadDoc: LegalDocument = {
         "Vercel (hosting de la aplicación web).",
         "HubSpot (CRM y correos, cuando capturamos leads o sincronizamos progreso con opt-in aplicable).",
         "Sentry (diagnóstico de errores; minimizar PII en eventos).",
-        "Proveedores OAuth: Google / Apple (según elijas).",
         "WhatsApp / Meta (si nos escribes por ese canal).",
       ],
     },

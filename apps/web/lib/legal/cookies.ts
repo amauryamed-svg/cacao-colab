@@ -33,7 +33,7 @@ export const cookiesDoc: LegalDocument = {
       paragraphs: ["Identificadores orientativos (pueden evolucionar):"],
       bullets: [
         "colab_cookie_consent — preferencias de cookies (esencial).",
-        "colab_auth_consent — consentimiento legal pendiente de persistir tras OAuth/magic link (esencial, corta duración).",
+        "colab_auth_consent — consentimiento legal pendiente de persistir tras magic link (esencial, corta duración).",
         "colab_onboarded — recordar si completaste o saltaste el gate de bienvenida (preferencia/UX).",
         "Cookies de sesión Supabase Auth — acceso seguro.",
         "localStorage: colab_visitor_id / colab_session_id / colab_utms / progreso local — analítica o UX; la telemetría al servidor respeta tu opt-in de analítica.",
