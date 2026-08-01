@@ -6,21 +6,27 @@ import Link from "next/link"
 const paths = {
   aprender: {
     label: "Quiero aprender",
-    response: "Empieza con Microlearning CAÚA o una misión Master Cacaotier. El XP mide competencia; cada misión verificada puede acreditar Mazorcas Doradas.",
+    response: "Empieza con Microlearning CAÚA o una misión Master Cacaotier. El XP mide competencia y apalanca tu bono scorecard; las MD se acreditan por montos declarados, no convirtiendo XP.",
     href: "/aprende",
     cta: "Abrir campus",
   },
   cuidar: {
     label: "Quiero Sembrar mi labranza",
-    response: "Sembrar reconoce cuidado y bitácora con tope diario. Plántulas Ecoyuma, sombra, suelo, agua y cartografía pesan más que hacer clic sin criterio.",
+    response: "Sembrar reconoce cuidado y bitácora con tope diario. Equilibra cuidado con aprendizaje: el scorecard semanal premia productividad propia, no reclutamiento.",
     href: "/juega",
     cta: "Ir a la labranza",
   },
+  canjear: {
+    label: "Quiero canjear cursos",
+    response: "Con saldo MD puedes canjear aceleraciones y previews Colab activos. También puedes solicitar packs de compra; no suben el rango. Marcas externas siguen planeadas.",
+    href: "/cuenta/mazorcas",
+    cta: "Abrir wallet MD",
+  },
   marcas: {
     label: "Quiero explorar marcas",
-    response: "Puedo comparar beneficios por marca, pero hoy ningún conector ecommerce está activo. Te mostraré estado y términos antes de cualquier redención.",
-    href: "/marketplace",
-    cta: "Ver nodos y marcas",
+    response: "Puedo comparar beneficios por marca. Los sinks Colab digitales ya pueden canjearse; conectores ecommerce de marca siguen inactivos hasta acuerdo.",
+    href: "/marketplace/beneficios",
+    cta: "Ver catálogo MD",
   },
 } as const
 

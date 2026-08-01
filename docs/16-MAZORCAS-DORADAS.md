@@ -1,12 +1,14 @@
 # Mazorcas Doradas · programa de fidelidad Cacao Colab
 
+> Economía ampliada (packs, canje de cursos, scorecard BSC): ver **`26-ECONOMIA-MD-SCORECARD.md`**.
+
 ## 1. Qué es
 
-Mazorcas Doradas (MD) es un sistema de puntos de fidelidad para reconocer aprendizaje, cuidado de labranzas, aportes comunitarios aprobados y compras verificadas. No es dinero, inversión, depósito, criptoactivo ni ingreso.
+Mazorcas Doradas (MD) es un sistema de puntos de fidelidad para reconocer aprendizaje, cuidado de labranzas, aportes comunitarios aprobados y compras verificadas. También se pueden **comprar packs** y **canjear** por cursos/aceleraciones Colab. No es dinero, inversión, depósito, criptoactivo ni ingreso.
 
 XP y MD son distintos:
 
-- **XP:** progreso educativo y desbloqueo de contenido.
+- **XP:** progreso educativo, desbloqueo pedagógico y **apalancamiento** del bono scorecard (no se gasta ni se cambia 1:1).
 - **MD:** saldo de fidelidad sujeto a catálogo, stock, rango y términos.
 
 ## 2. Principio anti-pirámide
@@ -34,8 +36,10 @@ Los rangos dependen exclusivamente de actividad propia verificable.
 | Cuidado | cosecha + fermentación completas | 60 | estado `complete` del run |
 | Comunidad | evidencia de campo | — | moderación pendiente |
 | Compra verificada | orden pagada | — | webhook de comercio futuro |
+| Pack MD | Saco / Cesta / Cosecha | 100 / 300 / 800 | pago Stripe → `pack_purchase` (no suma a rango) |
+| Scorecard semanal | bono BSC productividad propia | ≤ techo por rango | `scorecard_settlement`; XP solo apalanca |
 
-Los montos viven en `apps/web/lib/loyalty.ts` (`mazorcaRewards`) y **no** se derivan del XP: un módulo entrega 50 XP y 40 MD porque miden cosas distintas.
+Los montos viven en `apps/web/lib/loyalty.ts` (`mazorcaRewards`, `mdBuyPacks`, `scorecardConfig`) y **no** se derivan del XP: un módulo entrega XP y MD porque miden cosas distintas. El XP puede **multiplicar** el bono semanal (hasta ×1.25), nunca convertirse.
 
 El ledger `mazorca_ledger` es append-only. Cada evento usa una clave idempotente para impedir doble acreditación.
 
@@ -68,9 +72,11 @@ Un beneficio solo se puede redimir cuando:
 
 1. `benefit_catalog_items.status = active`;
 2. existe stock o capacidad;
-3. el conector/fulfillment está probado;
+3. el conector/fulfillment está probado **o** es `colab_digital` con adaptador Colab nativo activo;
 4. el usuario cumple saldo, rango y límite;
 5. se muestran vigencia y términos.
+
+API: `POST /api/loyalty/redeem` con `{ catalogItemId }`. Débito en ledger + fila en `benefit_redemptions`; sinks digitales marcan `campus_progress.state.md_unlocked`.
 
 Las tarjetas “planeadas” no son ofertas exigibles ni promesas de descuento.
 
@@ -105,6 +111,7 @@ El minijuego usa “labranza” para representar continuidad familiar y comunita
 Migraciones requeridas en el proyecto Supabase:
 
 1. `20260729213014_mazorcas_doradas_loyalty.sql` — wallets, ledger, rangos, catálogo, redenciones y adaptadores.
-2. `20260730170013_benefit_catalog_seed.sql` — seis beneficios en estado `planned` y adaptadores `inactive` por marca.
+2. `20260730170013_benefit_catalog_seed.sql` — beneficios planeados de marca y adaptadores `inactive`.
+3. `20260801120000_economia_md_scorecard.sql` — packs, scorecard, sinks Colab digitales activos, `pack_purchase` sin lifetime.
 
-`/marketplace/beneficios` lee el catálogo real cuando existe: muestra estado, conector y términos tal como están en la base. Si la migración no está aplicada, la página lo declara y usa la lista en código. El botón de canje solo se habilita cuando el ítem está `active` **y** su conector está `active`; hoy ninguna marca cumple ambas condiciones.
+`/marketplace/beneficios` y `/cuenta/mazorcas` cubren ganar / comprar / apalancar / canjear. Canje Colab digital se habilita con ítem `active` + fulfillment nativo. Checkout Stripe de packs queda pendiente de `STRIPE_SECRET_KEY` (intents sí se registran).

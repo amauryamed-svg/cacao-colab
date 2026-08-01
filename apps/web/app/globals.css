@@ -2377,8 +2377,171 @@ body {
 .benefit-card dt { color: rgba(26, 46, 16, .4); font-size: .55rem; }
 .benefit-card dd { color: #1A2E10; font-size: .55rem; font-weight: 800; }
 .benefit-terms { color: rgba(26, 46, 16, .38); font-size: .52rem; line-height: 1.5; margin-top: 1rem; }
-.benefit-card button { background: rgba(26, 46, 16, .08); border-radius: 99px; color: rgba(26, 46, 16, .35); cursor: not-allowed; font-size: .6rem; font-weight: 800; margin-top: auto; padding: .75rem; }
+.benefit-card button { background: rgba(26, 46, 16, .08); border-radius: 99px; color: rgba(26, 46, 16, .35); cursor: not-allowed; font-size: .6rem; font-weight: 800; margin-top: auto; padding: .75rem; width: 100%; }
 .benefit-card button:not(:disabled) { background: #F2C830; color: #1A2E10; cursor: pointer; }
+.benefit-redeem { margin-top: auto; }
+.benefit-redeem-msg { color: #3D7A2C; font-size: .52rem; line-height: 1.4; margin-top: .45rem; }
+.benefits-hero-actions { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.5rem; }
+.benefits-hero-actions a { margin-top: 0; }
+.benefits-hero-secondary { background: transparent !important; border: 1px solid rgba(242, 200, 48, .45); color: #F2C830 !important; }
+
+.economy-flow {
+  display: grid;
+  gap: .6rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+.economy-flow article {
+  background: rgba(247, 241, 238, .04);
+  border: 1px solid rgba(247, 241, 238, .1);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+.economy-flow span { color: #F2C830; font-size: .7rem; font-weight: 900; }
+.economy-flow h3 { color: #F7F1EE; font-family: var(--font-display); font-size: 1.1rem; margin-top: .4rem; }
+.economy-flow p { color: rgba(247, 241, 238, .45); font-size: .58rem; line-height: 1.5; margin-top: .35rem; }
+.economy-flow a { color: #F2C830; text-decoration: underline; }
+.rank-ceiling { color: rgba(242, 200, 48, .7); font-size: .52rem; margin-top: .7rem; }
+
+.scorecard-panel {
+  background: linear-gradient(145deg, rgba(26, 46, 16, .95), rgba(16, 29, 11, .98));
+  border: 1px solid rgba(242, 200, 48, .2);
+  border-radius: 1.2rem;
+  padding: 1.4rem;
+}
+.scorecard-panel-head {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.scorecard-panel-head h2 {
+  color: #F7F1EE;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  margin-top: .35rem;
+}
+.scorecard-panel-head > div > p:last-child {
+  color: rgba(247, 241, 238, .45);
+  font-size: .62rem;
+  line-height: 1.55;
+  margin-top: .55rem;
+  max-width: 36rem;
+}
+.scorecard-bonus {
+  background: rgba(242, 200, 48, .12);
+  border-radius: 1rem;
+  color: #F2C830;
+  min-width: 10rem;
+  padding: 1rem;
+  text-align: right;
+}
+.scorecard-bonus span, .scorecard-bonus small { display: block; font-size: .55rem; }
+.scorecard-bonus strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  line-height: 1;
+  margin: .35rem 0;
+}
+.scorecard-meta {
+  display: grid;
+  gap: .5rem;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 1.2rem;
+}
+.scorecard-meta div {
+  background: rgba(247, 241, 238, .04);
+  border-radius: .7rem;
+  padding: .7rem;
+}
+.scorecard-meta dt { color: rgba(247, 241, 238, .4); font-size: .5rem; }
+.scorecard-meta dd { color: #F7F1EE; font-size: .75rem; font-weight: 800; margin-top: .2rem; }
+.scorecard-perspectives {
+  display: grid;
+  gap: .4rem;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 1rem;
+}
+.scorecard-perspectives li {
+  background: rgba(247, 241, 238, .03);
+  border-radius: .6rem;
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+  padding: .7rem;
+}
+.scorecard-perspectives strong { color: #F2C830; font-size: .65rem; }
+.scorecard-perspectives span { color: rgba(247, 241, 238, .45); font-size: .52rem; }
+.scorecard-panel > button {
+  background: #F2C830;
+  border-radius: 99px;
+  color: #1A2E10;
+  font-size: .65rem;
+  font-weight: 900;
+  margin-top: 1.1rem;
+  padding: .75rem 1.2rem;
+}
+.scorecard-panel > button:disabled {
+  background: rgba(247, 241, 238, .12);
+  color: rgba(247, 241, 238, .35);
+  cursor: not-allowed;
+}
+.scorecard-note { color: #F2C830; font-size: .58rem; margin-top: .8rem; }
+
+.md-packs {
+  background: rgba(247, 241, 238, .03);
+  border: 1px solid rgba(247, 241, 238, .1);
+  border-radius: 1.2rem;
+  padding: 1.4rem;
+}
+.md-packs-head h2 {
+  color: #F7F1EE;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  margin-top: .3rem;
+}
+.md-packs-head p {
+  color: rgba(247, 241, 238, .45);
+  font-size: .62rem;
+  line-height: 1.55;
+  margin-top: .5rem;
+  max-width: 40rem;
+}
+.md-packs-grid {
+  display: grid;
+  gap: .6rem;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 1.1rem;
+}
+.md-packs-grid article {
+  background: rgba(16, 29, 11, .55);
+  border: 1px solid rgba(242, 200, 48, .18);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+.md-pack-name { color: #F2C830; font-size: .55rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.md-packs-grid strong {
+  color: #F7F1EE;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  margin-top: .4rem;
+}
+.md-packs-grid small { color: rgba(242, 200, 48, .8); font-size: .7rem; font-weight: 800; }
+.md-packs-grid p { color: rgba(247, 241, 238, .4); font-size: .55rem; line-height: 1.45; margin: .5rem 0 1rem; }
+.md-packs-grid button {
+  background: #F2C830;
+  border-radius: 99px;
+  color: #1A2E10;
+  font-size: .6rem;
+  font-weight: 900;
+  margin-top: auto;
+  padding: .7rem;
+}
+.md-packs-grid button:disabled { opacity: .5; }
+.md-packs-msg { color: #F2C830; font-size: .58rem; margin-top: .9rem; }
+.economy-anti { margin-bottom: 2rem; }
 
 .community-rank-grid { display: grid; gap: .5rem; grid-template-columns: repeat(6, 1fr); }
 .community-rank-grid article { background: white; border: 1px solid rgba(26, 46, 16, .08); border-radius: .8rem; padding: .9rem; }
@@ -2576,6 +2739,10 @@ body {
   .labranza-planner { grid-template-columns: 1fr; }
   .labranza-fields { grid-template-columns: 1fr 1fr; }
   .community-rank-grid, .rank-road { grid-template-columns: repeat(3, 1fr); }
+  .economy-flow { grid-template-columns: repeat(2, 1fr); }
+  .scorecard-panel-head { flex-direction: column; }
+  .scorecard-meta { grid-template-columns: repeat(2, 1fr); }
+  .md-packs-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 640px) {
@@ -2590,6 +2757,8 @@ body {
   .dualita-agent-card aside { grid-column: 1 / -1; }
   .community-rank-grid, .rank-road { grid-template-columns: repeat(2, 1fr); }
   .labranza-fields { grid-template-columns: 1fr; }
+  .economy-flow { grid-template-columns: 1fr; }
+  .scorecard-perspectives { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 640px) {

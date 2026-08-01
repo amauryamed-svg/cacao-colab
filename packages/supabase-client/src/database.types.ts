@@ -1192,6 +1192,123 @@ export type Database = {
           },
         ]
       }
+      mazorca_pack_intents: {
+        Row: {
+          created_at: string
+          id: string
+          ledger_credit_id: string | null
+          md_amount: number
+          metadata: Json
+          pack_slug: string
+          price_cop: number
+          profile_id: string
+          status: string
+          stripe_session_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          ledger_credit_id?: string | null
+          md_amount: number
+          metadata?: Json
+          pack_slug: string
+          price_cop: number
+          profile_id: string
+          status?: string
+          stripe_session_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          ledger_credit_id?: string | null
+          md_amount?: number
+          metadata?: Json
+          pack_slug?: string
+          price_cop?: number
+          profile_id?: string
+          status?: string
+          stripe_session_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mazorca_pack_intents_ledger_credit_id_fkey"
+            columns: ["ledger_credit_id"]
+            isOneToOne: false
+            referencedRelation: "mazorca_ledger"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "mazorca_pack_intents_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      mazorca_scorecard_settlements: {
+        Row: {
+          balance_score: number
+          bonus_md: number
+          ceiling_md: number
+          created_at: string
+          id: string
+          ledger_credit_id: string | null
+          period_key: string
+          perspectives: Json
+          profile_id: string
+          role_slug: string
+          xp_leverage: number
+          xp_total: number
+        }
+        Insert: {
+          balance_score?: number
+          bonus_md: number
+          ceiling_md: number
+          created_at?: string
+          id?: string
+          ledger_credit_id?: string | null
+          period_key: string
+          perspectives?: Json
+          profile_id: string
+          role_slug?: string
+          xp_leverage?: number
+          xp_total?: number
+        }
+        Update: {
+          balance_score?: number
+          bonus_md?: number
+          ceiling_md?: number
+          created_at?: string
+          id?: string
+          ledger_credit_id?: string | null
+          period_key?: string
+          perspectives?: Json
+          profile_id?: string
+          role_slug?: string
+          xp_leverage?: number
+          xp_total?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mazorca_scorecard_settlements_ledger_credit_id_fkey"
+            columns: ["ledger_credit_id"]
+            isOneToOne: false
+            referencedRelation: "mazorca_ledger"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "mazorca_scorecard_settlements_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       membership_plans: {
         Row: {
           commission_ratio_basis_points: number
