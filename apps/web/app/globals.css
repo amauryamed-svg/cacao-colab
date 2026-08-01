@@ -4213,3 +4213,248 @@ body {
   line-height: 1.45;
   color: rgba(247, 241, 238, 0.55);
 }
+
+/* ─── Nodo bio + manifiesto ─── */
+.nodo-bio-title {
+  margin: 0.6rem 0 0;
+  font-family: var(--font-fraunces), serif;
+  font-size: clamp(1.9rem, 5vw, 2.7rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #f7f1ee;
+}
+.nodo-bio-title em { font-style: normal; color: #f2c830; }
+.nodo-bio-lede {
+  margin-top: 0.85rem;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: rgba(247, 241, 238, 0.55);
+}
+.nodo-bio-option {
+  text-align: left;
+  padding: 0.95rem 1.1rem;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(247, 241, 238, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.nodo-bio-option strong {
+  display: block;
+  font-size: 0.95rem;
+  color: #f7f1ee;
+}
+.nodo-bio-option span {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: rgba(247, 241, 238, 0.45);
+}
+.nodo-bio-option.is-on {
+  border-color: rgba(242, 200, 48, 0.65);
+  background: rgba(242, 200, 48, 0.08);
+}
+.nodo-bio-input,
+.nodo-bio-textarea {
+  width: 100%;
+  margin-top: 0.4rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(247, 241, 238, 0.14);
+  background: rgba(0, 0, 0, 0.25);
+  color: #f7f1ee;
+  padding: 0.8rem 0.95rem;
+  font-size: 0.9rem;
+}
+.nodo-bio-textarea { resize: vertical; min-height: 7rem; }
+.nodo-bio-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px dashed rgba(242, 200, 48, 0.35);
+  color: rgba(247, 241, 238, 0.55);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.nodo-bio-upload input { font-size: 0.75rem; color: rgba(247, 241, 238, 0.7); }
+.nodo-bio-preview {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 999px;
+  object-fit: cover;
+}
+.nodo-bio-preview-wide {
+  width: min(100%, 18rem);
+  height: 11rem;
+  border-radius: 0.9rem;
+  object-fit: cover;
+}
+.nodo-bio-primary,
+.nodo-bio-ghost {
+  border-radius: 999px;
+  padding: 0.85rem 1.2rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: center;
+}
+.nodo-bio-primary {
+  background: #f2c830;
+  color: #1a2e10;
+}
+.nodo-bio-primary:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+.nodo-bio-ghost {
+  border: 1px solid rgba(247, 241, 238, 0.28);
+  color: #f7f1ee;
+}
+.nodo-bio-link {
+  display: block;
+  margin-top: 1.25rem;
+  padding: 0.9rem 1rem;
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: #f2c830;
+  font-size: 0.78rem;
+  word-break: break-all;
+}
+.nodo-bio-wa {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #87aa27;
+  text-decoration: underline;
+}
+.nodo-bio-done { text-align: left; }
+
+.manifiesto-page {
+  min-height: 70vh;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(135, 170, 39, 0.16), transparent 40%),
+    linear-gradient(180deg, #101d0b 0%, #140e0a 55%, #100c09 100%);
+  color: #f7f1ee;
+}
+.manifiesto-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+.manifiesto-list li span {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #f2c830;
+}
+.manifiesto-list h2 {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-fraunces), serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+}
+.manifiesto-list p {
+  margin: 0.45rem 0 0;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: rgba(247, 241, 238, 0.6);
+}
+.manifiesto-pledge {
+  margin: 2.5rem 0 0;
+  padding: 1.4rem 1.25rem;
+  border-left: 3px solid #f2c830;
+  font-family: var(--font-fraunces), serif;
+  font-size: 1.15rem;
+  line-height: 1.45;
+  color: #e8c9a0;
+}
+
+.nodo-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+}
+.nodo-card {
+  display: block;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid rgba(247, 241, 238, 0.1);
+  background: #1a120c;
+  transition: transform 0.2s ease;
+}
+.nodo-card:hover { transform: translateY(-3px); }
+.nodo-card__media {
+  position: relative;
+  aspect-ratio: 4/3;
+  background: #0d160c;
+}
+.nodo-card__placeholder {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 60% 40%, rgba(61, 122, 44, 0.35), transparent 50%),
+    #142016;
+}
+.nodo-card__body { padding: 0.9rem 1rem 1.1rem; }
+.nodo-card__body span {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #f2c830;
+}
+.nodo-card__body strong {
+  display: block;
+  margin-top: 0.35rem;
+  font-family: var(--font-fraunces), serif;
+  font-size: 1.15rem;
+}
+.nodo-card__body p {
+  margin: 0.3rem 0 0;
+  font-size: 0.78rem;
+  color: rgba(247, 241, 238, 0.5);
+}
+
+.nodo-profile__hero {
+  position: relative;
+  min-height: 18rem;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.nodo-profile__cover { object-fit: cover; }
+.nodo-profile__veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(16, 12, 9, 0.92) 0%, rgba(16, 12, 9, 0.35) 100%);
+}
+.nodo-profile__content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem;
+}
+.nodo-profile__avatar img,
+.nodo-profile__avatar-fallback {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 999px;
+  border: 2px solid rgba(242, 200, 48, 0.4);
+}
+.nodo-profile__avatar-fallback {
+  display: grid;
+  place-items: center;
+  background: #1a2e10;
+  font-family: var(--font-fraunces), serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #f2c830;
+}

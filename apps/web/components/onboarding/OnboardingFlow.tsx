@@ -330,9 +330,12 @@ export default function OnboardingFlow({ onComplete }: { onComplete?: () => void
             <em>como industria.</em>
           </h2>
           <p className="onboard-lede">
-            Cacao Colab es una plataforma de aceleración del cacao colombiano: subimos la
-            competitividad de nuestro cacao y chocolate con trabajo colaborativo — finca, marca,
-            cocina y nuevas generaciones en el mismo idioma.
+            Cacao Colab es una organización sin ánimo de lucro (.org): intermediarios para potenciar
+            la comunidad colectiva y colaborativa del cacao. Aceleramos competitividad compartida —
+            finca, marca, cocina y nuevas generaciones en el mismo idioma.{" "}
+            <Link href="/manifiesto" className="text-colab-yellow underline">
+              Leer el Manifiesto →
+            </Link>
           </p>
 
           <ol className="onboard-promises">
@@ -587,7 +590,19 @@ export default function OnboardingFlow({ onComplete }: { onComplete?: () => void
           razones para que la siguiente generación continúe.
         </p>
         <div className="flex flex-col gap-3 mt-2">
-          <Link href="/aprende" className="onboard-cta-primary" onClick={onComplete}>
+          <Link
+            href={`/unete/bio?${new URLSearchParams({
+              email: data.email,
+              nombre: data.nombre,
+              operacion: data.operacion,
+              ciudad: data.ciudad,
+            }).toString()}`}
+            className="onboard-cta-primary"
+            onClick={onComplete}
+          >
+            Crear bio de nodo →
+          </Link>
+          <Link href="/aprende" className="onboard-cta-ghost" onClick={onComplete}>
             Entrar al campus Dualita →
           </Link>
           {onComplete ? (
@@ -599,8 +614,8 @@ export default function OnboardingFlow({ onComplete }: { onComplete?: () => void
               Explorar el marketplace →
             </Link>
           )}
-          <Link href="/aprende/mooc/zurych-territorio" className="onboard-cta-ghost">
-            Abrir MOOC Zurych · territorio
+          <Link href="/manifiesto" className="onboard-cta-ghost" onClick={onComplete}>
+            Leer el Manifiesto .org →
           </Link>
         </div>
       </StepWrap>

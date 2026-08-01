@@ -60,6 +60,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <strong>cacaotier</strong> · un proyecto de Amaury Amed · {new Date().getFullYear()}
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
+              <Link href="/manifiesto">Manifiesto</Link>
+              <Link href="/nodo">Nodos</Link>
               <Link href="/amauryamed">Amaury · perfil</Link>
               <Link href="/aprende/cacaotier">Master Cacaotier</Link>
               <Link href="/legal/privacidad">Privacidad</Link>

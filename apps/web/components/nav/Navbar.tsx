@@ -2,9 +2,6 @@ import Link from "next/link"
 import SquirrelSVG from "@/components/brand/SquirrelSVG"
 import CacaoColabWordmark from "@/components/brand/CacaoColabWordmark"
 
-const WA_URL =
-  "https://wa.me/573102227848?text=Hola%20Cacao%20Colab%2C%20quiero%20saber%20más%20sobre%20el%20marketplace%20y%20Dualita."
-
 export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 bg-colab-forest/95 backdrop-blur-sm border-b border-colab-green/30">
@@ -22,10 +19,10 @@ export default function Navbar() {
             Mercado
           </Link>
           <Link
-            href="/marketplace/beneficios"
+            href="/nodo"
             className="hidden lg:inline text-xs font-bold text-colab-cream/70 hover:text-colab-yellow font-sans tracking-wide transition-colors"
           >
-            Beneficios
+            Nodos
           </Link>
           <Link
             href="/conocimiento"
@@ -34,10 +31,10 @@ export default function Navbar() {
             Conocimiento
           </Link>
           <Link
-            href="/rd"
+            href="/manifiesto"
             className="hidden lg:inline text-xs font-bold text-colab-cream/70 hover:text-colab-yellow font-sans tracking-wide transition-colors"
           >
-            R&D
+            Manifiesto
           </Link>
           <Link
             href="/aprende"
@@ -57,14 +54,12 @@ export default function Navbar() {
           >
             Mi cuenta
           </Link>
-          <a
-            href={WA_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/unete"
             className="bg-colab-yellow text-colab-forest text-xs font-bold px-4 py-2 rounded-full hover:bg-colab-amber transition-colors font-sans"
           >
             Unirme
-          </a>
+          </Link>
         </div>
       </div>
     </nav>
