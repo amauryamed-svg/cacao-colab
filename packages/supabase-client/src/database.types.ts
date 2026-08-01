@@ -1640,6 +1640,75 @@ export type Database = {
           },
         ]
       }
+      node_bios: {
+        Row: {
+          id: string
+          slug: string
+          status: string
+          kind: string
+          display_name: string
+          org_name: string
+          city: string | null
+          territory: string | null
+          intro: string
+          avatar_url: string | null
+          product_image_url: string | null
+          product_caption: string | null
+          email: string
+          whatsapp: string | null
+          instagram: string | null
+          website: string | null
+          share_token: string
+          created_at: string
+          updated_at: string
+          published_at: string | null
+        }
+        Insert: {
+          id?: string
+          slug: string
+          status?: string
+          kind: string
+          display_name: string
+          org_name: string
+          city?: string | null
+          territory?: string | null
+          intro: string
+          avatar_url?: string | null
+          product_image_url?: string | null
+          product_caption?: string | null
+          email: string
+          whatsapp?: string | null
+          instagram?: string | null
+          website?: string | null
+          share_token?: string
+          created_at?: string
+          updated_at?: string
+          published_at?: string | null
+        }
+        Update: {
+          id?: string
+          slug?: string
+          status?: string
+          kind?: string
+          display_name?: string
+          org_name?: string
+          city?: string | null
+          territory?: string | null
+          intro?: string
+          avatar_url?: string | null
+          product_image_url?: string | null
+          product_caption?: string | null
+          email?: string
+          whatsapp?: string | null
+          instagram?: string | null
+          website?: string | null
+          share_token?: string
+          created_at?: string
+          updated_at?: string
+          published_at?: string | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
