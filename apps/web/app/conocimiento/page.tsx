@@ -113,7 +113,7 @@ export default function ConocimientoPage() {
             </p>
           </div>
           <div className="flex flex-col sm:flex-row lg:flex-col gap-3">
-            <Link href="/benevolo" className="bg-colab-yellow text-colab-forest rounded-full px-7 py-3.5 text-sm font-bold text-center">
+            <Link href="/rd/bars" className="bg-colab-yellow text-colab-forest rounded-full px-7 py-3.5 text-sm font-bold text-center">
               Preordenar Benevolo →
             </Link>
             <Link href="/marketplace" className="border border-white/20 text-colab-cream rounded-full px-7 py-3.5 text-sm font-bold text-center">

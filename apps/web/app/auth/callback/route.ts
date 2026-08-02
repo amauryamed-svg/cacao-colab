@@ -21,6 +21,7 @@ export async function GET(request: NextRequest) {
     "/sembrar",
     "/cuenta",
     "/benevolo",
+    "/rd/bars",
     "/rd",
     "/credencial",
   ]

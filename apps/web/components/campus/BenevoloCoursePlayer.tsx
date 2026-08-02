@@ -141,8 +141,8 @@ export default function BenevoloCoursePlayer({
   return (
     <div className="architect-player chocolatier-player benevolo-player">
       <header className="architect-topbar">
-        <Link href="/benevolo" className="architect-exit">
-          ← Benevolo
+        <Link href="/rd/bars" className="architect-exit">
+          ← Bars. Colab
         </Link>
         <div className="architect-progress">
           <i
@@ -296,7 +296,7 @@ export default function BenevoloCoursePlayer({
                     </a>
                   </>
                 )}
-                <Link href="/benevolo">Preorden</Link>
+                <Link href="/rd/bars">Preorden Bars. →</Link>
                 <Link href="/unete">Colab</Link>
               </div>
             </div>

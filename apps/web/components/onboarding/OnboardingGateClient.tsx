@@ -23,6 +23,7 @@ const EXCLUDED_PREFIXES = [
   '/credencial',
   '/rd',
   '/benevolo',
+  '/rd/bars',
   '/amaury',
   '/amauryamed',
   '/perfil',
