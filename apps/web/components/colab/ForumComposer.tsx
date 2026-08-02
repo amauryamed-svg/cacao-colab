@@ -3,21 +3,29 @@
 import { useRouter } from "next/navigation"
 import { useState, useTransition, type FormEvent } from "react"
 import { createForumPost } from "@/app/colab/actions"
+import ForumDiplomaCard from "@/components/colab/ForumDiplomaCard"
 import {
   COURSE_SHARE_LABEL,
   defaultProgressCopy,
+  diplomaShareUrl,
   type ForumPostKind,
 } from "@/lib/colab-foro"
 
 export default function ForumComposer({
   presetShare,
   presetGrade,
+  presetDiploma,
 }: {
   presetShare?: string | null
   presetGrade?: string | null
+  presetDiploma?: string | null
 }) {
   const router = useRouter()
-  const preset = presetShare ? defaultProgressCopy(presetShare, presetGrade) : null
+  const diplomaUrl =
+    presetShare && presetDiploma ? diplomaShareUrl(presetShare, presetDiploma) : null
+  const preset = presetShare
+    ? defaultProgressCopy(presetShare, presetGrade, diplomaUrl)
+    : null
   const [kind, setKind] = useState<ForumPostKind>(presetShare ? "progress" : "sync")
   const [title, setTitle] = useState(preset?.title ?? "")
   const [body, setBody] = useState(preset?.body ?? "")
@@ -35,6 +43,7 @@ export default function ForumComposer({
         body,
         courseSlug: presetShare,
         grade: presetGrade,
+        diplomaUrl,
       })
       if (!result.ok) {
         setError(result.error)
@@ -48,13 +57,21 @@ export default function ForumComposer({
 
   return (
     <form className="colab-forum-composer" onSubmit={onSubmit}>
-      <p className="eyebrow text-colab-yellow">Publicar en el Colab</p>
-      <h2>Comparte avance, anuncio o sincronicidad</h2>
+      <p className="eyebrow text-colab-yellow">Publicar en el foro</p>
+      <h2>Comparte diploma, avance o sincronicidad</h2>
       {presetShare && (
         <p className="colab-forum-preset">
           Preparado desde {COURSE_SHARE_LABEL[presetShare] ?? presetShare}
           {presetGrade ? ` · ${presetGrade}` : ""}
+          {diplomaUrl ? " · con diploma de exhibición" : ""}
         </p>
+      )}
+      {diplomaUrl && (
+        <ForumDiplomaCard
+          diplomaUrl={diplomaUrl}
+          fallbackGrade={presetGrade}
+          fallbackCourse={presetShare}
+        />
       )}
       <div className="colab-forum-kinds" role="group" aria-label="Tipo de publicación">
         {(
@@ -81,7 +98,7 @@ export default function ForumComposer({
           onChange={(e) => setTitle(e.target.value)}
           maxLength={160}
           required
-          placeholder="Ej. Cerré Master Chocolatier"
+          placeholder="Ej. Cerré Arquitecto de Fermentación"
         />
       </label>
       <label>
@@ -92,7 +109,7 @@ export default function ForumComposer({
           maxLength={4000}
           required
           rows={4}
-          placeholder="Cuenta qué practicaste, qué descubriste o qué anuncio traes al colectivo…"
+          placeholder="Cuenta qué practicaste — tu diploma se exhibe con el diseño de credencial…"
         />
       </label>
       {error && <p className="colab-forum-error">{error}</p>}

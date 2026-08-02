@@ -2,7 +2,12 @@
 
 import { revalidatePath } from "next/cache"
 import { createSupabaseServerClient } from "@cacao-colab/supabase-client/server"
-import { FORUM_EMOJIS, type ForumEmoji, type ForumPostKind } from "@/lib/colab-foro"
+import {
+  FORUM_EMOJIS,
+  sanitizeDiplomaUrl,
+  type ForumEmoji,
+  type ForumPostKind,
+} from "@/lib/colab-foro"
 
 export type ForumFeedItem = {
   id: string
@@ -11,6 +16,7 @@ export type ForumFeedItem = {
   body: string
   courseSlug: string | null
   grade: string | null
+  diplomaUrl: string | null
   createdAt: string
   authorName: string
   authorId: string
@@ -20,21 +26,24 @@ export type ForumFeedItem = {
 
 type ActionResult = { ok: true; id?: string } | { ok: false; error: string }
 
-export async function loadForumFeed(limit = 40): Promise<ForumFeedItem[]> {
-  const supabase = await createSupabaseServerClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-  if (!user) return []
+type PostRow = {
+  id: string
+  kind: string
+  title: string
+  body: string
+  course_slug: string | null
+  grade: string | null
+  diploma_url?: string | null
+  created_at: string
+  profile_id: string
+}
 
-  const { data: posts, error } = await supabase
-    .from("colab_forum_posts")
-    .select("id,kind,title,body,course_slug,grade,created_at,profile_id")
-    .order("created_at", { ascending: false })
-    .limit(limit)
-
-  if (error || !posts?.length) return []
-
+async function hydrateFeed(
+  posts: PostRow[],
+  userId: string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  supabase: any,
+): Promise<ForumFeedItem[]> {
   const profileIds = [...new Set(posts.map((p) => p.profile_id))]
   const ids = posts.map((p) => p.id)
 
@@ -43,15 +52,22 @@ export async function loadForumFeed(limit = 40): Promise<ForumFeedItem[]> {
     supabase.from("colab_forum_reactions").select("post_id,profile_id,emoji").in("post_id", ids),
   ])
 
-  const nameById = new Map((profiles ?? []).map((p) => [p.id, p.full_name?.trim() || "Nodo Colab"]))
+  const nameById = new Map(
+    ((profiles ?? []) as { id: string; full_name: string | null }[]).map((p) => [
+      p.id,
+      p.full_name?.trim() || "Nodo Colab",
+    ]),
+  )
 
   return posts.map((post) => {
-    const postReactions = (reactions ?? []).filter((r) => r.post_id === post.id)
+    const postReactions = (
+      (reactions ?? []) as { post_id: string; profile_id: string; emoji: string }[]
+    ).filter((r) => r.post_id === post.id)
     const counts: Record<string, number> = {}
     const mine: string[] = []
     for (const reaction of postReactions) {
       counts[reaction.emoji] = (counts[reaction.emoji] ?? 0) + 1
-      if (reaction.profile_id === user.id) mine.push(reaction.emoji)
+      if (reaction.profile_id === userId) mine.push(reaction.emoji)
     }
 
     return {
@@ -61,6 +77,7 @@ export async function loadForumFeed(limit = 40): Promise<ForumFeedItem[]> {
       body: post.body,
       courseSlug: post.course_slug,
       grade: post.grade,
+      diplomaUrl: sanitizeDiplomaUrl(post.diploma_url ?? null),
       createdAt: post.created_at,
       authorName: nameById.get(post.profile_id) ?? "Nodo Colab",
       authorId: post.profile_id,
@@ -70,12 +87,45 @@ export async function loadForumFeed(limit = 40): Promise<ForumFeedItem[]> {
   })
 }
 
+export async function loadForumFeed(limit = 40): Promise<ForumFeedItem[]> {
+  const supabase = await createSupabaseServerClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+  if (!user) return []
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const db = supabase as any
+  const withDiploma = await db
+    .from("colab_forum_posts")
+    .select("id,kind,title,body,course_slug,grade,diploma_url,created_at,profile_id")
+    .order("created_at", { ascending: false })
+    .limit(limit)
+
+  if (!withDiploma.error && withDiploma.data?.length) {
+    return hydrateFeed(withDiploma.data as PostRow[], user.id, supabase)
+  }
+
+  if (withDiploma.error?.message?.includes("diploma_url")) {
+    const fallback = await supabase
+      .from("colab_forum_posts")
+      .select("id,kind,title,body,course_slug,grade,created_at,profile_id")
+      .order("created_at", { ascending: false })
+      .limit(limit)
+    if (fallback.error || !fallback.data?.length) return []
+    return hydrateFeed(fallback.data as unknown as PostRow[], user.id, supabase)
+  }
+
+  return []
+}
+
 export async function createForumPost(input: {
   kind: ForumPostKind
   title: string
   body: string
   courseSlug?: string | null
   grade?: string | null
+  diplomaUrl?: string | null
 }): Promise<ActionResult> {
   const supabase = await createSupabaseServerClient()
   const {
@@ -107,18 +157,36 @@ export async function createForumPost(input: {
     }
   }
 
-  const { data, error } = await supabase
+  const diplomaUrl = sanitizeDiplomaUrl(input.diplomaUrl)
+  const baseRow = {
+    profile_id: user.id,
+    kind,
+    title,
+    body,
+    course_slug: input.courseSlug?.slice(0, 80) ?? null,
+    grade: input.grade?.slice(0, 40) ?? null,
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const db = supabase as any
+  const withUrl = await db
     .from("colab_forum_posts")
-    .insert({
-      profile_id: user.id,
-      kind,
-      title,
-      body,
-      course_slug: input.courseSlug?.slice(0, 80) ?? null,
-      grade: input.grade?.slice(0, 40) ?? null,
-    })
+    .insert({ ...baseRow, diploma_url: diplomaUrl })
     .select("id")
     .single()
+
+  let data: { id: string } | null = withUrl.data
+  let error: { message: string } | null = withUrl.error
+
+  if (withUrl.error?.message?.includes("diploma_url")) {
+    const fallback = await supabase
+      .from("colab_forum_posts")
+      .insert(baseRow)
+      .select("id")
+      .single()
+    data = fallback.data
+    error = fallback.error
+  }
 
   if (error || !data) {
     return {
@@ -173,7 +241,6 @@ export async function toggleForumReaction(postId: string, emoji: ForumEmoji): Pr
   return { ok: true }
 }
 
-/** Anuncio semilla si el feed está vacío (best-effort). */
 export async function ensureForumSeed(): Promise<void> {
   try {
     const supabase = await createSupabaseServerClient()
@@ -191,8 +258,8 @@ export async function ensureForumSeed(): Promise<void> {
     await supabase.from("colab_forum_posts").insert({
       profile_id: user.id,
       kind: "sync",
-      title: "Bienvenida al foro interno del Colab",
-      body: "Aquí compartimos avances de maestría, anuncios y sincronicidades. Reacciona con 🍫 y practica lo aprendido en Sembrar. El diploma certifica rigor — la comunidad lo celebra.",
+      title: "Bienvenida al foro del Colab",
+      body: "Aquí compartimos diplomas digitales, avances de maestría y sincronicidades. Reacciona con 🍫 — el diploma certifica rigor y la comunidad lo exhibe.",
       course_slug: null,
       grade: null,
     })

@@ -5,6 +5,7 @@ import {
   xShareUrl,
   type DiplomaPayload,
 } from "@/lib/campus-rigor"
+import { foroShareHref } from "@/lib/colab-foro"
 
 type MetaItem = { label: string; value: string }
 
@@ -38,6 +39,12 @@ export default function DiplomaExhibit({
     day: "numeric",
   })
   const shareText = `${diploma.name} · ${diploma.title} · ${gLabel} · Cacao Colab`
+  const code = absoluteUrl.split("/").pop() ?? ""
+  const foroHref = foroShareHref({
+    courseSlug: diploma.course === "benevolo-duja" ? "benevolo" : diploma.course,
+    gradeLabel: gLabel,
+    diplomaCode: code,
+  })
   const meta: MetaItem[] = [
     { label: "XP", value: String(diploma.xp) },
     { label: "1er intento", value: `${diploma.firstTry}/${diploma.total}` },
@@ -85,13 +92,16 @@ export default function DiplomaExhibit({
       </article>
 
       <div className="diploma-actions">
+        <Link href={foroHref} className="diploma-foro">
+          Publicar en el foro →
+        </Link>
         <a
           href={linkedInShareUrl(absoluteUrl)}
           target="_blank"
           rel="noopener noreferrer"
           className="diploma-li"
         >
-          Exhibir en LinkedIn →
+          LinkedIn →
         </a>
         <a
           href={xShareUrl(absoluteUrl, shareText)}
