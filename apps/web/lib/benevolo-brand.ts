@@ -25,9 +25,10 @@ export type BenevoloMission = {
 
 export const benevoloFormulation = {
   name: "Bars. · Chocolate Benevolo",
+  category: "Duja de Marañón sugar free",
   netWeight: "80 g",
-  style: "Chocolatina de leche con duja de marañón",
-  inspiration: "Gianduja italiana reinterpretada con marañón colombiano",
+  style: "Duja de Marañón sugar free · chocolatina de leche",
+  inspiration: "Gianduja italiana reinterpretada con marañón colombiano, sin azúcar añadida",
   cacao: {
     genotype: "FEAR 5",
     node: "Quara Cacao",
@@ -42,14 +43,15 @@ export const benevoloFormulation = {
     "Stevia",
   ],
   targets: [
+    { label: "Categoría", value: "Duja de Marañón sugar free" },
     { label: "Lectura de origen", value: "FEAR 5 perceptible tras la duja" },
     { label: "Textura", value: "Duja sedosa, sin arenilla" },
-    { label: "Dulzor", value: "Alulosa + stevia, sin enmascarar" },
+    { label: "Dulzor", value: "Alulosa + stevia · sugar free, sin enmascarar" },
     { label: "Formato", value: "Bars. 80 g · preventa" },
   ],
   partners: [
     { name: "cacaotier", role: "Marca acelerada · edutainment" },
-    { name: "Zurych", role: "Cultura bean-to-bar" },
+    { name: "Zurych", role: "Transformación y oficio" },
     { name: "Quara Cacao", role: "Nodo FEAR 5 · Arauca" },
     { name: "Master Chocolatier", role: "Oficio 70 % CoEx que alimenta la marca" },
   ],
