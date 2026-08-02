@@ -2,6 +2,7 @@ import { createSupabaseServerClient } from "@cacao-colab/supabase-client/server"
 import Image from "next/image"
 import Link from "next/link"
 import { redirect } from "next/navigation"
+import ClaimNodeBioForm from "@/components/cuenta/ClaimNodeBioForm"
 import { signOutCampus } from "./actions"
 import { loadCuentaHome } from "@/lib/cuenta/home"
 import { NODE_KIND_LABEL } from "@/lib/nodo/types"
@@ -212,11 +213,8 @@ export default async function CuentaPage() {
                 Aún no hay bio vinculada a esta sesión ({home.email}). Créala aquí para activar tu
                 presencia en la red — finca, marca, transformación u hospitalidad.
               </p>
-              <p>
-                ¿Ya publicaste un nodo con otro correo? Vuelve a guardar la bio desde Mi cuenta con
-                este email para vincularla.
-              </p>
               <Link href="/cuenta/bio">Empezar bio de nodo →</Link>
+              <ClaimNodeBioForm sessionEmail={home.email} />
             </div>
           )}
         </section>

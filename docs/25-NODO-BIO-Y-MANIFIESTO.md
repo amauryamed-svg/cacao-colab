@@ -43,6 +43,8 @@ Tabla `node_bios` + bucket Storage `node-media`. `profile_id` vincula la bio a M
 
 **Resolución en `/cuenta`:** por `profile_id`, luego email (ilike); si hay bio por email sin dueño, se reclama. `POST /api/onboarding/node-bio` hace upsert (actualiza si ya existe) y setea `profile_id` cuando hay sesión.
 
+Si la bio se publicó con **otro email**, en el empty state de Mi cuenta: `POST /api/cuenta/claim-node-bio` con slug + email de creación. Migración `20260802023500_link_cacaotier_bio_cuenta.sql` vincula el nodo fundador `cacaotier-bogota-0ecm` a `amaury@cauaculture.co`.
+
 ---
 
 ## 4. Compartir

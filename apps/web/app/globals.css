@@ -5017,12 +5017,61 @@ body {
   line-height: 1.55;
   max-width: 36rem;
 }
-.cuenta-bio-empty a {
+.cuenta-bio-empty > a {
   color: #f2c830;
   display: inline-block;
   font-size: .7rem;
   font-weight: 900;
   margin-top: 1rem;
+}
+.cuenta-claim-bio {
+  margin-top: 1.35rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(247, 241, 238, .08);
+  display: grid;
+  gap: .65rem;
+  max-width: 28rem;
+}
+.cuenta-claim-bio-title {
+  color: rgba(247, 241, 238, .75) !important;
+  font-size: .78rem !important;
+  font-weight: 800;
+}
+.cuenta-claim-bio-hint {
+  margin: 0 !important;
+}
+.cuenta-claim-bio-hint code {
+  color: #f2c830;
+  font-size: .65rem;
+}
+.cuenta-claim-bio label {
+  display: grid;
+  gap: .3rem;
+  color: rgba(247, 241, 238, .4);
+  font-size: .58rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.cuenta-claim-bio input {
+  background: rgba(0, 0, 0, .25);
+  border: 1px solid rgba(247, 241, 238, .12);
+  border-radius: .55rem;
+  color: #f7f1ee;
+  font-size: .78rem;
+  padding: .55rem .7rem;
+}
+.cuenta-claim-bio input:focus {
+  outline: 1px solid rgba(242, 200, 48, .45);
+  border-color: rgba(242, 200, 48, .35);
+}
+.cuenta-claim-bio-error {
+  color: #ff8f7a !important;
+  margin: 0 !important;
+}
+.cuenta-claim-bio .cuenta-btn-ghost {
+  justify-self: start;
+  margin-top: .2rem;
 }
 .cuenta-bio-dl {
   display: grid;
