@@ -170,7 +170,9 @@ export function decodeDiploma(code: string): DiplomaPayload | null {
     } else {
       const b64 = code.replace(/-/g, "+").replace(/_/g, "/")
       const pad = b64 + "=".repeat((4 - (b64.length % 4)) % 4)
-      json = atob(pad)
+      const binary = atob(pad)
+      const bytes = Uint8Array.from(binary, (c) => c.charCodeAt(0))
+      json = new TextDecoder().decode(bytes)
     }
     const data = JSON.parse(json) as DiplomaPayload
     if (data?.v !== 1 || !data.course || !data.name) return null
@@ -184,7 +186,23 @@ export function linkedInShareUrl(diplomaPageUrl: string) {
   return `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(diplomaPageUrl)}`
 }
 
+export function xShareUrl(diplomaPageUrl: string, text: string) {
+  const params = new URLSearchParams({
+    url: diplomaPageUrl,
+    text,
+  })
+  return `https://twitter.com/intent/tweet?${params.toString()}`
+}
+
+/** Origen canónico para enlaces de diploma compartibles (redes / muro). */
 export function siteOrigin() {
-  if (typeof window !== "undefined") return window.location.origin
-  return process.env.NEXT_PUBLIC_SITE_URL ?? "https://cacaocolab.org"
+  const fromEnv = process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/$/, "")
+  if (fromEnv) return fromEnv
+  if (typeof window !== "undefined") {
+    const host = window.location.hostname
+    if (host === "cacaocolab.org" || host.endsWith(".cacaocolab.org")) {
+      return window.location.origin
+    }
+  }
+  return "https://cacaocolab.org"
 }

@@ -1,11 +1,8 @@
 import type { Metadata } from "next"
-import Link from "next/link"
 import { notFound } from "next/navigation"
-import {
-  decodeDiploma,
-  gradeLabel,
-  linkedInShareUrl,
-} from "@/lib/campus-rigor"
+import DiplomaShareBar from "@/components/campus/DiplomaShareBar"
+import { decodeDiploma, gradeLabel } from "@/lib/campus-rigor"
+import { diplomaAbsoluteUrl, diplomaOgImageUrl } from "@/lib/diploma-og"
 
 type Props = { params: Promise<{ code: string }> }
 
@@ -13,12 +10,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { code } = await params
   const diploma = decodeDiploma(code)
   if (!diploma) return { title: "Credencial · Cacao Colab" }
+  const absolute = diplomaAbsoluteUrl(`/credencial/maestro-chocolatier/${code}`)
+  const og = diplomaOgImageUrl(diploma)
   return {
     title: `${diploma.name} · ${gradeLabel(diploma.grade)} · Master Chocolatier`,
     description: `Diploma digital Cacao Colab — ${diploma.title}. Edutainment con rigor Fine-Flavor.`,
     openGraph: {
       title: `${diploma.name} · Master Chocolatier`,
       description: gradeLabel(diploma.grade),
+      url: absolute,
+      images: [{ url: og, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${diploma.name} · Master Chocolatier`,
+      description: gradeLabel(diploma.grade),
+      images: [og],
     },
   }
 }
@@ -28,15 +35,13 @@ export default async function ChocolatierDiplomaPage({ params }: Props) {
   const diploma = decodeDiploma(code)
   if (!diploma || diploma.course !== "maestro-chocolatier") notFound()
 
-  const pagePath = `/credencial/maestro-chocolatier/${code}`
-  // Absolute URL for LinkedIn — prefer public site
-  const absolute =
-    (process.env.NEXT_PUBLIC_SITE_URL ?? "https://cacaocolab.org") + pagePath
+  const absolute = diplomaAbsoluteUrl(`/credencial/maestro-chocolatier/${code}`)
   const issued = new Date(diploma.issuedAt).toLocaleDateString("es-CO", {
     year: "numeric",
     month: "long",
     day: "numeric",
   })
+  const gLabel = gradeLabel(diploma.grade)
 
   return (
     <div className="diploma-page">
@@ -46,7 +51,7 @@ export default async function ChocolatierDiplomaPage({ params }: Props) {
         <p className="diploma-course">{diploma.title}</p>
         <p className="diploma-certifies">Certifica que</p>
         <h2 className="diploma-name">{diploma.name}</h2>
-        <p className="diploma-grade">{gradeLabel(diploma.grade)}</p>
+        <p className="diploma-grade">{gLabel}</p>
         <p className="diploma-lede">
           Completó la ruta Master Chocolatier (barra 70 % · lente CoEx / Chocolate Awards) con
           criterio de especialidad: tipicidad, vidas, rachas y puesta en escena del cacao. No es una
@@ -72,20 +77,15 @@ export default async function ChocolatierDiplomaPage({ params }: Props) {
             <dd>{issued}</dd>
           </div>
         </dl>
-        <div className="diploma-actions">
-          <a
-            href={linkedInShareUrl(absolute)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="diploma-li"
-          >
-            Compartir en LinkedIn →
-          </a>
-          <Link href="/unete" className="diploma-colab">
-            Únete al Colab →
-          </Link>
-          <Link href="/aprende/chocolatier">Ver el curso</Link>
-        </div>
+        <DiplomaShareBar
+          diplomaUrl={absolute}
+          courseSlug="maestro-chocolatier"
+          gradeLabelText={gLabel}
+          shareText={`${diploma.name} · Master Chocolatier · ${gLabel} · Cacao Colab`}
+          courseHref="/aprende/chocolatier"
+          secondaryHref="/unete"
+          secondaryLabel="Únete al Colab →"
+        />
         <p className="diploma-footnote">
           Edutainment cacao · verificar siempre en cacaocolab.org · lente CoEx ≠ premio CoEx
         </p>

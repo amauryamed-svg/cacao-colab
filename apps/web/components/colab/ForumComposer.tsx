@@ -6,18 +6,25 @@ import { createForumPost } from "@/app/colab/actions"
 import {
   COURSE_SHARE_LABEL,
   defaultProgressCopy,
+  muroDiplomaUrl,
   type ForumPostKind,
 } from "@/lib/colab-foro"
 
 export default function ForumComposer({
   presetShare,
   presetGrade,
+  presetDiploma,
 }: {
   presetShare?: string | null
   presetGrade?: string | null
+  presetDiploma?: string | null
 }) {
   const router = useRouter()
-  const preset = presetShare ? defaultProgressCopy(presetShare, presetGrade) : null
+  const diplomaUrl =
+    presetShare && presetDiploma ? muroDiplomaUrl(presetShare, presetDiploma) : null
+  const preset = presetShare
+    ? defaultProgressCopy(presetShare, presetGrade, diplomaUrl)
+    : null
   const [kind, setKind] = useState<ForumPostKind>(presetShare ? "progress" : "sync")
   const [title, setTitle] = useState(preset?.title ?? "")
   const [body, setBody] = useState(preset?.body ?? "")
@@ -35,6 +42,7 @@ export default function ForumComposer({
         body,
         courseSlug: presetShare,
         grade: presetGrade,
+        diplomaUrl,
       })
       if (!result.ok) {
         setError(result.error)
@@ -48,12 +56,20 @@ export default function ForumComposer({
 
   return (
     <form className="colab-forum-composer" onSubmit={onSubmit}>
-      <p className="eyebrow text-colab-yellow">Publicar en el Colab</p>
-      <h2>Comparte avance, anuncio o sincronicidad</h2>
+      <p className="eyebrow text-colab-yellow">Publicar en el muro</p>
+      <h2>Comparte avance, diploma o sincronicidad</h2>
       {presetShare && (
         <p className="colab-forum-preset">
           Preparado desde {COURSE_SHARE_LABEL[presetShare] ?? presetShare}
           {presetGrade ? ` · ${presetGrade}` : ""}
+          {diplomaUrl ? " · con diploma digital" : ""}
+        </p>
+      )}
+      {diplomaUrl && (
+        <p className="colab-forum-diploma-preview">
+          <a href={diplomaUrl} target="_blank" rel="noopener noreferrer">
+            🎓 {diplomaUrl}
+          </a>
         </p>
       )}
       <div className="colab-forum-kinds" role="group" aria-label="Tipo de publicación">
@@ -81,7 +97,7 @@ export default function ForumComposer({
           onChange={(e) => setTitle(e.target.value)}
           maxLength={160}
           required
-          placeholder="Ej. Cerré Master Chocolatier"
+          placeholder="Ej. Cerré Arquitecto de Fermentación"
         />
       </label>
       <label>
@@ -92,12 +108,12 @@ export default function ForumComposer({
           maxLength={4000}
           required
           rows={4}
-          placeholder="Cuenta qué practicaste, qué descubriste o qué anuncio traes al colectivo…"
+          placeholder="Cuenta qué practicaste y comparte el enlace a tu diploma…"
         />
       </label>
       {error && <p className="colab-forum-error">{error}</p>}
       <button type="submit" className="colab-forum-submit" disabled={pending}>
-        {pending ? "Publicando…" : "Publicar en el foro →"}
+        {pending ? "Publicando…" : "Publicar en el muro →"}
       </button>
     </form>
   )

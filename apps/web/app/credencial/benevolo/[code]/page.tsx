@@ -1,7 +1,8 @@
 import type { Metadata } from "next"
-import Link from "next/link"
 import { notFound } from "next/navigation"
-import { decodeDiploma, gradeLabel, linkedInShareUrl } from "@/lib/campus-rigor"
+import DiplomaShareBar from "@/components/campus/DiplomaShareBar"
+import { decodeDiploma, gradeLabel } from "@/lib/campus-rigor"
+import { diplomaAbsoluteUrl, diplomaOgImageUrl } from "@/lib/diploma-og"
 
 type Props = { params: Promise<{ code: string }> }
 
@@ -9,9 +10,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { code } = await params
   const diploma = decodeDiploma(code)
   if (!diploma) return { title: "Credencial Benevolo" }
+  const absolute = diplomaAbsoluteUrl(`/credencial/benevolo/${code}`)
+  const og = diplomaOgImageUrl(diploma)
   return {
     title: `${diploma.name} · Benevolo · Cacao Colab`,
     description: gradeLabel(diploma.grade),
+    openGraph: {
+      title: `${diploma.name} · Benevolo`,
+      description: gradeLabel(diploma.grade),
+      url: absolute,
+      images: [{ url: og, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${diploma.name} · Benevolo`,
+      images: [og],
+    },
   }
 }
 
@@ -20,9 +34,8 @@ export default async function BenevoloDiplomaPage({ params }: Props) {
   const diploma = decodeDiploma(code)
   if (!diploma || diploma.course !== "benevolo-duja") notFound()
 
-  const absolute =
-    (process.env.NEXT_PUBLIC_SITE_URL ?? "https://cacaocolab.org") +
-    `/credencial/benevolo/${code}`
+  const absolute = diplomaAbsoluteUrl(`/credencial/benevolo/${code}`)
+  const gLabel = gradeLabel(diploma.grade)
 
   return (
     <div className="diploma-page">
@@ -32,20 +45,20 @@ export default async function BenevoloDiplomaPage({ params }: Props) {
         <p className="diploma-course">{diploma.title}</p>
         <p className="diploma-certifies">Certifica que</p>
         <h2 className="diploma-name">{diploma.name}</h2>
-        <p className="diploma-grade">{gradeLabel(diploma.grade)}</p>
+        <p className="diploma-grade">{gLabel}</p>
         <p className="diploma-lede">
           Completó la aceleración Benevolo: tendencia gianduja × duja de marañón FEAR 5 Quara × Zurych,
           con criterio de origen y llamado al colectivo. Hermana del Master Chocolatier 70 %.
         </p>
-        <div className="diploma-actions">
-          <a href={linkedInShareUrl(absolute)} target="_blank" rel="noopener noreferrer" className="diploma-li">
-            LinkedIn →
-          </a>
-          <Link href="/benevolo" className="diploma-colab">
-            Preordenar Bars. →
-          </Link>
-          <Link href="/unete">Únete al Colab</Link>
-        </div>
+        <DiplomaShareBar
+          diplomaUrl={absolute}
+          courseSlug="benevolo"
+          gradeLabelText={gLabel}
+          shareText={`${diploma.name} · Benevolo · ${gLabel} · Cacao Colab`}
+          courseHref="/campus/benevolo"
+          secondaryHref="/benevolo"
+          secondaryLabel="Preordenar Bars. →"
+        />
       </div>
     </div>
   )

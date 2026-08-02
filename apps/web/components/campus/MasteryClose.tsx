@@ -5,6 +5,7 @@ import {
   gradeBlurb,
   gradeLabel,
   linkedInShareUrl,
+  xShareUrl,
   type DiplomaGrade,
 } from "@/lib/campus-rigor"
 
@@ -53,6 +54,7 @@ export default function MasteryClose({
   sisterLabel?: string
 }) {
   const doneCount = missions.filter((m) => m.passed).length
+  const shareText = `${learnerName} · ${courseTitle} · ${gradeLabel(grade)} · Cacao Colab`
 
   return (
     <div className="architect-complete mastery-close">
@@ -114,10 +116,24 @@ export default function MasteryClose({
         ))}
       </ul>
 
-      <p className="mastery-close-invite">
-        La nota certifica rigor de criterio. Ahora practica lo aprendido en Sembrar y comparte tu
-        avance en el foro interno del Colab — con likes 🍫.
-      </p>
+      {diplomaUrl ? (
+        <div className="mastery-close-diploma">
+          <p className="eyebrow text-colab-yellow">Diploma listo para compartir</p>
+          <p className="mastery-close-invite">
+            Publícalo en el <strong>muro de la comunidad</strong> y en redes. El enlace es tu
+            credencial digital verificable en cacaocolab.org.
+          </p>
+          <p className="mastery-close-diploma-url">
+            <a href={diplomaUrl} target="_blank" rel="noopener noreferrer">
+              {diplomaUrl}
+            </a>
+          </p>
+        </div>
+      ) : (
+        <p className="mastery-close-invite">
+          Generando diploma… Si no aparece, toca «Ver diploma» tras recargar o vuelve desde Mi cuenta.
+        </p>
+      )}
 
       <div className="mastery-close-actions flex flex-wrap justify-center gap-3">
         {diplomaUrl && (
@@ -125,6 +141,9 @@ export default function MasteryClose({
             <a href={diplomaUrl} target="_blank" rel="noopener noreferrer">
               Ver diploma →
             </a>
+            <Link href={forumHref} className="!bg-colab-yellow !text-colab-forest">
+              Publicar en el muro →
+            </Link>
             <a
               href={linkedInShareUrl(diplomaUrl)}
               target="_blank"
@@ -133,10 +152,18 @@ export default function MasteryClose({
             >
               LinkedIn →
             </a>
+            <a
+              href={xShareUrl(diplomaUrl, shareText)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="!bg-[#111] !text-white"
+            >
+              X / redes →
+            </a>
           </>
         )}
         <Link href={practiceHref}>{practiceLabel}</Link>
-        <Link href={forumHref}>Compartir en foro Colab →</Link>
+        {!diplomaUrl && <Link href={forumHref}>Ir al muro Colab →</Link>}
         <Link href={cuentaHref}>Mi cuenta · progreso</Link>
         {sisterHref && sisterLabel && <Link href={sisterHref}>{sisterLabel}</Link>}
       </div>
