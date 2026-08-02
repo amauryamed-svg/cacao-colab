@@ -14,7 +14,7 @@ const COURSE_USE: Record<string, BenefitUseGuide> = {
     href: "/campus/arquitecto-fermentacion",
     cta: "Abrir aceleración Arquitecto",
     howTo:
-      "Tu canje desbloqueó la ruta Master Cacaotier · Arquitecto. Entra al campus, completa las 6 misiones Dualita y gana el diploma con rigor (vidas + primer intento).",
+      "Tu canje no es un cupón aparte: abre Master Cacaotier · Arquitecto de Fermentación. Entra al campus, completa las 6 misiones Dualita y gana el diploma (vidas + primer intento). También está en Mi cuenta → Tus Masters.",
   },
   "maestro-chocolatier": {
     href: "/campus/maestro-chocolatier",
