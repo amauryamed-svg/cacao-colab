@@ -32,17 +32,23 @@ export default function RdHubPage() {
             <em>a la cobertura.</em>
           </h1>
           <p className="mt-6 max-w-2xl text-colab-cream/55 leading-relaxed">
-            R&D es donde el Colab prototipa producto: <strong className="text-colab-cream">Benevolo</strong>{" "}
-            como marca acelerada, y las <strong className="text-colab-cream">coberturas y nibs</strong> donde
-            convergen los nodos CAÚA y Zurych — con shop real en cauacolombia.co y puntos de contacto para
-            pedir.
+            El <strong className="text-colab-cream">Collaboratorio</strong> es la esencia: del campus a la
+            página de producto. Aquí viven Bars. como modelo, el set de catación y las{" "}
+            <strong className="text-colab-cream">coberturas CAÚA × Zurych</strong> — para que cada nodo
+            aspire a publicar el suyo.
           </p>
           <div className="flex flex-wrap gap-3 mt-8">
             <Link
-              href="/rd/benevolo"
+              href="/collaboratorio"
               className="bg-colab-yellow text-colab-forest rounded-full px-7 py-3.5 text-sm font-bold"
             >
-              Benevolo R&D →
+              Ruta al Collaboratorio →
+            </Link>
+            <Link
+              href="/rd/benevolo"
+              className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold"
+            >
+              Bars. · modelo producto →
             </Link>
             <Link
               href="/rd/set-catacion"
@@ -54,7 +60,7 @@ export default function RdHubPage() {
               href="/rd/coberturas"
               className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold"
             >
-              Coberturas CAÚA × Zurych →
+              Coberturas →
             </Link>
             <TrackedLink
               href={CAUA_SHOP_COLLECTION}

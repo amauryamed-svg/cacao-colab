@@ -48,8 +48,8 @@ export default function Home() {
             </p>
             <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
               <Button href="/aprende">Entrar al campus →</Button>
-              <Button variant="outline" href="/benevolo">
-                Probar Bars. Benevolo
+              <Button variant="outline" href="/collaboratorio">
+                De ceros al Collaboratorio
               </Button>
             </div>
           </div>

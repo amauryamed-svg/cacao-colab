@@ -101,16 +101,35 @@ export default async function AprendePage() {
           </Link>
         </div>
 
-        <div className="mb-14">
+        <div className="mb-10">
           <MasteryCurveStrip compact />
         </div>
+
+        <section className="mb-14 rounded-3xl border border-colab-yellow/25 bg-colab-yellow/[.06] p-7 md:p-9 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div>
+            <p className="eyebrow text-colab-yellow">Collaboratorio · esencia Colab</p>
+            <h2 className="font-serif text-2xl md:text-3xl font-bold text-colab-cream mt-3">
+              De ceros a página de producto
+            </h2>
+            <p className="text-sm text-colab-cream/50 mt-3 max-w-xl leading-relaxed">
+              Emprendedor y marca: Dualita → Masters → Chocolatier → R&D. La ruta para que tu nodo
+              quiera publicar su propia SKU con el rigor de Bars.
+            </p>
+          </div>
+          <Link
+            href="/collaboratorio"
+            className="shrink-0 bg-colab-yellow text-colab-forest rounded-full px-7 py-3.5 text-sm font-bold"
+          >
+            Ver la ruta completa →
+          </Link>
+        </section>
 
         <section className="mt-4 grid md:grid-cols-4 gap-3 mb-16">
           {[
             { step: "01", owner: "Zurych", title: "MOOC bean-to-bar", body: "Territorio Santander, agroecología y portafolio real — chocolatezurych.com." },
             { step: "02", owner: "CAÚA", title: "Protocolo diario", body: "Cacao funcional, orígenes Huila/Santander y hábito de 7 días — cauacolombia.co." },
             { step: "03", owner: "cacaotier", title: "Masters + Catador", body: "Fermentación, panel Fine-Flavor y barra 70 % — microvictorias hacia maestría." },
-            { step: "04", owner: "Colab", title: "Set + mesa", body: "Set Catación 10, EUDR, Ecoyuma y Benevolo: evidencia que se vuelve producto." },
+            { step: "04", owner: "Colab", title: "Collaboratorio", body: "R&D + página de producto: evidencia que se vuelve SKU. Bars. es el modelo." },
           ].map((route) => (
             <article key={route.step} className="learning-sync-card">
               <div><span>{route.step}</span><strong>{route.owner}</strong></div>

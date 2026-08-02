@@ -6348,3 +6348,276 @@ body {
 @media (max-width: 800px) {
   .ff-wheel { grid-template-columns: 1fr; }
 }
+
+/* —— Collaboratorio · ruta 0 → producto —— */
+.collaboratorio {
+  background: #0f1a14;
+  color: #f7f1ee;
+  min-height: 100vh;
+}
+.collaboratorio-hero-inner {
+  margin: 0 auto;
+  max-width: 72rem;
+  padding: 3.5rem 1.25rem 4rem;
+}
+.collaboratorio-hero h1 {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: clamp(2.8rem, 8vw, 5.5rem);
+  font-weight: 900;
+  letter-spacing: -.04em;
+  line-height: .95;
+  margin-top: .75rem;
+}
+.collaboratorio-hero h1 em {
+  color: #f2c830;
+  font-style: italic;
+  font-weight: 500;
+}
+.collaboratorio-lede {
+  color: rgba(247, 241, 238, .58);
+  font-size: 1.1rem;
+  line-height: 1.55;
+  margin-top: 1.35rem;
+  max-width: 38rem;
+}
+.collaboratorio-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .7rem;
+  margin-top: 1.75rem;
+}
+.collab-cta-primary {
+  background: #f2c830;
+  border-radius: 999px;
+  color: #0f1a14;
+  font-size: .88rem;
+  font-weight: 800;
+  padding: .85rem 1.35rem;
+  text-decoration: none;
+}
+.collab-cta-ghost {
+  border: 1px solid rgba(247, 241, 238, .22);
+  border-radius: 999px;
+  color: rgba(247, 241, 238, .85);
+  font-size: .88rem;
+  font-weight: 800;
+  padding: .85rem 1.35rem;
+  text-decoration: none;
+}
+.collaboratorio-main {
+  margin: 0 auto;
+  max-width: 72rem;
+  padding: 0 1.25rem 5rem;
+}
+.collaboratorio-principles {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: -1rem;
+}
+.collaboratorio-principles article {
+  background: rgba(247, 241, 238, .04);
+  border: 1px solid rgba(247, 241, 238, .1);
+  border-radius: 1.1rem;
+  padding: 1.35rem;
+}
+.collaboratorio-principles h2 {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+.collaboratorio-principles p {
+  color: rgba(247, 241, 238, .5);
+  font-size: .9rem;
+  line-height: 1.5;
+  margin-top: .65rem;
+}
+.collaboratorio-tracks,
+.collaboratorio-ruta,
+.collaboratorio-curve,
+.collaboratorio-case {
+  margin-top: 4rem;
+}
+.collaboratorio-tracks > h2,
+.collaboratorio-ruta > h2,
+.collaboratorio-case h2,
+.collaboratorio-close h2 {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.05;
+  margin-top: .5rem;
+}
+.collaboratorio-section-lede {
+  color: rgba(247, 241, 238, .5);
+  margin-top: .85rem;
+  max-width: 40rem;
+}
+.collaboratorio-tracks-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 1.75rem;
+}
+.collaboratorio-tracks-grid article {
+  background: rgba(15, 26, 20, .7);
+  border: 1px solid rgba(242, 200, 48, .18);
+  border-radius: 1.15rem;
+  padding: 1.35rem;
+}
+.collaboratorio-tracks-grid h3 {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-top: .55rem;
+}
+.collaboratorio-tracks-grid > article > p {
+  color: rgba(247, 241, 238, .5);
+  font-size: .88rem;
+  line-height: 1.5;
+  margin-top: .65rem;
+}
+.collaboratorio-tracks-grid ol {
+  display: grid;
+  gap: .35rem;
+  list-style: none;
+  margin: 1.1rem 0 0;
+  padding: 0;
+}
+.collaboratorio-tracks-grid li {
+  color: #f2c830;
+  font-size: .72rem;
+  font-weight: 800;
+}
+.collaboratorio-tracks-grid li::before {
+  content: "→ ";
+  color: rgba(242, 200, 48, .55);
+}
+.collaboratorio-steps {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  list-style: none;
+  margin: 1.75rem 0 0;
+  padding: 0;
+}
+.collaboratorio-steps li {
+  background: rgba(247, 241, 238, .03);
+  border: 1px solid rgba(247, 241, 238, .08);
+  border-radius: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1.35rem;
+}
+.collaboratorio-step-head {
+  align-items: baseline;
+  display: flex;
+  gap: .65rem;
+}
+.collaboratorio-step-head span {
+  color: #ff6a3d;
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: 900;
+}
+.collaboratorio-step-head small {
+  color: rgba(247, 241, 238, .35);
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.collaboratorio-steps h3 {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin-top: .7rem;
+}
+.collaboratorio-steps p {
+  color: rgba(247, 241, 238, .52);
+  flex: 1;
+  font-size: .9rem;
+  line-height: 1.5;
+  margin-top: .55rem;
+}
+.collaboratorio-steps em {
+  color: rgba(242, 200, 48, .75);
+  display: block;
+  font-size: .72rem;
+  font-style: normal;
+  font-weight: 700;
+  margin-top: 1rem;
+}
+.collaboratorio-steps a {
+  color: #ff6a3d;
+  display: inline-block;
+  font-size: .8rem;
+  font-weight: 800;
+  margin-top: .75rem;
+  text-decoration: none;
+}
+.collaboratorio-case {
+  border-top: 1px solid rgba(247, 241, 238, .1);
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1.25fr .75fr;
+  padding-top: 3rem;
+}
+.collaboratorio-case-role {
+  color: #ff6a3d;
+  font-size: .8rem;
+  font-weight: 800;
+  margin-top: .5rem;
+}
+.collaboratorio-case > div > p:last-of-type {
+  color: rgba(247, 241, 238, .55);
+  line-height: 1.55;
+  margin-top: .85rem;
+  max-width: 36rem;
+}
+.collaboratorio-case aside {
+  background: rgba(242, 200, 48, .08);
+  border: 1px solid rgba(242, 200, 48, .22);
+  border-radius: 1.15rem;
+  padding: 1.35rem;
+}
+.collaboratorio-case aside h3 {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 1.45rem;
+  font-weight: 800;
+  margin-top: .5rem;
+}
+.collaboratorio-case aside p {
+  color: rgba(247, 241, 238, .55);
+  font-size: .88rem;
+  line-height: 1.5;
+  margin-top: .65rem;
+}
+.collaboratorio-case aside a {
+  color: #f2c830;
+  display: inline-block;
+  font-size: .8rem;
+  font-weight: 800;
+  margin-top: 1rem;
+  text-decoration: none;
+}
+.collaboratorio-close {
+  margin-top: 4rem;
+  text-align: center;
+}
+.collaboratorio-close p {
+  color: rgba(247, 241, 238, .5);
+  margin: .85rem auto 0;
+  max-width: 34rem;
+}
+.collaboratorio-close .collaboratorio-ctas {
+  justify-content: center;
+}
+@media (max-width: 960px) {
+  .collaboratorio-principles,
+  .collaboratorio-tracks-grid,
+  .collaboratorio-steps,
+  .collaboratorio-case {
+    grid-template-columns: 1fr;
+  }
+}
