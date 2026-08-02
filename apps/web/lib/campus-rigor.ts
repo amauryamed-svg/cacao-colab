@@ -121,12 +121,12 @@ export function gradeLabel(grade: DiplomaGrade) {
 /** Copy corto para UI de certificación (exigente + divertida). */
 export function gradeBlurb(grade: DiplomaGrade) {
   if (grade === "excelencia") {
-    return "Primer intento limpio en casi todas las misiones. Criterio de panel, no adivinanza."
+    return "Nota del diploma: casi todos los retos al primer intento. La racha 🔥 es solo constancia diaria — no califica el diploma."
   }
   if (grade === "especialidad") {
-    return "Aprobaste con rigor. Sube a Excelencia acertando más retos al primer intento."
+    return "Especialidad ganada con rigor. Excelencia pide más retos limpios a la primera. (La racha diaria no cambia esta nota.)"
   }
-  return "Vas cultivando criterio. Cada misión suma; el diploma se gana con evidencia, no con suerte."
+  return "Vas cultivando criterio. El diploma mira aciertos al primer intento; la racha 🔥 solo celebra que volviste hoy."
 }
 
 export function nextGradeHint(firstTry: number, total: number): string | null {
@@ -135,13 +135,18 @@ export function nextGradeHint(firstTry: number, total: number): string | null {
   if (grade === "especialidad") {
     const need = Math.ceil(EXCELLENCE_FIRST_TRY_RATIO * total) - firstTry
     return need > 0
-      ? `Faltan ${need} acierto${need === 1 ? "" : "s"} al primer intento para Excelencia Fine-Flavor.`
+      ? `Para Excelencia Fine-Flavor: ${need} reto${need === 1 ? "" : "s"} más al primer intento (no tiene que ver con la racha 🔥).`
       : null
   }
   const need = Math.ceil(PASS_FIRST_TRY_RATIO * total) - firstTry
   return need > 0
-    ? `Faltan ${need} acierto${need === 1 ? "" : "s"} al primer intento para Especialidad.`
+    ? `Para Especialidad: ${need} acierto${need === 1 ? "" : "s"} al primer intento. Practica el paso antes de arriesgar vidas.`
     : null
+}
+
+/** Explica la diferencia racha vs nota — para HUD del player. */
+export function diplomaGradeExplainer() {
+  return "Nota del diploma = retos correctos a la primera. Racha 🔥 = días seguidos estudiando. Son contadores distintos."
 }
 
 export function encodeDiploma(payload: DiplomaPayload): string {

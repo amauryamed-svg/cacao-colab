@@ -2,7 +2,9 @@
 
 import { useMemo, useState } from "react"
 import Link from "next/link"
-import DualitaCompanion from "@/components/aprende/DualitaCompanion"
+import DualitaCompanion, { type DualitaMood } from "@/components/aprende/DualitaCompanion"
+import CampusCelebrate from "@/components/campus/CampusCelebrate"
+import CampusSourcesPanel from "@/components/campus/CampusSourcesPanel"
 import MasteryClose from "@/components/campus/MasteryClose"
 import {
   chocolatierCompanionTips,
@@ -11,8 +13,11 @@ import {
   CHOCOLATIER_COURSE_SLUG,
 } from "@/lib/chocolatier-course"
 import { saveChocolatierProgress } from "@/app/campus/actions"
+import { orderQuizOptions, playCampusSfx, type CelebrateKind } from "@/lib/campus-gamify"
+import { chocolatierCompanionTipsShared } from "@/lib/campus-sources"
 import {
   bumpStreak,
+  diplomaGradeExplainer,
   encodeDiploma,
   gradeBlurb,
   gradeFromFirstTry,
@@ -25,6 +30,9 @@ import {
   type DiplomaPayload,
   type RigorState,
 } from "@/lib/campus-rigor"
+
+const LETTERS = ["A", "B", "C", "D", "E"]
+const TIPS = [...chocolatierCompanionTips, ...chocolatierCompanionTipsShared]
 
 function isCourseDone(state: RigorState) {
   return (
@@ -90,9 +98,17 @@ export default function ChocolatierCoursePlayer({
   const [pendingScore, setPendingScore] = useState<{ attempts: number; firstTry: boolean } | null>(
     null,
   )
+  const [celebrateKind, setCelebrateKind] = useState<CelebrateKind | null>(null)
+  const [celebrateToken, setCelebrateToken] = useState(0)
+  const [dualitaMood, setDualitaMood] = useState<DualitaMood>("idle")
+  const [dualitaPulse, setDualitaPulse] = useState(0)
 
   const mission = chocolatierMissions[missionIndex]
   const step = mission.steps[stepIndex]
+  const quizOptions = useMemo(
+    () => orderQuizOptions(mission.quiz.options, mission.slug),
+    [mission.slug, mission.quiz.options],
+  )
   const completedCount = progress.completed.length
   const firstTryCount = Object.values(progress.scores).filter((s) => s.passed && s.firstTry).length
   const grade = gradeFromFirstTry(firstTryCount, chocolatierMissions.length)
@@ -138,12 +154,20 @@ export default function ChocolatierCoursePlayer({
       return `¡Diploma ${gradeLabel(grade)}! Mira tu nota, practica en Sembrar y comparte con 🍫 en el foro Colab.`
     }
     if (phase === "quiz") {
-      if (quizPassed) return "Reto limpio. Toca Continuar para ver calificación y diploma."
-      if (progress.hearts <= 1) return "Última vida. Piensa como panel ciego: tipicidad y cero defectos."
-      return "Primer intento limpio sube tu nota de diploma. Rachas premian constancia."
+      if (quizPassed) return "¡Eso! Criterio limpio. Continúa — Dualita ya celebra contigo."
+      if (progress.hearts <= 1) return "Última vida. Piensa como panel ciego — no elijas por posición."
+      return "Primer intento limpio = nota de diploma. La racha 🔥 solo dice que volviste hoy."
     }
     return stepIndex === 0 ? mission.dualitaIntro : step.fieldAction
   }, [phase, mission, progress.hearts, stepIndex, step, grade, quizPassed])
+
+  function celebrate(kind: CelebrateKind, mood: DualitaMood = "cheer") {
+    setCelebrateKind(kind)
+    setCelebrateToken((n) => n + 1)
+    setDualitaMood(mood)
+    setDualitaPulse((n) => n + 1)
+    playCampusSfx(kind)
+  }
 
   function persist(next: RigorState, complete = false) {
     try {
@@ -198,13 +222,19 @@ export default function ChocolatierCoursePlayer({
     setPendingScore(null)
     setSelected(null)
     setFeedback("")
-    setPhase(allDone ? "course-complete" : "mission-complete")
+    if (allDone) {
+      celebrate("diploma", "levelup")
+      setPhase("course-complete")
+    } else {
+      celebrate("mission", "cheer")
+      setPhase("mission-complete")
+    }
     persist(next, allDone)
   }
 
   function answer(optionId: string) {
     if (selected || attempting) return
-    const option = mission.quiz.options.find((item) => item.id === optionId)
+    const option = quizOptions.find((item) => item.id === optionId)
     if (!option) return
     setSelected(optionId)
     setFeedback(option.explanation)
@@ -218,6 +248,7 @@ export default function ChocolatierCoursePlayer({
       const score = { attempts, firstTry }
       setQuizPassed(true)
       setPendingScore(score)
+      celebrate("correct", "cheer")
       window.setTimeout(() => {
         try {
           finishAfterCorrect(score)
@@ -230,6 +261,7 @@ export default function ChocolatierCoursePlayer({
       return
     }
 
+    celebrate("heart", "oops")
     let next = bumpStreak(refillHeartsIfNeeded(progress))
     next = {
       ...next,
@@ -292,6 +324,7 @@ export default function ChocolatierCoursePlayer({
 
   return (
     <div className="architect-player chocolatier-player">
+      <CampusCelebrate kind={celebrateKind} token={celebrateToken} />
       <header className="architect-topbar">
         <Link href="/cuenta" className="architect-exit">
           ← Mi cuenta
@@ -321,6 +354,7 @@ export default function ChocolatierCoursePlayer({
           </p>
           <p className="chocolatier-grade-pill">{gradeLabel(grade)}</p>
           <p className="architect-cert-blurb">{gradeBlurb(grade)}</p>
+          <p className="architect-cert-hint">{diplomaGradeExplainer()}</p>
           {gradeHint && <p className="architect-cert-hint">{gradeHint}</p>}
           {isCourseDone(progress) && (
             <button
@@ -357,6 +391,7 @@ export default function ChocolatierCoursePlayer({
               )
             })}
           </div>
+          <CampusSourcesPanel compact title="CoEx · Awards · Fedecacao · papers" />
           <p className="architect-sync">
             {syncStatus === "saving"
               ? "Sincronizando…"
@@ -426,15 +461,16 @@ export default function ChocolatierCoursePlayer({
               </p>
               <h2>{mission.quiz.question}</h2>
               <p className="text-xs text-white/40 mb-4">
-                Primer intento correcto suma a tu nota de diploma (Excelencia / Especialidad).
+                Primer intento correcto suma a la <strong className="text-white/60">nota del diploma</strong>.
+                Opciones mezcladas — no hay «siempre la del medio». La racha 🔥 no califica.
               </p>
               <div className="architect-options">
-                {mission.quiz.options.map((option) => {
+                {quizOptions.map((option, index) => {
                   const chosen = selected === option.id
                   const reveal = Boolean(selected)
                   return (
                     <button
-                      key={option.id}
+                      key={`${mission.slug}-${option.id}-${index}`}
                       type="button"
                       disabled={Boolean(selected)}
                       onClick={() => answer(option.id)}
@@ -442,7 +478,7 @@ export default function ChocolatierCoursePlayer({
                         reveal ? (option.correct ? "correct" : chosen ? "wrong" : "muted") : ""
                       }
                     >
-                      <span>{option.id.toUpperCase()}</span>
+                      <span>{LETTERS[index] ?? "?"}</span>
                       {option.text}
                     </button>
                   )
@@ -500,7 +536,12 @@ export default function ChocolatierCoursePlayer({
           )}
         </main>
       </div>
-      <DualitaCompanion message={dualitaMessage} tips={chocolatierCompanionTips} />
+      <DualitaCompanion
+        message={dualitaMessage}
+        tips={TIPS}
+        mood={dualitaMood}
+        pulseKey={dualitaPulse}
+      />
     </div>
   )
 }
