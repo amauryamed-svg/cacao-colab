@@ -508,18 +508,65 @@ body {
   max-width: 68rem;
 }
 
+.ecosystem-map-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: .78fr 1.22fr;
+}
+
+.ecosystem-map-footer {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr .62fr;
+  margin-top: 1rem;
+}
+
 .map-panel {
   border-radius: 1.4rem;
-  min-height: 28rem;
-  overflow: hidden;
-  padding: clamp(1.25rem, 3vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: visible;
+  padding: clamp(1.1rem, 2.8vw, 1.85rem);
 }
+
+.map-panel-head {
+  align-items: flex-start;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+
+.map-panel-title {
+  color: #1c3b26;
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 3.5vw, 1.85rem);
+  font-weight: 800;
+  line-height: 1.05;
+  margin-top: .35rem;
+}
+
+.map-panel-title--light { color: #f7f1ee; }
+
+.map-svg-frame {
+  flex: 1;
+  margin-top: .35rem;
+  min-height: 14rem;
+  overflow: visible;
+  position: relative;
+}
+
+.map-svg-frame--world { min-height: 15.5rem; }
+.map-svg-frame--colombia { min-height: 16.5rem; }
 
 .map-world {
   background:
-    radial-gradient(circle at 35% 60%, rgba(242, 200, 48, .16), transparent 28%),
-    radial-gradient(circle at 78% 30%, rgba(255, 106, 61, .08), transparent 22%),
-    linear-gradient(160deg, #0c1609, #101D0B 55%, #140e0a);
+    radial-gradient(circle at 34% 58%, rgba(242, 200, 48, .18), transparent 30%),
+    radial-gradient(circle at 78% 28%, rgba(255, 106, 61, .1), transparent 24%),
+    radial-gradient(circle at 50% 50%, rgba(61, 122, 44, .12), transparent 42%),
+    linear-gradient(160deg, #0c1609, #101d0b 55%, #140e0a);
 }
 
 @keyframes worldDash {
@@ -531,61 +578,120 @@ body {
   to   { transform: rotate(360deg); }
 }
 
-.world-map-svg { overflow: visible; }
+.world-map-svg,
+.colombia-map-svg {
+  display: block;
+  height: auto;
+  max-height: 22rem;
+  overflow: visible;
+  width: 100%;
+}
 
 .world-orbit {
   fill: none;
-  stroke: rgba(242, 200, 48, .12);
-  stroke-width: .8;
-  stroke-dasharray: 3 10;
-  transform-origin: 215px 140px;
-  animation: worldOrbitSpin 48s linear infinite;
+  stroke: rgba(242, 200, 48, .14);
+  stroke-width: .75;
+  stroke-dasharray: 3 11;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: worldOrbitSpin 56s linear infinite;
 }
 
 .world-orbit--delay {
-  stroke: rgba(255, 106, 61, .1);
-  stroke-dasharray: 2 14;
-  animation-duration: 72s;
+  stroke: rgba(255, 106, 61, .12);
+  stroke-dasharray: 2 15;
+  animation-duration: 80s;
   animation-direction: reverse;
 }
 
 .world-route-line {
-  animation: worldDash 2.8s linear infinite;
+  animation: worldDash 3.2s linear infinite;
 }
 
-.world-packet {
-  opacity: .95;
-}
+.world-packet { opacity: .95; }
+
+.colombia-land { filter: drop-shadow(0 8px 18px rgba(26, 46, 16, .08)); }
 
 .colombia-link {
-  animation: worldDash 3.5s linear infinite;
+  animation: worldDash 4s linear infinite;
+  transition: opacity .25s ease;
 }
 
-.colombia-node:focus-visible {
-  outline: 2px solid #F2C830;
-  outline-offset: 2px;
+.colombia-link--active {
+  animation-duration: 2.4s;
+  stroke-width: 1.8;
 }
+
+.colombia-node {
+  cursor: pointer;
+  outline: none;
+}
+
+.colombia-node-hit {
+  pointer-events: all;
+}
+
+.colombia-node:focus-visible .colombia-node-hit {
+  stroke: #f2c830;
+  stroke-width: 2;
+  fill: rgba(242, 200, 48, .08);
+}
+
+.colombia-node-label {
+  pointer-events: none;
+}
+
+.map-label {
+  font-size: 9.5px;
+  letter-spacing: .01em;
+}
+
+.map-label-sub {
+  font-size: 7.5px;
+  opacity: .72;
+}
+
+.map-label--muted { opacity: .48; }
 
 .map-colombia {
   background:
-    radial-gradient(circle at 53% 56%, rgba(242, 200, 48, .11), transparent 16%),
-    #FFFFFF;
+    radial-gradient(circle at 52% 54%, rgba(242, 200, 48, .14), transparent 18%),
+    radial-gradient(circle at 30% 30%, rgba(61, 122, 44, .06), transparent 28%),
+    #ffffff;
   border: 1px solid rgba(26, 46, 16, .08);
 }
 
 .map-index {
   color: rgba(247, 241, 238, .08);
   font-family: var(--font-display);
-  font-size: 3.4rem;
+  font-size: clamp(2.4rem, 6vw, 3.4rem);
   font-style: italic;
   font-weight: 900;
   line-height: .8;
 }
 
+.map-index--dark { color: rgba(26, 46, 16, .08); }
+
 .world-land {
-  fill: #F7F1EE;
-  stroke: rgba(247, 241, 238, .35);
-  stroke-width: .6;
+  fill: #f7f1ee;
+  stroke: rgba(247, 241, 238, .4);
+  stroke-width: .65;
+}
+
+.map-caption {
+  color: rgba(26, 46, 16, .45);
+  font-size: .68rem;
+  line-height: 1.5;
+  margin-top: .65rem;
+}
+
+.map-caption--light { color: rgba(247, 241, 238, .42); }
+
+.map-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+  margin-top: .85rem;
 }
 
 .map-chip {
@@ -597,25 +703,28 @@ body {
   font-size: .62rem;
   font-weight: 700;
   gap: .4rem;
-  padding: .42rem .65rem;
-  transition: all .2s;
+  min-height: 2rem;
+  padding: .5rem .75rem;
+  transition: background .2s, border-color .2s, color .2s, transform .15s;
 }
 
 .map-chip span {
   border-radius: 50%;
-  height: .42rem;
-  width: .42rem;
+  height: .45rem;
+  width: .45rem;
 }
 
 .map-chip:hover,
 .map-chip-active {
-  background: #1A2E10;
-  border-color: #1A2E10;
-  color: #F7F1EE;
+  background: #1a2e10;
+  border-color: #1a2e10;
+  color: #f7f1ee;
 }
 
+.map-chip:active { transform: scale(.97); }
+
 .open-circle-card {
-  background: #1A2E10;
+  background: #1a2e10;
   border-radius: 1.4rem;
   padding: clamp(1.5rem, 3vw, 2.25rem);
 }
@@ -635,8 +744,70 @@ body {
 
 .open-slot:hover {
   background: rgba(242, 200, 48, .08);
-  border-color: #F2C830;
-  color: #F2C830;
+  border-color: #f2c830;
+  color: #f2c830;
+}
+
+@media (max-width: 1024px) {
+  .ecosystem-map-grid,
+  .ecosystem-map-footer {
+    grid-template-columns: 1fr;
+  }
+
+  .map-svg-frame--world,
+  .map-svg-frame--colombia {
+    min-height: 13.5rem;
+  }
+
+  .world-map-svg,
+  .colombia-map-svg {
+    max-height: 18.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .map-panel {
+    padding: 1.1rem 1rem 1.25rem;
+  }
+
+  .map-svg-frame--world,
+  .map-svg-frame--colombia {
+    min-height: 12.5rem;
+    margin-inline: -.15rem;
+  }
+
+  .world-map-svg,
+  .colombia-map-svg {
+    max-height: 16.5rem;
+  }
+
+  .map-label { font-size: 11px; }
+  .map-label-sub { font-size: 8.5px; }
+
+  /* En móvil priorizamos chips táctiles; etiquetas SVG más cortas via CSS no truncan,
+     pero aumentamos legibilidad y área de toque. */
+  .map-chip {
+    font-size: .68rem;
+    min-height: 2.35rem;
+    padding: .55rem .85rem;
+  }
+
+  .map-index {
+    font-size: 2.2rem;
+  }
+
+  .world-orbit {
+    animation-duration: 72s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .world-orbit,
+  .world-orbit--delay,
+  .world-route-line,
+  .colombia-link {
+    animation: none !important;
+  }
 }
 
 .game-hero {
