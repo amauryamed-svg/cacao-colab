@@ -82,9 +82,9 @@ export const masteryPhases: MasteryPhase[] = [
     eyebrow: "Fase 05 · Maestría",
     title: "Dominio que se hereda",
     body: "Maestría = repetición deliberada + tipicidad defendible + transferencia. Mentoría, plan a 10 años y set de catación para formar a otros — no para presumir medallas ajenas.",
-    microVictory: "Guía a alguien en un panel o documenta tipicidad sin inventar DO.",
-    gravityHref: "/rd/set-catacion",
-    gravityCta: "Set de catación",
+    microVictory: "Publica un output en R&D o guía a un nodo hacia su página de producto.",
+    gravityHref: "/collaboratorio",
+    gravityCta: "Ver Collaboratorio",
     rankHint: "Guardián+",
   },
 ]
@@ -104,5 +104,5 @@ export const masteryFunnelPath = [
   { n: "03", title: "Arquitecto", href: "/campus/arquitecto-fermentacion", note: "Brote+" },
   { n: "04", title: "Catador", href: "/campus/catador-cacao", note: "Labrador+ · rueda Colab" },
   { n: "05", title: "Chocolatier", href: "/campus/maestro-chocolatier", note: "Labrador+ · 70 %" },
-  { n: "06", title: "Set / Benevolo", href: "/rd/set-catacion", note: "Drop + mesa" },
+  { n: "06", title: "Collaboratorio", href: "/collaboratorio", note: "R&D · página de producto" },
 ] as const
