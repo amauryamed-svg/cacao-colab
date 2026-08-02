@@ -92,7 +92,7 @@ export function buildFollowupAdvice(snap: LearnerFollowupSnapshot): FollowupAdvi
     studyTip = `Llevas ${snap.microCompleted}/${snap.microTotal} módulos. Te faltan ${modulesLeft}: repite el hábito antes de ampliar el mapa.`
   } else {
     studyTip =
-      "Completaste el microlearning. Repasa un módulo débil o entra a Master Cacaotier: la repetición fija el criterio Fine-Flavor."
+      "Completaste el microlearning. Siguiente gravity: Catador (rueda Fine-Flavor) o Arquitecto — microvictorias, no sprints de confianza."
   }
 
   let practiceTip =

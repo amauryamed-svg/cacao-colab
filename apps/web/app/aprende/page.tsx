@@ -12,6 +12,8 @@ import { getRegisteredMicroProgress } from "@/lib/microlearning-server"
 import CourseIntroPlayer from "@/components/aprende/CourseIntroPlayer"
 import { getCourseVideo } from "@/lib/course-videos"
 import { shotById } from "@/lib/atmosphere"
+import MasteryCurveStrip from "@/components/funnel/MasteryCurveStrip"
+import { catadorTotalXp } from "@/lib/catador-course"
 
 export const metadata: Metadata = {
   title: "Campus · Master Cacaotier + Master Chocolatier",
@@ -60,37 +62,55 @@ export default async function AprendePage() {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-20">
-        <div className="grid md:grid-cols-2 gap-5 mt-10 mb-16">
-          <Link href="/campus/arquitecto-fermentacion" className="group rounded-3xl bg-colab-yellow p-7 md:p-9 min-h-80 flex flex-col text-colab-forest transition-transform hover:-translate-y-1">
+        <div className="grid md:grid-cols-3 gap-5 mt-10 mb-10">
+          <Link href="/campus/arquitecto-fermentacion" className="group rounded-3xl bg-colab-yellow p-7 md:p-9 min-h-72 flex flex-col text-colab-forest transition-transform hover:-translate-y-1">
             <div className="flex justify-between">
               <span className="eyebrow">Ruta de finca</span><span className="text-2xl">↗</span>
             </div>
             <div className="mt-auto">
-              <p className="text-xs font-bold uppercase tracking-wider opacity-55">Nivel 01 · campus registrado</p>
-              <h2 className="font-serif text-4xl font-black mt-3">Master<br />Cacaotier</h2>
-              <p className="text-sm opacity-65 mt-4 max-w-sm">Fermentación de precisión, trazabilidad y calidad Fine-Flavor. Empieza con FEAR 5.</p>
+              <p className="text-xs font-bold uppercase tracking-wider opacity-55">Brote+ · fermentación</p>
+              <h2 className="font-serif text-3xl font-black mt-3">Master<br />Cacaotier</h2>
+              <p className="text-sm opacity-65 mt-4 max-w-sm">Fermentación de precisión y tipicidad. Empieza con FEAR 5.</p>
             </div>
           </Link>
-          <Link href="/campus/maestro-chocolatier" className="group rounded-3xl bg-[#7b3729] border border-white/10 p-7 md:p-9 min-h-80 flex flex-col text-colab-cream transition-transform hover:-translate-y-1">
+          <Link href="/campus/catador-cacao" className="group rounded-3xl bg-[#1f3a24] border border-colab-yellow/30 p-7 md:p-9 min-h-72 flex flex-col text-colab-cream transition-transform hover:-translate-y-1">
+            <div className="flex justify-between">
+              <span className="eyebrow text-colab-yellow">Ruta sensorial</span><span className="text-2xl">↗</span>
+            </div>
+            <div className="mt-auto">
+              <p className="text-xs font-bold uppercase tracking-wider text-colab-cream/45">
+                Labrador+ · {catadorTotalXp} XP · rueda Colab
+              </p>
+              <h2 className="font-serif text-3xl font-black mt-3">Master<br />Catador</h2>
+              <p className="text-sm text-colab-cream/55 mt-4 max-w-sm">
+                Lente CoEx, puente Callebaut y Set Catación Colombia 10.
+              </p>
+            </div>
+          </Link>
+          <Link href="/campus/maestro-chocolatier" className="group rounded-3xl bg-[#7b3729] border border-white/10 p-7 md:p-9 min-h-72 flex flex-col text-colab-cream transition-transform hover:-translate-y-1">
             <div className="flex justify-between">
               <span className="eyebrow text-colab-cream/70">Ruta de transformación</span><span className="text-2xl">↗</span>
             </div>
             <div className="mt-auto">
-              <p className="text-xs font-bold uppercase tracking-wider text-colab-cream/45">Nivel 02 · campaña Dualita · 720 XP</p>
-              <h2 className="font-serif text-4xl font-black mt-3">Master<br />Chocolatier</h2>
+              <p className="text-xs font-bold uppercase tracking-wider text-colab-cream/45">Labrador+ · barra 70 %</p>
+              <h2 className="font-serif text-3xl font-black mt-3">Master<br />Chocolatier</h2>
               <p className="text-sm text-colab-cream/55 mt-4 max-w-sm">
-                Barra 70 % CoEx/Awards · vidas, rachas y diploma. Benevolo duja es marca acelerada hermana.
+                CoEx/Awards en barra. Benevolo duja es marca acelerada hermana.
               </p>
             </div>
           </Link>
         </div>
 
-        <section className="mt-10 grid md:grid-cols-4 gap-3 mb-16">
+        <div className="mb-14">
+          <MasteryCurveStrip compact />
+        </div>
+
+        <section className="mt-4 grid md:grid-cols-4 gap-3 mb-16">
           {[
             { step: "01", owner: "Zurych", title: "MOOC bean-to-bar", body: "Territorio Santander, agroecología y portafolio real — chocolatezurych.com." },
             { step: "02", owner: "CAÚA", title: "Protocolo diario", body: "Cacao funcional, orígenes Huila/Santander y hábito de 7 días — cauacolombia.co." },
-            { step: "03", owner: "cacaotier", title: "Masterclasses", body: "Competencia profesional desde fermentación hasta bean-to-bar Benevolo." },
-            { step: "04", owner: "Colab", title: "Conocimiento → mesa", body: "EUDR, Ecoyuma, CoEx y Benevolo: evidencia que se vuelve producto." },
+            { step: "03", owner: "cacaotier", title: "Masters + Catador", body: "Fermentación, panel Fine-Flavor y barra 70 % — microvictorias hacia maestría." },
+            { step: "04", owner: "Colab", title: "Set + mesa", body: "Set Catación 10, EUDR, Ecoyuma y Benevolo: evidencia que se vuelve producto." },
           ].map((route) => (
             <article key={route.step} className="learning-sync-card">
               <div><span>{route.step}</span><strong>{route.owner}</strong></div>

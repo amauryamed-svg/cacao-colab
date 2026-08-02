@@ -1,6 +1,7 @@
 import "server-only"
 import { createSupabaseServerClient } from "@cacao-colab/supabase-client/server"
 import { ARCHITECT_COURSE_SLUG, architectMissions, architectTotalXp } from "@/lib/architect-course"
+import { CATADOR_COURSE_SLUG, catadorMissions, catadorTotalXp } from "@/lib/catador-course"
 import { CHOCOLATIER_COURSE_SLUG, chocolatierMissions, chocolatierTotalXp } from "@/lib/chocolatier-course"
 import { BENEVOLO_COURSE_SLUG, benevoloMissions, benevoloTotalXp } from "@/lib/benevolo-brand"
 import {
@@ -116,7 +117,12 @@ export async function loadCourseTracks(userId: string): Promise<{
       .from("campus_progress")
       .select("course_slug,state,xp_total,completed_at")
       .eq("profile_id", userId)
-      .in("course_slug", [ARCHITECT_COURSE_SLUG, CHOCOLATIER_COURSE_SLUG, BENEVOLO_COURSE_SLUG]),
+      .in("course_slug", [
+        ARCHITECT_COURSE_SLUG,
+        CATADOR_COURSE_SLUG,
+        CHOCOLATIER_COURSE_SLUG,
+        BENEVOLO_COURSE_SLUG,
+      ]),
     supabase.from("mazorca_wallets").select("lifetime_earned").eq("profile_id", userId).maybeSingle(),
     getRegisteredMicroProgress(),
   ])
@@ -125,6 +131,7 @@ export async function loadCourseTracks(userId: string): Promise<{
   const bySlug = new Map((rows ?? []).map((row) => [row.course_slug, row]))
 
   const architectRow = bySlug.get(ARCHITECT_COURSE_SLUG)
+  const catadorRow = bySlug.get(CATADOR_COURSE_SLUG)
   const chocolatierRow = bySlug.get(CHOCOLATIER_COURSE_SLUG)
   const benevoloRow = bySlug.get(BENEVOLO_COURSE_SLUG)
 
@@ -140,6 +147,19 @@ export async function loadCourseTracks(userId: string): Promise<{
       state: architectRow?.state ?? {},
       xpColumn: architectRow?.xp_total ?? 0,
       completedAt: architectRow?.completed_at ?? null,
+      lifetimeMd,
+    }),
+    trackFromRigor({
+      slug: CATADOR_COURSE_SLUG,
+      title: "Master Catador",
+      subtitle: "Rueda Fine-Flavor Colab · Labrador (400 MD) · lente CoEx",
+      href: "/campus/catador-cacao",
+      diplomaPathPrefix: "/credencial/catador-cacao",
+      missionCount: catadorMissions.length,
+      xpTotal: catadorTotalXp,
+      state: catadorRow?.state ?? {},
+      xpColumn: catadorRow?.xp_total ?? 0,
+      completedAt: catadorRow?.completed_at ?? null,
       lifetimeMd,
     }),
     trackFromRigor({

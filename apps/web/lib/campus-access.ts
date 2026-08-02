@@ -7,10 +7,12 @@ import {
   ARCHITECT_COURSE_SLUG,
 } from "@/lib/architect-course"
 import { CHOCOLATIER_COURSE_SLUG } from "@/lib/chocolatier-course"
+import { CATADOR_COURSE_SLUG } from "@/lib/catador-course"
 import { BENEVOLO_COURSE_SLUG } from "@/lib/benevolo-brand"
 
 export type MasterCourseSlug =
   | typeof ARCHITECT_COURSE_SLUG
+  | typeof CATADOR_COURSE_SLUG
   | typeof CHOCOLATIER_COURSE_SLUG
   | typeof BENEVOLO_COURSE_SLUG
 
@@ -19,6 +21,7 @@ type RankSlug = (typeof communityRanks)[number]["slug"]
 /** Umbral de rango para abrir cada Master. */
 export const masterRankGate: Record<MasterCourseSlug, RankSlug> = {
   [ARCHITECT_COURSE_SLUG]: "brote",
+  [CATADOR_COURSE_SLUG]: "labrador",
   [CHOCOLATIER_COURSE_SLUG]: "labrador",
   [BENEVOLO_COURSE_SLUG]: "labrador",
 }
