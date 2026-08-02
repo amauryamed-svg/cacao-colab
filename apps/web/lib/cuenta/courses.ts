@@ -13,6 +13,11 @@ import {
   type DiplomaGrade,
 } from "@/lib/campus-rigor"
 import { getRegisteredMicroProgress } from "@/lib/microlearning-server"
+import {
+  isMasterCourseSlug,
+  resolveMasterAccess,
+  type MasterAccess,
+} from "@/lib/campus-access"
 
 export type CourseTrackSnapshot = {
   slug: string
@@ -36,8 +41,9 @@ export type CourseTrackSnapshot = {
   diplomaHref: string | null
   completedAt: string | null
   status: "not_started" | "in_progress" | "certified"
-  /** Canje MD que marcó entitlement digital en campus_progress.state */
+  /** @deprecated Masters ya no se abren por canje MD */
   mdUnlocked: boolean
+  access: MasterAccess
 }
 
 function trackFromRigor(input: {
@@ -51,6 +57,7 @@ function trackFromRigor(input: {
   state: unknown
   xpColumn: number
   completedAt: string | null
+  lifetimeMd: number
 }): CourseTrackSnapshot {
   const rigor = normalizeRigorState(input.state)
   const completedCount = rigor.completed.length
@@ -59,8 +66,9 @@ function trackFromRigor(input: {
   const certified = completedCount >= input.missionCount || Boolean(input.completedAt)
   const grade = certified || completedCount > 0 ? gradeFromFirstTry(firstTry, input.missionCount) : null
   const diplomaCode = rigor.diplomaCode ?? null
-  const stateObj =
-    input.state && typeof input.state === "object" ? (input.state as Record<string, unknown>) : {}
+  const access = isMasterCourseSlug(input.slug)
+    ? resolveMasterAccess(input.lifetimeMd, input.slug)
+    : resolveMasterAccess(input.lifetimeMd, ARCHITECT_COURSE_SLUG)
   return {
     slug: input.slug,
     title: input.title,
@@ -78,7 +86,9 @@ function trackFromRigor(input: {
     grade,
     gradeLabel: grade ? gradeLabel(grade) : null,
     gradeBlurb: grade ? gradeBlurb(grade) : null,
-    nextHint: nextGradeHint(firstTry, input.missionCount),
+    nextHint: access.unlocked
+      ? nextGradeHint(firstTry, input.missionCount)
+      : access.message,
     diplomaCode,
     diplomaHref:
       diplomaCode && input.diplomaPathPrefix
@@ -86,7 +96,8 @@ function trackFromRigor(input: {
         : null,
     completedAt: input.completedAt,
     status: certified ? "certified" : completedCount > 0 ? "in_progress" : "not_started",
-    mdUnlocked: stateObj.md_unlocked === true,
+    mdUnlocked: false,
+    access,
   }
 }
 
@@ -100,15 +111,17 @@ export async function loadCourseTracks(userId: string): Promise<{
   } | null
 }> {
   const supabase = await createSupabaseServerClient()
-  const [{ data: rows }, micro] = await Promise.all([
+  const [{ data: rows }, { data: wallet }, micro] = await Promise.all([
     supabase
       .from("campus_progress")
       .select("course_slug,state,xp_total,completed_at")
       .eq("profile_id", userId)
       .in("course_slug", [ARCHITECT_COURSE_SLUG, CHOCOLATIER_COURSE_SLUG, BENEVOLO_COURSE_SLUG]),
+    supabase.from("mazorca_wallets").select("lifetime_earned").eq("profile_id", userId).maybeSingle(),
     getRegisteredMicroProgress(),
   ])
 
+  const lifetimeMd = wallet?.lifetime_earned ?? 0
   const bySlug = new Map((rows ?? []).map((row) => [row.course_slug, row]))
 
   const architectRow = bySlug.get(ARCHITECT_COURSE_SLUG)
@@ -119,7 +132,7 @@ export async function loadCourseTracks(userId: string): Promise<{
     trackFromRigor({
       slug: ARCHITECT_COURSE_SLUG,
       title: "Master Cacaotier",
-      subtitle: "Arquitecto de Fermentación · 6 misiones · diploma digital",
+      subtitle: "Arquitecto · se abre con rango Brote (120 MD históricas)",
       href: "/campus/arquitecto-fermentacion",
       diplomaPathPrefix: "/credencial/arquitecto-fermentacion",
       missionCount: architectMissions.length,
@@ -127,11 +140,12 @@ export async function loadCourseTracks(userId: string): Promise<{
       state: architectRow?.state ?? {},
       xpColumn: architectRow?.xp_total ?? 0,
       completedAt: architectRow?.completed_at ?? null,
+      lifetimeMd,
     }),
     trackFromRigor({
       slug: CHOCOLATIER_COURSE_SLUG,
       title: "Master Chocolatier",
-      subtitle: "Barra 70 % · lente CoEx / Awards · diploma digital",
+      subtitle: "Barra 70 % · se abre con rango Labrador (400 MD históricas)",
       href: "/campus/maestro-chocolatier",
       diplomaPathPrefix: "/credencial/maestro-chocolatier",
       missionCount: chocolatierMissions.length,
@@ -139,11 +153,12 @@ export async function loadCourseTracks(userId: string): Promise<{
       state: chocolatierRow?.state ?? {},
       xpColumn: chocolatierRow?.xp_total ?? 0,
       completedAt: chocolatierRow?.completed_at ?? null,
+      lifetimeMd,
     }),
     trackFromRigor({
       slug: BENEVOLO_COURSE_SLUG,
       title: "Benevolo (capstone)",
-      subtitle: "Marca acelerada · duja FEAR 5 · credencial Colab",
+      subtitle: "Marca acelerada · se abre con rango Labrador (400 MD históricas)",
       href: "/campus/benevolo",
       diplomaPathPrefix: "/credencial/benevolo",
       missionCount: benevoloMissions.length,
@@ -151,6 +166,7 @@ export async function loadCourseTracks(userId: string): Promise<{
       state: benevoloRow?.state ?? {},
       xpColumn: benevoloRow?.xp_total ?? 0,
       completedAt: benevoloRow?.completed_at ?? null,
+      lifetimeMd,
     }),
   ]
 

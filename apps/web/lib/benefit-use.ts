@@ -12,21 +12,20 @@ export type BenefitUseGuide = {
 const COURSE_USE: Record<string, BenefitUseGuide> = {
   "arquitecto-fermentacion": {
     href: "/campus/arquitecto-fermentacion",
-    cta: "Abrir aceleración Arquitecto",
+    cta: "Ir a Arquitecto (por rango)",
     howTo:
-      "Tu canje no es un cupón aparte: abre Master Cacaotier · Arquitecto de Fermentación. Entra al campus, completa las 6 misiones Dualita y gana el diploma (vidas + primer intento). También está en Mi cuenta → Tus Masters.",
+      "Los Masters ya no se compran con canje. Arquitecto se abre con rango Brote (MD históricas de Sembrar + Dualita). Si canjeaste antes, el saldo se devolvió.",
   },
   "maestro-chocolatier": {
     href: "/campus/maestro-chocolatier",
-    cta: "Abrir Master Chocolatier",
+    cta: "Ir a Chocolatier (por rango)",
     howTo:
-      "Entra al campus Chocolatier y avanza las misiones de barra 70 %. El canje marca tu entitlement digital — el diploma se gana con rigor.",
+      "Chocolatier se abre con rango Labrador. Cultiva MD en Sembrar y Dualita — no canjees saldo por acceso.",
   },
   "chocolate-benevolo": {
     href: "/campus/benevolo",
-    cta: "Abrir ruta Benevolo",
-    howTo:
-      "Tu canje abre el capstone Benevolo. Continúa las misiones de marca acelerada y conecta con Master Chocolatier.",
+    cta: "Ir a Benevolo (por rango)",
+    howTo: "Benevolo se abre con rango Labrador. El canje de «ruta» quedó retirado.",
   },
 }
 

@@ -70,9 +70,9 @@ export default async function BenefitsPage() {
           <p className="eyebrow text-colab-yellow">Economía MD · cursos y aceleraciones</p>
           <h1>Lo que cultivas<br /><em>vuelve a la comunidad.</em></h1>
           <p>
-            Canjea Mazorcas Doradas por servicios digitales del Colab (aceleraciones, previews, mentoría).
-            El <strong>saldo</strong> paga el costo; el <strong>rango</strong> se calcula con MD históricas
-            (lo ganado cultivando — los packs de compra no suben rango). Sin multinivel.
+            Los <strong>Masters se abren con tu rango</strong> (MD históricas de Sembrar + Dualita CAÚA/Zurych).
+            Aquí canjeas <strong>saldo</strong> solo por sinks reales (p. ej. mentoría) — no por la llave del campus.
+            Los packs no suben rango. Sin multinivel.
           </p>
           {walletSnap && (
             <p className="benefits-wallet-snap">

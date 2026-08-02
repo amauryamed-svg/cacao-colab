@@ -20,6 +20,7 @@ const reasonLabels: Record<string, string> = {
   gotchi_decade_plan: "Plan labranza comparativa · 10 años",
   lesson_completed: "Microlearning completado",
   benefit_redemption: "Canje de beneficio",
+  course_unlock_refund: "Devolución · Masters por rango (no por canje)",
   scorecard_settlement: "Bono scorecard de productividad",
   pack_purchase: "Pack de Mazorcas Doradas",
 }

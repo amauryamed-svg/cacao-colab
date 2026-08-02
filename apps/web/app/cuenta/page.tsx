@@ -56,12 +56,9 @@ export default async function CuentaPage() {
     },
     {
       title: "Beneficios MD",
-      body:
-        home.redemptionCount > 0
-          ? `Tienes ${home.redemptionCount} canje(s). Úsalos en campus — no son cupones aparte.`
-          : "Canjea cursos, aceleraciones y sinks Colab activos.",
-      href: home.redemptionCount > 0 ? "/cuenta#cuenta-canjes-title" : "/marketplace/beneficios",
-      cta: home.redemptionCount > 0 ? "Ver mis canjes" : "Abrir catálogo",
+      body: "Mentoría y sinks reales. Los Masters no se compran: se abren por rango.",
+      href: "/marketplace/beneficios",
+      cta: "Abrir catálogo",
     },
     {
       title: "Campus Dualita",
@@ -126,8 +123,8 @@ export default async function CuentaPage() {
             <p className="eyebrow text-colab-yellow">Wallet · Mazorcas Doradas</p>
             <h2 id="cuenta-wallet-title">Tu economía interna</h2>
             <p>
-              Saldo para canjear cursos y aceleraciones. El rango reconoce productividad propia — no
-              reclutamiento.
+              El rango (MD históricas) abre los Masters. Gánalas en Sembrar y Dualita (CAÚA + Zurych).
+              El saldo sirve para mentoría y sinks reales — no para comprar la llave del campus.
             </p>
             <div className="cuenta-wallet-actions">
               <Link href="/cuenta/mazorcas" className="cuenta-btn-primary">
@@ -293,8 +290,8 @@ export default async function CuentaPage() {
               <p className="eyebrow text-colab-coral">Certificaciones · progreso guardado</p>
               <h2 id="cuenta-courses-title">Tus Masters</h2>
               <p>
-                Rutas exigentes y divertidas: vidas, rachas y nota por primer intento. El diploma se
-                gana — y se muestra.
+                Se abren con tu rango: Arquitecto desde Brote; Chocolatier y Benevolo desde Labrador.
+                Cultiva MD en Sembrar y Dualita. El diploma se gana con rigor — no se compra.
               </p>
             </div>
             {home.courses.micro && (
@@ -311,13 +308,23 @@ export default async function CuentaPage() {
                   <span className="cuenta-course-status">
                     {track.status === "certified"
                       ? "Diploma listo"
-                      : track.status === "in_progress"
-                        ? "En curso"
-                        : "Por empezar"}
+                      : !track.access.unlocked
+                        ? `Rango ${track.access.requiredRankName}`
+                        : track.status === "in_progress"
+                          ? "En curso"
+                          : "Por empezar"}
                   </span>
-                  {track.mdUnlocked && (
-                    <span className="cuenta-course-md-badge">Desbloqueado con MD</span>
-                  )}
+                  <span
+                    className={
+                      track.access.unlocked
+                        ? "cuenta-course-md-badge"
+                        : "cuenta-course-md-badge is-locked"
+                    }
+                  >
+                    {track.access.unlocked
+                      ? `Abierto · ${track.access.currentRankName}`
+                      : `Faltan ${track.access.mdToUnlock} MD hist.`}
+                  </span>
                   <h3>{track.title}</h3>
                   <p>{track.subtitle}</p>
                 </div>
@@ -366,15 +373,24 @@ export default async function CuentaPage() {
                   <p className="cuenta-course-hint">{track.nextHint}</p>
                 )}
                 <div className="cuenta-course-actions">
-                  <Link href={track.href} className="cuenta-btn-primary">
-                    {track.status === "certified"
-                      ? "Repasar ruta →"
-                      : track.mdUnlocked && track.status === "not_started"
-                        ? "Usar aceleración →"
+                  {track.access.unlocked ? (
+                    <Link href={track.href} className="cuenta-btn-primary">
+                      {track.status === "certified"
+                        ? "Repasar ruta →"
                         : track.status === "in_progress"
                           ? "Continuar →"
                           : "Empezar certificación →"}
-                  </Link>
+                    </Link>
+                  ) : (
+                    <>
+                      <Link href="/juega" className="cuenta-btn-primary">
+                        Ganar MD en Sembrar →
+                      </Link>
+                      <Link href="/aprende" className="cuenta-btn-ghost">
+                        Dualita CAÚA / Zurych →
+                      </Link>
+                    </>
+                  )}
                   {track.diplomaHref && (
                     <Link href={track.diplomaHref} className="cuenta-btn-ghost">
                       Ver diploma →
