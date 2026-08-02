@@ -5108,3 +5108,151 @@ body {
 @media (max-width: 540px) {
   .cuenta-manage-grid { grid-template-columns: 1fr; }
 }
+
+/* ── Mi cuenta · tracks de certificación ── */
+.cuenta-courses { margin-top: 2.75rem; }
+.cuenta-courses-head {
+  align-items: flex-end;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 1.1rem;
+}
+.cuenta-courses-head h2 {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: 800;
+  margin-top: .35rem;
+}
+.cuenta-courses-head > div > p:last-child {
+  color: rgba(247, 241, 238, .45);
+  font-size: .68rem;
+  line-height: 1.55;
+  margin-top: .45rem;
+  max-width: 34rem;
+}
+.cuenta-micro-pill {
+  background: rgba(242, 200, 48, .12);
+  border: 1px solid rgba(242, 200, 48, .3);
+  border-radius: 999px;
+  color: #f2c830;
+  font-size: .62rem;
+  font-weight: 800;
+  padding: .55rem .9rem;
+  white-space: nowrap;
+}
+.cuenta-course-grid {
+  display: grid;
+  gap: .75rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+.cuenta-course-card {
+  background: rgba(247, 241, 238, .04);
+  border: 1px solid rgba(247, 241, 238, .1);
+  border-radius: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 18rem;
+  padding: 1.15rem;
+}
+.cuenta-course-card--certified {
+  border-color: rgba(242, 200, 48, .35);
+  background:
+    radial-gradient(circle at 90% 10%, rgba(242, 200, 48, .12), transparent 40%),
+    rgba(247, 241, 238, .04);
+}
+.cuenta-course-status {
+  color: #f2c830;
+  font-size: .52rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.cuenta-course-card-top h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-top: .4rem;
+}
+.cuenta-course-card-top p {
+  color: rgba(247, 241, 238, .45);
+  font-size: .6rem;
+  line-height: 1.45;
+  margin-top: .35rem;
+}
+.cuenta-course-meter {
+  background: rgba(247, 241, 238, .08);
+  border-radius: 99px;
+  height: .35rem;
+  margin: 1rem 0 .9rem;
+  overflow: hidden;
+}
+.cuenta-course-meter i {
+  background: linear-gradient(90deg, #f2c830, #ff6a3d);
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+}
+.cuenta-course-stats {
+  display: grid;
+  gap: .4rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+.cuenta-course-stats div {
+  background: rgba(16, 29, 11, .35);
+  border-radius: .55rem;
+  padding: .45rem .55rem;
+}
+.cuenta-course-stats dt {
+  color: rgba(247, 241, 238, .35);
+  font-size: .48rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.cuenta-course-stats dd {
+  color: #f7f1ee;
+  font-size: .72rem;
+  font-weight: 800;
+  margin-top: .15rem;
+}
+.cuenta-course-grade {
+  color: rgba(247, 241, 238, .62);
+  font-size: .58rem;
+  line-height: 1.45;
+  margin-top: .75rem;
+}
+.cuenta-course-grade strong { color: #f2c830; }
+.cuenta-course-hint {
+  color: rgba(255, 106, 61, .85);
+  font-size: .55rem;
+  line-height: 1.4;
+  margin-top: .45rem;
+}
+.cuenta-course-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.architect-cert-blurb {
+  color: rgba(247, 241, 238, .5);
+  font-size: .62rem;
+  line-height: 1.45;
+  margin-top: .55rem;
+  max-width: 16rem;
+}
+.architect-cert-hint {
+  color: #ff6a3d;
+  font-size: .58rem;
+  line-height: 1.4;
+  margin-top: .4rem;
+  max-width: 16rem;
+}
+
+@media (max-width: 960px) {
+  .cuenta-course-grid { grid-template-columns: 1fr; }
+}

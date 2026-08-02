@@ -2,9 +2,9 @@ import "server-only"
 import { createSupabaseAdminClient } from "@cacao-colab/supabase-client/admin"
 import { createSupabaseServerClient } from "@cacao-colab/supabase-client/server"
 import { nextRank, resolveRank } from "@/lib/loyalty"
-import { getRegisteredMicroProgress } from "@/lib/microlearning-server"
 import { mapNodeBioRow } from "@/lib/nodo/map"
 import type { NodeBio } from "@/lib/nodo/types"
+import { loadCourseTracks, type CourseTrackSnapshot } from "@/lib/cuenta/courses"
 
 export type CuentaHomeSnapshot = {
   userId: string
@@ -22,7 +22,15 @@ export type CuentaHomeSnapshot = {
     mdToNext: number | null
   }
   bio: NodeBio | null
-  micro: Awaited<ReturnType<typeof getRegisteredMicroProgress>>
+  courses: {
+    masters: CourseTrackSnapshot[]
+    micro: {
+      completedCount: number
+      totalLessons: number
+      percent: number
+      href: string
+    } | null
+  }
   redemptionCount: number
 }
 
@@ -45,12 +53,12 @@ async function loadBioByEmail(email: string): Promise<NodeBio | null> {
 
 export async function loadCuentaHome(userId: string, email: string, metadataName?: string | null) {
   const supabase = await createSupabaseServerClient()
-  const [{ data: profile }, { data: wallet }, { data: roles }, micro, bio] = await Promise.all([
+  const [{ data: profile }, { data: wallet }, { data: roles }, bio, courses] = await Promise.all([
     supabase.from("profiles").select("full_name,city").eq("id", userId).maybeSingle(),
     supabase.from("mazorca_wallets").select("balance,lifetime_earned").eq("profile_id", userId).maybeSingle(),
     supabase.from("actor_roles").select("role,is_primary").eq("profile_id", userId),
-    getRegisteredMicroProgress(),
     loadBioByEmail(email),
+    loadCourseTracks(userId),
   ])
 
   let redemptionCount = 0
@@ -93,7 +101,7 @@ export async function loadCuentaHome(userId: string, email: string, metadataName
       mdToNext: upcoming ? upcoming.threshold - lifetime : null,
     },
     bio,
-    micro,
+    courses,
     redemptionCount,
   }
   return snapshot

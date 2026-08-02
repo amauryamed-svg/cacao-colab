@@ -13,9 +13,11 @@ import { saveChocolatierProgress } from "@/app/campus/actions"
 import {
   bumpStreak,
   encodeDiploma,
+  gradeBlurb,
   gradeFromFirstTry,
   gradeLabel,
   linkedInShareUrl,
+  nextGradeHint,
   MAX_HEARTS,
   normalizeRigorState,
   refillHeartsIfNeeded,
@@ -53,6 +55,7 @@ export default function ChocolatierCoursePlayer({
   const completedCount = progress.completed.length
   const firstTryCount = Object.values(progress.scores).filter((s) => s.passed && s.firstTry).length
   const grade = gradeFromFirstTry(firstTryCount, chocolatierMissions.length)
+  const gradeHint = nextGradeHint(firstTryCount, chocolatierMissions.length)
   const overallProgress = Math.round(
     ((completedCount + (phase === "learn" ? stepIndex / mission.steps.length : phase === "quiz" ? 0.85 : 0)) /
       chocolatierMissions.length) *
@@ -217,7 +220,7 @@ export default function ChocolatierCoursePlayer({
     <div className="architect-player chocolatier-player">
       <header className="architect-topbar">
         <Link href="/cuenta" className="architect-exit">
-          ← Campus
+          ← Mi cuenta
         </Link>
         <div className="architect-progress">
           <i style={{ width: `${overallProgress}%` }} />
@@ -233,7 +236,7 @@ export default function ChocolatierCoursePlayer({
 
       <div className="architect-layout">
         <aside className="architect-map">
-          <p className="eyebrow text-[#FF6A3D]">Campaña 70 % · CoEx / Awards lens</p>
+          <p className="eyebrow text-[#FF6A3D]">Certificación · Master Chocolatier</p>
           <h1>
             Master
             <br />
@@ -243,6 +246,8 @@ export default function ChocolatierCoursePlayer({
             {learnerName} · {completedCount}/6 · primer intento {firstTryCount}/6 · {chocolatierTotalXp} XP
           </p>
           <p className="chocolatier-grade-pill">{gradeLabel(grade)}</p>
+          <p className="architect-cert-blurb">{gradeBlurb(grade)}</p>
+          {gradeHint && <p className="architect-cert-hint">{gradeHint}</p>}
           <div className="architect-mission-rail">
             {chocolatierMissions.map((item, index) => {
               const done = progress.completed.includes(item.slug)
@@ -273,11 +278,14 @@ export default function ChocolatierCoursePlayer({
             {syncStatus === "saving"
               ? "Sincronizando…"
               : syncStatus === "saved"
-                ? "✓ Progreso sincronizado"
+                ? "✓ Progreso guardado en Mi cuenta"
                 : syncStatus === "local"
                   ? "Guardado local · aplica migración Supabase"
-                  : "Edutainment con rigor · vidas diarias"}
+                  : "Exigente + divertido · vidas diarias"}
           </p>
+          <Link href="/cuenta" className="chocolatier-sister-link">
+            Ver progreso en Mi cuenta →
+          </Link>
           <Link href="/benevolo" className="chocolatier-sister-link">
             Marca hermana · Benevolo duja →
           </Link>

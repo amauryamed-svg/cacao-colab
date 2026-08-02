@@ -27,6 +27,7 @@ function safeNext(value: FormDataEntryValue | null) {
     "/cuenta/consejo",
     "/cuenta/bio",
     "/cuenta/mazorcas",
+    "/credencial",
     "/equipo",
   ]
   return allowed.some((prefix) => next.startsWith(prefix)) ? next : "/aprende"

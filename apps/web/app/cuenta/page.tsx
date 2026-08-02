@@ -61,8 +61,8 @@ export default async function CuentaPage() {
     },
     {
       title: "Campus Dualita",
-      body: home.micro
-        ? `Microlearning CAÚA: ${home.micro.completedCount}/${home.micro.totalLessons} módulos.`
+      body: home.courses.micro
+        ? `Microlearning CAÚA: ${home.courses.micro.completedCount}/${home.courses.micro.totalLessons} módulos.`
         : "MOOC, cacao funcional y Masterclasses.",
       href: "/aprende",
       cta: "Continuar aprendizaje",
@@ -217,6 +217,100 @@ export default async function CuentaPage() {
           )}
         </section>
 
+        <section className="cuenta-courses" aria-labelledby="cuenta-courses-title">
+          <div className="cuenta-courses-head">
+            <div>
+              <p className="eyebrow text-colab-coral">Certificaciones · progreso guardado</p>
+              <h2 id="cuenta-courses-title">Tus Masters</h2>
+              <p>
+                Rutas exigentes y divertidas: vidas, rachas y nota por primer intento. El diploma se
+                gana — y se muestra.
+              </p>
+            </div>
+            {home.courses.micro && (
+              <Link href={home.courses.micro.href} className="cuenta-micro-pill">
+                Micro CAÚA {home.courses.micro.completedCount}/{home.courses.micro.totalLessons}
+              </Link>
+            )}
+          </div>
+
+          <ul className="cuenta-course-grid">
+            {home.courses.masters.map((track) => (
+              <li key={track.slug} className={`cuenta-course-card cuenta-course-card--${track.status}`}>
+                <div className="cuenta-course-card-top">
+                  <span className="cuenta-course-status">
+                    {track.status === "certified"
+                      ? "Diploma listo"
+                      : track.status === "in_progress"
+                        ? "En curso"
+                        : "Por empezar"}
+                  </span>
+                  <h3>{track.title}</h3>
+                  <p>{track.subtitle}</p>
+                </div>
+                <div className="cuenta-course-meter" aria-hidden>
+                  <i style={{ width: `${track.percent}%` }} />
+                </div>
+                <dl className="cuenta-course-stats">
+                  <div>
+                    <dt>Misiones</dt>
+                    <dd>
+                      {track.completedCount}/{track.missionCount}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>XP</dt>
+                    <dd>
+                      {track.xp}/{track.xpTotal}
+                    </dd>
+                  </div>
+                  {track.hearts != null && (
+                    <div>
+                      <dt>Vidas</dt>
+                      <dd>♥ {track.hearts}</dd>
+                    </div>
+                  )}
+                  {track.streak != null && track.streak > 0 && (
+                    <div>
+                      <dt>Racha</dt>
+                      <dd>🔥 {track.streak}</dd>
+                    </div>
+                  )}
+                  <div>
+                    <dt>1er intento</dt>
+                    <dd>
+                      {track.firstTry}/{track.missionCount}
+                    </dd>
+                  </div>
+                </dl>
+                {track.gradeLabel && (
+                  <p className="cuenta-course-grade">
+                    <strong>{track.gradeLabel}</strong>
+                    {track.gradeBlurb ? ` · ${track.gradeBlurb}` : ""}
+                  </p>
+                )}
+                {track.nextHint && track.status !== "certified" && (
+                  <p className="cuenta-course-hint">{track.nextHint}</p>
+                )}
+                <div className="cuenta-course-actions">
+                  <Link href={track.href} className="cuenta-btn-primary">
+                    {track.status === "certified"
+                      ? "Repasar ruta →"
+                      : track.status === "in_progress"
+                        ? "Continuar →"
+                        : "Empezar certificación →"}
+                  </Link>
+                  {track.diplomaHref && (
+                    <Link href={track.diplomaHref} className="cuenta-btn-ghost">
+                      Ver diploma →
+                    </Link>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+
         <section className="cuenta-manage" aria-labelledby="cuenta-manage-title">
           <p className="eyebrow text-colab-yellow">Gestionar en el Colab</p>
           <h2 id="cuenta-manage-title">Todo tu espacio</h2>
@@ -237,11 +331,10 @@ export default async function CuentaPage() {
           </ul>
         </section>
 
-        <section className="cuenta-learn-strip" aria-label="Continuar rutas">
-          <Link href="/campus/arquitecto-fermentacion">Arquitecto de Fermentación</Link>
-          <Link href="/campus/maestro-chocolatier">Master Chocolatier</Link>
-          <Link href="/campus/benevolo">Benevolo</Link>
+        <section className="cuenta-learn-strip" aria-label="Atajos campus">
           <Link href="/rd">R&D Colab</Link>
+          <Link href="/aprende">Campus Dualita</Link>
+          <Link href="/marketplace/beneficios">Canjear MD</Link>
         </section>
       </div>
     </div>
