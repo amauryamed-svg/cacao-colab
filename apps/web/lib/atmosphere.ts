@@ -110,7 +110,7 @@ export const atmosphereShots: AtmosphereShot[] = [
   {
     id: "bars-fear5",
     src: "/benevolo/bars-fear5.png",
-    alt: "Chocolate Benevolo Bars. FEAR 5 · duja de marañón",
+    alt: "Chocolate Benevolo Bars. · Duja de Marañón sugar free · FEAR 5",
     mood: "desire",
     nodes: ["Benevolo", "Quara", "Zurych"],
   },

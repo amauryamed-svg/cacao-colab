@@ -156,7 +156,7 @@ export const brands: Brand[] = [
     bgColor: "#1A120C",
     textColor: "#F7F1EE",
     products: [
-      "Bars. 80 g · duja de marañón",
+      "Bars. · Duja de Marañón sugar free",
       "FEAR 5 · Quara × Zurych",
       "R&D Colab · marca acelerada",
     ],

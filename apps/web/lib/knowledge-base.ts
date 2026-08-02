@@ -288,33 +288,34 @@ export const benevoloProduct = {
   wordmark: "Benevolo",
   owner: "master-chocolatier",
   domain: "ChocolateBenevolo.co",
-  format: "Chocolatina de leche con frutos secos · Neto 80 g",
-  tagline: "Duja de marañón. FEAR 5 de Quara. Se lee igual en español y en italiano.",
+  category: "Duja de Marañón sugar free",
+  format: "Bars. · Duja de Marañón sugar free · Neto 80 g",
+  tagline: "Duja de Marañón sugar free. FEAR 5 de Quara. Se lee igual en español y en italiano.",
   accentLine: "Benevolo sin tilde. Chocolate Benevolo le pone las tildes a la e.",
   description:
-    "Marca acelerada cacaotier: chocolatina de leche con duja de marañón inspirada en la gianduja, cacao FEAR 5 del nodo Quara (Tame · Arauca), leche en polvo orgánica, alulosa y stevia. Hermana del Master Chocolatier 70 % — tendencia + oficio + preventa.",
+    "Marca acelerada cacaotier: Bars. en categoría Duja de Marañón sugar free — duja de marañón inspirada en la gianduja, cacao FEAR 5 del nodo Quara (Tame · Arauca), leche en polvo orgánica, alulosa y stevia. Hermana del Master Chocolatier 70 % — tendencia + oficio + preventa.",
   alliances: [
-    { name: "Zurych", role: "Cultura bean-to-bar y transformación", place: "Landázuri · Santander", href: "https://chocolatezurych.com" },
+    { name: "Zurych", role: "Transformación y oficio de chocolatería", place: "Landázuri · Santander", href: "https://chocolatezurych.com" },
     { name: "CAÚA", role: "Coberturas y nibs · shop convergente", place: "Santander · cauacolombia.co", href: "/rd/coberturas" },
     { name: "Quara Cacao", role: "Nodo FEAR 5 · origen Arauca", place: "Tame · Arauca", href: "/marketplace" },
     { name: "Track Benevolo", role: "Aceleración Dualita", place: "Campus", href: "/campus/benevolo" },
   ],
   formula: [
     { label: "Cacao", value: "FEAR 5 · Quara / Arauca · fermentación controlada" },
-    { label: "Duja", value: "Marañón local · inspiración gianduja" },
+    { label: "Categoría", value: "Duja de Marañón sugar free" },
     { label: "Leche", value: "Leche en polvo orgánica" },
-    { label: "Dulzor", value: "Alulosa + stevia" },
+    { label: "Dulzor", value: "Alulosa + stevia · sin azúcar añadida" },
   ],
   claims: [
+    { label: "Categoría", value: "Duja de Marañón sugar free" },
     { label: "Genética", value: "FEAR 5 · Quara · Arauca" },
-    { label: "Alianza", value: "Zurych × Quara Cacao" },
     { label: "Formato", value: "Bars. · 80 g" },
     { label: "Casa", value: "R&D Colab · marca acelerada" },
   ],
   heroImage: "/benevolo/bars-fear5.png",
   status: "preorder" as const,
   whatIsReady: [
-    "Identidad Chocolate Benevolo y empaque aspiracional",
+    "Identidad Chocolate Benevolo y empaque Bars. (categoría Duja de Marañón sugar free)",
     "Track Dualita Benevolo (marca acelerada separada del Master 70 %)",
     "Alianza Zurych × Quara (nodo FEAR 5)",
     "Fórmula: FEAR 5, duja de marañón, leche orgánica, alulosa, stevia",
@@ -326,7 +327,7 @@ export const benevoloProduct = {
     "Certificación orgánica del producto terminado completa",
   ],
   preorderWhatsapp:
-    "https://wa.me/573102227848?text=Hola%20Chocolate%20Benevolo%2C%20quiero%20preordenar%20Bars.%20FEAR%205%20Quara%20con%20duja%20de%20mara%C3%B1%C3%B3n%20(80g).",
+    "https://wa.me/573102227848?text=Hola%20Chocolate%20Benevolo%2C%20quiero%20preordenar%20Bars.%20Duja%20de%20Mara%C3%B1%C3%B3n%20sugar%20free%20FEAR%205%20Quara%20(80g).",
 }
 
 export const ecosystemSpearhead = {

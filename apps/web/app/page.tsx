@@ -65,7 +65,7 @@ export default function Home() {
               className="relative w-full h-auto"
             />
             <span className="colab-hero-packshot-label">
-              Bars. FEAR 5 · Quara × Zurych →
+              Bars. · Duja de Marañón sugar free →
             </span>
           </Link>
         </div>
