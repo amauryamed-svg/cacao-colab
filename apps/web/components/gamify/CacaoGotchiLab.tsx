@@ -8,13 +8,17 @@ import {
   agroforestryModels,
   bitacoraPrompts,
   cartografiaLayers,
+  ecoyumaCatalogPlantulas,
+  isSembrarGenotype,
+  modeloAraucanoPlantulas,
   planningMilestones,
   plantulaFor,
   sembrarCatalogHref,
+  sembrarDoDispute,
   sembrarGenerationCopy,
-  sembrarPlantulas,
   type SembrarGenotype,
 } from "@/lib/sembrar"
+import { mazorcaRewards } from "@/lib/loyalty"
 
 type BitacoraEntry = {
   id: string
@@ -91,7 +95,7 @@ const initialState: GotchiState = {
   streak: 0,
   lastActionDate: null,
   selectedNode: "arauca",
-  genotype: "FEAR 5 · Trinitario comercial Fedecacao",
+  genotype: "FEAR 5 · Fedecacao Arauquita 5",
   genotypeCode: "FEAR 5",
   treatment: null,
   fermentationHour: 0,
@@ -109,12 +113,17 @@ const initialState: GotchiState = {
 }
 
 const stages = [
-  { name: "Semilla", icon: "●", threshold: 0, mission: "Elige plántula Ecoyuma, nodo y cartografía base." },
+  { name: "Semilla", icon: "●", threshold: 0, mission: "Elige el modelo araucano (FEAR 5 · FTA 2 · FSA 13), nodo y cartografía." },
   { name: "Plántula", icon: "♧", threshold: 1, mission: "Equilibra agua, sombra y registra la bitácora de trasplante." },
   { name: "Árbol joven", icon: "♣", threshold: 12, mission: "Cubre suelo, observa sanidad y ajusta el modelo agroforestal." },
   { name: "Floración", icon: "✣", threshold: 30, mission: "Cuida polinizadores y sombra para sostener flores." },
   { name: "Mazorca", icon: "◉", threshold: 54, mission: "Lleva la mazorca a madurez sin forzar el árbol." },
-  { name: "Cosecha", icon: "◆", threshold: 78, mission: "Abre un lote trazable y aplica fermentación Cacaotier." },
+  {
+    name: "Cosecha",
+    icon: "◆",
+    threshold: 78,
+    mission: `Abre lote trazable (+${mazorcaRewards.gotchiHarvestOpen} MD) y cierra fermentación (+${mazorcaRewards.gotchiHarvest} MD).`,
+  },
 ]
 
 const actions = [
@@ -170,7 +179,7 @@ function isGotchiState(value: unknown): value is GotchiState {
 }
 
 function normalizeState(value: GotchiState): GotchiState {
-  const code = (value.genotypeCode as SembrarGenotype) || "FEAR 5"
+  const code = isSembrarGenotype(value.genotypeCode) ? value.genotypeCode : "FEAR 5"
   const plant = plantulaFor(code)
   return {
     ...initialState,
@@ -190,7 +199,7 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
     isGotchiState(initialRemoteState) ? normalizeState(initialRemoteState) : initialState,
   )
   const [message, setMessage] = useState(
-    "Dualita: elige plántula Ecoyuma y dibuja tu finca antes de acelerar el tiempo.",
+    "Dualita: elige el modelo araucano (FEAR 5 · Tame 2 · Saravena 13) y dibuja tu finca antes de acelerar el tiempo.",
   )
   const [loaded, setLoaded] = useState(false)
   const [sync, setSync] = useState<"idle" | "saving" | "saved" | "local">("idle")
@@ -307,7 +316,10 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
     const next = { ...state, genotypeCode: code, genotype: plant.label }
     setState(next)
     persist(next)
-    setMessage(`Dualita: ${plant.code} seleccionado. Verifica la plántula en Ecoyuma antes de comprar.`)
+    const buyHint = plant.ecoyumaHref
+      ? "Verifica stock en Ecoyuma antes de comprar."
+      : "Material Fedecacao del modelo araucano — consulta vivero regional; Colab no inventa stock."
+    setMessage(`Dualita: ${plant.code} seleccionado. ${buyHint}`)
   }
 
   function saveBitacora() {
@@ -342,7 +354,9 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
     }
     setState(next)
     persist(next)
-    setMessage("Dualita: lote abierto. Fermenta con evidencia — el genotipo Ecoyuma ya no basta solo.")
+    setMessage(
+      `Dualita: cosecha abierta · +${mazorcaRewards.gotchiHarvestOpen} MD. Fermenta con evidencia el lote ${state.genotypeCode}.`,
+    )
   }
 
   function advanceFermentation() {
@@ -355,20 +369,25 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
     }
     setState(next)
     persist(next)
+    if (hour === 120) {
+      setMessage(
+        `Dualita: lote cerrado a 120 h · +${mazorcaRewards.gotchiHarvest} MD. Tipicidad araucana se defiende en red.`,
+      )
+    }
   }
 
   function reset() {
     const next = { ...initialState, plantedAt: now(), lastGrowthAt: now() }
     setState(next)
     persist(next)
-    setMessage("Nueva labranza. Empieza por cartografía y plántula Ecoyuma.")
+    setMessage("Nueva labranza. Empieza por el modelo araucano y la cartografía.")
   }
 
   return (
     <div className="gotchi-shell">
       <div className="labranza-planner">
         <div>
-          <p className="eyebrow text-colab-yellow">Sembrar · Ecoyuma × Colab</p>
+          <p className="eyebrow text-colab-yellow">Sembrar · modelo araucano × Ecoyuma</p>
           <h2>{sembrarGenerationCopy.headline}</h2>
           <p>{sembrarGenerationCopy.body}</p>
         </div>
@@ -428,22 +447,43 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
         </div>
       </div>
 
+      <aside className="sembrar-do-callout">
+        <p className="eyebrow text-colab-yellow">{sembrarDoDispute.eyebrow}</p>
+        <h3>{sembrarDoDispute.title}</h3>
+        <p>{sembrarDoDispute.body}</p>
+        <ul>
+          {sembrarDoDispute.bullets.map((item) => (
+            <li key={item.slice(0, 40)}>{item}</li>
+          ))}
+        </ul>
+        <div className="sembrar-do-links">
+          <Link href={sembrarDoDispute.knowledgeHref}>Leer DO en conocimiento →</Link>
+          <a href={sembrarDoDispute.fedecacaoAraucaHref} target="_blank" rel="noopener noreferrer">
+            Fedecacao · Arauquita
+          </a>
+          <a href={sembrarDoDispute.orinoquiaTraceHref} target="_blank" rel="noopener noreferrer">
+            Trazabilidad Orinoquía (Fedecacao)
+          </a>
+        </div>
+      </aside>
+
       <section className="sembrar-plantulas">
         <div className="sembrar-plantulas-head">
           <div>
-            <p className="eyebrow text-colab-yellow">Plántulas Ecoyuma</p>
-            <h3>Elige el material de tu finca idónea</h3>
+            <p className="eyebrow text-colab-yellow">Modelo araucano</p>
+            <h3>FEAR 5 · Tame 2 · Saravena 13</h3>
             <p>
-              Catálogo externo — Cacao Colab no inventa stock. FEAR 5 es el eje; TCS 19 y TCS 06
-              contrastan tipicidad bajo el mismo protocolo.
+              Trío Fedecacao (FEAR 5 / FTA 2 / FSA 13) del modelo integrado de Arauquita — el eje
+              pedagógico de Sembrar, cercano al debate de denominación de origen. Cacao Colab no
+              inventa stock ni DO registrada.
             </p>
           </div>
-          <a href={sembrarCatalogHref} target="_blank" rel="noopener noreferrer" className="sembrar-ext-link">
-            Ver vivero Ecoyuma →
-          </a>
+          <Link href="/conocimiento/denominacion-origen" className="sembrar-ext-link">
+            Contexto DO →
+          </Link>
         </div>
         <div className="sembrar-plantula-grid">
-          {sembrarPlantulas.map((plant) => (
+          {modeloAraucanoPlantulas.map((plant) => (
             <button
               key={plant.code}
               type="button"
@@ -456,11 +496,46 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
             </button>
           ))}
         </div>
-        <p className="sembrar-plantula-note">
-          Seleccionado: <strong>{plantula.label}</strong> · {plantula.ecoyumaSkuNote} ·{" "}
-          <a href={plantula.ecoyumaHref} target="_blank" rel="noopener noreferrer">
-            abrir SKU
+      </section>
+
+      <section className="sembrar-plantulas">
+        <div className="sembrar-plantulas-head">
+          <div>
+            <p className="eyebrow text-colab-yellow">Catálogo externo · Ecoyuma</p>
+            <h3>Plántulas para contrastar tipicidad</h3>
+            <p>
+              Catálogo externo — Cacao Colab no inventa stock. FEAR 5 es el eje; TCS 19 y TCS 06
+              contrastan tipicidad bajo el mismo protocolo.
+            </p>
+          </div>
+          <a href={sembrarCatalogHref} target="_blank" rel="noopener noreferrer" className="sembrar-ext-link">
+            Ver vivero Ecoyuma →
           </a>
+        </div>
+        <div className="sembrar-plantula-grid">
+          {ecoyumaCatalogPlantulas.map((plant) => (
+            <button
+              key={`eco-${plant.code}`}
+              type="button"
+              className={plant.code === state.genotypeCode ? "active" : ""}
+              onClick={() => chooseGenotype(plant.code)}
+            >
+              <strong>{plant.code}</strong>
+              <span>{plant.family}</span>
+              <small>{plant.why}</small>
+            </button>
+          ))}
+        </div>
+        <p className="sembrar-plantula-note">
+          Seleccionado: <strong>{plantula.label}</strong> · {plantula.ecoyumaSkuNote}
+          {plantula.ecoyumaHref ? (
+            <>
+              {" · "}
+              <a href={plantula.ecoyumaHref} target="_blank" rel="noopener noreferrer">
+                abrir SKU
+              </a>
+            </>
+          ) : null}
         </p>
       </section>
 
@@ -471,7 +546,8 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
             {selectedTerritory?.nodeName} · {selectedTerritory?.city}
           </strong>
           <small>
-            {state.genotype} · escenario didáctico; confirma material real con Ecoyuma y el nodo.
+            {state.genotype} · escenario didáctico; confirma material real (Ecoyuma / Fedecacao) y el
+            nodo Quara · Arauca.
           </small>
         </div>
         <div>
@@ -648,7 +724,10 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
                     <span>{action.icon}</span>
                     <span>
                       <strong>{action.label}</strong>
-                      <small>+{action.xp} XP · hasta +5 MD</small>
+                      <small>
+                        +{action.xp} XP · +{mazorcaRewards.gotchiCare} MD (tope{" "}
+                        {mazorcaRewards.gotchiCareDailyCap}/día)
+                      </small>
                     </span>
                   </button>
                 ))}
@@ -665,7 +744,7 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
                 >
                   {state.ageHours < 78
                     ? `Cosecha en ${78 - state.ageHours} h`
-                    : "Cosechar + fermentar Cacaotier →"}
+                    : `Cosechar · +${mazorcaRewards.gotchiHarvestOpen} MD → fermentar`}
                 </button>
               </div>
             </>
@@ -817,9 +896,9 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
                 <i style={{ width: `${state.fermentationHour / 1.2}%` }} />
               </div>
               <p className="text-sm leading-relaxed text-colab-ink/60 mt-5">
-                Escenario educativo. El genotipo {state.genotypeCode} de Ecoyuma no implica que el
-                paper haya validado este nodo a esta escala — documenta tu lote real en Master
-                Cacaotier.
+                Escenario educativo con genotipo {state.genotypeCode} (modelo araucano o contraste
+                Ecoyuma). No implica DO registrada ni que el paper haya validado este nodo a esta
+                escala — documenta tu lote real en Master Cacaotier.
               </p>
               {state.phase !== "complete" ? (
                 <button type="button" onClick={advanceFermentation} className="gotchi-ferment mt-6">
@@ -827,8 +906,9 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
                 </button>
               ) : (
                 <div className="mt-6 bg-colab-yellow/30 rounded-xl p-4 text-sm font-bold text-colab-forest">
-                  ✦ Lote cerrado a 120 h. Siguiente paso colectivo: campus + /unete — tipicidad se
-                  defiende en red.
+                  ✦ Lote cerrado a 120 h · +{mazorcaRewards.gotchiHarvest} MD de cosecha. Siguiente
+                  paso: campus + /unete — tipicidad araucana se defiende en red, no con claims de DO
+                  inventados.
                 </div>
               )}
             </div>

@@ -50,15 +50,39 @@ export const evidenceLabels: Record<EvidenceLevel, string> = {
 export const priorityVarieties: VarietyProfile[] = [
   {
     code: "FEAR 5",
-    aliases: ["FEAR-5", "Federación Arauquita 5", "Arauquita 5"],
-    family: "Trinitario comercial · Fedecacao",
+    aliases: ["FEAR-5", "Federación Arauquita 5", "Arauquita 5", "Fedecacao Arauquita 5"],
+    family: "Modelo araucano · Trinitario · Fedecacao",
     originNote:
-      "Clon regional asociado a Arauca/Arauquita. Fue el material del estudio Santander et al. (2025) en biorreactor: Fine-Flavor bajo fermentación controlada.",
+      "Clon regional de Arauquita (Arauca), seleccionado ~2002. Eje del modelo araucano con FTA 2 y FSA 13. Material del estudio Santander et al. (2025) en biorreactor y del paper de fermentación Colab.",
     whyItMatters:
-      "Es la variedad que cacaotier promueve como puente entre genética de finca, bioproceso y producto Benevolo. Compite en calidad cuando la fermentación, el secado y la trazabilidad se hacen bien.",
+      "Puente entre genética de finca, bioproceso y Benevolo. Plántula verificable en Ecoyuma; tipicidad defendible ante panel cuando fermentación y trazabilidad se hacen bien.",
     ecoyumaUrl: "https://tienda.ecoyuma.com.co/cacao-injertado-regional/45-plantula-de-cacao-fear-05.html",
     evidence: "commercial_catalog",
     priority: "primary",
+  },
+  {
+    code: "FTA 2",
+    aliases: ["FTA-2", "Fedecacao Tame 2", "Tame 2"],
+    family: "Modelo araucano · Fedecacao Tame",
+    originNote:
+      "Clon Fedecacao Tame 2. Con FEAR 5 y FSA 13 integra el modelo araucano citado por Fedecacao en Arauquita (galardones Salón du Chocolat París 2010–2011).",
+    whyItMatters:
+      "Completa el arreglo clonal araucano. Sembrar lo promueve como material de tipicidad territorial; Cacao Colab no inventa stock de vivero.",
+    ecoyumaUrl: "https://tienda.ecoyuma.com.co/11-plantulas-de-cacao",
+    evidence: "territorial_process",
+    priority: "priority",
+  },
+  {
+    code: "FSA 13",
+    aliases: ["FSA-13", "Fedecacao Saravena 13", "Saravena 13"],
+    family: "Modelo araucano · Fedecacao Saravena",
+    originNote:
+      "Clon Fedecacao Saravena 13. Tercer genotipo del modelo araucano junto a FEAR 5 y FTA 2; recurrente en descripciones de calidad de Arauca.",
+    whyItMatters:
+      "Evita leer tipicidad como monoclon. En Sembrar se etiqueta aparte; no mezclar en un solo lote de fermentación si quieres atribuir perfil.",
+    ecoyumaUrl: "https://tienda.ecoyuma.com.co/11-plantulas-de-cacao",
+    evidence: "territorial_process",
+    priority: "priority",
   },
   {
     code: "TCS 19",
@@ -67,7 +91,7 @@ export const priorityVarieties: VarietyProfile[] = [
     originNote:
       "Listada en Ecoyuma como plántula injertada TCS-19. En campo a veces se menciona como TSS 19; el SKU comercial verificado usa TCS.",
     whyItMatters:
-      "Prioridad de renovación genética junto a FEAR 5 para diversificar lotes y comparar perfiles sensoriales bajo el mismo protocolo de fermentación.",
+      "Contraste frente al modelo araucano: diversifica lotes y compara perfiles bajo el mismo protocolo de fermentación.",
     ecoyumaUrl: "https://tienda.ecoyuma.com.co/cacao-injertado-regional/44-plantula-de-cacao-tcs-19.html",
     evidence: "commercial_catalog",
     priority: "priority",
@@ -79,7 +103,7 @@ export const priorityVarieties: VarietyProfile[] = [
     originNote:
       "Listada en Ecoyuma como plántula injertada TCS-06. Alias de campo TSS 6; el catálogo usa TCS.",
     whyItMatters:
-      "Segunda prioridad de comparación genética para labranzas que quieren contrastar rendimiento, sanidad y potencial Fine-Flavor con FEAR 5.",
+      "Segunda línea de comparación genética para ensayos de tipicidad frente a FEAR 5 / modelo araucano.",
     ecoyumaUrl: "https://tienda.ecoyuma.com.co/cacao-injertado-regional/42-plantula-de-cacao-tcs-06.html",
     evidence: "commercial_catalog",
     priority: "priority",
@@ -161,13 +185,14 @@ export const knowledgeTopics: KnowledgeTopic[] = [
     title: "Denominación de origen e indicaciones geográficas",
     eyebrow: "Arauca · Orinoquía · SIC",
     summary:
-      "El cacao araucano busca denominación de origen; el trámite ante la Superintendencia de Industria y Comercio sigue en disputa política y técnica (origen exclusivo vs. Orinoquía compartida). No está consolidado como DO registrada en este hub.",
+      "El cacao araucano busca denominación de origen; Fedecacao tramitó «Cacao de la Orinoquía» ante la SIC mientras Arauca defiende un origen exclusivo. No está consolidado como DO registrada en este hub.",
     evidence: "territorial_process",
     body: [
       "Una denominación de origen o indicación geográfica protege un vínculo entre calidad/reputación y territorio. En Colombia se tramita ante la SIC con evidencia histórica, genética, ambiental y de uso.",
-      "Arauca ha insistido en un origen exclusivo («cacao araucano»). Otras propuestas hablan de Orinoquía. Hasta que exista registro firme, el Colab habla de origen declarado y trazable, no de DO ya otorgada.",
-      "FEAR 5 y otros clones regionales alimentan el argumento de tipicidad, pero la genética sola no basta: hace falta pliego, mapa, gobernanza y control de uso de la marca colectiva.",
-      "Mientras tanto, la ventaja competitiva se construye con lote georreferenciado, fermentación documentada y storytelling honesto — exactamente la promesa de cacaotier + Benevolo.",
+      "El modelo araucano documentado por Fedecacao integra FEAR 5 (Arauquita), FTA 2 (Tame) y FSA 13 (Saravena) — materiales con reconocimiento en Salón du Chocolat París (2010–2011) y presencia reiterada en muestras de calidad.",
+      "Fedecacao impulsó el reconocimiento de «Cacao de la Orinoquía de Colombia» (incluye herramientas de trazabilidad en docacao.org). Productores y la Gobernación de Arauca han rechazado diluir la identidad en una DO compartida con Meta/Casanare y piden «cacao araucano» exclusivo.",
+      "Hasta que exista registro firme y gobernanza clara, el Colab habla de origen declarado y trazable — no de DO ya otorgada. Genética sola no basta: pliego, mapa, control de uso y fermentación documentada.",
+      "Sembrar entrena ese criterio: etiquetar el clon del modelo araucano, contrastar con Ecoyuma (TCS) bajo el mismo protocolo, y cerrar lote con evidencia Cacaotier + Benevolo.",
     ],
     links: [
       {
@@ -176,12 +201,23 @@ export const knowledgeTopics: KnowledgeTopic[] = [
         note: "Autoridad registral",
       },
       {
-        label: "Gobernación de Arauca · agenda cacaotera",
-        href: "https://arauca.gov.co/",
-        note: "Proceso territorial",
+        label: "Fedecacao · Arauquita / modelo araucano",
+        href: "https://www.fedecacao.com.co/post/desde-arauca-elchocolatenosune-arauquita",
+        note: "Fuente gremial",
       },
+      {
+        label: "docacao.org · trazabilidad Orinoquía",
+        href: "https://docacao.org/",
+        note: "Sistema Fedecacao (no implica DO consolidada aquí)",
+      },
+      {
+        label: "Gobernación de Arauca",
+        href: "https://arauca.gov.co/",
+        note: "Agenda territorial",
+      },
+      { label: "Abrir Sembrar", href: "/juega", note: "Laboratorio modelo araucano" },
     ],
-    relatedCampus: ["/aprende/cacaotier", "/conocimiento/fear5-ecoyuma"],
+    relatedCampus: ["/juega", "/aprende/cacaotier", "/conocimiento/fear5-ecoyuma"],
   },
   {
     slug: "cacao-of-excellence",
@@ -222,17 +258,17 @@ export const knowledgeTopics: KnowledgeTopic[] = [
   },
   {
     slug: "fear5-ecoyuma",
-    title: "FEAR 5, TCS y vivero Ecoyuma",
+    title: "Modelo araucano, FEAR 5 y vivero Ecoyuma",
     eyebrow: "Genética · plántulas · labranza",
     summary:
-      "Ecoyuma (tienda.ecoyuma.com.co) ofrece plántulas injertadas de cacao. FEAR 5 es la prioridad de cacaotier; TCS 19 y TCS 06 completan la canasta de renovación genética (a veces llamadas TSS en campo).",
+      "Sembrar promueve el modelo araucano (FEAR 5 · FTA 2 · FSA 13). Ecoyuma ofrece plántulas injertadas: FEAR 5 es el eje comprable; TCS 19 y TCS 06 contrastan tipicidad (alias de campo TSS).",
     evidence: "commercial_catalog",
     body: [
-      "Sin material vegetal sano no hay Fine-Flavor repetible. El Colab enlaza el vivero con el campus: compras la plántula, registras la labranza y aprendes a fermentar el lote.",
-      "FEAR 5 (Trinitario comercial Fedecacao) es el genotipo del paper de biorreactor y el corazón de Benevolo. TCS 19 y TCS 06 permiten comparar sanidad, rendimiento y perfil bajo el mismo protocolo.",
-      "Ecoyuma es un catálogo externo. Precios, stock y logística los define la tienda; Cacao Colab no inventa disponibilidad. Verifica siempre el producto en tienda.ecoyuma.com.co antes de planear siembra.",
-      "La ruta recomendada: FEAR 5 como eje → TCS 19 / TCS 06 como contraste → Sembrar (bitácora, cartografía, agroforestería) → fermentación controlada → producto o pre-order Benevolo.",
-      "Sembrar entrena al agricultor que recién empieza: planeación de finca idónea, cartografía social (parcelas, agua, vecinos) y modelos de agroforestería comunitaria — sin inventar stock Ecoyuma.",
+      "Sin material vegetal sano no hay Fine-Flavor repetible. El Colab enlaza genética Fedecacao, vivero Ecoyuma y campus: eliges el clon, registras la labranza y fermentas el lote.",
+      "Modelo araucano: FEAR 5 (Arauquita), FTA 2 (Tame) y FSA 13 (Saravena). FEAR 5 es además el material del paper de biorreactor y el corazón de Benevolo.",
+      "Ecoyuma es catálogo externo. Precios, stock y logística los define la tienda; Cacao Colab no inventa disponibilidad de FEAR 5 / TCS ni de FTA 2 / FSA 13.",
+      "Ruta recomendada: modelo araucano como eje → TCS 19 / TCS 06 como contraste Ecoyuma → Sembrar (bitácora, cartografía, agroforestería) → fermentación controlada → Benevolo.",
+      "La disputa DO (cacao araucano vs Cacao de la Orinoquía) se documenta en /conocimiento/denominacion-origen — Sembrar no otorga DO.",
     ],
     links: [
       {

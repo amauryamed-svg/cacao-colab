@@ -8,16 +8,16 @@ import FloatingPods from "@/components/atmosphere/FloatingPods"
 import { shotById } from "@/lib/atmosphere"
 
 export const metadata: Metadata = {
-  title: "Sembrar · Ecoyuma × Cacao Colab",
+  title: "Sembrar · modelo araucano × Ecoyuma",
   description:
-    "Laboratorio de siembra para quien recién empieza: plántulas Ecoyuma, bitácoras, cartografía social, agroforestería comunitaria y fermentación con evidencia.",
+    "Laboratorio de siembra del modelo araucano (FEAR 5 · FTA 2 · FSA 13), catálogo Ecoyuma, bitácoras, cartografía social y fermentación con evidencia — sin inventar DO ni stock.",
 }
 
 const gameLoops = [
-  { icon: "◌", title: "Plántula Ecoyuma", body: "FEAR 5, TCS 19 y TCS 06: elige material real del vivero." },
-  { icon: "◎", title: "Bitácora", body: "Observa, fecha y decide — el oficio del agricultor con tipicidad." },
-  { icon: "▣", title: "Cartografía", body: "Parcelas, agua, sombra y mapa social de la finca." },
-  { icon: "↗", title: "Colectivo", body: "Diseña heritage y entra al Colab con tu generación." },
+  { icon: "◌", title: "Modelo araucano", body: "FEAR 5 · Tame 2 · Saravena 13: tipicidad cerca del debate DO." },
+  { icon: "◎", title: "Ecoyuma", body: "FEAR 5, TCS 19 y TCS 06: catálogo externo, sin stock inventado." },
+  { icon: "▣", title: "Bitácora + mapa", body: "Observa, fecha y traza parcelas, agua y vecinos." },
+  { icon: "↗", title: "Cosecha MD", body: "Al cerrar fermentación recolectas más Mazorcas Doradas." },
 ]
 
 export const dynamic = "force-dynamic"
@@ -42,33 +42,33 @@ export default async function JuegaPage() {
         <AtmospherePlane src={shotById("ecoyuma-fear5").src} alt={shotById("ecoyuma-fear5").alt} overlay="forest" />
         <FloatingPods variant="stage" />
         <div className="relative z-[1] max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-24">
-          <p className="eyebrow text-colab-yellow">Sembrar · vivero Ecoyuma × aceleración Colab</p>
+          <p className="eyebrow text-colab-yellow">Sembrar · modelo araucano × Ecoyuma × Colab</p>
           <div className="grid lg:grid-cols-[1fr_.62fr] gap-10 items-end mt-4">
             <div>
               <h1 className="display-title text-colab-cream">
                 Siembra el cacao
                 <br />
-                <em>de tu finca idónea.</em>
+                <em>araucano con criterio.</em>
               </h1>
               <p className="text-colab-cream/55 max-w-2xl mt-7 leading-relaxed">
-                Sembrar es el laboratorio para quien recién empieza: plántulas Ecoyuma, bitácoras de
-                campo, planeación, cartografía social y modelos de agroforestería comunitaria. Tu
-                labranza evoluciona por hora; el criterio y las Mazorcas reconocen decisiones
-                trazables — y te invitan a competir en colectivo con Cacao Colab.
+                Laboratorio del modelo araucano (FEAR 5 · FTA 2 · FSA 13), cercano al debate de
+                denominación de origen frente a «Cacao de la Orinoquía». Catálogo Ecoyuma para
+                comprar FEAR 5 y contrastar con TCS — sin inventar stock ni DO. Bitácora, cartografía
+                y cosecha con más Mazorcas al fermentar.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row lg:flex-col lg:items-end gap-3">
               <Link
-                href="/conocimiento/fear5-ecoyuma"
+                href="/conocimiento/denominacion-origen"
                 className="bg-colab-yellow text-colab-forest rounded-full px-6 py-3 text-xs font-bold text-center"
               >
-                Plántulas FEAR 5 · Ecoyuma →
+                DO Arauca vs Orinoquía →
               </Link>
               <Link
-                href="/aprende/cacaotier"
+                href="/conocimiento/fear5-ecoyuma"
                 className="border border-white/20 text-colab-cream rounded-full px-6 py-3 text-xs font-bold text-center"
               >
-                Master Cacaotier
+                FEAR 5 · Ecoyuma
               </Link>
             </div>
           </div>

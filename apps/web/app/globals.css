@@ -2124,6 +2124,47 @@ body {
 .crm-stage { background: rgba(61, 122, 44, .1); border-radius: 99px; color: #3D7A2C; padding: .25rem .45rem; }
 
 /* Sembrar · Ecoyuma farmer journey panels */
+.sembrar-do-callout {
+  background: linear-gradient(135deg, rgba(242, 200, 48, .1), rgba(247, 241, 238, .03));
+  border: 1px solid rgba(242, 200, 48, .28);
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  padding: 1.2rem 1.25rem;
+}
+.sembrar-do-callout h3 {
+  color: #F7F1EE;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-top: .35rem;
+}
+.sembrar-do-callout > p:not(.eyebrow) {
+  color: rgba(247, 241, 238, .55);
+  font-size: .74rem;
+  line-height: 1.55;
+  margin-top: .55rem;
+  max-width: 46rem;
+}
+.sembrar-do-callout ul {
+  color: rgba(247, 241, 238, .48);
+  font-size: .68rem;
+  line-height: 1.5;
+  margin: .75rem 0 0;
+  padding-left: 1.1rem;
+}
+.sembrar-do-callout li { margin-top: .35rem; }
+.sembrar-do-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem 1.1rem;
+  margin-top: .9rem;
+}
+.sembrar-do-links a {
+  color: #F2C830;
+  font-size: .7rem;
+  font-weight: 800;
+}
+
 .sembrar-plantulas {
   background: rgba(247, 241, 238, .03);
   border: 1px solid rgba(247, 241, 238, .1);

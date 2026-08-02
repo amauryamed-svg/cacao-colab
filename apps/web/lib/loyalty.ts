@@ -20,8 +20,11 @@ export const mazorcaRewards = {
   benevoloMission: 5,
   benevoloCourseComplete: 16,
   gotchiCare: 2,
-  gotchiHarvest: 10,
-  /** Tope MD/día categoría care (Sembrar). */
+  /** Apertura de cosecha (fase fermentación) — una vez por labranza. */
+  gotchiHarvestOpen: 12,
+  /** Cierre fermentado a 120 h — recompensa principal de Sembrar. */
+  gotchiHarvest: 28,
+  /** Tope MD/día categoría care por acciones de cuidado (no aplica a cosecha). */
   gotchiCareDailyCap: 10,
   /** Tope MD/día categoría learning (campus + micro). */
   learningDailyCap: 20,
