@@ -9,7 +9,7 @@ export const manifiesto = {
   lede:
     "Somos intermediarios para potenciar la comunidad colectiva y colaborativa del cacao que estamos creando. No somos dueños del cacao de nadie: somos el tejido que conecta finca, marca, oficio y nuevas generaciones.",
   whyOrg:
-    "Elegimos .org porque Cacao Colab no existe para maximizar una renta privada sobre el ecosistema. Existe para acelerar competitividad compartida, criterio de excelencia y legado — con transparencia, opt-in y bien común.",
+    "Elegimos .org porque Cacao Colab no existe para maximizar una renta privada sobre el ecosistema. Existe para acelerar competitividad compartida, criterio de excelencia y heritage — con transparencia, opt-in y bien común.",
   principles: [
     {
       kicker: "01",
@@ -33,7 +33,7 @@ export const manifiesto = {
     },
     {
       kicker: "05",
-      title: "Legado generacional",
+      title: "Heritage generacional",
       body: "Damos razones para que quienes heredan la tierra continúen. El Colab es puente entre tradición, ciencia y marcas globales de cacao.",
     },
     {

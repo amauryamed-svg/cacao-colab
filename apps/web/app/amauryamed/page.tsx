@@ -8,7 +8,7 @@ import { shotById } from "@/lib/atmosphere"
 export const metadata: Metadata = {
   title: "Amaury Amed · Cacaotier & Chocolatier",
   description:
-    "Amaury Amed — Cacaotier & Chocolatier · AMEDCHEF I+D. Legado Cacao · Cacao Colab. Perfil para Barry Callebaut · Chocolate Academy.",
+    "Amaury Amed — Cacaotier & Chocolatier · AMEDCHEF I+D. Heritage Cacao · Cacao Colab. Perfil para Barry Callebaut · Chocolate Academy.",
   openGraph: {
     title: "Amaury Amed · Cacaotier & Chocolatier · Cacao Colab",
     description: amauryProfile.headline,

@@ -357,7 +357,7 @@ export async function redeemBenefit(input: {
 
   if (item.min_rank_slug) {
     const rank = resolveRank(lifetime)
-    const order = ["semilla", "brote", "labrador", "guardian", "maestro", "legado"]
+    const order = ["semilla", "brote", "labrador", "guardian", "maestro", "heritage"]
     if (order.indexOf(rank.slug) < order.indexOf(item.min_rank_slug)) {
       return { ok: false as const, error: "rango_insuficiente", rank: rank.slug, required: item.min_rank_slug }
     }

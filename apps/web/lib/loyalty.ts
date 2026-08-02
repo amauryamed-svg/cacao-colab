@@ -4,7 +4,7 @@ export const communityRanks = [
   { slug: "labrador", name: "Labrador del cacao", icon: "♣", threshold: 300, benefit: "Retos territoriales prioritarios" },
   { slug: "guardian", name: "Guardián de origen", icon: "◆", threshold: 700, benefit: "Círculos de comunidad y cata" },
   { slug: "maestro", name: "Maestro Fine-Flavor", icon: "✦", threshold: 1500, benefit: "Beneficios de aliados habilitados" },
-  { slug: "legado", name: "Legado Cacaotier", icon: "◉", threshold: 3000, benefit: "Mentoría y transferencia generacional" },
+  { slug: "heritage", name: "Heritage", icon: "◉", threshold: 3000, benefit: "Mentoría y transferencia generacional" },
 ] as const
 
 // Las Mazorcas Doradas no son XP. El XP desbloquea contenido y apalanca el
@@ -77,7 +77,7 @@ export const scorecardConfig = {
     labrador: 50,
     guardian: 75,
     maestro: 100,
-    legado: 120,
+    heritage: 120,
   } satisfies Record<(typeof communityRanks)[number]["slug"], number>,
   /** Factor de maestría por rango (amplifica el pool). */
   masteryFactorByRank: {
@@ -86,7 +86,7 @@ export const scorecardConfig = {
     labrador: 1.1,
     guardian: 1.12,
     maestro: 1.16,
-    legado: 1.2,
+    heritage: 1.2,
   } satisfies Record<(typeof communityRanks)[number]["slug"], number>,
   /** Cada 500 XP suma +0.05 al leverage, tope 1.25. */
   xpStep: 500,

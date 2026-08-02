@@ -70,8 +70,8 @@ export const directoryCandidates: DirectoryCandidate[] = [
     verified: true,
   },
   {
-    id: "legado",
-    name: "Legado Cacao Experience",
+    id: "heritage-cacao",
+    name: "Heritage Cacao Experience",
     website: "https://www.legadocacao.com",
     sourceUrl: "https://www.legadocacao.com/nosotros",
     city: "Bogotá",

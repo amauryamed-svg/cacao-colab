@@ -17,7 +17,7 @@ const gameLoops = [
   { icon: "◌", title: "Plántula Ecoyuma", body: "FEAR 5, TCS 19 y TCS 06: elige material real del vivero." },
   { icon: "◎", title: "Bitácora", body: "Observa, fecha y decide — el oficio del agricultor con tipicidad." },
   { icon: "▣", title: "Cartografía", body: "Parcelas, agua, sombra y mapa social de la finca." },
-  { icon: "↗", title: "Colectivo", body: "Diseña legado y entra al Colab con tu generación." },
+  { icon: "↗", title: "Colectivo", body: "Diseña heritage y entra al Colab con tu generación." },
 ]
 
 export const dynamic = "force-dynamic"

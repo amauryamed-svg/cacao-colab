@@ -78,7 +78,7 @@ El rango por `lifetime_earned` (excluye packs comprados) fija el **techo semanal
 | Labrador | 50 |
 | Guardián | 75 |
 | Maestro | 100 |
-| Legado | 120 |
+| Heritage | 120 |
 
 ### 4.3 XP como apalancamiento (no conversión)
 
@@ -104,7 +104,7 @@ bonus_raw  = round(pool * balance * mastery_rank_factor * xp_leverage)
 bonus_MD   = min(techo_rango, bonus_raw)
 ```
 
-`mastery_rank_factor`: Semilla 1.00 … Legado 1.20 (declarado en `loyalty.ts`).
+`mastery_rank_factor`: Semilla 1.00 … Heritage 1.20 (declarado en `loyalty.ts`).
 
 Se acredita una sola vez por `(profile_id, period_key)` con `reason_code = scorecard_settlement` y categoría `adjustment` (o `scorecard_bonus` tras migración).
 

@@ -62,7 +62,7 @@ La lista de respaldo de beneficios en `apps/web/lib/loyalty.ts` es un espejo de 
 
 ## 4. Rangos
 
-Semilla → Brote → Labrador del cacao → Guardián de origen → Maestro Fine-Flavor → Legado Cacaotier.
+Semilla → Brote → Labrador del cacao → Guardián de origen → Maestro Fine-Flavor → Heritage.
 
 El rango reconoce continuidad, no superioridad social. No otorga participación societaria ni derechos sobre marcas o territorios.
 

@@ -74,7 +74,7 @@ values
   ('labrador', 'Labrador del cacao', 'Cuidas una labranza y entiendes su territorio.', '♣', 300, 3),
   ('guardian', 'Guardián de origen', 'Conectas evidencia, comunidad y trazabilidad.', '◆', 700, 4),
   ('maestro', 'Maestro Fine-Flavor', 'Transformas conocimiento en capacidad compartida.', '✦', 1500, 5),
-  ('legado', 'Legado Cacaotier', 'Ayudas a que la siguiente generación herede una labranza viva.', '◉', 3000, 6)
+  ('heritage', 'Heritage', 'Ayudas a que la siguiente generación herede una labranza viva.', '◉', 3000, 6)
 on conflict (slug) do update set
   name = excluded.name,
   description = excluded.description,
