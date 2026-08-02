@@ -37,7 +37,7 @@ export type CuentaHomeSnapshot = {
 /**
  * Resuelve la bio del usuario autenticado:
  * 1) por profile_id (vínculo fuerte)
- * 2) por email case-insensitive (legado / pre-login)
+ * 2) por email case-insensitive (código anterior / pre-login)
  * Si encuentra por email sin profile_id, la reclama para esta cuenta.
  */
 export async function loadBioForUser(userId: string, email: string): Promise<NodeBio | null> {
@@ -69,7 +69,7 @@ export async function loadBioForUser(userId: string, email: string): Promise<Nod
 
     let row = !byEmailExact.error ? byEmailExact.data : null
 
-    // Legado: emails con casing distinto (antes de normalizar en migración)
+    // Compat: emails con casing distinto (antes de normalizar en migración)
     if (!row) {
       const escaped = normalized.replace(/\\/g, "\\\\").replace(/%/g, "\\%").replace(/_/g, "\\_")
       const byEmailLoose = await admin

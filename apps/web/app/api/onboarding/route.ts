@@ -24,7 +24,7 @@ const INTERES_LABEL: Record<string, string> = {
   productos: "Productos con origen",
   aprendizaje: "Educarme con Dualita",
   competitividad: "Subir competitividad colaborativa",
-  legado: "Legado generacional",
+  heritage: "Heritage generacional",
   marca: "Sumar marca al Colab",
   todo: "Todo el ecosistema",
 }

@@ -25,7 +25,7 @@ type InterestType =
   | 'productos'
   | 'aprendizaje'
   | 'competitividad'
-  | 'legado'
+  | 'heritage'
   | 'marca'
   | 'todo'
   | ''
@@ -77,8 +77,8 @@ const INTERESES: { id: InterestType; label: string; sub: string }[] = [
     sub: 'Colaborar como industria, no en silos',
   },
   {
-    id: 'legado',
-    label: 'Legado generacional',
+    id: 'heritage',
+    label: 'Heritage generacional',
     sub: 'Dar propósito a quienes heredan la tierra',
   },
   {

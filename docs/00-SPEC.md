@@ -105,7 +105,7 @@ Deja de ser "no un joint venture legal, solo una plataforma compartida de marca"
 | D29 | CRM de conversión | Eventos first-party + contactos locales + snapshot agregado de HubSpot | Mide visitas, registros, onboarding y clics hacia Microlearning CAÚA / MOOC Zurych. No equipara clic con compra. |
 | D30 | Privacidad analytics | IDs pseudónimos de visitante/sesión; sin IP en `analytics_events` | CRM y analytics solo se consultan con `service_role` tras validar superadmin. |
 | D31 | Fidelidad | **Mazorcas Doradas** como puntos canjeables separados del XP | Ledger append-only, sin valor en efectivo y sin recompensas por reclutamiento. |
-| D32 | Rangos comunitarios | Semilla → Brote → Labrador → Guardián → Maestro → Legado | Se asciende por actividad propia verificable; nunca por tamaño de red. |
+| D32 | Rangos comunitarios | Semilla → Brote → Labrador → Guardián → Maestro → Heritage | Se asciende por actividad propia verificable; nunca por tamaño de red. |
 | D33 | Ecommerce de beneficios | Adaptadores por marca, inactivos por defecto | No se publica un canje como activo sin acuerdo, credenciales, stock, términos y prueba de fulfillment. |
 | D34 | Montos de MD declarados | Las recompensas viven en `mazorcaRewards`, no se calculan desde el XP | 40 MD por módulo de microlearning; 30 MD por misión Architect/Chocolatier; 120 MD por curso completo; 5 por cuidado (tope 50/día) y 60 por cosecha fermentada. El XP no se gasta ni se cambia 1:1; solo puede apalancar el bono scorecard (D41). |
 | D41 | Economía MD scorecard | Fintech gamificada: comprar packs, canjear cursos/aceleraciones, bono BSC por productividad propia | Sin multinivel ni downline. Packs no suman a `lifetime_earned`. XP = leverage ≤1.25. Ver `26-ECONOMIA-MD-SCORECARD.md`. |
