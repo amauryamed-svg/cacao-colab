@@ -69,6 +69,24 @@ export const campusKnowledgeSources: CampusSource[] = [
     note: "Acidez, cuidado preventivo y fermentación ~45 °C: conciencia sin promesa de Cd cero.",
     kind: "campus",
   },
+  {
+    label: "CoEx · protocolos de evaluación de calidad",
+    href: "https://www.cacaoofexcellence.org/rd-laboratory-and-training/quality-evaluation-protocols",
+    note: "Rueda, glosario y guía 2023. Lente del Master Catador — no software Colab oficial.",
+    kind: "program",
+  },
+  {
+    label: "Rueda Fine-Flavor Colab",
+    href: "/conocimiento/rueda-fine-flavor",
+    note: "Puente CoEx (cacao) × Callebaut (chocolate aplicado) · entrenamiento Catador.",
+    kind: "campus",
+  },
+  {
+    label: "Set Catación Colombia 10",
+    href: "/rd/set-catacion",
+    note: "Drop de 10 chocolatinas + guía profesional de panel.",
+    kind: "campus",
+  },
 ]
 
 export const architectCompanionTips = [

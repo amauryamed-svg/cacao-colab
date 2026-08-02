@@ -45,6 +45,12 @@ export default function RdHubPage() {
               Benevolo R&D →
             </Link>
             <Link
+              href="/rd/set-catacion"
+              className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold"
+            >
+              Set Catación 10 →
+            </Link>
+            <Link
               href="/rd/coberturas"
               className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold"
             >
@@ -65,9 +71,18 @@ export default function RdHubPage() {
       </header>
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 pb-24">
-        <section className="grid md:grid-cols-2 gap-5 -mt-4">
+        <section className="grid md:grid-cols-3 gap-5 -mt-4">
+          <Link href="/rd/set-catacion" className="rd-panel rd-panel--coberturas">
+            <p className="eyebrow text-colab-yellow">01 · Drop sensorial</p>
+            <h2>Set Catación Colombia 10</h2>
+            <p>
+              Diez chocolatinas/testigos con guía profesional y Rueda Fine-Flavor Colab. Capstone del
+              Master Catador — contexto CoEx sin medallas inventadas.
+            </p>
+            <span>Ver set + guía →</span>
+          </Link>
           <Link href="/rd/benevolo" className="rd-panel rd-panel--benevolo">
-            <p className="eyebrow text-[#FF6A3D]">01 · Marca acelerada</p>
+            <p className="eyebrow text-[#FF6A3D]">02 · Marca acelerada</p>
             <h2>Chocolate Benevolo</h2>
             <p>
               Duja de marañón FEAR 5 · Quara × Zurych. Vive en R&D: prototipo, preventa y track Dualita —
@@ -76,7 +91,7 @@ export default function RdHubPage() {
             <span>Entrar al lab Benevolo →</span>
           </Link>
           <Link href="/rd/coberturas" className="rd-panel rd-panel--coberturas">
-            <p className="eyebrow text-colab-yellow">02 · Convergencia de nodos</p>
+            <p className="eyebrow text-colab-yellow">03 · Convergencia de nodos</p>
             <h2>Coberturas & NIBS</h2>
             <p>
               CAÚA (Santander / Arauca en shop) × Zurych (Landázuri bean-to-bar). Un solo gesto: leer,

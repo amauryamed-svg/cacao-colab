@@ -267,7 +267,35 @@ export const knowledgeTopics: KnowledgeTopic[] = [
         note: "Lente CoEx en campus",
       },
     ],
-    relatedCampus: ["/aprende/chocolatier", "/aprende/cacaotier", "/benevolo"],
+    relatedCampus: ["/aprende/chocolatier", "/aprende/cacaotier", "/aprende/catador", "/benevolo"],
+  },
+  {
+    slug: "rueda-fine-flavor",
+    title: "Rueda Fine-Flavor Colab · CoEx × Callebaut",
+    eyebrow: "Sensorial · catación · léxico",
+    summary:
+      "Rueda de entrenamiento propia del Colab: puente entre la evaluación de cacao (Cacao of Excellence) y el lenguaje de chocolate aplicado (Callebaut / Chocolate Academy). Sirve al Master Catador y al Set Catación Colombia 10.",
+    evidence: "colab_route",
+    body: [
+      "CoEx publica rueda, glosario y formulario (Excel/impreso) para evaluar cacao en masa o chocolate con atributos core, complementary y off-flavours en escala 0–10, más Global Quality. Es el marco de referencia mundial de tipicidad de muestra.",
+      "Callebaut / Chocolate Academy forma en chocolate y aplicaciones: el vocabulario sirve al oficio (cobertura, ganache, barra). Master Chocolatier ya usa ese puente de uso.",
+      "La Rueda Fine-Flavor Colab no copia IP: es lente pedagógica que une ambos. Incluye tipicidad como radio puente y marca defectos como descalificantes. El software de evaluación CoEx sigue siendo el oficial del programa; el Catador Colab entrena el hábito con ficha digital propia.",
+      "Curva de maestría: cada descriptor preciso es una microvictoria. El optimismo desinformado se corrige en panel ciego; el meaning vuelve cuando la ficha conecta Sembrar, Dualita y mesa.",
+      "Set Catación Colombia 10: flight físico/preventa con guía profesional alineada a esta rueda — contextos CoEx/Salón documentados, sin medallas inventadas del Colab.",
+    ],
+    links: [
+      {
+        label: "CoEx · protocolos de calidad",
+        href: "https://www.cacaoofexcellence.org/rd-laboratory-and-training/quality-evaluation-protocols",
+      },
+      {
+        label: "Chocolate Academy",
+        href: "https://www.chocolate-academy.com/",
+      },
+      { label: "Master Catador", href: "/aprende/catador", note: "Campus" },
+      { label: "Set Catación 10", href: "/rd/set-catacion", note: "Drop" },
+    ],
+    relatedCampus: ["/aprende/catador", "/aprende/chocolatier", "/rd/set-catacion"],
   },
   {
     slug: "fear5-ecoyuma",
@@ -416,9 +444,10 @@ export const ecosystemSpearhead = {
   steps: [
     { n: "01", title: "Sembrar con criterio", href: "/juega", cta: "Sembrar · Ecoyuma" },
     { n: "02", title: "Fermentar con evidencia", href: "/aprende/cacaotier", cta: "Campus cacaotier" },
-    { n: "03", title: "Cumplir el mercado", href: "/conocimiento/eudr-deforestacion", cta: "EUDR y orgánico" },
-    { n: "04", title: "Cuidar Cd y suelo", href: "/conocimiento/cadmio-suelo-fermentacion", cta: "Cadmio · fermentación" },
-    { n: "05", title: "Formular a la mesa", href: "/aprende/chocolatier", cta: "Master Chocolatier · Benevolo" },
+    { n: "03", title: "Catar con método", href: "/aprende/catador", cta: "Master Catador" },
+    { n: "04", title: "Cumplir el mercado", href: "/conocimiento/eudr-deforestacion", cta: "EUDR y orgánico" },
+    { n: "05", title: "Cuidar Cd y suelo", href: "/conocimiento/cadmio-suelo-fermentacion", cta: "Cadmio · fermentación" },
+    { n: "06", title: "Formular a la mesa", href: "/aprende/chocolatier", cta: "Master Chocolatier · Benevolo" },
   ],
 }
 

@@ -150,7 +150,7 @@ Beneficios Colab nativos (`fulfillment_type = colab_digital`) pueden activarse s
 
 **Masters no son sinks.** Acceso por rango (`lifetime_earned`): Arquitecto ≥ Brote (120); Chocolatier y Benevolo ≥ Labrador (400). Se ganan cultivando en Sembrar + Dualita (micro CAÚA + MOOC Zurych). Los antiguos canjes `aceleracion-arquitecto` / preview Chocolatier / ruta Benevolo están **retirados** y se **devuelven** (categoría ledger `refund`, sin inflar rango).
 
-Emisión inmediata (`mazorcaRewards`): micro/misión Masters 6 MD; cierre Architect/Chocolatier 24; Benevolo 5/16; Sembrar cuidado 2 (tope 10/día care); cosecha Sembrar **+12 MD** al abrir lote y **+28 MD** al cerrar fermentación; hito **cuidado perfecto** (hora ≥100 y métricas al 100 % al cosechar) **+40 MD**; plan comparativo a **10 años** **+18 MD** (ambos idempotentes por labranza; sin tope diario de cuidado); learning tope **20 MD/día**. Completar todo el campus no debe financiar solo el catálogo de sinks.
+Emisión inmediata (`mazorcaRewards`): micro/misión Masters 6 MD; cierre Architect/Catador/Chocolatier 24; Benevolo 5/16; Sembrar cuidado 2 (tope 10/día care); cosecha Sembrar **+12 MD** al abrir lote y **+28 MD** al cerrar fermentación; hito **cuidado perfecto** (hora ≥100 y métricas al 100 % al cosechar) **+40 MD**; plan comparativo a **10 años** **+18 MD** (ambos idempotentes por labranza; sin tope diario de cuidado); learning tope **20 MD/día**. Completar todo el campus no debe financiar solo el catálogo de sinks.
 
 Reglas de canje (igual que `16` §5): ítem `active`, saldo, rango, `per_user_limit`, términos visibles. Débito append-only + fila en `benefit_redemptions`.
 
