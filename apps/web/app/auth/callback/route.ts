@@ -23,7 +23,6 @@ export async function GET(request: NextRequest) {
     "/benevolo",
     "/rd",
     "/credencial",
-    "/cuenta/consejo",
   ]
   const next = allowedPrefixes.some((prefix) => requestedNext.startsWith(prefix))
     ? requestedNext

@@ -52,11 +52,14 @@ export default function NodeBioFlow({
   presetName,
   presetOrg,
   presetCity,
+  returnTo = "/cuenta",
 }: {
   presetEmail?: string
   presetName?: string
   presetOrg?: string
   presetCity?: string
+  /** Tras publicar, enlace de vuelta al espacio personal. */
+  returnTo?: string
 }) {
   const [step, setStep] = useState(0)
   const [form, setForm] = useState<FormState>({
@@ -162,6 +165,9 @@ export default function NodeBioFlow({
           </button>
           <Link href={sharePath} className="nodo-bio-ghost">
             Ver mi bio pública →
+          </Link>
+          <Link href={returnTo} className="nodo-bio-ghost">
+            Volver a Mi cuenta →
           </Link>
           <Link href="/nodo" className="nodo-bio-ghost">
             Ver la red de nodos →

@@ -18,10 +18,13 @@
 |------|------|
 | Unirme (lead) | `/unete` (Navbar CTA) |
 | Tras confirmar | CTA **Crear bio de nodo →** |
-| Wizard bio | `/unete/bio` |
+| Wizard bio (onboarding) | `/unete/bio` |
+| Gestión en Mi cuenta | `/cuenta` (wallet + bio) · `/cuenta/bio` |
 | API | `POST /api/onboarding/node-bio` |
 | Perfil público | `/nodo/[slug]` |
 | Directorio | `/nodo` |
+
+**Mi cuenta** es el hub personal: wallet MD, bio de nodo, consejo, beneficios y atajos de campus. La bio también se crea/edita desde `/cuenta/bio` (mismo wizard, con vuelta a la cuenta).
 
 Campos: tipo Colab, nombre, finca/marca, ciudad, intro, foto de perfil, imagen de cacao/producto, contacto, opt-in legal.
 
