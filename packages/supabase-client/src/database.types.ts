@@ -1776,6 +1776,7 @@ export type Database = {
           instagram: string | null
           website: string | null
           share_token: string
+          profile_id: string | null
           created_at: string
           updated_at: string
           published_at: string | null
@@ -1798,6 +1799,7 @@ export type Database = {
           instagram?: string | null
           website?: string | null
           share_token?: string
+          profile_id?: string | null
           created_at?: string
           updated_at?: string
           published_at?: string | null
@@ -1820,11 +1822,20 @@ export type Database = {
           instagram?: string | null
           website?: string | null
           share_token?: string
+          profile_id?: string | null
           created_at?: string
           updated_at?: string
           published_at?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "node_bios_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       profiles: {
         Row: {

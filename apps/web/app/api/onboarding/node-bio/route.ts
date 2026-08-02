@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { createSupabaseAdminClient } from "@cacao-colab/supabase-client/admin"
+import { createSupabaseServerClient } from "@cacao-colab/supabase-client/server"
 import { parseDataUrl } from "@/lib/nodo/images"
 import { slugifyNode, uniqueSlug } from "@/lib/nodo/slug"
 import type { NodeKind } from "@/lib/nodo/types"
@@ -31,6 +32,47 @@ async function uploadOrKeep(
   }
 }
 
+async function findExistingBio(
+  admin: ReturnType<typeof createSupabaseAdminClient>,
+  profileId: string | null,
+  email: string,
+) {
+  if (profileId) {
+    const { data } = await admin
+      .from("node_bios")
+      .select("*")
+      .eq("profile_id", profileId)
+      .order("created_at", { ascending: false })
+      .limit(1)
+      .maybeSingle()
+    if (data) return data
+  }
+
+  const exact = await admin
+    .from("node_bios")
+    .select("*")
+    .eq("email", email)
+    .order("created_at", { ascending: false })
+    .limit(1)
+    .maybeSingle()
+
+  let data = !exact.error ? exact.data : null
+  if (!data) {
+    const escaped = email.replace(/\\/g, "\\\\").replace(/%/g, "\\%").replace(/_/g, "\\_")
+    const loose = await admin
+      .from("node_bios")
+      .select("*")
+      .ilike("email", escaped)
+      .order("created_at", { ascending: false })
+      .limit(1)
+      .maybeSingle()
+    if (!loose.error) data = loose.data
+  }
+
+  if (data?.profile_id && profileId && data.profile_id !== profileId) return null
+  return data ?? null
+}
+
 export async function POST(request: NextRequest) {
   const body = await request.json().catch(() => null)
   if (!body) return NextResponse.json({ ok: false, error: "JSON inválido" }, { status: 400 })
@@ -51,36 +93,58 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: false, error: "Opt-in de privacidad requerido" }, { status: 400 })
   }
 
-  const baseSlug = slugifyNode(orgName, String(body.city ?? ""))
-  const slug = uniqueSlug(baseSlug, Math.random().toString(36).slice(2, 6))
-
   try {
-    const admin = createSupabaseAdminClient()
-    const avatarUrl = await uploadOrKeep(admin, body.avatarDataUrl, `${slug}/avatar`)
-    const productImageUrl = await uploadOrKeep(admin, body.productDataUrl, `${slug}/product`)
+    const session = await createSupabaseServerClient()
+    const {
+      data: { user },
+    } = await session.auth.getUser()
+    const profileId = user?.id ?? null
 
-    const { data, error } = await admin
-      .from("node_bios")
-      .insert({
-        slug,
-        status: "published",
-        kind,
-        display_name: displayName.slice(0, 120),
-        org_name: orgName.slice(0, 160),
-        city: body.city ? String(body.city).slice(0, 120) : null,
-        territory: body.territory ? String(body.territory).slice(0, 120) : null,
-        intro: intro.slice(0, 2000),
-        avatar_url: avatarUrl,
-        product_image_url: productImageUrl,
-        product_caption: body.productCaption ? String(body.productCaption).slice(0, 200) : null,
-        email,
-        whatsapp: body.whatsapp ? String(body.whatsapp).slice(0, 40) : null,
-        instagram: body.instagram ? String(body.instagram).replace(/^@/, "").slice(0, 80) : null,
-        website: body.website ? String(body.website).slice(0, 300) : null,
-        published_at: new Date().toISOString(),
-      })
-      .select("*")
-      .single()
+    const admin = createSupabaseAdminClient()
+    const existing = await findExistingBio(admin, profileId, email)
+
+    const mediaSlug = existing?.slug ?? uniqueSlug(slugifyNode(orgName, String(body.city ?? "")), Math.random().toString(36).slice(2, 6))
+    const avatarUrl = await uploadOrKeep(admin, body.avatarDataUrl, `${mediaSlug}/avatar`)
+    const productImageUrl = await uploadOrKeep(admin, body.productDataUrl, `${mediaSlug}/product`)
+
+    const payload = {
+      status: "published" as const,
+      kind,
+      display_name: displayName.slice(0, 120),
+      org_name: orgName.slice(0, 160),
+      city: body.city ? String(body.city).slice(0, 120) : null,
+      territory: body.territory ? String(body.territory).slice(0, 120) : null,
+      intro: intro.slice(0, 2000),
+      product_caption: body.productCaption ? String(body.productCaption).slice(0, 200) : null,
+      email,
+      whatsapp: body.whatsapp ? String(body.whatsapp).slice(0, 40) : null,
+      instagram: body.instagram ? String(body.instagram).replace(/^@/, "").slice(0, 80) : null,
+      website: body.website ? String(body.website).slice(0, 300) : null,
+      published_at: new Date().toISOString(),
+      ...(profileId ? { profile_id: profileId } : {}),
+      ...(avatarUrl ? { avatar_url: avatarUrl } : {}),
+      ...(productImageUrl ? { product_image_url: productImageUrl } : {}),
+    }
+
+    let data = null as Awaited<ReturnType<typeof findExistingBio>>
+    let error: { message: string } | null = null
+
+    if (existing) {
+      const updated = await admin.from("node_bios").update(payload).eq("id", existing.id).select("*").single()
+      data = updated.data
+      error = updated.error
+    } else {
+      const inserted = await admin
+        .from("node_bios")
+        .insert({
+          slug: mediaSlug,
+          ...payload,
+        })
+        .select("*")
+        .single()
+      data = inserted.data
+      error = inserted.error
+    }
 
     if (error || !data) {
       return NextResponse.json(
@@ -111,8 +175,8 @@ export async function POST(request: NextRequest) {
           crm_contact_id: contact.id,
           type: "note",
           metadata: {
-            kind: "node_bio_created",
-            slug,
+            kind: existing ? "node_bio_updated" : "node_bio_created",
+            slug: data.slug,
             org_name: orgName,
             node_kind: kind,
           },
@@ -128,6 +192,7 @@ export async function POST(request: NextRequest) {
       slug: bio.slug,
       sharePath: `/nodo/${bio.slug}`,
       bio,
+      updated: Boolean(existing),
     })
   } catch (error) {
     return NextResponse.json(

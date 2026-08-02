@@ -36,9 +36,12 @@ Tras publicar: enlace compartible + WhatsApp + copiar.
 
 ```text
 supabase/migrations/20260801060000_node_bios.sql
+supabase/migrations/20260802023000_node_bios_profile_id.sql
 ```
 
-Tabla `node_bios` + bucket Storage `node-media`. Sin migración, el API responde 503 con mensaje claro.
+Tabla `node_bios` + bucket Storage `node-media`. `profile_id` vincula la bio a Mi cuenta (backfill por email). Sin migración base, el API responde 503 con mensaje claro.
+
+**Resolución en `/cuenta`:** por `profile_id`, luego email (ilike); si hay bio por email sin dueño, se reclama. `POST /api/onboarding/node-bio` hace upsert (actualiza si ya existe) y setea `profile_id` cuando hay sesión.
 
 ---
 

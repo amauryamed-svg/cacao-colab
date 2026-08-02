@@ -209,8 +209,12 @@ export default async function CuentaPage() {
           ) : (
             <div className="cuenta-bio-empty">
               <p>
-                Aún no tienes bio. Créala para activar tu presencia en la red social interna del
-                cacao — finca, marca, transformación u hospitalidad.
+                Aún no hay bio vinculada a esta sesión ({home.email}). Créala aquí para activar tu
+                presencia en la red — finca, marca, transformación u hospitalidad.
+              </p>
+              <p>
+                ¿Ya publicaste un nodo con otro correo? Vuelve a guardar la bio desde Mi cuenta con
+                este email para vincularla.
               </p>
               <Link href="/cuenta/bio">Empezar bio de nodo →</Link>
             </div>

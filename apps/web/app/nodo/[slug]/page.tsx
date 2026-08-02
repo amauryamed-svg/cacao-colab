@@ -3,6 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { createSupabaseAdminClient } from "@cacao-colab/supabase-client/admin"
+import { createSupabaseServerClient } from "@cacao-colab/supabase-client/server"
 import { mapNodeBioRow } from "@/lib/nodo/map"
 import { NODE_KIND_LABEL } from "@/lib/nodo/types"
 import { CANONICAL_SITE_URL } from "@/lib/site"
@@ -46,6 +47,16 @@ export default async function NodoSlugPage({ params }: { params: Promise<{ slug:
   const { slug } = await params
   const bio = await loadBio(slug)
   if (!bio) notFound()
+
+  const supabase = await createSupabaseServerClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+  const sessionEmail = user?.email?.trim().toLowerCase() ?? null
+  const isOwner =
+    Boolean(user) &&
+    ((bio.profileId && bio.profileId === user!.id) ||
+      (sessionEmail != null && bio.email.trim().toLowerCase() === sessionEmail))
 
   const shareUrl = `${CANONICAL_SITE_URL}/nodo/${bio.slug}`
   const waShare = `https://wa.me/?text=${encodeURIComponent(`Conoce mi nodo en Cacao Colab: ${shareUrl}`)}`
@@ -109,9 +120,15 @@ export default async function NodoSlugPage({ params }: { params: Promise<{ slug:
                 @{bio.instagram.replace(/^@/, "")}
               </a>
             )}
-            <Link href="/unete/bio" className="amaury-cta amaury-cta--ghost">
-              Crear mi bio →
-            </Link>
+            {isOwner ? (
+              <Link href="/cuenta/bio" className="amaury-cta amaury-cta--ghost">
+                Gestionar mi bio →
+              </Link>
+            ) : (
+              <Link href="/cuenta/bio" className="amaury-cta amaury-cta--ghost">
+                Crear mi bio →
+              </Link>
+            )}
           </div>
         </div>
       </main>

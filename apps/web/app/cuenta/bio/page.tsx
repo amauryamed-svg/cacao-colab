@@ -60,9 +60,17 @@ export default async function CuentaBioPage({
             <p className="eyebrow text-colab-yellow mb-4 text-center">Personalización · Mi cuenta</p>
             <NodeBioFlow
               presetEmail={user.email}
-              presetName={home.displayName}
+              presetName={home.bio?.displayName ?? home.displayName}
               presetOrg={home.bio?.orgName}
               presetCity={home.bio?.city ?? home.city ?? undefined}
+              presetKind={home.bio?.kind}
+              presetTerritory={home.bio?.territory}
+              presetIntro={home.bio?.intro}
+              presetAvatarUrl={home.bio?.avatarUrl}
+              presetProductUrl={home.bio?.productImageUrl}
+              presetProductCaption={home.bio?.productCaption}
+              presetWhatsapp={home.bio?.whatsapp}
+              presetInstagram={home.bio?.instagram}
               returnTo="/cuenta"
             />
           </div>

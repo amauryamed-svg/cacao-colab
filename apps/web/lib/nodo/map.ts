@@ -18,6 +18,7 @@ type Row = {
   instagram: string | null
   website: string | null
   share_token: string
+  profile_id?: string | null
   created_at: string
   published_at: string | null
 }
@@ -41,6 +42,7 @@ export function mapNodeBioRow(row: Row): NodeBio {
     instagram: row.instagram,
     website: row.website,
     shareToken: row.share_token,
+    profileId: row.profile_id ?? null,
     createdAt: row.created_at,
     publishedAt: row.published_at,
   }

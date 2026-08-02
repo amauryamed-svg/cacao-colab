@@ -52,22 +52,46 @@ export default function NodeBioFlow({
   presetName,
   presetOrg,
   presetCity,
+  presetKind,
+  presetTerritory,
+  presetIntro,
+  presetAvatarUrl,
+  presetProductUrl,
+  presetProductCaption,
+  presetWhatsapp,
+  presetInstagram,
   returnTo = "/cuenta",
 }: {
   presetEmail?: string
   presetName?: string
   presetOrg?: string
   presetCity?: string
+  presetKind?: NodeKind
+  presetTerritory?: string | null
+  presetIntro?: string
+  presetAvatarUrl?: string | null
+  presetProductUrl?: string | null
+  presetProductCaption?: string | null
+  presetWhatsapp?: string | null
+  presetInstagram?: string | null
   /** Tras publicar, enlace de vuelta al espacio personal. */
   returnTo?: string
 }) {
   const [step, setStep] = useState(0)
   const [form, setForm] = useState<FormState>({
     ...initial,
+    kind: presetKind ?? "",
     email: presetEmail ?? "",
     displayName: presetName ?? "",
     orgName: presetOrg ?? "",
     city: presetCity ?? "",
+    territory: presetTerritory ?? "",
+    intro: presetIntro ?? "",
+    avatarDataUrl: presetAvatarUrl ?? "",
+    productDataUrl: presetProductUrl ?? "",
+    productCaption: presetProductCaption ?? "",
+    whatsapp: presetWhatsapp ?? "",
+    instagram: presetInstagram ?? "",
   })
   const [privacy, setPrivacy] = useState(false)
   const [terms, setTerms] = useState(false)
