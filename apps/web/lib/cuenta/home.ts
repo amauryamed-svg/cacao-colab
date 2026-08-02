@@ -1,10 +1,27 @@
 import "server-only"
 import { createSupabaseAdminClient } from "@cacao-colab/supabase-client/admin"
 import { createSupabaseServerClient } from "@cacao-colab/supabase-client/server"
+import {
+  courseSlugFromPayload,
+  resolveBenefitUse,
+  serviceFromPayload,
+  slugFromPayload,
+  type BenefitUseGuide,
+} from "@/lib/benefit-use"
 import { nextRank, resolveRank } from "@/lib/loyalty"
 import { mapNodeBioRow } from "@/lib/nodo/map"
 import type { NodeBio } from "@/lib/nodo/types"
 import { loadCourseTracks, type CourseTrackSnapshot } from "@/lib/cuenta/courses"
+
+export type CuentaRedemption = {
+  id: string
+  title: string
+  slug: string
+  costMd: number
+  status: string
+  createdAt: string
+  use: BenefitUseGuide | null
+}
 
 export type CuentaHomeSnapshot = {
   userId: string
@@ -32,6 +49,7 @@ export type CuentaHomeSnapshot = {
     } | null
   }
   redemptionCount: number
+  redemptions: CuentaRedemption[]
 }
 
 /**
@@ -114,15 +132,49 @@ export async function loadCuentaHome(userId: string, email: string, metadataName
   ])
 
   let redemptionCount = 0
+  let redemptions: CuentaRedemption[] = []
   try {
-    const { count } = await supabase
+    const { data: redemptionRows } = await supabase
       .from("benefit_redemptions")
-      .select("id", { count: "exact", head: true })
+      .select(
+        "id,status,cost_md,created_at,fulfillment_payload,benefit_catalog_items(title,slug,metadata)",
+      )
       .eq("profile_id", userId)
       .neq("status", "cancelled")
-    redemptionCount = count ?? 0
+      .order("created_at", { ascending: false })
+      .limit(12)
+    redemptions = (redemptionRows ?? []).map((row) => {
+      const catalog = Array.isArray(row.benefit_catalog_items)
+        ? row.benefit_catalog_items[0]
+        : row.benefit_catalog_items
+      const catalogMeta = (catalog?.metadata ?? {}) as {
+        course_slug?: string
+        service?: string
+      }
+      const courseSlug =
+        courseSlugFromPayload(row.fulfillment_payload) ?? catalogMeta.course_slug ?? null
+      const service = serviceFromPayload(row.fulfillment_payload) ?? catalogMeta.service ?? null
+      const slug =
+        slugFromPayload(row.fulfillment_payload) ??
+        (typeof catalog?.slug === "string" ? catalog.slug : "")
+      const title =
+        typeof catalog?.title === "string" && catalog.title
+          ? catalog.title
+          : slug || "Beneficio Colab"
+      return {
+        id: row.id,
+        title,
+        slug,
+        costMd: row.cost_md,
+        status: row.status,
+        createdAt: row.created_at,
+        use: resolveBenefitUse({ courseSlug, service, slug }),
+      }
+    })
+    redemptionCount = redemptions.length
   } catch {
     redemptionCount = 0
+    redemptions = []
   }
 
   const lifetime = wallet?.lifetime_earned ?? 0
@@ -155,6 +207,7 @@ export async function loadCuentaHome(userId: string, email: string, metadataName
     bio,
     courses,
     redemptionCount,
+    redemptions,
   }
   return snapshot
 }

@@ -5159,6 +5159,164 @@ body {
   margin-top: .55rem;
 }
 
+.cuenta-canjes {
+  margin-top: 1.5rem;
+  padding: 1.35rem 1.4rem;
+  border: 1px solid rgba(242, 200, 48, .2);
+  border-radius: 1.15rem;
+  background: rgba(247, 241, 238, .03);
+}
+
+.cuenta-canjes-head {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.cuenta-canjes-head h2 {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 800;
+  margin-top: .3rem;
+}
+
+.cuenta-canjes-head > div > p:last-child {
+  color: rgba(247, 241, 238, .48);
+  font-size: .72rem;
+  line-height: 1.55;
+  margin-top: .45rem;
+  max-width: 36rem;
+}
+
+.cuenta-canjes-list {
+  display: grid;
+  gap: .75rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cuenta-canjes-list li {
+  align-items: center;
+  background: rgba(16, 29, 11, .55);
+  border: 1px solid rgba(247, 241, 238, .08);
+  border-radius: .9rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: 1rem 1.1rem;
+}
+
+.cuenta-canjes-status {
+  color: #f2c830;
+  display: block;
+  font-size: .55rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.cuenta-canjes-list h3 {
+  font-size: 1rem;
+  font-weight: 800;
+  margin-top: .25rem;
+}
+
+.cuenta-canjes-list li > div > p {
+  color: rgba(247, 241, 238, .45);
+  font-size: .68rem;
+  margin-top: .25rem;
+}
+
+.cuenta-canjes-howto {
+  color: rgba(247, 241, 238, .72) !important;
+  line-height: 1.5;
+  margin-top: .55rem !important;
+  max-width: 34rem;
+}
+
+.cuenta-course-md-badge {
+  background: rgba(242, 200, 48, .16);
+  border-radius: .4rem;
+  color: #f2c830;
+  display: inline-block;
+  font-size: .55rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  margin: .35rem 0 .15rem;
+  padding: .2rem .45rem;
+  text-transform: uppercase;
+}
+
+.loyalty-canjes {
+  background: rgba(247, 241, 238, .03);
+  border: 1px solid rgba(242, 200, 48, .18);
+  border-radius: 1rem;
+  padding: 1.2rem 1.3rem;
+}
+
+.loyalty-canjes h2 {
+  color: #f7f1ee;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin-top: .25rem;
+}
+
+.loyalty-canjes ul {
+  display: grid;
+  gap: .7rem;
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+.loyalty-canjes li {
+  align-items: center;
+  background: rgba(16, 29, 11, .45);
+  border-radius: .8rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .85rem;
+  justify-content: space-between;
+  padding: .9rem 1rem;
+}
+
+.loyalty-canjes strong {
+  color: #f7f1ee;
+  display: block;
+  font-size: .9rem;
+}
+
+.loyalty-canjes small {
+  color: rgba(247, 241, 238, .42);
+  display: block;
+  font-size: .62rem;
+  margin-top: .2rem;
+}
+
+.loyalty-canjes li p {
+  color: rgba(247, 241, 238, .62);
+  font-size: .7rem;
+  line-height: 1.5;
+  margin-top: .45rem;
+  max-width: 34rem;
+}
+
+.loyalty-canjes-cta {
+  background: #f2c830;
+  border-radius: 999px;
+  color: #1a2e10;
+  font-size: .68rem;
+  font-weight: 800;
+  padding: .65rem 1rem;
+  white-space: nowrap;
+}
+
 .cuenta-bio {
   margin-top: 2.5rem;
 }
