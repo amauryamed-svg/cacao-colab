@@ -308,6 +308,37 @@ export const knowledgeTopics: KnowledgeTopic[] = [
     relatedCampus: ["/juega", "/sembrar", "/aprende/cacaotier", "/benevolo"],
   },
   {
+    slug: "cadmio-suelo-fermentacion",
+    title: "Cadmio, acidez del suelo y fermentación",
+    eyebrow: "Metales · cuidado · poscosecha",
+    summary:
+      "El Cd del suelo puede pasar al grano; suelos más ácidos suelen aumentar biodisponibilidad. En fermentación controlada (~45 °C), parte del Cd migra del nib a la testa descartada en tostión/descascarillado. Sembrar lo enseña como conciencia, no como medición de laboratorio.",
+    evidence: "published_research",
+    body: [
+      "En cacao latinoamericano el cadmio es un tema de mercado y salud pública. La planta puede absorber Cd del suelo; la acidez (pH bajo) suele aumentar la fracción biodisponible. Cobertura viva, nutrición equilibrada y pH cercano a 6–6.5 forman parte del cuidado preventivo en finca.",
+      "Sembrar simula un índice didáctico de riesgo relativo a partir de pH, cobertura, nutrición y biodiversidad. No sustituye análisis de suelo ni de grano: sirve para crear conciencia y conectar el hito de cuidado perfecto (hora 100 · métricas al 100 %) con decisiones de labranza a 10 años.",
+      "En poscosecha, la fermentación a temperatura alta y relativamente constante (~45 °C) junto con la acidificación del nib favorece la transferencia de Cd del nib hacia la testa (cascarilla). Esa cascarilla se elimina en tostión y descascarillado (winnowing). El paper de biorreactor FEAR 5 enseña perfiles isotérmicos: temperatura constante ≈ control reproducible.",
+      "Esto no es promesa de «cero cadmio». Es una palanca postcosecha sobre el Cd que ya viene del suelo, documentada en literatura (Sci. Rep. 2024; Food Res. Int. 2019) y alineada con el oficio que enseña Master Cacaotier.",
+      "Ruta Colab: cuidar suelo en Sembrar → cosechar con criterio (hito 100/100) → fermentar con evidencia → leer tipicidad sin inventar genética ni DO.",
+    ],
+    links: [
+      {
+        label: "Sci. Rep. 2024 · Cd nib→testa (T alta + acidificación)",
+        href: "https://doi.org/10.1038/s41598-024-62609-8",
+        note: "DOI",
+      },
+      {
+        label: "Food Res. Int. 2019 · distribución de Cd en fermentación",
+        href: "https://doi.org/10.1016/j.foodres.2019.108743",
+        note: "DOI",
+      },
+      { label: "Abrir Sembrar", href: "/juega", note: "Cuidado + plan 10 años" },
+      { label: "Master Cacaotier", href: "/aprende/cacaotier", note: "Temperatura y pH" },
+      { label: "Modelo araucano · FEAR 5", href: "/conocimiento/fear5-ecoyuma" },
+    ],
+    relatedCampus: ["/juega", "/aprende/cacaotier", "/conocimiento/fear5-ecoyuma"],
+  },
+  {
     slug: "benevolo-traduccion",
     title: "Chocolate Benevolo · R&D Colab",
     eyebrow: "R&D · marca acelerada · Aceleración Colab",
@@ -386,7 +417,8 @@ export const ecosystemSpearhead = {
     { n: "01", title: "Sembrar con criterio", href: "/juega", cta: "Sembrar · Ecoyuma" },
     { n: "02", title: "Fermentar con evidencia", href: "/aprende/cacaotier", cta: "Campus cacaotier" },
     { n: "03", title: "Cumplir el mercado", href: "/conocimiento/eudr-deforestacion", cta: "EUDR y orgánico" },
-    { n: "04", title: "Formular a la mesa", href: "/aprende/chocolatier", cta: "Master Chocolatier · Benevolo" },
+    { n: "04", title: "Cuidar Cd y suelo", href: "/conocimiento/cadmio-suelo-fermentacion", cta: "Cadmio · fermentación" },
+    { n: "05", title: "Formular a la mesa", href: "/aprende/chocolatier", cta: "Master Chocolatier · Benevolo" },
   ],
 }
 

@@ -14,6 +14,8 @@ const reasonLabels: Record<string, string> = {
   gotchi_care: "Cuidado de la labranza",
   gotchi_harvest_open: "Cosecha Sembrar · apertura de lote",
   gotchi_harvest_fermented: "Cosecha Sembrar · fermentación cerrada",
+  gotchi_perfect_care: "Hito cuidado perfecto · 100 h / 100 %",
+  gotchi_decade_plan: "Plan labranza comparativa · 10 años",
   lesson_completed: "Microlearning completado",
   benefit_redemption: "Canje de beneficio",
   scorecard_settlement: "Bono scorecard de productividad",

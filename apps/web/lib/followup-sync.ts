@@ -9,6 +9,7 @@ import {
   type LearnerFollowupSnapshot,
   type SembrarSnapshot,
 } from "@/lib/followup-advice"
+import { isPerfectCareReady } from "@/lib/sembrar-care"
 import { lessons } from "@/lib/lessons"
 import { MICRO_COURSE_SLUG } from "@/lib/microlearning"
 import { FOLLOWUP_SUBJECT, renderFollowupTemplate, type FollowupEmailKey } from "@/lib/followup-email-render"
@@ -44,7 +45,12 @@ const SEMBRAR_PHASE_LABEL: Record<SembrarSnapshot["phase"], string> = {
 
 function buildSembrarMeta(sembrar: SembrarSnapshot): string {
   const phaseLabel = SEMBRAR_PHASE_LABEL[sembrar.phase]
-  const parts = [sembrar.genotypeCode, phaseLabel ? `fase ${phaseLabel}` : null].filter(Boolean)
+  const parts = [
+    sembrar.genotypeCode,
+    phaseLabel ? `fase ${phaseLabel}` : null,
+    sembrar.perfectCareReady ? "cuidado perfecto" : null,
+    sembrar.decadePlanComplete ? "plan 10 años" : null,
+  ].filter(Boolean)
   return parts.join(" · ")
 }
 
@@ -58,6 +64,28 @@ function parseSembrarState(raw: unknown): SembrarSnapshot {
   const ageHours = typeof state.ageHours === "number" ? state.ageHours : 0
   const genotypeCode = typeof state.genotypeCode === "string" ? state.genotypeCode : null
   const bitacoraCount = Array.isArray(state.bitacora) ? state.bitacora.length : 0
+  const num = (key: string) => (typeof state[key] === "number" ? (state[key] as number) : 0)
+  const perfectCareReady =
+    phase === "cultivation"
+      ? isPerfectCareReady({
+          moisture: num("moisture"),
+          health: num("health"),
+          knowledge: num("knowledge"),
+          nutrition: num("nutrition"),
+          soilCover: num("soilCover"),
+          biodiversity: num("biodiversity"),
+          ageHours,
+        })
+      : phase === "fermentation" || phase === "complete"
+        ? ageHours >= 100 &&
+          num("moisture") >= 100 &&
+          num("health") >= 100 &&
+          num("knowledge") >= 100 &&
+          num("nutrition") >= 100 &&
+          num("soilCover") >= 100 &&
+          num("biodiversity") >= 100
+        : false
+  const decadePlanComplete = state.decadePlanComplete === true
   if (phase === "none") return emptySembrarSnapshot()
   return {
     phase,
@@ -65,6 +93,8 @@ function parseSembrarState(raw: unknown): SembrarSnapshot {
     genotypeCode,
     ageHours,
     bitacoraCount,
+    perfectCareReady,
+    decadePlanComplete,
   }
 }
 

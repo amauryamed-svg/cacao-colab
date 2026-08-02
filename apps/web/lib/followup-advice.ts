@@ -3,6 +3,7 @@
  * Principio: la maestría se logra con consistencia — estudiar y practicar en repetición.
  */
 import { communityRanks, nextRank, resolveRank } from "@/lib/loyalty"
+import { PERFECT_CARE_HOUR } from "@/lib/sembrar-care"
 
 export type SembrarSnapshot = {
   phase: "cultivation" | "fermentation" | "complete" | "none"
@@ -10,6 +11,9 @@ export type SembrarSnapshot = {
   genotypeCode: string | null
   ageHours: number
   bitacoraCount: number
+  /** Hito: ≥100 h y métricas al 100 % (o ya cosechado con ese criterio). */
+  perfectCareReady: boolean
+  decadePlanComplete: boolean
 }
 
 export type LearnerFollowupSnapshot = {
@@ -59,6 +63,8 @@ export function emptySembrarSnapshot(): SembrarSnapshot {
     genotypeCode: null,
     ageHours: 0,
     bitacoraCount: 0,
+    perfectCareReady: false,
+    decadePlanComplete: false,
   }
 }
 
@@ -95,15 +101,23 @@ export function buildFollowupAdvice(snap: LearnerFollowupSnapshot): FollowupAdvi
     practiceTip =
       "Siembra tu primera labranza en Sembrar (FEAR 5 recomendado). Estudiar sin practicar se olvida; practicar sin estudiar se desvía."
   } else if (snap.sembrar.phase === "cultivation") {
-    practiceTip = `Tu labranza está en ${snap.sembrar.stageName}${
-      snap.sembrar.genotypeCode ? ` · ${snap.sembrar.genotypeCode}` : ""
-    }. Hoy: una acción de cuidado + una nota en bitácora.`
+    if (snap.sembrar.perfectCareReady) {
+      practiceTip = `¡Cuidado perfecto listo (${PERFECT_CARE_HOUR} h · 100 %)! Recolecta el hito en Sembrar y pasa a fermentar ~45 °C: el Cd puede migrar a la cascarilla que se descarta.`
+    } else if (snap.sembrar.ageHours >= 78) {
+      practiceTip = `Ya puedes cosechar, pero el hito de cuidado perfecto pide ${PERFECT_CARE_HOUR} h con Agua/Vitalidad/Saber/Nutrición/Cobertura/Biodiversidad al 100 %. Usa «Estabilizar cosecha» y aguanta el reloj.`
+    } else {
+      practiceTip = `Tu labranza está en ${snap.sembrar.stageName}${
+        snap.sembrar.genotypeCode ? ` · ${snap.sembrar.genotypeCode}` : ""
+      }. Hoy: una acción de cuidado + una nota en bitácora. Meta: ${PERFECT_CARE_HOUR} h al 100 %.`
+    }
   } else if (snap.sembrar.phase === "fermentation") {
-    practiceTip =
-      "Estás en fermentación simulada: registra temperatura/pH mentales y compara con el paper FEAR 5. Consistencia > improvisación."
+    practiceTip = snap.sembrar.perfectCareReady
+      ? "Cosechaste con cuidado perfecto. Mantén el bioreactor cerca de 45 °C: temperatura constante + acidificación ayudan a mover Cd del nib a la testa descartable."
+      : "Estás en fermentación simulada: registra temperatura/pH mentales y compara con el paper FEAR 5. Consistencia > improvisación."
   } else {
-    practiceTip =
-      "Cosecha fermentada lista. Celebra con una revisión: ¿qué repetirías igual? La maestría es el mismo gesto, cada vez más limpio."
+    practiceTip = snap.sembrar.decadePlanComplete
+      ? "Labranza cerrada y plan a 10 años guardado. Repite con otro genotipo bajo el mismo protocolo: así nace criterio, no solo MD."
+      : "Cosecha fermentada lista. Cierra el círculo: guarda el plan comparativo a 10 años en Sembrar → Planear (premio de conciencia + MD)."
   }
 
   let sembrarTip =
@@ -113,9 +127,14 @@ export function buildFollowupAdvice(snap: LearnerFollowupSnapshot): FollowupAdvi
       "Abre la bitácora: sin registro no hay tipicidad. Anota sombra, agua o floración — una línea basta."
   } else if (snap.sembrar.bitacoraCount > 0 && snap.sembrar.bitacoraCount < 3) {
     sembrarTip = `Llevas ${snap.sembrar.bitacoraCount} notas. Apunta a 3 bitácoras esta semana: el patrón enseña más que el pico de un día.`
+  } else if (snap.sembrar.phase === "cultivation" && snap.sembrar.ageHours >= 54) {
+    sembrarTip = `Meta consciente: llegar a ${PERFECT_CARE_HOUR} h con todas las barras al 100 % antes de recolectar. Eso enseña oficio; cosechar temprano enseña prisa.`
+  } else if (snap.sembrar.phase === "complete" && !snap.sembrar.decadePlanComplete) {
+    sembrarTip =
+      "Labranza completa. Premio pendiente: plan comparativo a 10 años (dos genotipos + ≥120 caracteres) en Sembrar → Planear."
   } else if (snap.sembrar.phase === "complete") {
     sembrarTip =
-      "Labranza completa. Siguiente repetición: nueva parcela o genotipo (TCS 19 / TCS 06) con el mismo protocolo."
+      "Labranza y plan decenal listos. Siguiente repetición: nuevo material (TCS 19 / TCS 06 / FTA 2) con el mismo protocolo de suelo y fermentación."
   }
 
   const mdSummary =

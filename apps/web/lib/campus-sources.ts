@@ -51,6 +51,24 @@ export const campusKnowledgeSources: CampusSource[] = [
     note: "Cómo el Colab traduce CoEx/Awards a criterio de campus sin sellos falsos.",
     kind: "campus",
   },
+  {
+    label: "Sci. Rep. 2024 · Cd nib → testa",
+    href: "https://doi.org/10.1038/s41598-024-62609-8",
+    note: "Temperatura alta y acidificación favorecen transferencia de cadmio del nib a la cascarilla descartable.",
+    kind: "paper",
+  },
+  {
+    label: "Food Res. Int. 2019 · Cd en fermentación",
+    href: "https://doi.org/10.1016/j.foodres.2019.108743",
+    note: "Distribución de cadmio durante fermentación de cacao — contexto para Sembrar y Master Cacaotier.",
+    kind: "paper",
+  },
+  {
+    label: "Conocimiento Colab · Cadmio y suelo",
+    href: "/conocimiento/cadmio-suelo-fermentacion",
+    note: "Acidez, cuidado preventivo y fermentación ~45 °C: conciencia sin promesa de Cd cero.",
+    kind: "campus",
+  },
 ]
 
 export const architectCompanionTips = [
