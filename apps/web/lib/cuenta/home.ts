@@ -34,18 +34,70 @@ export type CuentaHomeSnapshot = {
   redemptionCount: number
 }
 
-async function loadBioByEmail(email: string): Promise<NodeBio | null> {
+/**
+ * Resuelve la bio del usuario autenticado:
+ * 1) por profile_id (vínculo fuerte)
+ * 2) por email case-insensitive (legado / pre-login)
+ * Si encuentra por email sin profile_id, la reclama para esta cuenta.
+ */
+export async function loadBioForUser(userId: string, email: string): Promise<NodeBio | null> {
+  const normalized = email.trim().toLowerCase()
   try {
     const admin = createSupabaseAdminClient()
-    const { data, error } = await admin
+
+    const byProfile = await admin
       .from("node_bios")
       .select("*")
-      .eq("email", email.toLowerCase())
+      .eq("profile_id", userId)
       .order("created_at", { ascending: false })
       .limit(1)
       .maybeSingle()
-    if (error || !data) return null
-    return mapNodeBioRow(data)
+
+    if (byProfile.data && !byProfile.error) {
+      return mapNodeBioRow(byProfile.data)
+    }
+
+    if (!normalized.includes("@")) return null
+
+    const byEmailExact = await admin
+      .from("node_bios")
+      .select("*")
+      .eq("email", normalized)
+      .order("created_at", { ascending: false })
+      .limit(1)
+      .maybeSingle()
+
+    let row = !byEmailExact.error ? byEmailExact.data : null
+
+    // Legado: emails con casing distinto (antes de normalizar en migración)
+    if (!row) {
+      const escaped = normalized.replace(/\\/g, "\\\\").replace(/%/g, "\\%").replace(/_/g, "\\_")
+      const byEmailLoose = await admin
+        .from("node_bios")
+        .select("*")
+        .ilike("email", escaped)
+        .order("created_at", { ascending: false })
+        .limit(1)
+        .maybeSingle()
+      if (!byEmailLoose.error) row = byEmailLoose.data
+    }
+
+    if (!row) return null
+
+    // No robar bios ya vinculadas a otra cuenta
+    if (row.profile_id && row.profile_id !== userId) return null
+
+    if (!row.profile_id || row.email !== normalized) {
+      const { data: claimed } = await admin
+        .from("node_bios")
+        .update({ profile_id: userId, email: normalized })
+        .eq("id", row.id)
+        .select("*")
+        .maybeSingle()
+      if (claimed) return mapNodeBioRow(claimed)
+    }
+
+    return mapNodeBioRow(row)
   } catch {
     return null
   }
@@ -57,7 +109,7 @@ export async function loadCuentaHome(userId: string, email: string, metadataName
     supabase.from("profiles").select("full_name,city").eq("id", userId).maybeSingle(),
     supabase.from("mazorca_wallets").select("balance,lifetime_earned").eq("profile_id", userId).maybeSingle(),
     supabase.from("actor_roles").select("role,is_primary").eq("profile_id", userId),
-    loadBioByEmail(email),
+    loadBioForUser(userId, email),
     loadCourseTracks(userId),
   ])
 

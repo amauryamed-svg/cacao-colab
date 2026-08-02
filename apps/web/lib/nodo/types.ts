@@ -20,6 +20,7 @@ export type NodeBio = {
   instagram: string | null
   website: string | null
   shareToken: string
+  profileId: string | null
   createdAt: string
   publishedAt: string | null
 }
