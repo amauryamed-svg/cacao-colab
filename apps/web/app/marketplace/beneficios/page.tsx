@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { plannedBenefits, communityRanks } from "@/lib/loyalty"
+import { createSupabaseServerClient } from "@cacao-colab/supabase-client/server"
+import { plannedBenefits, communityRanks, resolveRank } from "@/lib/loyalty"
 import { listBenefitCatalog } from "@/lib/loyalty-server"
 import DualitaLoyaltyGuide from "@/components/edutainment/DualitaLoyaltyGuide"
 import RedeemBenefitButton from "@/components/loyalty/RedeemBenefitButton"
@@ -18,6 +19,8 @@ const statusLabels: Record<string, string> = {
   paused: "En pausa",
   retired: "Retirado",
 }
+
+const RANK_ORDER = ["semilla", "brote", "labrador", "guardian", "maestro", "heritage"] as const
 
 export default async function BenefitsPage() {
   const catalog = await listBenefitCatalog()
@@ -39,6 +42,27 @@ export default async function BenefitsPage() {
   }))
   const liveCatalog = catalog !== null
 
+  const supabase = await createSupabaseServerClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+  let walletSnap: { balance: number; lifetime: number; rankName: string; rankSlug: string } | null = null
+  if (user) {
+    const { data: wallet } = await supabase
+      .from("mazorca_wallets")
+      .select("balance,lifetime_earned")
+      .eq("profile_id", user.id)
+      .maybeSingle()
+    const lifetime = wallet?.lifetime_earned ?? 0
+    const rank = resolveRank(lifetime)
+    walletSnap = {
+      balance: wallet?.balance ?? 0,
+      lifetime,
+      rankName: rank.name,
+      rankSlug: rank.slug,
+    }
+  }
+
   return (
     <div className="min-h-screen bg-colab-cream">
       <header className="benefits-hero">
@@ -47,9 +71,16 @@ export default async function BenefitsPage() {
           <h1>Lo que cultivas<br /><em>vuelve a la comunidad.</em></h1>
           <p>
             Canjea Mazorcas Doradas por servicios digitales del Colab (aceleraciones, previews, mentoría).
-            Las marcas externas siguen planeadas hasta acuerdo y conector activo. Sin multinivel: solo
-            actividad propia y saldo.
+            El <strong>saldo</strong> paga el costo; el <strong>rango</strong> se calcula con MD históricas
+            (lo ganado cultivando — los packs de compra no suben rango). Sin multinivel.
           </p>
+          {walletSnap && (
+            <p className="benefits-wallet-snap">
+              Tu wallet: <strong>{walletSnap.balance.toLocaleString("es-CO")} MD</strong> de saldo · rango{" "}
+              <strong>{walletSnap.rankName}</strong> (
+              {walletSnap.lifetime.toLocaleString("es-CO")} MD históricas)
+            </p>
+          )}
           <div className="benefits-hero-actions">
             <Link href="/cuenta/mazorcas">Abrir mi wallet →</Link>
             <Link href="/cuenta/mazorcas#scorecard" className="benefits-hero-secondary">
@@ -78,6 +109,24 @@ export default async function BenefitsPage() {
             const redeemable =
               benefit.status === "active" &&
               (benefit.connectorActive || benefit.fulfillmentType === "colab_digital")
+            const requiredMeta = benefit.minRankSlug
+              ? communityRanks.find((r) => r.slug === benefit.minRankSlug)
+              : null
+            const userRankIdx = walletSnap
+              ? RANK_ORDER.indexOf(walletSnap.rankSlug as (typeof RANK_ORDER)[number])
+              : -1
+            const requiredRankIdx = benefit.minRankSlug
+              ? RANK_ORDER.indexOf(benefit.minRankSlug as (typeof RANK_ORDER)[number])
+              : -1
+            const rankBlockedHint =
+              walletSnap && benefit.minRankSlug && userRankIdx >= 0 && requiredRankIdx > userRankIdx
+                ? [
+                    "El canje mira tu rango (MD históricas), no solo el saldo.",
+                    `Tu rango: ${walletSnap.rankName} · ${walletSnap.lifetime.toLocaleString("es-CO")} MD históricas.`,
+                    `Necesitas: ${benefit.rank}${requiredMeta ? ` (${requiredMeta.threshold.toLocaleString("es-CO")} MD históricas)` : ""}.`,
+                    `Saldo actual: ${walletSnap.balance.toLocaleString("es-CO")} MD (sirve para pagar el costo, no para subir de rango).`,
+                  ].join(" ")
+                : null
             return (
               <article key={`${benefit.brandKey}-${benefit.slug || benefit.title}`} className="benefit-card">
                 <div className="flex items-center justify-between">
@@ -88,7 +137,13 @@ export default async function BenefitsPage() {
                 <p>{benefit.description}</p>
                 <dl>
                   <div><dt>Costo</dt><dd>{benefit.cost} MD</dd></div>
-                  <div><dt>Rango</dt><dd>{benefit.rank}</dd></div>
+                  <div>
+                    <dt>Rango mín.</dt>
+                    <dd>
+                      {benefit.rank}
+                      {requiredMeta ? ` · ${requiredMeta.threshold} MD hist.` : ""}
+                    </dd>
+                  </div>
                   <div><dt>Integración</dt><dd>{benefit.connector}</dd></div>
                   <div><dt>Conector</dt><dd>{benefit.connectorActive ? "Activo" : "Inactivo"}</dd></div>
                 </dl>
@@ -98,6 +153,7 @@ export default async function BenefitsPage() {
                   redeemable={redeemable}
                   cost={benefit.cost}
                   title={benefit.title}
+                  rankBlockedHint={rankBlockedHint}
                 />
               </article>
             )
@@ -106,12 +162,19 @@ export default async function BenefitsPage() {
 
         <section className="mt-16">
           <p className="eyebrow text-colab-green">Escala comunitaria</p>
+          <p className="text-xs text-colab-forest/50 mt-2 max-w-xl">
+            Umbrales en MD históricas (lifetime earned). El saldo de wallet puede ser mayor si compraste packs,
+            pero los packs no cuentan para el rango.
+          </p>
           <div className="community-rank-grid mt-5">
             {communityRanks.map((rank) => (
-              <article key={rank.slug}>
+              <article
+                key={rank.slug}
+                className={walletSnap && walletSnap.lifetime >= rank.threshold ? "reached" : undefined}
+              >
                 <span>{rank.icon}</span>
                 <h3>{rank.name}</h3>
-                <strong>{rank.threshold} MD</strong>
+                <strong>{rank.threshold} MD históricas</strong>
                 <p>{rank.benefit}</p>
               </article>
             ))}
