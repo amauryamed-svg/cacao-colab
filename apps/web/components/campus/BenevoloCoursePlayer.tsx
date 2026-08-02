@@ -5,6 +5,7 @@ import Link from "next/link"
 import DualitaCompanion from "@/components/aprende/DualitaCompanion"
 import { benevoloMissions, benevoloTotalXp, BENEVOLO_COURSE_SLUG } from "@/lib/benevolo-brand"
 import { saveBenevoloProgress } from "@/app/campus/actions"
+import { muroShareHref } from "@/lib/colab-foro"
 import {
   bumpStreak,
   encodeDiploma,
@@ -15,6 +16,7 @@ import {
   normalizeRigorState,
   refillHeartsIfNeeded,
   siteOrigin,
+  xShareUrl,
   type DiplomaPayload,
   type RigorState,
 } from "@/lib/campus-rigor"
@@ -286,18 +288,37 @@ export default function BenevoloCoursePlayer({
               <span>◈</span>
               <h2>Benevolo acelerado</h2>
               <p className="chocolatier-grade-pill mx-auto">{gradeLabel(grade)}</p>
-              <p>Duja · tendencia · preorden. Comparte y suma al colectivo.</p>
+              <p>Duja · tendencia · preorden. Publica tu diploma en el muro y en redes.</p>
               <div className="flex flex-wrap justify-center gap-3">
                 {diplomaUrl && (
                   <>
                     <a href={diplomaUrl}>Ver diploma →</a>
+                    <Link
+                      href={muroShareHref({
+                        courseSlug: "benevolo",
+                        gradeLabel: gradeLabel(grade),
+                        diplomaCode: progress.diplomaCode,
+                      })}
+                      className="!bg-colab-yellow !text-colab-forest"
+                    >
+                      Publicar en el muro →
+                    </Link>
                     <a href={linkedInShareUrl(diplomaUrl)} target="_blank" rel="noopener noreferrer">
                       LinkedIn →
+                    </a>
+                    <a
+                      href={xShareUrl(
+                        diplomaUrl,
+                        `${learnerName} · Benevolo · ${gradeLabel(grade)} · Cacao Colab`,
+                      )}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      X / redes →
                     </a>
                   </>
                 )}
                 <Link href="/benevolo">Preorden</Link>
-                <Link href="/unete">Colab</Link>
               </div>
             </div>
           )}

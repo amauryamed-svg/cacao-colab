@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import Link from "next/link"
 import DualitaCompanion, { type DualitaMood } from "@/components/aprende/DualitaCompanion"
 import CourseIntroPlayer from "@/components/aprende/CourseIntroPlayer"
@@ -12,6 +12,7 @@ import {
   architectMissions,
   architectTotalXp,
 } from "@/lib/architect-course"
+import { muroShareHref } from "@/lib/colab-foro"
 import { saveArchitectProgress } from "@/app/campus/actions"
 import {
   orderQuizOptions,
@@ -120,6 +121,15 @@ export default function ArchitectCoursePlayer({
   const [celebrateToken, setCelebrateToken] = useState(0)
   const [dualitaMood, setDualitaMood] = useState<DualitaMood>("idle")
   const [dualitaPulse, setDualitaPulse] = useState(0)
+  const bootSynced = useRef(false)
+
+  useEffect(() => {
+    if (bootSynced.current) return
+    if (!boot.progress.diplomaCode || !isCourseDone(boot.progress)) return
+    bootSynced.current = true
+    persist(boot.progress, true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- one-shot sync when boot mints diploma
+  }, [])
 
   const mission = architectMissions[missionIndex]
   const step = mission.steps[stepIndex]
@@ -169,7 +179,7 @@ export default function ArchitectCoursePlayer({
     }
     if (phase === "mission-complete") return mission.dualitaSuccess
     if (phase === "course-complete") {
-      return `¡Diploma ${gradeLabel(grade)}! Eso se comparte: LinkedIn, foro Colab y un 🍫 a quien te acompañó.`
+      return `¡Diploma ${gradeLabel(grade)}! Publícalo en el muro de la comunidad, LinkedIn o X — Dualita ya celebró.`
     }
     if (phase === "quiz") {
       if (quizPassed) return "¡Eso! Criterio limpio. Toca Continuar — Dualita ya está celebrando contigo."
@@ -568,7 +578,11 @@ export default function ArchitectCoursePlayer({
               diplomaUrl={diplomaUrl}
               practiceHref="/juega"
               practiceLabel="Aplicar en Sembrar →"
-              forumHref={`/colab?share=arquitecto-fermentacion&grade=${grade}`}
+              forumHref={muroShareHref({
+                courseSlug: ARCHITECT_COURSE_SLUG,
+                gradeLabel: gradeLabel(grade),
+                diplomaCode: progress.diplomaCode,
+              })}
               sisterHref="/campus/maestro-chocolatier"
               sisterLabel="Master Chocolatier →"
             />

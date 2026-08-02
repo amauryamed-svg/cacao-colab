@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import Link from "next/link"
 import DualitaCompanion, { type DualitaMood } from "@/components/aprende/DualitaCompanion"
 import CampusCelebrate from "@/components/campus/CampusCelebrate"
@@ -12,6 +12,7 @@ import {
   chocolatierTotalXp,
   CHOCOLATIER_COURSE_SLUG,
 } from "@/lib/chocolatier-course"
+import { muroShareHref } from "@/lib/colab-foro"
 import { saveChocolatierProgress } from "@/app/campus/actions"
 import { orderQuizOptions, playCampusSfx, type CelebrateKind } from "@/lib/campus-gamify"
 import { chocolatierCompanionTipsShared } from "@/lib/campus-sources"
@@ -102,6 +103,15 @@ export default function ChocolatierCoursePlayer({
   const [celebrateToken, setCelebrateToken] = useState(0)
   const [dualitaMood, setDualitaMood] = useState<DualitaMood>("idle")
   const [dualitaPulse, setDualitaPulse] = useState(0)
+  const bootSynced = useRef(false)
+
+  useEffect(() => {
+    if (bootSynced.current) return
+    if (!boot.progress.diplomaCode || !isCourseDone(boot.progress)) return
+    bootSynced.current = true
+    persist(boot.progress, true)
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- one-shot sync when boot mints diploma
+  }, [])
 
   const mission = chocolatierMissions[missionIndex]
   const step = mission.steps[stepIndex]
@@ -151,7 +161,7 @@ export default function ChocolatierCoursePlayer({
     }
     if (phase === "mission-complete") return mission.dualitaSuccess
     if (phase === "course-complete") {
-      return `¡Diploma ${gradeLabel(grade)}! Mira tu nota, practica en Sembrar y comparte con 🍫 en el foro Colab.`
+      return `¡Diploma ${gradeLabel(grade)}! Publícalo en el muro de la comunidad, LinkedIn o X.`
     }
     if (phase === "quiz") {
       if (quizPassed) return "¡Eso! Criterio limpio. Continúa — Dualita ya celebra contigo."
@@ -529,7 +539,11 @@ export default function ChocolatierCoursePlayer({
               diplomaUrl={diplomaUrl}
               practiceHref="/juega"
               practiceLabel="Practicar en Sembrar →"
-              forumHref={`/colab?share=maestro-chocolatier&grade=${grade}`}
+              forumHref={muroShareHref({
+                courseSlug: CHOCOLATIER_COURSE_SLUG,
+                gradeLabel: gradeLabel(grade),
+                diplomaCode: progress.diplomaCode,
+              })}
               sisterHref="/benevolo"
               sisterLabel="Marca Benevolo →"
             />
