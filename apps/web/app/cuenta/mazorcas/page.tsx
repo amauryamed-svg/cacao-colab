@@ -1,12 +1,8 @@
 import { createSupabaseServerClient } from "@cacao-colab/supabase-client/server"
 import { redirect } from "next/navigation"
 import Link from "next/link"
-import {
-  courseSlugFromPayload,
-  resolveBenefitUse,
-  serviceFromPayload,
-  slugFromPayload,
-} from "@/lib/benefit-use"
+import { resolveBenefitUse } from "@/lib/benefit-use"
+import { loadProfileRedemptions } from "@/lib/cuenta/redemptions"
 import { communityRanks, mdBuyPacks, nextRank, resolveRank, scorecardConfig } from "@/lib/loyalty"
 import BuyPackButtons from "@/components/loyalty/BuyPackButtons"
 import ScorecardPanel from "@/components/loyalty/ScorecardPanel"
@@ -33,25 +29,16 @@ export default async function MazorcasPage() {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect("/cuenta/entrar?next=/cuenta/mazorcas")
 
-  const [{ data: wallet, error: walletError }, { data: ledger }, { data: redemptionRows }] =
-    await Promise.all([
-      supabase.from("mazorca_wallets").select("*").eq("profile_id", user.id).maybeSingle(),
-      supabase
-        .from("mazorca_ledger")
-        .select("*")
-        .eq("profile_id", user.id)
-        .order("created_at", { ascending: false })
-        .limit(30),
-      supabase
-        .from("benefit_redemptions")
-        .select(
-          "id,status,cost_md,created_at,fulfillment_payload,benefit_catalog_items(title,slug,metadata)",
-        )
-        .eq("profile_id", user.id)
-        .neq("status", "cancelled")
-        .order("created_at", { ascending: false })
-        .limit(12),
-    ])
+  const [{ data: wallet, error: walletError }, { data: ledger }, redemptions] = await Promise.all([
+    supabase.from("mazorca_wallets").select("*").eq("profile_id", user.id).maybeSingle(),
+    supabase
+      .from("mazorca_ledger")
+      .select("*")
+      .eq("profile_id", user.id)
+      .order("created_at", { ascending: false })
+      .limit(30),
+    loadProfileRedemptions(user.id),
+  ])
   const balance = wallet?.balance ?? 0
   const lifetime = wallet?.lifetime_earned ?? 0
   const rank = resolveRank(lifetime)
@@ -59,31 +46,6 @@ export default async function MazorcasPage() {
   const progress = upcoming
     ? Math.round(((lifetime - rank.threshold) / (upcoming.threshold - rank.threshold)) * 100)
     : 100
-
-  const redemptions = (redemptionRows ?? []).map((row) => {
-    const catalog = Array.isArray(row.benefit_catalog_items)
-      ? row.benefit_catalog_items[0]
-      : row.benefit_catalog_items
-    const catalogMeta = (catalog?.metadata ?? {}) as { course_slug?: string; service?: string }
-    const courseSlug =
-      courseSlugFromPayload(row.fulfillment_payload) ?? catalogMeta.course_slug ?? null
-    const service = serviceFromPayload(row.fulfillment_payload) ?? catalogMeta.service ?? null
-    const slug =
-      slugFromPayload(row.fulfillment_payload) ??
-      (typeof catalog?.slug === "string" ? catalog.slug : "")
-    const title =
-      typeof catalog?.title === "string" && catalog.title
-        ? catalog.title
-        : slug || "Beneficio Colab"
-    return {
-      id: row.id,
-      title,
-      costMd: row.cost_md,
-      status: row.status,
-      createdAt: row.created_at,
-      use: resolveBenefitUse({ courseSlug, service, slug }),
-    }
-  })
 
   return (
     <div className="min-h-screen bg-[#101d0b] px-4 py-14">

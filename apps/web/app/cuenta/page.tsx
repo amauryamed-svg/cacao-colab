@@ -56,9 +56,12 @@ export default async function CuentaPage() {
     },
     {
       title: "Beneficios MD",
-      body: "Canjea cursos, aceleraciones y sinks Colab activos.",
-      href: "/marketplace/beneficios",
-      cta: "Abrir catálogo",
+      body:
+        home.redemptionCount > 0
+          ? `Tienes ${home.redemptionCount} canje(s). Úsalos en campus — no son cupones aparte.`
+          : "Canjea cursos, aceleraciones y sinks Colab activos.",
+      href: home.redemptionCount > 0 ? "/cuenta#cuenta-canjes-title" : "/marketplace/beneficios",
+      cta: home.redemptionCount > 0 ? "Ver mis canjes" : "Abrir catálogo",
     },
     {
       title: "Campus Dualita",
@@ -130,11 +133,20 @@ export default async function CuentaPage() {
               <Link href="/cuenta/mazorcas" className="cuenta-btn-primary">
                 Abrir wallet →
               </Link>
+              {home.redemptions[0]?.use ? (
+                <Link href={home.redemptions[0].use.href} className="cuenta-btn-primary">
+                  Usar último canje →
+                </Link>
+              ) : (
+                <Link href="/marketplace/beneficios" className="cuenta-btn-ghost">
+                  Canjear
+                </Link>
+              )}
               <Link href="/cuenta/mazorcas#scorecard" className="cuenta-btn-ghost">
                 Scorecard
               </Link>
               <Link href="/marketplace/beneficios" className="cuenta-btn-ghost">
-                Canjear
+                Catálogo
               </Link>
             </div>
           </div>
