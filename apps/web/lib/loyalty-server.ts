@@ -2,6 +2,7 @@ import "server-only"
 import { createSupabaseAdminClient } from "@cacao-colab/supabase-client/admin"
 import type { Json } from "@cacao-colab/supabase-client/database.types"
 import {
+  communityRanks,
   computeScorecardBonus,
   isoWeekPeriodKey,
   mdBuyPacks,
@@ -359,7 +360,18 @@ export async function redeemBenefit(input: {
     const rank = resolveRank(lifetime)
     const order = ["semilla", "brote", "labrador", "guardian", "maestro", "heritage"]
     if (order.indexOf(rank.slug) < order.indexOf(item.min_rank_slug)) {
-      return { ok: false as const, error: "rango_insuficiente", rank: rank.slug, required: item.min_rank_slug }
+      const requiredMeta = communityRanks.find((r) => r.slug === item.min_rank_slug)
+      return {
+        ok: false as const,
+        error: "rango_insuficiente",
+        rank: rank.slug,
+        rankName: rank.name,
+        required: item.min_rank_slug,
+        requiredName: requiredMeta?.name ?? item.min_rank_slug,
+        lifetime,
+        requiredThreshold: requiredMeta?.threshold ?? null,
+        balance,
+      }
     }
   }
 
