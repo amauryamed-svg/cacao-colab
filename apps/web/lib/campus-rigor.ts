@@ -149,9 +149,18 @@ export function diplomaGradeExplainer() {
   return "Nota del diploma = retos correctos a la primera. Racha 🔥 = días seguidos estudiando. Son contadores distintos."
 }
 
+/**
+ * `typeof Buffer !== "undefined"` no distingue Node del navegador: los
+ * bundlers de Next.js inyectan un polyfill de `Buffer` en el cliente que
+ * NO soporta la codificación `base64url` (solo el `Buffer` nativo de Node
+ * la soporta) — usarlo ahí revienta con "Unknown encoding: base64url" al
+ * generar el diploma. `window` sí es una señal confiable de navegador.
+ */
+const isBrowser = typeof window !== "undefined"
+
 export function encodeDiploma(payload: DiplomaPayload): string {
   const json = JSON.stringify(payload)
-  if (typeof Buffer !== "undefined") {
+  if (!isBrowser && typeof Buffer !== "undefined") {
     return Buffer.from(json, "utf8").toString("base64url")
   }
   const bytes = new TextEncoder().encode(json)
@@ -165,7 +174,7 @@ export function encodeDiploma(payload: DiplomaPayload): string {
 export function decodeDiploma(code: string): DiplomaPayload | null {
   try {
     let json: string
-    if (typeof Buffer !== "undefined") {
+    if (!isBrowser && typeof Buffer !== "undefined") {
       json = Buffer.from(code, "base64url").toString("utf8")
     } else {
       const b64 = code.replace(/-/g, "+").replace(/_/g, "/")
