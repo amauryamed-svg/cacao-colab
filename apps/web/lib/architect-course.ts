@@ -29,8 +29,8 @@ export const architectMissions: ArchitectMission[] = [
     title: "Leer el lote antes de tocarlo",
     skill: "Línea base + trazabilidad",
     xp: 80,
-    dualitaIntro: "¡Primera regla de un arquitecto! No controles lo que aún no has descrito. Vamos a darle identidad al lote.",
-    dualitaSuccess: "Ahora el lote tiene memoria. Sin línea base solo hay anécdotas; con datos ya podemos comparar.",
+    dualitaIntro: "Ey, arquitecto: primero miramos, después tocamos. Vamos a darle identidad al lote — con cariño y con método.",
+    dualitaSuccess: "¡Listo! El lote ya tiene memoria. Sin línea base solo hay anécdotas; con datos ya podemos comparar (y presumir con evidencia).",
     steps: [
       { kicker: "Identidad", title: "Un lote no es solo una masa de cacao.", body: "Registra finca, nodo, genotipo declarado, fecha de cosecha, madurez, masa y remoción de pulpa. FEAR 5 del artículo provino de una finca y una cosecha: no extrapoles sin declarar tu material.", fieldAction: "Crea un código único: nodo–fecha–genotipo–réplica." },
       { kicker: "Línea cero", title: "Mide antes de iniciar.", body: "Toma temperatura de pulpa, ambiente, pH interno de una muestra representativa y masa total. Calibra el medidor de pH y documenta el método de muestreo.", fieldAction: "Fotografía los instrumentos y anota hora cero." },
@@ -51,8 +51,8 @@ export const architectMissions: ArchitectMission[] = [
     title: "Diseñar tres rutas de fermentación",
     skill: "Diseño experimental",
     xp: 100,
-    dualitaIntro: "Hoy no buscamos un ganador universal. Buscamos entender qué variable mueve cada resultado.",
-    dualitaSuccess: "¡Diseño listo! Ya separas evidencia publicada, referencia de finca e hipótesis de transferencia.",
+    dualitaIntro: "Hoy no coronamos un ganador. Hoy aprendemos qué variable mueve cada resultado — eso es oficio de verdad.",
+    dualitaSuccess: "¡Diseño listo! Ya separas lo publicado, lo de finca y lo que aún es hipótesis. Eso se siente bien.",
     steps: [
       { kicker: "Precisión", title: "Biorreactor isotérmico a 45 °C.", body: "El tratamiento publicado con mejor valoración fue 45 °C constante, pH espontáneo y sin ácido añadido (Tc-pH). Trabajó con 4,5 kg. Óptimo metabolómico propuesto: 72 h. Chocolate y redes sensoriales: 120 h.", fieldAction: "Marca esta ruta como publicada y conserva sus límites de escala." },
       { kicker: "Puente", title: "Tanque adaptado desde el día 2.", body: "La línea de cantina o tanque cervecero es un piloto propuesto: ascenso natural inicial y aproximación gradual a 45 °C desde 48 h. No fue evaluada en el paper.", fieldAction: "Valida drenaje, limpieza, cizalla y uniformidad térmica." },
