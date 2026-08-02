@@ -22,6 +22,7 @@ function safeNext(value: FormDataEntryValue | null) {
     "/sembrar",
     "/cuenta",
     "/benevolo",
+    "/rd/bars",
     "/rd",
     "/credencial",
     "/cuenta/consejo",

@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation"
+import { BARS_PRODUCT_PATH } from "@/lib/bars-colab-product"
 
-/** Benevolo vive en R&D; la página de producto/preorden sigue en /benevolo. */
+/** Alias histórico → página de producto Colab Bars. */
 export default function RdBenevoloAliasPage() {
-  redirect("/benevolo")
+  redirect(BARS_PRODUCT_PATH)
 }

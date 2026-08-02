@@ -161,7 +161,7 @@ export const brands: Brand[] = [
       "R&D Colab · marca acelerada",
     ],
     ctaLabel: "Entrar a Benevolo R&D →",
-    ctaUrl: "/rd/benevolo",
+    ctaUrl: "/rd/bars",
     role: "regional-node",
   },
   {

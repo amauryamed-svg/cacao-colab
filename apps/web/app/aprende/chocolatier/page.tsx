@@ -60,10 +60,10 @@ export default function MasterChocolatierPage() {
                   Entrar al campus
                 </Link>
                 <Link
-                  href="/benevolo"
+                  href="/rd/bars"
                   className="border border-white/20 text-colab-cream rounded-full px-7 py-3.5 text-sm font-bold"
                 >
-                  Marca Benevolo (duja) →
+                  Bars. · producto Colab →
                 </Link>
               </div>
               {intro && (
@@ -187,8 +187,8 @@ export default function MasterChocolatierPage() {
             ))}
           </div>
           <div className="flex flex-wrap gap-3 mt-10">
-            <Link href="/benevolo" className="bg-[#FF6A3D] text-[#140e0a] rounded-full px-7 py-3.5 text-sm font-bold">
-              Abrir Chocolate Benevolo →
+            <Link href="/rd/bars" className="bg-[#FF6A3D] text-[#140e0a] rounded-full px-7 py-3.5 text-sm font-bold">
+              Abrir Bars. Colab →
             </Link>
             <TrackedLink
               href="https://www.cacaoofexcellence.org/"

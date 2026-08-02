@@ -48,13 +48,13 @@ export default function Home() {
             </p>
             <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
               <Button href="/aprende">Entrar al campus →</Button>
-              <Button variant="outline" href="/benevolo">
+              <Button variant="outline" href="/rd/bars">
                 Probar Bars. Benevolo
               </Button>
             </div>
           </div>
 
-          <Link href="/benevolo" className="colab-hero-packshot group">
+          <Link href="/rd/bars" className="colab-hero-packshot group">
             <div className="colab-hero-packshot-glow" />
             <Image
               src={bars.src}
