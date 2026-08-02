@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import Link from "next/link"
 import { saveGotchiRun } from "@/app/campus/actions"
 import { territories } from "@/lib/territories"
@@ -259,6 +259,8 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
   const [sync, setSync] = useState<"idle" | "saving" | "saved" | "local">("idle")
   const [bitacoraDraft, setBitacoraDraft] = useState("")
   const [panel, setPanel] = useState<"cuidado" | "bitacora" | "mapa" | "plan">("cuidado")
+  const [carePulse, setCarePulse] = useState<{ action: string; key: number } | null>(null)
+  const careStageRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -365,9 +367,12 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
     })
     setState(next)
     persist(next)
+    setCarePulse({ action: action.id, key: Date.now() })
     if (action.id === "observe") setPanel("bitacora")
     setMessage(
-      `Dualita: ${action.label} suma +${action.xp} XP. Observar y registrar es el oficio del agricultor que quiere tipicidad.`,
+      action.id === "water"
+        ? `Dualita: agua al alza · ${Math.round(next.moisture)}%. Mira el árbol arriba — la reserva y el suelo responden en vivo.`
+        : `Dualita: ${action.label} suma +${action.xp} XP. Observar y registrar es el oficio del agricultor que quiere tipicidad.`,
     )
   }
 
@@ -745,8 +750,13 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
         <p className="sembrar-agro-for">{agroModel.forWhom}</p>
       </aside>
 
-      <div className="grid lg:grid-cols-[.72fr_1.28fr] gap-5 mt-4">
-        <section className="gotchi-pet">
+      <div
+        ref={careStageRef}
+        className="gotchi-care-stage grid lg:grid-cols-[.72fr_1.28fr] gap-5 mt-4"
+      >
+        <section
+          className={`gotchi-pet${carePulse?.action === "water" ? " is-watering" : ""}${carePulse ? " is-caring" : ""}`}
+        >
           <div className="flex justify-between items-start">
             <div>
               <p className="eyebrow text-colab-yellow">
@@ -765,8 +775,9 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
             </span>
           </div>
           <div
-            className="gotchi-orb"
+            className={`gotchi-orb${carePulse?.action === "water" ? " is-watering" : ""}`}
             aria-label={state.phase === "cultivation" ? stage.name : state.genotypeCode}
+            key={carePulse?.key ?? "orb"}
           >
             <span>
               {state.phase === "cultivation" ? stage.icon : state.phase === "complete" ? "✦" : "◈"}
@@ -774,29 +785,45 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
             {[0, 1, 2].map((ring) => (
               <i key={ring} style={{ animationDelay: `${ring * 0.45}s` }} />
             ))}
+            {carePulse?.action === "water" && (
+              <div className="gotchi-droplets" aria-hidden>
+                <b />
+                <b />
+                <b />
+                <b />
+                <b />
+              </div>
+            )}
           </div>
           <div className="gotchi-message">{message}</div>
           <div className="grid grid-cols-3 gap-2 mt-5">
             {(state.phase === "cultivation"
               ? [
-                  { label: "Agua", value: `${Math.round(state.moisture)}%`, bar: state.moisture, color: "#58A6C7" },
-                  { label: "Vitalidad", value: `${Math.round(state.health)}%`, bar: state.health, color: "#86B66B" },
-                  { label: "Saber", value: `${Math.round(state.knowledge)}%`, bar: state.knowledge, color: "#F2C830" },
+                  { label: "Agua", value: `${Math.round(state.moisture)}%`, bar: state.moisture, color: "#58A6C7", id: "water" },
+                  { label: "Vitalidad", value: `${Math.round(state.health)}%`, bar: state.health, color: "#86B66B", id: "health" },
+                  { label: "Saber", value: `${Math.round(state.knowledge)}%`, bar: state.knowledge, color: "#F2C830", id: "knowledge" },
                 ]
               : [
-                  { label: "Temp.", value: `${fermentationPoint.temperature}°`, bar: fermentationPoint.temperature * 2, color: "#DC775F" },
-                  { label: "pH", value: fermentationPoint.ph.toFixed(1), bar: fermentationPoint.ph * 14, color: "#F2C830" },
-                  { label: "Avance", value: `${Math.round(state.fermentationHour / 1.2)}%`, bar: state.fermentationHour / 1.2, color: "#86B66B" },
+                  { label: "Temp.", value: `${fermentationPoint.temperature}°`, bar: fermentationPoint.temperature * 2, color: "#DC775F", id: "temp" },
+                  { label: "pH", value: fermentationPoint.ph.toFixed(1), bar: fermentationPoint.ph * 14, color: "#F2C830", id: "ph" },
+                  { label: "Avance", value: `${Math.round(state.fermentationHour / 1.2)}%`, bar: state.fermentationHour / 1.2, color: "#86B66B", id: "progress" },
                 ]
-            ).map((metric) => (
-              <div key={metric.label} className="gotchi-stat">
-                <span>{metric.label}</span>
-                <strong>{metric.value}</strong>
-                <div>
-                  <i style={{ width: `${clamp(metric.bar)}%`, background: metric.color }} />
+            ).map((metric) => {
+              const pulsing =
+                carePulse &&
+                ((carePulse.action === "water" && metric.id === "water") ||
+                  (carePulse.action !== "water" &&
+                    (metric.id === "health" || metric.id === "knowledge" || metric.id === "water")))
+              return (
+                <div key={metric.label} className={`gotchi-stat${pulsing ? " is-pulse" : ""}`}>
+                  <span>{metric.label}</span>
+                  <strong>{metric.value}</strong>
+                  <div>
+                    <i style={{ width: `${clamp(metric.bar)}%`, background: metric.color }} />
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         </section>
 
@@ -906,7 +933,15 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
               </div>
               <div className="grid sm:grid-cols-2 gap-3 mt-6">
                 {actions.map((action) => (
-                  <button key={action.id} type="button" onClick={() => care(action)} className="care-action">
+                  <button
+                    key={action.id}
+                    type="button"
+                    onClick={() => {
+                      care(action)
+                      careStageRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+                    }}
+                    className={`care-action${carePulse?.action === action.id ? " is-active" : ""}`}
+                  >
                     <span>{action.icon}</span>
                     <span>
                       <strong>{action.label}</strong>

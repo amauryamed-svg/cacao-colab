@@ -822,6 +822,8 @@ body {
   background: #10200c;
   border: 1px solid rgba(247, 241, 238, .1);
   border-radius: 1.7rem;
+  display: flex;
+  flex-direction: column;
   padding: clamp(1rem, 3vw, 1.5rem);
 }
 
@@ -882,6 +884,13 @@ body {
   color: #1A2E10;
 }
 
+/* Cuidado en vivo arriba: árbol + Agua antes del planner / modelos */
+.gotchi-care-stage {
+  order: -1;
+  margin-top: 0 !important;
+  scroll-margin-top: 5.5rem;
+}
+
 .gotchi-pet,
 .gotchi-console {
   border-radius: 1.15rem;
@@ -892,6 +901,18 @@ body {
   background:
     radial-gradient(circle at 50% 40%, rgba(242, 200, 48, .14), transparent 30%),
     #172b11;
+  position: sticky;
+  top: 4.75rem;
+  transition: box-shadow .35s ease, background .35s ease;
+  z-index: 2;
+}
+
+.gotchi-pet.is-watering {
+  background:
+    radial-gradient(circle at 50% 35%, rgba(88, 166, 199, .28), transparent 42%),
+    radial-gradient(circle at 50% 40%, rgba(242, 200, 48, .1), transparent 30%),
+    #172b11;
+  box-shadow: 0 0 0 1px rgba(88, 166, 199, .35), 0 18px 40px rgba(10, 30, 40, .35);
 }
 
 .gotchi-console {
@@ -916,8 +937,16 @@ body {
   height: 11rem;
   justify-content: center;
   margin: 2.5rem auto 1.5rem;
+  overflow: hidden;
   position: relative;
+  transition: border-color .35s ease, transform .35s ease, background .35s ease;
   width: 11rem;
+}
+
+.gotchi-orb.is-watering {
+  animation: gotchiWaterOrb .9s ease;
+  background: rgba(88, 166, 199, .14);
+  border-color: rgba(88, 166, 199, .55);
 }
 
 .gotchi-orb > span {
@@ -928,6 +957,10 @@ body {
   z-index: 2;
 }
 
+.gotchi-orb.is-watering > span {
+  animation: gotchiSip .9s ease;
+}
+
 .gotchi-orb i {
   animation: gotchiPulse 2.8s ease-out infinite;
   border: 1px solid rgba(242, 200, 48, .3);
@@ -936,9 +969,56 @@ body {
   position: absolute;
 }
 
+.gotchi-orb.is-watering i {
+  border-color: rgba(88, 166, 199, .45);
+}
+
+.gotchi-droplets {
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 3;
+}
+
+.gotchi-droplets b {
+  animation: gotchiDrop .85s ease-in forwards;
+  background: linear-gradient(180deg, #A8D8EA, #58A6C7);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  height: .55rem;
+  left: 50%;
+  opacity: 0;
+  position: absolute;
+  top: -8%;
+  width: .4rem;
+}
+
+.gotchi-droplets b:nth-child(1) { animation-delay: 0s; left: 38%; }
+.gotchi-droplets b:nth-child(2) { animation-delay: .08s; left: 48%; }
+.gotchi-droplets b:nth-child(3) { animation-delay: .14s; left: 58%; }
+.gotchi-droplets b:nth-child(4) { animation-delay: .2s; left: 42%; }
+.gotchi-droplets b:nth-child(5) { animation-delay: .26s; left: 55%; }
+
 @keyframes gotchiPulse {
   0% { opacity: .5; transform: scale(.7); }
   100% { opacity: 0; transform: scale(1.45); }
+}
+
+@keyframes gotchiDrop {
+  0% { opacity: 0; transform: translateY(0) scale(.6); }
+  20% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(7.5rem) scale(1); }
+}
+
+@keyframes gotchiWaterOrb {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
+@keyframes gotchiSip {
+  0%, 100% { transform: translateY(0); }
+  35% { transform: translateY(4px); }
+  70% { transform: translateY(-2px); }
 }
 
 .gotchi-message {
@@ -954,6 +1034,11 @@ body {
 .gotchi-stat {
   color: rgba(247, 241, 238, .4);
   font-size: .58rem;
+  transition: transform .35s ease;
+}
+
+.gotchi-stat.is-pulse {
+  animation: gotchiStatPulse .7s ease;
 }
 
 .gotchi-stat strong {
@@ -967,7 +1052,7 @@ body {
 .gotchi-stat > div {
   background: rgba(247, 241, 238, .08);
   border-radius: 999px;
-  height: 3px;
+  height: 4px;
   margin-top: .35rem;
   overflow: hidden;
 }
@@ -975,6 +1060,17 @@ body {
 .gotchi-stat > div i {
   display: block;
   height: 100%;
+  transition: width .55s cubic-bezier(.22, 1, .36, 1);
+}
+
+@keyframes gotchiStatPulse {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
+@media (max-width: 1024px) {
+  .gotchi-pet { position: relative; top: auto; }
 }
 
 .gotchi-score {
@@ -1089,6 +1185,11 @@ body {
   border-color: #86B66B;
   box-shadow: 0 8px 24px rgba(26, 46, 16, .08);
   transform: translateY(-2px);
+}
+
+.care-action.is-active {
+  border-color: #58A6C7;
+  box-shadow: 0 0 0 1px rgba(88, 166, 199, .35), 0 8px 24px rgba(26, 46, 16, .1);
 }
 
 .care-action > span:first-child {
