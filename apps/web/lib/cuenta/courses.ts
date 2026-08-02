@@ -36,6 +36,8 @@ export type CourseTrackSnapshot = {
   diplomaHref: string | null
   completedAt: string | null
   status: "not_started" | "in_progress" | "certified"
+  /** Canje MD que marcó entitlement digital en campus_progress.state */
+  mdUnlocked: boolean
 }
 
 function trackFromRigor(input: {
@@ -57,6 +59,8 @@ function trackFromRigor(input: {
   const certified = completedCount >= input.missionCount || Boolean(input.completedAt)
   const grade = certified || completedCount > 0 ? gradeFromFirstTry(firstTry, input.missionCount) : null
   const diplomaCode = rigor.diplomaCode ?? null
+  const stateObj =
+    input.state && typeof input.state === "object" ? (input.state as Record<string, unknown>) : {}
   return {
     slug: input.slug,
     title: input.title,
@@ -82,6 +86,7 @@ function trackFromRigor(input: {
         : null,
     completedAt: input.completedAt,
     status: certified ? "certified" : completedCount > 0 ? "in_progress" : "not_started",
+    mdUnlocked: stateObj.md_unlocked === true,
   }
 }
 

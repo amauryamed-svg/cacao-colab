@@ -10,6 +10,7 @@ import {
   type EconomyRole,
   type ScorecardPerspective,
 } from "@/lib/loyalty"
+import { resolveBenefitUse } from "@/lib/benefit-use"
 
 export type CatalogBenefit = {
   id: string | null
@@ -414,6 +415,10 @@ export async function redeemBenefit(input: {
         slug: item.slug,
         title: item.title,
         fulfillment_type: item.fulfillment_type,
+        course_slug:
+          typeof (item.metadata as { course_slug?: unknown } | null)?.course_slug === "string"
+            ? (item.metadata as { course_slug: string }).course_slug
+            : null,
       },
     })
     .select("id")
@@ -479,12 +484,23 @@ export async function redeemBenefit(input: {
     }
   }
 
+  const useGuide = resolveBenefitUse({
+    courseSlug: metadata.course_slug ?? null,
+    service: metadata.service ?? null,
+    slug: item.slug,
+  })
+
   return {
     ok: true as const,
     redemptionId: redemption.id,
     status: redemption.status,
     cost: item.cost_md,
     title: item.title,
+    slug: item.slug,
+    courseSlug: metadata.course_slug ?? null,
+    useHref: useGuide?.href ?? "/cuenta",
+    useCta: useGuide?.cta ?? "Ver mi cuenta",
+    howTo: useGuide?.howTo ?? "Tu canje quedó registrado en Mi cuenta · wallet.",
   }
 }
 

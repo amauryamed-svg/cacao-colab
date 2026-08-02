@@ -59,6 +59,7 @@ export default function RedeemBenefitButton({
   const [pending, setPending] = useState(false)
   const [message, setMessage] = useState<string | null>(rankBlockedHint)
   const [isError, setIsError] = useState(Boolean(rankBlockedHint))
+  const [useLink, setUseLink] = useState<{ href: string; cta: string } | null>(null)
 
   async function onRedeem() {
     if (!catalogItemId || !redeemable || pending) return
@@ -82,8 +83,16 @@ export default function RedeemBenefitButton({
         return
       }
       setIsError(false)
-      setMessage(`Canjeado: ${title} (−${cost} MD).`)
+      const useHref = typeof data.useHref === "string" ? data.useHref : "/cuenta"
+      const useCta = typeof data.useCta === "string" ? data.useCta : "Ver mi cuenta"
+      const howTo =
+        typeof data.howTo === "string"
+          ? data.howTo
+          : "Tu canje quedó en Mi cuenta con el botón para usarlo."
+      setMessage(`Canjeado: ${title} (−${cost} MD). ${howTo}`)
+      setUseLink({ href: useHref, cta: useCta })
       router.refresh()
+      router.push(useHref)
     } catch {
       setIsError(true)
       setMessage("Error de red al canjear.")
@@ -99,6 +108,11 @@ export default function RedeemBenefitButton({
       </button>
       {message && (
         <p className={isError ? "benefit-redeem-msg is-error" : "benefit-redeem-msg"}>{message}</p>
+      )}
+      {useLink && !isError && (
+        <p className="benefit-redeem-msg">
+          <a href={useLink.href}>{useLink.cta} →</a>
+        </p>
       )}
     </div>
   )

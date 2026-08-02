@@ -153,6 +153,56 @@ export default async function CuentaPage() {
           </div>
         </section>
 
+        {home.redemptions.length > 0 && (
+          <section className="cuenta-canjes" aria-labelledby="cuenta-canjes-title">
+            <div className="cuenta-canjes-head">
+              <div>
+                <p className="eyebrow text-colab-yellow">Canjes · cómo aprovecharlos</p>
+                <h2 id="cuenta-canjes-title">Tus beneficios canjeados</h2>
+                <p>
+                  El saldo ya se debitó. Aquí ves a dónde fue cada canje y el botón para usarlo —
+                  no se pierde: queda como entitlement en tu cuenta.
+                </p>
+              </div>
+              <Link href="/cuenta/mazorcas" className="cuenta-btn-ghost">
+                Ver ledger →
+              </Link>
+            </div>
+            <ul className="cuenta-canjes-list">
+              {home.redemptions.map((item) => (
+                <li key={item.id}>
+                  <div>
+                    <span className="cuenta-canjes-status">
+                      {item.status === "issued"
+                        ? "Emitido"
+                        : item.status === "pending"
+                          ? "En cola"
+                          : item.status}
+                    </span>
+                    <h3>{item.title}</h3>
+                    <p>
+                      −{item.costMd.toLocaleString("es-CO")} MD ·{" "}
+                      {new Intl.DateTimeFormat("es-CO", { dateStyle: "medium" }).format(
+                        new Date(item.createdAt),
+                      )}
+                    </p>
+                    {item.use && <p className="cuenta-canjes-howto">{item.use.howTo}</p>}
+                  </div>
+                  {item.use ? (
+                    <Link href={item.use.href} className="cuenta-btn-primary">
+                      {item.use.cta} →
+                    </Link>
+                  ) : (
+                    <Link href="/marketplace/beneficios" className="cuenta-btn-ghost">
+                      Ver catálogo →
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
         <section className="cuenta-bio" aria-labelledby="cuenta-bio-title">
           <div className="cuenta-bio-head">
             <div>
@@ -253,6 +303,9 @@ export default async function CuentaPage() {
                         ? "En curso"
                         : "Por empezar"}
                   </span>
+                  {track.mdUnlocked && (
+                    <span className="cuenta-course-md-badge">Desbloqueado con MD</span>
+                  )}
                   <h3>{track.title}</h3>
                   <p>{track.subtitle}</p>
                 </div>
@@ -304,9 +357,11 @@ export default async function CuentaPage() {
                   <Link href={track.href} className="cuenta-btn-primary">
                     {track.status === "certified"
                       ? "Repasar ruta →"
-                      : track.status === "in_progress"
-                        ? "Continuar →"
-                        : "Empezar certificación →"}
+                      : track.mdUnlocked && track.status === "not_started"
+                        ? "Usar aceleración →"
+                        : track.status === "in_progress"
+                          ? "Continuar →"
+                          : "Empezar certificación →"}
                   </Link>
                   {track.diplomaHref && (
                     <Link href={track.diplomaHref} className="cuenta-btn-ghost">

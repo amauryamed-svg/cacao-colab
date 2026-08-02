@@ -1,6 +1,12 @@
 import { createSupabaseServerClient } from "@cacao-colab/supabase-client/server"
 import { redirect } from "next/navigation"
 import Link from "next/link"
+import {
+  courseSlugFromPayload,
+  resolveBenefitUse,
+  serviceFromPayload,
+  slugFromPayload,
+} from "@/lib/benefit-use"
 import { communityRanks, mdBuyPacks, nextRank, resolveRank, scorecardConfig } from "@/lib/loyalty"
 import BuyPackButtons from "@/components/loyalty/BuyPackButtons"
 import ScorecardPanel from "@/components/loyalty/ScorecardPanel"
@@ -27,10 +33,25 @@ export default async function MazorcasPage() {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect("/cuenta/entrar?next=/cuenta/mazorcas")
 
-  const [{ data: wallet, error: walletError }, { data: ledger }] = await Promise.all([
-    supabase.from("mazorca_wallets").select("*").eq("profile_id", user.id).maybeSingle(),
-    supabase.from("mazorca_ledger").select("*").eq("profile_id", user.id).order("created_at", { ascending: false }).limit(30),
-  ])
+  const [{ data: wallet, error: walletError }, { data: ledger }, { data: redemptionRows }] =
+    await Promise.all([
+      supabase.from("mazorca_wallets").select("*").eq("profile_id", user.id).maybeSingle(),
+      supabase
+        .from("mazorca_ledger")
+        .select("*")
+        .eq("profile_id", user.id)
+        .order("created_at", { ascending: false })
+        .limit(30),
+      supabase
+        .from("benefit_redemptions")
+        .select(
+          "id,status,cost_md,created_at,fulfillment_payload,benefit_catalog_items(title,slug,metadata)",
+        )
+        .eq("profile_id", user.id)
+        .neq("status", "cancelled")
+        .order("created_at", { ascending: false })
+        .limit(12),
+    ])
   const balance = wallet?.balance ?? 0
   const lifetime = wallet?.lifetime_earned ?? 0
   const rank = resolveRank(lifetime)
@@ -38,6 +59,31 @@ export default async function MazorcasPage() {
   const progress = upcoming
     ? Math.round(((lifetime - rank.threshold) / (upcoming.threshold - rank.threshold)) * 100)
     : 100
+
+  const redemptions = (redemptionRows ?? []).map((row) => {
+    const catalog = Array.isArray(row.benefit_catalog_items)
+      ? row.benefit_catalog_items[0]
+      : row.benefit_catalog_items
+    const catalogMeta = (catalog?.metadata ?? {}) as { course_slug?: string; service?: string }
+    const courseSlug =
+      courseSlugFromPayload(row.fulfillment_payload) ?? catalogMeta.course_slug ?? null
+    const service = serviceFromPayload(row.fulfillment_payload) ?? catalogMeta.service ?? null
+    const slug =
+      slugFromPayload(row.fulfillment_payload) ??
+      (typeof catalog?.slug === "string" ? catalog.slug : "")
+    const title =
+      typeof catalog?.title === "string" && catalog.title
+        ? catalog.title
+        : slug || "Beneficio Colab"
+    return {
+      id: row.id,
+      title,
+      costMd: row.cost_md,
+      status: row.status,
+      createdAt: row.created_at,
+      use: resolveBenefitUse({ courseSlug, service, slug }),
+    }
+  })
 
   return (
     <div className="min-h-screen bg-[#101d0b] px-4 py-14">
@@ -91,6 +137,39 @@ export default async function MazorcasPage() {
           </article>
         </section>
 
+        {redemptions.length > 0 && (
+          <section className="loyalty-canjes mt-5" aria-labelledby="loyalty-canjes-title">
+            <div className="flex items-center justify-between gap-3 flex-wrap">
+              <div>
+                <p className="eyebrow text-colab-yellow">Canjes activos</p>
+                <h2 id="loyalty-canjes-title">Cómo aprovechar lo que canjeaste</h2>
+              </div>
+              <Link href="/cuenta">Ir a Mi cuenta →</Link>
+            </div>
+            <ul>
+              {redemptions.map((item) => (
+                <li key={item.id}>
+                  <div>
+                    <strong>{item.title}</strong>
+                    <small>
+                      −{item.costMd.toLocaleString("es-CO")} MD · {item.status === "issued" ? "emitido" : item.status} ·{" "}
+                      {new Intl.DateTimeFormat("es-CO", { dateStyle: "medium" }).format(
+                        new Date(item.createdAt),
+                      )}
+                    </small>
+                    {item.use && <p>{item.use.howTo}</p>}
+                  </div>
+                  {item.use && (
+                    <Link href={item.use.href} className="loyalty-canjes-cta">
+                      {item.use.cta} →
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
         <section className="grid lg:grid-cols-[.7fr_1.3fr] gap-4 mt-5">
           <article className="rank-card">
             <span className="rank-icon">{rank.icon}</span>
@@ -110,18 +189,49 @@ export default async function MazorcasPage() {
             </div>
             {ledger?.length ? (
               <ul>
-                {ledger.map((entry) => (
-                  <li key={entry.id}>
-                    <span className={entry.amount > 0 ? "credit" : "debit"}>{entry.amount > 0 ? "+" : ""}{entry.amount}</span>
-                    <span>
-                      <strong>{reasonLabels[entry.reason_code] ?? entry.reason_code}</strong>
-                      <small>
-                        {entry.category} ·{" "}
-                        {new Intl.DateTimeFormat("es-CO", { dateStyle: "medium" }).format(new Date(entry.created_at))}
-                      </small>
-                    </span>
-                  </li>
-                ))}
+                {ledger.map((entry) => {
+                  const meta = (entry.metadata ?? {}) as {
+                    title?: unknown
+                    slug?: unknown
+                    course_slug?: unknown
+                  }
+                  const metaTitle = typeof meta.title === "string" ? meta.title : null
+                  const label =
+                    entry.reason_code === "benefit_redemption" && metaTitle
+                      ? `Canje · ${metaTitle}`
+                      : (reasonLabels[entry.reason_code] ?? entry.reason_code)
+                  const use =
+                    entry.reason_code === "benefit_redemption"
+                      ? resolveBenefitUse({
+                          slug: typeof meta.slug === "string" ? meta.slug : null,
+                          courseSlug:
+                            typeof meta.course_slug === "string" ? meta.course_slug : null,
+                        })
+                      : null
+                  return (
+                    <li key={entry.id}>
+                      <span className={entry.amount > 0 ? "credit" : "debit"}>
+                        {entry.amount > 0 ? "+" : ""}
+                        {entry.amount}
+                      </span>
+                      <span>
+                        <strong>{label}</strong>
+                        <small>
+                          {entry.category} ·{" "}
+                          {new Intl.DateTimeFormat("es-CO", { dateStyle: "medium" }).format(
+                            new Date(entry.created_at),
+                          )}
+                          {use ? (
+                            <>
+                              {" · "}
+                              <Link href={use.href}>{use.cta}</Link>
+                            </>
+                          ) : null}
+                        </small>
+                      </span>
+                    </li>
+                  )
+                })}
               </ul>
             ) : (
               <div className="loyalty-empty">
