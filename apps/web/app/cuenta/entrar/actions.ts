@@ -55,16 +55,23 @@ export async function requestCampusMagicLink(formData: FormData): Promise<Campus
       },
     })
     if (error) {
+      console.error("[requestCampusMagicLink] signInWithOtp error", {
+        name: error.name,
+        message: error.message,
+        status: (error as { status?: number }).status,
+        code: (error as { code?: string }).code,
+      })
       if (/rate limit|over_email_send_rate_limit|frequency/i.test(error.message)) {
         return {
           ok: false,
           error: "Espera un minuto antes de pedir otro acceso. Revisa también spam.",
         }
       }
-      return { ok: false, error: error.message }
+      return { ok: false, error: error.message || "No fue posible enviar el acceso." }
     }
     return { ok: true }
   } catch (error) {
+    console.error("[requestCampusMagicLink] threw", error)
     return { ok: false, error: error instanceof Error ? error.message : "No fue posible iniciar el acceso." }
   }
 }
