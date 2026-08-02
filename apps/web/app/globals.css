@@ -4615,3 +4615,325 @@ body {
   font-weight: 700;
   color: #f2c830;
 }
+
+/* ── Mi cuenta · hub personal ── */
+.cuenta-hub {
+  min-height: 85vh;
+  background:
+    radial-gradient(ellipse 80% 50% at 10% 0%, rgba(242, 200, 48, .12), transparent 50%),
+    radial-gradient(ellipse 60% 40% at 90% 20%, rgba(61, 122, 44, .18), transparent 45%),
+    #101d0b;
+  color: #f7f1ee;
+  padding: 3rem 1rem 4rem;
+}
+.cuenta-hub-inner { margin: 0 auto; max-width: 64rem; }
+.cuenta-hub-hero {
+  align-items: flex-end;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: space-between;
+}
+.cuenta-hub-hero h1 {
+  color: #f7f1ee;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 6vw, 3.8rem);
+  font-weight: 900;
+  letter-spacing: -.03em;
+  line-height: .95;
+  margin-top: .4rem;
+}
+.cuenta-hub-hero h1 em { color: #f2c830; font-style: italic; font-weight: 400; }
+.cuenta-hub-meta {
+  color: rgba(247, 241, 238, .45);
+  font-size: .72rem;
+  line-height: 1.5;
+  margin-top: .75rem;
+  max-width: 36rem;
+}
+.cuenta-hub-signout {
+  color: rgba(247, 241, 238, .4);
+  font-size: .65rem;
+  font-weight: 700;
+}
+.cuenta-hub-signout:hover { color: #f2c830; }
+
+.cuenta-btn-primary {
+  background: #f2c830;
+  border-radius: 999px;
+  color: #1a2e10;
+  display: inline-block;
+  font-size: .68rem;
+  font-weight: 900;
+  padding: .75rem 1.15rem;
+  white-space: nowrap;
+}
+.cuenta-btn-ghost {
+  border: 1px solid rgba(242, 200, 48, .35);
+  border-radius: 999px;
+  color: #f2c830;
+  display: inline-block;
+  font-size: .65rem;
+  font-weight: 800;
+  padding: .7rem 1rem;
+}
+
+.cuenta-wallet {
+  background: linear-gradient(135deg, rgba(26, 46, 16, .9), rgba(16, 29, 11, .95));
+  border: 1px solid rgba(242, 200, 48, .22);
+  border-radius: 1.25rem;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1.3fr .7fr;
+  margin-top: 2rem;
+  padding: 1.5rem;
+}
+.cuenta-wallet-copy h2 {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: 800;
+  margin-top: .35rem;
+}
+.cuenta-wallet-copy > p {
+  color: rgba(247, 241, 238, .45);
+  font-size: .68rem;
+  line-height: 1.55;
+  margin-top: .55rem;
+  max-width: 28rem;
+}
+.cuenta-wallet-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-top: 1.2rem;
+}
+.cuenta-wallet-balance {
+  background: rgba(242, 200, 48, .1);
+  border-radius: 1rem;
+  padding: 1.2rem;
+  text-align: right;
+}
+.cuenta-wallet-balance span,
+.cuenta-wallet-balance small,
+.cuenta-wallet-balance em {
+  display: block;
+  font-size: .55rem;
+}
+.cuenta-wallet-balance span { color: #f2c830; font-weight: 800; }
+.cuenta-wallet-balance strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 3.4rem;
+  line-height: 1;
+  margin: .35rem 0;
+}
+.cuenta-wallet-balance small { color: rgba(247, 241, 238, .5); }
+.cuenta-wallet-balance em {
+  color: rgba(242, 200, 48, .7);
+  font-style: normal;
+  margin-top: .55rem;
+}
+
+.cuenta-bio {
+  margin-top: 2.5rem;
+}
+.cuenta-bio-head {
+  align-items: flex-end;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 1.1rem;
+}
+.cuenta-bio-head h2 {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: 800;
+  margin-top: .35rem;
+}
+.cuenta-bio-head > div > p:last-child {
+  color: rgba(247, 241, 238, .45);
+  font-size: .68rem;
+  line-height: 1.55;
+  margin-top: .45rem;
+  max-width: 32rem;
+}
+.cuenta-bio-card {
+  background: rgba(247, 241, 238, .04);
+  border: 1px solid rgba(247, 241, 238, .1);
+  border-radius: 1.2rem;
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: auto 1fr;
+  padding: 1.25rem;
+}
+.cuenta-bio-card--solo { margin-top: 1.5rem; }
+.cuenta-bio-visual {
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+}
+.cuenta-bio-avatar,
+.cuenta-bio-avatar-fallback {
+  border: 2px solid rgba(242, 200, 48, .35);
+  border-radius: 999px;
+  height: 5.5rem;
+  object-fit: cover;
+  width: 5.5rem;
+}
+.cuenta-bio-avatar-fallback {
+  align-items: center;
+  background: #1a2e10;
+  color: #f2c830;
+  display: flex;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 800;
+  justify-content: center;
+}
+.cuenta-bio-product {
+  border-radius: .7rem;
+  height: 5.5rem;
+  object-fit: cover;
+  width: 8.5rem;
+}
+.cuenta-bio-status {
+  color: #f2c830;
+  font-size: .55rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.cuenta-bio-body h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-top: .35rem;
+}
+.cuenta-bio-body > p {
+  color: rgba(247, 241, 238, .5);
+  font-size: .68rem;
+  margin-top: .25rem;
+}
+.cuenta-bio-intro {
+  color: rgba(247, 241, 238, .65) !important;
+  font-size: .72rem !important;
+  line-height: 1.55;
+  margin-top: .7rem !important;
+  max-width: 36rem;
+}
+.cuenta-bio-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .9rem;
+  margin-top: 1rem;
+}
+.cuenta-bio-links a {
+  color: #f2c830;
+  font-size: .65rem;
+  font-weight: 800;
+  text-decoration: underline;
+}
+.cuenta-bio-empty {
+  background: rgba(247, 241, 238, .03);
+  border: 1px dashed rgba(242, 200, 48, .25);
+  border-radius: 1.2rem;
+  padding: 1.4rem;
+}
+.cuenta-bio-empty p {
+  color: rgba(247, 241, 238, .5);
+  font-size: .72rem;
+  line-height: 1.55;
+  max-width: 36rem;
+}
+.cuenta-bio-empty a {
+  color: #f2c830;
+  display: inline-block;
+  font-size: .7rem;
+  font-weight: 900;
+  margin-top: 1rem;
+}
+.cuenta-bio-dl {
+  display: grid;
+  gap: .45rem;
+  margin-top: 1rem;
+}
+.cuenta-bio-dl div { display: flex; gap: .75rem; }
+.cuenta-bio-dl dt { color: rgba(247, 241, 238, .35); font-size: .55rem; min-width: 5rem; }
+.cuenta-bio-dl dd { color: rgba(247, 241, 238, .75); font-size: .65rem; font-weight: 700; }
+
+.cuenta-manage { margin-top: 2.75rem; }
+.cuenta-manage h2 {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: 800;
+  margin-top: .35rem;
+}
+.cuenta-manage-lede {
+  color: rgba(247, 241, 238, .45);
+  font-size: .68rem;
+  line-height: 1.55;
+  margin: .5rem 0 1.1rem;
+  max-width: 34rem;
+}
+.cuenta-manage-grid {
+  display: grid;
+  gap: .65rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+.cuenta-manage-grid a {
+  background: rgba(247, 241, 238, .04);
+  border: 1px solid rgba(247, 241, 238, .08);
+  border-radius: 1rem;
+  display: block;
+  min-height: 9.5rem;
+  padding: 1.1rem;
+  transition: border-color .2s ease, transform .2s ease;
+}
+.cuenta-manage-grid a:hover {
+  border-color: rgba(242, 200, 48, .3);
+  transform: translateY(-2px);
+}
+.cuenta-manage-grid h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+.cuenta-manage-grid p {
+  color: rgba(247, 241, 238, .45);
+  font-size: .62rem;
+  line-height: 1.5;
+  margin-top: .45rem;
+}
+.cuenta-manage-grid strong {
+  color: #f2c830;
+  display: block;
+  font-size: .62rem;
+  margin-top: 1.2rem;
+}
+
+.cuenta-learn-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem;
+  margin-top: 2rem;
+}
+.cuenta-learn-strip a {
+  border: 1px solid rgba(247, 241, 238, .12);
+  border-radius: 999px;
+  color: rgba(247, 241, 238, .55);
+  font-size: .58rem;
+  font-weight: 800;
+  padding: .55rem .9rem;
+}
+.cuenta-learn-strip a:hover { border-color: #f2c830; color: #f2c830; }
+
+@media (max-width: 820px) {
+  .cuenta-wallet { grid-template-columns: 1fr; }
+  .cuenta-wallet-balance { text-align: left; }
+  .cuenta-manage-grid { grid-template-columns: 1fr 1fr; }
+  .cuenta-bio-card { grid-template-columns: 1fr; }
+}
+@media (max-width: 540px) {
+  .cuenta-manage-grid { grid-template-columns: 1fr; }
+}

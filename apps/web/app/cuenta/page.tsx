@@ -1,16 +1,35 @@
 import { createSupabaseServerClient } from "@cacao-colab/supabase-client/server"
+import Image from "next/image"
 import Link from "next/link"
 import { redirect } from "next/navigation"
 import { signOutCampus } from "./actions"
-import { resolveRank } from "@/lib/loyalty"
-import { getRegisteredMicroProgress } from "@/lib/microlearning-server"
+import { loadCuentaHome } from "@/lib/cuenta/home"
+import { NODE_KIND_LABEL } from "@/lib/nodo/types"
 
-export const metadata = { title: "Mi cuenta · Campus cacaotier", robots: { index: false, follow: false } }
+export const metadata = {
+  title: "Mi cuenta · Espacio personal Colab",
+  robots: { index: false, follow: false },
+}
 export const dynamic = "force-dynamic"
+
+const BIO_STATUS: Record<string, string> = {
+  pending: "En revisión",
+  published: "Publicada",
+  rejected: "Necesita ajustes",
+}
+
+const ROLE_LABEL: Record<string, string> = {
+  farmer: "Cacaocultor",
+  chocolatier: "Chocolatier",
+  maquilador: "Transformación",
+  buyer: "Comprador",
+}
 
 export default async function CuentaPage() {
   const supabase = await createSupabaseServerClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
   if (!user) redirect("/cuenta/entrar?next=/cuenta")
 
   await supabase.rpc("claim_team_membership")
@@ -21,53 +40,209 @@ export default async function CuentaPage() {
     .maybeSingle()
   if (teamMember?.access_level === "superadmin") redirect("/equipo")
 
-  const displayName = user.user_metadata?.full_name ?? user.email?.split("@")[0] ?? "Learner"
-  const { data: wallet } = await supabase
-    .from("mazorca_wallets")
-    .select("balance,lifetime_earned")
-    .eq("profile_id", user.id)
-    .maybeSingle()
-  const rank = resolveRank(wallet?.lifetime_earned ?? 0)
-  const micro = await getRegisteredMicroProgress()
+  const home = await loadCuentaHome(
+    user.id,
+    user.email ?? "",
+    typeof user.user_metadata?.full_name === "string" ? user.user_metadata.full_name : null,
+  )
+
+  const manage = [
+    {
+      title: "Consejo de avance",
+      body: "Ritmo de MD + Sembrar: estudiar y practicar en repetición.",
+      href: "/cuenta/consejo",
+      cta: "Ver mi ritmo",
+    },
+    {
+      title: "Beneficios MD",
+      body: "Canjea cursos, aceleraciones y sinks Colab activos.",
+      href: "/marketplace/beneficios",
+      cta: "Abrir catálogo",
+    },
+    {
+      title: "Campus Dualita",
+      body: home.micro
+        ? `Microlearning CAÚA: ${home.micro.completedCount}/${home.micro.totalLessons} módulos.`
+        : "MOOC, cacao funcional y Masterclasses.",
+      href: "/aprende",
+      cta: "Continuar aprendizaje",
+    },
+    {
+      title: "Sembrar",
+      body: "Plántulas Ecoyuma, bitácora y cuidado de labranza.",
+      href: "/juega",
+      cta: "Ir a Sembrar",
+    },
+    {
+      title: "Privacidad y opt-in",
+      body: "Políticas, cookies y preferencias de comunicación.",
+      href: "/legal/privacidad",
+      cta: "Revisar legal",
+    },
+    {
+      title: "Manifiesto .org",
+      body: "Por qué el Colab es intermediario sin ánimo de lucro.",
+      href: "/manifiesto",
+      cta: "Leer manifiesto",
+    },
+  ]
 
   return (
-    <div className="min-h-[80vh] bg-colab-cream px-4 py-16">
-      <div className="max-w-4xl mx-auto">
-        <p className="eyebrow text-colab-green">Identidad de aprendizaje</p>
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mt-3">
+    <div className="cuenta-hub">
+      <div className="cuenta-hub-inner">
+        <header className="cuenta-hub-hero">
           <div>
-            <h1 className="font-serif text-5xl font-black text-colab-forest">Hola, {displayName}.</h1>
-            <p className="text-sm text-colab-forest/50 mt-3">{user.email}</p>
+            <p className="eyebrow text-colab-yellow">Mi espacio en el Colab</p>
+            <h1>
+              Hola, <em>{home.displayName}</em>
+            </h1>
+            <p className="cuenta-hub-meta">
+              {home.email}
+              {home.city ? ` · ${home.city}` : ""}
+              {home.roles.length
+                ? ` · ${home.roles.map((r) => ROLE_LABEL[r] ?? r).join(", ")}`
+                : ""}
+            </p>
           </div>
           <form action={signOutCampus}>
-            <button className="text-xs font-bold text-colab-forest/45 hover:text-colab-forest">Cerrar sesión</button>
+            <button type="submit" className="cuenta-hub-signout">
+              Cerrar sesión
+            </button>
           </form>
-        </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 mt-10">
-          {[
-            { title: "Mazorcas Doradas", body: `${wallet?.balance ?? 0} MD · rango ${rank.name}.`, href: "/cuenta/mazorcas", cta: "Ver wallet y beneficios" },
-            { title: "Arquitecto de Fermentación", body: "Seis misiones con Dualita y 700 XP.", href: "/campus/arquitecto-fermentacion", cta: "Continuar curso" },
-            { title: "Master Chocolatier", body: "Barra 70 % · vidas · rachas · diploma LinkedIn.", href: "/campus/maestro-chocolatier", cta: "Continuar campaña" },
-            { title: "Consejo de avance", body: "MD + Sembrar · estudiar y practicar en repetición.", href: "/cuenta/consejo", cta: "Ver mi ritmo" },
-            { title: "R&D Colab", body: "Benevolo + coberturas CAÚA × Zurych · shop.", href: "/rd", cta: "Abrir laboratorio" },
-            { title: "Benevolo", body: "Marca acelerada · duja FEAR 5 · tendencia.", href: "/campus/benevolo", cta: "Acelerar marca" },
-            { title: "Sembrar", body: "Plántulas Ecoyuma, bitácora y finca idónea.", href: "/juega", cta: "Ir a Sembrar" },
-            {
-              title: "Campus Dualita",
-              body: micro
-                ? `Microlearning CAÚA: ${micro.completedCount}/${micro.totalLessons} módulos guardados.`
-                : "MOOC, cacao funcional y Masterclasses.",
-              href: "/aprende",
-              cta: "Ver rutas",
-            },
-          ].map((item) => (
-            <Link key={item.title} href={item.href} className="bg-white rounded-2xl border border-colab-forest/10 p-6 hover:-translate-y-1 transition-transform">
-              <h2 className="font-serif text-xl font-bold text-colab-forest">{item.title}</h2>
-              <p className="text-xs leading-relaxed text-colab-forest/50 mt-3">{item.body}</p>
-              <strong className="block text-xs text-colab-green mt-8">{item.cta} →</strong>
+        </header>
+
+        <section className="cuenta-wallet" aria-labelledby="cuenta-wallet-title">
+          <div className="cuenta-wallet-copy">
+            <p className="eyebrow text-colab-yellow">Wallet · Mazorcas Doradas</p>
+            <h2 id="cuenta-wallet-title">Tu economía interna</h2>
+            <p>
+              Saldo para canjear cursos y aceleraciones. El rango reconoce productividad propia — no
+              reclutamiento.
+            </p>
+            <div className="cuenta-wallet-actions">
+              <Link href="/cuenta/mazorcas" className="cuenta-btn-primary">
+                Abrir wallet →
+              </Link>
+              <Link href="/cuenta/mazorcas#scorecard" className="cuenta-btn-ghost">
+                Scorecard
+              </Link>
+              <Link href="/marketplace/beneficios" className="cuenta-btn-ghost">
+                Canjear
+              </Link>
+            </div>
+          </div>
+          <div className="cuenta-wallet-balance">
+            <span>Saldo disponible</span>
+            <strong>{home.wallet.balance.toLocaleString("es-CO")}</strong>
+            <small>
+              MD · {home.wallet.rankIcon} {home.wallet.rankName}
+              {home.wallet.mdToNext != null && home.wallet.nextName
+                ? ` · ${home.wallet.mdToNext} para ${home.wallet.nextName}`
+                : " · rango máximo"}
+            </small>
+            {home.redemptionCount > 0 && (
+              <em>{home.redemptionCount} canje{home.redemptionCount === 1 ? "" : "s"} registrados</em>
+            )}
+          </div>
+        </section>
+
+        <section className="cuenta-bio" aria-labelledby="cuenta-bio-title">
+          <div className="cuenta-bio-head">
+            <div>
+              <p className="eyebrow text-colab-pod">Personalización · red interna</p>
+              <h2 id="cuenta-bio-title">Tu bio de nodo</h2>
+              <p>
+                Así te encuentran fincas, marcas y aliados en el Colab. Gestiona intro, fotos y
+                contacto desde tu cuenta.
+              </p>
+            </div>
+            <Link href="/cuenta/bio" className="cuenta-btn-primary">
+              {home.bio ? "Gestionar bio →" : "Crear mi bio →"}
             </Link>
-          ))}
-        </div>
+          </div>
+
+          {home.bio ? (
+            <article className="cuenta-bio-card">
+              <div className="cuenta-bio-visual">
+                {home.bio.avatarUrl ? (
+                  <Image
+                    src={home.bio.avatarUrl}
+                    alt=""
+                    width={88}
+                    height={88}
+                    className="cuenta-bio-avatar"
+                    unoptimized
+                  />
+                ) : (
+                  <div className="cuenta-bio-avatar-fallback" aria-hidden>
+                    {home.bio.displayName.slice(0, 1)}
+                  </div>
+                )}
+                {home.bio.productImageUrl && (
+                  <Image
+                    src={home.bio.productImageUrl}
+                    alt=""
+                    width={140}
+                    height={88}
+                    className="cuenta-bio-product"
+                    unoptimized
+                  />
+                )}
+              </div>
+              <div className="cuenta-bio-body">
+                <span className="cuenta-bio-status">{BIO_STATUS[home.bio.status] ?? home.bio.status}</span>
+                <h3>{home.bio.orgName}</h3>
+                <p>
+                  {home.bio.displayName} · {NODE_KIND_LABEL[home.bio.kind]}
+                  {home.bio.city ? ` · ${home.bio.city}` : ""}
+                </p>
+                <p className="cuenta-bio-intro">{home.bio.intro}</p>
+                <div className="cuenta-bio-links">
+                  {home.bio.status === "published" && (
+                    <Link href={`/nodo/${home.bio.slug}`}>Ver perfil público →</Link>
+                  )}
+                  <Link href="/cuenta/bio">Editar / actualizar →</Link>
+                  <Link href="/nodo">Directorio de nodos →</Link>
+                </div>
+              </div>
+            </article>
+          ) : (
+            <div className="cuenta-bio-empty">
+              <p>
+                Aún no tienes bio. Créala para activar tu presencia en la red social interna del
+                cacao — finca, marca, transformación u hospitalidad.
+              </p>
+              <Link href="/cuenta/bio">Empezar bio de nodo →</Link>
+            </div>
+          )}
+        </section>
+
+        <section className="cuenta-manage" aria-labelledby="cuenta-manage-title">
+          <p className="eyebrow text-colab-yellow">Gestionar en el Colab</p>
+          <h2 id="cuenta-manage-title">Todo tu espacio</h2>
+          <p className="cuenta-manage-lede">
+            Aprendizaje, práctica, beneficios y políticas — el lugar desde el que administras tu
+            vínculo con la comunidad.
+          </p>
+          <ul className="cuenta-manage-grid">
+            {manage.map((item) => (
+              <li key={item.title}>
+                <Link href={item.href}>
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                  <strong>{item.cta} →</strong>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="cuenta-learn-strip" aria-label="Continuar rutas">
+          <Link href="/campus/arquitecto-fermentacion">Arquitecto de Fermentación</Link>
+          <Link href="/campus/maestro-chocolatier">Master Chocolatier</Link>
+          <Link href="/campus/benevolo">Benevolo</Link>
+          <Link href="/rd">R&D Colab</Link>
+        </section>
       </div>
     </div>
   )
