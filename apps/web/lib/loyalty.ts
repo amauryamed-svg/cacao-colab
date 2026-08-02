@@ -24,6 +24,10 @@ export const mazorcaRewards = {
   gotchiHarvestOpen: 12,
   /** Cierre fermentado a 120 h — recompensa principal de Sembrar. */
   gotchiHarvest: 28,
+  /** Hito cuidado perfecto: hora ≥100 y métricas al 100 % al cosechar. */
+  gotchiPerfectCare: 40,
+  /** Premio por plan comparativo a 10 años (conciencia de labranza). */
+  gotchiDecadePlan: 18,
   /** Tope MD/día categoría care por acciones de cuidado (no aplica a cosecha). */
   gotchiCareDailyCap: 10,
   /** Tope MD/día categoría learning (campus + micro). */

@@ -1061,6 +1061,12 @@ body {
   color: #F2C830;
 }
 
+.gotchi-ferment-perfect {
+  background: linear-gradient(120deg, #1A2E10 0%, #3D7A2C 55%, #C8A010 140%);
+  box-shadow: 0 0 0 1px rgba(242, 200, 48, .35), 0 10px 28px rgba(26, 46, 16, .18);
+  color: #F7F1EE;
+}
+
 .gotchi-ferment:disabled {
   cursor: not-allowed;
   opacity: .35;
@@ -2446,6 +2452,112 @@ body {
   font-size: .68rem;
   line-height: 1.45;
   margin-top: .2rem;
+}
+
+.sembrar-cd-card {
+  border-radius: .85rem;
+  font-size: .72rem;
+  line-height: 1.55;
+  margin-top: 1rem;
+  padding: .95rem 1rem;
+}
+
+.sembrar-cd-card .eyebrow {
+  font-size: .58rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  margin: 0 0 .35rem;
+  text-transform: uppercase;
+}
+
+.sembrar-cd-card strong {
+  display: block;
+  font-size: .82rem;
+  margin-bottom: .35rem;
+}
+
+.sembrar-cd-card p {
+  margin: 0;
+}
+
+.sembrar-cd-note {
+  margin-top: .55rem !important;
+  opacity: .85;
+}
+
+.sembrar-cd-card.tone-low {
+  background: rgba(61, 122, 44, .1);
+  border: 1px solid rgba(61, 122, 44, .22);
+  color: #1A2E10;
+}
+
+.sembrar-cd-card.tone-mid {
+  background: rgba(200, 160, 16, .1);
+  border: 1px solid rgba(200, 160, 16, .28);
+  color: #1A2E10;
+}
+
+.sembrar-cd-card.tone-high {
+  background: rgba(255, 106, 61, .1);
+  border: 1px solid rgba(255, 106, 61, .28);
+  color: #1A2E10;
+}
+
+.sembrar-cd-sources {
+  list-style: none;
+  margin: .7rem 0 0;
+  padding: 0;
+}
+
+.sembrar-cd-sources li + li {
+  margin-top: .35rem;
+}
+
+.sembrar-cd-sources a {
+  color: #3D7A2C;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.sembrar-decade-card {
+  background: linear-gradient(135deg, rgba(26, 46, 16, .04), rgba(242, 200, 48, .08));
+  border: 1px solid rgba(26, 46, 16, .1);
+  border-radius: .95rem;
+  padding: 1.1rem 1.15rem;
+}
+
+.sembrar-decade-card h3 {
+  color: #1A2E10;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin: .2rem 0 .45rem;
+}
+
+.sembrar-decade-card > p {
+  color: rgba(26, 46, 16, .62);
+  font-size: .78rem;
+  line-height: 1.55;
+}
+
+.sembrar-decade-prize {
+  color: #3D7A2C !important;
+  font-weight: 700;
+  margin-top: .55rem !important;
+}
+
+.sembrar-decade-gens {
+  display: grid;
+  gap: .75rem;
+  grid-template-columns: 1fr 1fr;
+  margin-top: .9rem;
+}
+
+@media (max-width: 640px) {
+  .sembrar-decade-gens {
+    grid-template-columns: 1fr;
+  }
 }
 
 .sembrar-collective {

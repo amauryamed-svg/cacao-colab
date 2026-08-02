@@ -8,6 +8,7 @@ import { BENEVOLO_COURSE_SLUG, benevoloMissions, benevoloTotalXp } from "@/lib/b
 import { mazorcaRewards } from "@/lib/loyalty"
 import { awardMazorcas } from "@/lib/loyalty-server"
 import { syncLearnerFollowup } from "@/lib/followup-sync"
+import { PERFECT_CARE_HOUR, isPerfectCareReady } from "@/lib/sembrar-care"
 
 type SaveResult = { ok: true } | { ok: false; error: string }
 
@@ -244,6 +245,14 @@ export async function saveGotchiRun(
     genotype?: unknown
     genotypeCode?: unknown
     plantedAt?: unknown
+    ageHours?: unknown
+    moisture?: unknown
+    health?: unknown
+    knowledge?: unknown
+    nutrition?: unknown
+    soilCover?: unknown
+    biodiversity?: unknown
+    decadePlanComplete?: unknown
   }
   const genotypeLabel =
     typeof parsedState.genotype === "string" && parsedState.genotype.trim()
@@ -296,6 +305,29 @@ export async function saveGotchiRun(
           sourceType: "gotchi_run",
           sourceId: "slot-1",
         })
+        const ageHours = typeof parsedState.ageHours === "number" ? parsedState.ageHours : 0
+        const metric = (key: keyof typeof parsedState) =>
+          typeof parsedState[key] === "number" ? (parsedState[key] as number) : 0
+        const perfect = isPerfectCareReady({
+          ageHours,
+          moisture: metric("moisture"),
+          health: metric("health"),
+          knowledge: metric("knowledge"),
+          nutrition: metric("nutrition"),
+          soilCover: metric("soilCover"),
+          biodiversity: metric("biodiversity"),
+        })
+        if (perfect && ageHours >= PERFECT_CARE_HOUR) {
+          await awardMazorcas({
+            profileId: user.id,
+            amount: mazorcaRewards.gotchiPerfectCare,
+            category: "care",
+            reasonCode: "gotchi_perfect_care",
+            idempotencyKey: `gotchi:perfect-care:slot-1:${cycleKey}`,
+            sourceType: "gotchi_run",
+            sourceId: "slot-1",
+          })
+        }
       }
       if (phase === "complete") {
         await awardMazorcas({
@@ -304,6 +336,17 @@ export async function saveGotchiRun(
           category: "care",
           reasonCode: "gotchi_harvest_fermented",
           idempotencyKey: `gotchi:complete:slot-1:${cycleKey}`,
+          sourceType: "gotchi_run",
+          sourceId: "slot-1",
+        })
+      }
+      if (parsedState.decadePlanComplete === true) {
+        await awardMazorcas({
+          profileId: user.id,
+          amount: mazorcaRewards.gotchiDecadePlan,
+          category: "care",
+          reasonCode: "gotchi_decade_plan",
+          idempotencyKey: `gotchi:decade-plan:slot-1:${cycleKey}`,
           sourceType: "gotchi_run",
           sourceId: "slot-1",
         })

@@ -21,6 +21,15 @@ import {
 } from "@/lib/sembrar"
 import { geneticsForTerritory } from "@/lib/learning-nodes"
 import { mazorcaRewards } from "@/lib/loyalty"
+import {
+  PERFECT_CARE_HOUR,
+  cadmiumPedagogy,
+  cadmiumRiskIndex,
+  cadmiumRiskLabel,
+  decadePlanCopy,
+  isPerfectCareReady,
+  perfectCareGaps,
+} from "@/lib/sembrar-care"
 
 type BitacoraEntry = {
   id: string
@@ -71,6 +80,11 @@ type GotchiState = {
   farmMap: FarmMap
   planNotes: string
   activePromptId: string
+  /** Plan comparativo a 10 años */
+  decadeGenotypeA: string
+  decadeGenotypeB: string
+  decadePlanNotes: string
+  decadePlanComplete: boolean
 }
 
 const now = () => new Date().toISOString()
@@ -112,6 +126,10 @@ const initialState: GotchiState = {
   farmMap: emptyMap,
   planNotes: "",
   activePromptId: "b0",
+  decadeGenotypeA: "FEAR 5",
+  decadeGenotypeB: "FSV 41",
+  decadePlanNotes: "",
+  decadePlanComplete: false,
 }
 
 const stages = [
@@ -124,7 +142,7 @@ const stages = [
     name: "Cosecha",
     icon: "◆",
     threshold: 78,
-    mission: `Abre lote trazable (+${mazorcaRewards.gotchiHarvestOpen} MD) y cierra fermentación (+${mazorcaRewards.gotchiHarvest} MD).`,
+    mission: `Puedes cosechar desde 78 h. Hito cuidado perfecto a ${PERFECT_CARE_HOUR} h con Agua/Vitalidad/Saber/Nutrición/Cobertura/Biodiversidad al 100 % (+${mazorcaRewards.gotchiPerfectCare} MD).`,
   },
 ]
 
@@ -134,6 +152,21 @@ const actions = [
   { id: "observe", label: "Medir y bitácora", icon: "◎", xp: 20, moisture: -1, nutrition: 0, shade: 0, health: 1, knowledge: 12, biodiversity: 0, pollinators: 0, soilCover: 0, waterReserve: 0 },
   { id: "soil", label: "Nutrir y cubrir suelo", icon: "≋", xp: 18, moisture: 3, nutrition: 14, shade: 0, health: 7, knowledge: 4, biodiversity: 4, pollinators: 0, soilCover: 12, waterReserve: 4 },
   { id: "pollinate", label: "Cuidar polinizadores", icon: "✣", xp: 18, moisture: -2, nutrition: 0, shade: 2, health: 4, knowledge: 5, biodiversity: 5, pollinators: 14, soilCover: 2, waterReserve: 0 },
+  {
+    id: "stabilize",
+    label: "Estabilizar cosecha",
+    icon: "◆",
+    xp: 24,
+    moisture: 22,
+    nutrition: 16,
+    shade: 6,
+    health: 16,
+    knowledge: 10,
+    biodiversity: 14,
+    pollinators: 6,
+    soilCover: 16,
+    waterReserve: 10,
+  },
 ]
 
 const fermentationCurve = [
@@ -159,20 +192,35 @@ function applyElapsedGrowth(state: GotchiState, forcedHours?: number): GotchiSta
   if (elapsed < 1) return state
   const ecological = (state.biodiversity + state.waterReserve + state.pollinators + state.soilCover) / 4
   const balance = (state.health + state.moisture + state.nutrition + (100 - Math.abs(60 - state.shade)) + ecological) / 500
+  // Buen cuidado frena el decaimiento: hace alcanzable el hito 100 h · 100 %.
+  const careHold = (state.soilCover + state.biodiversity + state.health) / 300
+  const moistureLoss = elapsed * (1.15 - careHold * 0.75)
+  const nutritionLoss = elapsed * (0.42 - careHold * 0.22)
   const nextAge = state.ageHours + elapsed
   return {
     ...state,
     ageHours: nextAge,
     lastGrowthAt: now(),
-    moisture: clamp(state.moisture - elapsed * 1.2),
-    nutrition: clamp(state.nutrition - elapsed * 0.45),
-    health: clamp(state.health + (balance > 0.68 ? elapsed * 0.35 : -elapsed * 0.5)),
+    moisture: clamp(state.moisture - moistureLoss),
+    nutrition: clamp(state.nutrition - nutritionLoss),
+    health: clamp(state.health + (balance > 0.68 ? elapsed * 0.4 : -elapsed * 0.45)),
     heightCm: Math.round((state.heightCm + elapsed * 0.42 * Math.max(0.25, balance)) * 10) / 10,
     leaves: state.leaves + Math.floor((elapsed * balance) / 2.5),
     flowers: nextAge >= 30 ? state.flowers + Math.floor((elapsed * balance) / 5) : state.flowers,
     pods: nextAge >= 54 ? state.pods + Math.floor((elapsed * balance) / 10) : state.pods,
-    waterReserve: clamp(state.waterReserve - elapsed * 0.3),
+    waterReserve: clamp(state.waterReserve - elapsed * 0.28),
     pollinators: clamp(state.pollinators + (state.biodiversity > 65 ? elapsed * 0.18 : -elapsed * 0.2)),
+    soilCover: clamp(state.soilCover - elapsed * (0.2 - careHold * 0.12)),
+    biodiversity: clamp(state.biodiversity - elapsed * (0.15 - careHold * 0.1)),
+    // Sin cobertura/nutrición el pH tiende a acidificar → más riesgo relativo de Cd (didáctico).
+    soilPh: Math.max(
+      4,
+      Math.min(
+        8,
+        state.soilPh +
+          (state.soilCover > 70 && state.nutrition > 60 ? elapsed * 0.004 : -elapsed * 0.012),
+      ),
+    ),
   }
 }
 
@@ -193,6 +241,10 @@ function normalizeState(value: GotchiState): GotchiState {
     planNotes: value.planNotes ?? "",
     activePromptId: value.activePromptId || "b0",
     plantingSystem: value.plantingSystem || "agroforesteria",
+    decadeGenotypeA: value.decadeGenotypeA || "FEAR 5",
+    decadeGenotypeB: value.decadeGenotypeB || "FSV 41",
+    decadePlanNotes: value.decadePlanNotes ?? "",
+    decadePlanComplete: Boolean(value.decadePlanComplete),
   }
 }
 
@@ -258,6 +310,24 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
     agroforestryModels.find((m) => m.id === state.plantingSystem) ?? agroforestryModels[0]
   const activePrompt =
     bitacoraPrompts.find((p) => p.id === state.activePromptId) ?? bitacoraPrompts[0]
+  const careMetrics = {
+    moisture: state.moisture,
+    health: state.health,
+    knowledge: state.knowledge,
+    nutrition: state.nutrition,
+    soilCover: state.soilCover,
+    biodiversity: state.biodiversity,
+    ageHours: state.ageHours,
+  }
+  const perfectReady = state.phase === "cultivation" && isPerfectCareReady(careMetrics)
+  const careGaps = perfectCareGaps(careMetrics)
+  const cdRisk = cadmiumRiskIndex({
+    soilPh: state.soilPh,
+    soilCover: state.soilCover,
+    nutrition: state.nutrition,
+    biodiversity: state.biodiversity,
+  })
+  const cdLabel = cadmiumRiskLabel(cdRisk)
 
   function persist(next: GotchiState) {
     setSync("saving")
@@ -363,17 +433,53 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
 
   function startFermentation() {
     if (state.ageHours < 78) return
+    const perfect = isPerfectCareReady({
+      moisture: state.moisture,
+      health: state.health,
+      knowledge: state.knowledge,
+      nutrition: state.nutrition,
+      soilCover: state.soilCover,
+      biodiversity: state.biodiversity,
+      ageHours: state.ageHours,
+    })
     const next: GotchiState = {
       ...state,
       phase: "fermentation",
       treatment: "Fermentación controlada Cacaotier",
       fermentationHour: 0,
-      xp: state.xp + 60,
+      xp: state.xp + (perfect ? 100 : 60),
     }
     setState(next)
     persist(next)
     setMessage(
-      `Dualita: cosecha abierta · +${mazorcaRewards.gotchiHarvestOpen} MD. Fermenta con evidencia el lote ${state.genotypeCode}.`,
+      perfect
+        ? `Dualita: ¡cuidado perfecto a ${PERFECT_CARE_HOUR} h! +${mazorcaRewards.gotchiHarvestOpen} MD de cosecha y +${mazorcaRewards.gotchiPerfectCare} MD de hito. Ahora fermenta ~45 °C para mover Cd hacia la cascarilla.`
+        : `Dualita: cosecha abierta · +${mazorcaRewards.gotchiHarvestOpen} MD. Para el hito perfecto: ${PERFECT_CARE_HOUR} h y todas las barras al 100 %.`,
+    )
+  }
+
+  function saveDecadePlan() {
+    const notes = state.decadePlanNotes.trim()
+    if (notes.length < 120 || !state.decadeGenotypeA || !state.decadeGenotypeB) {
+      setMessage(
+        "Dualita: el plan a 10 años pide dos genotipos distintos y ≥120 caracteres de comparación (protocolo, sombra, Cd/suelo, herencia).",
+      )
+      return
+    }
+    if (state.decadeGenotypeA === state.decadeGenotypeB) {
+      setMessage("Dualita: elige dos materiales distintos para comparar bajo el mismo protocolo.")
+      return
+    }
+    const next: GotchiState = {
+      ...state,
+      decadePlanComplete: true,
+      knowledge: clamp(state.knowledge + 12),
+      xp: state.xp + 40,
+    }
+    setState(next)
+    persist(next)
+    setMessage(
+      `Dualita: plan decenal guardado · +${mazorcaRewards.gotchiDecadePlan} MD. Comparar ${state.decadeGenotypeA} vs ${state.decadeGenotypeB} crea conciencia de tipicidad.`,
     )
   }
 
@@ -757,6 +863,7 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
                   ["Cobertura", `${Math.round(state.soilCover)}%`],
                   ["Reserva agua", `${Math.round(state.waterReserve)}%`],
                   ["pH suelo", state.soilPh.toFixed(2)],
+                  ["Riesgo Cd*", `${cdRisk}`],
                   ["Edad", `${state.ageHours} h`],
                 ].map(([label, value]) => (
                   <div key={String(label)}>
@@ -765,10 +872,24 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
                   </div>
                 ))}
               </div>
+              <aside className={`sembrar-cd-card tone-${cdLabel.tone}`}>
+                <p className="eyebrow">{cadmiumPedagogy.eyebrow}</p>
+                <strong>
+                  {cdLabel.label} · índice {cdRisk}
+                </strong>
+                <p>{cdLabel.tip}</p>
+                <p className="sembrar-cd-note">{cadmiumPedagogy.farmBody}</p>
+              </aside>
               <div className="mt-6">
                 <div className="flex justify-between text-xs font-bold text-colab-ink/50">
                   <span>{stage.name}</span>
-                  <span>{nextStage ? `Siguiente: ${nextStage.name}` : "Cosecha disponible"}</span>
+                  <span>
+                    {perfectReady
+                      ? "Hito cuidado perfecto listo"
+                      : nextStage
+                        ? `Siguiente: ${nextStage.name}`
+                        : "Cosecha disponible"}
+                  </span>
                 </div>
                 <div className="gotchi-progress mt-2">
                   <i style={{ width: `${clamp(stageProgress)}%` }} />
@@ -776,6 +897,12 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
                 <p className="text-sm text-colab-ink/60 mt-4">
                   <strong className="text-colab-ink">Misión:</strong> {stage.mission}
                 </p>
+                {!perfectReady && state.ageHours >= 78 && (
+                  <p className="text-sm text-colab-forest mt-2 font-medium">
+                    Cuidado perfecto ({PERFECT_CARE_HOUR} h · 100%): falta {careGaps.slice(0, 4).join(" · ")}
+                    {careGaps.length > 4 ? "…" : ""}
+                  </p>
+                )}
               </div>
               <div className="grid sm:grid-cols-2 gap-3 mt-6">
                 {actions.map((action) => (
@@ -799,11 +926,13 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
                   type="button"
                   disabled={state.ageHours < 78}
                   onClick={startFermentation}
-                  className="gotchi-ferment"
+                  className={perfectReady ? "gotchi-ferment gotchi-ferment-perfect" : "gotchi-ferment"}
                 >
                   {state.ageHours < 78
                     ? `Cosecha en ${78 - state.ageHours} h`
-                    : `Cosechar · +${mazorcaRewards.gotchiHarvestOpen} MD → fermentar`}
+                    : perfectReady
+                      ? `Recolectar cuidado perfecto · +${mazorcaRewards.gotchiHarvestOpen + mazorcaRewards.gotchiPerfectCare} MD →`
+                      : `Cosechar · +${mazorcaRewards.gotchiHarvestOpen} MD → fermentar`}
                 </button>
               </div>
             </>
@@ -909,24 +1038,79 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
                   </li>
                 ))}
               </ol>
+              <div className="sembrar-decade-card mt-5">
+                <p className="eyebrow text-colab-green">{decadePlanCopy.eyebrow}</p>
+                <h3>{decadePlanCopy.title}</h3>
+                <p>{decadePlanCopy.body}</p>
+                <p className="sembrar-decade-prize">{decadePlanCopy.prizeNote}</p>
+                <div className="sembrar-decade-gens">
+                  <label className="sembrar-field">
+                    <span>Genotipo A</span>
+                    <select
+                      value={state.decadeGenotypeA}
+                      onChange={(e) => setState({ ...state, decadeGenotypeA: e.target.value })}
+                    >
+                      {["FEAR 5", "FTA 2", "FSA 13", "FSV 41", "TCS 19", "TCS 06"].map((code) => (
+                        <option key={code} value={code}>
+                          {code}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <label className="sembrar-field">
+                    <span>Genotipo B (contraste)</span>
+                    <select
+                      value={state.decadeGenotypeB}
+                      onChange={(e) => setState({ ...state, decadeGenotypeB: e.target.value })}
+                    >
+                      {["FEAR 5", "FTA 2", "FSA 13", "FSV 41", "TCS 19", "TCS 06"].map((code) => (
+                        <option key={code} value={code}>
+                          {code}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
+                <label className="sembrar-field mt-3">
+                  <span>Comparación a 10 años (≥120 caracteres)</span>
+                  <textarea
+                    value={state.decadePlanNotes}
+                    onChange={(e) =>
+                      setState({ ...state, decadePlanNotes: e.target.value.slice(0, 1200) })
+                    }
+                    placeholder="Mismo protocolo de sombra/nutrición/fermentación; distinto material. Incluye pH/Cd, quién hereda el criterio y cómo lees tipicidad sin mezclar lotes…"
+                    rows={5}
+                  />
+                </label>
+                <button
+                  type="button"
+                  className="gotchi-ferment mt-3"
+                  onClick={saveDecadePlan}
+                  disabled={state.decadePlanComplete}
+                >
+                  {state.decadePlanComplete
+                    ? "Plan decenal ya premiado"
+                    : `Guardar plan 10 años · +${mazorcaRewards.gotchiDecadePlan} MD`}
+                </button>
+              </div>
               <label className="sembrar-field mt-4">
-                <span>Tu plan de finca (notas)</span>
+                <span>Notas libres de finca</span>
                 <textarea
                   value={state.planNotes}
                   onChange={(e) => setState({ ...state, planNotes: e.target.value.slice(0, 800) })}
-                  placeholder="Meta a 5 años, calendario de siembra Ecoyuma, quién hereda el criterio…"
-                  rows={4}
+                  placeholder="Calendario de siembra, vivero, acuerdos comunitarios…"
+                  rows={3}
                 />
               </label>
               <button
                 type="button"
-                className="gotchi-ferment mt-3"
+                className="gotchi-simulate mt-3"
                 onClick={() => {
                   persist(state)
-                  setMessage("Plan guardado. La siguiente generación necesita un mapa, no solo un deseo.")
+                  setMessage("Notas guardadas. La siguiente generación necesita un mapa, no solo un deseo.")
                 }}
               >
-                Guardar planeación
+                Guardar notas
               </button>
               <div className="sembrar-collective mt-5">
                 <p>{sembrarGenerationCopy.body}</p>
@@ -954,12 +1138,25 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
               <div className="gotchi-progress mt-6">
                 <i style={{ width: `${state.fermentationHour / 1.2}%` }} />
               </div>
+              <aside className="sembrar-cd-card tone-mid mt-5">
+                <p className="eyebrow">{cadmiumPedagogy.eyebrow}</p>
+                <strong>{cadmiumPedagogy.title}</strong>
+                <p>{cadmiumPedagogy.fermentBody}</p>
+                <ul className="sembrar-cd-sources">
+                  {cadmiumPedagogy.sources.map((s) => (
+                    <li key={s.href}>
+                      <a href={s.href} target={s.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer">
+                        {s.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </aside>
               <p className="text-sm leading-relaxed text-colab-ink/60 mt-5">
                 Escenario educativo con genotipo {state.genotypeCode}
-                {nodeGenetics
-                  ? ` en nodo ${nodeGenetics.nodeName}`
-                  : ""}. No implica DO registrada ni tipificación de marca salvo lo declarado
-                (p. ej. FEAR 5 en Quara para Benevolo). Documenta tu lote real en Master Cacaotier.
+                {nodeGenetics ? ` en nodo ${nodeGenetics.nodeName}` : ""}. Temperatura guía{" "}
+                {fermentationPoint.temperature} °C · pH {fermentationPoint.ph.toFixed(1)}. No implica
+                DO ni Cd cero — documenta tu lote real en Master Cacaotier.
               </p>
               {state.phase !== "complete" ? (
                 <button type="button" onClick={advanceFermentation} className="gotchi-ferment mt-6">
@@ -967,9 +1164,9 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
                 </button>
               ) : (
                 <div className="mt-6 bg-colab-yellow/30 rounded-xl p-4 text-sm font-bold text-colab-forest">
-                  ✦ Lote cerrado a 120 h · +{mazorcaRewards.gotchiHarvest} MD de cosecha. Siguiente
-                  paso: campus + /unete — tipicidad araucana se defiende en red, no con claims de DO
-                  inventados.
+                  ✦ Lote cerrado a 120 h · +{mazorcaRewards.gotchiHarvest} MD. Cascarilla/testa se
+                  descarta en tostión: ahí puede ir parte del Cd movido por fermentación controlada.
+                  Siguiente: plan 10 años + /unete.
                 </div>
               )}
             </div>

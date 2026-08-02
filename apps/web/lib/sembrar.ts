@@ -197,31 +197,36 @@ export const bitacoraPrompts: BitacoraPrompt[] = [
 export const planningMilestones = [
   {
     id: "p1",
-    title: "Diseñar la finca idónea",
-    body: "Define meta a 5 años: volumen, tipicidad araucana, sombra y quién hereda el criterio.",
+    title: "Diseñar la finca idónea a 10 años",
+    body: "Meta decenal: volumen, tipicidad, sombra, cadmio/suelo y quién hereda el criterio — no solo la próxima cosecha.",
   },
   {
     id: "p2",
     title: "Elegir material del modelo araucano",
-    body: "FEAR 5 · FTA 2 · FSA 13 como eje; TCS 19 / TCS 06 en Ecoyuma como contraste. Verifica stock real.",
+    body: "FEAR 5 · FTA 2 · FSA 13 como eje; TCS 19 / TCS 06 o FSV 41 (contexto CoEx) como contraste. Verifica stock real.",
   },
   {
     id: "p3",
+    title: "Comparar dos genotipos bajo el mismo protocolo",
+    body: "Misma sombra, nutrición y fermentación; distinto material. Así el simulador crea conciencia, no monoclon.",
+  },
+  {
+    id: "p4",
     title: "Trazar cartografía social",
     body: "Parcelas, agua, caminos, vecinos, zonas de riesgo y acuerdos comunitarios.",
   },
   {
-    id: "p4",
-    title: "Modelo agroforestal",
-    body: "Elige estratos (temporal, permanente, servicio) y calendario de siembra.",
+    id: "p5",
+    title: "Cuidado de suelo y metales",
+    body: "pH, cobertura y nutrición bajan el riesgo relativo de Cd en planta; la fermentación controlada ayuda a mover Cd a la cascarilla que se descarta.",
   },
   {
-    id: "p5",
+    id: "p6",
     title: "Bitácora semanal",
     body: "Observar → registrar → decidir. Luego fermentar con evidencia (Master Cacaotier).",
   },
   {
-    id: "p6",
+    id: "p7",
     title: "Cerrar el círculo Colab",
     body: "Del vivero al campus y a la mesa: Dualita, Mazorcas y colectivo con otras fincas.",
   },

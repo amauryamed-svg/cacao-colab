@@ -151,7 +151,7 @@ Beneficios Colab nativos (`fulfillment_type = colab_digital`) pueden activarse s
 | Ruta Benevolo (capstone track) | 600 | Labrador | Entitlement campus |
 | Mentoría Dualita (cupo semanal) | 400 | Guardián | Fulfillment manual / cola |
 
-Emisión inmediata (`mazorcaRewards`): micro/misión Masters 6 MD; cierre Architect/Chocolatier 24; Benevolo 5/16; Sembrar cuidado 2 (tope 10/día care); cosecha Sembrar **+12 MD** al abrir lote y **+28 MD** al cerrar fermentación (sin tope diario de cuidado); learning tope **20 MD/día**. Completar todo el campus no debe financiar solo el catálogo de sinks.
+Emisión inmediata (`mazorcaRewards`): micro/misión Masters 6 MD; cierre Architect/Chocolatier 24; Benevolo 5/16; Sembrar cuidado 2 (tope 10/día care); cosecha Sembrar **+12 MD** al abrir lote y **+28 MD** al cerrar fermentación; hito **cuidado perfecto** (hora ≥100 y métricas al 100 % al cosechar) **+40 MD**; plan comparativo a **10 años** **+18 MD** (ambos idempotentes por labranza; sin tope diario de cuidado); learning tope **20 MD/día**. Completar todo el campus no debe financiar solo el catálogo de sinks.
 
 Reglas de canje (igual que `16` §5): ítem `active`, saldo, rango, `per_user_limit`, términos visibles. Débito append-only + fila en `benefit_redemptions`.
 
