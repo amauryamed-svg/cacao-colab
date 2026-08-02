@@ -96,7 +96,7 @@ export async function awardMazorcas(input: {
   dailyCap?: number
 }) {
   const admin = createSupabaseAdminClient()
-  const amount = Math.max(1, Math.round(input.amount))
+  let amount = Math.max(1, Math.round(input.amount))
 
   if (input.dailyCap) {
     const since = new Date()
@@ -108,7 +108,9 @@ export async function awardMazorcas(input: {
       .eq("category", input.category)
       .gte("created_at", since.toISOString())
     const earnedToday = (data ?? []).reduce((total, entry) => total + Math.max(0, entry.amount), 0)
-    if (earnedToday >= input.dailyCap) return { awarded: 0, capped: true }
+    const remaining = input.dailyCap - earnedToday
+    if (remaining <= 0) return { awarded: 0, capped: true }
+    amount = Math.min(amount, remaining)
   }
 
   const { error } = await admin.from("mazorca_ledger").insert({

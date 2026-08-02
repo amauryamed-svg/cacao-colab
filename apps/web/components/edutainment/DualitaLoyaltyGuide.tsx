@@ -6,7 +6,7 @@ import Link from "next/link"
 const paths = {
   aprender: {
     label: "Quiero aprender",
-    response: "Empieza con Microlearning CAÚA o una misión Master Cacaotier. El XP mide competencia y apalanca tu bono scorecard; las MD se acreditan por montos declarados, no convirtiendo XP.",
+    response: "Empieza con Microlearning CAÚA o una misión Master. El XP mide competencia; las MD son un empujón con tope diario — no financian solas el catálogo. Para sinks grandes, combina cultivo con packs.",
     href: "/aprende",
     cta: "Abrir campus",
   },
@@ -18,7 +18,7 @@ const paths = {
   },
   canjear: {
     label: "Quiero canjear cursos",
-    response: "Con saldo MD puedes canjear aceleraciones y previews Colab activos. También puedes solicitar packs de compra; no suben el rango. Marcas externas siguen planeadas.",
+    response: "Los canjes activos piden saldo y rango. Cultivar da MD modestas; los packs cubren el resto sin inflar el rango. Así la economía del Colab se sostiene.",
     href: "/cuenta/mazorcas",
     cta: "Abrir wallet MD",
   },

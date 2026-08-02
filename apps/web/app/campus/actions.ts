@@ -15,6 +15,44 @@ function toJson(value: unknown): Json {
   return JSON.parse(JSON.stringify(value)) as Json
 }
 
+/** Awards secuenciales para respetar tope diario de learning. */
+async function awardLearningMissionMd(input: {
+  profileId: string
+  amount: number
+  idempotencyKey: string
+  sourceId: string
+  courseSlug: string
+}) {
+  return awardMazorcas({
+    profileId: input.profileId,
+    amount: input.amount,
+    category: "learning",
+    reasonCode: "campus_mission_complete",
+    idempotencyKey: input.idempotencyKey,
+    sourceType: "campus_mission",
+    sourceId: input.sourceId,
+    dailyCap: mazorcaRewards.learningDailyCap,
+  })
+}
+
+async function awardLearningCourseMd(input: {
+  profileId: string
+  amount: number
+  idempotencyKey: string
+  courseSlug: string
+}) {
+  return awardMazorcas({
+    profileId: input.profileId,
+    amount: input.amount,
+    category: "learning",
+    reasonCode: "campus_course_complete",
+    idempotencyKey: input.idempotencyKey,
+    sourceType: "campus_course",
+    sourceId: input.courseSlug,
+    dailyCap: mazorcaRewards.learningDailyCap,
+  })
+}
+
 export async function saveArchitectProgress(state: unknown, xpTotal: number, complete = false): Promise<SaveResult> {
   const supabase = await createSupabaseServerClient()
   const { data: { user } } = await supabase.auth.getUser()
@@ -43,29 +81,23 @@ export async function saveArchitectProgress(state: unknown, xpTotal: number, com
       const completed = Array.isArray(parsed?.completed)
         ? parsed.completed.filter((slug): slug is string => typeof slug === "string")
         : []
-      await Promise.all(completed.map((slug) => {
+      for (const slug of completed) {
         const mission = architectMissions.find((item) => item.slug === slug)
-        return mission
-          ? awardMazorcas({
-              profileId: user.id,
-              amount: mazorcaRewards.architectMission,
-              category: "learning",
-              reasonCode: "campus_mission_complete",
-              idempotencyKey: `campus:arquitecto-fermentacion:${slug}`,
-              sourceType: "campus_mission",
-              sourceId: slug,
-            })
-          : Promise.resolve({ awarded: 0 })
-      }))
+        if (!mission) continue
+        await awardLearningMissionMd({
+          profileId: user.id,
+          amount: mazorcaRewards.architectMission,
+          idempotencyKey: `campus:arquitecto-fermentacion:${slug}`,
+          sourceId: slug,
+          courseSlug: "arquitecto-fermentacion",
+        })
+      }
       if (complete) {
-        await awardMazorcas({
+        await awardLearningCourseMd({
           profileId: user.id,
           amount: mazorcaRewards.architectCourseComplete,
-          category: "learning",
-          reasonCode: "campus_course_complete",
           idempotencyKey: "campus:arquitecto-fermentacion:course",
-          sourceType: "campus_course",
-          sourceId: "arquitecto-fermentacion",
+          courseSlug: "arquitecto-fermentacion",
         })
       }
     } catch {
@@ -109,31 +141,23 @@ export async function saveChocolatierProgress(
       const completed = Array.isArray(parsed?.completed)
         ? parsed.completed.filter((slug): slug is string => typeof slug === "string")
         : []
-      await Promise.all(
-        completed.map((slug) => {
-          const mission = chocolatierMissions.find((item) => item.slug === slug)
-          return mission
-            ? awardMazorcas({
-                profileId: user.id,
-                amount: mazorcaRewards.chocolatierMission,
-                category: "learning",
-                reasonCode: "campus_mission_complete",
-                idempotencyKey: `campus:${CHOCOLATIER_COURSE_SLUG}:${slug}`,
-                sourceType: "campus_mission",
-                sourceId: slug,
-              })
-            : Promise.resolve({ awarded: 0 })
-        }),
-      )
+      for (const slug of completed) {
+        const mission = chocolatierMissions.find((item) => item.slug === slug)
+        if (!mission) continue
+        await awardLearningMissionMd({
+          profileId: user.id,
+          amount: mazorcaRewards.chocolatierMission,
+          idempotencyKey: `campus:${CHOCOLATIER_COURSE_SLUG}:${slug}`,
+          sourceId: slug,
+          courseSlug: CHOCOLATIER_COURSE_SLUG,
+        })
+      }
       if (complete) {
-        await awardMazorcas({
+        await awardLearningCourseMd({
           profileId: user.id,
           amount: mazorcaRewards.chocolatierCourseComplete,
-          category: "learning",
-          reasonCode: "campus_course_complete",
           idempotencyKey: `campus:${CHOCOLATIER_COURSE_SLUG}:course`,
-          sourceType: "campus_course",
-          sourceId: CHOCOLATIER_COURSE_SLUG,
+          courseSlug: CHOCOLATIER_COURSE_SLUG,
         })
       }
     } catch {
@@ -177,31 +201,23 @@ export async function saveBenevoloProgress(
       const completed = Array.isArray(parsed?.completed)
         ? parsed.completed.filter((slug): slug is string => typeof slug === "string")
         : []
-      await Promise.all(
-        completed.map((slug) => {
-          const mission = benevoloMissions.find((item) => item.slug === slug)
-          return mission
-            ? awardMazorcas({
-                profileId: user.id,
-                amount: mazorcaRewards.benevoloMission,
-                category: "learning",
-                reasonCode: "campus_mission_complete",
-                idempotencyKey: `campus:${BENEVOLO_COURSE_SLUG}:${slug}`,
-                sourceType: "campus_mission",
-                sourceId: slug,
-              })
-            : Promise.resolve({ awarded: 0 })
-        }),
-      )
+      for (const slug of completed) {
+        const mission = benevoloMissions.find((item) => item.slug === slug)
+        if (!mission) continue
+        await awardLearningMissionMd({
+          profileId: user.id,
+          amount: mazorcaRewards.benevoloMission,
+          idempotencyKey: `campus:${BENEVOLO_COURSE_SLUG}:${slug}`,
+          sourceId: slug,
+          courseSlug: BENEVOLO_COURSE_SLUG,
+        })
+      }
       if (complete) {
-        await awardMazorcas({
+        await awardLearningCourseMd({
           profileId: user.id,
           amount: mazorcaRewards.benevoloCourseComplete,
-          category: "learning",
-          reasonCode: "campus_course_complete",
           idempotencyKey: `campus:${BENEVOLO_COURSE_SLUG}:course`,
-          sourceType: "campus_course",
-          sourceId: BENEVOLO_COURSE_SLUG,
+          courseSlug: BENEVOLO_COURSE_SLUG,
         })
       }
     } catch {
@@ -259,6 +275,7 @@ export async function saveGotchiRun(
           idempotencyKey: `gotchi:complete:slot-1:${fermentationHour}`,
           sourceType: "gotchi_run",
           sourceId: "slot-1",
+          dailyCap: mazorcaRewards.gotchiCareDailyCap,
         })
       }
       void syncLearnerFollowup(user.id, "sembrar_save")

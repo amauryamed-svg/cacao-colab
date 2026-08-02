@@ -1,8 +1,9 @@
 # Economía interna de Mazorcas Doradas · fintech gamificada de cacao
 
-> Última actualización: 2026-08-01  
+> Última actualización: 2026-08-02  
 > Complementa `16-MAZORCAS-DORADAS.md` y `09-GAMIFICACION.md`.  
-> Principio rector: **bonificación por productividad propia** (balanced scorecard), nunca multinivel.
+> Principio rector: **bonificación por productividad propia** (balanced scorecard), nunca multinivel.  
+> Sostenibilidad: la actividad propia es un empujón con topes; **packs financian sinks** con costo real.
 
 ---
 
@@ -71,23 +72,23 @@ El rol de marketplace (`actor_roles`: farmer / chocolatier / maquilador / buyer)
 
 El rango por `lifetime_earned` (excluye packs comprados) fija el **techo semanal** del bono scorecard:
 
-| Rango | Techo MD / semana |
-|---|---|
-| Semilla | 15 |
-| Brote | 30 |
-| Labrador | 50 |
-| Guardián | 75 |
-| Maestro | 100 |
-| Heritage | 120 |
+| Rango | Techo MD / semana | MD históricas mín. |
+|---|---|---|
+| Semilla | 6 | 0 |
+| Brote | 12 | 120 |
+| Labrador | 20 | 400 |
+| Guardián | 32 | 1000 |
+| Maestro | 42 | 2200 |
+| Heritage | 55 | 5000 |
 
 ### 4.3 XP como apalancamiento (no conversión)
 
 ```
 xp_total = suma de campus_progress.xp_total + gotchi_runs.xp_total
-xp_leverage = clamp(1 + floor(xp_total / 500) * 0.05, 1.00, 1.25)
+xp_leverage = clamp(1 + floor(xp_total / 750) * 0.03, 1.00, 1.12)
 ```
 
-Ejemplo: 0 XP → ×1.00 · 500 XP → ×1.05 · 2 500 XP → ×1.25 (tope).
+Ejemplo: 0 XP → ×1.00 · 750 XP → ×1.03 · 3 000 XP → ×1.12 (tope).
 
 El XP **no baja** al liquidar el bono. Solo amplifica el reconocimiento de productividad equilibrada.
 
@@ -96,15 +97,15 @@ El XP **no baja** al liquidar el bono. Solo amplifica el reconocimiento de produ
 Por cada perspectiva `p` con actividad propia en la semana:
 
 ```
-coverage_p = min(1, eventos_p / meta_p)          # meta tipica: 3 eventos
+coverage_p = min(1, eventos_p / meta_p)          # meta tipica: 4 eventos
 score_p    = coverage_p * peso_rol_p
 balance    = media geométrica de score_p activos  # premia equilibrio, no grind de una sola métrica
-pool       = 40                                   # MD base semanal declarada
+pool       = 16                                   # MD base semanal declarada
 bonus_raw  = round(pool * balance * mastery_rank_factor * xp_leverage)
 bonus_MD   = min(techo_rango, bonus_raw)
 ```
 
-`mastery_rank_factor`: Semilla 1.00 … Heritage 1.20 (declarado en `loyalty.ts`).
+`mastery_rank_factor`: Semilla 1.00 … Heritage 1.12 (declarado en `loyalty.ts`).
 
 Se acredita una sola vez por `(profile_id, period_key)` con `reason_code = scorecard_settlement` y categoría `adjustment` (o `scorecard_bonus` tras migración).
 
@@ -123,9 +124,9 @@ Packs declarados en `apps/web/lib/loyalty.ts` (`mdBuyPacks`):
 
 | Pack | MD | Precio lista (COP) | Notas |
 |---|---|---|---|
-| Saco | 100 | 25 000 | Entrada a canjes digitales |
-| Cesta | 300 | 65 000 | Aceleraciones / cursos |
-| Cosecha | 800 | 150 000 | Bundle intensivo |
+| Saco | 80 | 28 000 | Entrada a canjes digitales (~350 COP/MD) |
+| Cesta | 220 | 75 000 | Aceleraciones / cursos |
+| Cosecha | 550 | 180 000 | Bundle intensivo |
 
 Flujo previsto (Stripe — ver `08-PAGOS.md`):
 
@@ -145,10 +146,12 @@ Beneficios Colab nativos (`fulfillment_type = colab_digital`) pueden activarse s
 
 | Servicio | Costo MD | Rango mín. | Efecto |
 |---|---|---|---|
-| Aceleración Arquitecto (acceso digital) | 300 | Brote | Entitlement campus |
-| Preview Master Chocolatier | 400 | Labrador | Entitlement campus |
-| Ruta Benevolo (capstone track) | 350 | Labrador | Entitlement campus |
-| Mentoría Dualita (cupo semanal) | 200 | Guardián | Fulfillment manual / cola |
+| Aceleración Arquitecto (acceso digital) | 500 | Brote | Entitlement campus |
+| Preview Master Chocolatier | 700 | Labrador | Entitlement campus |
+| Ruta Benevolo (capstone track) | 600 | Labrador | Entitlement campus |
+| Mentoría Dualita (cupo semanal) | 400 | Guardián | Fulfillment manual / cola |
+
+Emisión inmediata (`mazorcaRewards`): micro/misión Masters 6 MD; cierre Architect/Chocolatier 24; Benevolo 5/16; Sembrar cuidado 2 (tope 10/día care) y cosecha 10; learning tope **20 MD/día**. Completar todo el campus no debe financiar solo el catálogo de sinks.
 
 Reglas de canje (igual que `16` §5): ítem `active`, saldo, rango, `per_user_limit`, términos visibles. Débito append-only + fila en `benefit_redemptions`.
 
@@ -202,3 +205,4 @@ MD saldo ──► Canje cursos / aceleraciones / beneficios activos
 - Canje digital Colab funciona con saldo real y deja rastro en ledger + redenciones.
 - Packs no inflan rango.
 - Scorecard solo bonifica actividad propia equilibrada, amplificada por XP/maestría.
+- El grind orgánico no liquida sinks premium: packs cubren el gap financiero.

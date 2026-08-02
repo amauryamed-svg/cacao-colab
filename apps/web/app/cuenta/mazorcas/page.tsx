@@ -45,8 +45,8 @@ export default async function MazorcasPage() {
             <p className="eyebrow text-colab-yellow">Wallet · fintech gamificada de cacao</p>
             <h1>Mazorcas<br /><em>Doradas</em></h1>
             <p>
-              Gana por actividad propia, compra packs para canjear cursos/aceleraciones, y deja que el XP
-              apalanque tu bono semanal de productividad. Sin multinivel ni conversión a efectivo.
+              La actividad propia da un empujón con topes diarios; los packs financian canjes con costo real.
+              El XP apalanca un bono semanal modesto de productividad. Sin multinivel ni conversión a efectivo.
             </p>
           </div>
           <div className="golden-balance">
@@ -66,24 +66,24 @@ export default async function MazorcasPage() {
           <article>
             <span>1</span>
             <h3>Ganar</h3>
-            <p>Misiones, microlearning y cuidado acreditan MD declaradas.</p>
+            <p>MD modestas por misión/cuidado, con tope diario (learning 20 · care 10).</p>
           </article>
           <article>
             <span>2</span>
             <h3>Comprar</h3>
-            <p>Packs suman saldo para sinks; no inflan el rango.</p>
+            <p>Packs financian sinks; no inflan el rango ni sustituyen el oficio.</p>
           </article>
           <article>
             <span>3</span>
             <h3>Apalancar</h3>
-            <p>XP y maestría multiplican el bono scorecard semanal.</p>
+            <p>XP y maestría multiplican un bono scorecard semanal con techo bajo.</p>
           </article>
           <article>
             <span>4</span>
             <h3>Canjear</h3>
             <p>
-              Cursos y aceleraciones en{" "}
-              <Link href="/marketplace/beneficios">beneficios</Link>.
+              Aceleraciones y mentoría en{" "}
+              <Link href="/marketplace/beneficios">beneficios</Link> — el grind no cubre el catálogo.
             </p>
           </article>
         </section>

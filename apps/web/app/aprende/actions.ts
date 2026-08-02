@@ -76,6 +76,7 @@ export async function completeMicroLesson(slug: string): Promise<MicroLessonResu
       idempotencyKey: `micro:${lesson.slug}`,
       sourceType: "micro_lesson",
       sourceId: lesson.slug,
+      dailyCap: mazorcaRewards.learningDailyCap,
     })
     awarded = result.awarded
     const { data: wallet } = await supabase
