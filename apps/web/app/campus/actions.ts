@@ -20,16 +20,23 @@ export async function saveArchitectProgress(state: unknown, xpTotal: number, com
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return { ok: false, error: "auth_required" }
 
-  const { error } = await supabase.from("campus_progress").upsert(
-    {
-      profile_id: user.id,
-      course_slug: "arquitecto-fermentacion",
-      state: toJson(state),
-      xp_total: Math.max(0, Math.min(700, Math.round(xpTotal))),
-      completed_at: complete ? new Date().toISOString() : null,
-    },
-    { onConflict: "profile_id,course_slug" },
-  )
+  const row: {
+    profile_id: string
+    course_slug: string
+    state: Json
+    xp_total: number
+    completed_at?: string
+  } = {
+    profile_id: user.id,
+    course_slug: "arquitecto-fermentacion",
+    state: toJson(state),
+    xp_total: Math.max(0, Math.min(700, Math.round(xpTotal))),
+  }
+  if (complete) row.completed_at = new Date().toISOString()
+
+  const { error } = await supabase.from("campus_progress").upsert(row, {
+    onConflict: "profile_id,course_slug",
+  })
   if (!error) {
     try {
       const parsed = state as { completed?: unknown }
@@ -79,16 +86,23 @@ export async function saveChocolatierProgress(
   } = await supabase.auth.getUser()
   if (!user) return { ok: false, error: "auth_required" }
 
-  const { error } = await supabase.from("campus_progress").upsert(
-    {
-      profile_id: user.id,
-      course_slug: CHOCOLATIER_COURSE_SLUG,
-      state: toJson(state),
-      xp_total: Math.max(0, Math.min(chocolatierTotalXp, Math.round(xpTotal))),
-      completed_at: complete ? new Date().toISOString() : null,
-    },
-    { onConflict: "profile_id,course_slug" },
-  )
+  const row: {
+    profile_id: string
+    course_slug: string
+    state: Json
+    xp_total: number
+    completed_at?: string
+  } = {
+    profile_id: user.id,
+    course_slug: CHOCOLATIER_COURSE_SLUG,
+    state: toJson(state),
+    xp_total: Math.max(0, Math.min(chocolatierTotalXp, Math.round(xpTotal))),
+  }
+  if (complete) row.completed_at = new Date().toISOString()
+
+  const { error } = await supabase.from("campus_progress").upsert(row, {
+    onConflict: "profile_id,course_slug",
+  })
   if (!error) {
     try {
       const parsed = state as { completed?: unknown }
@@ -140,16 +154,23 @@ export async function saveBenevoloProgress(
   } = await supabase.auth.getUser()
   if (!user) return { ok: false, error: "auth_required" }
 
-  const { error } = await supabase.from("campus_progress").upsert(
-    {
-      profile_id: user.id,
-      course_slug: BENEVOLO_COURSE_SLUG,
-      state: toJson(state),
-      xp_total: Math.max(0, Math.min(benevoloTotalXp, Math.round(xpTotal))),
-      completed_at: complete ? new Date().toISOString() : null,
-    },
-    { onConflict: "profile_id,course_slug" },
-  )
+  const row: {
+    profile_id: string
+    course_slug: string
+    state: Json
+    xp_total: number
+    completed_at?: string
+  } = {
+    profile_id: user.id,
+    course_slug: BENEVOLO_COURSE_SLUG,
+    state: toJson(state),
+    xp_total: Math.max(0, Math.min(benevoloTotalXp, Math.round(xpTotal))),
+  }
+  if (complete) row.completed_at = new Date().toISOString()
+
+  const { error } = await supabase.from("campus_progress").upsert(row, {
+    onConflict: "profile_id,course_slug",
+  })
   if (!error) {
     try {
       const parsed = state as { completed?: unknown }

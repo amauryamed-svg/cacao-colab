@@ -455,6 +455,89 @@ export type Database = {
           },
         ]
       }
+      colab_forum_posts: {
+        Row: {
+          id: string
+          profile_id: string
+          kind: string
+          title: string
+          body: string
+          course_slug: string | null
+          grade: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          profile_id: string
+          kind?: string
+          title: string
+          body: string
+          course_slug?: string | null
+          grade?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          profile_id?: string
+          kind?: string
+          title?: string
+          body?: string
+          course_slug?: string | null
+          grade?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "colab_forum_posts_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      colab_forum_reactions: {
+        Row: {
+          id: string
+          post_id: string
+          profile_id: string
+          emoji: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          post_id: string
+          profile_id: string
+          emoji?: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          post_id?: string
+          profile_id?: string
+          emoji?: string
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "colab_forum_reactions_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "colab_forum_posts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "colab_forum_reactions_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       community_ranks: {
         Row: {
           description: string
