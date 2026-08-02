@@ -85,6 +85,18 @@ export const priorityVarieties: VarietyProfile[] = [
     priority: "priority",
   },
   {
+    code: "FSV 41",
+    aliases: ["FSV-41", "Fedecacao San Vicente 41", "San Vicente 41"],
+    family: "Referencia CoEx · Fedecacao San Vicente",
+    originNote:
+      "Clon Fedecacao San Vicente 41. Presente, junto a FEAR 5, en la muestra oro Cacao of Excellence (Ámsterdam, feb. 2024) de WORKAKAO / Agroguamal · Guamal Meta. No atribuir tipificación a Chocolover ni a otros nodos Colab sin declaración.",
+    whyItMatters:
+      "Complementa el protagonismo de FEAR 5 (comercial + paper) con un clon de referencia CoEx ligado al territorio Meta. Sembrar lo ofrece como escenario didáctico, no como genética inventada de marca.",
+    ecoyumaUrl: "https://tienda.ecoyuma.com.co/11-plantulas-de-cacao",
+    evidence: "public_program",
+    priority: "priority",
+  },
+  {
     code: "TCS 19",
     aliases: ["TCS-19", "TSS 19"],
     family: "Clon regional · catálogo Ecoyuma",
@@ -231,6 +243,7 @@ export const knowledgeTopics: KnowledgeTopic[] = [
       "No «certifica fincas» como un sello orgánico: celebra muestras excepcionales (Best 50 desde 2009), forma capacidad en evaluación sensorial en el CoEx R&D Lab y publica investigación/recursos sobre flavour y mercados.",
       "Sebastián Escobar Parra (fermentación, bioprocesos, flavour chemistry) conecta la tradición investigativa colombiana con esa órbita de calidad. El campus cacaotier cita su línea en biomarcadores y ventanas temporales.",
       "Lección operativa para el Colab: muestra ciega, genotipo/fermentación/secado documentados, tipicidad sin defectos. Un premio o shortlist es evidencia puntual — no DO ni permiso EUDR. Master Chocolatier entrena el lente; Benevolo no reclama la medalla.",
+      "Contexto Colombia 2024: la muestra WORKAKAO / Agroguamal (Guamal · Meta) obtuvo oro en Ámsterdam con clones Fedecacao FEAR 5 y FSV 41. En Sembrar eso informa el laboratorio del nodo Meta sin atribuir tipificación a Chocolover.",
     ],
     links: [
       {
