@@ -237,12 +237,31 @@ export async function saveGotchiRun(
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return { ok: false, error: "auth_required" }
 
+  const parsedState = state as {
+    actions?: unknown
+    phase?: unknown
+    fermentationHour?: unknown
+    genotype?: unknown
+    genotypeCode?: unknown
+    plantedAt?: unknown
+  }
+  const genotypeLabel =
+    typeof parsedState.genotype === "string" && parsedState.genotype.trim()
+      ? parsedState.genotype.trim().slice(0, 120)
+      : typeof parsedState.genotypeCode === "string"
+        ? parsedState.genotypeCode
+        : "FEAR 5"
+  const cycleKey =
+    typeof parsedState.plantedAt === "string" && parsedState.plantedAt
+      ? parsedState.plantedAt.slice(0, 19)
+      : "default"
+
   const { error } = await supabase.from("gotchi_runs").upsert(
     {
       profile_id: user.id,
       slot: 1,
       selected_node: selectedNode,
-      genotype: "FEAR 5 · Trinitario comercial",
+      genotype: genotypeLabel,
       treatment,
       state: toJson(state),
       xp_total: Math.max(0, Math.round(xpTotal)),
@@ -251,10 +270,10 @@ export async function saveGotchiRun(
   )
   if (!error) {
     try {
-      const parsed = state as { actions?: unknown; phase?: unknown; fermentationHour?: unknown }
-      const actions = typeof parsed.actions === "number" ? Math.max(0, Math.floor(parsed.actions)) : 0
-      const fermentationHour = typeof parsed.fermentationHour === "number" ? parsed.fermentationHour : 0
-      if (actions > 0) {
+      const actions =
+        typeof parsedState.actions === "number" ? Math.max(0, Math.floor(parsedState.actions)) : 0
+      const phase = parsedState.phase
+      if (actions > 0 && phase === "cultivation") {
         await awardMazorcas({
           profileId: user.id,
           amount: mazorcaRewards.gotchiCare,
@@ -266,16 +285,27 @@ export async function saveGotchiRun(
           dailyCap: mazorcaRewards.gotchiCareDailyCap,
         })
       }
-      if (parsed.phase === "complete") {
+      // Cosecha: más MD al abrir lote y al cerrar fermentación (sin tope diario de cuidado).
+      if (phase === "fermentation" || phase === "complete") {
+        await awardMazorcas({
+          profileId: user.id,
+          amount: mazorcaRewards.gotchiHarvestOpen,
+          category: "care",
+          reasonCode: "gotchi_harvest_open",
+          idempotencyKey: `gotchi:harvest-open:slot-1:${cycleKey}`,
+          sourceType: "gotchi_run",
+          sourceId: "slot-1",
+        })
+      }
+      if (phase === "complete") {
         await awardMazorcas({
           profileId: user.id,
           amount: mazorcaRewards.gotchiHarvest,
           category: "care",
           reasonCode: "gotchi_harvest_fermented",
-          idempotencyKey: `gotchi:complete:slot-1:${fermentationHour}`,
+          idempotencyKey: `gotchi:complete:slot-1:${cycleKey}`,
           sourceType: "gotchi_run",
           sourceId: "slot-1",
-          dailyCap: mazorcaRewards.gotchiCareDailyCap,
         })
       }
       void syncLearnerFollowup(user.id, "sembrar_save")

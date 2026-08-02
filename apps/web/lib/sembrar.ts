@@ -1,14 +1,12 @@
 /**
  * Sembrar · laboratorio de siembra Ecoyuma × Cacao Colab
  *
- * Plántulas y conocimiento anclado al catálogo externo Ecoyuma
- * (tienda.ecoyuma.com.co). No inventamos stock ni precios.
- * Ruta mental: agricultor que recién empieza y quiere el mejor cacao
- * posible para su finca idónea — bitácora, planeación, cartografía social
- * y agroforestería comunitaria.
+ * Eje pedagógico: modelo araucano (FEAR 5 · FTA 2 · FSA 13), genéticos
+ * Fedecacao cercanos al debate de denominación de origen.
+ * Catálogo Ecoyuma (FEAR 5 / TCS 19 / TCS 06) = vivero externo; no inventamos stock.
  */
 
-export type SembrarGenotype = "FEAR 5" | "TCS 19" | "TCS 06"
+export type SembrarGenotype = "FEAR 5" | "FTA 2" | "FSA 13" | "TCS 19" | "TCS 06"
 
 export type SembrarPlantula = {
   code: SembrarGenotype
@@ -16,7 +14,8 @@ export type SembrarPlantula = {
   family: string
   role: string
   why: string
-  ecoyumaHref: string
+  tier: "modelo_araucano" | "ecoyuma_catalog"
+  ecoyumaHref: string | null
   ecoyumaSkuNote: string
 }
 
@@ -42,14 +41,50 @@ export type CartografiaLayer = {
   prompt: string
 }
 
-/** Plántulas prioritarias Ecoyuma — mismas URLs que knowledge-base / brands */
-export const sembrarPlantulas: SembrarPlantula[] = [
+/** Trío del modelo araucano (Fedecacao · Arauquita / Tame / Saravena). */
+export const modeloAraucanoPlantulas: SembrarPlantula[] = [
+  {
+    code: "FEAR 5",
+    label: "FEAR 5 · Fedecacao Arauquita 5",
+    family: "Modelo araucano · Arauquita",
+    role: "Eje tipicidad · Benevolo · paper de fermentación",
+    why: "Híbrido trinitario seleccionado en Arauquita (2002). Notas afrutadas/cítricas/florales en literatura Fedecacao; material de referencia ante panel y mercado.",
+    tier: "modelo_araucano",
+    ecoyumaHref:
+      "https://tienda.ecoyuma.com.co/cacao-injertado-regional/45-plantula-de-cacao-fear-05.html",
+    ecoyumaSkuNote: "Plántula injertada FEAR-05 · verifica stock en Ecoyuma",
+  },
+  {
+    code: "FTA 2",
+    label: "FTA 2 · Fedecacao Tame 2",
+    family: "Modelo araucano · Tame",
+    role: "Completa el arreglo clonal araucano",
+    why: "Parte del trío galardonado (Salón du Chocolat París 2010–2011 con FEAR 5 y FSA 13). Sin stock inventado en Colab — consulta Fedecacao / viveros regionales.",
+    tier: "modelo_araucano",
+    ecoyumaHref: null,
+    ecoyumaSkuNote: "Material Fedecacao · no listado como SKU Ecoyuma en este hub",
+  },
+  {
+    code: "FSA 13",
+    label: "FSA 13 · Fedecacao Saravena 13",
+    family: "Modelo araucano · Saravena",
+    role: "Tercer genotipo del modelo integrado",
+    why: "Con FEAR 5 y FTA 2 integra el modelo araucano de Arauquita. Tipicidad de territorio, no de monoclon. No mezcles genotipos en un solo lote si quieres leer origen.",
+    tier: "modelo_araucano",
+    ecoyumaHref: null,
+    ecoyumaSkuNote: "Material Fedecacao · verifica vivero / ICA regional",
+  },
+]
+
+/** Catálogo externo Ecoyuma — contraste bajo el mismo protocolo. */
+export const ecoyumaCatalogPlantulas: SembrarPlantula[] = [
   {
     code: "FEAR 5",
     label: "FEAR 5 · Trinitario comercial Fedecacao",
     family: "Federación · prioridad cacaotier",
     role: "Eje de la finca idónea y del paper de fermentación Colab",
     why: "Material de referencia para tipicidad, Benevolo y comparación de lotes. Empieza aquí si quieres un genotipo defendible ante panel y mercado.",
+    tier: "ecoyuma_catalog",
     ecoyumaHref:
       "https://tienda.ecoyuma.com.co/cacao-injertado-regional/45-plantula-de-cacao-fear-05.html",
     ecoyumaSkuNote: "Plántula injertada FEAR-05 · verifica stock en Ecoyuma",
@@ -60,6 +95,7 @@ export const sembrarPlantulas: SembrarPlantula[] = [
     family: "Catálogo Ecoyuma (alias de campo TSS 19)",
     role: "Contraste de sanidad, rendimiento y perfil sensorial",
     why: "Diversifica la labranza frente a monoclon. Compara bajo el mismo protocolo de sombra, nutrición y fermentación.",
+    tier: "ecoyuma_catalog",
     ecoyumaHref:
       "https://tienda.ecoyuma.com.co/cacao-injertado-regional/44-plantula-de-cacao-tcs-19.html",
     ecoyumaSkuNote: "Plántula injertada TCS-19 · catálogo externo",
@@ -70,14 +106,36 @@ export const sembrarPlantulas: SembrarPlantula[] = [
     family: "Catálogo Ecoyuma (alias de campo TSS 6)",
     role: "Segunda línea de renovación genética",
     why: "Útil para parcelar ensayos: mismo manejo, distinto material. No mezcles genotipos en un solo lote de fermentación si quieres leer tipicidad.",
+    tier: "ecoyuma_catalog",
     ecoyumaHref:
       "https://tienda.ecoyuma.com.co/cacao-injertado-regional/42-plantula-de-cacao-tcs-06.html",
     ecoyumaSkuNote: "Plántula injertada TCS-06 · catálogo externo",
   },
 ]
 
+/** Unión para resolución por código (modelo araucano primero). */
+export const sembrarPlantulas: SembrarPlantula[] = [
+  ...modeloAraucanoPlantulas,
+  ...ecoyumaCatalogPlantulas.filter((p) => p.code !== "FEAR 5"),
+]
+
 export const sembrarCatalogHref =
   "https://tienda.ecoyuma.com.co/11-plantulas-de-cacao"
+
+/** Disputa DO — honesta: no hay DO registrada consolidada en este hub. */
+export const sembrarDoDispute = {
+  eyebrow: "Denominación de origen · Arauca vs Orinoquía",
+  title: "Modelo araucano cerca de la DO — sin inventar el registro",
+  body: "Fedecacao impulsó ante la SIC la figura «Cacao de la Orinoquía»; productores y la Gobernación de Arauca defienden una DO exclusiva de cacao araucano. Mientras no haya registro firme, el Colab habla de origen declarado y trazable, anclado al modelo FEAR 5 · FTA 2 · FSA 13.",
+  bullets: [
+    "Modelo araucano documentado: FEAR 5 (Arauquita), FTA 2 (Tame), FSA 13 (Saravena) — Fedecacao; reconocimiento Salón du Chocolat París 2010–2011.",
+    "Trámite Orinoquía (Fedecacao / SIC) vs. reivindicación territorial de origen exclusivo araucano — proceso abierta, no DO consolidada aquí.",
+    "Genética sola no basta: pliego, mapa, gobernanza y control de uso. Sembrar entrena lote etiquetado y fermentación comparable.",
+  ],
+  knowledgeHref: "/conocimiento/denominacion-origen",
+  fedecacaoAraucaHref: "https://www.fedecacao.com.co/post/desde-arauca-elchocolatenosune-arauquita",
+  orinoquiaTraceHref: "https://docacao.org/",
+} as const
 
 export const bitacoraPrompts: BitacoraPrompt[] = [
   {
@@ -91,8 +149,8 @@ export const bitacoraPrompts: BitacoraPrompt[] = [
     id: "b1",
     week: "Semana 1–2",
     title: "Trasplante y tutor",
-    ask: "Fecha de siembra, genotipo Ecoyuma, profundidad, tutor y riego de establecimiento.",
-    tip: "Una plántula mal marcada es un lote sin identidad. Etiqueta FEAR 5 / TCS.",
+    ask: "Fecha de siembra, genotipo (FEAR 5 / FTA 2 / FSA 13 o contraste Ecoyuma), profundidad, tutor y riego.",
+    tip: "Una plántula mal marcada es un lote sin identidad. Etiqueta el clon del modelo araucano.",
   },
   {
     id: "b2",
@@ -121,12 +179,12 @@ export const planningMilestones = [
   {
     id: "p1",
     title: "Diseñar la finca idónea",
-    body: "Define meta a 5 años: volumen, tipicidad, sombra y quién hereda el criterio.",
+    body: "Define meta a 5 años: volumen, tipicidad araucana, sombra y quién hereda el criterio.",
   },
   {
     id: "p2",
-    title: "Elegir material Ecoyuma",
-    body: "FEAR 5 como eje; TCS 19 / TCS 06 como parcelas de contraste. Verifica stock en tienda.",
+    title: "Elegir material del modelo araucano",
+    body: "FEAR 5 · FTA 2 · FSA 13 como eje; TCS 19 / TCS 06 en Ecoyuma como contraste. Verifica stock real.",
   },
   {
     id: "p3",
@@ -168,9 +226,9 @@ export const agroforestryModels: AgroforestryModel[] = [
   {
     id: "demostrativa",
     name: "Labranza demostrativa",
-    strata: ["Parcelas etiquetadas FEAR 5 / TCS", "Sendero de visita", "Punto de bitácora"],
-    intent: "Enseñar a la comunidad y a la siguiente generación con evidencia visible.",
-    forWhom: "Escuelas de campo, nodos Colab, familias que quieren legar criterio.",
+    strata: ["Parcelas FEAR 5 / FTA 2 / FSA 13", "Sendero de visita", "Punto de bitácora"],
+    intent: "Enseñar el modelo araucano con evidencia visible — sin confundir DO no registrada.",
+    forWhom: "Escuelas de campo, nodos Colab, familias que quieren heredar criterio.",
   },
   {
     id: "comunitaria-estratos",
@@ -185,7 +243,7 @@ export const cartografiaLayers: CartografiaLayer[] = [
   {
     id: "parcelas",
     name: "Parcelas y genotipos",
-    prompt: "Dibuja o describe bloques: FEAR 5 / TCS 19 / TCS 06 y año de siembra.",
+    prompt: "Dibuja o describe bloques: FEAR 5 / FTA 2 / FSA 13 (y contrastes TCS) con año de siembra.",
   },
   {
     id: "agua",
@@ -206,10 +264,26 @@ export const cartografiaLayers: CartografiaLayer[] = [
 
 export const sembrarGenerationCopy = {
   headline: "Siembra para quien hereda la tierra.",
-  body: "Sembrar no es solo meter plántula: es diseñar tipicidad, sombra y memoria. Cacao Colab acelera contigo — finca, campus y colectivo — para que la siguiente generación tenga razones de continuar con marcas globales de cacao.",
+  body: "Sembrar no es solo meter plántula: es diseñar tipicidad araucana, sombra y memoria. Cacao Colab acelera contigo — finca, campus y colectivo — para que la siguiente generación tenga razones de continuar con marcas globales de cacao.",
   ctaCollective: "Únete al colectivo Colab",
 }
 
+const GENOTYPE_CODES: readonly SembrarGenotype[] = [
+  "FEAR 5",
+  "FTA 2",
+  "FSA 13",
+  "TCS 19",
+  "TCS 06",
+]
+
+export function isSembrarGenotype(value: unknown): value is SembrarGenotype {
+  return typeof value === "string" && (GENOTYPE_CODES as readonly string[]).includes(value)
+}
+
 export function plantulaFor(code: SembrarGenotype) {
-  return sembrarPlantulas.find((p) => p.code === code) ?? sembrarPlantulas[0]
+  return (
+    modeloAraucanoPlantulas.find((p) => p.code === code) ??
+    ecoyumaCatalogPlantulas.find((p) => p.code === code) ??
+    modeloAraucanoPlantulas[0]
+  )
 }
