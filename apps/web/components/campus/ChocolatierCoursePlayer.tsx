@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react"
 import Link from "next/link"
 import DualitaCompanion from "@/components/aprende/DualitaCompanion"
+import MasteryClose from "@/components/campus/MasteryClose"
 import {
   chocolatierCompanionTips,
   chocolatierMissions,
@@ -16,7 +17,6 @@ import {
   gradeBlurb,
   gradeFromFirstTry,
   gradeLabel,
-  linkedInShareUrl,
   nextGradeHint,
   MAX_HEARTS,
   normalizeRigorState,
@@ -26,6 +26,32 @@ import {
   type RigorState,
 } from "@/lib/campus-rigor"
 
+function isCourseDone(state: RigorState) {
+  return (
+    Boolean(state.diplomaCode) ||
+    chocolatierMissions.every((mission) => state.completed.includes(mission.slug))
+  )
+}
+
+function ensureDiploma(state: RigorState, learnerName: string): RigorState {
+  if (state.diplomaCode || !isCourseDone(state)) return state
+  const ft = Object.values(state.scores).filter((s) => s.passed && s.firstTry).length
+  const g = gradeFromFirstTry(ft, chocolatierMissions.length)
+  const payload: DiplomaPayload = {
+    v: 1,
+    course: CHOCOLATIER_COURSE_SLUG,
+    title: "Master Chocolatier · barra 70 %",
+    name: learnerName,
+    issuedAt: new Date().toISOString(),
+    grade: g,
+    firstTry: ft,
+    total: chocolatierMissions.length,
+    xp: state.xp,
+    streak: state.streak,
+  }
+  return { ...state, diplomaCode: encodeDiploma(payload) }
+}
+
 export default function ChocolatierCoursePlayer({
   learnerName,
   initialState,
@@ -33,22 +59,37 @@ export default function ChocolatierCoursePlayer({
   learnerName: string
   initialState?: unknown
 }) {
-  const [progress, setProgress] = useState<RigorState>(() =>
-    refillHeartsIfNeeded(normalizeRigorState(initialState)),
-  )
-  const [missionIndex, setMissionIndex] = useState(() => {
-    const completed = normalizeRigorState(initialState).completed
-    const firstOpen = chocolatierMissions.findIndex((mission) => !completed.includes(mission.slug))
-    return firstOpen === -1 ? 0 : firstOpen
-  })
+  const boot = useMemo(() => {
+    const normalized = refillHeartsIfNeeded(normalizeRigorState(initialState))
+    const withDiploma = ensureDiploma(normalized, learnerName)
+    const done = isCourseDone(withDiploma)
+    const firstOpen = chocolatierMissions.findIndex(
+      (mission) => !withDiploma.completed.includes(mission.slug),
+    )
+    return {
+      progress: withDiploma,
+      missionIndex: done ? chocolatierMissions.length - 1 : firstOpen === -1 ? 0 : firstOpen,
+      phase: (done ? "course-complete" : "learn") as
+        | "learn"
+        | "quiz"
+        | "mission-complete"
+        | "course-complete"
+        | "out-of-hearts",
+    }
+  }, [initialState, learnerName])
+
+  const [progress, setProgress] = useState<RigorState>(boot.progress)
+  const [missionIndex, setMissionIndex] = useState(boot.missionIndex)
   const [stepIndex, setStepIndex] = useState(0)
-  const [phase, setPhase] = useState<"learn" | "quiz" | "mission-complete" | "course-complete" | "out-of-hearts">(
-    "learn",
-  )
+  const [phase, setPhase] = useState(boot.phase)
   const [selected, setSelected] = useState<string | null>(null)
   const [feedback, setFeedback] = useState("")
   const [syncStatus, setSyncStatus] = useState<"idle" | "saving" | "saved" | "local">("idle")
   const [attempting, setAttempting] = useState(false)
+  const [quizPassed, setQuizPassed] = useState(false)
+  const [pendingScore, setPendingScore] = useState<{ attempts: number; firstTry: boolean } | null>(
+    null,
+  )
 
   const mission = chocolatierMissions[missionIndex]
   const step = mission.steps[stepIndex]
@@ -57,7 +98,14 @@ export default function ChocolatierCoursePlayer({
   const grade = gradeFromFirstTry(firstTryCount, chocolatierMissions.length)
   const gradeHint = nextGradeHint(firstTryCount, chocolatierMissions.length)
   const overallProgress = Math.round(
-    ((completedCount + (phase === "learn" ? stepIndex / mission.steps.length : phase === "quiz" ? 0.85 : 0)) /
+    ((completedCount +
+      (phase === "learn"
+        ? stepIndex / mission.steps.length
+        : phase === "quiz"
+          ? 0.85
+          : phase === "course-complete"
+            ? 1
+            : 0)) /
       chocolatierMissions.length) *
       100,
   )
@@ -69,20 +117,33 @@ export default function ChocolatierCoursePlayer({
     return `${siteOrigin()}/credencial/maestro-chocolatier/${progress.diplomaCode}`
   }, [progress.diplomaCode])
 
+  const masteryMissions = chocolatierMissions.map((item) => {
+    const score = progress.scores[item.slug]
+    return {
+      slug: item.slug,
+      number: item.number,
+      title: item.title,
+      xp: item.xp,
+      passed: progress.completed.includes(item.slug),
+      firstTry: score?.firstTry,
+    }
+  })
+
   const dualitaMessage = useMemo(() => {
     if (phase === "out-of-hearts") {
       return "Sin vidas. Descansa o repasa la misión — mañana Dualita te recarga ♥. Así se entrena criterio de panel."
     }
     if (phase === "mission-complete") return mission.dualitaSuccess
     if (phase === "course-complete") {
-      return `¡Diploma ${gradeLabel(grade)}! Comparte en LinkedIn con enlace al Colab. Edutainment con rigor — no medalla inventada.`
+      return `¡Diploma ${gradeLabel(grade)}! Mira tu nota, practica en Sembrar y comparte con 🍫 en el foro Colab.`
     }
     if (phase === "quiz") {
+      if (quizPassed) return "Reto limpio. Toca Continuar para ver calificación y diploma."
       if (progress.hearts <= 1) return "Última vida. Piensa como panel ciego: tipicidad y cero defectos."
       return "Primer intento limpio sube tu nota de diploma. Rachas premian constancia."
     }
     return stepIndex === 0 ? mission.dualitaIntro : step.fieldAction
-  }, [phase, mission, progress.hearts, stepIndex, step, grade])
+  }, [phase, mission, progress.hearts, stepIndex, step, grade, quizPassed])
 
   function persist(next: RigorState, complete = false) {
     try {
@@ -91,7 +152,7 @@ export default function ChocolatierCoursePlayer({
       // remoto
     }
     setSyncStatus("saving")
-    void saveChocolatierProgress(next, next.xp, complete).then((result) => {
+    void saveChocolatierProgress(next, next.xp, complete || isCourseDone(next)).then((result) => {
       setSyncStatus(result.ok ? "saved" : "local")
     })
   }
@@ -106,8 +167,39 @@ export default function ChocolatierCoursePlayer({
         setPhase("out-of-hearts")
         return
       }
+      setQuizPassed(false)
+      setPendingScore(null)
       setPhase("quiz")
     }
+  }
+
+  function finishAfterCorrect(score: { attempts: number; firstTry: boolean }) {
+    const alreadyComplete = progress.completed.includes(mission.slug)
+    let next = bumpStreak(refillHeartsIfNeeded(progress))
+    next = {
+      ...next,
+      completed: alreadyComplete ? next.completed : [...next.completed, mission.slug],
+      xp: alreadyComplete ? next.xp : next.xp + mission.xp,
+      scores: {
+        ...next.scores,
+        [mission.slug]: {
+          attempts: score.attempts,
+          passed: true,
+          firstTry: score.firstTry || Boolean(next.scores[mission.slug]?.firstTry),
+        },
+      },
+    }
+
+    const allDone = next.completed.length >= chocolatierMissions.length
+    if (allDone) next = ensureDiploma(next, learnerName)
+
+    setProgress(next)
+    setQuizPassed(false)
+    setPendingScore(null)
+    setSelected(null)
+    setFeedback("")
+    setPhase(allDone ? "course-complete" : "mission-complete")
+    persist(next, allDone)
   }
 
   function answer(optionId: string) {
@@ -123,10 +215,18 @@ export default function ChocolatierCoursePlayer({
     const firstTry = attempts === 1 && option.correct
 
     if (option.correct) {
+      const score = { attempts, firstTry }
+      setQuizPassed(true)
+      setPendingScore(score)
       window.setTimeout(() => {
-        completeMission({ attempts, firstTry })
-        setAttempting(false)
-      }, 1100)
+        try {
+          finishAfterCorrect(score)
+        } catch {
+          setFeedback((prev) => `${prev} · Toca Continuar para cerrar la misión.`)
+        } finally {
+          setAttempting(false)
+        }
+      }, 900)
       return
     }
 
@@ -149,70 +249,44 @@ export default function ChocolatierCoursePlayer({
     }, 1400)
   }
 
-  function completeMission(score: { attempts: number; firstTry: boolean }) {
-    const alreadyComplete = progress.completed.includes(mission.slug)
-    let next = bumpStreak(refillHeartsIfNeeded(progress))
-    next = {
-      ...next,
-      completed: alreadyComplete ? next.completed : [...next.completed, mission.slug],
-      xp: alreadyComplete ? next.xp : next.xp + mission.xp,
-      scores: {
-        ...next.scores,
-        [mission.slug]: {
-          attempts: score.attempts,
-          passed: true,
-          firstTry: score.firstTry || Boolean(next.scores[mission.slug]?.firstTry),
-        },
-      },
-    }
-
-    const allDone = next.completed.length === chocolatierMissions.length
-    if (allDone && !next.diplomaCode) {
-      const ft = Object.values(next.scores).filter((s) => s.passed && s.firstTry).length
-      const g = gradeFromFirstTry(ft, chocolatierMissions.length)
-      const payload: DiplomaPayload = {
-        v: 1,
-        course: CHOCOLATIER_COURSE_SLUG,
-        title: "Master Chocolatier · barra 70 %",
-        name: learnerName,
-        issuedAt: new Date().toISOString(),
-        grade: g,
-        firstTry: ft,
-        total: chocolatierMissions.length,
-        xp: next.xp,
-        streak: next.streak,
-      }
-      next = { ...next, diplomaCode: encodeDiploma(payload) }
-    }
-
-    setProgress(next)
-    setPhase(allDone ? "course-complete" : "mission-complete")
-    persist(next, allDone)
-  }
-
   function reviewMission() {
     setStepIndex(0)
     setSelected(null)
     setFeedback("")
+    setQuizPassed(false)
+    setPendingScore(null)
     setPhase("learn")
   }
 
   function continueCampaign() {
+    if (isCourseDone(progress)) {
+      setPhase("course-complete")
+      return
+    }
     const nextIndex = Math.min(missionIndex + 1, chocolatierMissions.length - 1)
     setMissionIndex(nextIndex)
     setStepIndex(0)
     setSelected(null)
     setFeedback("")
+    setQuizPassed(false)
+    setPendingScore(null)
     setPhase("learn")
   }
 
   function selectMission(index: number) {
     const unlocked = index === 0 || progress.completed.includes(chocolatierMissions[index - 1].slug)
     if (!unlocked) return
+    if (isCourseDone(progress) && index === chocolatierMissions.length - 1) {
+      setMissionIndex(index)
+      setPhase("course-complete")
+      return
+    }
     setMissionIndex(index)
     setStepIndex(0)
     setSelected(null)
     setFeedback("")
+    setQuizPassed(false)
+    setPendingScore(null)
     setPhase(progress.completed.includes(chocolatierMissions[index].slug) ? "mission-complete" : "learn")
   }
 
@@ -248,6 +322,15 @@ export default function ChocolatierCoursePlayer({
           <p className="chocolatier-grade-pill">{gradeLabel(grade)}</p>
           <p className="architect-cert-blurb">{gradeBlurb(grade)}</p>
           {gradeHint && <p className="architect-cert-hint">{gradeHint}</p>}
+          {isCourseDone(progress) && (
+            <button
+              type="button"
+              className="chocolatier-open-close"
+              onClick={() => setPhase("course-complete")}
+            >
+              Ver calificación y diploma →
+            </button>
+          )}
           <div className="architect-mission-rail">
             {chocolatierMissions.map((item, index) => {
               const done = progress.completed.includes(item.slug)
@@ -285,6 +368,9 @@ export default function ChocolatierCoursePlayer({
           </p>
           <Link href="/cuenta" className="chocolatier-sister-link">
             Ver progreso en Mi cuenta →
+          </Link>
+          <Link href="/colab" className="chocolatier-sister-link">
+            Foro Colab · compartir 🍫 →
           </Link>
           <Link href="/benevolo" className="chocolatier-sister-link">
             Marca hermana · Benevolo duja →
@@ -363,6 +449,17 @@ export default function ChocolatierCoursePlayer({
                 })}
               </div>
               {feedback && <p className="architect-feedback">{feedback}</p>}
+              {quizPassed && pendingScore && (
+                <button
+                  type="button"
+                  className="architect-next mt-6"
+                  onClick={() => finishAfterCorrect(pendingScore)}
+                >
+                  {missionIndex >= chocolatierMissions.length - 1
+                    ? "Ver calificación y diploma →"
+                    : "Continuar →"}
+                </button>
+              )}
             </article>
           ) : phase === "mission-complete" ? (
             <div className="architect-complete">
@@ -370,44 +467,36 @@ export default function ChocolatierCoursePlayer({
               <p className="eyebrow text-[#E8C9A0]">Misión completada</p>
               <h2>+{mission.xp} XP</h2>
               <p>{mission.dualitaSuccess}</p>
-              {missionIndex < chocolatierMissions.length - 1 && (
-                <button type="button" onClick={continueCampaign}>
-                  Siguiente misión →
+              {isCourseDone(progress) ? (
+                <button type="button" onClick={() => setPhase("course-complete")}>
+                  Ver calificación y diploma →
                 </button>
+              ) : (
+                missionIndex < chocolatierMissions.length - 1 && (
+                  <button type="button" onClick={continueCampaign}>
+                    Siguiente misión →
+                  </button>
+                )
               )}
             </div>
           ) : (
-            <div className="architect-complete">
-              <span>◈</span>
-              <p className="eyebrow text-[#FF6A3D]">Diploma digital desbloqueado</p>
-              <h2>Master Chocolatier</h2>
-              <p className="chocolatier-grade-pill mx-auto">{gradeLabel(grade)}</p>
-              <p>
-                Barra 70 % · {chocolatierTotalXp} XP · racha {progress.streak} · primer intento{" "}
-                {firstTryCount}/{chocolatierMissions.length}. Credencial Colab estilo Coursera con onda
-                edutainment — no medalla CoEx inventada.
-              </p>
-              <div className="flex flex-wrap justify-center gap-3">
-                {diplomaUrl && (
-                  <>
-                    <a href={diplomaUrl} target="_blank" rel="noopener noreferrer">
-                      Ver diploma →
-                    </a>
-                    <a
-                      href={linkedInShareUrl(diplomaUrl)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="!bg-[#0A66C2] !text-white"
-                    >
-                      Compartir en LinkedIn →
-                    </a>
-                  </>
-                )}
-                <Link href="/aprende/chocolatier">Syllabus</Link>
-                <Link href="/benevolo">Marca Benevolo</Link>
-                <Link href="/unete">Colectivo Colab</Link>
-              </div>
-            </div>
+            <MasteryClose
+              courseTitle="Master Chocolatier"
+              learnerName={learnerName}
+              grade={grade}
+              xp={progress.xp}
+              streak={progress.streak}
+              hearts={progress.hearts}
+              firstTry={firstTryCount}
+              total={chocolatierMissions.length}
+              missions={masteryMissions}
+              diplomaUrl={diplomaUrl}
+              practiceHref="/juega"
+              practiceLabel="Practicar en Sembrar →"
+              forumHref={`/colab?share=maestro-chocolatier&grade=${grade}`}
+              sisterHref="/benevolo"
+              sisterLabel="Marca Benevolo →"
+            />
           )}
         </main>
       </div>

@@ -50,12 +50,22 @@ export default function ArchitectCoursePlayer({
   })
   const [missionIndex, setMissionIndex] = useState(() => {
     const completed = normalizeRigorState(initialState).completed
+    const done =
+      Boolean(normalizeRigorState(initialState).diplomaCode) ||
+      architectMissions.every((m) => completed.includes(m.slug))
+    if (done) return architectMissions.length - 1
     const firstOpen = architectMissions.findIndex((mission) => !completed.includes(mission.slug))
     return firstOpen === -1 ? 0 : firstOpen
   })
   const [stepIndex, setStepIndex] = useState(0)
   const [phase, setPhase] = useState<"learn" | "quiz" | "mission-complete" | "course-complete" | "out-of-hearts">(
-    "learn",
+    () => {
+      const state = normalizeRigorState(initialState)
+      const done =
+        Boolean(state.diplomaCode) ||
+        architectMissions.every((m) => state.completed.includes(m.slug))
+      return done ? "course-complete" : "learn"
+    },
   )
   const [selected, setSelected] = useState<string | null>(null)
   const [feedback, setFeedback] = useState("")
@@ -409,6 +419,9 @@ export default function ArchitectCoursePlayer({
                 )}
                 <Link href="/cuenta">Mi cuenta</Link>
                 <Link href="/juega">Aplicar en Sembrar →</Link>
+                <Link href={`/colab?share=arquitecto-fermentacion&grade=${grade}`}>
+                  Foro Colab 🍫 →
+                </Link>
               </div>
             </div>
           )}

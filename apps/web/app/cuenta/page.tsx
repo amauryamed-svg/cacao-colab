@@ -69,6 +69,12 @@ export default async function CuentaPage() {
       cta: "Continuar aprendizaje",
     },
     {
+      title: "Foro Colab",
+      body: "Anuncios, avances de maestría y likes 🍫 entre nodos.",
+      href: "/colab",
+      cta: "Abrir foro",
+    },
+    {
       title: "Sembrar",
       body: "Plántulas Ecoyuma, bitácora y cuidado de labranza.",
       href: "/juega",

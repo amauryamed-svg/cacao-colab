@@ -1786,6 +1786,87 @@ body {
   color: #E8C9A0;
 }
 
+.chocolatier-open-close {
+  background: rgba(255, 106, 61, .16);
+  border: 1px solid rgba(255, 106, 61, .35);
+  border-radius: .7rem;
+  color: #ffb39a;
+  display: block;
+  font-size: .68rem;
+  font-weight: 800;
+  margin: .85rem 0 1rem;
+  padding: .55rem .75rem;
+  text-align: left;
+  width: 100%;
+}
+.chocolatier-open-close:hover { color: #fff; border-color: rgba(255, 106, 61, .55); }
+
+.mastery-close { max-width: 42rem; }
+.mastery-close-blurb {
+  color: rgba(247, 241, 238, .55) !important;
+  font-size: .78rem !important;
+}
+.mastery-close-stats {
+  display: grid;
+  gap: .55rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 1.4rem auto 0;
+  max-width: 28rem;
+  text-align: left;
+}
+.mastery-close-stats dt {
+  color: rgba(247, 241, 238, .35);
+  font-size: .52rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.mastery-close-stats dd {
+  color: #f7f1ee;
+  font-size: .78rem;
+  font-weight: 800;
+  margin-top: .15rem;
+}
+.mastery-close-missions {
+  display: grid;
+  gap: .45rem;
+  list-style: none;
+  margin: 1.4rem auto 0;
+  max-width: 30rem;
+  padding: 0;
+  text-align: left;
+}
+.mastery-close-missions li {
+  align-items: center;
+  background: rgba(247, 241, 238, .03);
+  border: 1px solid rgba(247, 241, 238, .08);
+  border-radius: .7rem;
+  display: flex;
+  gap: .7rem;
+  padding: .55rem .7rem;
+}
+.mastery-close-missions li > span:first-child {
+  color: #f2c830;
+  font-size: 1rem;
+  font-weight: 900;
+  width: 1.2rem;
+}
+.mastery-close-missions strong {
+  color: #f7f1ee;
+  display: block;
+  font-size: .72rem;
+}
+.mastery-close-missions small {
+  color: rgba(247, 241, 238, .4);
+  font-size: .58rem;
+}
+.mastery-close-invite {
+  color: rgba(247, 241, 238, .55) !important;
+  margin-top: 1.35rem !important;
+  max-width: 32rem !important;
+}
+.mastery-close-actions { margin-top: 1.25rem; }
+
 .architect-complete {
   color: rgba(247, 241, 238, .58);
   max-width: 38rem;
@@ -5304,4 +5385,202 @@ body {
 
 @media (max-width: 960px) {
   .cuenta-course-grid { grid-template-columns: 1fr; }
+  .mastery-close-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Foro interno Colab */
+.colab-forum {
+  background:
+    radial-gradient(ellipse 70% 50% at 10% 0%, rgba(242, 200, 48, .08), transparent 55%),
+    linear-gradient(180deg, #142010, #0e160c 40%, #100c09);
+  color: #f7f1ee;
+  min-height: 100vh;
+  padding: 2rem 1.25rem 4rem;
+}
+.colab-forum-inner { margin: 0 auto; max-width: 64rem; }
+.colab-forum-hero { margin: 1.25rem 0 2rem; }
+.colab-forum-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 900;
+  line-height: .95;
+  margin-top: .4rem;
+}
+.colab-forum-hero h1 em { color: #f2c830; font-style: italic; font-weight: 400; }
+.colab-forum-hero p {
+  color: rgba(247, 241, 238, .5);
+  font-size: .8rem;
+  line-height: 1.55;
+  margin-top: .85rem;
+  max-width: 36rem;
+}
+.colab-forum-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: minmax(0, 22rem) minmax(0, 1fr);
+}
+.colab-forum-composer {
+  background: rgba(247, 241, 238, .03);
+  border: 1px solid rgba(242, 200, 48, .18);
+  border-radius: 1.2rem;
+  display: grid;
+  gap: .7rem;
+  height: fit-content;
+  padding: 1.25rem;
+  position: sticky;
+  top: 1rem;
+}
+.colab-forum-composer h2 {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+.colab-forum-preset {
+  color: rgba(242, 200, 48, .75);
+  font-size: .65rem;
+  font-weight: 700;
+}
+.colab-forum-kinds { display: flex; flex-wrap: wrap; gap: .4rem; }
+.colab-forum-kinds button {
+  background: rgba(0, 0, 0, .2);
+  border: 1px solid rgba(247, 241, 238, .12);
+  border-radius: 999px;
+  color: rgba(247, 241, 238, .55);
+  font-size: .62rem;
+  font-weight: 800;
+  padding: .35rem .7rem;
+}
+.colab-forum-kinds button.active {
+  background: rgba(242, 200, 48, .16);
+  border-color: rgba(242, 200, 48, .4);
+  color: #f2c830;
+}
+.colab-forum-composer label {
+  display: grid;
+  gap: .3rem;
+  color: rgba(247, 241, 238, .4);
+  font-size: .58rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.colab-forum-composer input,
+.colab-forum-composer textarea {
+  background: rgba(0, 0, 0, .28);
+  border: 1px solid rgba(247, 241, 238, .12);
+  border-radius: .55rem;
+  color: #f7f1ee;
+  font-size: .78rem;
+  padding: .55rem .7rem;
+  resize: vertical;
+}
+.colab-forum-composer input:focus,
+.colab-forum-composer textarea:focus {
+  border-color: rgba(242, 200, 48, .4);
+  outline: 1px solid rgba(242, 200, 48, .35);
+}
+.colab-forum-error { color: #ff8f7a; font-size: .68rem; }
+.colab-forum-submit {
+  background: #f2c830;
+  border: 0;
+  border-radius: .7rem;
+  color: #142010;
+  font-size: .75rem;
+  font-weight: 900;
+  justify-self: start;
+  padding: .65rem 1rem;
+}
+.colab-forum-submit:disabled { opacity: .6; }
+.colab-forum-feed {
+  display: grid;
+  gap: .9rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.colab-forum-card {
+  background: rgba(247, 241, 238, .03);
+  border: 1px solid rgba(247, 241, 238, .08);
+  border-radius: 1.1rem;
+  padding: 1.1rem 1.2rem;
+}
+.colab-forum-card.kind-announcement {
+  border-color: rgba(242, 200, 48, .28);
+  background: rgba(242, 200, 48, .05);
+}
+.colab-forum-card header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  gap: .75rem;
+}
+.colab-forum-kind {
+  color: #f2c830;
+  font-size: .55rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.colab-forum-card time {
+  color: rgba(247, 241, 238, .3);
+  font-size: .55rem;
+}
+.colab-forum-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin-top: .55rem;
+}
+.colab-forum-author {
+  color: rgba(247, 241, 238, .45);
+  font-size: .65rem;
+  font-weight: 700;
+  margin-top: .25rem;
+}
+.colab-forum-body {
+  color: rgba(247, 241, 238, .62);
+  font-size: .78rem;
+  line-height: 1.55;
+  margin-top: .7rem;
+  white-space: pre-wrap;
+}
+.colab-forum-reacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin-top: 1rem;
+}
+.colab-forum-reacts button {
+  align-items: center;
+  background: rgba(0, 0, 0, .22);
+  border: 1px solid rgba(247, 241, 238, .1);
+  border-radius: 999px;
+  color: #f7f1ee;
+  display: inline-flex;
+  font-size: .95rem;
+  gap: .3rem;
+  padding: .25rem .55rem;
+}
+.colab-forum-reacts button.mine {
+  background: rgba(242, 200, 48, .14);
+  border-color: rgba(242, 200, 48, .35);
+}
+.colab-forum-reacts em {
+  color: rgba(247, 241, 238, .55);
+  font-size: .62rem;
+  font-style: normal;
+  font-weight: 800;
+}
+.colab-forum-empty {
+  background: rgba(247, 241, 238, .03);
+  border: 1px dashed rgba(242, 200, 48, .25);
+  border-radius: 1.1rem;
+  color: rgba(247, 241, 238, .5);
+  font-size: .75rem;
+  padding: 1.4rem;
+}
+@media (max-width: 900px) {
+  .colab-forum-grid { grid-template-columns: 1fr; }
+  .colab-forum-composer { position: static; }
 }
