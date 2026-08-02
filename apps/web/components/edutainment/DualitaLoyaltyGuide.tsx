@@ -6,27 +6,31 @@ import Link from "next/link"
 const paths = {
   aprender: {
     label: "Quiero aprender",
-    response: "Empieza con Microlearning CAÚA o una misión Master. El XP mide competencia; las MD son un empujón con tope diario — no financian solas el catálogo. Para sinks grandes, combina cultivo con packs.",
+    response:
+      "Empieza por Dualita: micro CAÚA + MOOC Zurych. Esas MD históricas suben tu rango y abren Masters (Arquitecto = Brote; Chocolatier/Benevolo = Labrador). No canjees saldo por acceso.",
     href: "/aprende",
-    cta: "Abrir campus",
+    cta: "Abrir Dualita",
   },
   cuidar: {
     label: "Quiero Sembrar mi labranza",
-    response: "Sembrar reconoce cuidado y bitácora con tope diario. Equilibra cuidado con aprendizaje: el scorecard semanal premia productividad propia, no reclutamiento.",
+    response:
+      "Sembrar da MD por cuidado y cosecha (con topes). Junto a Dualita construyes el rango que abre Masters. El scorecard premia productividad propia, no reclutamiento.",
     href: "/juega",
     cta: "Ir a la labranza",
   },
   canjear: {
-    label: "Quiero canjear cursos",
-    response: "Los canjes activos piden saldo y rango. Cultivar da MD modestas; los packs cubren el resto sin inflar el rango. Así la economía del Colab se sostiene.",
-    href: "/cuenta/mazorcas",
-    cta: "Abrir wallet MD",
-  },
-  marcas: {
-    label: "Quiero explorar marcas",
-    response: "Puedo comparar beneficios por marca. Los sinks Colab digitales ya pueden canjearse; conectores ecommerce de marca siguen inactivos hasta acuerdo.",
+    label: "Quiero canjear mentoría",
+    response:
+      "Los Masters no se compran. El catálogo activo es para sinks reales (p. ej. mentoría Dualita). Cultiva rango en Sembrar + Dualita; el saldo paga mentoría, no la llave del campus.",
     href: "/marketplace/beneficios",
     cta: "Ver catálogo MD",
+  },
+  marcas: {
+    label: "Quiero ver mi rango",
+    response:
+      "Tu rango mira MD históricas (no packs). Abre wallet y cuenta: ahí ves qué Master ya puedes empezar.",
+    href: "/cuenta/mazorcas",
+    cta: "Abrir wallet MD",
   },
 } as const
 

@@ -5252,6 +5252,11 @@ body {
   text-transform: uppercase;
 }
 
+.cuenta-course-md-badge.is-locked {
+  background: rgba(247, 241, 238, .08);
+  color: rgba(247, 241, 238, .55);
+}
+
 .loyalty-canjes {
   background: rgba(247, 241, 238, .03);
   border: 1px solid rgba(242, 200, 48, .18);

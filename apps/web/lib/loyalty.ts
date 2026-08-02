@@ -109,24 +109,27 @@ export const scorecardConfig = {
 // Espejo de seeds: planned (marcas) + active Colab digital (migración scorecard).
 export const plannedBenefits = [
   {
-    brandKey: "cacaotier", brand: "cacaotier", title: "Aceleración Arquitecto de Fermentación",
-    cost: 500, rank: "Brote", status: "active", connector: "Colab nativo",
-    description: "Acceso digital a la ruta acelerada de Arquitecto (misiones Dualita + bitácora).",
+    brandKey: "cacaotier", brand: "cacaotier", title: "Aceleración Arquitecto (retirada)",
+    cost: 500, rank: "Brote", status: "retired", connector: "Colab nativo",
+    description:
+      "Retirada: Arquitecto se abre con rango Brote. Gana MD en Sembrar y Dualita — no canjees saldo por acceso.",
   },
   {
-    brandKey: "cacaotier", brand: "cacaotier", title: "Preview Master Chocolatier",
-    cost: 700, rank: "Labrador del cacao", status: "active", connector: "Colab nativo",
-    description: "Desbloqueo de misiones iniciales del track Master Chocolatier con Dualita.",
+    brandKey: "cacaotier", brand: "cacaotier", title: "Preview Master Chocolatier (retirada)",
+    cost: 700, rank: "Labrador del cacao", status: "retired", connector: "Colab nativo",
+    description:
+      "Retirada: Chocolatier se abre con rango Labrador. El canje ya no vende la llave del campus.",
   },
   {
-    brandKey: "cacaotier", brand: "cacaotier", title: "Ruta Benevolo (capstone)",
-    cost: 600, rank: "Labrador del cacao", status: "active", connector: "Colab nativo",
-    description: "Track digital del capstone Chocolate Benevolo conectado a Master Chocolatier.",
+    brandKey: "cacaotier", brand: "cacaotier", title: "Ruta Benevolo (retirada)",
+    cost: 600, rank: "Labrador del cacao", status: "retired", connector: "Colab nativo",
+    description: "Retirada: Benevolo se abre con rango Labrador vía MD históricas, no por saldo.",
   },
   {
     brandKey: "cacaotier", brand: "cacaotier", title: "Cupo mentoría Dualita (semana)",
     cost: 400, rank: "Guardián de origen", status: "active", connector: "Colab nativo",
-    description: "Un cupo semanal de acompañamiento Dualita para dudas de fermentación o producto.",
+    description:
+      "Acompañamiento Dualita (no es llave de Master). Los Masters se abren por rango; este sink es mentoría real.",
   },
   {
     brandKey: "cacaotier", brand: "cacaotier", title: "Reto avanzado de Arquitecto",
