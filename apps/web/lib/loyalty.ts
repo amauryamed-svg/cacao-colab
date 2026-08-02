@@ -1,25 +1,30 @@
 export const communityRanks = [
   { slug: "semilla", name: "Semilla", icon: "●", threshold: 0, benefit: "Acceso a retos abiertos" },
-  { slug: "brote", name: "Brote", icon: "♧", threshold: 100, benefit: "Bitácoras y rutas de aprendizaje" },
-  { slug: "labrador", name: "Labrador del cacao", icon: "♣", threshold: 300, benefit: "Retos territoriales prioritarios" },
-  { slug: "guardian", name: "Guardián de origen", icon: "◆", threshold: 700, benefit: "Círculos de comunidad y cata" },
-  { slug: "maestro", name: "Maestro Fine-Flavor", icon: "✦", threshold: 1500, benefit: "Beneficios de aliados habilitados" },
-  { slug: "heritage", name: "Heritage", icon: "◉", threshold: 3000, benefit: "Mentoría y transferencia generacional" },
+  { slug: "brote", name: "Brote", icon: "♧", threshold: 120, benefit: "Bitácoras y rutas de aprendizaje" },
+  { slug: "labrador", name: "Labrador del cacao", icon: "♣", threshold: 400, benefit: "Retos territoriales prioritarios" },
+  { slug: "guardian", name: "Guardián de origen", icon: "◆", threshold: 1000, benefit: "Círculos de comunidad y cata" },
+  { slug: "maestro", name: "Maestro Fine-Flavor", icon: "✦", threshold: 2200, benefit: "Beneficios de aliados habilitados" },
+  { slug: "heritage", name: "Heritage", icon: "◉", threshold: 5000, benefit: "Mentoría y transferencia generacional" },
 ] as const
 
 // Las Mazorcas Doradas no son XP. El XP desbloquea contenido y apalanca el
 // scorecard; MD es saldo de fidelidad con montos declarados aquí.
+// Principio de sostenibilidad: la actividad propia da un empujón; los packs
+// financian sinks con costo real (mentorías, aceleraciones).
 export const mazorcaRewards = {
-  microLesson: 40,
-  architectMission: 30,
-  architectCourseComplete: 120,
-  chocolatierMission: 30,
-  chocolatierCourseComplete: 120,
-  benevoloMission: 25,
-  benevoloCourseComplete: 80,
-  gotchiCare: 5,
-  gotchiHarvest: 60,
-  gotchiCareDailyCap: 50,
+  microLesson: 6,
+  architectMission: 6,
+  architectCourseComplete: 24,
+  chocolatierMission: 6,
+  chocolatierCourseComplete: 24,
+  benevoloMission: 5,
+  benevoloCourseComplete: 16,
+  gotchiCare: 2,
+  gotchiHarvest: 10,
+  /** Tope MD/día categoría care (Sembrar). */
+  gotchiCareDailyCap: 10,
+  /** Tope MD/día categoría learning (campus + micro). */
+  learningDailyCap: 20,
 } as const
 
 /** Packs de compra de MD. Crédito solo tras pago verificado; no suman a rango. */
@@ -27,22 +32,22 @@ export const mdBuyPacks = [
   {
     slug: "saco",
     name: "Saco",
-    md: 100,
-    priceCop: 25_000,
+    md: 80,
+    priceCop: 28_000,
     blurb: "Entrada a canjes digitales del Colab.",
   },
   {
     slug: "cesta",
     name: "Cesta",
-    md: 300,
-    priceCop: 65_000,
+    md: 220,
+    priceCop: 75_000,
     blurb: "Ideal para una aceleración o preview de curso.",
   },
   {
     slug: "cosecha",
     name: "Cosecha",
-    md: 800,
-    priceCop: 150_000,
+    md: 550,
+    priceCop: 180_000,
     blurb: "Bundle intensivo: varios sinks digitales.",
   },
 ] as const
@@ -53,9 +58,9 @@ export type EconomyRole = "farmer" | "chocolatier" | "maquilador" | "buyer" | "l
 /** Balanced scorecard: bonificación por productividad propia, sin multinivel. */
 export const scorecardConfig = {
   /** MD base semanal antes de pesos, equilibrio, maestría y XP. */
-  weeklyPoolMd: 40,
+  weeklyPoolMd: 16,
   /** Eventos propios por perspectiva para coverage = 1. */
-  targetEventsPerPerspective: 3,
+  targetEventsPerPerspective: 4,
   perspectives: ["learning", "care", "community", "verified_purchase"] as const satisfies readonly ScorecardPerspective[],
   perspectiveLabels: {
     learning: "Aprendizaje",
@@ -72,78 +77,78 @@ export const scorecardConfig = {
   } satisfies Record<EconomyRole, Record<ScorecardPerspective, number>>,
   /** Techo MD / semana por rango (slug). */
   weeklyCeilingByRank: {
-    semilla: 15,
-    brote: 30,
-    labrador: 50,
-    guardian: 75,
-    maestro: 100,
-    heritage: 120,
+    semilla: 6,
+    brote: 12,
+    labrador: 20,
+    guardian: 32,
+    maestro: 42,
+    heritage: 55,
   } satisfies Record<(typeof communityRanks)[number]["slug"], number>,
   /** Factor de maestría por rango (amplifica el pool). */
   masteryFactorByRank: {
     semilla: 1.0,
-    brote: 1.05,
-    labrador: 1.1,
-    guardian: 1.12,
-    maestro: 1.16,
-    heritage: 1.2,
+    brote: 1.03,
+    labrador: 1.06,
+    guardian: 1.08,
+    maestro: 1.1,
+    heritage: 1.12,
   } satisfies Record<(typeof communityRanks)[number]["slug"], number>,
-  /** Cada 500 XP suma +0.05 al leverage, tope 1.25. */
-  xpStep: 500,
-  xpLeverageStep: 0.05,
-  xpLeverageMax: 1.25,
+  /** Cada 750 XP suma +0.03 al leverage, tope 1.12. */
+  xpStep: 750,
+  xpLeverageStep: 0.03,
+  xpLeverageMax: 1.12,
 } as const
 
 // Espejo de seeds: planned (marcas) + active Colab digital (migración scorecard).
 export const plannedBenefits = [
   {
     brandKey: "cacaotier", brand: "cacaotier", title: "Aceleración Arquitecto de Fermentación",
-    cost: 300, rank: "Brote", status: "active", connector: "Colab nativo",
+    cost: 500, rank: "Brote", status: "active", connector: "Colab nativo",
     description: "Acceso digital a la ruta acelerada de Arquitecto (misiones Dualita + bitácora).",
   },
   {
     brandKey: "cacaotier", brand: "cacaotier", title: "Preview Master Chocolatier",
-    cost: 400, rank: "Labrador del cacao", status: "active", connector: "Colab nativo",
+    cost: 700, rank: "Labrador del cacao", status: "active", connector: "Colab nativo",
     description: "Desbloqueo de misiones iniciales del track Master Chocolatier con Dualita.",
   },
   {
     brandKey: "cacaotier", brand: "cacaotier", title: "Ruta Benevolo (capstone)",
-    cost: 350, rank: "Labrador del cacao", status: "active", connector: "Colab nativo",
+    cost: 600, rank: "Labrador del cacao", status: "active", connector: "Colab nativo",
     description: "Track digital del capstone Chocolate Benevolo conectado a Master Chocolatier.",
   },
   {
     brandKey: "cacaotier", brand: "cacaotier", title: "Cupo mentoría Dualita (semana)",
-    cost: 200, rank: "Guardián de origen", status: "active", connector: "Colab nativo",
+    cost: 400, rank: "Guardián de origen", status: "active", connector: "Colab nativo",
     description: "Un cupo semanal de acompañamiento Dualita para dudas de fermentación o producto.",
   },
   {
     brandKey: "cacaotier", brand: "cacaotier", title: "Reto avanzado de Arquitecto",
-    cost: 250, rank: "Brote", status: "planned", connector: "Colab nativo",
+    cost: 450, rank: "Brote", status: "planned", connector: "Colab nativo",
     description: "Misión digital adicional con Dualita. Activación pendiente de contenido y términos.",
   },
   {
     brandKey: "zurych", brand: "Zurych", title: "Beneficio en ecommerce Zurych",
-    cost: 500, rank: "Guardián de origen", status: "planned", connector: "Sin conector",
+    cost: 800, rank: "Guardián de origen", status: "planned", connector: "Sin conector",
     description: "Canje por acordar con la marca. No existe cupón ni integración activa todavía.",
   },
   {
     brandKey: "la-querencia", brand: "La Querencia", title: "Experiencia del nodo Arbeláez",
-    cost: 450, rank: "Labrador del cacao", status: "planned", connector: "Fulfillment manual",
+    cost: 700, rank: "Labrador del cacao", status: "planned", connector: "Fulfillment manual",
     description: "Experiencia territorial propuesta; disponibilidad y alcance requieren confirmación del nodo.",
   },
   {
     brandKey: "la-lomita", brand: "La Lomita", title: "Reto de labranza Paicol",
-    cost: 350, rank: "Labrador del cacao", status: "planned", connector: "Fulfillment manual",
+    cost: 550, rank: "Labrador del cacao", status: "planned", connector: "Fulfillment manual",
     description: "Reto comunitario planeado, sujeto a acuerdo y capacidad de acompañamiento.",
   },
   {
     brandKey: "quara", brand: "Quara Cacao", title: "Ruta de origen Tame",
-    cost: 450, rank: "Guardián de origen", status: "planned", connector: "Sin conector",
+    cost: 700, rank: "Guardián de origen", status: "planned", connector: "Sin conector",
     description: "Beneficio territorial propuesto. No representa inventario ni promesa comercial.",
   },
   {
     brandKey: "chocolover", brand: "Chocolover", title: "Experiencia de chocolate Meta",
-    cost: 400, rank: "Labrador del cacao", status: "planned", connector: "Sin conector",
+    cost: 650, rank: "Labrador del cacao", status: "planned", connector: "Sin conector",
     description: "Activación futura con el nodo Guamal; términos pendientes de aprobación.",
   },
 ] as const

@@ -117,7 +117,7 @@ values
     'cacaotier', 'aceleracion-arquitecto',
     'Aceleración Arquitecto de Fermentación',
     'Acceso digital a la ruta acelerada de Arquitecto (misiones Dualita + bitácora).',
-    300, 'colab_digital', 'brote', null, 1, 'active',
+    500, 'colab_digital', 'brote', null, 1, 'active',
     'Desbloquea contenido digital del Colab. No incluye mentoría presencial ni certificado sin evaluación.',
     '{"brand":"cacaotier","service":"course_unlock","course_slug":"arquitecto-fermentacion"}'::jsonb
   ),
@@ -125,7 +125,7 @@ values
     'cacaotier', 'preview-master-chocolatier',
     'Preview Master Chocolatier',
     'Desbloqueo de misiones iniciales del track Master Chocolatier con Dualita.',
-    400, 'colab_digital', 'labrador', null, 1, 'active',
+    700, 'colab_digital', 'labrador', null, 1, 'active',
     'Acceso digital parcial. La certificación exige proyecto y evaluación aparte.',
     '{"brand":"cacaotier","service":"course_unlock","course_slug":"maestro-chocolatier"}'::jsonb
   ),
@@ -133,7 +133,7 @@ values
     'cacaotier', 'ruta-benevolo',
     'Ruta Benevolo (capstone)',
     'Track digital del capstone Chocolate Benevolo conectado a Master Chocolatier.',
-    350, 'colab_digital', 'labrador', null, 1, 'active',
+    600, 'colab_digital', 'labrador', null, 1, 'active',
     'Contenido y preventa Benevolo. No garantiza inventario físico ni medalla COEX.',
     '{"brand":"cacaotier","service":"course_unlock","course_slug":"chocolate-benevolo"}'::jsonb
   ),
@@ -141,7 +141,7 @@ values
     'cacaotier', 'mentoria-dualita-semana',
     'Cupo mentoría Dualita (semana)',
     'Un cupo semanal de acompañamiento Dualita para dudas de fermentación o producto.',
-    200, 'colab_digital', 'guardian', null, 2, 'active',
+    400, 'colab_digital', 'guardian', null, 2, 'active',
     'Fulfillment por cola interna. Vigencia 7 días desde el canje. Sin promesa de horarios fijos.',
     '{"brand":"cacaotier","service":"mentorship_slot"}'::jsonb
   )

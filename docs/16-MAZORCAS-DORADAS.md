@@ -39,7 +39,7 @@ Los rangos dependen exclusivamente de actividad propia verificable.
 | Pack MD | Saco / Cesta / Cosecha | 100 / 300 / 800 | pago Stripe → `pack_purchase` (no suma a rango) |
 | Scorecard semanal | bono BSC productividad propia | ≤ techo por rango | `scorecard_settlement`; XP solo apalanca |
 
-Los montos viven en `apps/web/lib/loyalty.ts` (`mazorcaRewards`, `mdBuyPacks`, `scorecardConfig`) y **no** se derivan del XP: un módulo entrega XP y MD porque miden cosas distintas. El XP puede **multiplicar** el bono semanal (hasta ×1.25), nunca convertirse.
+Los montos viven en `apps/web/lib/loyalty.ts` (`mazorcaRewards`, `mdBuyPacks`, `scorecardConfig`) y **no** se derivan del XP: un módulo entrega XP y MD porque miden cosas distintas. El XP puede **multiplicar** el bono semanal (hasta ×1.12), nunca convertirse. La emisión es deliberadamente baja (topes diarios) para que packs financien sinks con costo real.
 
 El ledger `mazorca_ledger` es append-only. Cada evento usa una clave idempotente para impedir doble acreditación.
 

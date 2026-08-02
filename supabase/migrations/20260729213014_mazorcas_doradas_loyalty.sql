@@ -70,11 +70,11 @@ create table if not exists public.community_ranks (
 insert into public.community_ranks (slug, name, description, icon, min_lifetime_md, sort_order)
 values
   ('semilla', 'Semilla', 'Empezaste a cultivar conocimiento.', '●', 0, 1),
-  ('brote', 'Brote', 'Construyes un hábito de aprendizaje.', '♧', 100, 2),
-  ('labrador', 'Labrador del cacao', 'Cuidas una labranza y entiendes su territorio.', '♣', 300, 3),
-  ('guardian', 'Guardián de origen', 'Conectas evidencia, comunidad y trazabilidad.', '◆', 700, 4),
-  ('maestro', 'Maestro Fine-Flavor', 'Transformas conocimiento en capacidad compartida.', '✦', 1500, 5),
-  ('heritage', 'Heritage', 'Ayudas a que la siguiente generación herede una labranza viva.', '◉', 3000, 6)
+  ('brote', 'Brote', 'Construyes un hábito de aprendizaje.', '♧', 120, 2),
+  ('labrador', 'Labrador del cacao', 'Cuidas una labranza y entiendes su territorio.', '♣', 400, 3),
+  ('guardian', 'Guardián de origen', 'Conectas evidencia, comunidad y trazabilidad.', '◆', 1000, 4),
+  ('maestro', 'Maestro Fine-Flavor', 'Transformas conocimiento en capacidad compartida.', '✦', 2200, 5),
+  ('heritage', 'Heritage', 'Ayudas a que la siguiente generación herede una labranza viva.', '◉', 5000, 6)
 on conflict (slug) do update set
   name = excluded.name,
   description = excluded.description,
