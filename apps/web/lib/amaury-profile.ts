@@ -15,7 +15,7 @@ export const amauryProfile = {
   location: "Bogotá · Colombia → disponible a tiempo completo · puente LatAm ↔ Europa",
   headline: "Cacao premium, pastelería de oficio y ciencia — listo para la Academy.",
   lede:
-    "Chef de formación (Verde Oliva · Aula Máxima), con experiencia en cocina contemporánea y pastelería de vanguardia. He liderado experiencias y productos alrededor del cacao premium colombiano (Heritage Cacao), I+D de pastelería a escala nacional (Café Quindío) y hoy construyo Cacao Colab: el campus y el marketplace que llevan el Fine-Flavor de la finca al oficio. Busco nutrir mi carrera junto a los grandes del chocolate — y que Callebaut sea la primera marca corporativa que impulse este ecosistema.",
+    "Chef de formación (Verde Oliva · Aula Máxima), con experiencia en cocina contemporánea y pastelería de vanguardia. He liderado experiencias y productos alrededor del cacao premium colombiano (Legado Cacao), I+D de pastelería a escala nacional (Café Quindío) y hoy construyo Cacao Colab: el campus y el marketplace que llevan el Fine-Flavor de la finca al oficio. Busco nutrir mi carrera junto a los grandes del chocolate — y que Callebaut sea la primera marca corporativa que impulse este ecosistema.",
   email: "amauryamed@gmail.com",
   whatsapp: "https://wa.me/573102227848?text=Hola%20Amaury%2C%20vengo%20desde%20tu%20perfil%20Cacao%20Colab.",
   linkedin: "https://www.linkedin.com/in/amauryamed",
@@ -26,7 +26,7 @@ export const amauryProfile = {
     {
       kicker: "Cacaotier",
       title: "Origen que se prueba",
-      body: "En Heritage Cacao: experiencias inmersivas, cataciones para turistas, expansión e-commerce y productos con nibs (macerados tipo whiskey de cacao). El árbol habla antes que la barra.",
+      body: "En Legado Cacao: experiencias inmersivas, cataciones para turistas, expansión e-commerce y productos con nibs (macerados tipo whiskey de cacao). El árbol habla antes que la barra.",
     },
     {
       kicker: "Chocolatier",
@@ -40,7 +40,7 @@ export const amauryProfile = {
     },
   ],
   proof: [
-    "Heritage Cacao (2022–presente) — dirección de experiencias y productos con cacao premium colombiano; ferias internacionales y canales e-commerce",
+    "Legado Cacao (2022–presente) — dirección de experiencias y productos con cacao premium colombiano; ferias internacionales y canales e-commerce",
     "Café Quindío (2020–2021) — I+D pastelería para vitrinas nacionales; consulting a Operaciones e Innovación",
     "Instituto Mariano Moreno — chef de eventos (cocina peruana, japonesa, española, vanguardia) y clases de pastelería/panadería",
     "Aula Máxima Arte Culinario — chef backup / coordinación; pastelería tradicional y vanguardista",
