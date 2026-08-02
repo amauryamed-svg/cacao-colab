@@ -118,6 +118,32 @@ export function gradeLabel(grade: DiplomaGrade) {
   return "En práctica · sigue subiendo"
 }
 
+/** Copy corto para UI de certificación (exigente + divertida). */
+export function gradeBlurb(grade: DiplomaGrade) {
+  if (grade === "excelencia") {
+    return "Primer intento limpio en casi todas las misiones. Criterio de panel, no adivinanza."
+  }
+  if (grade === "especialidad") {
+    return "Aprobaste con rigor. Sube a Excelencia acertando más retos al primer intento."
+  }
+  return "Vas cultivando criterio. Cada misión suma; el diploma se gana con evidencia, no con suerte."
+}
+
+export function nextGradeHint(firstTry: number, total: number): string | null {
+  const grade = gradeFromFirstTry(firstTry, total)
+  if (grade === "excelencia") return null
+  if (grade === "especialidad") {
+    const need = Math.ceil(EXCELLENCE_FIRST_TRY_RATIO * total) - firstTry
+    return need > 0
+      ? `Faltan ${need} acierto${need === 1 ? "" : "s"} al primer intento para Excelencia Fine-Flavor.`
+      : null
+  }
+  const need = Math.ceil(PASS_FIRST_TRY_RATIO * total) - firstTry
+  return need > 0
+    ? `Faltan ${need} acierto${need === 1 ? "" : "s"} al primer intento para Especialidad.`
+    : null
+}
+
 export function encodeDiploma(payload: DiplomaPayload): string {
   const json = JSON.stringify(payload)
   if (typeof Buffer !== "undefined") {

@@ -65,6 +65,7 @@ Esta fase es nueva — es el trabajo hecho en la rama `v2-pivot` para preparar e
 | Economía MD scorecard (packs + canje cursos + BSC) | 🟢 En código | Amaury · Hellen · Oscar (migración + Stripe packs) | Wallet/beneficios + APIs loyalty; migración `20260801120000_*` — `docs/26-ECONOMIA-MD-SCORECARD.md` |
 | Auth solo magic link (sin Google/Apple) | 🟢 En código | Amaury (Supabase URLs + Resend) · Oscar | `/cuenta/entrar` + OTP fallback + `/unete` — `docs/27-MAGIC-LINK-AUTH.md` |
 | Hub Mi cuenta (wallet + bio + gestión) | 🟢 En código | Hellen · Amaury | `/cuenta` + `/cuenta/bio` — espacio personal Colab |
+| Masters en Mi cuenta + diploma Arquitecto | 🟢 En código | Hellen · Oscar | Progreso/calificación/diploma en hub; rigor unificado en ambos Masters |
 | Migrar `lessons`/`courses` de seed local (`lib/*.ts`) a Supabase real | 🟢 Backlog | Oscar | Proyecto Supabase existente + migraciones aplicadas |
 | XP/rachas/insignias/leaderboard (`09-GAMIFICACION.md`) | 🟢 Backlog | Oscar + Hellen | `learner_progress`/`xp_ledger` poblados desde uso real |
 | Companion IA con guardrails (`10-DUALITA-IA.md`) | 🟢 Backlog | Oscar | `ANTHROPIC_API_KEY` configurada + companion respondiendo en `/aprende` |

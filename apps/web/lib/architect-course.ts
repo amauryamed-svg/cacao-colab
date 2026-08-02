@@ -1,3 +1,5 @@
+export const ARCHITECT_COURSE_SLUG = "arquitecto-fermentacion"
+
 export type ArchitectStep = {
   kicker: string
   title: string
