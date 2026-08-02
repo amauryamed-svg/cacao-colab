@@ -6,7 +6,7 @@
  * Catálogo Ecoyuma (FEAR 5 / TCS 19 / TCS 06) = vivero externo; no inventamos stock.
  */
 
-export type SembrarGenotype = "FEAR 5" | "FTA 2" | "FSA 13" | "TCS 19" | "TCS 06"
+export type SembrarGenotype = "FEAR 5" | "FTA 2" | "FSA 13" | "FSV 41" | "TCS 19" | "TCS 06"
 
 export type SembrarPlantula = {
   code: SembrarGenotype
@@ -14,7 +14,7 @@ export type SembrarPlantula = {
   family: string
   role: string
   why: string
-  tier: "modelo_araucano" | "ecoyuma_catalog"
+  tier: "modelo_araucano" | "ecoyuma_catalog" | "referencia_coex"
   ecoyumaHref: string | null
   ecoyumaSkuNote: string
 }
@@ -76,6 +76,24 @@ export const modeloAraucanoPlantulas: SembrarPlantula[] = [
   },
 ]
 
+/**
+ * Referencia CoEx · Fedecacao San Vicente 41.
+ * Oro Ámsterdam 2024: muestra WORKAKAO / Agroguamal (Guamal · Meta) con FEAR 5 + FSV 41.
+ * No atribuir tipificación a Chocolover ni a otros nodos sin declaración.
+ */
+export const coexReferencePlantulas: SembrarPlantula[] = [
+  {
+    code: "FSV 41",
+    label: "FSV 41 · Fedecacao San Vicente 41",
+    family: "Referencia CoEx · Meta / Guamal",
+    role: "Contexto medalla oro Ámsterdam 2024",
+    why: "Clon Fedecacao San Vicente (Santander) presente en la muestra oro Cacao of Excellence (feb. 2024, Ámsterdam) de WORKAKAO / Agroguamal · Guamal Meta, junto a FEAR 5. Escenario didáctico — no tipificación de marca Colab.",
+    tier: "referencia_coex",
+    ecoyumaHref: null,
+    ecoyumaSkuNote: "Material Fedecacao · sin SKU Ecoyuma inventado en este hub",
+  },
+]
+
 /** Catálogo externo Ecoyuma — contraste bajo el mismo protocolo. */
 export const ecoyumaCatalogPlantulas: SembrarPlantula[] = [
   {
@@ -116,6 +134,7 @@ export const ecoyumaCatalogPlantulas: SembrarPlantula[] = [
 /** Unión para resolución por código (modelo araucano primero). */
 export const sembrarPlantulas: SembrarPlantula[] = [
   ...modeloAraucanoPlantulas,
+  ...coexReferencePlantulas,
   ...ecoyumaCatalogPlantulas.filter((p) => p.code !== "FEAR 5"),
 ]
 
@@ -272,6 +291,7 @@ const GENOTYPE_CODES: readonly SembrarGenotype[] = [
   "FEAR 5",
   "FTA 2",
   "FSA 13",
+  "FSV 41",
   "TCS 19",
   "TCS 06",
 ]
@@ -283,6 +303,7 @@ export function isSembrarGenotype(value: unknown): value is SembrarGenotype {
 export function plantulaFor(code: SembrarGenotype) {
   return (
     modeloAraucanoPlantulas.find((p) => p.code === code) ??
+    coexReferencePlantulas.find((p) => p.code === code) ??
     ecoyumaCatalogPlantulas.find((p) => p.code === code) ??
     modeloAraucanoPlantulas[0]
   )

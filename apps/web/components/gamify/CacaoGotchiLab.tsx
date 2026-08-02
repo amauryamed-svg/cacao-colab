@@ -8,6 +8,7 @@ import {
   agroforestryModels,
   bitacoraPrompts,
   cartografiaLayers,
+  coexReferencePlantulas,
   ecoyumaCatalogPlantulas,
   isSembrarGenotype,
   modeloAraucanoPlantulas,
@@ -18,6 +19,7 @@ import {
   sembrarGenerationCopy,
   type SembrarGenotype,
 } from "@/lib/sembrar"
+import { geneticsForTerritory } from "@/lib/learning-nodes"
 import { mazorcaRewards } from "@/lib/loyalty"
 
 type BitacoraEntry = {
@@ -248,6 +250,7 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
     ? ((state.ageHours - stage.threshold) / (nextStage.threshold - stage.threshold)) * 100
     : 100
   const selectedTerritory = territories.find((territory) => territory.id === state.selectedNode)
+  const nodeGenetics = geneticsForTerritory(state.selectedNode)
   const fermentationPoint =
     fermentationCurve.find((point) => point.hour === state.fermentationHour) ?? fermentationCurve[0]
   const plantula = plantulaFor(state.genotypeCode)
@@ -306,9 +309,24 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
   }
 
   function chooseNode(nodeId: string) {
-    const next = { ...state, selectedNode: nodeId }
+    const genetics = geneticsForTerritory(nodeId)
+    const suggested = genetics?.suggestGenotype
+    const nextPlant =
+      suggested && isSembrarGenotype(suggested) ? plantulaFor(suggested) : plantulaFor(state.genotypeCode)
+    const next: GotchiState = {
+      ...state,
+      selectedNode: nodeId,
+      ...(suggested && isSembrarGenotype(suggested)
+        ? { genotypeCode: suggested, genotype: nextPlant.label }
+        : {}),
+    }
     setState(next)
     persist(next)
+    setMessage(
+      genetics
+        ? `Dualita: nodo ${genetics.nodeName}. ${genetics.didacticFocus}. El laboratorio no inventa tipificación de marca.`
+        : `Dualita: nodo actualizado. Confirma material real sin atribuir clones no tipificados.`,
+    )
   }
 
   function chooseGenotype(code: SembrarGenotype) {
@@ -501,6 +519,42 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
       <section className="sembrar-plantulas">
         <div className="sembrar-plantulas-head">
           <div>
+            <p className="eyebrow text-colab-yellow">Referencia CoEx · Meta</p>
+            <h3>San Vicente 41 (FSV 41)</h3>
+            <p>
+              Oro Cacao of Excellence Ámsterdam (feb. 2024): muestra WORKAKAO / Agroguamal · Guamal
+              Meta con FEAR 5 + FSV 41. FEAR 5 sigue siendo el eje comercial/paper; FSV 41 entra como
+              referencia territorial — no como tipificación de Chocolover u otros nodos.
+            </p>
+          </div>
+          <a
+            href="https://www.cacaoofexcellence.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="sembrar-ext-link"
+          >
+            Cacao of Excellence →
+          </a>
+        </div>
+        <div className="sembrar-plantula-grid sembrar-plantula-grid--single">
+          {coexReferencePlantulas.map((plant) => (
+            <button
+              key={plant.code}
+              type="button"
+              className={plant.code === state.genotypeCode ? "active" : ""}
+              onClick={() => chooseGenotype(plant.code)}
+            >
+              <strong>{plant.code}</strong>
+              <span>{plant.family}</span>
+              <small>{plant.why}</small>
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <section className="sembrar-plantulas">
+        <div className="sembrar-plantulas-head">
+          <div>
             <p className="eyebrow text-colab-yellow">Catálogo externo · Ecoyuma</p>
             <h3>Plántulas para contrastar tipicidad</h3>
             <p>
@@ -545,9 +599,13 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
           <strong>
             {selectedTerritory?.nodeName} · {selectedTerritory?.city}
           </strong>
-          <small>
-            {state.genotype} · escenario didáctico; confirma material real (Ecoyuma / Fedecacao) y el
-            nodo Quara · Arauca.
+          <small>{nodeGenetics?.blurb ?? selectedTerritory?.flavorProfile}</small>
+          <small className="gotchi-node-disclaimer">
+            Genotipo del laboratorio: <strong>{state.genotypeCode}</strong> — escenario didáctico.
+            {nodeGenetics?.tipifiedByNode.length
+              ? ` Tipificado por este nodo en el Colab: ${nodeGenetics.tipifiedByNode.join(", ")}.`
+              : " Este nodo no tipifica clones aquí; no correlaciones genética inventada."}{" "}
+            Confirma material real en finca / Ecoyuma / Fedecacao.
           </small>
         </div>
         <div>
@@ -559,6 +617,7 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
                 type="button"
                 onClick={() => chooseNode(territory.id)}
                 className={territory.id === state.selectedNode ? "active" : ""}
+                title={geneticsForTerritory(territory.id)?.didacticFocus}
               >
                 {territory.nodeName}
               </button>
@@ -896,9 +955,11 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
                 <i style={{ width: `${state.fermentationHour / 1.2}%` }} />
               </div>
               <p className="text-sm leading-relaxed text-colab-ink/60 mt-5">
-                Escenario educativo con genotipo {state.genotypeCode} (modelo araucano o contraste
-                Ecoyuma). No implica DO registrada ni que el paper haya validado este nodo a esta
-                escala — documenta tu lote real en Master Cacaotier.
+                Escenario educativo con genotipo {state.genotypeCode}
+                {nodeGenetics
+                  ? ` en nodo ${nodeGenetics.nodeName}`
+                  : ""}. No implica DO registrada ni tipificación de marca salvo lo declarado
+                (p. ej. FEAR 5 en Quara para Benevolo). Documenta tu lote real en Master Cacaotier.
               </p>
               {state.phase !== "complete" ? (
                 <button type="button" onClick={advanceFermentation} className="gotchi-ferment mt-6">
