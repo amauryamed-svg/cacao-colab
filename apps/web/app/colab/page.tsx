@@ -7,9 +7,9 @@ import ForumFeed from "@/components/colab/ForumFeed"
 import { ensureForumSeed, loadForumFeed } from "./actions"
 
 export const metadata: Metadata = {
-  title: "Foro Colab · anuncios y avances",
+  title: "Foro Colab · diplomas y avances",
   description:
-    "Foro interno de Cacao Colab: comparte progreso de maestría, anuncios y sincronicidades con likes 🍫.",
+    "Foro interno de Cacao Colab: exhibe diplomas digitales, avances de maestría y sincronicidades con likes 🍫.",
   robots: { index: false, follow: false },
 }
 
@@ -18,7 +18,7 @@ export const dynamic = "force-dynamic"
 export default async function ColabForumPage({
   searchParams,
 }: {
-  searchParams: Promise<{ share?: string; grade?: string }>
+  searchParams: Promise<{ share?: string; grade?: string; diploma?: string }>
 }) {
   const supabase = await createSupabaseServerClient()
   const {
@@ -39,16 +39,20 @@ export default async function ColabForumPage({
         <header className="colab-forum-hero">
           <p className="eyebrow text-colab-yellow">Red interna · foro</p>
           <h1>
-            Sincronicidades <em>del Colab</em>
+            Diplomas y <em>sincronicidades</em>
           </h1>
           <p>
-            Anuncios del colectivo, avances de maestría y likes en chocolate. Aquí celebramos el
-            rigor — no medallas inventadas.
+            Exhibe tu diploma digital con el diseño de credencial, celebra avances y reacciona con
+            🍫. Aquí el rigor se ve — no medallas inventadas.
           </p>
         </header>
 
         <div className="colab-forum-grid">
-          <ForumComposer presetShare={query.share ?? null} presetGrade={query.grade ?? null} />
+          <ForumComposer
+            presetShare={query.share ?? null}
+            presetGrade={query.grade ?? null}
+            presetDiploma={query.diploma ?? null}
+          />
           <ForumFeed items={feed} />
         </div>
       </div>
