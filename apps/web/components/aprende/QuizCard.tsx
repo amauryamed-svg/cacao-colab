@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { type Lesson } from '@/lib/lessons'
+import { playDualitaSfx } from '@/lib/campus-gamify'
 
 interface Props {
   quiz: Lesson['quiz']
@@ -15,7 +16,12 @@ export default function QuizCard({ quiz, onCorrect }: Props) {
     if (selected) return
     setSelected(id)
     const opt = quiz.options.find(o => o.id === id)
-    if (opt?.correct) setTimeout(onCorrect, 1400)
+    if (opt?.correct) {
+      playDualitaSfx('correct')
+      setTimeout(onCorrect, 1400)
+    } else {
+      playDualitaSfx('wrong')
+    }
   }
 
   return (

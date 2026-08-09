@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import SquirrelSVG, { type SquirrelExpression } from "@/components/brand/SquirrelSVG"
+import { playDualitaSfx } from "@/lib/campus-gamify"
 
 const LINES = [
   "¡Hola! Soy Dualita. ¿Cocinamos tipicidad juntos?",
@@ -42,6 +43,8 @@ export default function DualitaMascot({
   }, [bounce])
 
   function handleClick() {
+    playDualitaSfx("tap")
+    window.setTimeout(() => playDualitaSfx("tip"), 80)
     setBounce(true)
     setHeart(true)
     setSpoken(true)

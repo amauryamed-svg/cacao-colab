@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import SquirrelSVG, { type SquirrelExpression } from "@/components/brand/SquirrelSVG"
+import { isSfxMuted, playDualitaSfx, toggleSfxMuted } from "@/lib/campus-gamify"
 
 export type DualitaMood = "idle" | "cheer" | "oops" | "levelup"
 
@@ -63,6 +64,17 @@ export default function DualitaCompanion({
   const [idleExpr, setIdleExpr] = useState<SquirrelExpression>("neutral")
   const [playful, setPlayful] = useState<string | null>(null)
   const [heartPop, setHeartPop] = useState(false)
+  const [muted, setMuted] = useState(false)
+
+  useEffect(() => {
+    setMuted(isSfxMuted())
+    const onMute = (event: Event) => {
+      const detail = (event as CustomEvent<boolean>).detail
+      setMuted(Boolean(detail))
+    }
+    window.addEventListener("dualita-sfx-mute", onMute)
+    return () => window.removeEventListener("dualita-sfx-mute", onMute)
+  }, [])
 
   useEffect(() => {
     if (!pulseKey) return
@@ -99,6 +111,8 @@ export default function DualitaCompanion({
   }, [mood])
 
   function handleClick() {
+    playDualitaSfx("tap")
+    window.setTimeout(() => playDualitaSfx("tip"), 90)
     setBounce(true)
     setExpanded(true)
     setHeartPop(true)
@@ -116,6 +130,13 @@ export default function DualitaCompanion({
     if (mood === "idle") setIdleExpr(clicks % 2 === 0 ? "wink" : "happy")
     window.setTimeout(() => setBounce(false), 420)
     window.setTimeout(() => setHeartPop(false), 700)
+  }
+
+  function handleMute(event: React.MouseEvent<HTMLButtonElement>) {
+    event.stopPropagation()
+    const next = toggleSfxMuted()
+    setMuted(next)
+    if (!next) playDualitaSfx("select")
   }
 
   const pool = tips.length > 0 ? tips : PLAYFUL_LINES
@@ -159,15 +180,26 @@ export default function DualitaCompanion({
 
       {heartPop && <span className="dualita-heart-pop" aria-hidden />}
 
-      <button
-        type="button"
-        onClick={handleClick}
-        aria-label="Hablar con Dualita"
-        className={moodToAnim(mood, bounce, idleExpr)}
-      >
-        <SquirrelSVG size={compact && !showBubble ? 64 : 78} expression={expression} />
-        <span className="dualita-nameplate">Dualita</span>
-      </button>
+      <div className="dualita-squirrel-wrap">
+        <button
+          type="button"
+          onClick={handleClick}
+          aria-label="Hablar con Dualita"
+          className={moodToAnim(mood, bounce, idleExpr)}
+        >
+          <SquirrelSVG size={compact && !showBubble ? 64 : 78} expression={expression} />
+          <span className="dualita-nameplate">Dualita</span>
+        </button>
+        <button
+          type="button"
+          className={`dualita-sfx-toggle${muted ? " is-muted" : ""}`}
+          onClick={handleMute}
+          aria-label={muted ? "Activar sonidos de Dualita" : "Silenciar sonidos de Dualita"}
+          title={muted ? "Sonido off" : "Sonido on"}
+        >
+          <span className="dualita-sfx-icon" aria-hidden />
+        </button>
+      </div>
     </div>
   )
 }

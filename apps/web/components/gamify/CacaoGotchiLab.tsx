@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react"
 import Link from "next/link"
 import DualitaCompanion, { type DualitaMood } from "@/components/aprende/DualitaCompanion"
+import { playDualitaSfx } from "@/lib/campus-gamify"
 import { saveGotchiRun } from "@/app/campus/actions"
 import { territories } from "@/lib/territories"
 import {
@@ -379,6 +380,7 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
     })
     setState(next)
     persist(next)
+    playDualitaSfx("xp")
     if (action.id === "observe") setPanel("bitacora")
     setMessage(
       `Dualita: ${action.label} suma +${action.xp} XP. Observar y registrar es el oficio del agricultor que quiere tipicidad.`,
@@ -465,6 +467,7 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
     }
     setState(next)
     persist(next)
+    playDualitaSfx(perfect ? "levelup" : "mission")
     setMessage(
       perfect
         ? `Dualita: ¡cuidado perfecto a ${PERFECT_CARE_HOUR} h! +${mazorcaRewards.gotchiHarvestOpen} MD de cosecha y +${mazorcaRewards.gotchiPerfectCare} MD de hito. Ahora fermenta ~45 °C para mover Cd hacia la cascarilla.`
@@ -508,9 +511,12 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
     setState(next)
     persist(next)
     if (hour === 120) {
+      playDualitaSfx("diploma")
       setMessage(
         `Dualita: lote cerrado a 120 h · +${mazorcaRewards.gotchiHarvest} MD. Tipicidad araucana se defiende en red.`,
       )
+    } else {
+      playDualitaSfx("xp")
     }
   }
 
