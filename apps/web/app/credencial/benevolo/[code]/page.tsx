@@ -1,7 +1,9 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { decodeDiploma, gradeLabel, linkedInShareUrl } from "@/lib/campus-rigor"
+import DiplomaLinkedInShare from "@/components/campus/DiplomaLinkedInShare"
+import { decodeDiploma, gradeLabel, xShareUrl } from "@/lib/campus-rigor"
+import { diplomaShareMeta } from "@/lib/diploma-og"
 
 type Props = { params: Promise<{ code: string }> }
 
@@ -9,9 +11,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { code } = await params
   const diploma = decodeDiploma(code)
   if (!diploma) return { title: "Credencial Benevolo" }
+  const meta = diplomaShareMeta(diploma, `/credencial/benevolo/${code}`)
   return {
-    title: `${diploma.name} · Benevolo · Cacao Colab`,
-    description: gradeLabel(diploma.grade),
+    title: meta.title,
+    description: meta.description,
+    openGraph: meta.openGraph,
+    twitter: meta.twitter,
   }
 }
 
@@ -20,9 +25,8 @@ export default async function BenevoloDiplomaPage({ params }: Props) {
   const diploma = decodeDiploma(code)
   if (!diploma || diploma.course !== "benevolo-duja") notFound()
 
-  const absolute =
-    (process.env.NEXT_PUBLIC_SITE_URL ?? "https://cacaocolab.org") +
-    `/credencial/benevolo/${code}`
+  const pagePath = `/credencial/benevolo/${code}`
+  const meta = diplomaShareMeta(diploma, pagePath)
 
   return (
     <div className="diploma-page">
@@ -37,9 +41,17 @@ export default async function BenevoloDiplomaPage({ params }: Props) {
           Completó la aceleración Benevolo: tendencia gianduja × duja de marañón FEAR 5 Quara × Zurych,
           con criterio de origen y llamado al colectivo. Hermana del Master Chocolatier 70 %.
         </p>
+
+        <DiplomaLinkedInShare diplomaUrl={meta.absolute} copy={meta.linkedInCopy} />
+
         <div className="diploma-actions">
-          <a href={linkedInShareUrl(absolute)} target="_blank" rel="noopener noreferrer" className="diploma-li">
-            LinkedIn →
+          <a
+            href={xShareUrl(meta.absolute, meta.linkedInCopy.split("\n")[0] ?? meta.title)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="diploma-x"
+          >
+            Compartir en X →
           </a>
           <Link href="/benevolo" className="diploma-colab">
             Preordenar Bars. →

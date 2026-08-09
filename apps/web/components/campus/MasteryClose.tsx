@@ -1,12 +1,14 @@
 "use client"
 
 import Link from "next/link"
+import DiplomaLinkedInShare from "@/components/campus/DiplomaLinkedInShare"
 import {
   gradeBlurb,
   gradeLabel,
-  linkedInShareUrl,
   type DiplomaGrade,
+  type DiplomaPayload,
 } from "@/lib/campus-rigor"
+import { diplomaLinkedInCopy } from "@/lib/diploma-og"
 
 export type MasteryMissionRow = {
   slug: string
@@ -28,6 +30,7 @@ export default function MasteryClose({
   total,
   missions,
   diplomaUrl,
+  diplomaPayload,
   practiceHref = "/juega",
   practiceLabel = "Practicar en Sembrar →",
   forumHref = "/colab",
@@ -45,6 +48,8 @@ export default function MasteryClose({
   total: number
   missions: MasteryMissionRow[]
   diplomaUrl: string | null
+  /** Para armar copy LinkedIn con hashtags al cerrar maestría */
+  diplomaPayload?: DiplomaPayload | null
   practiceHref?: string
   practiceLabel?: string
   forumHref?: string
@@ -53,6 +58,19 @@ export default function MasteryClose({
   sisterLabel?: string
 }) {
   const doneCount = missions.filter((m) => m.passed).length
+  const linkedInCopy =
+    diplomaUrl && diplomaPayload
+      ? diplomaLinkedInCopy(diplomaPayload, diplomaUrl)
+      : diplomaUrl
+        ? [
+            `Acabo de cerrar ${courseTitle} en Cacao Colab — ${gradeLabel(grade)}.`,
+            "",
+            "Diploma digital de oficio cacaotero. Certifica tu criterio Fine-Flavor:",
+            diplomaUrl,
+            "",
+            "#CacaoColab #FineFlavor #ChocolateColombiano #Cacaotier #Certificacion",
+          ].join("\n")
+        : ""
 
   return (
     <div className="architect-complete mastery-close">
@@ -119,21 +137,15 @@ export default function MasteryClose({
         avance en el foro interno del Colab — con likes 🍫.
       </p>
 
+      {diplomaUrl && linkedInCopy && (
+        <DiplomaLinkedInShare diplomaUrl={diplomaUrl} copy={linkedInCopy} compact />
+      )}
+
       <div className="mastery-close-actions flex flex-wrap justify-center gap-3">
         {diplomaUrl && (
-          <>
-            <a href={diplomaUrl} target="_blank" rel="noopener noreferrer">
-              Ver diploma →
-            </a>
-            <a
-              href={linkedInShareUrl(diplomaUrl)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="!bg-[#0A66C2] !text-white"
-            >
-              LinkedIn →
-            </a>
-          </>
+          <a href={diplomaUrl} target="_blank" rel="noopener noreferrer">
+            Ver diploma →
+          </a>
         )}
         <Link href={practiceHref}>{practiceLabel}</Link>
         <Link href={forumHref}>Compartir en foro Colab →</Link>
