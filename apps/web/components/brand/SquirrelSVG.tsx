@@ -29,9 +29,9 @@ export default function SquirrelSVG({
       />
     ) : expression === "happy" || expression === "proud" ? (
       <path
-        d="M 67,39 Q 71,35.5 75,39"
+        d="M 66,39.5 Q 71,34.5 76,39.5"
         stroke="#1A2E10"
-        strokeWidth="2.4"
+        strokeWidth="2.8"
         fill="none"
         strokeLinecap="round"
       />
@@ -53,9 +53,9 @@ export default function SquirrelSVG({
       <ellipse cx="90" cy="57" rx="3.2" ry="2.8" fill="#8A4808" opacity="0.85" />
     ) : expression === "happy" || expression === "proud" || expression === "wink" ? (
       <path
-        d="M 86,54.5 Q 90.5,60.5 95,54"
+        d="M 85,53.5 Q 90.5,62 96,53"
         stroke="#8A4808"
-        strokeWidth="1.5"
+        strokeWidth="2"
         fill="none"
         strokeLinecap="round"
       />
@@ -80,8 +80,8 @@ export default function SquirrelSVG({
   const blush =
     expression === "happy" || expression === "proud" || expression === "wink" ? (
       <>
-        <ellipse cx="62" cy="48" rx="3.2" ry="2" fill="#FF8A5B" opacity="0.45" />
-        <ellipse cx="84" cy="46" rx="2.6" ry="1.6" fill="#FF8A5B" opacity="0.35" />
+        <ellipse cx="61" cy="49" rx="4.2" ry="2.6" fill="#FF8A5B" opacity="0.55" />
+        <ellipse cx="85" cy="47" rx="3.4" ry="2.1" fill="#FF8A5B" opacity="0.42" />
       </>
     ) : null
 
