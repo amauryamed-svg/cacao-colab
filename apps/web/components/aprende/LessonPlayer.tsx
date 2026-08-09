@@ -12,6 +12,7 @@ import { trackColabEvent } from '@/lib/analytics'
 import { completeMicroLesson } from '@/app/aprende/actions'
 import type { MicroLessonResult } from '@/lib/microlearning'
 import { getLessonIntroVideo } from '@/lib/course-videos'
+import { playDualitaSfx } from '@/lib/campus-gamify'
 
 type Phase = 'cards' | 'quiz' | 'complete'
 
@@ -70,9 +71,17 @@ export default function LessonPlayer({ lesson, track = 'micro' }: Props) {
     Math.round((cardIndex / (totalCards + 1)) * 85)
 
   function nextCard() {
+    playDualitaSfx('whoosh')
     if (cardIndex < totalCards - 1) setCardIndex(i => i + 1)
-    else setPhase('quiz')
+    else {
+      playDualitaSfx('select')
+      setPhase('quiz')
+    }
   }
+
+  useEffect(() => {
+    if (phase === 'complete') playDualitaSfx('levelup')
+  }, [phase])
 
   return (
     <div className="min-h-screen bg-colab-forest flex flex-col">

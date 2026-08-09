@@ -18,6 +18,7 @@ import {
   type DiplomaPayload,
   type RigorState,
 } from "@/lib/campus-rigor"
+import { playDualitaSfx } from "@/lib/campus-gamify"
 
 export default function BenevoloCoursePlayer({
   learnerName,
@@ -82,9 +83,11 @@ export default function BenevoloCoursePlayer({
     setFeedback(option.explanation)
     const attempts = (progress.scores[mission.slug]?.attempts ?? 0) + 1
     if (option.correct) {
+      playDualitaSfx("correct")
       window.setTimeout(() => completeMission(attempts === 1), 1000)
       return
     }
+    playDualitaSfx(progress.hearts <= 1 ? "heart" : "wrong")
     let next = bumpStreak(refillHeartsIfNeeded(progress))
     next = {
       ...next,
@@ -136,6 +139,7 @@ export default function BenevoloCoursePlayer({
     setProgress(next)
     setPhase(allDone ? "course-complete" : "mission-complete")
     persist(next, allDone)
+    playDualitaSfx(allDone ? "diploma" : "mission")
   }
 
   return (

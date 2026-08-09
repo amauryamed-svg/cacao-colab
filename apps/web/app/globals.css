@@ -6116,6 +6116,70 @@ body {
   margin-top: 6px;
   opacity: .62;
 }
+.dualita-squirrel-wrap {
+  align-items: flex-end;
+  display: flex;
+  gap: 4px;
+  position: relative;
+}
+.dualita-sfx-toggle {
+  align-items: center;
+  background: rgba(26, 46, 16, .78);
+  border: 1px solid rgba(242, 200, 48, .35);
+  border-radius: 8px;
+  bottom: 2px;
+  cursor: pointer;
+  display: grid;
+  height: 28px;
+  justify-items: center;
+  padding: 0;
+  place-items: center;
+  position: absolute;
+  right: -6px;
+  width: 28px;
+  z-index: 2;
+}
+.dualita-sfx-toggle:hover { border-color: #f2c830; }
+.dualita-sfx-icon {
+  background: #f2c830;
+  border-radius: 1px;
+  display: block;
+  height: 8px;
+  position: relative;
+  width: 5px;
+}
+.dualita-sfx-icon::before {
+  border: 5px solid transparent;
+  border-left: 7px solid #f2c830;
+  border-right: 0;
+  content: "";
+  left: 4px;
+  position: absolute;
+  top: -1px;
+}
+.dualita-sfx-icon::after {
+  border: 1.5px solid #f2c830;
+  border-radius: 50%;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+  content: "";
+  height: 10px;
+  left: 10px;
+  position: absolute;
+  top: -1px;
+  transform: rotate(45deg);
+  width: 10px;
+}
+.dualita-sfx-toggle.is-muted .dualita-sfx-icon,
+.dualita-sfx-toggle.is-muted .dualita-sfx-icon::before {
+  opacity: .45;
+}
+.dualita-sfx-toggle.is-muted .dualita-sfx-icon::after {
+  border-color: #dc775f;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+  opacity: .9;
+}
 .dualita-squirrel {
   animation: squirrelBob 2.8s ease-in-out infinite;
   background: none;
