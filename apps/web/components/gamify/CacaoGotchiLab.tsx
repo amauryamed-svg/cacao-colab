@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react"
 import Link from "next/link"
+import DualitaCompanion, { type DualitaMood } from "@/components/aprende/DualitaCompanion"
 import { saveGotchiRun } from "@/app/campus/actions"
 import { territories } from "@/lib/territories"
 import {
@@ -259,6 +260,11 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
   const [sync, setSync] = useState<"idle" | "saving" | "saved" | "local">("idle")
   const [bitacoraDraft, setBitacoraDraft] = useState("")
   const [panel, setPanel] = useState<"cuidado" | "bitacora" | "mapa" | "plan">("cuidado")
+  const [dualitaPulse, setDualitaPulse] = useState(0)
+
+  useEffect(() => {
+    setDualitaPulse((n) => n + 1)
+  }, [message])
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -321,6 +327,14 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
   }
   const perfectReady = state.phase === "cultivation" && isPerfectCareReady(careMetrics)
   const careGaps = perfectCareGaps(careMetrics)
+  const sembrarDualitaMood: DualitaMood =
+    state.phase === "complete"
+      ? "levelup"
+      : perfectReady
+        ? "cheer"
+        : state.moisture < 28 || state.health < 35
+          ? "oops"
+          : "idle"
   const cdRisk = cadmiumRiskIndex({
     soilPh: state.soilPh,
     soilCover: state.soilCover,
@@ -775,7 +789,10 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
               <i key={ring} style={{ animationDelay: `${ring * 0.45}s` }} />
             ))}
           </div>
-          <div className="gotchi-message">{message}</div>
+          <div className="gotchi-message">
+            <span className="gotchi-message-from">Dualita</span>
+            {message.replace(/^\s*Dualita\s*:\s*/i, "")}
+          </div>
           <div className="grid grid-cols-3 gap-2 mt-5">
             {(state.phase === "cultivation"
               ? [
@@ -1203,6 +1220,20 @@ export default function CacaoGotchiLab({ initialRemoteState }: { initialRemoteSt
           </div>
         ))}
       </div>
+
+      <DualitaCompanion
+        message={message}
+        mood={sembrarDualitaMood}
+        pulseKey={dualitaPulse}
+        compact
+        tips={[
+          "Riega con criterio: humedad estable > picos de agua.",
+          "Observar y bitácora suman saber — Dualita celebra el oficio.",
+          "Sombra y cobertura bajan riesgo de Cd en el lote.",
+          "Tipicidad araucana se defiende con protocolo, no con hype.",
+          "Cuando dudes, elige lo que podrías explicar a otro productor.",
+        ]}
+      />
     </div>
   )
 }

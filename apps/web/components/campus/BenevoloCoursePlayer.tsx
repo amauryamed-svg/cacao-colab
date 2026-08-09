@@ -305,10 +305,21 @@ export default function BenevoloCoursePlayer({
       </div>
       <DualitaCompanion
         message={dualitaMessage}
+        mood={
+          phase === "course-complete"
+            ? "levelup"
+            : phase === "mission-complete"
+              ? "cheer"
+              : phase === "out-of-hearts"
+                ? "oops"
+                : "idle"
+        }
+        pulseKey={progress.completed.length + (phase === "course-complete" ? 20 : 0)}
         tips={[
           "Benevolo es marca acelerada, no el capstone 70 %.",
           "Tendencia sin origen es ruido; origen sin deseo no escala.",
           "Invita a tu generación al Colab.",
+          "Toca a Dualita: una mazorca de criterio vale más que un hype.",
         ]}
       />
     </div>

@@ -141,7 +141,12 @@ export default function LessonPlayer({ lesson, track = 'micro' }: Props) {
       </div>
 
       {/* Dualita companion */}
-      <DualitaCompanion message={companionMsg} tips={lesson.companionTips} />
+      <DualitaCompanion
+        message={companionMsg}
+        tips={lesson.companionTips}
+        mood={phase === "complete" ? "levelup" : phase === "quiz" ? "cheer" : "idle"}
+        pulseKey={phase === "complete" ? 1 : cardIndex + (phase === "quiz" ? 10 : 0)}
+      />
     </div>
   )
 }
