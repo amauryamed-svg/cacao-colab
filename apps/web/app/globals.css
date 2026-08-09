@@ -5825,6 +5825,9 @@ body {
   line-height: 1.4;
   margin-top: .45rem;
 }
+.cuenta-course-hint.is-continue {
+  color: rgba(247, 241, 238, .62);
+}
 .cuenta-course-actions {
   display: flex;
   flex-wrap: wrap;
