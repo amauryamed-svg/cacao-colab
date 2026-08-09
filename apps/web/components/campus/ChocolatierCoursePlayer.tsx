@@ -12,6 +12,7 @@ import {
   chocolatierTotalXp,
   CHOCOLATIER_COURSE_SLUG,
 } from "@/lib/chocolatier-course"
+import { foroShareHref } from "@/lib/colab-foro"
 import { saveChocolatierProgress } from "@/app/campus/actions"
 import { orderQuizOptions, playCampusSfx, type CelebrateKind } from "@/lib/campus-gamify"
 import { chocolatierCompanionTipsShared } from "@/lib/campus-sources"
@@ -529,7 +530,11 @@ export default function ChocolatierCoursePlayer({
               diplomaUrl={diplomaUrl}
               practiceHref="/juega"
               practiceLabel="Practicar en Sembrar →"
-              forumHref={`/colab?share=maestro-chocolatier&grade=${grade}`}
+              forumHref={foroShareHref({
+                courseSlug: CHOCOLATIER_COURSE_SLUG,
+                gradeLabel: gradeLabel(grade),
+                diplomaCode: progress.diplomaCode,
+              })}
               sisterHref="/benevolo"
               sisterLabel="Marca Benevolo →"
             />

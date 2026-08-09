@@ -1621,93 +1621,177 @@ body {
 }
 
 .diploma-page {
-  min-height: 100vh;
-  display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 2rem 1rem;
-  background:
-    radial-gradient(ellipse 70% 50% at 20% 0%, rgba(255, 106, 61, .18), transparent 55%),
-    #140e0a;
+  background: #100c09;
   color: #F7F1EE;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem 1rem 3rem;
+  position: relative;
 }
 
-.diploma-card {
-  width: 100%;
-  max-width: 36rem;
-  padding: clamp(1.75rem, 5vw, 2.75rem);
-  border: 1px solid rgba(232, 201, 160, .28);
-  border-radius: 1.25rem;
-  background: linear-gradient(165deg, rgba(255, 106, 61, .08), rgba(20, 14, 10, .95));
+.diploma-atmosphere {
+  background:
+    radial-gradient(ellipse 70% 55% at 12% 0%, rgba(255, 106, 61, .28), transparent 55%),
+    radial-gradient(ellipse 55% 45% at 92% 100%, rgba(242, 200, 48, .14), transparent 50%),
+    radial-gradient(circle at 50% 40%, rgba(232, 201, 160, .06), transparent 45%);
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.diploma-exhibit {
+  position: relative;
+  width: min(100%, 52rem);
+  z-index: 1;
+}
+
+.diploma-exhibit-frame {
+  background:
+    linear-gradient(155deg, rgba(42, 26, 18, .96), rgba(16, 12, 9, .98) 55%, rgba(28, 18, 12, .96));
+  border: 1px solid rgba(232, 201, 160, .38);
+  border-radius: 1.5rem;
+  box-shadow:
+    0 0 0 10px rgba(20, 14, 10, .55),
+    0 0 0 11px rgba(255, 106, 61, .22),
+    0 40px 100px rgba(0, 0, 0, .55);
+  overflow: hidden;
+  padding: clamp(1.75rem, 4vw, 3rem);
+  position: relative;
   text-align: center;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, .45);
 }
 
-.diploma-card--benevolo {
-  background: linear-gradient(165deg, rgba(255, 106, 61, .14), rgba(20, 14, 10, .95));
+.diploma-exhibit-frame::before {
+  border: 1px solid rgba(242, 200, 48, .22);
+  border-radius: 1.15rem;
+  content: "";
+  inset: .7rem;
+  pointer-events: none;
+  position: absolute;
 }
+
+.diploma-page.is-benevolo .diploma-exhibit-frame {
+  background:
+    linear-gradient(155deg, rgba(60, 28, 16, .97), rgba(16, 12, 9, .98) 60%, rgba(40, 20, 12, .96));
+}
+
+.diploma-exhibit-top { position: relative; z-index: 1; }
 
 .diploma-eyebrow {
-  color: rgba(232, 201, 160, .55);
-  font-size: .65rem;
+  color: rgba(232, 201, 160, .65);
+  font-size: .68rem;
   font-weight: 800;
-  letter-spacing: .18em;
+  letter-spacing: .2em;
   text-transform: uppercase;
 }
 
 .diploma-brand {
   color: #FF6A3D;
-  font-family: var(--font-display);
-  font-size: clamp(2.2rem, 7vw, 3.2rem);
+  font-family: var(--font-display), var(--font-fraunces), Georgia, serif;
+  font-size: clamp(2.6rem, 8vw, 4rem);
   font-weight: 900;
-  margin-top: .75rem;
+  letter-spacing: -.03em;
+  line-height: .95;
+  margin-top: .85rem;
 }
 
 .diploma-course {
-  color: rgba(247, 241, 238, .55);
-  font-size: .85rem;
-  margin-top: .35rem;
+  color: rgba(247, 241, 238, .58);
+  font-size: .95rem;
+  font-weight: 600;
+  margin: .55rem auto 0;
+  max-width: 34rem;
+}
+
+.diploma-exhibit-seal {
+  align-items: center;
+  border: 2px solid rgba(242, 200, 48, .55);
+  border-radius: 999px;
+  color: #F2C830;
+  display: flex;
+  flex-direction: column;
+  height: 5.25rem;
+  justify-content: center;
+  margin: 1.5rem auto 0;
+  width: 5.25rem;
+}
+
+.diploma-exhibit-seal span {
+  font-size: 1.45rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.diploma-exhibit-seal em {
+  font-size: .55rem;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: .14em;
+  margin-top: .2rem;
+  text-transform: uppercase;
+}
+
+.diploma-exhibit-body {
+  margin-top: 1.25rem;
+  position: relative;
+  z-index: 1;
 }
 
 .diploma-certifies {
-  color: rgba(247, 241, 238, .35);
-  font-size: .7rem;
-  letter-spacing: .12em;
-  margin-top: 1.75rem;
+  color: rgba(247, 241, 238, .38);
+  font-size: .72rem;
+  letter-spacing: .16em;
   text-transform: uppercase;
 }
 
 .diploma-name {
-  font-family: var(--font-display);
-  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  font-family: var(--font-display), var(--font-fraunces), Georgia, serif;
+  font-size: clamp(2rem, 6vw, 3.1rem);
   font-weight: 800;
-  margin-top: .35rem;
+  letter-spacing: -.02em;
+  line-height: 1.05;
+  margin-top: .45rem;
 }
 
 .diploma-grade {
-  color: #F2C830;
-  font-size: .85rem;
-  font-weight: 800;
-  margin-top: .65rem;
+  background: #F2C830;
+  border-radius: 999px;
+  color: #140e0a;
+  display: inline-block;
+  font-size: .82rem;
+  font-weight: 900;
+  margin-top: 1rem;
+  padding: .45rem 1.1rem;
 }
 
 .diploma-lede {
-  color: rgba(247, 241, 238, .5);
-  font-size: .82rem;
+  color: rgba(247, 241, 238, .55);
+  font-size: .88rem;
   line-height: 1.6;
   margin: 1.25rem auto 0;
-  max-width: 28rem;
+  max-width: 34rem;
 }
 
 .diploma-meta {
   display: grid;
+  gap: .55rem;
   grid-template-columns: repeat(4, 1fr);
-  gap: .5rem;
-  margin-top: 1.5rem;
+  margin-top: 1.75rem;
+  position: relative;
+  z-index: 1;
+}
+
+.diploma-meta > div {
+  background: rgba(247, 241, 238, .04);
+  border: 1px solid rgba(247, 241, 238, .1);
+  border-radius: .85rem;
+  padding: .7rem .5rem;
 }
 
 .diploma-meta dt {
-  color: rgba(247, 241, 238, .35);
+  color: rgba(247, 241, 238, .38);
   font-size: .55rem;
   letter-spacing: .08em;
   text-transform: uppercase;
@@ -1715,10 +1799,27 @@ body {
 
 .diploma-meta dd {
   color: #F7F1EE;
-  font-family: var(--font-display);
-  font-size: 1rem;
+  font-family: var(--font-display), var(--font-fraunces), Georgia, serif;
+  font-size: .95rem;
   font-weight: 800;
-  margin-top: .2rem;
+  margin-top: .25rem;
+}
+
+.diploma-exhibit-foot {
+  border-top: 1px solid rgba(232, 201, 160, .2);
+  color: rgba(247, 241, 238, .4);
+  font-size: .68rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.diploma-exhibit-url {
+  color: #FF6A3D;
+  font-weight: 700;
+  margin-top: .25rem;
+  word-break: break-all;
 }
 
 .diploma-actions {
@@ -1726,7 +1827,9 @@ body {
   flex-wrap: wrap;
   gap: .65rem;
   justify-content: center;
-  margin-top: 1.75rem;
+  margin-top: 1.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 .diploma-actions a {
@@ -1737,9 +1840,19 @@ body {
   text-decoration: none;
 }
 
+.diploma-foro {
+  background: #F2C830;
+  color: #140e0a;
+}
+
 .diploma-li {
   background: #0A66C2;
   color: white;
+}
+
+.diploma-x {
+  background: #111;
+  color: #fff;
 }
 
 .diploma-colab {
@@ -1747,20 +1860,25 @@ body {
   color: #140e0a;
 }
 
-.diploma-actions a:not(.diploma-li):not(.diploma-colab) {
+.diploma-actions a:not(.diploma-li):not(.diploma-colab):not(.diploma-x):not(.diploma-foro) {
   border: 1px solid rgba(247, 241, 238, .2);
   color: #F7F1EE;
 }
 
 .diploma-footnote {
-  color: rgba(247, 241, 238, .28);
+  color: rgba(247, 241, 238, .3);
   font-size: .62rem;
   line-height: 1.45;
-  margin-top: 1.5rem;
+  margin-top: 1.1rem;
+  max-width: 36rem;
+  position: relative;
+  text-align: center;
+  z-index: 1;
 }
 
 @media (max-width: 640px) {
   .diploma-meta { grid-template-columns: repeat(2, 1fr); }
+  .diploma-exhibit-frame { padding: 1.5rem 1.1rem; }
 }
 
 .chocolatier-player {
@@ -1885,6 +2003,15 @@ body {
   color: rgba(247, 241, 238, .55) !important;
   margin-top: 1.35rem !important;
   max-width: 32rem !important;
+}
+.mastery-close-diploma {
+  background: rgba(242, 200, 48, .08);
+  border: 1px solid rgba(242, 200, 48, .28);
+  border-radius: 1rem;
+  margin: 1.5rem auto 0;
+  max-width: 34rem;
+  padding: 1rem 1.15rem;
+  text-align: left;
 }
 .mastery-close-actions { margin-top: 1.25rem; }
 
@@ -5785,6 +5912,48 @@ body {
   color: rgba(242, 200, 48, .75);
   font-size: .65rem;
   font-weight: 700;
+}
+.colab-forum-diploma-card {
+  background: rgba(20, 14, 10, .55);
+  border: 1px solid rgba(232, 201, 160, .28);
+  border-radius: 1rem;
+  display: grid;
+  gap: .65rem;
+  overflow: hidden;
+  padding: .55rem;
+  text-decoration: none;
+  transition: border-color .2s, transform .2s;
+}
+.colab-forum-diploma-card:hover {
+  border-color: rgba(242, 200, 48, .45);
+  transform: translateY(-1px);
+}
+.colab-forum-diploma-img {
+  aspect-ratio: 1200 / 630;
+  border-radius: .7rem;
+  display: block;
+  object-fit: cover;
+  width: 100%;
+}
+.colab-forum-diploma-meta {
+  display: grid;
+  gap: .15rem;
+  padding: 0 .35rem .35rem;
+}
+.colab-forum-diploma-meta strong {
+  color: #f7f1ee;
+  font-size: .85rem;
+}
+.colab-forum-diploma-meta em {
+  color: #f2c830;
+  font-size: .68rem;
+  font-style: normal;
+  font-weight: 800;
+}
+.colab-forum-diploma-meta small {
+  color: #ff6a3d;
+  font-size: .68rem;
+  font-weight: 800;
 }
 .colab-forum-kinds { display: flex; flex-wrap: wrap; gap: .4rem; }
 .colab-forum-kinds button {

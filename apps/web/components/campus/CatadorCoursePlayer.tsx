@@ -12,6 +12,7 @@ import {
   catadorTotalXp,
   CATADOR_COURSE_SLUG,
 } from "@/lib/catador-course"
+import { foroShareHref } from "@/lib/colab-foro"
 import { saveCatadorProgress } from "@/app/campus/actions"
 import { orderQuizOptions, playCampusSfx, type CelebrateKind } from "@/lib/campus-gamify"
 import { chocolatierCompanionTipsShared as catadorCompanionTipsShared } from "@/lib/campus-sources"
@@ -532,7 +533,11 @@ export default function CatadorCoursePlayer({
               diplomaUrl={diplomaUrl}
               practiceHref="/rd/set-catacion"
               practiceLabel="Abrir Set Catación 10 →"
-              forumHref={`/colab?share=catador-cacao&grade=${grade}`}
+              forumHref={foroShareHref({
+                courseSlug: CATADOR_COURSE_SLUG,
+                gradeLabel: gradeLabel(grade),
+                diplomaCode: progress.diplomaCode,
+              })}
               sisterHref="/aprende/chocolatier"
               sisterLabel="Master Chocolatier →"
             />

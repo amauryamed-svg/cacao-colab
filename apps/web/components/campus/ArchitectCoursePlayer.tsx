@@ -12,6 +12,7 @@ import {
   architectMissions,
   architectTotalXp,
 } from "@/lib/architect-course"
+import { foroShareHref } from "@/lib/colab-foro"
 import { saveArchitectProgress } from "@/app/campus/actions"
 import {
   orderQuizOptions,
@@ -568,7 +569,11 @@ export default function ArchitectCoursePlayer({
               diplomaUrl={diplomaUrl}
               practiceHref="/juega"
               practiceLabel="Aplicar en Sembrar →"
-              forumHref={`/colab?share=arquitecto-fermentacion&grade=${grade}`}
+              forumHref={foroShareHref({
+                courseSlug: ARCHITECT_COURSE_SLUG,
+                gradeLabel: gradeLabel(grade),
+                diplomaCode: progress.diplomaCode,
+              })}
               sisterHref="/campus/maestro-chocolatier"
               sisterLabel="Master Chocolatier →"
             />

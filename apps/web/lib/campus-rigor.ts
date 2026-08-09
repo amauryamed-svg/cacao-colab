@@ -179,7 +179,9 @@ export function decodeDiploma(code: string): DiplomaPayload | null {
     } else {
       const b64 = code.replace(/-/g, "+").replace(/_/g, "/")
       const pad = b64 + "=".repeat((4 - (b64.length % 4)) % 4)
-      json = atob(pad)
+      const binary = atob(pad)
+      const bytes = Uint8Array.from(binary, (c) => c.charCodeAt(0))
+      json = new TextDecoder().decode(bytes)
     }
     const data = JSON.parse(json) as DiplomaPayload
     if (data?.v !== 1 || !data.course || !data.name) return null
@@ -191,6 +193,14 @@ export function decodeDiploma(code: string): DiplomaPayload | null {
 
 export function linkedInShareUrl(diplomaPageUrl: string) {
   return `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(diplomaPageUrl)}`
+}
+
+export function xShareUrl(diplomaPageUrl: string, text: string) {
+  const params = new URLSearchParams({
+    url: diplomaPageUrl,
+    text,
+  })
+  return `https://twitter.com/intent/tweet?${params.toString()}`
 }
 
 export function siteOrigin() {
