@@ -541,6 +541,7 @@ export default function ChocolatierCoursePlayer({
         tips={TIPS}
         mood={dualitaMood}
         pulseKey={dualitaPulse}
+        restMode={phase === "quiz" ? "quiz" : "default"}
       />
     </div>
   )

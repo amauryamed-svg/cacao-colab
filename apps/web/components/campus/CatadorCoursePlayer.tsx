@@ -544,6 +544,7 @@ export default function CatadorCoursePlayer({
         tips={TIPS}
         mood={dualitaMood}
         pulseKey={dualitaPulse}
+        restMode={phase === "quiz" ? "quiz" : "default"}
       />
     </div>
   )
