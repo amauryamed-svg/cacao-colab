@@ -29,7 +29,7 @@ export default function LessonComplete({ lesson, loyalty, onContinue }: Props) {
           <MazorcaSVG tone="coral" size={24} />
         </span>
         <div className="squirrel-bob">
-          <SquirrelSVG size={100} />
+          <SquirrelSVG size={100} expression="proud" />
         </div>
       </div>
 

@@ -950,6 +950,15 @@ body {
   min-height: 3.8rem;
   padding: .75rem;
 }
+.gotchi-message-from {
+  color: #F2C830;
+  display: block;
+  font-size: .55rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  margin-bottom: .25rem;
+  text-transform: uppercase;
+}
 
 .gotchi-stat {
   color: rgba(247, 241, 238, .4);
@@ -5924,54 +5933,222 @@ body {
 /* Dualita companion + campus gamify */
 .dualita-companion {
   align-items: flex-end;
-  bottom: 24px;
+  bottom: 20px;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  max-width: 270px;
+  max-width: 280px;
   position: fixed;
-  right: 20px;
+  right: 16px;
   z-index: 50;
 }
 .dualita-bubble {
   animation: fadeUp .35s ease both;
-  background: #f2c830;
-  border-radius: 16px 16px 4px 16px;
-  box-shadow: 0 4px 20px rgba(242, 200, 48, .35);
+  background: linear-gradient(160deg, #f7de50 0%, #f2c830 55%, #e8b420 100%);
+  border: 1px solid rgba(26, 46, 16, .08);
+  border-radius: 18px 18px 8px 18px;
+  box-shadow: 0 10px 24px rgba(26, 46, 16, .12);
   color: #1a2e10;
   font-family: var(--font-sans), Arial, sans-serif;
   font-size: 13px;
   font-weight: 600;
-  line-height: 1.4;
-  padding: 10px 14px;
+  line-height: 1.45;
+  padding: 12px 14px 10px;
+  position: relative;
+}
+.dualita-bubble-name {
+  color: rgba(26, 46, 16, .45);
+  display: block;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  margin-bottom: .3rem;
+  text-transform: uppercase;
+}
+.dualita-bubble-tail {
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 10px solid #f2c830;
+  bottom: -9px;
+  height: 0;
+  position: absolute;
+  right: 28px;
+  width: 0;
 }
 .dualita-bubble--cheer {
-  background: #86b66b;
-  box-shadow: 0 4px 22px rgba(134, 182, 107, .4);
+  background: linear-gradient(160deg, #a8c98f 0%, #86b66b 60%, #6f9d55 100%);
+  box-shadow: 0 10px 24px rgba(26, 46, 16, .12);
   color: #102010;
 }
+.dualita-bubble--cheer .dualita-bubble-tail { border-top-color: #86b66b; }
 .dualita-bubble--oops {
-  background: #ff8f7a;
-  box-shadow: 0 4px 22px rgba(255, 143, 122, .35);
+  background: linear-gradient(160deg, #ffb09e 0%, #ff8f7a 60%, #f07a64 100%);
+  box-shadow: 0 10px 24px rgba(26, 46, 16, .12);
   color: #2a120c;
 }
+.dualita-bubble--oops .dualita-bubble-tail { border-top-color: #ff8f7a; }
 .dualita-tip-hint {
   display: block;
   font-size: 10px;
-  margin-top: 4px;
-  opacity: .6;
+  margin-top: 6px;
+  opacity: .62;
 }
 .dualita-squirrel {
   animation: squirrelBob 2.8s ease-in-out infinite;
   background: none;
   border: none;
   cursor: pointer;
-  display: block;
+  display: grid;
+  justify-items: center;
   padding: 0;
+  position: relative;
+  transform-origin: 50% 90%;
 }
-.dualita-squirrel.is-bounce { animation: dualitaBounce .4s ease; }
-.dualita-squirrel.mood-cheer { filter: drop-shadow(0 0 10px rgba(134, 182, 107, .55)); }
-.dualita-squirrel.mood-levelup { filter: drop-shadow(0 0 14px rgba(242, 200, 48, .7)); }
+.dualita-nameplate {
+  background: #1a2e10;
+  border: 1px solid rgba(242, 200, 48, .4);
+  border-radius: 8px;
+  color: #f2c830;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  margin-top: -4px;
+  padding: .22rem .55rem;
+  text-transform: uppercase;
+}
+.dualita-squirrel.is-bounce { animation: dualitaBounce .45s cubic-bezier(.22, 1.4, .36, 1); }
+.dualita-squirrel.is-shake { animation: dualitaShake .55s ease; }
+.dualita-squirrel.is-celebrate { animation: dualitaCelebrate .9s cubic-bezier(.22, 1.3, .36, 1); }
+.dualita-squirrel.is-wink .squirrel-svg { animation: dualitaWinkSoft .9s ease; }
+.dualita-squirrel.is-peek { animation: dualitaPeek 1.1s ease; }
+.dualita-squirrel.mood-cheer { transform: translateY(-2px); }
+.dualita-squirrel.mood-oops { filter: saturate(.92); }
+.dualita-squirrel.mood-levelup { animation: dualitaCelebrate .9s cubic-bezier(.22, 1.3, .36, 1); }
+.dualita-squirrel:hover { transform: translateY(-3px); }
+.dualita-squirrel:active { transform: scale(.96); }
+
+.dualita-sparkles {
+  height: 70px;
+  pointer-events: none;
+  position: absolute;
+  right: 8px;
+  width: 90px;
+}
+.dualita-sparkles i {
+  animation: dualitaSpark .7s ease-out forwards;
+  background: #f2c830;
+  border-radius: 50%;
+  height: 6px;
+  position: absolute;
+  width: 6px;
+}
+.dualita-sparkles i:nth-child(1) { left: 20%; top: 50%; }
+.dualita-sparkles i:nth-child(2) { animation-delay: .08s; left: 55%; top: 30%; background: #86b66b; }
+.dualita-sparkles i:nth-child(3) { animation-delay: .14s; left: 75%; top: 60%; background: #fff8dc; }
+
+.dualita-heart-pop {
+  animation: dualitaHeart .7s ease-out forwards;
+  background: #dc775f;
+  height: 12px;
+  pointer-events: none;
+  position: absolute;
+  right: 40px;
+  top: 14px;
+  transform: rotate(-45deg);
+  width: 12px;
+  z-index: 2;
+}
+.dualita-heart-pop::before,
+.dualita-heart-pop::after {
+  background: #dc775f;
+  border-radius: 50%;
+  content: "";
+  height: 12px;
+  position: absolute;
+  width: 12px;
+}
+.dualita-heart-pop::before { left: 0; top: -6px; }
+.dualita-heart-pop::after { left: 6px; top: 0; }
+
+.squirrel-svg .squirrel-tail {
+  transform-origin: 40px 80px;
+}
+.dualita-squirrel:not(.is-bounce):not(.is-shake):not(.is-celebrate) .squirrel-tail {
+  animation: dualitaTail 3.2s ease-in-out infinite;
+}
+.squirrel-svg.expr-happy .squirrel-pod,
+.squirrel-svg.expr-proud .squirrel-pod,
+.squirrel-svg.expr-wink .squirrel-pod {
+  animation: dualitaPodNudge 1.1s ease;
+}
+
+@keyframes dualitaBounce {
+  0% { transform: translateY(0) scale(1); }
+  35% { transform: translateY(-18px) scale(1.06, .94); }
+  55% { transform: translateY(-4px) scale(.98, 1.04); }
+  100% { transform: translateY(0) scale(1); }
+}
+@keyframes dualitaShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-5px) rotate(-3deg); }
+  40% { transform: translateX(5px) rotate(3deg); }
+  60% { transform: translateX(-4px) rotate(-2deg); }
+  80% { transform: translateX(3px) rotate(1deg); }
+}
+@keyframes dualitaCelebrate {
+  0% { transform: translateY(0) rotate(0) scale(1); }
+  25% { transform: translateY(-22px) rotate(-8deg) scale(1.08); }
+  50% { transform: translateY(-8px) rotate(8deg) scale(1.04); }
+  75% { transform: translateY(-16px) rotate(-4deg) scale(1.06); }
+  100% { transform: translateY(0) rotate(0) scale(1); }
+}
+@keyframes dualitaPeek {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  40% { transform: translateY(-6px) rotate(6deg); }
+  70% { transform: translateY(-2px) rotate(-2deg); }
+}
+@keyframes dualitaWinkSoft {
+  0%, 100% { transform: scale(1); }
+  40% { transform: scale(1.04); }
+}
+@keyframes dualitaTail {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-6deg); }
+}
+@keyframes dualitaSpark {
+  0% { opacity: 0; transform: translate(0, 0) scale(.4); }
+  30% { opacity: 1; }
+  100% { opacity: 0; transform: translate(var(--sx, 12px), -28px) scale(1.2); }
+}
+@keyframes dualitaHeart {
+  0% { opacity: 0; transform: translateY(8px) rotate(-45deg) scale(.6); }
+  35% { opacity: 1; transform: translateY(-4px) rotate(-45deg) scale(1.15); }
+  100% { opacity: 0; transform: translateY(-28px) rotate(-45deg) scale(.9); }
+}
+@keyframes dualitaPodNudge {
+  0%, 100% { transform: rotate(0deg); }
+  40% { transform: rotate(-6deg) translateY(-2px); }
+  70% { transform: rotate(3deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dualita-squirrel,
+  .dualita-squirrel .squirrel-tail,
+  .dualita-bubble,
+  .dualita-sparkles i,
+  .dualita-heart-pop,
+  .squirrel-svg .squirrel-pod {
+    animation: none !important;
+  }
+}
+@media (max-width: 640px) {
+  .dualita-companion {
+    bottom: 12px;
+    max-width: min(250px, calc(100vw - 24px));
+    right: 10px;
+  }
+  .dualita-bubble { font-size: 12px; }
+}
 
 .campus-celebrate {
   inset: 0;
