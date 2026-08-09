@@ -1,7 +1,9 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import Image from "next/image"
 import TrackedLink from "@/components/analytics/TrackedLink"
 import CourseIntroPlayer from "@/components/aprende/CourseIntroPlayer"
+import SquirrelSVG from "@/components/brand/SquirrelSVG"
 import {
   chocolatierMissions,
   chocolatierTotalXp,
@@ -27,7 +29,7 @@ export default function MasterChocolatierPage() {
           <Link href="/aprende" className="eyebrow text-white/40 hover:text-[#E8C9A0]">
             ← Volver al campus
           </Link>
-          <div className="grid lg:grid-cols-[1.2fr_.8fr] gap-12 items-end mt-10">
+          <div className="grid lg:grid-cols-[1.05fr_.95fr] gap-10 items-center mt-10">
             <div>
               <div className="flex flex-wrap gap-2 mb-6">
                 <span className="course-chip">Nivel 02</span>
@@ -42,10 +44,16 @@ export default function MasterChocolatierPage() {
               </h1>
               <p className="mt-7 max-w-2xl text-base leading-relaxed text-white/55">
                 Ruta de excelencia estilo CoEx y Chocolate Awards: tostión, refino, conchado, panel
-                ciego y formulación dark 70 % con contexto de origen. Aspira a la medalla — y celebra
-                el reconocimiento de hacer un muy buen chocolate de especialidad. Vidas, rachas y
-                diploma digital para compartir en LinkedIn con enlace al Colab.
+                ciego y formulación dark 70 % con contexto de origen. Dualita te acompaña con vidas,
+                rachas y diploma digital para LinkedIn.
               </p>
+              <div className="course-hero-dualita-note mt-6">
+                <SquirrelSVG size={48} expression="happy" />
+                <p>
+                  <strong>Dualita</strong> — mascota del Colab. Ella abre cada misión y celebra tu
+                  criterio Fine-Flavor.
+                </p>
+              </div>
               <div className="flex flex-wrap gap-3 mt-8">
                 <Link
                   href="/campus/maestro-chocolatier"
@@ -66,25 +74,27 @@ export default function MasterChocolatierPage() {
                   Marca Benevolo (duja) →
                 </Link>
               </div>
-              {intro && (
-                <div className="mt-10">
-                  <CourseIntroPlayer video={intro} source="master-chocolatier-hero" />
-                </div>
-              )}
             </div>
-            <div className="credential-card !bg-[#FF6A3D] !text-[#140e0a]">
-              <div className="flex justify-between items-start">
-                <span className="text-4xl">◈</span>
-                <span className="eyebrow opacity-60">Diploma digital</span>
-              </div>
-              <p className="font-serif text-3xl font-bold mt-10">Master Chocolatier</p>
-              <p className="text-sm opacity-70 mt-3 leading-relaxed">
-                Aprueba con rigor edutainment: ♥ vidas diarias, 🔥 rachas y nota por primer intento.
-                Comparte en LinkedIn — Coursera vibes, onda cacao.
-              </p>
-              <div className="mt-8 pt-4 border-t border-black/15 flex justify-between text-xs font-bold uppercase tracking-wider">
-                <span>70 % dark</span>
-                <span>FEAR 5</span>
+
+            <div className="course-hero-visual">
+              {intro && <CourseIntroPlayer video={intro} source="master-chocolatier-hero" />}
+              <div className="credential-card !bg-[#FF6A3D] !text-[#140e0a] !transform-none">
+                <div className="flex justify-between items-start gap-4">
+                  <div>
+                    <p className="eyebrow opacity-60">Diploma digital</p>
+                    <p className="font-serif text-2xl font-bold mt-2">Master Chocolatier</p>
+                    <p className="text-sm opacity-70 mt-2 leading-relaxed">
+                      ♥ vidas · rachas · nota por primer intento. Comparte en LinkedIn.
+                    </p>
+                  </div>
+                  <Image
+                    src="/benevolo/bars-fear5.png"
+                    alt="Bars. FEAR 5"
+                    width={96}
+                    height={96}
+                    className="rounded-xl object-cover shrink-0"
+                  />
+                </div>
               </div>
             </div>
           </div>

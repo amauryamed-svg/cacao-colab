@@ -14,49 +14,116 @@
       #root {
         width: 1920px; height: 1080px; position: relative;
         background:
-          radial-gradient(circle at 78% 22%, rgba(255,106,61,.2), transparent 30%),
+          radial-gradient(circle at 78% 22%, rgba(255,106,61,.22), transparent 30%),
           radial-gradient(circle at 15% 80%, rgba(232,201,160,.12), transparent 35%),
           linear-gradient(155deg, #24170f, #1a120c 55%, #120d09);
       }
-      .clip { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 120px 140px; }
+      .clip {
+        position: absolute; inset: 0; display: flex; align-items: center;
+        justify-content: space-between; gap: 60px; padding: 100px 110px;
+      }
+      .copy { flex: 1; max-width: 980px; }
       .kicker { font-size: 18px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: #FF6A3D; margin-bottom: 28px; }
-      .title { font-family: "Fraunces", serif; font-weight: 900; font-size: 84px; line-height: .95; letter-spacing: -.03em; max-width: 1500px; }
+      .title { font-family: "Fraunces", serif; font-weight: 900; font-size: 78px; line-height: .95; letter-spacing: -.03em; }
       .title em { font-style: italic; color: #E8C9A0; }
-      .support { margin-top: 34px; font-size: 28px; color: rgba(247,241,238,.55); max-width: 980px; }
+      .support { margin-top: 30px; font-size: 28px; color: rgba(247,241,238,.55); max-width: 860px; }
       .row { display: flex; gap: 40px; margin-top: 42px; }
       .row strong { font-family: "Fraunces", serif; font-size: 34px; display: block; }
       .row span { font-size: 18px; color: rgba(247,241,238,.45); }
       .cta { font-family: "Fraunces", serif; font-size: 58px; font-weight: 700; color: #FF6A3D; }
+      .visual {
+        width: 520px; height: 640px; flex-shrink: 0; position: relative;
+        border-radius: 36px; overflow: hidden;
+        border: 2px solid rgba(232,201,160,.35);
+        box-shadow: 0 30px 80px rgba(0,0,0,.45);
+        background: #1a120c;
+      }
+      .visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .visual-badge {
+        position: absolute; left: 28px; bottom: 28px; right: 28px;
+        background: rgba(20,14,10,.82); border: 1px solid rgba(242,200,48,.4);
+        border-radius: 18px; padding: 16px 18px; display: flex; gap: 14px; align-items: center;
+      }
+      .visual-badge img { width: 64px; height: 64px; object-fit: contain; border-radius: 0; border: none; }
+      .visual-badge strong { display: block; color: #F2C830; font-size: 14px; letter-spacing: .16em; text-transform: uppercase; }
+      .visual-badge span { display: block; margin-top: 4px; font-size: 18px; color: #F7F1EE; }
     </style>
   </head>
   <body>
     <div id="root" data-composition-id="main" data-start="0" data-duration="26" data-width="1920" data-height="1080">
       <section id="s1" class="clip" data-start="0" data-duration="4.0" data-track-index="1">
-        <p class="kicker">Master Chocolatier · lente CoEx</p>
-        <h1 class="title">Bean to bar<br />con rigor.</h1>
+        <div class="copy">
+          <p class="kicker">Master Chocolatier · lente CoEx</p>
+          <h1 class="title">Bean to bar<br />con rigor.</h1>
+          <p class="support">Dualita te abre la campaña 70 % — tipicidad con puesta en escena.</p>
+        </div>
+        <div class="visual">
+          <img src="./assets/bars-fear5.png" alt="" />
+          <div class="visual-badge">
+            <img src="./assets/squirrel-cacao.svg" alt="" />
+            <div><strong>Dualita</strong><span>Mascota del Colab</span></div>
+          </div>
+        </div>
       </section>
       <section id="s2" class="clip" data-start="4.0" data-duration="6.0" data-track-index="1">
-        <p class="kicker">Cacao of Excellence</p>
-        <h1 class="title">Ciego. Tipicidad.<br />Cero defectos.</h1>
-        <p class="support">Usamos el lente. No atribuimos la medalla.</p>
+        <div class="copy">
+          <p class="kicker">Cacao of Excellence</p>
+          <h1 class="title">Ciego. Tipicidad.<br />Cero defectos.</h1>
+          <p class="support">Usamos el lente. No atribuimos la medalla.</p>
+        </div>
+        <div class="visual">
+          <img src="./assets/chocolate-temper.jpg" alt="" />
+          <div class="visual-badge">
+            <img src="./assets/squirrel-cacao.svg" alt="" />
+            <div><strong>Dualita</strong><span>Panel con criterio</span></div>
+          </div>
+        </div>
       </section>
       <section id="s3" class="clip" data-start="10.0" data-duration="6.0" data-track-index="1">
-        <p class="kicker">Material de referencia</p>
-        <h1 class="title">FEAR 5 · Quara<br /><em>Arauca</em></h1>
-        <p class="support">El nodo del Colab ligado a ese genotipo.</p>
+        <div class="copy">
+          <p class="kicker">Material de referencia</p>
+          <h1 class="title">FEAR 5 · Quara<br /><em>Arauca</em></h1>
+          <p class="support">El nodo del Colab ligado a ese genotipo.</p>
+        </div>
+        <div class="visual">
+          <img src="./assets/ecoyuma-fear5.jpg" alt="" />
+          <div class="visual-badge">
+            <img src="./assets/squirrel-cacao.svg" alt="" />
+            <div><strong>Dualita</strong><span>Origen FEAR 5</span></div>
+          </div>
+        </div>
       </section>
       <section id="s4" class="clip" data-start="16.0" data-duration="5.5" data-track-index="1">
-        <p class="kicker">Capstone</p>
-        <h1 class="title">Duja de marañón.<br />Chocolate Benevolo.</h1>
-        <div class="row">
-          <div><strong>Zurych</strong><span>Transformación</span></div>
-          <div><strong>Quara</strong><span>Origen FEAR 5</span></div>
-          <div><strong>Bars. 80 g</strong><span>Preventa</span></div>
+        <div class="copy">
+          <p class="kicker">Capstone</p>
+          <h1 class="title">Duja de marañón.<br />Chocolate Benevolo.</h1>
+          <div class="row">
+            <div><strong>Zurych</strong><span>Transformación</span></div>
+            <div><strong>Quara</strong><span>Origen FEAR 5</span></div>
+            <div><strong>Bars. 80 g</strong><span>Preventa</span></div>
+          </div>
+        </div>
+        <div class="visual">
+          <img src="./assets/bars-fear5.png" alt="" />
+          <div class="visual-badge">
+            <img src="./assets/squirrel-cacao.svg" alt="" />
+            <div><strong>Dualita</strong><span>Marca hermana</span></div>
+          </div>
         </div>
       </section>
       <section id="s5" class="clip" data-start="21.5" data-duration="4.5" data-track-index="1">
-        <p class="kicker">Principio</p>
-        <h1 class="cta">Evidencia arriba.<br />Deseo abajo.</h1>
+        <div class="copy">
+          <p class="kicker">Principio</p>
+          <h1 class="cta">Evidencia arriba.<br />Deseo abajo.</h1>
+          <p class="support">Certifica tu criterio Fine-Flavor con Dualita en el campus.</p>
+        </div>
+        <div class="visual">
+          <img src="./assets/coex-home.jpg" alt="" />
+          <div class="visual-badge">
+            <img src="./assets/squirrel-cacao.svg" alt="" />
+            <div><strong>Dualita</strong><span>Empieza la campaña</span></div>
+          </div>
+        </div>
       </section>
     </div>
     <script>
@@ -65,11 +132,11 @@
       ["s1","s2","s3","s4","s5"].forEach((id) => {
         const el = document.getElementById(id);
         const start = parseFloat(el.dataset.start);
-        tl.fromTo(el.querySelectorAll(".kicker, .title, .support, .row, .cta"),
+        tl.fromTo(el.querySelectorAll(".kicker, .title, .support, .row, .cta, .visual"),
           { opacity: 0, y: 26 },
           { opacity: 1, y: 0, duration: 0.85, stagger: 0.07, ease: "power2.out" },
           start + 0.1);
-        tl.to(el.querySelectorAll(".kicker, .title, .support, .row, .cta"),
+        tl.to(el.querySelectorAll(".kicker, .title, .support, .row, .cta, .visual"),
           { opacity: 0, y: -14, duration: 0.42, ease: "power1.in" },
           start + parseFloat(el.dataset.duration) - 0.48);
       });
