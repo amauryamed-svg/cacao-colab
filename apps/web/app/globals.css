@@ -4177,6 +4177,126 @@ body {
   border: 1px solid rgba(242,200,48,.12);
 }
 
+/* Dualita mascot — home / marketing (inline, not fixed) */
+.dualita-mascot {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: .65rem;
+  max-width: 260px;
+  position: relative;
+}
+.dualita-mascot-bubble {
+  animation: fadeUp .4s ease both;
+  background: linear-gradient(160deg, #f7de50 0%, #f2c830 55%, #e8b420 100%);
+  border: 1px solid rgba(26, 46, 16, .1);
+  border-radius: 18px 18px 8px 18px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .22);
+  color: #1a2e10;
+  font-family: var(--font-sans), Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.4;
+  padding: 12px 14px 10px;
+  position: relative;
+  text-align: left;
+  width: 100%;
+}
+.dualita-mascot-bubble.is-spoken {
+  background: linear-gradient(160deg, #a8c98f 0%, #86b66b 60%, #6f9d55 100%);
+}
+.dualita-mascot-bubble-name {
+  color: rgba(26, 46, 16, .45);
+  display: block;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  margin-bottom: .25rem;
+  text-transform: uppercase;
+}
+.dualita-mascot-bubble-tail {
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 10px solid #f2c830;
+  bottom: -9px;
+  height: 0;
+  left: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+  width: 0;
+}
+.dualita-mascot-bubble.is-spoken .dualita-mascot-bubble-tail {
+  border-top-color: #86b66b;
+}
+.dualita-mascot-squirrel {
+  animation: squirrelBob 2.6s ease-in-out infinite;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: grid;
+  justify-items: center;
+  padding: 0;
+  transform-origin: 50% 90%;
+}
+.dualita-mascot-squirrel.is-bounce { animation: dualitaBounce .48s cubic-bezier(.22, 1.4, .36, 1); }
+.dualita-mascot-squirrel.is-celebrate { animation: dualitaCelebrate .85s cubic-bezier(.22, 1.3, .36, 1); }
+.dualita-mascot-squirrel.is-wink .squirrel-svg { animation: dualitaWinkSoft .9s ease; }
+.dualita-mascot-squirrel.is-peek { animation: dualitaPeek 1.1s ease; }
+.dualita-mascot-squirrel:hover { transform: translateY(-4px); }
+.dualita-mascot-squirrel:active { transform: scale(.96); }
+.dualita-mascot-name {
+  background: #1a2e10;
+  border: 1px solid rgba(242, 200, 48, .45);
+  border-radius: 8px;
+  color: #f2c830;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  margin-top: -.15rem;
+  padding: .28rem .7rem;
+  text-transform: uppercase;
+}
+.dualita-mascot-heart {
+  animation: dualitaHeart .7s ease-out forwards;
+  background: #dc775f;
+  height: 12px;
+  left: 50%;
+  pointer-events: none;
+  position: absolute;
+  top: 42%;
+  transform: translateX(-50%) rotate(-45deg);
+  width: 12px;
+  z-index: 2;
+}
+.dualita-mascot-heart::before,
+.dualita-mascot-heart::after {
+  background: #dc775f;
+  border-radius: 50%;
+  content: "";
+  height: 12px;
+  position: absolute;
+  width: 12px;
+}
+.dualita-mascot-heart::before { left: 0; top: -6px; }
+.dualita-mascot-heart::after { left: 6px; top: 0; }
+.dualita-mascot .squirrel-tail {
+  animation: dualitaTail 3s ease-in-out infinite;
+}
+.dualita-mascot .expr-happy .squirrel-pod,
+.dualita-mascot .expr-proud .squirrel-pod,
+.dualita-mascot .expr-wink .squirrel-pod {
+  animation: dualitaPodNudge 1.2s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .dualita-mascot-squirrel,
+  .dualita-mascot-bubble,
+  .dualita-mascot-heart,
+  .dualita-mascot .squirrel-tail,
+  .dualita-mascot .squirrel-pod {
+    animation: none !important;
+  }
+}
+
 .colab-chip {
   font-size: 10px;
   font-weight: 800;

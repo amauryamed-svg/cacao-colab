@@ -7,7 +7,7 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 bg-colab-forest/95 backdrop-blur-sm border-b border-colab-green/30">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
         <Link href="/" className="flex items-center gap-2">
-          <SquirrelSVG size={30} />
+          <SquirrelSVG size={30} expression="happy" className="squirrel-bob" />
           <CacaoColabWordmark size="sm" inverted />
         </Link>
 

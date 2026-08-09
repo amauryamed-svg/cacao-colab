@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import SquirrelSVG from "@/components/brand/SquirrelSVG"
+import DualitaMascot from "@/components/brand/DualitaMascot"
 import SectionKicker from "@/components/ui/SectionKicker"
 import Button from "@/components/ui/Button"
 import BrandNetwork from "@/components/marketplace/BrandNetwork"
@@ -282,9 +283,9 @@ export default function Home() {
               </a>
             </div>
 
-            <div className="relative flex-shrink-0 hidden md:flex flex-col items-center gap-4">
-              <SquirrelSVG size={140} className="squirrel-bob" />
-              <div className="flex gap-2">
+            <div className="relative flex-shrink-0 w-full md:w-auto flex flex-col items-center gap-4">
+              <DualitaMascot size={172} />
+              <div className="flex flex-wrap justify-center gap-2">
                 {["Restaurante", "Hotel", "Cafetería", "Pastelería"].map((t) => (
                   <span key={t} className="colab-chip">
                     {t}
