@@ -31,7 +31,10 @@ export default function ForumFeed({ items }: { items: ForumFeedItem[] }) {
   if (items.length === 0) {
     return (
       <div className="colab-forum-empty">
-        <p>Aún no hay publicaciones. Sé el primero en compartir un avance o una sincronicidad.</p>
+        <p>
+          Aún no hay publicaciones en el muro. Sé el primero en compartir un avance, diploma o
+          sincronicidad.
+        </p>
       </div>
     )
   }
@@ -47,6 +50,16 @@ export default function ForumFeed({ items }: { items: ForumFeedItem[] }) {
           <h3>{item.title}</h3>
           <p className="colab-forum-author">{item.authorName}</p>
           <p className="colab-forum-body">{item.body}</p>
+          {item.diplomaUrl && (
+            <a
+              className="colab-forum-diploma"
+              href={item.diplomaUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              🎓 Ver diploma digital →
+            </a>
+          )}
           <div className="colab-forum-reacts" role="group" aria-label="Reacciones cacao">
             {FORUM_EMOJIS.map((emoji) => {
               const count = item.reactions[emoji] ?? 0

@@ -1742,12 +1742,22 @@ body {
   color: white;
 }
 
+.diploma-muro {
+  background: #F2C830;
+  color: #140e0a;
+}
+
+.diploma-x {
+  background: #111;
+  color: #fff;
+}
+
 .diploma-colab {
   background: #FF6A3D;
   color: #140e0a;
 }
 
-.diploma-actions a:not(.diploma-li):not(.diploma-colab) {
+.diploma-actions a:not(.diploma-li):not(.diploma-colab):not(.diploma-muro):not(.diploma-x) {
   border: 1px solid rgba(247, 241, 238, .2);
   color: #F7F1EE;
 }
@@ -1885,6 +1895,26 @@ body {
   color: rgba(247, 241, 238, .55) !important;
   margin-top: 1.35rem !important;
   max-width: 32rem !important;
+}
+.mastery-close-diploma {
+  background: rgba(242, 200, 48, .08);
+  border: 1px solid rgba(242, 200, 48, .28);
+  border-radius: 1rem;
+  margin: 1.5rem auto 0;
+  max-width: 34rem;
+  padding: 1rem 1.15rem;
+  text-align: left;
+}
+.mastery-close-diploma-url {
+  margin-top: .65rem !important;
+  word-break: break-all;
+}
+.mastery-close-diploma-url a {
+  color: #f2c830;
+  font-size: .68rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 .mastery-close-actions { margin-top: 1.25rem; }
 
@@ -5785,6 +5815,35 @@ body {
   color: rgba(242, 200, 48, .75);
   font-size: .65rem;
   font-weight: 700;
+}
+.colab-forum-diploma-preview {
+  background: rgba(242, 200, 48, .08);
+  border: 1px solid rgba(242, 200, 48, .25);
+  border-radius: .7rem;
+  font-size: .62rem;
+  margin: 0;
+  padding: .55rem .7rem;
+  word-break: break-all;
+}
+.colab-forum-diploma-preview a {
+  color: #f2c830;
+  font-weight: 700;
+  text-decoration: none;
+}
+.colab-forum-diploma {
+  background: rgba(242, 200, 48, .1);
+  border: 1px solid rgba(242, 200, 48, .28);
+  border-radius: .65rem;
+  color: #f2c830;
+  display: inline-block;
+  font-size: .72rem;
+  font-weight: 800;
+  margin: .15rem 0 .85rem;
+  padding: .55rem .85rem;
+  text-decoration: none;
+}
+.colab-forum-diploma:hover {
+  background: rgba(242, 200, 48, .18);
 }
 .colab-forum-kinds { display: flex; flex-wrap: wrap; gap: .4rem; }
 .colab-forum-kinds button {
