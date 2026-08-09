@@ -68,3 +68,24 @@ export function resolveMasterAccess(lifetimeMd: number, courseSlug: MasterCourse
 }
 
 export type MasterAccess = ReturnType<typeof resolveMasterAccess>
+
+/** Igual que el gate de /campus: rango O sesión ya empezada (Coursera-style). */
+export function canContinueMaster(
+  access: Pick<MasterAccess, "unlocked">,
+  status: "not_started" | "in_progress" | "certified",
+) {
+  return access.unlocked || status !== "not_started"
+}
+
+export function masterPrimaryCtaLabel(input: {
+  status: "not_started" | "in_progress" | "certified"
+  completedCount: number
+  missionCount: number
+}) {
+  if (input.status === "certified") return "Repasar ruta →"
+  if (input.status === "in_progress") {
+    const left = Math.max(0, input.missionCount - input.completedCount)
+    return left <= 1 ? "Terminar sesión →" : "Continuar sesión →"
+  }
+  return "Empezar certificación →"
+}

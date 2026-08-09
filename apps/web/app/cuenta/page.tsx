@@ -5,6 +5,7 @@ import { redirect } from "next/navigation"
 import ClaimNodeBioForm from "@/components/cuenta/ClaimNodeBioForm"
 import { signOutCampus } from "./actions"
 import { loadCuentaHome } from "@/lib/cuenta/home"
+import { canContinueMaster, masterPrimaryCtaLabel } from "@/lib/campus-access"
 import { NODE_KIND_LABEL } from "@/lib/nodo/types"
 
 export const metadata = {
@@ -302,28 +303,32 @@ export default async function CuentaPage() {
           </div>
 
           <ul className="cuenta-course-grid">
-            {home.courses.masters.map((track) => (
+            {home.courses.masters.map((track) => {
+              const playable = canContinueMaster(track.access, track.status)
+              return (
               <li key={track.slug} className={`cuenta-course-card cuenta-course-card--${track.status}`}>
                 <div className="cuenta-course-card-top">
                   <span className="cuenta-course-status">
                     {track.status === "certified"
                       ? "Diploma listo"
-                      : !track.access.unlocked
-                        ? `Rango ${track.access.requiredRankName}`
-                        : track.status === "in_progress"
-                          ? "En curso"
+                      : track.status === "in_progress"
+                        ? "En curso"
+                        : !track.access.unlocked
+                          ? `Rango ${track.access.requiredRankName}`
                           : "Por empezar"}
                   </span>
                   <span
                     className={
-                      track.access.unlocked
+                      track.access.unlocked || playable
                         ? "cuenta-course-md-badge"
                         : "cuenta-course-md-badge is-locked"
                     }
                   >
                     {track.access.unlocked
                       ? `Abierto · ${track.access.currentRankName}`
-                      : `Faltan ${track.access.mdToUnlock} MD hist.`}
+                      : playable
+                        ? "Sesión abierta"
+                        : `Faltan ${track.access.mdToUnlock} MD hist.`}
                   </span>
                   <h3>{track.title}</h3>
                   <p>{track.subtitle}</p>
@@ -370,17 +375,28 @@ export default async function CuentaPage() {
                   </p>
                 )}
                 {track.nextHint && track.status !== "certified" && (
-                  <p className="cuenta-course-hint">{track.nextHint}</p>
+                  <p
+                    className={
+                      playable
+                        ? "cuenta-course-hint is-continue"
+                        : "cuenta-course-hint"
+                    }
+                  >
+                    {track.nextHint}
+                  </p>
                 )}
                 <div className="cuenta-course-actions">
-                  {track.access.unlocked ? (
-                    <Link href={track.href} className="cuenta-btn-primary">
-                      {track.status === "certified"
-                        ? "Repasar ruta →"
-                        : track.status === "in_progress"
-                          ? "Continuar →"
-                          : "Empezar certificación →"}
-                    </Link>
+                  {playable ? (
+                    <>
+                      <Link href={track.href} className="cuenta-btn-primary">
+                        {masterPrimaryCtaLabel(track)}
+                      </Link>
+                      {!track.access.unlocked && track.status !== "certified" && (
+                        <Link href="/juega" className="cuenta-btn-ghost">
+                          Subir rango en Sembrar →
+                        </Link>
+                      )}
+                    </>
                   ) : (
                     <>
                       <Link href="/juega" className="cuenta-btn-primary">
@@ -398,7 +414,8 @@ export default async function CuentaPage() {
                   )}
                 </div>
               </li>
-            ))}
+              )
+            })}
           </ul>
         </section>
 

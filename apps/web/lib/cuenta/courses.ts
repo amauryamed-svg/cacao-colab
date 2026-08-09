@@ -15,6 +15,7 @@ import {
 } from "@/lib/campus-rigor"
 import { getRegisteredMicroProgress } from "@/lib/microlearning-server"
 import {
+  canContinueMaster,
   isMasterCourseSlug,
   resolveMasterAccess,
   type MasterAccess,
@@ -70,6 +71,22 @@ function trackFromRigor(input: {
   const access = isMasterCourseSlug(input.slug)
     ? resolveMasterAccess(input.lifetimeMd, input.slug)
     : resolveMasterAccess(input.lifetimeMd, ARCHITECT_COURSE_SLUG)
+  const status: CourseTrackSnapshot["status"] = certified
+    ? "certified"
+    : completedCount > 0
+      ? "in_progress"
+      : "not_started"
+  const left = Math.max(0, input.missionCount - completedCount)
+  const playable = canContinueMaster(access, status)
+  const nextHint = certified
+    ? null
+    : playable
+      ? status === "in_progress"
+        ? left <= 1
+          ? "Última misión: cierra la sesión y libera tu diploma."
+          : `Sesión en curso · te faltan ${left} misiones. Continúa donde lo dejaste.`
+        : nextGradeHint(firstTry, input.missionCount)
+      : access.message
   return {
     slug: input.slug,
     title: input.title,
@@ -87,16 +104,14 @@ function trackFromRigor(input: {
     grade,
     gradeLabel: grade ? gradeLabel(grade) : null,
     gradeBlurb: grade ? gradeBlurb(grade) : null,
-    nextHint: access.unlocked
-      ? nextGradeHint(firstTry, input.missionCount)
-      : access.message,
+    nextHint,
     diplomaCode,
     diplomaHref:
       diplomaCode && input.diplomaPathPrefix
         ? `${input.diplomaPathPrefix}/${diplomaCode}`
         : null,
     completedAt: input.completedAt,
-    status: certified ? "certified" : completedCount > 0 ? "in_progress" : "not_started",
+    status,
     mdUnlocked: false,
     access,
   }
