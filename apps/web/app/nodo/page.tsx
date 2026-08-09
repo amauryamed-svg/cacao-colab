@@ -45,6 +45,9 @@ export default async function NodoIndexPage() {
           <Link href="/unete/bio" className="amaury-cta amaury-cta--primary">
             Crear mi bio de nodo →
           </Link>
+          <Link href="/collaboratorio" className="amaury-cta amaury-cta--ghost">
+            Ruta a página de producto →
+          </Link>
           <Link href="/manifiesto" className="amaury-cta amaury-cta--ghost">
             Manifiesto .org →
           </Link>
