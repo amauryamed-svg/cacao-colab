@@ -580,6 +580,7 @@ export default function ArchitectCoursePlayer({
         tips={architectCompanionTips}
         mood={dualitaMood}
         pulseKey={dualitaPulse}
+        restMode={phase === "quiz" ? "quiz" : "default"}
       />
     </div>
   )

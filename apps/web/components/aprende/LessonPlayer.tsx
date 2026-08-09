@@ -155,6 +155,7 @@ export default function LessonPlayer({ lesson, track = 'micro' }: Props) {
         tips={lesson.companionTips}
         mood={phase === "complete" ? "levelup" : phase === "quiz" ? "cheer" : "idle"}
         pulseKey={phase === "complete" ? 1 : cardIndex + (phase === "quiz" ? 10 : 0)}
+        restMode={phase === "quiz" ? "quiz" : "default"}
       />
     </div>
   )

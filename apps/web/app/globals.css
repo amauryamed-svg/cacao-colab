@@ -6063,7 +6063,11 @@ body {
   max-width: 280px;
   position: fixed;
   right: 16px;
+  transition: max-width .25s ease;
   z-index: 50;
+}
+.dualita-companion.is-resting {
+  max-width: 120px;
 }
 .dualita-bubble {
   animation: fadeUp .35s ease both;

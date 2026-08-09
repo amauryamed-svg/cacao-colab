@@ -319,6 +319,7 @@ export default function BenevoloCoursePlayer({
                 : "idle"
         }
         pulseKey={progress.completed.length + (phase === "course-complete" ? 20 : 0)}
+        restMode={phase === "quiz" ? "quiz" : "default"}
         tips={[
           "Benevolo es marca acelerada, no el capstone 70 %.",
           "Tendencia sin origen es ruido; origen sin deseo no escala.",
