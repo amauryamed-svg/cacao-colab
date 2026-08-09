@@ -54,23 +54,18 @@ export default function CacaotierCoursePage() {
                   Entrar al campus
                 </Link>
               </div>
-              {intro && (
-                <div className="mt-10">
-                  <CourseIntroPlayer video={intro} source="master-cacaotier-hero" />
-                </div>
-              )}
             </div>
-            <div className="credential-card">
-              <div className="flex justify-between items-start">
-                <span className="text-4xl">◉</span>
-                <span className="eyebrow text-colab-forest/50">Credencial 01</span>
-              </div>
-              <p className="font-serif text-3xl font-bold text-colab-forest mt-10">Arquitecto de fermentación</p>
-              <p className="text-sm text-colab-forest/65 mt-3 leading-relaxed">
-                Completa las seis misiones, documenta un lote y desbloquea la ruta Master Chocolatier.
-              </p>
-              <div className="mt-8 pt-4 border-t border-colab-forest/15 flex justify-between text-xs font-bold uppercase tracking-wider">
-                <span>Amaury Amed</span><span>cacaotier</span>
+            <div className="course-hero-visual">
+              {intro && <CourseIntroPlayer video={intro} source="master-cacaotier-hero" />}
+              <div className="credential-card !transform-none">
+                <div className="flex justify-between items-start">
+                  <span className="text-4xl">◉</span>
+                  <span className="eyebrow text-colab-forest/50">Credencial 01</span>
+                </div>
+                <p className="font-serif text-2xl font-bold text-colab-forest mt-6">Arquitecto de fermentación</p>
+                <p className="text-sm text-colab-forest/65 mt-3 leading-relaxed">
+                  Dualita te guía: documenta un lote y desbloquea Master Chocolatier.
+                </p>
               </div>
             </div>
           </div>

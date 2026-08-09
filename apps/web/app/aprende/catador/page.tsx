@@ -2,6 +2,8 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import FineFlavorWheel from "@/components/sensory/FineFlavorWheel"
 import MasteryCurveStrip from "@/components/funnel/MasteryCurveStrip"
+import CourseIntroPlayer from "@/components/aprende/CourseIntroPlayer"
+import SquirrelSVG from "@/components/brand/SquirrelSVG"
 import {
   catadorMissions,
   catadorPrinciples,
@@ -9,6 +11,7 @@ import {
 } from "@/lib/catador-course"
 import { fineFlavorWheelMeta, wheelCompareRows } from "@/lib/fine-flavor-wheel"
 import { tastingDropMeta } from "@/lib/tasting-drop-colombian"
+import { getCourseVideo } from "@/lib/course-videos"
 
 export const metadata: Metadata = {
   title: "Master Catador de Cacao · Fine-Flavor Colab",
@@ -17,13 +20,15 @@ export const metadata: Metadata = {
 }
 
 export default function MasterCatadorPage() {
+  const intro = getCourseVideo("dualita-campus")
+
   return (
     <div className="bg-[#12180f] min-h-screen text-colab-cream">
       <header className="max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-22">
         <Link href="/aprende" className="eyebrow text-white/40 hover:text-colab-yellow">
           ← Volver al campus
         </Link>
-        <div className="grid lg:grid-cols-[1.15fr_.85fr] gap-12 items-end mt-10">
+        <div className="grid lg:grid-cols-[1.05fr_.95fr] gap-10 items-center mt-10">
           <div>
             <div className="flex flex-wrap gap-2 mb-6">
               <span className="course-chip">Nivel sensorial</span>
@@ -40,9 +45,15 @@ export default function MasterCatadorPage() {
             </h1>
             <p className="mt-7 max-w-2xl text-base leading-relaxed text-white/55">
               Entrena el músculo del panel: higiene ciega, Rueda Fine-Flavor Colab, defectos CoEx,
-              tipicidad vs gusto, ficha defendible y capstone con el Set Catación Colombia 10. Resuelve
-              el «solo sé que nada sé» con microvictorias — no con un sprint de confianza.
+              tipicidad vs gusto, ficha defendible y capstone con el Set Catación Colombia 10. Dualita
+              te acompaña con microvictorias — no con un sprint de confianza.
             </p>
+            <div className="course-hero-dualita-note mt-6">
+              <SquirrelSVG size={48} expression="curious" />
+              <p>
+                <strong>Dualita</strong> — mascota del Colab. Te guía a catar con método, no con pose.
+              </p>
+            </div>
             <div className="flex flex-wrap gap-3 mt-8">
               <Link
                 href="/campus/catador-cacao"
@@ -64,12 +75,27 @@ export default function MasterCatadorPage() {
               </Link>
             </div>
           </div>
-          <div className="credential-card !bg-[#3D7A2C] !text-[#F7F1EE]">
-            <p className="eyebrow opacity-70">Diploma digital</p>
-            <p className="font-serif text-3xl font-bold mt-8">Master Catador</p>
-            <p className="text-sm opacity-70 mt-3 leading-relaxed">
-              Lente CoEx · puente Callebaut · rueda propia Colab. No es medalla oficial: es oficio.
-            </p>
+          <div className="course-hero-visual">
+            {intro && (
+              <CourseIntroPlayer
+                video={{
+                  ...intro,
+                  eyebrow: "Intro · Dualita te invita",
+                  title: "El campus te espera. Catar es oficio.",
+                  dualitaLine: "Dualita: tipicidad se defiende en panel, no en el storytelling.",
+                  packLabel: "Master Catador",
+                  poster: "/atmosphere/chocolate-broken.jpg",
+                }}
+                source="master-catador-hero"
+              />
+            )}
+            <div className="credential-card !bg-[#3D7A2C] !text-[#F7F1EE] !transform-none">
+              <p className="eyebrow opacity-70">Diploma digital</p>
+              <p className="font-serif text-2xl font-bold mt-4">Master Catador</p>
+              <p className="text-sm opacity-70 mt-2 leading-relaxed">
+                Lente CoEx · puente Callebaut · rueda propia Colab. Oficio, no medalla.
+              </p>
+            </div>
           </div>
         </div>
       </header>

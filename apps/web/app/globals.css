@@ -128,6 +128,124 @@ body {
   width: 100%;
 }
 
+.course-intro-cover {
+  aspect-ratio: 16 / 9;
+  background: #140e0a;
+  border: none;
+  cursor: pointer;
+  display: block;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  text-align: left;
+  width: 100%;
+}
+.course-intro-cover-img {
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.02);
+  transition: transform .5s ease;
+}
+.course-intro-cover:hover .course-intro-cover-img {
+  transform: scale(1.06);
+}
+.course-intro-cover-shade {
+  background:
+    linear-gradient(115deg, rgba(20, 14, 10, .82) 0%, rgba(20, 14, 10, .35) 48%, rgba(20, 14, 10, .55) 100%),
+    linear-gradient(transparent 40%, rgba(20, 14, 10, .75));
+  inset: 0;
+  position: absolute;
+}
+.course-intro-dualita {
+  align-items: center;
+  bottom: 1rem;
+  display: flex;
+  gap: .65rem;
+  left: 1rem;
+  max-width: min(70%, 22rem);
+  position: absolute;
+  z-index: 2;
+}
+.course-intro-dualita-copy {
+  display: flex;
+  flex-direction: column;
+  gap: .15rem;
+}
+.course-intro-dualita-copy strong {
+  color: #f2c830;
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.course-intro-dualita-copy em {
+  color: rgba(247, 241, 238, .88);
+  font-size: .78rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.35;
+}
+.course-intro-play {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: .65rem;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.course-intro-play-btn {
+  background: #f2c830;
+  border-radius: 50%;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, .35);
+  display: block;
+  height: 4.25rem;
+  position: relative;
+  transition: transform .2s ease;
+  width: 4.25rem;
+}
+.course-intro-play-btn::after {
+  border-bottom: 10px solid transparent;
+  border-left: 16px solid #140e0a;
+  border-top: 10px solid transparent;
+  content: "";
+  left: 55%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-40%, -50%);
+}
+.course-intro-cover:hover .course-intro-play-btn {
+  transform: scale(1.06);
+}
+.course-intro-play-label {
+  background: rgba(20, 14, 10, .72);
+  border: 1px solid rgba(242, 200, 48, .35);
+  border-radius: 999px;
+  color: #f2c830;
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  padding: .4rem .85rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.course-intro-pack {
+  background: rgba(255, 106, 61, .92);
+  border-radius: 999px;
+  color: #140e0a;
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  padding: .4rem .75rem;
+  position: absolute;
+  right: 1rem;
+  text-transform: uppercase;
+  top: 1rem;
+  z-index: 2;
+}
+
 .course-intro-video {
   aspect-ratio: 16 / 9;
   display: block;
@@ -171,6 +289,23 @@ body {
   display: flex;
   font-size: .85rem;
   justify-content: center;
+}
+
+.course-hero-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.course-hero-dualita-note {
+  align-items: center;
+  color: rgba(247, 241, 238, .55);
+  display: flex;
+  font-size: .72rem;
+  gap: .65rem;
+  line-height: 1.4;
+}
+.course-hero-dualita-note strong {
+  color: #f2c830;
 }
 
 .credential-card {
