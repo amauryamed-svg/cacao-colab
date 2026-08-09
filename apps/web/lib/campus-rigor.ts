@@ -193,6 +193,14 @@ export function linkedInShareUrl(diplomaPageUrl: string) {
   return `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(diplomaPageUrl)}`
 }
 
+export function xShareUrl(diplomaPageUrl: string, text: string) {
+  const params = new URLSearchParams({
+    url: diplomaPageUrl,
+    text,
+  })
+  return `https://twitter.com/intent/tweet?${params.toString()}`
+}
+
 export function siteOrigin() {
   if (typeof window !== "undefined") return window.location.origin
   return process.env.NEXT_PUBLIC_SITE_URL ?? "https://cacaocolab.org"

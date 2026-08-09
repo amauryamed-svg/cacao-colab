@@ -17,6 +17,7 @@ import { orderQuizOptions, playCampusSfx, type CelebrateKind } from "@/lib/campu
 import { chocolatierCompanionTipsShared } from "@/lib/campus-sources"
 import {
   bumpStreak,
+  decodeDiploma,
   diplomaGradeExplainer,
   encodeDiploma,
   gradeBlurb,
@@ -527,6 +528,9 @@ export default function ChocolatierCoursePlayer({
               total={chocolatierMissions.length}
               missions={masteryMissions}
               diplomaUrl={diplomaUrl}
+              diplomaPayload={
+                progress.diplomaCode ? decodeDiploma(progress.diplomaCode) : null
+              }
               practiceHref="/juega"
               practiceLabel="Practicar en Sembrar →"
               forumHref={`/colab?share=maestro-chocolatier&grade=${grade}`}

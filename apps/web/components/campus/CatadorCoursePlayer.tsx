@@ -17,6 +17,7 @@ import { orderQuizOptions, playCampusSfx, type CelebrateKind } from "@/lib/campu
 import { chocolatierCompanionTipsShared as catadorCompanionTipsShared } from "@/lib/campus-sources"
 import {
   bumpStreak,
+  decodeDiploma,
   diplomaGradeExplainer,
   encodeDiploma,
   gradeBlurb,
@@ -530,6 +531,9 @@ export default function CatadorCoursePlayer({
               total={catadorMissions.length}
               missions={masteryMissions}
               diplomaUrl={diplomaUrl}
+              diplomaPayload={
+                progress.diplomaCode ? decodeDiploma(progress.diplomaCode) : null
+              }
               practiceHref="/rd/set-catacion"
               practiceLabel="Abrir Set Catación 10 →"
               forumHref={`/colab?share=catador-cacao&grade=${grade}`}

@@ -1,8 +1,10 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
+import DiplomaLinkedInShare from "@/components/campus/DiplomaLinkedInShare"
 import { ARCHITECT_COURSE_SLUG } from "@/lib/architect-course"
-import { decodeDiploma, gradeLabel, linkedInShareUrl } from "@/lib/campus-rigor"
+import { decodeDiploma, gradeLabel, xShareUrl } from "@/lib/campus-rigor"
+import { diplomaShareMeta } from "@/lib/diploma-og"
 
 type Props = { params: Promise<{ code: string }> }
 
@@ -10,13 +12,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { code } = await params
   const diploma = decodeDiploma(code)
   if (!diploma) return { title: "Credencial · Arquitecto de Fermentación" }
+  const meta = diplomaShareMeta(diploma, `/credencial/arquitecto-fermentacion/${code}`)
   return {
-    title: `${diploma.name} · ${gradeLabel(diploma.grade)} · Master Cacaotier`,
-    description: `Diploma digital Cacao Colab — ${diploma.title}. Rigor técnico + edutainment.`,
-    openGraph: {
-      title: `${diploma.name} · Arquitecto de Fermentación`,
-      description: gradeLabel(diploma.grade),
-    },
+    title: meta.title,
+    description: meta.description,
+    openGraph: meta.openGraph,
+    twitter: meta.twitter,
   }
 }
 
@@ -26,7 +27,7 @@ export default async function ArchitectDiplomaPage({ params }: Props) {
   if (!diploma || diploma.course !== ARCHITECT_COURSE_SLUG) notFound()
 
   const pagePath = `/credencial/arquitecto-fermentacion/${code}`
-  const absolute = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://cacaocolab.org") + pagePath
+  const meta = diplomaShareMeta(diploma, pagePath)
   const issued = new Date(diploma.issuedAt).toLocaleDateString("es-CO", {
     year: "numeric",
     month: "long",
@@ -67,19 +68,22 @@ export default async function ArchitectDiplomaPage({ params }: Props) {
             <dd>{issued}</dd>
           </div>
         </dl>
+
+        <DiplomaLinkedInShare diplomaUrl={meta.absolute} copy={meta.linkedInCopy} />
+
         <div className="diploma-actions">
           <a
-            href={linkedInShareUrl(absolute)}
+            href={xShareUrl(meta.absolute, meta.linkedInCopy.split("\n")[0] ?? meta.title)}
             target="_blank"
             rel="noopener noreferrer"
-            className="diploma-li"
+            className="diploma-x"
           >
-            Compartir en LinkedIn →
+            Compartir en X →
           </a>
           <Link href="/cuenta" className="diploma-colab">
             Mi cuenta →
           </Link>
-          <Link href="/campus/arquitecto-fermentacion">Ver el curso</Link>
+          <Link href="/campus/arquitecto-fermentacion">Certifícate tú también →</Link>
         </div>
         <p className="diploma-footnote">
           Edutainment cacao · verificar en cacaocolab.org · evidencia de lote sigue en tu bitácora

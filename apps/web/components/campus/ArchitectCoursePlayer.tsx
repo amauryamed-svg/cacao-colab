@@ -22,6 +22,7 @@ import { architectCompanionTips } from "@/lib/campus-sources"
 import { getCourseVideo } from "@/lib/course-videos"
 import {
   bumpStreak,
+  decodeDiploma,
   diplomaGradeExplainer,
   encodeDiploma,
   gradeBlurb,
@@ -566,6 +567,9 @@ export default function ArchitectCoursePlayer({
               total={architectMissions.length}
               missions={masteryMissions}
               diplomaUrl={diplomaUrl}
+              diplomaPayload={
+                progress.diplomaCode ? decodeDiploma(progress.diplomaCode) : null
+              }
               practiceHref="/juega"
               practiceLabel="Aplicar en Sembrar →"
               forumHref={`/colab?share=arquitecto-fermentacion&grade=${grade}`}
