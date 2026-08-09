@@ -407,7 +407,7 @@ export default function ChocolatierCoursePlayer({
           <Link href="/colab" className="chocolatier-sister-link">
             Foro Colab · compartir 🍫 →
           </Link>
-          <Link href="/benevolo" className="chocolatier-sister-link">
+          <Link href="/rd/bars" className="chocolatier-sister-link">
             Marca hermana · Benevolo duja →
           </Link>
         </aside>
@@ -530,7 +530,7 @@ export default function ChocolatierCoursePlayer({
               practiceHref="/juega"
               practiceLabel="Practicar en Sembrar →"
               forumHref={`/colab?share=maestro-chocolatier&grade=${grade}`}
-              sisterHref="/benevolo"
+              sisterHref="/rd/bars"
               sisterLabel="Marca Benevolo →"
             />
           )}

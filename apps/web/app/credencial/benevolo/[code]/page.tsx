@@ -41,7 +41,7 @@ export default async function BenevoloDiplomaPage({ params }: Props) {
           <a href={linkedInShareUrl(absolute)} target="_blank" rel="noopener noreferrer" className="diploma-li">
             LinkedIn →
           </a>
-          <Link href="/benevolo" className="diploma-colab">
+          <Link href="/rd/bars" className="diploma-colab">
             Preordenar Bars. →
           </Link>
           <Link href="/unete">Únete al Colab</Link>

@@ -13,9 +13,9 @@ import {
 import { shotById } from "@/lib/atmosphere"
 
 export const metadata: Metadata = {
-  title: "R&D · Benevolo + coberturas CAÚA × Zurych",
+  title: "R&D · Bars. + coberturas CAÚA × Zurych",
   description:
-    "Laboratorio R&D del Colab: Chocolate Benevolo y la convergencia de nodos CAÚA × Zurych para pedir coberturas y nibs en cauacolombia.co.",
+    "Laboratorio R&D del Colab: Bars. (output de aceleración cacaotier) y la convergencia de nodos CAÚA × Zurych para pedir coberturas y nibs en cauacolombia.co.",
 }
 
 export default function RdHubPage() {
@@ -32,17 +32,17 @@ export default function RdHubPage() {
             <em>a la cobertura.</em>
           </h1>
           <p className="mt-6 max-w-2xl text-colab-cream/55 leading-relaxed">
-            R&D es donde el Colab prototipa producto: <strong className="text-colab-cream">Benevolo</strong>{" "}
-            como marca acelerada, y las <strong className="text-colab-cream">coberturas y nibs</strong> donde
-            convergen los nodos CAÚA y Zurych — con shop real en cauacolombia.co y puntos de contacto para
-            pedir.
+            R&D es donde el Colab prototipa producto:{" "}
+            <strong className="text-colab-cream">Bars.</strong> como output de aceleración cacaotier, y las{" "}
+            <strong className="text-colab-cream">coberturas y nibs</strong> donde convergen los nodos CAÚA y
+            Zurych — con shop real en cauacolombia.co y puntos de contacto para pedir.
           </p>
           <div className="flex flex-wrap gap-3 mt-8">
             <Link
-              href="/rd/benevolo"
+              href="/rd/bars"
               className="bg-colab-yellow text-colab-forest rounded-full px-7 py-3.5 text-sm font-bold"
             >
-              Benevolo R&D →
+              Bars. · producto Colab →
             </Link>
             <Link
               href="/rd/set-catacion"
@@ -81,14 +81,14 @@ export default function RdHubPage() {
             </p>
             <span>Ver set + guía →</span>
           </Link>
-          <Link href="/rd/benevolo" className="rd-panel rd-panel--benevolo">
-            <p className="eyebrow text-[#FF6A3D]">02 · Marca acelerada</p>
-            <h2>Chocolate Benevolo</h2>
+          <Link href="/rd/bars" className="rd-panel rd-panel--benevolo">
+            <p className="eyebrow text-[#FF6A3D]">02 · Output de aceleración</p>
+            <h2>Bars. · producto Colab</h2>
             <p>
-              Duja de marañón FEAR 5 · Quara × Zurych. Vive en R&D: prototipo, preventa y track Dualita —
-              no es el capstone 70 % del Master Chocolatier.
+              Duja de Marañón sugar free FEAR 5 · Quara × Zurych. Empaque en capas SVG, preventa y track
+              Dualita — marca nativa cacaotier en cacaocolab.org, no Benevolo.co.
             </p>
-            <span>Entrar al lab Benevolo →</span>
+            <span>Ver Bars. + empaque →</span>
           </Link>
           <Link href="/rd/coberturas" className="rd-panel rd-panel--coberturas">
             <p className="eyebrow text-colab-yellow">03 · Convergencia de nodos</p>
