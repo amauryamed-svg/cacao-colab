@@ -25,6 +25,8 @@ export const COLAB_UTM_STORAGE_KEY = "colab_utms"
 /** Campaña canónica de la página Master Cacaotier (atlas biomarcadores). */
 export const CACAOTIER_UTM_CAMPAIGN = "cacaotier_biomarcadores"
 export const CACAOTIER_UTM_TERM = "master_cacaotier"
+/** Short link público (redirect → /aprende/cacaotier). */
+export const CACAOTIER_SHARE_PATH = "/cacaotier"
 
 export type CacaotierShareChannel =
   | "whatsapp"
@@ -119,7 +121,10 @@ export function cacaotierShareUtms(channel: CacaotierShareChannel): UtmParams {
   }
 }
 
-export function cacaotierShareUrl(channel: CacaotierShareChannel, path = "/aprende/cacaotier") {
+export function cacaotierShareUrl(
+  channel: CacaotierShareChannel,
+  path = CACAOTIER_SHARE_PATH,
+) {
   return buildTrackedUrl(path, cacaotierShareUtms(channel))
 }
 

@@ -9,6 +9,9 @@ const nextConfig: NextConfig = {
     return [
       { source: "/amaury", destination: "/amauryamed", permanent: false },
       { source: "/perfil/amaury", destination: "/amauryamed", permanent: false },
+      // Short link redes / WhatsApp → Master Cacaotier (preserva ?utm_*)
+      { source: "/cacaotier", destination: "/aprende/cacaotier", permanent: false },
+      { source: "/go/cacaotier", destination: "/aprende/cacaotier", permanent: false },
       // *.vercel.app del mismo proyecto → dominio canónico (docs/24-DOMINIO-CACAOCOLAB-ORG.md).
       // cacao-colab-web.vercel.app / cacao-colab-api.vercel.app son proyectos Vercel
       // aparte del pivote, este redirect no los alcanza (ver Spec P-housekeeping).
