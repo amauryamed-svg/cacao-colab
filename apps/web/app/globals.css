@@ -556,6 +556,87 @@ body {
   margin-top: .2rem;
 }
 
+/* —— Share kit thumbnail redes / WhatsApp —— */
+.cacaotier-share-kit {
+  background:
+    radial-gradient(ellipse 70% 55% at 0% 0%, rgba(242, 200, 48, .1), transparent 50%),
+    #101d0b;
+  border: 1px solid rgba(247, 241, 238, .1);
+  border-radius: 1.5rem;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: .9fr 1.1fr;
+  padding: clamp(1.25rem, 3.5vw, 2rem);
+}
+
+.cacaotier-share-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem;
+  margin-top: 1.25rem;
+}
+
+.cacaotier-share-btn {
+  background: rgba(247, 241, 238, .05);
+  border: 1px solid rgba(247, 241, 238, .16);
+  border-radius: 999px;
+  color: #F7F1EE;
+  font-size: .72rem;
+  font-weight: 700;
+  padding: .65rem 1rem;
+  transition: background .2s, border-color .2s;
+}
+
+.cacaotier-share-btn:hover {
+  background: rgba(247, 241, 238, .1);
+  border-color: rgba(247, 241, 238, .28);
+}
+
+.cacaotier-share-btn-primary {
+  background: #F2C830;
+  border-color: #F2C830;
+  color: #0E1809;
+}
+
+.cacaotier-share-btn-primary:hover {
+  background: #f5d45a;
+  border-color: #f5d45a;
+}
+
+.cacaotier-share-previews {
+  display: grid;
+  gap: .85rem;
+  grid-template-columns: 1.4fr .9fr;
+}
+
+.cacaotier-share-previews figure {
+  margin: 0;
+}
+
+.cacaotier-share-previews img {
+  background: #0a1207;
+  border: 1px solid rgba(247, 241, 238, .12);
+  border-radius: .9rem;
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.cacaotier-share-previews figcaption {
+  color: rgba(247, 241, 238, .4);
+  font-size: .62rem;
+  letter-spacing: .08em;
+  margin-top: .4rem;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .cacaotier-share-kit,
+  .cacaotier-share-previews {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* —— Atlas pedagógico péptido → aroma —— */
 .cacaotier-manifesto {
   position: relative;

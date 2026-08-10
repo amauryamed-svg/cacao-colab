@@ -1,14 +1,43 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import FermentationLab from "@/components/cacaotier/FermentationLab"
+import CacaotierShareKit from "@/components/cacaotier/CacaotierShareKit"
 import CourseIntroPlayer from "@/components/aprende/CourseIntroPlayer"
 import { cacaotierMissions, paperSources } from "@/lib/cacaotier-course"
 import { getCourseVideo } from "@/lib/course-videos"
 
+const PAGE_PATH = "/aprende/cacaotier"
+const OG_IMAGE = "/api/og/cacaotier"
+const PAGE_TITLE = "Master Cacaotier · Del péptido al bouquet internacional"
+const PAGE_DESCRIPTION =
+  "Fermentación controlada Tc-pH (CoEx × Agrosavia Arauca): biomarcadores precursores → floral, nuez y frutal limpio para mercados japoneses y europeos de alta sibarita."
+
 export const metadata: Metadata = {
-  title: "Master Cacaotier · Biomarcadores y fermentación de excelencia",
-  description:
-    "Correlación pedagógica péptido–volátil–sabor: por qué la fermentación controlada Tc-pH (CoEx, Agrosavia Arauca) eleva el cacao hacia mercados japoneses y europeos de alta sibarita.",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
+  alternates: { canonical: PAGE_PATH },
+  openGraph: {
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    url: PAGE_PATH,
+    siteName: "Cacao Colab",
+    locale: "es_CO",
+    type: "website",
+    images: [
+      {
+        url: OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: "Master Cacaotier · Del péptido al bouquet internacional · Cacao Colab",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    images: [OG_IMAGE],
+  },
 }
 
 const fieldKit = [
@@ -73,7 +102,9 @@ export default function CacaotierCoursePage() {
       </header>
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-24">
-        <section className="grid lg:grid-cols-[.7fr_1.3fr] gap-12 items-start mb-24">
+        <CacaotierShareKit />
+
+        <section className="grid lg:grid-cols-[.7fr_1.3fr] gap-12 items-start mb-24 mt-24">
           <div className="lg:sticky lg:top-24">
             <p className="eyebrow text-colab-pod">Tu campaña</p>
             <h2 className="font-serif text-4xl md:text-5xl font-bold text-colab-cream mt-4">
