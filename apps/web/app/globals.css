@@ -6183,11 +6183,199 @@ button.diploma-li {
   border-color: rgba(242, 200, 48, .28);
   background: rgba(242, 200, 48, .05);
 }
+.colab-forum-card.kind-progress {
+  border-color: rgba(242, 200, 48, .22);
+}
 .colab-forum-card header {
   align-items: center;
   display: flex;
   justify-content: space-between;
   gap: .75rem;
+}
+
+/* Master invite thumbnails — foro como vitrina de certificación */
+.colab-forum-feed-wrap {
+  display: grid;
+  gap: 1rem;
+}
+.forum-master-rail {
+  background: linear-gradient(120deg, rgba(242, 200, 48, .08), rgba(255, 106, 61, .06));
+  border: 1px solid rgba(242, 200, 48, .2);
+  border-radius: 1.1rem;
+  padding: .9rem 1rem;
+}
+.forum-master-rail-label {
+  color: #f2c830;
+  font-size: .58rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+  margin-bottom: .65rem;
+  text-transform: uppercase;
+}
+.forum-master-rail ul {
+  display: grid;
+  gap: .55rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.forum-master-rail a {
+  align-items: center;
+  background: rgba(20, 14, 10, .35);
+  border: 1px solid rgba(247, 241, 238, .08);
+  border-radius: .85rem;
+  color: inherit;
+  display: flex;
+  gap: .55rem;
+  padding: .45rem;
+  text-decoration: none;
+  transition: border-color .2s ease, transform .2s ease;
+}
+.forum-master-rail a:hover {
+  border-color: rgba(242, 200, 48, .4);
+  transform: translateY(-1px);
+}
+.forum-master-rail-thumb {
+  border-radius: .55rem;
+  flex-shrink: 0;
+  height: 3.25rem;
+  overflow: hidden;
+  position: relative;
+  width: 3.25rem;
+}
+.forum-master-rail-thumb img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+.forum-master-rail strong {
+  color: #f7f1ee;
+  display: block;
+  font-size: .72rem;
+  font-weight: 800;
+}
+.forum-master-rail em {
+  color: rgba(247, 241, 238, .45);
+  display: block;
+  font-size: .58rem;
+  font-style: normal;
+  line-height: 1.3;
+  margin-top: .15rem;
+}
+
+.forum-master-invite {
+  --invite-accent: #f2c830;
+  background: #140e0a;
+  border: 1px solid color-mix(in srgb, var(--invite-accent) 45%, transparent);
+  border-radius: 1rem;
+  display: grid;
+  gap: 0;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  margin: .75rem 0 .35rem;
+  overflow: hidden;
+}
+.forum-master-invite.is-compact {
+  grid-template-columns: 1fr;
+  margin-bottom: .25rem;
+}
+.forum-master-invite-media {
+  aspect-ratio: 16 / 10;
+  background: #1a120c;
+  position: relative;
+}
+.forum-master-invite.is-compact .forum-master-invite-media {
+  aspect-ratio: 16 / 9;
+}
+.forum-master-invite-og,
+.forum-master-invite-poster {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+.forum-master-invite-poster {
+  inset: 0;
+  position: absolute;
+}
+.forum-master-invite-pack {
+  background: var(--invite-accent);
+  border-radius: 999px;
+  color: #140e0a;
+  font-size: .55rem;
+  font-weight: 900;
+  left: .7rem;
+  letter-spacing: .06em;
+  padding: .28rem .55rem;
+  position: absolute;
+  text-transform: uppercase;
+  top: .7rem;
+}
+.forum-master-invite-copy {
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  justify-content: center;
+  padding: .9rem 1rem;
+}
+.forum-master-invite-kicker {
+  color: var(--invite-accent);
+  font-size: .55rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.forum-master-invite-copy h4 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  line-height: 1.15;
+}
+.forum-master-invite-grade {
+  background: rgba(242, 200, 48, .14);
+  border-radius: 999px;
+  color: #f2c830;
+  display: inline-block;
+  font-size: .58rem;
+  font-weight: 800;
+  padding: .25rem .55rem;
+  width: fit-content;
+}
+.forum-master-invite-blurb {
+  color: rgba(247, 241, 238, .72);
+  font-size: .72rem;
+  font-weight: 650;
+  line-height: 1.35;
+}
+.forum-master-invite-body {
+  color: rgba(247, 241, 238, .45);
+  font-size: .65rem;
+  line-height: 1.4;
+}
+.forum-master-invite-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin-top: .45rem;
+}
+.forum-master-invite-cta,
+.forum-master-invite-ghost {
+  border-radius: 999px;
+  font-size: .65rem;
+  font-weight: 800;
+  padding: .45rem .8rem;
+  text-decoration: none;
+}
+.forum-master-invite-cta {
+  background: var(--invite-accent);
+  color: #140e0a;
+}
+.forum-master-invite-ghost {
+  border: 1px solid rgba(247, 241, 238, .2);
+  color: rgba(247, 241, 238, .75);
+}
+@media (max-width: 720px) {
+  .forum-master-rail ul { grid-template-columns: 1fr; }
+  .forum-master-invite { grid-template-columns: 1fr; }
 }
 .colab-forum-kind {
   color: #f2c830;
