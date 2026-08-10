@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation"
 import { useState, useTransition, type FormEvent } from "react"
 import { createForumPost } from "@/app/colab/actions"
+import ForumMasterInvite from "@/components/colab/ForumMasterInvite"
 import {
   COURSE_SHARE_LABEL,
   defaultProgressCopy,
@@ -51,10 +52,18 @@ export default function ForumComposer({
       <p className="eyebrow text-colab-yellow">Publicar en el Colab</p>
       <h2>Comparte avance, anuncio o sincronicidad</h2>
       {presetShare && (
-        <p className="colab-forum-preset">
-          Preparado desde {COURSE_SHARE_LABEL[presetShare] ?? presetShare}
-          {presetGrade ? ` · ${presetGrade}` : ""}
-        </p>
+        <>
+          <p className="colab-forum-preset">
+            Preparado desde {COURSE_SHARE_LABEL[presetShare] ?? presetShare}
+            {presetGrade ? ` · ${presetGrade}` : ""}
+          </p>
+          <ForumMasterInvite
+            courseSlug={presetShare}
+            authorName="Tu diploma"
+            grade={presetGrade}
+            compact
+          />
+        </>
       )}
       <div className="colab-forum-kinds" role="group" aria-label="Tipo de publicación">
         {(
