@@ -556,6 +556,413 @@ body {
   margin-top: .2rem;
 }
 
+/* —— Atlas pedagógico péptido → aroma —— */
+.cacaotier-manifesto {
+  position: relative;
+}
+
+.cacaotier-manifesto::before {
+  background:
+    radial-gradient(ellipse 70% 60% at 10% 20%, rgba(242, 200, 48, .12), transparent 55%),
+    radial-gradient(ellipse 50% 50% at 90% 80%, rgba(134, 182, 107, .1), transparent 50%);
+  content: "";
+  inset: -1rem -1rem auto;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+}
+
+.cacaotier-manifesto > * {
+  position: relative;
+  z-index: 1;
+}
+
+.cacaotier-manifesto-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 2rem;
+}
+
+.cacaotier-manifesto-grid article {
+  border-top: 2px solid rgba(242, 200, 48, .45);
+  padding-top: 1rem;
+}
+
+.cacaotier-manifesto-grid strong {
+  color: #F2C830;
+  display: block;
+  font-size: .78rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.cacaotier-manifesto-grid p {
+  color: rgba(247, 241, 238, .55);
+  font-size: .85rem;
+  line-height: 1.55;
+  margin-top: .65rem;
+}
+
+.atlas-shell {
+  --atlas-accent: #F2C830;
+  background:
+    radial-gradient(ellipse 80% 55% at 15% 0%, rgba(242, 200, 48, .1), transparent 50%),
+    radial-gradient(ellipse 60% 45% at 100% 100%, rgba(134, 182, 107, .08), transparent 45%),
+    #0e1809;
+  border: 1px solid rgba(247, 241, 238, .1);
+  border-radius: 1.4rem;
+  overflow: hidden;
+  padding: clamp(1.25rem, 3.5vw, 2.25rem);
+}
+
+.atlas-header {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1.35fr .85fr;
+}
+
+.atlas-lede {
+  color: rgba(247, 241, 238, .55);
+  font-size: .9rem;
+  line-height: 1.6;
+  margin-top: .35rem;
+}
+
+.atlas-stage {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: .55fr 1.25fr .9fr;
+  margin-top: 1.75rem;
+}
+
+.atlas-orbit {
+  align-items: center;
+  display: grid;
+  justify-items: center;
+  min-height: 220px;
+  place-items: center;
+  position: relative;
+}
+
+.atlas-orbit-ring {
+  border: 1px solid rgba(242, 200, 48, .18);
+  border-radius: 50%;
+  position: absolute;
+}
+
+.atlas-orbit-ring-a {
+  animation: atlas-spin 18s linear infinite;
+  border-top-color: var(--atlas-accent);
+  height: 180px;
+  width: 180px;
+}
+
+.atlas-orbit-ring-b {
+  animation: atlas-spin-rev 12s linear infinite;
+  border-bottom-color: rgba(134, 182, 107, .55);
+  height: 130px;
+  width: 130px;
+}
+
+.atlas-orbit-core {
+  align-items: center;
+  background: rgba(16, 29, 11, .9);
+  border: 1px solid color-mix(in srgb, var(--atlas-accent) 45%, transparent);
+  border-radius: 50%;
+  box-shadow: 0 0 40px color-mix(in srgb, var(--atlas-accent) 18%, transparent);
+  display: flex;
+  flex-direction: column;
+  height: 7.5rem;
+  justify-content: center;
+  text-align: center;
+  width: 7.5rem;
+  z-index: 1;
+}
+
+.atlas-orbit-core strong {
+  animation: atlas-fade-up .55s ease both;
+  color: var(--atlas-accent);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .72rem;
+  letter-spacing: .02em;
+  max-width: 6.2rem;
+  overflow-wrap: anywhere;
+}
+
+.atlas-orbit-core small {
+  color: rgba(247, 241, 238, .4);
+  font-size: .55rem;
+  letter-spacing: .16em;
+  margin-top: .35rem;
+  text-transform: uppercase;
+}
+
+.atlas-flow {
+  align-content: center;
+  animation: atlas-fade-up .5s ease both;
+  display: grid;
+  gap: .55rem;
+}
+
+.atlas-node {
+  background: rgba(247, 241, 238, .035);
+  border: 1px solid rgba(247, 241, 238, .08);
+  border-left: 2px solid var(--atlas-accent);
+  border-radius: .75rem;
+  padding: .85rem 1rem;
+}
+
+.atlas-node-label {
+  color: rgba(247, 241, 238, .38);
+  display: block;
+  font-size: .58rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.atlas-node strong {
+  color: #F7F1EE;
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 1rem;
+  margin-top: .35rem;
+}
+
+.atlas-node small {
+  color: rgba(247, 241, 238, .45);
+  display: block;
+  font-size: .7rem;
+  margin-top: .25rem;
+}
+
+.atlas-node ul {
+  color: rgba(247, 241, 238, .78);
+  display: grid;
+  font-size: .78rem;
+  gap: .2rem;
+  margin-top: .45rem;
+}
+
+.atlas-sensory-tags {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: .35rem !important;
+}
+
+.atlas-sensory-tags li {
+  background: color-mix(in srgb, var(--atlas-accent) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--atlas-accent) 35%, transparent);
+  border-radius: .4rem;
+  color: #F7F1EE;
+  font-size: .68rem;
+  font-weight: 600;
+  padding: .3rem .55rem;
+}
+
+.atlas-arrow {
+  display: flex;
+  gap: .28rem;
+  justify-content: center;
+  padding: .1rem 0;
+}
+
+.atlas-arrow span {
+  animation: atlas-pulse 1.2s ease-in-out infinite;
+  background: var(--atlas-accent);
+  border-radius: 50%;
+  height: .28rem;
+  opacity: .35;
+  width: .28rem;
+}
+
+.atlas-arrow span:nth-child(2) { animation-delay: .15s; }
+.atlas-arrow span:nth-child(3) { animation-delay: .3s; }
+
+.atlas-market {
+  align-content: start;
+  animation: atlas-fade-up .65s ease both;
+  background: linear-gradient(160deg, rgba(242, 200, 48, .1), rgba(16, 29, 11, .2));
+  border: 1px solid rgba(242, 200, 48, .22);
+  border-radius: 1rem;
+  display: grid;
+  gap: .75rem;
+  padding: 1.15rem 1.2rem;
+}
+
+.atlas-market-copy {
+  color: #F7F1EE;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.atlas-market-note {
+  color: rgba(247, 241, 238, .45);
+  font-size: .72rem;
+  line-height: 1.5;
+}
+
+.atlas-markets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin-top: .25rem;
+}
+
+.atlas-markets span {
+  background: rgba(16, 29, 11, .55);
+  border: 1px solid rgba(247, 241, 238, .12);
+  border-radius: .4rem;
+  color: rgba(247, 241, 238, .7);
+  font-size: .62rem;
+  font-weight: 600;
+  padding: .35rem .55rem;
+}
+
+.atlas-peptide-rail {
+  display: grid;
+  gap: .45rem;
+  grid-template-columns: repeat(7, 1fr);
+  margin-top: 1.35rem;
+}
+
+.atlas-peptide {
+  --atlas-accent: #F2C830;
+  background: rgba(247, 241, 238, .03);
+  border: 1px solid rgba(247, 241, 238, .08);
+  border-radius: .7rem;
+  cursor: pointer;
+  padding: .65rem .45rem;
+  text-align: left;
+  transition: border-color .2s, background .2s, transform .2s;
+}
+
+.atlas-peptide:hover,
+.atlas-peptide-active {
+  background: color-mix(in srgb, var(--atlas-accent) 12%, transparent);
+  border-color: color-mix(in srgb, var(--atlas-accent) 55%, transparent);
+  transform: translateY(-2px);
+}
+
+.atlas-peptide-id {
+  color: var(--atlas-accent);
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .58rem;
+  font-weight: 700;
+  letter-spacing: .01em;
+  overflow-wrap: anywhere;
+}
+
+.atlas-peptide-tag {
+  color: rgba(247, 241, 238, .48);
+  display: block;
+  font-size: .58rem;
+  margin-top: .3rem;
+}
+
+.atlas-progress {
+  background: rgba(247, 241, 238, .08);
+  border-radius: 999px;
+  height: 3px;
+  margin-top: .9rem;
+  overflow: hidden;
+}
+
+.atlas-progress-bar {
+  animation: atlas-progress linear forwards;
+  background: linear-gradient(90deg, #F2C830, #86B66B);
+  height: 100%;
+  transform-origin: left;
+  width: 100%;
+}
+
+.atlas-progress-bar.is-paused {
+  animation-play-state: paused;
+}
+
+.atlas-contrast {
+  border-top: 1px solid rgba(247, 241, 238, .08);
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: .85fr 1.15fr;
+  margin-top: 1.5rem;
+  padding-top: 1.35rem;
+}
+
+.atlas-inferior {
+  display: grid;
+  gap: .65rem;
+}
+
+.atlas-inferior li {
+  border-left: 2px solid #DC775F;
+  padding-left: .75rem;
+}
+
+.atlas-inferior strong {
+  color: #DC775F;
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .68rem;
+}
+
+.atlas-inferior span {
+  color: rgba(247, 241, 238, .45);
+  display: block;
+  font-size: .65rem;
+  line-height: 1.45;
+  margin-top: .2rem;
+}
+
+@keyframes atlas-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes atlas-spin-rev {
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes atlas-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes atlas-pulse {
+  0%, 100% { opacity: .25; transform: scale(.85); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+@keyframes atlas-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@media (max-width: 980px) {
+  .atlas-header,
+  .atlas-stage,
+  .atlas-contrast,
+  .cacaotier-manifesto-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .atlas-peptide-rail {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .atlas-orbit {
+    min-height: 180px;
+  }
+}
+
 @media (max-width: 820px) {
   .window-strip { grid-template-columns: 1fr 1fr; }
 }
