@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import FermentationLab from "@/components/cacaotier/FermentationLab"
+import ExcellencePathBridge from "@/components/cacaotier/ExcellencePathBridge"
 import CourseIntroPlayer from "@/components/aprende/CourseIntroPlayer"
 import { cacaotierMissions, paperSources } from "@/lib/cacaotier-course"
 import { getCourseVideo } from "@/lib/course-videos"
@@ -81,6 +82,9 @@ export default function CacaotierCoursePage() {
                 <a href="#atlas-precursores" className="border border-white/20 text-colab-cream rounded-full px-7 py-3.5 text-sm font-bold">
                   Ver atlas péptido → aroma
                 </a>
+                <a href="#camino-excelencia" className="border border-white/20 text-colab-cream rounded-full px-7 py-3.5 text-sm font-bold">
+                  Camino a la rueda →
+                </a>
               </div>
             </div>
             <div className="course-hero-visual">
@@ -159,6 +163,10 @@ export default function CacaotierCoursePage() {
 
         <div id="atlas-precursores">
           <FermentationLab />
+        </div>
+
+        <div className="mt-16">
+          <ExcellencePathBridge />
         </div>
 
         <section className="mt-16 rounded-3xl border border-white/10 bg-[#101d0b] p-7 md:p-10">

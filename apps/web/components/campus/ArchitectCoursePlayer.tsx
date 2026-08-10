@@ -433,6 +433,12 @@ export default function ArchitectCoursePlayer({
           <Link href="/cuenta" className="chocolatier-sister-link">
             Ver progreso en Mi cuenta →
           </Link>
+          <Link href="/aprende/cacaotier#camino-excelencia" className="chocolatier-sister-link">
+            Camino · fermentación → rueda → tostión →
+          </Link>
+          <Link href="/conocimiento/rueda-fine-flavor" className="chocolatier-sister-link">
+            Rueda Fine-Flavor Colab →
+          </Link>
           <Link href="/colab" className="chocolatier-sister-link">
             Foro Colab · compartir 🍫 →
           </Link>
