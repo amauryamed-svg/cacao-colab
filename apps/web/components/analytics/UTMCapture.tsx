@@ -1,23 +1,25 @@
-'use client'
+"use client"
 
-import { useEffect } from 'react'
-import { usePathname } from 'next/navigation'
-import { trackColabEvent } from '@/lib/analytics'
+import { useEffect } from "react"
+import { usePathname } from "next/navigation"
+import { trackColabEvent } from "@/lib/analytics"
+import { pickUtms, storeUtms, UTM_KEYS } from "@/lib/utm"
 
 export default function UTMCapture() {
   const pathname = usePathname()
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
-    const utms: Record<string, string> = {}
-    for (const key of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']) {
+    const raw: Record<string, string> = {}
+    for (const key of UTM_KEYS) {
       const val = params.get(key)
-      if (val) utms[key] = val
+      if (val) raw[key] = val
     }
+    const utms = pickUtms(raw)
     if (Object.keys(utms).length > 0) {
-      sessionStorage.setItem('colab_utms', JSON.stringify(utms))
+      storeUtms(utms)
     }
-    trackColabEvent('page_view', { pathname: pathname ?? window.location.pathname })
+    trackColabEvent("page_view", { pathname: pathname ?? window.location.pathname })
   }, [pathname])
 
   return null

@@ -569,6 +569,83 @@ body {
   padding: clamp(1.25rem, 3.5vw, 2rem);
 }
 
+.cacaotier-share-channels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin-top: 1.1rem;
+}
+
+.cacaotier-share-channel {
+  background: rgba(247, 241, 238, .04);
+  border: 1px solid rgba(247, 241, 238, .12);
+  border-radius: 999px;
+  color: rgba(247, 241, 238, .55);
+  font-size: .68rem;
+  font-weight: 700;
+  padding: .45rem .8rem;
+}
+
+.cacaotier-share-channel.is-active {
+  background: rgba(242, 200, 48, .14);
+  border-color: rgba(242, 200, 48, .45);
+  color: #F2C830;
+}
+
+.cacaotier-utm-grid {
+  display: grid;
+  gap: .45rem;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 1rem;
+}
+
+.cacaotier-utm-grid div {
+  background: rgba(247, 241, 238, .035);
+  border: 1px solid rgba(247, 241, 238, .08);
+  border-radius: .55rem;
+  padding: .55rem .65rem;
+}
+
+.cacaotier-utm-grid dt {
+  color: rgba(247, 241, 238, .38);
+  font-size: .55rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.cacaotier-utm-grid dd {
+  color: #F7F1EE;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .68rem;
+  margin-top: .2rem;
+  overflow-wrap: anywhere;
+}
+
+.cacaotier-tracked-url {
+  background: rgba(16, 29, 11, .65);
+  border: 1px dashed rgba(242, 200, 48, .28);
+  border-radius: .65rem;
+  color: rgba(247, 241, 238, .7);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .62rem;
+  line-height: 1.45;
+  margin-top: .85rem;
+  overflow-wrap: anywhere;
+  padding: .7rem .8rem;
+}
+
+.cacaotier-utm-note {
+  color: rgba(247, 241, 238, .42);
+  font-size: .68rem;
+  line-height: 1.45;
+  margin-top: .9rem;
+}
+
+.cacaotier-utm-note code {
+  color: rgba(242, 200, 48, .85);
+  font-size: .62rem;
+}
+
 .cacaotier-share-actions {
   display: flex;
   flex-wrap: wrap;

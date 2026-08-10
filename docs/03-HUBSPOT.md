@@ -43,6 +43,11 @@ HubSpot es el CRM central del Cacao Colab. Captura todos los leads del onboardin
 | `tipo` + `interes` | `jobtitle` | string | "Restaurante · Los productos" |
 | — | `lifecyclestage` | enum | Siempre `lead` |
 | — | `hs_lead_status` | enum | Siempre `NEW` |
+| `utm_source` | `hs_analytics_source_data_1` | string | + `hs_analytics_source=OTHER_CAMPAIGNS` |
+| `utm_campaign` · `utm_content` · `utm_term` | `hs_analytics_source_data_2` | string | Ej. `cacaotier_biomarcadores · share_kit_wa · master_cacaotier` |
+| `utm_medium` | `hs_analytics_last_referrer` | string | Ej. `social` |
+
+UTMs se capturan en `UTMCapture` → `sessionStorage.colab_utms` y se envían en `/api/onboarding`. El kit de share de `/aprende/cacaotier` genera enlaces con campaña `cacaotier_biomarcadores` por canal (WhatsApp, Instagram, LinkedIn, X, copy). Ver `apps/web/lib/utm.ts`.
 
 ---
 
