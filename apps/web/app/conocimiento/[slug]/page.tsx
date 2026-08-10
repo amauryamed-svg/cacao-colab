@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import TrackedLink from "@/components/analytics/TrackedLink"
+import FineFlavorWheel from "@/components/sensory/FineFlavorWheel"
 import {
   evidenceLabels,
   getKnowledgeTopic,
@@ -59,6 +60,36 @@ export default async function KnowledgeTopicPage({
             </p>
           ))}
         </div>
+
+        {topic.slug === "rueda-fine-flavor" && (
+          <section className="kb-wheel-embed mt-12">
+            <p className="eyebrow text-colab-green">Lente interactiva</p>
+            <h2 className="font-serif text-3xl font-bold text-colab-forest mt-3">
+              Gira la rueda. Lee la fermentación.
+            </h2>
+            <p className="text-sm leading-relaxed text-colab-forest/60 mt-3 mb-6">
+              Floral, nuez y tipicidad nacen en el lote (Master Cacaotier). La tostión bean-to-bar
+              (Master Chocolatier) solo debe revelarlos con respeto.
+            </p>
+            <div className="kb-wheel-embed-panel">
+              <FineFlavorWheel />
+            </div>
+            <div className="flex flex-wrap gap-3 mt-6">
+              <Link
+                href="/aprende/cacaotier#camino-excelencia"
+                className="rounded-full bg-colab-forest text-colab-cream px-5 py-2.5 text-xs font-bold"
+              >
+                Origen · fermentación Cacaotier →
+              </Link>
+              <Link
+                href="/aprende/chocolatier"
+                className="rounded-full border border-colab-forest/15 px-5 py-2.5 text-xs font-bold text-colab-forest"
+              >
+                Puente · tostión Chocolatier →
+              </Link>
+            </div>
+          </section>
+        )}
 
         <section className="mt-12">
           <p className="eyebrow text-colab-green">Referencias</p>

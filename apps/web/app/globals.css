@@ -714,6 +714,177 @@ body {
   }
 }
 
+/* —— Camino excelencia: fermentación → rueda → tostión —— */
+.excellence-bridge {
+  background:
+    radial-gradient(ellipse 70% 50% at 100% 0%, rgba(134, 182, 107, .1), transparent 50%),
+    radial-gradient(ellipse 55% 45% at 0% 100%, rgba(242, 200, 48, .08), transparent 48%),
+    #101d0b;
+  border: 1px solid rgba(247, 241, 238, .1);
+  border-radius: 1.5rem;
+  padding: clamp(1.25rem, 3.5vw, 2.25rem);
+}
+
+.excellence-bridge-header {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1.25fr .85fr;
+}
+
+.excellence-bridge-lede {
+  color: rgba(247, 241, 238, .55);
+  font-size: .9rem;
+  line-height: 1.6;
+  margin-top: .4rem;
+}
+
+.excellence-gates {
+  display: grid;
+  gap: .85rem;
+  grid-template-columns: repeat(3, 1fr);
+  list-style: none;
+  margin: 1.75rem 0 0;
+  padding: 0;
+}
+
+.excellence-gates li {
+  --gate-accent: #F2C830;
+  border-top: 2px solid var(--gate-accent);
+  display: flex;
+  flex-direction: column;
+  gap: .45rem;
+  padding-top: 1rem;
+}
+
+.excellence-gate-step {
+  color: var(--gate-accent);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.excellence-gates h3 {
+  color: #F7F1EE;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.excellence-gate-claim {
+  color: rgba(247, 241, 238, .78);
+  font-size: .85rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.excellence-gate-detail {
+  color: rgba(247, 241, 238, .5);
+  flex: 1;
+  font-size: .78rem;
+  line-height: 1.5;
+}
+
+.excellence-gate-cta {
+  color: var(--gate-accent, #F2C830);
+  display: inline-block;
+  font-size: .75rem;
+  font-weight: 700;
+  margin-top: .55rem;
+}
+
+.excellence-gate-cta-ghost {
+  color: rgba(247, 241, 238, .65);
+}
+
+.excellence-correlations {
+  border-top: 1px solid rgba(247, 241, 238, .08);
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: .95fr 1.05fr;
+  margin-top: 1.75rem;
+  padding-top: 1.5rem;
+}
+
+.excellence-corr-list {
+  display: grid;
+  gap: .85rem;
+  list-style: none;
+  margin: 1.1rem 0 0;
+  padding: 0;
+}
+
+.excellence-corr-list li {
+  border-left: 2px solid rgba(242, 200, 48, .4);
+  padding-left: .85rem;
+}
+
+.excellence-corr-list strong {
+  color: #F2C830;
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .72rem;
+}
+
+.excellence-corr-notes {
+  color: rgba(247, 241, 238, .72);
+  display: block;
+  font-size: .78rem;
+  font-weight: 600;
+  margin-top: .25rem;
+}
+
+.excellence-corr-spokes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3rem;
+  margin: .4rem 0;
+}
+
+.excellence-corr-spokes span {
+  background: rgba(134, 182, 107, .12);
+  border: 1px solid rgba(134, 182, 107, .3);
+  border-radius: .35rem;
+  color: rgba(247, 241, 238, .7);
+  font-size: .58rem;
+  font-weight: 700;
+  padding: .2rem .45rem;
+}
+
+.excellence-corr-list p {
+  color: rgba(247, 241, 238, .45);
+  font-size: .7rem;
+  line-height: 1.45;
+}
+
+.excellence-wheel-panel {
+  background: rgba(14, 24, 9, .55);
+  border: 1px solid rgba(247, 241, 238, .08);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.excellence-wheel-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .65rem 1rem;
+  margin-top: 1rem;
+}
+
+.kb-wheel-embed-panel {
+  background: #12180f;
+  border-radius: 1.1rem;
+  padding: 1rem;
+}
+
+@media (max-width: 900px) {
+  .excellence-bridge-header,
+  .excellence-gates,
+  .excellence-correlations {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* —— Atlas pedagógico péptido → aroma —— */
 .cacaotier-manifesto {
   position: relative;
