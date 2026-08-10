@@ -4,11 +4,10 @@ import { useMemo, useState } from "react"
 import {
   fermentationHours,
   fermentationMethods,
-  inferiorBiomarkers,
   resolvePrecursorStage,
-  superiorBiomarkers,
   type FermentationMethod,
 } from "@/lib/cacaotier-course"
+import PrecursorFlavorAtlas from "@/components/cacaotier/PrecursorFlavorAtlas"
 
 const chartWidth = 720
 const chartHeight = 250
@@ -228,34 +227,8 @@ export default function FermentationLab() {
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-2 gap-5 mt-5">
-        <div className="lab-panel">
-          <p className="eyebrow text-colab-yellow">Biomarcadores · calidad superior</p>
-          <h3 className="text-lg font-bold text-colab-cream mt-2">Más abundantes en Tc-pH (45 °C, pH espontáneo)</h3>
-          <ul className="biomarker-list mt-4">
-            {superiorBiomarkers.map((marker) => (
-              <li key={marker.id}>
-                <strong>{marker.id}</strong>
-                <span>{marker.note}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="lab-panel">
-          <p className="eyebrow text-colab-cream/45">Biomarcadores · calidad inferior</p>
-          <h3 className="text-lg font-bold text-colab-cream mt-2">Amargor, astringencia y sabores extraños</h3>
-          <ul className="biomarker-list mt-4">
-            {inferiorBiomarkers.map((marker) => (
-              <li key={marker.id}>
-                <strong>{marker.id}</strong>
-                <span>{marker.note}</span>
-              </li>
-            ))}
-          </ul>
-          <p className="text-xs leading-relaxed text-colab-cream/40 mt-4">
-            Intensidad alta en cajón a 144–168 h y en tratamientos con acidificación inicial (Tc/Tg-pH_C).
-          </p>
-        </div>
+      <div className="mt-8">
+        <PrecursorFlavorAtlas />
       </div>
 
       <div className="mt-5 p-5 rounded-2xl bg-[#101d0b] border border-white/10">

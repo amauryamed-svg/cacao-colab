@@ -6,6 +6,7 @@ import type { Json } from "@cacao-colab/supabase-client/database.types"
 import { consentToUserMetadata } from "@/lib/legal/consent"
 import { LEGAL_POLICY_VERSION, TERMS_VERSION } from "@/lib/legal/versions"
 import { getSiteUrl } from "@/lib/site"
+import { hubspotContactUtmProperties, pickUtms } from "@/lib/utm"
 
 const COOKIE_NAME = "colab_onboarded"
 const TIPO_LABEL: Record<string, string> = {
@@ -51,6 +52,7 @@ export async function POST(request: NextRequest) {
 
   const marketingOptIn = body.marketing_opt_in === true || body.marketing_opt_in === "true"
   const email = String(body.email).trim().toLowerCase()
+  const utms = pickUtms(body)
   const properties: Record<string, string> = {
     firstname: String(body.nombre ?? ""),
     email,
@@ -60,9 +62,7 @@ export async function POST(request: NextRequest) {
     jobtitle: [TIPO_LABEL[body.tipo] || body.tipo, INTERES_LABEL[body.interes] || body.interes].filter(Boolean).join(" · "),
     lifecyclestage: "lead",
     hs_lead_status: "NEW",
-    ...(body.utm_source && { hs_analytics_source: "OTHER_CAMPAIGNS", hs_analytics_source_data_1: String(body.utm_source) }),
-    ...(body.utm_campaign && { hs_analytics_source_data_2: String(body.utm_campaign) }),
-    ...(body.utm_medium && { hs_analytics_last_referrer: String(body.utm_medium) }),
+    ...hubspotContactUtmProperties(utms),
   }
 
   let hubspot: Awaited<ReturnType<typeof upsertContactByEmail>> | null = null
@@ -93,7 +93,11 @@ export async function POST(request: NextRequest) {
     const metadata: Json = {
       tipo: String(body.tipo ?? ""),
       interes: String(body.interes ?? ""),
-      utm_source: String(body.utm_source ?? ""),
+      utm_source: utms.utm_source ?? "",
+      utm_medium: utms.utm_medium ?? "",
+      utm_campaign: utms.utm_campaign ?? "",
+      utm_content: utms.utm_content ?? "",
+      utm_term: utms.utm_term ?? "",
       hubspot_ok: Boolean(hubspot?.ok),
       privacy_accepted: true,
       terms_accepted: true,
@@ -125,9 +129,9 @@ export async function POST(request: NextRequest) {
         event_type: "onboarding_submitted",
         target: String(body.interes ?? ""),
         pathname: "/unete",
-        utm_source: body.utm_source ? String(body.utm_source) : null,
-        utm_medium: body.utm_medium ? String(body.utm_medium) : null,
-        utm_campaign: body.utm_campaign ? String(body.utm_campaign) : null,
+        utm_source: utms.utm_source ?? null,
+        utm_medium: utms.utm_medium ?? null,
+        utm_campaign: utms.utm_campaign ?? null,
         metadata,
       })
     }

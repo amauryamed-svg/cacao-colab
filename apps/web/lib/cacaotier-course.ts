@@ -109,37 +109,96 @@ export const fermentationMethods: FermentationMethod[] = [
   },
 ]
 
-/** Péptidos/metabolitos asociados a atributos de calidad superior (Tc-pH). */
-export const superiorBiomarkers = [
+export type SuperiorBiomarker = {
+  id: string
+  note: string
+  family: string
+  /** Volátiles / compuestos con correlación publicada o de red. */
+  volatiles: string[]
+  /** Ventajas sensoriales concretas (sabor/aroma). */
+  sensory: string[]
+  /** Por qué eleva apreciación en mercados de alta sibarita. */
+  marketEdge: string
+  accent: string
+}
+
+/**
+ * Péptidos/metabolitos asociados a atributos de calidad superior (Tc-pH).
+ * Correlaciones péptido–volátil–sensorial: Santander et al. 2025 Fig. 6 (chocolate 120 h)
+ * y marcadores de tiempo Llano et al. 2025 (Arauca).
+ */
+export const superiorBiomarkers: SuperiorBiomarker[] = [
   {
     id: "FASKDQPLNA",
+    family: "Vicilina · aa 476–",
     note: "Derivado de vicilina (aa 476–); correlaciona con acetato de etilo, heptan-2-ol, notas especiadas/vegetales.",
+    volatiles: ["Acetato de etilo", "Heptan-2-ol"],
+    sensory: ["Especiado limpio", "Vegetal fresco", "Frutal esterificado"],
+    marketEdge:
+      "El ester frutal y el alcohol verde dan complejidad que paneles europeos y japoneses leen como cacao «vivo», no plano.",
+    accent: "#F2C830",
   },
   {
     id: "FASKDQPL",
+    family: "Familia ASKDQPL / KDQPL",
     note: "Misma familia que ASKDQPL / KDQPL (Caligiani, Marseglia); perfil similar a FASKDQPLNA.",
+    volatiles: ["Acetato de etilo", "Alcoholes C7"],
+    sensory: ["Especiado suave", "Cuerpo aromático", "Continuidad con FASKDQPLNA"],
+    marketEdge:
+      "Refuerza la firma de precursión controlada: el lote habla el mismo dialecto aromático que los péptidos de referencia Fine Flavor.",
+    accent: "#E8B84A",
   },
   {
     id: "FGVPSKL",
+    family: "Precursor de sabor · Scalone 2019",
     note: "Precursor de sabor (Scalone 2019); correlaciona con linalol, furfural, 2-acetilpirrol, 2-fenilacetaldehído.",
+    volatiles: ["Linalol", "Furfural", "2-Acetilpirrol", "2-Fenilacetaldehído"],
+    sensory: ["Floral", "Caramelo / tostado suave", "Nuez", "Miel floral"],
+    marketEdge:
+      "Puente directo a la sibarita japonesa y europea: floral + nuez + caramelo sin amargor dominante — el perfil que compra bean-to-bar premium.",
+    accent: "#86B66B",
   },
   {
     id: "LAIN",
+    family: "Marcador de tiempo · Llano 2025",
     note: "Marcador de tiempo de fermentación (Llano 2025); abundante en Tc-pH.",
+    volatiles: ["Señal de ventana metabolómica"],
+    sensory: ["Madurez de lote", "Equilibrio frutal/nuez"],
+    marketEdge:
+      "Prueba de proceso: el reloj metabolómico llegó a la ventana correcta. Sin LAIN abundante, el cacao no «cuenta» control.",
+    accent: "#F4C542",
   },
   {
     id: "IFVPHYNSKAT",
+    family: "Tiempo × calidad superior",
     note: "Vinculado a tiempo de fermentación; correlación positiva con calidad superior.",
+    volatiles: ["Red de atributos superiores"],
+    sensory: ["Calidad superior global", "Persistencia en taza"],
+    marketEdge:
+      "Correlación positiva con el score de excelencia: el comprador internacional paga por consistencia, no por suerte de lote.",
+    accent: "#A8C97A",
   },
   {
     id: "GINDYRL",
+    family: "Red floral · 120 h",
     note: "Asociado a notas florales en las redes de correlación a 120 h.",
+    volatiles: ["Volátiles florales (red 120 h)"],
+    sensory: ["Floral alto", "Finura aromática", "Ligereza de bouquet"],
+    marketEdge:
+      "La nota floral es el sello que distingue cacao de excelencia frente a bulk: Japón y Europa la buscan en single-origin.",
+    accent: "#DC775F",
   },
   {
     id: "ESYF",
+    family: "Discriminante de excelencia",
     note: "Péptido discriminante con correlación positiva a atributos de calidad superior.",
+    volatiles: ["Firma discriminante Tc-pH"],
+    sensory: ["Limpieza de perfil", "Superioridad discriminante"],
+    marketEdge:
+      "Separa el lote de precisión del cajón prolongado: es la firma química de «este cacao fue diseñado, no abandonado».",
+    accent: "#F2C830",
   },
-] as const
+]
 
 /** Metabolitos asociados a sabores extraños, amargor y astringencia. */
 export const inferiorBiomarkers = [

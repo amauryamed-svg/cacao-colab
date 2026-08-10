@@ -1,4 +1,5 @@
 import { hasAnalyticsConsentClient, hasGlobalPrivacyControl } from "@/lib/cookie-prefs"
+import { COLAB_UTM_STORAGE_KEY, pickUtms } from "@/lib/utm"
 
 export type ColabAnalyticsEvent =
   | "page_view"
@@ -38,7 +39,7 @@ export function getAnalyticsIdentity() {
   }
   let utms = {}
   try {
-    utms = JSON.parse(sessionStorage.getItem("colab_utms") ?? "{}")
+    utms = pickUtms(JSON.parse(sessionStorage.getItem(COLAB_UTM_STORAGE_KEY) ?? "{}"))
   } catch {
     utms = {}
   }

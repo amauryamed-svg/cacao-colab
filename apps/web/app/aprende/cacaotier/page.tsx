@@ -1,14 +1,43 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import FermentationLab from "@/components/cacaotier/FermentationLab"
+import CacaotierShareKit from "@/components/cacaotier/CacaotierShareKit"
 import CourseIntroPlayer from "@/components/aprende/CourseIntroPlayer"
 import { cacaotierMissions, paperSources } from "@/lib/cacaotier-course"
 import { getCourseVideo } from "@/lib/course-videos"
 
+const PAGE_URL = "https://www.cacaocolab.org/aprende/cacaotier"
+const OG_IMAGE = "/api/og/cacaotier"
+const PAGE_TITLE = "Master Cacaotier · Del péptido al bouquet internacional"
+const PAGE_DESCRIPTION =
+  "Fermentación controlada Tc-pH (CoEx × Agrosavia Arauca): biomarcadores precursores → floral, nuez y frutal limpio para mercados japoneses y europeos de alta sibarita."
+
 export const metadata: Metadata = {
-  title: "Master Cacaotier · Fermentación de precisión",
-  description:
-    "Microlearning aplicado para comparar fermentación de cacao FEAR 5 en biorreactor, tanque adaptado y cajón tradicional.",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
+  alternates: { canonical: PAGE_URL },
+  openGraph: {
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    url: PAGE_URL,
+    siteName: "Cacao Colab",
+    locale: "es_CO",
+    type: "website",
+    images: [
+      {
+        url: OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: "Master Cacaotier · Del péptido al bouquet internacional · Cacao Colab",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    images: [OG_IMAGE],
+  },
 }
 
 const fieldKit = [
@@ -37,22 +66,22 @@ export default function CacaotierCoursePage() {
                 <span className="course-chip">6 misiones</span>
                 <span className="course-chip">700 XP</span>
               </div>
-              <p className="eyebrow text-colab-yellow">Master Cacaotier · Protocolo 01</p>
+              <p className="eyebrow text-colab-yellow">Master Cacaotier · Protocolo 01 · CoEx × Papers Arauca</p>
               <h1 className="display-title text-colab-cream mt-4 max-w-4xl">
-                Diseña el sabor<br />antes de <em>tostarlo.</em>
+                Del biomarcador<br />a la <em>taza internacional.</em>
               </h1>
               <p className="mt-7 max-w-2xl text-base md:text-lg leading-relaxed text-colab-cream/60">
-                Aprende a pilotar la fermentación como bioproceso: lee temperatura, pH y ventanas de
-                precursores. Distingue 72 h (óptimo metabolómico Tc-pH), 96–120 h (cajón) y 120 h
-                (ancla sensorial del chocolate de biorreactor publicado).
+                Fermentación controlada como maestría: lee temperatura, pH y péptidos precursores
+                que abren floral, nuez y frutal limpio — el perfil que buscan bean-to-bar en Japón
+                y alta gastronomía en Europa.
               </p>
               <div className="flex flex-wrap gap-3 mt-8">
                 <Link href="/campus/arquitecto-fermentacion" className="bg-colab-yellow text-colab-forest rounded-full px-7 py-3.5 text-sm font-bold">
                   Empezar campaña con Dualita →
                 </Link>
-                <Link href="/cuenta/entrar?next=/campus/arquitecto-fermentacion" className="border border-white/20 text-colab-cream rounded-full px-7 py-3.5 text-sm font-bold">
-                  Entrar al campus
-                </Link>
+                <a href="#atlas-precursores" className="border border-white/20 text-colab-cream rounded-full px-7 py-3.5 text-sm font-bold">
+                  Ver atlas péptido → aroma
+                </a>
               </div>
             </div>
             <div className="course-hero-visual">
@@ -73,7 +102,9 @@ export default function CacaotierCoursePage() {
       </header>
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-24">
-        <section className="grid lg:grid-cols-[.7fr_1.3fr] gap-12 items-start mb-24">
+        <CacaotierShareKit />
+
+        <section className="grid lg:grid-cols-[.7fr_1.3fr] gap-12 items-start mb-24 mt-24">
           <div className="lg:sticky lg:top-24">
             <p className="eyebrow text-colab-pod">Tu campaña</p>
             <h2 className="font-serif text-4xl md:text-5xl font-bold text-colab-cream mt-4">
@@ -108,7 +139,30 @@ export default function CacaotierCoursePage() {
           </div>
         </section>
 
-        <FermentationLab />
+        <section className="cacaotier-manifesto mb-16" aria-labelledby="manifesto-title">
+          <p className="eyebrow text-colab-yellow">Convergencia de maestría</p>
+          <h2 id="manifesto-title" className="display-title text-colab-cream mt-4">
+            CoEx + paper + Cacaotier.<br /><em>Un solo estándar de excelencia.</em>
+          </h2>
+          <div className="cacaotier-manifesto-grid">
+            <article>
+              <strong>CoEx</strong>
+              <p>Fermentación controlada como bioproceso: temperatura, pH y corte con trazabilidad de lote.</p>
+            </article>
+            <article>
+              <strong>Agrosavia Arauca</strong>
+              <p>Santander 2025 (FEAR 5 Tc-pH) y Llano 2025 (marcadores regionales): evidencia publicada, no intuición.</p>
+            </article>
+            <article>
+              <strong>Master Cacaotier</strong>
+              <p>Traduce la red péptido–volátil–sensorial en decisiones de finca que el mercado premium entiende.</p>
+            </article>
+          </div>
+        </section>
+
+        <div id="atlas-precursores">
+          <FermentationLab />
+        </div>
 
         <section className="mt-16 rounded-3xl border border-white/10 bg-[#101d0b] p-7 md:p-10">
           <p className="eyebrow text-colab-yellow">Lectura del paper · §3.4.3 y conclusiones</p>

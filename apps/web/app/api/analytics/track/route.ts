@@ -41,6 +41,8 @@ export async function POST(request: NextRequest) {
     const metadata: Json = {
       source: clean(body.source, 80),
       referrer: clean(body.referrer, 300),
+      utm_content: clean(utms.utm_content, 100),
+      utm_term: clean(utms.utm_term, 100),
     }
     const { error } = await admin.from("analytics_events").insert({
       visitor_id: clean(body.visitorId, 80)!,

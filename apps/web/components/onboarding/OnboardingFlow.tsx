@@ -6,6 +6,7 @@ import SquirrelSVG from '@/components/brand/SquirrelSVG'
 import AuthConsentFields, { consentIsReady } from '@/components/legal/AuthConsentFields'
 import { hasAnalyticsConsentClient } from '@/lib/cookie-prefs'
 import { getAnalyticsIdentity, trackColabEvent } from '@/lib/analytics'
+import { readStoredUtms } from '@/lib/utm'
 
 /* ─── types ─── */
 type OperationType =
@@ -306,12 +307,7 @@ export default function OnboardingFlow({ onComplete }: { onComplete?: () => void
     setSubmitError('')
     setSubmitting(true)
     try {
-      let utms: Record<string, string> = {}
-      try {
-        utms = JSON.parse(sessionStorage.getItem('colab_utms') ?? '{}')
-      } catch {
-        // sin UTMs
-      }
+      const utms = readStoredUtms()
       const analytics = hasAnalyticsConsentClient() ? getAnalyticsIdentity() : {}
       const res = await fetch('/api/onboarding', {
         method: 'POST',
