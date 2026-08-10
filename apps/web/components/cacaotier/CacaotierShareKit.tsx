@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react"
 import { trackColabEvent } from "@/lib/analytics"
 import {
+  CACAOTIER_SHARE_ORIGIN,
   CACAOTIER_SHARE_PATH,
   CACAOTIER_UTM_CAMPAIGN,
   type CacaotierShareChannel,
@@ -67,9 +68,11 @@ export default function CacaotierShareKit() {
           Thumbnail con UTM.
         </h2>
         <p className="text-sm leading-relaxed text-colab-cream/55 mt-4">
-          Short link <strong className="text-colab-cream">{CACAOTIER_SHARE_PATH}</strong> →
-          /aprende/cacaotier. Cada enlace lleva UTM; al convertir, HubSpot recibe
-          `hs_analytics_*` en el contacto.
+          Comparte solo{" "}
+          <strong className="text-colab-cream">
+            {CACAOTIER_SHARE_ORIGIN}{CACAOTIER_SHARE_PATH}
+          </strong>
+          {" "}con UTM. Al convertir, HubSpot recibe `hs_analytics_*` en el contacto.
         </p>
 
         <div className="cacaotier-share-channels" role="tablist" aria-label="Canal de publicación">

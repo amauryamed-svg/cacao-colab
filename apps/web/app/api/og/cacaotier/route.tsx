@@ -280,7 +280,7 @@ export async function GET(request: NextRequest) {
                   width: "fit-content",
                 }}
               >
-                cacaocolab.org/cacaotier
+                www.cacaocolab.org/aprende/cacaotier
               </div>
             </div>
 

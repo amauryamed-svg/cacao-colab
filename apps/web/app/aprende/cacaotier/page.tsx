@@ -6,7 +6,7 @@ import CourseIntroPlayer from "@/components/aprende/CourseIntroPlayer"
 import { cacaotierMissions, paperSources } from "@/lib/cacaotier-course"
 import { getCourseVideo } from "@/lib/course-videos"
 
-const PAGE_PATH = "/aprende/cacaotier"
+const PAGE_URL = "https://www.cacaocolab.org/aprende/cacaotier"
 const OG_IMAGE = "/api/og/cacaotier"
 const PAGE_TITLE = "Master Cacaotier · Del péptido al bouquet internacional"
 const PAGE_DESCRIPTION =
@@ -15,11 +15,11 @@ const PAGE_DESCRIPTION =
 export const metadata: Metadata = {
   title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
-  alternates: { canonical: PAGE_PATH },
+  alternates: { canonical: PAGE_URL },
   openGraph: {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    url: PAGE_PATH,
+    url: PAGE_URL,
     siteName: "Cacao Colab",
     locale: "es_CO",
     type: "website",
