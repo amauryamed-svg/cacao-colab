@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import FermentationLab from "@/components/cacaotier/FermentationLab"
-import CacaotierShareKit from "@/components/cacaotier/CacaotierShareKit"
 import CourseIntroPlayer from "@/components/aprende/CourseIntroPlayer"
 import { cacaotierMissions, paperSources } from "@/lib/cacaotier-course"
 import { getCourseVideo } from "@/lib/course-videos"
@@ -102,9 +101,7 @@ export default function CacaotierCoursePage() {
       </header>
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-24">
-        <CacaotierShareKit />
-
-        <section className="grid lg:grid-cols-[.7fr_1.3fr] gap-12 items-start mb-24 mt-24">
+        <section className="grid lg:grid-cols-[.7fr_1.3fr] gap-12 items-start mb-24">
           <div className="lg:sticky lg:top-24">
             <p className="eyebrow text-colab-pod">Tu campaña</p>
             <h2 className="font-serif text-4xl md:text-5xl font-bold text-colab-cream mt-4">
