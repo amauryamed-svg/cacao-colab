@@ -1,14 +1,23 @@
 /**
- * Shop CAÚA (cauacolombia.co) · coberturas y nibs
- * URLs verificadas vía sitemap Shopify. Precios/stock los define la tienda.
+ * Shop CAÚA · coberturas y nibs
+ * Precios/stock los define la tienda.
  *
  * Convergencia de nodos: CAÚA (protocolo + retail) × Zurych (bean-to-bar Santander)
  * como punto de pedido de coberturas y nibs para cocina y mesa Colab.
+ *
+ * 2026-08-24: ningún destino externo de compra está disponible ahora mismo —
+ * cauacolombia.co fue desactivada por Shopify (2026-08-23); caua-colombia.myshopify.com
+ * (intento de reconstrucción) sigue con contraseña y sin catálogo; chocolatezurych.com
+ * ya no resuelve al sitio de Zurych (dominio parece vencido/reocupado). Los hrefs de abajo
+ * quedan como referencia de catálogo (handles de producto) pero NO se usan como botón de
+ * compra en /shop — el punto de pedido real hoy es WhatsApp. Reactivar en cuanto haya un
+ * destino verificado.
  */
 
-export const CAUA_SHOP_HOME = "https://cauacolombia.co"
-export const CAUA_SHOP_COLLECTION = "https://cauacolombia.co/collections/all"
+export const CAUA_SHOP_HOME = "https://caua-colombia.myshopify.com"
+export const CAUA_SHOP_COLLECTION = "https://caua-colombia.myshopify.com/collections/all"
 export const ZURYCH_SHOP_HOME = "https://chocolatezurych.com"
+export const ZURYCH_INSTAGRAM = "https://www.instagram.com/tiendazurych/"
 
 export type ShopSku = {
   id: string
@@ -35,7 +44,7 @@ export const cauaShopSkus: ShopSku[] = [
     format: "1 kg",
     nodes: ["CAÚA", "Zurych"],
     role: "Intensidad máxima para temperar y barras dark · convergencia con cobertura 100 % Zurych.",
-    href: "https://cauacolombia.co/products/cobertura-cacao-100-origen-santander-1kg",
+    href: "https://caua-colombia.myshopify.com/products/cobertura-cacao-100-origen-santander-1kg",
     askLabel: "Quiero cobertura 100 % Santander",
   },
   {
@@ -48,7 +57,7 @@ export const cauaShopSkus: ShopSku[] = [
     format: "1 kg",
     nodes: ["CAÚA", "Zurych"],
     role: "Dark con dulzor de panela — puente entre oficio Colab y mesa saludable.",
-    href: "https://cauacolombia.co/products/cobertura-de-chocolate-85-cacao-santander-1kg-endulzado-con-panela",
+    href: "https://caua-colombia.myshopify.com/products/cobertura-de-chocolate-85-cacao-santander-1kg-endulzado-con-panela",
     askLabel: "Quiero cobertura 85 % panela",
   },
   {
@@ -61,7 +70,7 @@ export const cauaShopSkus: ShopSku[] = [
     format: "1 kg",
     nodes: ["CAÚA", "Zurych"],
     role: "Categoría hermana del Master Chocolatier 70 % — pedir en shop CAÚA; Zurych publica 70 % bean-to-bar.",
-    href: "https://cauacolombia.co/products/cobertura-cacao-70-panela-santander-1kg",
+    href: "https://caua-colombia.myshopify.com/products/cobertura-cacao-70-panela-santander-1kg",
     askLabel: "Quiero cobertura 70 % panela",
   },
   {
@@ -74,7 +83,7 @@ export const cauaShopSkus: ShopSku[] = [
     format: "1 kg",
     nodes: ["CAÚA", "Zurych"],
     role: "Perfil de dulzor alternativo alineado a coberturas 60 % del nodo Zurych.",
-    href: "https://cauacolombia.co/products/cobertura-cacao-60-maltitol-santander-1kg",
+    href: "https://caua-colombia.myshopify.com/products/cobertura-cacao-60-maltitol-santander-1kg",
     askLabel: "Quiero cobertura 60 % maltitol",
   },
   {
@@ -87,7 +96,7 @@ export const cauaShopSkus: ShopSku[] = [
     format: "1 kg",
     nodes: ["CAÚA"],
     role: "Línea blanca del catálogo CAÚA Santander — verifica ficha en shop antes de formular.",
-    href: "https://cauacolombia.co/products/cobertura-cacao-blanca-40-santander-1kg",
+    href: "https://caua-colombia.myshopify.com/products/cobertura-cacao-blanca-40-santander-1kg",
     askLabel: "Quiero cobertura blanca 40 %",
   },
   {
@@ -98,7 +107,7 @@ export const cauaShopSkus: ShopSku[] = [
     format: "100 g",
     nodes: ["CAÚA", "Quara"],
     role: "Nibs de origen Arauca — puente al nodo Quara / FEAR 5 y al ritual Colab.",
-    href: "https://cauacolombia.co/products/nibs%E2%84%A2-de-cacao-bioactvio-origen-arauca-100gr",
+    href: "https://caua-colombia.myshopify.com/products/nibs%E2%84%A2-de-cacao-bioactvio-origen-arauca-100gr",
     askLabel: "Quiero NIBS Arauca",
   },
   {
@@ -109,7 +118,7 @@ export const cauaShopSkus: ShopSku[] = [
     format: "100 g",
     nodes: ["CAÚA", "Zurych"],
     role: "Nibs tostados Santander — convergencia con nibs 100 % sin azúcar de Zurych (@tiendazurych).",
-    href: "https://cauacolombia.co/products/nibs-cacao-tostado-santander-100gr",
+    href: "https://caua-colombia.myshopify.com/products/nibs-cacao-tostado-santander-100gr",
     askLabel: "Quiero NIBS Santander",
   },
   {
@@ -120,7 +129,7 @@ export const cauaShopSkus: ShopSku[] = [
     format: "Kit 30 días",
     nodes: ["CAÚA", "Zurych"],
     role: "Kit completo para pedir coberturas + nibs en un solo gesto de shop.",
-    href: "https://cauacolombia.co/products/ritual-pack-cacao-nibs-bebida-funcional",
+    href: "https://caua-colombia.myshopify.com/products/ritual-pack-cacao-nibs-bebida-funcional",
     askLabel: "Quiero el Ritual Pack coberturas × nibs",
   },
 ]
@@ -141,10 +150,12 @@ export const shopContactPoints: ContactPoint[] = [
   {
     id: "shop-caua",
     label: "Tienda CAÚA",
-    sub: "Coberturas y nibs · cauacolombia.co",
-    href: CAUA_SHOP_COLLECTION,
+    sub: "Coberturas y nibs · tienda fuera de línea, pide por WhatsApp",
+    href:
+      "https://wa.me/573102227848?text=" +
+      encodeURIComponent("Hola Cacao Colab — quiero ver el catálogo CAÚA (coberturas, nibs, kits)."),
     external: true,
-    event: "caua_shop_clicked",
+    event: "sponsor_interest",
   },
   {
     id: "wa-coberturas",
@@ -173,8 +184,8 @@ export const shopContactPoints: ContactPoint[] = [
   {
     id: "shop-zurych",
     label: "Nodo Zurych",
-    sub: "Coberturas bean-to-bar · chocolatezurych.com",
-    href: ZURYCH_SHOP_HOME,
+    sub: "Coberturas bean-to-bar · @tiendazurych en Instagram",
+    href: ZURYCH_INSTAGRAM,
     external: true,
     event: "zurych_shop_clicked",
   },
