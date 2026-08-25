@@ -57,7 +57,7 @@ export const brands: Brand[] = [
       "Aliado de transformación Benevolo R&D",
     ],
     ctaLabel: "Conocer Zurych →",
-    ctaUrl: "https://chocolatezurych.com",
+    ctaUrl: "https://www.instagram.com/tiendazurych/",
     role: "regional-node",
   },
   {
@@ -65,7 +65,7 @@ export const brands: Brand[] = [
     name: "CAÚA",
     tagline: "Coberturas · nibs · shop.",
     description:
-      "Marca de coberturas y nibs de origen Santander/Arauca. Shop en cauacolombia.co — punto de convergencia con Zurych en el R&D del Colab.",
+      "Marca de coberturas y nibs de origen Santander/Arauca. Tienda propia fuera de línea — punto de convergencia con Zurych en el R&D del Colab, pedidos por WhatsApp.",
     location: "Santander · Colombia",
     territoryId: "santander",
     accentColor: "#C4A484",

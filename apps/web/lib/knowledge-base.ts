@@ -394,10 +394,10 @@ export const knowledgeTopics: KnowledgeTopic[] = [
     links: [
       { label: "Hub R&D Colab", href: "/rd", note: "Benevolo + coberturas" },
       { label: "Preordenar Chocolate Benevolo", href: "/benevolo", note: "Marca acelerada" },
-      { label: "Coberturas CAÚA × Zurych", href: "/rd/coberturas", note: "Shop cauacolombia.co" },
+      { label: "Coberturas CAÚA × Zurych", href: "/rd/coberturas", note: "Pedidos por WhatsApp" },
       { label: "Track Dualita Benevolo", href: "/campus/benevolo", note: "Aceleración" },
       { label: "Master Chocolatier 70 %", href: "/aprende/chocolatier", note: "Ruta hermana" },
-      { label: "Zurych", href: "https://chocolatezurych.com", note: "Aliado de transformación" },
+      { label: "Zurych", href: "https://www.instagram.com/tiendazurych/", note: "Aliado de transformación" },
     ],
     relatedCampus: ["/rd", "/benevolo", "/campus/benevolo", "/aprende/chocolatier", "/marketplace"],
   },
@@ -415,8 +415,8 @@ export const benevoloProduct = {
   description:
     "Marca acelerada cacaotier: Bars. en categoría Duja de Marañón sugar free — duja de marañón inspirada en la gianduja, cacao FEAR 5 del nodo Quara (Tame · Arauca), leche en polvo orgánica, alulosa y stevia. Hermana del Master Chocolatier 70 % — tendencia + oficio + preventa.",
   alliances: [
-    { name: "Zurych", role: "Transformación y oficio de chocolatería", place: "Landázuri · Santander", href: "https://chocolatezurych.com" },
-    { name: "CAÚA", role: "Coberturas y nibs · shop convergente", place: "Santander · cauacolombia.co", href: "/rd/coberturas" },
+    { name: "Zurych", role: "Transformación y oficio de chocolatería", place: "Landázuri · Santander", href: "https://www.instagram.com/tiendazurych/" },
+    { name: "CAÚA", role: "Coberturas y nibs · shop convergente", place: "Santander · pedidos por WhatsApp", href: "/rd/coberturas" },
     { name: "Quara Cacao", role: "Nodo FEAR 5 · origen Arauca", place: "Tame · Arauca", href: "/marketplace" },
     { name: "Track Benevolo", role: "Aceleración Dualita", place: "Campus", href: "/campus/benevolo" },
   ],

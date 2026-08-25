@@ -1,8 +1,9 @@
 /**
  * Dualita Curriculum — CAÚA × Zurych
  *
- * Microlearning: grounded in cauacolombia.co
- * MOOC: grounded in chocolatezurych.com + redes (Zurych chocolate saludable / @tiendazurych)
+ * Microlearning: grounded in the CAÚA daily-cacao protocol (tienda propia fuera de línea
+ * desde 2026-08; pedidos por WhatsApp mientras tanto)
+ * MOOC: grounded in redes (Zurych chocolate saludable / @tiendazurych)
  *
  * Module shape kept for ModuleCard / useColabProgress consumers.
  */

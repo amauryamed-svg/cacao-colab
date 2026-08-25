@@ -107,8 +107,8 @@ export default async function AprendePage() {
 
         <section className="mt-4 grid md:grid-cols-4 gap-3 mb-16">
           {[
-            { step: "01", owner: "Zurych", title: "MOOC bean-to-bar", body: "Territorio Santander, agroecología y portafolio real — chocolatezurych.com." },
-            { step: "02", owner: "CAÚA", title: "Protocolo diario", body: "Cacao funcional, orígenes Huila/Santander y hábito de 7 días — cauacolombia.co." },
+            { step: "01", owner: "Zurych", title: "MOOC bean-to-bar", body: "Territorio Santander, agroecología y portafolio real — @tiendazurych." },
+            { step: "02", owner: "CAÚA", title: "Protocolo diario", body: "Cacao funcional, orígenes Huila/Santander y hábito de 7 días." },
             { step: "03", owner: "cacaotier", title: "Masters + Catador", body: "Fermentación, panel Fine-Flavor y barra 70 % — microvictorias hacia maestría." },
             { step: "04", owner: "Colab", title: "Set + mesa", body: "Set Catación 10, EUDR, Ecoyuma y Benevolo: evidencia que se vuelve producto." },
           ].map((route) => (

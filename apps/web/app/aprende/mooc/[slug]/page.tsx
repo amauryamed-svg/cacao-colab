@@ -47,7 +47,7 @@ export default async function MoocZurychLessonPage({ params }: Props) {
         <p className="eyebrow text-colab-yellow">MOOC Zurych</p>
         <h1 className="font-serif text-3xl font-bold mt-4">Módulo en preparación</h1>
         <p className="text-white/50 mt-4 text-sm leading-relaxed">
-          Este capítulo se está escribiendo con fuentes de chocolatezurych.com y las redes de la marca.
+          Este capítulo se está escribiendo con fuentes de las redes de la marca (@tiendazurych).
         </p>
         <Link href="/aprende" className="inline-block mt-8 text-colab-yellow font-bold text-sm">
           ← Volver al campus

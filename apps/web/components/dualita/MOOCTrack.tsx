@@ -15,7 +15,7 @@ export default function MOOCTrack() {
         <p className="dualita-column-title">Bean-to-bar con propósito</p>
         <p className="dualita-column-lede">
           De Santander a Bogotá: territorio, agroecología y portafolio real — con hechos de
-          chocolatezurych.com y @tiendazurych. Tres módulos jugables; el cuarto en apertura.
+          @tiendazurych. Tres módulos jugables; el cuarto en apertura.
         </p>
         <p className="dualita-column-stats">4 módulos · ~3 h · Dualita Companion</p>
       </header>

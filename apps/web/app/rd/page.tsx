@@ -4,7 +4,6 @@ import TrackedLink from "@/components/analytics/TrackedLink"
 import AtmospherePlane from "@/components/atmosphere/AtmospherePlane"
 import FloatingPods from "@/components/atmosphere/FloatingPods"
 import {
-  CAUA_SHOP_COLLECTION,
   coberturasConvergence,
   nibsConvergence,
   shopContactPoints,
@@ -15,7 +14,7 @@ import { shotById } from "@/lib/atmosphere"
 export const metadata: Metadata = {
   title: "R&D · Benevolo + coberturas CAÚA × Zurych",
   description:
-    "Laboratorio R&D del Colab: Chocolate Benevolo y la convergencia de nodos CAÚA × Zurych para pedir coberturas y nibs en cauacolombia.co.",
+    "Laboratorio R&D del Colab: Chocolate Benevolo y la convergencia de nodos CAÚA × Zurych para pedir coberturas y nibs por WhatsApp.",
 }
 
 export default function RdHubPage() {
@@ -34,8 +33,8 @@ export default function RdHubPage() {
           <p className="mt-6 max-w-2xl text-colab-cream/55 leading-relaxed">
             R&D es donde el Colab prototipa producto: <strong className="text-colab-cream">Benevolo</strong>{" "}
             como marca acelerada, y las <strong className="text-colab-cream">coberturas y nibs</strong> donde
-            convergen los nodos CAÚA y Zurych — con shop real en cauacolombia.co y puntos de contacto para
-            pedir.
+            convergen los nodos CAÚA y Zurych — con tiendas propias fuera de línea hoy y WhatsApp como
+            punto de contacto para pedir.
           </p>
           <div className="flex flex-wrap gap-3 mt-8">
             <Link
@@ -57,14 +56,14 @@ export default function RdHubPage() {
               Coberturas CAÚA × Zurych →
             </Link>
             <TrackedLink
-              href={CAUA_SHOP_COLLECTION}
-              event="caua_shop_clicked"
-              targetName="caua-shop-collection"
+              href={shopContactPoints.find((p) => p.id === "wa-coberturas")!.href}
+              event="sponsor_interest"
+              targetName="rd-hub-wa"
               source="rd-hub"
               external
               className="border border-colab-yellow/40 text-colab-yellow rounded-full px-7 py-3.5 text-sm font-bold"
             >
-              Abrir tienda CAÚA →
+              Pedir por WhatsApp →
             </TrackedLink>
           </div>
         </div>
@@ -116,22 +115,14 @@ export default function RdHubPage() {
                 <p className="rd-sku-nodes">{sku.nodes.join(" × ")}</p>
                 <div className="rd-sku-actions">
                   <TrackedLink
-                    href={sku.href}
-                    event="caua_shop_clicked"
-                    targetName={sku.id}
-                    source="rd-hub-sku"
-                    external
-                  >
-                    Shop →
-                  </TrackedLink>
-                  <TrackedLink
                     href={waAskSku(sku)}
                     event="sponsor_interest"
                     targetName={`wa-${sku.id}`}
                     source="rd-hub-sku"
                     external
+                    className="rd-btn-shop"
                   >
-                    WhatsApp →
+                    Pedir por WhatsApp →
                   </TrackedLink>
                 </div>
               </article>
@@ -148,22 +139,14 @@ export default function RdHubPage() {
                 <p>{sku.role}</p>
                 <div className="rd-sku-actions">
                   <TrackedLink
-                    href={sku.href}
-                    event="caua_shop_clicked"
-                    targetName={sku.id}
-                    source="rd-hub-nibs"
-                    external
-                  >
-                    Shop →
-                  </TrackedLink>
-                  <TrackedLink
                     href={waAskSku(sku)}
                     event="sponsor_interest"
                     targetName={`wa-${sku.id}`}
                     source="rd-hub-nibs"
                     external
+                    className="rd-btn-shop"
                   >
-                    Pedir →
+                    Pedir por WhatsApp →
                   </TrackedLink>
                 </div>
               </article>

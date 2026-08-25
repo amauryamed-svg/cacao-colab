@@ -2,9 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import TrackedLink from "@/components/analytics/TrackedLink"
 import {
-  CAUA_SHOP_COLLECTION,
-  CAUA_SHOP_HOME,
-  ZURYCH_SHOP_HOME,
+  ZURYCH_INSTAGRAM,
   coberturasConvergence,
   nibsConvergence,
   shopContactPoints,
@@ -14,7 +12,7 @@ import {
 export const metadata: Metadata = {
   title: "Coberturas CAÚA × Zurych · R&D Colab",
   description:
-    "Punto de convergencia de nodos: coberturas y nibs CAÚA en cauacolombia.co, alineados al bean-to-bar Zurych. Pedidos por shop y WhatsApp.",
+    "Punto de convergencia de nodos: coberturas y nibs CAÚA, alineados al bean-to-bar Zurych. Las tiendas propias están fuera de línea — pedidos por WhatsApp.",
 }
 
 export default function RdCoberturasPage() {
@@ -32,41 +30,31 @@ export default function RdCoberturasPage() {
             <em>unen los nodos.</em>
           </h1>
           <p className="mt-6 max-w-2xl text-colab-cream/55 leading-relaxed">
-            Santander es el territorio compartido: CAÚA publica coberturas y nibs en{" "}
-            <strong className="text-colab-cream">cauacolombia.co</strong>; Zurych transforma bean-to-bar
-            desde Landázuri/Bogotá. Aquí el Colab las conecta para que pidas cobertura y nibs con un
-            criterio de industria — no de góndola genérica.
+            Santander es el territorio compartido: CAÚA formula coberturas y nibs; Zurych transforma
+            bean-to-bar desde Landázuri/Bogotá. Las tiendas propias de los nodos están fuera de línea
+            hoy — el Colab conecta el pedido por WhatsApp con un criterio de industria, no de góndola
+            genérica.
           </p>
           <div className="flex flex-wrap gap-3 mt-8">
             <TrackedLink
-              href={CAUA_SHOP_COLLECTION}
-              event="caua_shop_clicked"
-              targetName="caua-collection"
+              href={shopContactPoints.find((p) => p.id === "wa-coberturas")!.href}
+              event="sponsor_interest"
+              targetName="wa-coberturas-hero"
               source="rd-coberturas-hero"
               external
               className="bg-colab-yellow text-colab-forest rounded-full px-7 py-3.5 text-sm font-bold"
             >
-              Entrar al shop CAÚA →
+              Pedir coberturas por WhatsApp →
             </TrackedLink>
             <TrackedLink
-              href={ZURYCH_SHOP_HOME}
+              href={ZURYCH_INSTAGRAM}
               event="zurych_shop_clicked"
-              targetName="zurych-home"
+              targetName="zurych-instagram"
               source="rd-coberturas-hero"
               external
               className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold"
             >
-              Ver Zurych →
-            </TrackedLink>
-            <TrackedLink
-              href={shopContactPoints.find((p) => p.id === "wa-coberturas")!.href}
-              event="sponsor_interest"
-              targetName="wa-coberturas"
-              source="rd-coberturas-hero"
-              external
-              className="border border-colab-pod/50 text-colab-pod rounded-full px-7 py-3.5 text-sm font-bold"
-            >
-              WhatsApp coberturas →
+              Ver @tiendazurych →
             </TrackedLink>
           </div>
         </div>
@@ -78,15 +66,15 @@ export default function RdCoberturasPage() {
             {
               n: "CAÚA",
               t: "Shop + protocolo",
-              b: "Coberturas Santander y nibs Arauca/Santander en cauacolombia.co — membresía y suscripción en tienda.",
-              href: CAUA_SHOP_HOME,
-              event: "caua_shop_clicked" as const,
+              b: "Coberturas Santander y nibs Arauca/Santander — tienda fuera de línea, pide por WhatsApp.",
+              href: shopContactPoints.find((p) => p.id === "wa-coberturas")!.href,
+              event: "sponsor_interest" as const,
             },
             {
               n: "Zurych",
               t: "Bean-to-bar · Landázuri",
-              b: "Coberturas 60–100 %, chocolatinas y nibs 100 % sin azúcar — chocolatezurych.com / @tiendazurych.",
-              href: ZURYCH_SHOP_HOME,
+              b: "Coberturas 60–100 %, chocolatinas y nibs 100 % sin azúcar — @tiendazurych en Instagram.",
+              href: ZURYCH_INSTAGRAM,
               event: "zurych_shop_clicked" as const,
             },
             {
@@ -117,8 +105,8 @@ export default function RdCoberturasPage() {
           <p className="eyebrow text-colab-yellow">Catálogo · coberturas</p>
           <h2 className="font-serif text-3xl font-bold mt-3">Santander en el shop</h2>
           <p className="text-sm text-colab-cream/45 mt-3 max-w-xl leading-relaxed">
-            Precios y stock los define cauacolombia.co. Aquí enlazamos cada SKU y un WhatsApp para
-            pedir con contexto Colab.
+            Precios y stock los define la tienda. Mientras está fuera de línea, cada SKU se pide por
+            WhatsApp con contexto Colab.
           </p>
           <div className="grid md:grid-cols-2 gap-4 mt-8">
             {coberturasConvergence.map((sku) => (
@@ -136,22 +124,12 @@ export default function RdCoberturasPage() {
                 </div>
                 <div className="rd-sku-actions">
                   <TrackedLink
-                    href={sku.href}
-                    event="caua_shop_clicked"
-                    targetName={sku.id}
-                    source="rd-coberturas-list"
-                    external
-                    className="rd-btn-shop"
-                  >
-                    Comprar en CAÚA →
-                  </TrackedLink>
-                  <TrackedLink
                     href={waAskSku(sku)}
                     event="sponsor_interest"
                     targetName={`wa-${sku.id}`}
                     source="rd-coberturas-list"
                     external
-                    className="rd-btn-wa"
+                    className="rd-btn-shop"
                   >
                     Pedir por WhatsApp →
                   </TrackedLink>
@@ -172,22 +150,14 @@ export default function RdCoberturasPage() {
                 <p>{sku.role}</p>
                 <div className="rd-sku-actions">
                   <TrackedLink
-                    href={sku.href}
-                    event="caua_shop_clicked"
-                    targetName={sku.id}
-                    source="rd-nibs"
-                    external
-                  >
-                    Shop →
-                  </TrackedLink>
-                  <TrackedLink
                     href={waAskSku(sku)}
                     event="sponsor_interest"
                     targetName={`wa-${sku.id}`}
                     source="rd-nibs"
                     external
+                    className="rd-btn-shop"
                   >
-                    WhatsApp →
+                    Pedir por WhatsApp →
                   </TrackedLink>
                 </div>
               </article>
@@ -197,26 +167,25 @@ export default function RdCoberturasPage() {
 
         <section className="mt-16 rounded-3xl bg-colab-yellow text-colab-forest p-8 md:p-12 grid lg:grid-cols-[1.2fr_.8fr] gap-8 items-center">
           <div>
-            <p className="eyebrow opacity-55">Checkout real</p>
+            <p className="eyebrow opacity-55">Checkout</p>
             <h2 className="font-serif text-3xl md:text-4xl font-black mt-3">
-              El carrito vive en cauacolombia.co
+              El carrito llega cuando haya tienda propia
             </h2>
             <p className="text-sm opacity-70 mt-4 leading-relaxed max-w-xl">
-              Emily y la membresía CAÚA atienden el ritual en tienda. El Colab te orienta qué cobertura
-              o nibs pedir según uso (temperado, 70 %, topping) y te conecta con Zurych cuando el
-              camino es bean-to-bar.
+              Mientras no hay checkout en línea, el Colab te orienta qué cobertura o nibs pedir según
+              uso (temperado, 70 %, topping) y te conecta con Zurych cuando el camino es bean-to-bar.
             </p>
           </div>
           <div className="flex flex-col gap-3">
             <TrackedLink
-              href={CAUA_SHOP_COLLECTION}
-              event="caua_shop_clicked"
-              targetName="caua-checkout"
+              href={shopContactPoints.find((p) => p.id === "wa-coberturas")!.href}
+              event="sponsor_interest"
+              targetName="caua-checkout-wa"
               source="rd-coberturas-cta"
               external
               className="bg-colab-forest text-colab-yellow text-center rounded-full px-6 py-4 text-sm font-bold"
             >
-              Ir a la tienda completa →
+              Pedir coberturas por WhatsApp →
             </TrackedLink>
             <TrackedLink
               href={shopContactPoints.find((p) => p.id === "wa-nibs")!.href}

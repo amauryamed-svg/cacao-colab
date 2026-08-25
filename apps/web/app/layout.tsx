@@ -68,9 +68,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/legal/terminos">Términos</Link>
               <Link href="/legal/cookies">Cookies</Link>
               <Link href="/legal">Legal</Link>
-              <a href="https://cauacolombia.co" target="_blank" rel="noopener noreferrer">
-                cauacolombia.co
-              </a>
               <a href="https://wa.me/573102227848" target="_blank" rel="noopener noreferrer">
                 WhatsApp
               </a>

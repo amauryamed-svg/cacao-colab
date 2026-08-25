@@ -1,6 +1,8 @@
 /**
  * MOOC Contexto Cacao · patrocinado por Zurych
- * Fuentes: chocolatezurych.com (home + Nosotros), presencia pública
+ * Fuentes: chocolatezurych.com (home + Nosotros) tal como se veía antes de que el
+ * dominio quedara fuera de servicio (2026-08-24, dominio vencido/reocupado) —
+ * los claims quedan como registro histórico. Canal vivo hoy: presencia pública
  * "Zurych chocolate saludable" / Instagram @tiendazurych.
  * No inventamos claims de Facebook no verificados.
  */
@@ -52,7 +54,6 @@ export const moocZurychLessons: MoocLesson[] = [
     companionQuiz: "¿Qué afirma Zurych sobre sí misma en su sitio?",
     companionComplete: "Módulo 1 del MOOC listo. Ya ubicas a Zurych en el mapa Colab. +70 XP",
     companionTips: [
-      "Sitio: chocolatezurych.com",
       "Redes: Zurych chocolate saludable · @tiendazurych",
       "Nodo Colab: Landázuri · Santander",
     ],
@@ -60,7 +61,7 @@ export const moocZurychLessons: MoocLesson[] = [
       {
         kicker: "Quiénes son",
         headline: "Empresa familiar, formas distintas de consumir cacao.",
-        body: "En chocolatezurych.com/Nosotros, Zurych se presenta como empresa familiar que ofrece productos de cacao de alta calidad para explorar formas diferentes de consumir el cacao — con filosofía natural y saludable.",
+        body: "En su página Nosotros, Zurych se presenta como empresa familiar que ofrece productos de cacao de alta calidad para explorar formas diferentes de consumir el cacao — con filosofía natural y saludable.",
         highlight: { label: "tipo de proyecto", value: "familiar · artesanal" },
       },
       {
@@ -106,8 +107,6 @@ export const moocZurychLessons: MoocLesson[] = [
       ],
     },
     sources: [
-      { label: "Chocolate Zurych", href: "https://chocolatezurych.com" },
-      { label: "Nosotros", href: "https://www.chocolatezurych.com/Nosotros/" },
       { label: "Instagram @tiendazurych", href: "https://www.instagram.com/tiendazurych/" },
     ],
   },
@@ -127,7 +126,7 @@ export const moocZurychLessons: MoocLesson[] = [
     companionQuiz: "¿Qué afirma Zurych sobre su relación con el planeta?",
     companionComplete: "Módulo 2 listo. Ya sabes qué pedir cuando alguien dice ‘verde’. +80 XP",
     companionTips: [
-      "Fuente primaria: chocolatezurych.com/Nosotros",
+      "Fuente primaria: página Nosotros de Zurych",
       "Red de mercados agroecológicos Bogotá región (claim de marca).",
       "Dualita: claim ≠ auditoría — pide trazabilidad.",
     ],
@@ -181,8 +180,7 @@ export const moocZurychLessons: MoocLesson[] = [
       ],
     },
     sources: [
-      { label: "Nosotros · Zurych", href: "https://www.chocolatezurych.com/Nosotros/" },
-      { label: "Chocolate Zurych", href: "https://chocolatezurych.com" },
+      { label: "Instagram @tiendazurych", href: "https://www.instagram.com/tiendazurych/" },
     ],
   },
   {
@@ -255,7 +253,6 @@ export const moocZurychLessons: MoocLesson[] = [
       ],
     },
     sources: [
-      { label: "Tienda Zurych", href: "https://chocolatezurych.com" },
       { label: "Instagram @tiendazurych", href: "https://www.instagram.com/tiendazurych/" },
     ],
   },
@@ -276,7 +273,7 @@ export const moocZurychLessons: MoocLesson[] = [
     cards: [],
     quiz: { question: "", options: [] },
     sources: [
-      { label: "Zurych chocolate saludable", href: "https://chocolatezurych.com" },
+      { label: "Instagram @tiendazurych", href: "https://www.instagram.com/tiendazurych/" },
     ],
   },
 ]

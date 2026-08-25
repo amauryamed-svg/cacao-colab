@@ -1,6 +1,8 @@
 /**
- * Microlearning CAÚA · contenido anclado a cauacolombia.co
+ * Microlearning CAÚA · contenido anclado al protocolo CAÚA
  * (protocolo diario, origen, fermentación 7 días, coberturas reales).
+ * Tienda propia fuera de línea desde 2026-08 — el protocolo/hechos de marca se
+ * conservan como registro; pedidos hoy van por WhatsApp, no por shop en línea.
  * Las dosis funcionales se presentan como promedios de lote declarados por la marca,
  * no como consejo médico ni como cifras universales.
  */
@@ -52,7 +54,7 @@ export const lessons: Lesson[] = [
     companionQuiz: "Comprobemos si separas cacao funcional de chocolate industrial.",
     companionComplete: "Módulo 1 listo. Ya sabes qué preguntar antes de comprar. +50 XP",
     companionTips: [
-      "Fuente: cauacolombia.co — cacao funcional de origen colombiano.",
+      "Fuente: protocolo CAÚA — cacao funcional de origen colombiano.",
       "Las dosis varían por cosecha; CAÚA lo declara como promedio de lote.",
       "Esto es educación alimentaria, no consejo médico.",
     ],
@@ -60,7 +62,7 @@ export const lessons: Lesson[] = [
       {
         kicker: "Definición CAÚA",
         headline: "Cacao funcional, no chocolate.",
-        body: "En cauacolombia.co, CAÚA se presenta como protocolo diario de cacao: energía y enfoque sin la narrativa del dulce industrial. El chocolate de góndola suele añadir azúcar y leche; el cacao funcional busca conservar el perfil del grano fermentado.",
+        body: "CAÚA se presenta como protocolo diario de cacao: energía y enfoque sin la narrativa del dulce industrial. El chocolate de góndola suele añadir azúcar y leche; el cacao funcional busca conservar el perfil del grano fermentado.",
         highlight: { label: "promesa de marca", value: "cacao dosificado · origen único" },
       },
       {
@@ -151,7 +153,7 @@ export const lessons: Lesson[] = [
       },
     ],
     quiz: {
-      question: "¿Qué dice CAÚA sobre su fermentación en cauacolombia.co?",
+      question: "¿Qué dice CAÚA sobre su fermentación?",
       options: [
         {
           id: "a",
@@ -188,15 +190,15 @@ export const lessons: Lesson[] = [
     companionQuiz: "¿Sabes qué mirar en una cobertura antes de usarla?",
     companionComplete: "Ya lees coberturas con criterio de etiqueta. +50 XP",
     companionTips: [
-      "Catálogo CAÚA: coberturas origen Santander (precios y stock en la tienda).",
+      "Catálogo CAÚA: coberturas origen Santander (precios y stock por WhatsApp mientras la tienda está fuera de línea).",
       "Panela ≠ maltitol ≠ alulosa: cambia dulzor y uso.",
-      "Zurych también publica coberturas bean-to-bar en chocolatezurych.com.",
+      "Zurych también publica coberturas bean-to-bar (@tiendazurych).",
     ],
     cards: [
       {
         kicker: "Catálogo CAÚA",
         headline: "Coberturas con origen Santander.",
-        body: "En cauacolombia.co aparecen coberturas 100 %, 70 % con panela, 85 % con panela y 60 % con maltitol — origen Santander. Precios y membresía los define la tienda; aquí aprendes a leer la ficha, no a memorizar tarifas.",
+        body: "El catálogo CAÚA incluye coberturas 100 %, 70 % con panela, 85 % con panela y 60 % con maltitol — origen Santander. Precios y membresía los define la tienda; aquí aprendes a leer la ficha, no a memorizar tarifas.",
         highlight: { label: "origen declarado", value: "Santander · Colombia" },
       },
       {
@@ -214,7 +216,7 @@ export const lessons: Lesson[] = [
       {
         kicker: "Zurych en paralelo",
         headline: "Bean-to-bar saludable.",
-        body: "Zurych (chocolatezurych.com) ofrece coberturas y chocolatinas bean-to-bar con trazabilidad y enfoque saludable. En Dualita, CAÚA enseña el hábito funcional; Zurych aporta contexto de transformación y territorio.",
+        body: "Zurych (@tiendazurych) ofrece coberturas y chocolatinas bean-to-bar con trazabilidad y enfoque saludable. En Dualita, CAÚA enseña el hábito funcional; Zurych aporta contexto de transformación y territorio.",
         highlight: { label: "aliado MOOC", value: "Zurych · Landázuri / Bogotá" },
       },
     ],
@@ -287,7 +289,7 @@ export const lessons: Lesson[] = [
           id: "a",
           text: "Un cubo en agua caliente o leche vegetal como porción diaria",
           correct: true,
-          explanation: "Así lo describe el protocolo en cauacolombia.co.",
+          explanation: "Así lo describe el protocolo CAÚA.",
         },
         {
           id: "b",

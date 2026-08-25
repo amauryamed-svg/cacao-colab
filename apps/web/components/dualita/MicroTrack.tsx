@@ -11,7 +11,7 @@ export default function MicroTrack() {
         <p className="dualita-column-title">Protocolo diario de cacao</p>
         <p className="dualita-column-lede">
           Cacao funcional, no chocolate de góndola — orígenes Huila y Santander, cubos, coberturas
-          y hábito de 7 días, anclado a cauacolombia.co. Sin dosis clínicas ni márgenes inventados.
+          y hábito de 7 días. Sin dosis clínicas ni márgenes inventados.
         </p>
         <p className="dualita-column-stats">6 módulos · ~40 min · Dualita Companion</p>
       </header>
