@@ -1,6 +1,6 @@
 /** Versiones de políticas — incrementar al publicar cambios materiales. */
 export const LEGAL_POLICY_VERSION = "2026-07-31"
-export const TERMS_VERSION = "2026-07-31"
+export const TERMS_VERSION = "2026-08-24"
 export const COOKIE_POLICY_VERSION = "2026-07-31"
 export const DATA_PROCESSING_VERSION = "2026-07-31"
 
@@ -10,7 +10,6 @@ export const LEGAL_CONTROLLER = {
   email: "amauryamed@gmail.com",
   whatsapp: "+57 310 222 7848",
   site: "https://cacaocolab.org",
-  brandSite: "https://cauacolombia.co",
   jurisdictionPrimary: "Colombia",
   dpoContact: "amauryamed@gmail.com",
 } as const

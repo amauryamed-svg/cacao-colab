@@ -190,9 +190,6 @@ export default async function AmauryProfilePage() {
             <a href={p.instagram} target="_blank" rel="noopener noreferrer">
               instagram.com/amaury.amed
             </a>
-            <a href={p.brandSite} target="_blank" rel="noopener noreferrer">
-              cauacolombia.co
-            </a>
             <Link href="/aprende/cacaotier">Master Cacaotier →</Link>
             <Link href="/aprende/chocolatier">Master Chocolatier →</Link>
             <Link href="/">Entrar al Colab →</Link>

@@ -56,7 +56,7 @@ export const terminosDoc: LegalDocument = {
       id: "terceros",
       title: "7. Enlaces y terceros",
       paragraphs: [
-        "El Colab puede enlazar a cauacolombia.co, chocolatezurych.com, CoEx, Ecoyuma u otros. Sus términos y privacidad rigen esas experiencias. No controlamos sitios de terceros.",
+        "El Colab puede enlazar a CoEx, Ecoyuma, redes sociales de nodos aliados (p. ej. @tiendazurych) u otros. Sus términos y privacidad rigen esas experiencias. No controlamos sitios de terceros.",
       ],
     },
     {
