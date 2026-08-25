@@ -4,37 +4,38 @@ import Link from "next/link"
 export const metadata: Metadata = {
   title: "Etiqueta Bars. Benevolo · prueba de impresión",
   description:
-    "Vectores SVG frente/dorso del empaque Bars. Chocolate Benevolo (180×95 mm) para prueba de impresión.",
+    "Arte exacto del packshot Colab (frente) + dorso SVG para prueba de impresión Bars. Benevolo.",
   robots: { index: false, follow: false },
 }
 
 const FILES = [
   {
+    href: "/benevolo/packaging/bars-fear5-front-art.jpg",
+    label: "Arte exacto · bars-fear5-front-art.jpg",
+    note: "Crop del packshot Colab — usa ESTE para imprimir el frente",
+  },
+  {
     href: "/benevolo/packaging/bars-fear5-front.svg",
-    label: "Frente · bars-fear5-front.svg",
-    note: "Wrapper 180×95 mm · capas editables",
+    label: "Frente SVG 180×95 mm",
+    note: "Montaje print que enlaza el arte exacto",
+  },
+  {
+    href: "/benevolo/packaging/bars-fear5-front-guides.svg",
+    label: "Frente + guías bleed/trim",
+    note: "Para la imprenta",
   },
   {
     href: "/benevolo/packaging/bars-fear5-back.svg",
-    label: "Dorso · bars-fear5-back.svg",
+    label: "Dorso SVG",
     note: "Ingredientes · legal · QR placeholder",
   },
   {
-    href: "/benevolo/packaging/README.md",
-    label: "README de print",
-    note: "Bleed, colores, capas",
-  },
-  {
     href: "/benevolo/bars-fear5.png",
-    label: "Packshot de referencia",
-    note: "PNG fotográfico",
+    label: "Packshot completo",
+    note: "Referencia fotográfica con barra",
   },
 ] as const
 
-/**
- * R&D · descarga de vectores para prueba de impresión.
- * Diseño exacto propuesto en el Colab para Bars. Benevolo.
- */
 export default function BarsEtiquetaPrintPage() {
   return (
     <div className="bg-[#140e0a] min-h-screen text-colab-cream">
@@ -42,14 +43,15 @@ export default function BarsEtiquetaPrintPage() {
         <Link href="/benevolo" className="eyebrow text-[#E8C9A0]/45 hover:text-[#FF6A3D]">
           ← Chocolate Benevolo
         </Link>
-        <p className="eyebrow text-[#FF6A3D] mt-8">R&D · print · vectores</p>
+        <p className="eyebrow text-[#FF6A3D] mt-8">R&D · print · arte exacto Colab</p>
         <h1 className="font-serif text-4xl md:text-5xl font-black mt-3 leading-tight">
           Etiqueta Bars.<br />
-          <em className="text-[#FF6A3D] not-italic">Prueba de impresión</em>
+          <em className="text-[#FF6A3D] not-italic">Mismo diseño del packshot</em>
         </h1>
         <p className="mt-5 max-w-2xl text-sm leading-relaxed text-white/55">
-          Archivos SVG del diseño Colab (frente y dorso, 180×95 mm + bleed 3 mm).
-          Descarga, abre en Illustrator/Inkscape y activa <code className="text-[#FF6A3D]">layer-guides</code> para la imprenta.
+          El frente ya no es una recreación tipográfica: es el crop del packshot oficial
+          (<code className="text-[#FF6A3D]"> /benevolo/bars-fear5.png</code>.
+          Descarga el JPG/PNG de arte + el SVG de montaje 180×95 mm.
         </p>
 
         <ul className="mt-10 space-y-3">
@@ -74,11 +76,13 @@ export default function BarsEtiquetaPrintPage() {
           <figure className="rounded-2xl border border-white/10 overflow-hidden bg-[#F05A28]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/benevolo/packaging/bars-fear5-front.svg"
-              alt="Frente etiqueta Bars. Benevolo"
+              src="/benevolo/packaging/bars-fear5-front-art.jpg"
+              alt="Frente exacto Bars. Benevolo — packshot Colab"
               className="w-full h-auto"
             />
-            <figcaption className="px-4 py-3 text-xs text-white/70 bg-[#140e0a]">Frente · vector</figcaption>
+            <figcaption className="px-4 py-3 text-xs text-white/70 bg-[#140e0a]">
+              Frente · arte exacto del Colab
+            </figcaption>
           </figure>
           <figure className="rounded-2xl border border-white/10 overflow-hidden bg-[#15243F]">
             {/* eslint-disable-next-line @next/next/no-img-element */}

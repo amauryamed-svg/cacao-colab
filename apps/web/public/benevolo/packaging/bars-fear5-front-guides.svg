@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="186mm" height="101mm" viewBox="-30 -30 1860 1010"
+  role="img" aria-labelledby="title desc">
+  <title id="title">Bars. Benevolo  frente print con guías (bleed)</title>
+  <desc id="desc">Misma arte exacta + bleed 3 mm / trim / safe visibles para imprenta.</desc>
+
+  <g id="layer-artwork">
+    <image
+      x="0" y="0" width="1800" height="950"
+      preserveAspectRatio="xMidYMid slice"
+      href="bars-fear5-front-art.jpg"
+      xlink:href="bars-fear5-front-art.jpg"/>
+  </g>
+
+  <g id="layer-guides" display="inline">
+    <rect id="bleed" x="-30" y="-30" width="1860" height="1010" fill="none" stroke="#00AEEF" stroke-width="2" stroke-dasharray="8 6"/>
+    <rect id="trim" x="0" y="0" width="1800" height="950" fill="none" stroke="#FF00AA" stroke-width="2"/>
+    <rect id="safe" x="40" y="40" width="1720" height="870" fill="none" stroke="#00FF88" stroke-width="1" stroke-dasharray="4 4"/>
+    <text x="0" y="-8" fill="#00AEEF" font-family="Arial, sans-serif" font-size="18">BLEED 3 mm</text>
+    <text x="0" y="972" fill="#FF00AA" font-family="Arial, sans-serif" font-size="18">TRIM 180 × 95 mm</text>
+  </g>
+</svg>
