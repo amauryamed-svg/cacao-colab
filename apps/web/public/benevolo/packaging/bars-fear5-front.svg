@@ -2,8 +2,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
   width="180mm" height="95mm" viewBox="0 0 1800 950"
   role="img" aria-labelledby="title desc">
-  <title id="title">Bars. · frente · empaque print Cacao Colab</title>
-  <desc id="desc">Wrapper landscape 180×95 mm. Capas editables: bleed, fondo, patrón, tipografía, sello FEAR 5, pie legal. Producto Chocolate Benevolo · cacaocolab.org/benevolo</desc>
+  <title id="title">Bars. Â· frente Â· empaque print Cacao Colab</title>
+  <desc id="desc">Wrapper landscape 180Ã—95 mm. Capas editables: bleed, fondo, patrÃ³n, tipografÃ­a, sello FEAR 5, pie legal. Producto Chocolate Benevolo Â· cacaocolab.org/benevolo</desc>
 
   <!-- ===================== LAYER: guides / bleed ===================== -->
   <g id="layer-guides" display="none">
@@ -73,7 +73,7 @@
     <circle cx="120" cy="120" r="52" fill="none" stroke="#FFFFFF" stroke-width="3"/>
     <text x="120" y="132" text-anchor="middle" class="brand" fill="#FFFFFF" font-size="42" letter-spacing="0.02em">CB</text>
     <text x="200" y="108" class="brand" fill="#FFFFFF" font-size="28">CHOCOLATE BENEVOLO</text>
-    <text x="200" y="142" class="sub" fill="#FFFFFF" font-size="20">DUJA DE MARAÑÓN</text>
+    <text x="200" y="142" class="sub" fill="#FFFFFF" font-size="20">DUJA DE MARAÃ‘Ã“N</text>
     <text x="200" y="168" class="sub" fill="#FFFFFF" font-size="18" opacity="0.9">SUGAR FREE</text>
   </g>
 
@@ -104,7 +104,7 @@
     <circle r="80" fill="none" stroke="#15243F" stroke-width="2"/>
     <path id="seal-path" d="M0,-62 A62,62 0 1,1 0,62 A62,62 0 1,1 0,-62" fill="none"/>
     <text class="seal-ring" fill="#15243F" font-size="11">
-      <textPath href="#seal-path" startOffset="0%">CACAO COLOMBIANO DE ORIGEN · FEAR 5 · </textPath>
+      <textPath href="#seal-path" startOffset="0%">CACAO COLOMBIANO DE ORIGEN Â· FEAR 5 Â· </textPath>
     </text>
     <text x="0" y="8" text-anchor="middle" class="seal-core" fill="#15243F" font-size="28">FEAR 5</text>
   </g>
@@ -118,6 +118,6 @@
 
   <!-- ===================== LAYER: colab mark (campaign) ===================== -->
   <g id="layer-colab-mark" opacity="0.85">
-    <text x="70" y="820" class="sub" fill="#FFFFFF" font-size="14" letter-spacing="0.2em">CACAO COLAB · OUTPUT R&amp;D · CACAOTIER</text>
+    <text x="70" y="820" class="sub" fill="#FFFFFF" font-size="14" letter-spacing="0.2em">CACAO COLAB Â· OUTPUT R&amp;D Â· CACAOTIER</text>
   </g>
 </svg>

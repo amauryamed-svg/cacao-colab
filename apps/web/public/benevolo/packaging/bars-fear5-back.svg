@@ -2,8 +2,8 @@
 <svg xmlns="http://www.w3.org/2000/svg"
   width="180mm" height="95mm" viewBox="0 0 1800 950"
   role="img" aria-labelledby="title desc">
-  <title id="title">Bars. · dorso · comunicación de marca Colab</title>
-  <desc id="desc">Reverso print 180×95 mm. Capas editables para campaña e impresión. Producto en cacaocolab.org/benevolo</desc>
+  <title id="title">Bars. Â· dorso Â· comunicaciÃ³n de marca Colab</title>
+  <desc id="desc">Reverso print 180Ã—95 mm. Capas editables para campaÃ±a e impresiÃ³n. Producto en cacaocolab.org/benevolo</desc>
 
   <g id="layer-guides" display="none">
     <rect id="bleed" x="-30" y="-30" width="1860" height="1010" fill="none" stroke="#00AEEF" stroke-width="2" stroke-dasharray="8 6"/>
@@ -35,44 +35,44 @@
   <g id="layer-copy-panel">
     <rect x="60" y="50" width="1080" height="850" rx="8" fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.55"/>
 
-    <text x="95" y="105" class="eyebrow" fill="#F05A28" font-size="18">OUTPUT DE ACELERACIÓN · CACAO COLAB</text>
+    <text x="95" y="105" class="eyebrow" fill="#F05A28" font-size="18">OUTPUT DE ACELERACIÃ“N Â· CACAO COLAB</text>
     <text x="95" y="195" class="display" fill="#FFFFFF" font-size="96">Bars.</text>
 
     <text x="95" y="250" class="body" fill="#FFFFFF" font-size="22" opacity="0.92">Contiene la majestuosidad del cacao FEAR 5 Trinitario,</text>
-    <text x="95" y="280" class="body" fill="#FFFFFF" font-size="22" opacity="0.92">la untuosidad del marañón y la cremosidad de la leche</text>
+    <text x="95" y="280" class="body" fill="#FFFFFF" font-size="22" opacity="0.92">la untuosidad del maraÃ±Ã³n y la cremosidad de la leche</text>
     <text x="95" y="310" class="body" fill="#FFFFFF" font-size="22" opacity="0.92">en polvo en una chocolatina indulgente con almendras</text>
     <text x="95" y="340" class="body" fill="#FFFFFF" font-size="22" opacity="0.92">y avellanas. Endulzada con alulosa y stevia.</text>
 
     <text x="95" y="400" class="strong" fill="#F05A28" font-size="22">Benevolencia del oficio</text>
-    <text x="95" y="435" class="body" fill="#FFFFFF" font-size="20" opacity="0.88">Fermentación controlada, tostión a temperatura baja</text>
+    <text x="95" y="435" class="body" fill="#FFFFFF" font-size="20" opacity="0.88">FermentaciÃ³n controlada, tostiÃ³n a temperatura baja</text>
     <text x="95" y="465" class="body" fill="#FFFFFF" font-size="20" opacity="0.88">por tiempo corto y refino exacto para elevar Fine-Flavor.</text>
-    <text x="95" y="495" class="body" fill="#FFFFFF" font-size="20" opacity="0.88">Técnica tipo duja italiana con ingredientes colombianos.</text>
+    <text x="95" y="495" class="body" fill="#FFFFFF" font-size="20" opacity="0.88">TÃ©cnica tipo duja italiana con ingredientes colombianos.</text>
 
     <text x="95" y="555" class="strong" fill="#F05A28" font-size="20">Producto nativo del Colab</text>
     <text x="95" y="590" class="body" fill="#FFFFFF" font-size="20" opacity="0.9">Bars. es output del laboratorio R&amp;D: cacaotier acelera</text>
-    <text x="95" y="620" class="body" fill="#FFFFFF" font-size="20" opacity="0.9">criterio de origen hasta la mesa. No es una tienda aparte —</text>
+    <text x="95" y="620" class="body" fill="#FFFFFF" font-size="20" opacity="0.9">criterio de origen hasta la mesa. No es una tienda aparte Â—</text>
     <text x="95" y="650" class="body" fill="#FFFFFF" font-size="20" opacity="0.9">vive en cacaocolab.org/benevolo.</text>
 
     <text x="95" y="710" class="body" fill="#FFFFFF" font-size="20" opacity="0.92">Siente la benevolencia de la barra de autor del Colab.</text>
 
-    <text x="95" y="780" class="tiny" fill="#FFFFFF" font-size="16" opacity="0.7">Elaborado por Zurych SAS · NSA-0011242-2021 · Bogotá, Colombia</text>
-    <text x="95" y="810" class="tiny" fill="#FFFFFF" font-size="16" opacity="0.7">Output R&amp;D · marca nativa cacaotier · WhatsApp +57 310 222 7848</text>
-    <text x="95" y="850" class="tiny" fill="#F05A28" font-size="16">Quara × Zurych × cacaotier · hermana del Master Chocolatier 70 %</text>
+    <text x="95" y="780" class="tiny" fill="#FFFFFF" font-size="16" opacity="0.7">Elaborado por Zurych SAS Â· NSA-0011242-2021 Â· BogotÃ¡, Colombia</text>
+    <text x="95" y="810" class="tiny" fill="#FFFFFF" font-size="16" opacity="0.7">Output R&amp;D Â· marca nativa cacaotier Â· WhatsApp +57 310 222 7848</text>
+    <text x="95" y="850" class="tiny" fill="#F05A28" font-size="16">Quara Ã— Zurych Ã— cacaotier Â· hermana del Master Chocolatier 70 %</text>
   </g>
 
   <g id="layer-ingredients">
     <text x="1220" y="105" class="eyebrow" fill="#F05A28" font-size="16">INGREDIENTES</text>
-    <text x="1220" y="155" class="body" fill="#FFFFFF" font-size="20">· Masa / licor cacao FEAR 5</text>
-    <text x="1220" y="190" class="body" fill="#FFFFFF" font-size="20">· Duja de marañón</text>
-    <text x="1220" y="225" class="body" fill="#FFFFFF" font-size="20">· Almendras y avellanas</text>
-    <text x="1220" y="260" class="body" fill="#FFFFFF" font-size="20">· Leche en polvo orgánica</text>
-    <text x="1220" y="295" class="body" fill="#FFFFFF" font-size="20">· Alulosa · ácido cítrico</text>
-    <text x="1220" y="330" class="body" fill="#FFFFFF" font-size="20">· Stevia</text>
+    <text x="1220" y="155" class="body" fill="#FFFFFF" font-size="20">Â· Masa / licor cacao FEAR 5</text>
+    <text x="1220" y="190" class="body" fill="#FFFFFF" font-size="20">Â· Duja de maraÃ±Ã³n</text>
+    <text x="1220" y="225" class="body" fill="#FFFFFF" font-size="20">Â· Almendras y avellanas</text>
+    <text x="1220" y="260" class="body" fill="#FFFFFF" font-size="20">Â· Leche en polvo orgÃ¡nica</text>
+    <text x="1220" y="295" class="body" fill="#FFFFFF" font-size="20">Â· Alulosa Â· Ã¡cido cÃ­trico</text>
+    <text x="1220" y="330" class="body" fill="#FFFFFF" font-size="20">Â· Stevia</text>
 
-    <text x="1220" y="390" class="eyebrow" fill="#FFFFFF" font-size="14" opacity="0.7">NODO · TRANSFORMACIÓN</text>
-    <text x="1220" y="430" class="strong" fill="#FFFFFF" font-size="22">Quara · Tame · Arauca</text>
-    <text x="1220" y="465" class="body" fill="#FFFFFF" font-size="20" opacity="0.85">Zurych · oficio bean-to-bar</text>
-    <text x="1220" y="500" class="body" fill="#FFFFFF" font-size="20" opacity="0.85">FEAR 5 · sugar free · 80 g</text>
+    <text x="1220" y="390" class="eyebrow" fill="#FFFFFF" font-size="14" opacity="0.7">NODO Â· TRANSFORMACIÃ“N</text>
+    <text x="1220" y="430" class="strong" fill="#FFFFFF" font-size="22">Quara Â· Tame Â· Arauca</text>
+    <text x="1220" y="465" class="body" fill="#FFFFFF" font-size="20" opacity="0.85">Zurych Â· oficio bean-to-bar</text>
+    <text x="1220" y="500" class="body" fill="#FFFFFF" font-size="20" opacity="0.85">FEAR 5 Â· sugar free Â· 80 g</text>
   </g>
 
   <g id="layer-qr-cta" transform="translate(1340 620)">
@@ -93,7 +93,7 @@
       <rect x="182" y="150" width="22" height="22"/>
       <rect x="150" y="182" width="22" height="22"/>
     </g>
-    <text x="110" y="255" text-anchor="middle" class="eyebrow" fill="#FFFFFF" font-size="14">ESCANEA · ÚNETE AL COLAB</text>
+    <text x="110" y="255" text-anchor="middle" class="eyebrow" fill="#FFFFFF" font-size="14">ESCANEA Â· ÃšNETE AL COLAB</text>
     <text x="110" y="280" text-anchor="middle" class="tiny" fill="#F05A28" font-size="16">cacaocolab.org/benevolo</text>
   </g>
 </svg>
