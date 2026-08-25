@@ -2,8 +2,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
   width="180mm" height="95mm" viewBox="0 0 1800 950"
   role="img" aria-labelledby="title desc">
-  <title id="title">Bars. · frente · empaque print Cacao Colab</title>
-  <desc id="desc">Wrapper landscape 180×95 mm. Capas editables: bleed, fondo, patrón, tipografía, sello FEAR 5, pie legal. Producto Chocolate Benevolo · cacaocolab.org/benevolo</desc>
+  <title id="title">Bars. Benevolo � frente etiqueta print (arte exacto Colab)</title>
+  <desc id="desc">Wrapper 180�95 mm. Arte = packshot oficial bars-fear5 (manga). Bleed 3 mm en layer-guides.</desc>
 
   <!-- ===================== LAYER: guides / bleed ===================== -->
   <g id="layer-guides" display="none">
@@ -12,112 +12,14 @@
     <rect id="safe" x="40" y="40" width="1720" height="870" fill="none" stroke="#00FF88" stroke-width="1" stroke-dasharray="4 4"/>
   </g>
 
-  <defs>
-    <style type="text/css"><![CDATA[
-      .brand { font-family: Georgia, 'Times New Roman', serif; font-weight: 700; letter-spacing: 0.18em; }
-      .sub { font-family: Arial, Helvetica, sans-serif; font-weight: 600; letter-spacing: 0.14em; }
-      .bars { font-family: Arial Black, Impact, Haettenschweiler, sans-serif; font-weight: 900; }
-      .legal { font-family: Arial, Helvetica, sans-serif; font-weight: 500; }
-      .seal-ring { font-family: Arial, Helvetica, sans-serif; font-weight: 700; letter-spacing: 0.08em; }
-      .seal-core { font-family: Georgia, 'Times New Roman', serif; font-weight: 800; }
-    ]]></style>
-
-    <!-- Swirl tile for navy pattern on orange -->
-    <pattern id="swirl-pattern" patternUnits="userSpaceOnUse" width="420" height="320">
-      <path fill="none" stroke="#15243F" stroke-width="14" stroke-linecap="round"
-        d="M10 160 C80 40, 160 40, 210 160 S340 280, 410 160"/>
-      <path fill="none" stroke="#15243F" stroke-width="10" stroke-linecap="round" opacity="0.85"
-        d="M-20 240 C60 120, 140 120, 200 240 S360 360, 440 240"/>
-      <path fill="none" stroke="#15243F" stroke-width="8" stroke-linecap="round" opacity="0.7"
-        d="M40 40 C120 -20, 200 20, 260 100 S380 200, 460 120"/>
-      <path fill="none" stroke="#15243F" stroke-width="12" stroke-linecap="round" opacity="0.9"
-        d="M-40 300 C40 200, 140 220, 220 300 S380 400, 480 280"/>
-    </pattern>
-
-    <radialGradient id="pod-glow" cx="78%" cy="48%" r="28%">
-      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.35"/>
-      <stop offset="55%" stop-color="#FFFFFF" stop-opacity="0.08"/>
-      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
-    </radialGradient>
-
-    <linearGradient id="pod-skin" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FFB04A"/>
-      <stop offset="35%" stop-color="#F05A28"/>
-      <stop offset="70%" stop-color="#C43A18"/>
-      <stop offset="100%" stop-color="#7A1F10"/>
-    </linearGradient>
-
-    <filter id="bars-shadow" x="-10%" y="-10%" width="120%" height="130%">
-      <feDropShadow dx="0" dy="10" stdDeviation="0" flood-color="#C43A18" flood-opacity="0.95"/>
-      <feDropShadow dx="0" dy="18" stdDeviation="0" flood-color="#8B2410" flood-opacity="0.55"/>
-    </filter>
-  </defs>
-
-  <!-- ===================== LAYER: background ===================== -->
-  <g id="layer-background">
-    <rect width="1800" height="950" fill="#F05A28"/>
-  </g>
-
-  <!-- ===================== LAYER: pattern ===================== -->
-  <g id="layer-pattern" opacity="0.92">
-    <rect width="1800" height="950" fill="url(#swirl-pattern)"/>
-    <!-- Extra large organic swirls for campaign presence -->
-    <path fill="none" stroke="#15243F" stroke-width="22" stroke-linecap="round" opacity="0.55"
-      d="M-80 720 C220 480, 420 900, 720 620 S1180 280, 1520 520 S1900 860, 2000 640"/>
-    <path fill="none" stroke="#15243F" stroke-width="16" stroke-linecap="round" opacity="0.45"
-      d="M-40 180 C260 40, 480 320, 780 140 S1280 -40, 1600 200"/>
-  </g>
-
-  <!-- ===================== LAYER: brand lockup ===================== -->
-  <g id="layer-brand-lockup">
-    <circle cx="120" cy="120" r="52" fill="none" stroke="#FFFFFF" stroke-width="3"/>
-    <text x="120" y="132" text-anchor="middle" class="brand" fill="#FFFFFF" font-size="42" letter-spacing="0.02em">CB</text>
-    <text x="200" y="108" class="brand" fill="#FFFFFF" font-size="28">CHOCOLATE BENEVOLO</text>
-    <text x="200" y="142" class="sub" fill="#FFFFFF" font-size="20">DUJA DE MARAÑÓN</text>
-    <text x="200" y="168" class="sub" fill="#FFFFFF" font-size="18" opacity="0.9">SUGAR FREE</text>
-  </g>
-
-  <!-- ===================== LAYER: Bars. wordmark ===================== -->
-  <g id="layer-wordmark" filter="url(#bars-shadow)">
-    <text x="70" y="560" class="bars" fill="#FFFFFF" font-size="320" letter-spacing="-0.04em">Bars.</text>
-  </g>
-
-  <!-- ===================== LAYER: cacao pod + ripples ===================== -->
-  <g id="layer-cacao-pod">
-    <circle cx="1420" cy="420" r="260" fill="none" stroke="#FFFFFF" stroke-width="3" opacity="0.55"/>
-    <circle cx="1420" cy="420" r="210" fill="none" stroke="#FFFFFF" stroke-width="2.5" opacity="0.4"/>
-    <circle cx="1420" cy="420" r="160" fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.3"/>
-    <circle cx="1420" cy="420" r="110" fill="url(#pod-glow)"/>
-
-    <!-- Stylized FEAR 5 pod (vector stand-in; replace with photo in print suite if needed) -->
-    <g transform="translate(1420 420) rotate(-8)">
-      <ellipse cx="0" cy="0" rx="78" ry="195" fill="url(#pod-skin)" stroke="#3A1208" stroke-width="4"/>
-      <path d="M0 -195 C28 -120, 34 -40, 34 0 S28 120, 0 195" fill="none" stroke="#7A1F10" stroke-width="6" opacity="0.55"/>
-      <path d="M0 -195 C-28 -120, -34 -40, -34 0 S-28 120, 0 195" fill="none" stroke="#FFB04A" stroke-width="5" opacity="0.45"/>
-      <ellipse cx="-18" cy="-40" rx="18" ry="50" fill="#FFD08A" opacity="0.28"/>
-    </g>
-  </g>
-
-  <!-- ===================== LAYER: FEAR 5 seal ===================== -->
-  <g id="layer-seal" transform="translate(1580 720)">
-    <circle r="88" fill="#FFFFFF"/>
-    <circle r="80" fill="none" stroke="#15243F" stroke-width="2"/>
-    <path id="seal-path" d="M0,-62 A62,62 0 1,1 0,62 A62,62 0 1,1 0,-62" fill="none"/>
-    <text class="seal-ring" fill="#15243F" font-size="11">
-      <textPath href="#seal-path" startOffset="0%">CACAO COLOMBIANO DE ORIGEN · FEAR 5 · </textPath>
-    </text>
-    <text x="0" y="8" text-anchor="middle" class="seal-core" fill="#15243F" font-size="28">FEAR 5</text>
-  </g>
-
-  <!-- ===================== LAYER: footer ===================== -->
-  <g id="layer-footer">
-    <line x1="60" y1="860" x2="1740" y2="860" stroke="#FFFFFF" stroke-width="2" opacity="0.85"/>
-    <text x="70" y="900" class="legal" fill="#FFFFFF" font-size="22">Chocolatina de leche con frutos secos. Neto 80 g.</text>
-    <text x="1730" y="900" text-anchor="end" class="legal" fill="#FFFFFF" font-size="22">ChocolateBenevolo.co</text>
-  </g>
-
-  <!-- ===================== LAYER: colab mark (campaign) ===================== -->
-  <g id="layer-colab-mark" opacity="0.85">
-    <text x="70" y="820" class="sub" fill="#FFFFFF" font-size="14" letter-spacing="0.2em">CACAO COLAB · OUTPUT R&amp;D · CACAOTIER</text>
+  <!-- ===================== LAYER: exact Colab packshot art ===================== -->
+  <g id="layer-artwork">
+    <!-- Arte exacto del dise�o propuesto en el Colab (packshot /benevolo/bars-fear5.png) -->
+    <image
+      id="front-art"
+      x="0" y="0" width="1800" height="950"
+      preserveAspectRatio="xMidYMid slice"
+      href="bars-fear5-front-art.jpg"
+      xlink:href="bars-fear5-front-art.jpg"/>
   </g>
 </svg>
