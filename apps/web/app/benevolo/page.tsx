@@ -7,7 +7,7 @@ import { benevoloProduct, priorityVarieties } from "@/lib/knowledge-base"
 export const metadata: Metadata = {
   title: "Chocolate Benevolo · marca acelerada cacaotier",
   description:
-    "Bars. · categoría Duja de Marañón sugar free. FEAR 5 Quara × Zurych. Marca acelerada separada del Master Chocolatier 70 %.",
+    "Bars. · chocolate de leche con marañón, sugar free. Trinitario Arauca · Cundinamarca · Meta. El cacao fino puede ser un antojo.",
 }
 
 export default function BenevoloPage() {
@@ -20,7 +20,7 @@ export default function BenevoloPage() {
           <Link href="/rd" className="eyebrow text-[#E8C9A0]/40 hover:text-[#FF6A3D]">
             ← R&D Colab
           </Link>
-          <p className="eyebrow text-[#FF6A3D] mt-4">R&D · Bars. · Duja de Marañón sugar free</p>
+          <p className="eyebrow text-[#FF6A3D] mt-4">R&D · Bars. · leche + marañón sugar free</p>
           <div className="grid lg:grid-cols-[1fr_1.15fr] gap-8 lg:gap-12 items-end mt-6">
             <div className="pb-10 md:pb-16">
               <p className="text-[11px] font-bold tracking-[0.22em] uppercase text-[#E8C9A0]">{benevoloProduct.domain}</p>
@@ -31,10 +31,13 @@ export default function BenevoloPage() {
                 Chocolate<br />
                 <em className="text-[#FF6A3D] not-italic">Benevolo</em>
               </h1>
-              <p className="mt-5 text-sm font-bold text-[#E8C9A0]">{benevoloProduct.accentLine}</p>
+              <p className="mt-5 text-lg md:text-xl font-serif font-bold text-white/90 leading-snug max-w-md">
+                {benevoloProduct.purposeLine}
+              </p>
+              <p className="mt-3 text-sm font-bold text-[#E8C9A0]">{benevoloProduct.valuePromise}</p>
+              <p className="mt-4 text-sm text-white/45">{benevoloProduct.accentLine}</p>
               <p className="mt-5 max-w-md text-base leading-relaxed text-white/55">
-                {benevoloProduct.tagline} {benevoloProduct.format}. Vive en el laboratorio R&D junto a
-                coberturas CAÚA × Zurych.
+                {benevoloProduct.tagline}
               </p>
               <div className="flex flex-wrap gap-3 mt-8">
                 <TrackedLink
@@ -64,7 +67,7 @@ export default function BenevoloPage() {
             <div className="benevolo-packshot">
               <Image
                 src={benevoloProduct.heroImage}
-                alt="Chocolate Benevolo Bars. · Duja de Marañón sugar free · FEAR 5"
+                alt="Chocolate Benevolo Bars. · chocolate de leche con marañón sugar free · FEAR 5"
                 width={1536}
                 height={1024}
                 priority
@@ -87,15 +90,15 @@ export default function BenevoloPage() {
 
         <section className="mt-16 grid lg:grid-cols-[1.1fr_.9fr] gap-10 items-start">
           <div>
-            <p className="eyebrow text-[#FF6A3D]">Categoría · Duja de Marañón sugar free</p>
+            <p className="eyebrow text-[#FF6A3D]">Categoría · leche + marañón sugar free</p>
             <h2 className="font-serif text-4xl md:text-5xl font-bold mt-3 leading-tight">
-              El paper del FEAR 5<br />llegó a la mesa.
+              Revalorización del oficio,<br />en formato de antojo.
             </h2>
             <p className="text-white/55 leading-relaxed mt-5">{benevoloProduct.description}</p>
             <p className="text-white/40 leading-relaxed mt-4 text-sm">
-              Quara ancla el FEAR 5 en Arauca. Zurych aporta transformación. Benevolo es la marca
-              acelerada Bars. en categoría Duja de Marañón sugar free — hermana del Master
-              Chocolatier 70 %, no su capstone.
+              Orígenes Trinitario: Arauca, Cundinamarca y Meta. Quara ancla el FEAR 5. Zurych aporta
+              transformación. Benevolo es la marca acelerada Bars. — hermana del Master Chocolatier
+              70 %, no su capstone.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 gap-3">
@@ -144,10 +147,10 @@ export default function BenevoloPage() {
         <section className="mt-16 border-t border-white/10 pt-12 grid md:grid-cols-3 gap-6">
           <article>
             <p className="eyebrow text-[#FF6A3D]">01 · Mazorca</p>
-            <h3 className="font-serif text-2xl font-bold mt-3">FEAR 5 en Arauca</h3>
+            <h3 className="font-serif text-2xl font-bold mt-3">Trinitario · tres orígenes</h3>
             <p className="text-sm text-white/45 mt-3 leading-relaxed">
-              Quara Cacao es el nodo del Colab en Tame. Desde ahí se conecta el FEAR 5 con la
-              fermentación y con Benevolo.
+              Arauca, Cundinamarca y Meta. Quara en Tame ancla el FEAR 5: fermentación documentada
+              que llega a Bars. Benevolo.
             </p>
             {fear5 && (
               <TrackedLink

@@ -63,7 +63,7 @@ export const MASTER_INVITES: Record<string, MasterInviteMeta> = {
   benevolo: {
     slug: "benevolo",
     label: "Benevolo · marca acelerada",
-    shortLabel: "Duja FEAR 5",
+    shortLabel: "Bars. sugar free",
     poster: "/benevolo/bars-fear5.png",
     packLabel: "Chocolate Benevolo",
     inviteHref: "/benevolo",
@@ -75,7 +75,7 @@ export const MASTER_INVITES: Record<string, MasterInviteMeta> = {
   "benevolo-duja": {
     slug: "benevolo-duja",
     label: "Benevolo · marca acelerada",
-    shortLabel: "Duja FEAR 5",
+    shortLabel: "Bars. sugar free",
     poster: "/benevolo/bars-fear5.png",
     packLabel: "Chocolate Benevolo",
     inviteHref: "/benevolo",

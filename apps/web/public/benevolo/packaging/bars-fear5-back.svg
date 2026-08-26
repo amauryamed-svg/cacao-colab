@@ -47,10 +47,10 @@
     <text x="95" y="310" class="body" fill="#FFFFFF" font-size="22" opacity="0.92">en polvo en una chocolatina indulgente con almendras</text>
     <text x="95" y="340" class="body" fill="#FFFFFF" font-size="22" opacity="0.92">y avellanas. Endulzada con alulosa y stevia.</text>
 
-    <text x="95" y="400" class="strong" fill="#F05A28" font-size="22">Benevolencia del oficio</text>
-    <text x="95" y="435" class="body" fill="#FFFFFF" font-size="20" opacity="0.88">Fermentación controlada, tostión a temperatura baja</text>
-    <text x="95" y="465" class="body" fill="#FFFFFF" font-size="20" opacity="0.88">por tiempo corto y refino exacto para elevar Fine-Flavor.</text>
-    <text x="95" y="495" class="body" fill="#FFFFFF" font-size="20" opacity="0.88">Técnica tipo duja italiana con ingredientes colombianos.</text>
+    <text x="95" y="400" class="strong" fill="#F05A28" font-size="22">Revalorización del oficio</text>
+    <text x="95" y="435" class="body" fill="#FFFFFF" font-size="20" opacity="0.88">El cacao fino no tiene por qué ser una lección.</text>
+    <text x="95" y="465" class="body" fill="#FFFFFF" font-size="20" opacity="0.88">Puede ser un antojo — fermentación, tostión y refino</text>
+    <text x="95" y="495" class="body" fill="#FFFFFF" font-size="20" opacity="0.88">exactos para elevar Fine-Flavor en formato Bars.</text>
 
     <text x="95" y="555" class="strong" fill="#F05A28" font-size="20">Producto nativo del Colab</text>
     <text x="95" y="590" class="body" fill="#FFFFFF" font-size="20" opacity="0.9">Bars. es output del laboratorio R&amp;D: cacaotier acelera</text>
@@ -73,10 +73,10 @@
     <text x="1220" y="295" class="body" fill="#FFFFFF" font-size="20">· Alulosa · ácido cítrico</text>
     <text x="1220" y="330" class="body" fill="#FFFFFF" font-size="20">· Stevia</text>
 
-    <text x="1220" y="390" class="eyebrow" fill="#FFFFFF" font-size="14" opacity="0.7">NODO · TRANSFORMACIÓN</text>
-    <text x="1220" y="430" class="strong" fill="#FFFFFF" font-size="22">Quara · Tame · Arauca</text>
-    <text x="1220" y="465" class="body" fill="#FFFFFF" font-size="20" opacity="0.85">Zurych · oficio bean-to-bar</text>
-    <text x="1220" y="500" class="body" fill="#FFFFFF" font-size="20" opacity="0.85">FEAR 5 · sugar free · 80 g</text>
+    <text x="1220" y="390" class="eyebrow" fill="#FFFFFF" font-size="14" opacity="0.7">ORÍGENES · TRANSFORMACIÓN</text>
+    <text x="1220" y="430" class="strong" fill="#FFFFFF" font-size="22">Arauca · Cundinamarca · Meta</text>
+    <text x="1220" y="465" class="body" fill="#FFFFFF" font-size="20" opacity="0.85">Zurych · oficio de transformación</text>
+    <text x="1220" y="500" class="body" fill="#FFFFFF" font-size="20" opacity="0.85">FEAR 5 Quara · sugar free · 80 g</text>
   </g>
 
   <g id="layer-qr-cta" transform="translate(1340 620)">

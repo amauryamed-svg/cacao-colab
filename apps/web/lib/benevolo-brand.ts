@@ -25,26 +25,29 @@ export type BenevoloMission = {
 
 export const benevoloFormulation = {
   name: "Bars. · Chocolate Benevolo",
-  category: "Duja de Marañón sugar free",
+  category: "Chocolate de leche con marañón · sugar free",
   netWeight: "80 g",
-  style: "Duja de Marañón sugar free · chocolatina de leche",
-  inspiration: "Gianduja italiana reinterpretada con marañón colombiano, sin azúcar añadida",
+  style: "Chocolate de leche con marañón sugar free · técnica duja",
+  inspiration: "Gianduja / duja reinterpretada: antojo con rigor de oficio, no lección",
+  purposeLine: "El cacao fino no tiene por qué ser una lección. Puede ser un antojo.",
+  valuePromise: "Revalorización del oficio, en formato de antojo.",
+  typeface: "Bodoni Ultra Black Italic",
   cacao: {
-    genotype: "FEAR 5",
-    node: "Quara Cacao",
-    place: "Tame · Arauca",
+    genotype: "FEAR 5 (ancla) · Trinitario orígenes seleccionados",
+    node: "Quara Cacao (Arauca) + red Cundinamarca / Meta",
+    place: "Arauca · Cundinamarca · Meta",
     process: "Fermentación controlada documentada (ruta Master Cacaotier)",
   },
   ingredients: [
-    "Licor / masa de cacao FEAR 5",
-    "Duja de marañón local",
+    "Licor / masa de cacao Trinitario (FEAR 5 Quara ancla)",
+    "Marañón / duja de marañón local",
     "Leche en polvo orgánica",
     "Alulosa",
     "Stevia",
   ],
   targets: [
-    { label: "Categoría", value: "Duja de Marañón sugar free" },
-    { label: "Lectura de origen", value: "FEAR 5 perceptible tras la duja" },
+    { label: "Categoría", value: "Chocolate de leche con marañón · sugar free" },
+    { label: "Orígenes", value: "Arauca · Cundinamarca · Meta" },
     { label: "Textura", value: "Duja sedosa, sin arenilla" },
     { label: "Dulzor", value: "Alulosa + stevia · sugar free, sin enmascarar" },
     { label: "Formato", value: "Bars. 80 g · preventa" },
@@ -57,12 +60,12 @@ export const benevoloFormulation = {
   ],
   trends: [
     {
-      title: "Gianduja reinventada",
-      body: "La tendencia global de nut-spreads premium se traduce aquí en duja de marañón con origen legible — no praliné genérico.",
+      title: "Antojo con rigor",
+      body: "El cacao fino puede ser un antojo: Benevolo revaloriza el oficio en formato snackable, no en sermón.",
     },
     {
       title: "Dulzor moderno",
-      body: "Alulosa + stevia: snackable y contemporáneo sin tapar tipicidad FEAR 5.",
+      body: "Alulosa + stevia: sugar free sin tapar tipicidad Trinitario.",
     },
     {
       title: "Bars. de mesa y bolsillo",
