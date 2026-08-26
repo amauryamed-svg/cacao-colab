@@ -13,7 +13,11 @@
 
   <defs>
     <style type="text/css"><![CDATA[
-      .display { font-family: Georgia, 'Times New Roman', serif; font-weight: 800; font-style: italic; }
+      .display {
+        font-family: 'Bodoni Ultra Black Italic', 'Bodoni Moda', 'Bodoni MT', Didot, Georgia, serif;
+        font-weight: 900;
+        font-style: italic;
+      }
       .eyebrow { font-family: Arial, Helvetica, sans-serif; font-weight: 800; letter-spacing: 0.14em; }
       .body { font-family: Arial, Helvetica, sans-serif; font-weight: 400; }
       .strong { font-family: Arial, Helvetica, sans-serif; font-weight: 700; }
