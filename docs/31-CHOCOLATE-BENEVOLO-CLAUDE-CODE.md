@@ -80,7 +80,10 @@ No improvises medallas CoEx, stock, ni checkout inventado. Benevolo es **prevent
 
 ### 1.5 Sistema tipográfico
 
-- **Display / wordmark Bars.:** bold redondeada tipo script-display (referencia packshot; licenciar equivalente o trazar desde arte). Extrusión roja.  
+- **Display / wordmark Bars. (OBLIGATORIO):** **Bodoni Ultra Black Italic** (peso Ultra Black / 900, itálica). Con punto. Fill `#FFFFFF` · extrusión `#C43A18`.  
+  - Fallback web: [Bodoni Moda](https://fonts.google.com/specimen/Bodoni+Moda) 900 italic.  
+  - Spec: `brand/chocolate-benevolo/type/BARS-BODONI.md` · SVG: `brand/chocolate-benevolo/logos/bars-wordmark.svg`.  
+  - **Prohibido** en Bars.: Arial Black, Impact, scripts redondeados genéricos, caps BARS.  
 - **Marca Chocolate Benevolo:** serif display (Georgia / Fraunces family).  
 - **UI web:** Outfit o equivalente geométrico clean.  
 - **Legal / ingredients:** sans compacta, alta legibilidad.  
