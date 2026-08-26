@@ -386,7 +386,7 @@ export const knowledgeTopics: KnowledgeTopic[] = [
       "Chocolate Benevolo vive en R&D: Bars. — chocolate de leche con marañón sugar free. Propósito: el cacao fino puede ser un antojo. Orígenes Trinitario Arauca · Cundinamarca · Meta.",
     evidence: "cacaotier_product",
     body: [
-      "Propósito Brand Book: el cacao fino no tiene por qué ser una lección. Puede ser un antojo. Valor: revalorización del oficio, en formato de antojo.",
+      "Manifiesto: el cacao fino no tiene por qué ser una lección — puede ser un antojo. Propósito: benevolencia del oficio, en formato de antojo.",
       "Benevolo no lleva tilde: se lee igual en español y en italiano. Chocolate Benevolo le pone las tildes a la e — acentúa la marca con un producto que se desea preordenar.",
       "Vive en /rd junto a coberturas CAÚA × Zurych. El Master entrena barra 70 % CoEx/Awards; Benevolo acelera Bars. (leche + marañón sugar free).",
       "Cacao Trinitario de orígenes seleccionados (Arauca, Cundinamarca, Meta); FEAR 5 Quara como ancla. Track Dualita en /campus/benevolo. Neto 80 g · preventa.",
@@ -414,11 +414,14 @@ export const benevoloProduct = {
   format: "Bars. · Chocolate de leche con marañón sugar free · Neto 80 g",
   tagline:
     "Chocolate de leche con marañón, sugar free. Cacao colombiano Trinitario de orígenes seleccionados: Arauca, Cundinamarca y Meta. Se lee igual en español y en italiano.",
-  purposeLine: "El cacao fino no tiene por qué ser una lección. Puede ser un antojo.",
-  valuePromise: "Revalorización del oficio, en formato de antojo.",
+  manifestoLine: "El cacao fino no tiene por qué ser una lección. Puede ser un antojo.",
+  purposeLine: "Benevolencia del oficio, en formato de antojo.",
+  platformValues: "Trazabilidad antes que relato. Placer antes que sermón. Precisión antes que promesa.",
+  /** @deprecated use purposeLine — Brand Book 1.2 */
+  valuePromise: "Benevolencia del oficio, en formato de antojo.",
   accentLine: "Benevolo sin tilde. Chocolate Benevolo le pone las tildes a la e.",
   description:
-    "Marca acelerada cacaotier (R&D Cacao Colab): Bars. — chocolate de leche con marañón, sugar free. Cacao Trinitario de orígenes seleccionados (Arauca, Cundinamarca y Meta), con FEAR 5 Quara como ancla de excelencia, leche en polvo orgánica, alulosa y stevia. Hermana del Master Chocolatier 70 % — antojo con rigor, no lección.",
+    "Marca acelerada cacaotier (R&D Cacao Colab): Bars. — chocolate de leche con marañón, sugar free. Cacao Trinitario de orígenes seleccionados (Arauca, Cundinamarca y Meta), fermentación controlada, transformación Zurych. Propósito: benevolencia del oficio, en formato de antojo. Hermana del Master Chocolatier 70 % — no su capstone.",
   origins: ["Arauca", "Cundinamarca", "Meta"],
   alliances: [
     { name: "Zurych", role: "Transformación y oficio de chocolatería", place: "Landázuri · Santander", href: "https://www.instagram.com/tiendazurych/" },

@@ -44,8 +44,9 @@ No improvises medallas CoEx, stock, ni checkout inventado. Benevolo es **prevent
 - **Wordmark producto:** Bars. (con punto)  
 - **Tipografía Bars.:** Bodoni Ultra Black Italic  
 - **Categoría:** Chocolate de leche con marañón · sugar free  
-- **Propósito:** *El cacao fino no tiene por qué ser una lección. Puede ser un antojo.*  
-- **Valor:** *Revalorización del oficio, en formato de antojo.*  
+- **Manifiesto:** *El cacao fino no tiene por qué ser una lección. Puede ser un antojo.*  
+- **Propósito:** *Benevolencia del oficio, en formato de antojo.*  
+- **Valores:** *Trazabilidad antes que relato. Placer antes que sermón. Precisión antes que promesa.*  
 - **Tagline:** *Chocolate de leche con marañón, sugar free. Cacao colombiano Trinitario de orígenes seleccionados: Arauca, Cundinamarca y Meta. Se lee igual en español y en italiano.*  
 - **Juego de marca:** *Benevolo sin tilde. Chocolate Benevolo le pone las tildes a la e.*  
 - **Orígenes:** Arauca · Cundinamarca · Meta (Trinitario); ancla FEAR 5 · Quara · Tame · Arauca  
@@ -64,7 +65,8 @@ No improvises medallas CoEx, stock, ni checkout inventado. Benevolo es **prevent
 - FEAR 5 Quara · fermentación controlada (ancla Arauca)  
 - Leche en polvo orgánica  
 - Preventa / preorden · Bars. 80 g  
-- Revalorización del oficio en formato de antojo  
+- Benevolencia del oficio en formato de antojo  
+- Fermentación controlada · Arauca, Cundinamarca, Meta  
 - Output R&D Colab · criterio de origen  
 
 **Prohibidos**
@@ -192,8 +194,8 @@ Idioma principal: **ES**. Opcional toggle IT para el juego “se lee igual en es
 
 - Eyebrow: `Bars. · chocolate de leche con marañón sugar free`  
 - H1: `Chocolate Benevolo` (marca hero; no subtítulo que la opaque)  
-- Propósito: *El cacao fino no tiene por qué ser una lección. Puede ser un antojo.*  
-- Valor: *Revalorización del oficio, en formato de antojo.*  
+- Manifiesto: *El cacao fino no tiene por qué ser una lección. Puede ser un antojo.*  
+- Propósito: *Benevolencia del oficio, en formato de antojo.*  
 - Tagline: canónico desde `benevoloProduct.tagline`  
 - Packshot full-bleed / dominante (arte exacto, no recreación)  
 - CTA primario: `Preordenar Bars. →` (WhatsApp)  

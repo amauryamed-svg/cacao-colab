@@ -32,9 +32,9 @@ export default function BenevoloPage() {
                 <em className="text-[#FF6A3D] not-italic">Benevolo</em>
               </h1>
               <p className="mt-5 text-lg md:text-xl font-serif font-bold text-white/90 leading-snug max-w-md">
-                {benevoloProduct.purposeLine}
+                {benevoloProduct.manifestoLine}
               </p>
-              <p className="mt-3 text-sm font-bold text-[#E8C9A0]">{benevoloProduct.valuePromise}</p>
+              <p className="mt-3 text-sm font-bold text-[#E8C9A0]">{benevoloProduct.purposeLine}</p>
               <p className="mt-4 text-sm text-white/45">{benevoloProduct.accentLine}</p>
               <p className="mt-5 max-w-md text-base leading-relaxed text-white/55">
                 {benevoloProduct.tagline}
@@ -92,7 +92,7 @@ export default function BenevoloPage() {
           <div>
             <p className="eyebrow text-[#FF6A3D]">Categoría · leche + marañón sugar free</p>
             <h2 className="font-serif text-4xl md:text-5xl font-bold mt-3 leading-tight">
-              Revalorización del oficio,<br />en formato de antojo.
+              Benevolencia del oficio,<br />en formato de antojo.
             </h2>
             <p className="text-white/55 leading-relaxed mt-5">{benevoloProduct.description}</p>
             <p className="text-white/40 leading-relaxed mt-4 text-sm">
