@@ -59,6 +59,14 @@ export default function BenevoloPage() {
                 >
                   Coberturas CAÚA × Zurych →
                 </Link>
+                <a
+                  href="https://chocolate-benevolo-web.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="border border-[#FF6A3D]/40 rounded-full px-7 py-3.5 text-sm font-bold text-[#FF6A3D]"
+                >
+                  Ver el sitio de marca →
+                </a>
               </div>
             </div>
             <div className="benevolo-packshot">

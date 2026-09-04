@@ -364,4 +364,33 @@ Entrega en chocolate-benevolo/ (o ruta acordada) + README de handoff.
 - Preorden WA: `+57 310 222 7848`  
 - Colab: `https://www.cacaocolab.org/benevolo`  
 - Etiqueta print R&D: `https://www.cacaocolab.org/rd/bars-etiqueta`  
-- Campus Dualita: `https://www.cacaocolab.org/campus/benevolo`  
+- Campus Dualita: `https://www.cacaocolab.org/campus/benevolo`
+
+---
+
+## 10. Addendum 2026-09-04 — Origin Series (arquitectura de dos líneas)
+
+Ejecutado el sitio de marca en repo aparte (`amauryamed-svg/chocolate-benevolo-web`,
+deploy `https://chocolate-benevolo-web.vercel.app`, dominio `chocolatebenevolo.co/.com`
+pendiente de compra). **No reemplaza nada de este brief** — "Bars." sigue exactamente
+como está documentado en §1–§7 (paleta, tipografía, claims, packshot). Se añade una
+segunda línea, **Origin Series**, con las 3 monoclonales oscuras de origen que Amaury
+está posicionando en prensa (Infonegocios) y para el lanzamiento US de noviembre:
+
+| Bar | Genotipo / lote | Región |
+|---|---|---|
+| Fear 5 | FEAR 5 (Federación Arauca 5) | Arauca |
+| San Vicente 41 | Lote 41 | San Vicente de Chucurí, Santander |
+| Saravena 13 | Lote 13 | Saravena, Arauca |
+
+Origin Series tiene paleta y voz propias (oscura/celestial, geometría sagrada +
+astrología como lenguaje de marca — nunca como claim de producto) documentadas en
+`brand/ORIGIN-SERIES.md` del repo nuevo. Bars. y Origin Series son dos puertas del
+mismo Benévolo: no comparten sistema visual, sí comparten origen Colab, marañón como
+ingrediente de territorio, y las mismas reglas de claims permitidos/prohibidos (cero
+medallas no obtenidas, cero cifras de fermentación inventadas).
+
+El sitio nuevo vive fuera del monorepo y no depende de `Caua-Corp/caua-io` ni de
+infraestructura de CAÚA — decisión explícita de Amaury dado el proceso de separación
+en curso. `/benevolo` (esta página, R&D interno) ahora enlaza de vuelta al sitio de
+marca ("Ver el sitio de marca →" en el hero).  
