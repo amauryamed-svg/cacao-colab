@@ -364,4 +364,68 @@ Entrega en chocolate-benevolo/ (o ruta acordada) + README de handoff.
 - Preorden WA: `+57 310 222 7848`  
 - Colab: `https://www.cacaocolab.org/benevolo`  
 - Etiqueta print R&D: `https://www.cacaocolab.org/rd/bars-etiqueta`  
-- Campus Dualita: `https://www.cacaocolab.org/campus/benevolo`  
+- Campus Dualita: `https://www.cacaocolab.org/campus/benevolo`
+
+---
+
+## 10. Addendum 2026-09-04 — Origin Series (arquitectura de dos líneas)
+
+Ejecutado el sitio de marca en repo aparte (`amauryamed-svg/chocolate-benevolo-web`,
+deploy `https://chocolate-benevolo-web.vercel.app`, dominio `chocolatebenevolo.co/.com`
+pendiente de compra). **No reemplaza nada de este brief** — "Bars." sigue exactamente
+como está documentado en §1–§7 (paleta, tipografía, claims, packshot). Se añade una
+segunda línea, **Origin Series**, con las 3 monoclonales oscuras de origen que Amaury
+está posicionando en prensa (Infonegocios) y para el lanzamiento US de noviembre:
+
+| Bar | Genotipo / lote | Región |
+|---|---|---|
+| Fear 5 | FEAR 5 (Federación Arauca 5) | Arauca |
+| San Vicente 41 | Lote 41 | San Vicente de Chucurí, Santander |
+| Saravena 13 | Lote 13 | Saravena, Arauca |
+
+Origin Series tiene paleta y voz propias (oscura/celestial, geometría sagrada +
+astrología como lenguaje de marca — nunca como claim de producto) documentadas en
+`brand/ORIGIN-SERIES.md` del repo nuevo. Bars. y Origin Series son dos puertas del
+mismo Benévolo: no comparten sistema visual, sí comparten origen Colab, marañón como
+ingrediente de territorio, y las mismas reglas de claims permitidos/prohibidos (cero
+medallas no obtenidas, cero cifras de fermentación inventadas).
+
+El sitio nuevo vive fuera del monorepo y no depende de `Caua-Corp/caua-io` ni de
+infraestructura de CAÚA — decisión explícita de Amaury dado el proceso de separación
+en curso. `/benevolo` (esta página, R&D interno) ahora enlaza de vuelta al sitio de
+marca ("Ver el sitio de marca →" en el hero).
+
+---
+
+## 11. Addendum 2026-09-04 (2) — Bars. cambia de nodo: Quara → La Querencia
+
+**Cambio de fuente para el FEAR 5 de Bars.** El duja de marañón ya no se abastece del
+nodo Quara Cacao (Tame, Arauca): ahora viene de **La Querencia**, finca de los
+hermanos **Rafael y Liubha** en **Arbeláez, Cundinamarca** (~1.400 msnm,
+4.27°N/74.42°O). Actualizado en `benevoloProduct` (`lib/knowledge-base.ts`:
+`tagline`, `description`, `alliances`, `formula`, `claims`, `preorderWhatsapp`) y en
+`app/benevolo/page.tsx` (hero, sección 01 · Mazorca).
+
+**No confundir con el "Fear 5" de Origin Series (§10):** ese bar de exportación sigue
+anclado a Arauca (modelo araucano, Fedecacao) — es el mismo genotipo FEAR 5, pero una
+planta distinta, para una línea distinta. Bars. (gateway, Cundinamarca) y Origin
+Series (exportación, Arauca) documentan dos siembras del mismo clon en dos fincas
+distintas; no es un error, es la arquitectura real de sourcing de Benévolo.
+
+**Narrativa de origen añadida** (sitio nuevo, `/origen#la-querencia` y
+`brand/canvas/` del repo `chocolate-benevolo-web`): el viento cálido del valle del
+Magdalena se encuentra con el frío del páramo de Sumapaz a la altura de la finca —
+ese contraste térmico es lo que el sitio llama "cacao altitudinal", con un perfil
+más caramelizado. La fermentación se documenta ahora como controlada y experimental,
+45°C por 72 horas, buscando el máximo de precursores de *fine flavor*. El perfil de
+sabor de Bars. se describe con marañón colombiano salado y una nota umami.
+
+**Producto nuevo — Bons.**: bombones de Chocolate Benévolo con relleno de caramelo
+salado de alulosa y marañón, mismo cacao FEAR 5 de La Querencia. Vive en
+`/bons` del sitio nuevo — todavía no tiene página propia en este monorepo; si se
+quiere reflejar aquí, seguiría el mismo patrón que `/benevolo`.
+
+Estos cambios de origen/proceso vienen dictados directamente por Amaury en la sesión
+del sitio nuevo — no son inferencia de IA. Quedan documentados aquí para que
+`knowledge-base.ts` no vuelva a decir "Quara" en una futura edición sin haber leído
+este addendum.  
