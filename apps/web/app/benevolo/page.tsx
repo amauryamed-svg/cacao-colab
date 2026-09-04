@@ -7,7 +7,7 @@ import { benevoloProduct, priorityVarieties } from "@/lib/knowledge-base"
 export const metadata: Metadata = {
   title: "Chocolate Benevolo · marca acelerada cacaotier",
   description:
-    "Bars. · categoría Duja de Marañón sugar free. FEAR 5 Quara × Zurych. Marca acelerada separada del Master Chocolatier 70 %.",
+    "Bars. · categoría Duja de Marañón sugar free. FEAR 5 La Querencia × Zurych. Marca acelerada separada del Master Chocolatier 70 %.",
 }
 
 export default function BenevoloPage() {
@@ -101,7 +101,7 @@ export default function BenevoloPage() {
             </h2>
             <p className="text-white/55 leading-relaxed mt-5">{benevoloProduct.description}</p>
             <p className="text-white/40 leading-relaxed mt-4 text-sm">
-              Quara ancla el FEAR 5 en Arauca. Zurych aporta transformación. Benevolo es la marca
+              La Querencia ancla el FEAR 5 en Arbeláez, Cundinamarca. Zurych aporta transformación. Benevolo es la marca
               acelerada Bars. en categoría Duja de Marañón sugar free — hermana del Master
               Chocolatier 70 %, no su capstone.
             </p>
@@ -152,10 +152,12 @@ export default function BenevoloPage() {
         <section className="mt-16 border-t border-white/10 pt-12 grid md:grid-cols-3 gap-6">
           <article>
             <p className="eyebrow text-[#FF6A3D]">01 · Mazorca</p>
-            <h3 className="font-serif text-2xl font-bold mt-3">FEAR 5 en Arauca</h3>
+            <h3 className="font-serif text-2xl font-bold mt-3">FEAR 5 en La Querencia</h3>
             <p className="text-sm text-white/45 mt-3 leading-relaxed">
-              Quara Cacao es el nodo del Colab en Tame. Desde ahí se conecta el FEAR 5 con la
-              fermentación y con Benevolo.
+              La Querencia es la finca de los hermanos Rafael y Liubha en Arbeláez,
+              Cundinamarca — donde el viento cálido del Magdalena se cruza con el frío
+              del páramo de Sumapaz. Desde ahí se conecta el FEAR 5 con la fermentación
+              y con Benevolo.
             </p>
             {fear5 && (
               <TrackedLink

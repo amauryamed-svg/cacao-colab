@@ -393,4 +393,39 @@ medallas no obtenidas, cero cifras de fermentación inventadas).
 El sitio nuevo vive fuera del monorepo y no depende de `Caua-Corp/caua-io` ni de
 infraestructura de CAÚA — decisión explícita de Amaury dado el proceso de separación
 en curso. `/benevolo` (esta página, R&D interno) ahora enlaza de vuelta al sitio de
-marca ("Ver el sitio de marca →" en el hero).  
+marca ("Ver el sitio de marca →" en el hero).
+
+---
+
+## 11. Addendum 2026-09-04 (2) — Bars. cambia de nodo: Quara → La Querencia
+
+**Cambio de fuente para el FEAR 5 de Bars.** El duja de marañón ya no se abastece del
+nodo Quara Cacao (Tame, Arauca): ahora viene de **La Querencia**, finca de los
+hermanos **Rafael y Liubha** en **Arbeláez, Cundinamarca** (~1.400 msnm,
+4.27°N/74.42°O). Actualizado en `benevoloProduct` (`lib/knowledge-base.ts`:
+`tagline`, `description`, `alliances`, `formula`, `claims`, `preorderWhatsapp`) y en
+`app/benevolo/page.tsx` (hero, sección 01 · Mazorca).
+
+**No confundir con el "Fear 5" de Origin Series (§10):** ese bar de exportación sigue
+anclado a Arauca (modelo araucano, Fedecacao) — es el mismo genotipo FEAR 5, pero una
+planta distinta, para una línea distinta. Bars. (gateway, Cundinamarca) y Origin
+Series (exportación, Arauca) documentan dos siembras del mismo clon en dos fincas
+distintas; no es un error, es la arquitectura real de sourcing de Benévolo.
+
+**Narrativa de origen añadida** (sitio nuevo, `/origen#la-querencia` y
+`brand/canvas/` del repo `chocolate-benevolo-web`): el viento cálido del valle del
+Magdalena se encuentra con el frío del páramo de Sumapaz a la altura de la finca —
+ese contraste térmico es lo que el sitio llama "cacao altitudinal", con un perfil
+más caramelizado. La fermentación se documenta ahora como controlada y experimental,
+45°C por 72 horas, buscando el máximo de precursores de *fine flavor*. El perfil de
+sabor de Bars. se describe con marañón colombiano salado y una nota umami.
+
+**Producto nuevo — Bons.**: bombones de Chocolate Benévolo con relleno de caramelo
+salado de alulosa y marañón, mismo cacao FEAR 5 de La Querencia. Vive en
+`/bons` del sitio nuevo — todavía no tiene página propia en este monorepo; si se
+quiere reflejar aquí, seguiría el mismo patrón que `/benevolo`.
+
+Estos cambios de origen/proceso vienen dictados directamente por Amaury en la sesión
+del sitio nuevo — no son inferencia de IA. Quedan documentados aquí para que
+`knowledge-base.ts` no vuelva a decir "Quara" en una futura edición sin haber leído
+este addendum.  
