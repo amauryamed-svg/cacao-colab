@@ -18,6 +18,7 @@ type OperationType =
   | 'pasteleria'
   | 'marca'
   | 'nueva-generacion'
+  | 'amante'
   | 'otra'
   | ''
 
@@ -53,6 +54,7 @@ const TIPOS: { id: OperationType; label: string; sub: string }[] = [
   { id: 'cafeteria', label: 'Cafetería & bar de cacao', sub: 'Hábitos diarios y bebida de especialidad' },
   { id: 'marca', label: 'Marca / comercio', sub: 'Llevar cacao colombiano a más mesas' },
   { id: 'nueva-generacion', label: 'Nueva generación', sub: 'Heredas tierra o quieres continuar el oficio' },
+  { id: 'amante', label: 'Amante del cacao', sub: 'Pruebas, aprendes y quieres pertenecer' },
   { id: 'otra', label: 'Otra vía', sub: 'Investigación, educación, aliados…' },
 ]
 
@@ -97,18 +99,18 @@ const INTERESES: { id: InterestType; label: string; sub: string }[] = [
 const PROMESAS = [
   {
     kicker: '01',
-    title: 'Competitividad colaborativa',
-    body: 'Aceleramos cacao y chocolate colombiano trabajando como industria: nodos, marcas y oficio compartido.',
+    title: 'Probar con criterio',
+    body: 'Fine-Flavor que se cata y se entiende: tipicidad, origen y el placer de abrir un buen chocolate.',
   },
   {
     kicker: '02',
-    title: 'Lenguaje de excelencia',
-    body: 'Educarte en cacao de excelencia y especialidad eleva tu criterio sibarita — sabes pedir, probar y contar origen.',
+    title: 'Aprender el oficio',
+    body: 'Masters, Dualita y Sembrar para quien ama el cacao y quiere practicarlo — no solo consumirlo.',
   },
   {
     kicker: '03',
-    title: 'Propósito que se hereda',
-    body: 'Ese mismo lenguaje da sentido a nuevas generaciones que heredan la tierra: una razón para continuar con marcas globales de cacao.',
+    title: 'Heredar y compartir',
+    body: 'Cultura que pasa de generación en generación: tierra, saber hacer y marcas que se ven en el mundo.',
   },
 ]
 
@@ -348,14 +350,13 @@ export default function OnboardingFlow({ onComplete }: { onComplete?: () => void
         <StepWrap>
           <p className="onboard-eyebrow">Bienvenido a Cacao Colab</p>
           <h2 className="onboard-title">
-            Aceleramos el cacao
+            Para quien ama
             <br />
-            <em>como industria.</em>
+            <em>el cacao.</em>
           </h2>
           <p className="onboard-lede">
-            Cacao Colab es una organización sin ánimo de lucro (.org): intermediarios para potenciar
-            la comunidad colectiva y colaborativa del cacao. Aceleramos competitividad compartida —
-            finca, marca, cocina y nuevas generaciones en el mismo idioma.{" "}
+            Casa de amantes del Fine-Flavor: catar, aprender y pertenecer a la cultura que se hereda
+            — finca, marca, cocina y nuevas generaciones en el mismo idioma.{" "}
             <Link href="/manifiesto" className="text-colab-yellow underline">
               Leer el Manifiesto →
             </Link>
