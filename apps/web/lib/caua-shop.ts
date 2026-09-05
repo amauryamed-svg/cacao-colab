@@ -1,22 +1,15 @@
 /**
- * Shop CAÚA · coberturas y nibs
- * Precios/stock los define la tienda.
+ * Shop Colab · coberturas y nibs
+ * Precios/stock los define la tienda (cacao-colab.myshopify.com).
  *
- * Convergencia de nodos: CAÚA (protocolo + retail) × Zurych (bean-to-bar Santander)
- * como punto de pedido de coberturas y nibs para cocina y mesa Colab.
- *
- * 2026-08-24: ningún destino externo de compra está disponible ahora mismo —
- * cauacolombia.co fue desactivada por Shopify (2026-08-23); caua-colombia.myshopify.com
- * (intento de reconstrucción) sigue con contraseña y sin catálogo; chocolatezurych.com
- * ya no resuelve al sitio de Zurych (dominio parece vencido/reocupado). Los hrefs de abajo
- * quedan como referencia de catálogo (handles de producto) pero NO se usan como botón de
- * compra en /shop — el punto de pedido real hoy es WhatsApp. Reactivar en cuanto haya un
- * destino verificado.
+ * 2026-09-05: coberturas, nibs y el Ritual Pack ya existen como productos reales
+ * en cacao-colab.myshopify.com (precios referenciales de mercado, pendientes de
+ * confirmar con el equipo — ver tag `precio-referencial` en cada producto). El
+ * punto de compra primario es el checkout de Shopify; WhatsApp queda como canal
+ * secundario de asesoría, no como único punto de pedido.
  */
 
-export const CAUA_SHOP_HOME = "https://caua-colombia.myshopify.com"
-export const CAUA_SHOP_COLLECTION = "https://caua-colombia.myshopify.com/collections/all"
-export const ZURYCH_SHOP_HOME = "https://chocolatezurych.com"
+export const COLAB_STORE_DOMAIN = "https://cacao-colab.myshopify.com"
 export const ZURYCH_INSTAGRAM = "https://www.instagram.com/tiendazurych/"
 
 export type ShopSku = {
@@ -27,7 +20,7 @@ export type ShopSku = {
   sweetener?: string
   origin: string
   format: string
-  nodes: ("CAÚA" | "Zurych" | "Quara")[]
+  nodes: ("Zurych" | "Quara")[]
   role: string
   href: string
   askLabel: string
@@ -42,9 +35,9 @@ export const cauaShopSkus: ShopSku[] = [
     sweetener: "Sin azúcar añadida",
     origin: "Santander",
     format: "1 kg",
-    nodes: ["CAÚA", "Zurych"],
+    nodes: ["Zurych"],
     role: "Intensidad máxima para temperar y barras dark · convergencia con cobertura 100 % Zurych.",
-    href: "https://caua-colombia.myshopify.com/products/cobertura-cacao-100-origen-santander-1kg",
+    href: `${COLAB_STORE_DOMAIN}/products/cobertura-100-santander`,
     askLabel: "Quiero cobertura 100 % Santander",
   },
   {
@@ -55,9 +48,9 @@ export const cauaShopSkus: ShopSku[] = [
     sweetener: "Panela",
     origin: "Santander",
     format: "1 kg",
-    nodes: ["CAÚA", "Zurych"],
+    nodes: ["Zurych"],
     role: "Dark con dulzor de panela — puente entre oficio Colab y mesa saludable.",
-    href: "https://caua-colombia.myshopify.com/products/cobertura-de-chocolate-85-cacao-santander-1kg-endulzado-con-panela",
+    href: `${COLAB_STORE_DOMAIN}/products/cobertura-85-panela`,
     askLabel: "Quiero cobertura 85 % panela",
   },
   {
@@ -68,9 +61,9 @@ export const cauaShopSkus: ShopSku[] = [
     sweetener: "Panela",
     origin: "Santander",
     format: "1 kg",
-    nodes: ["CAÚA", "Zurych"],
-    role: "Categoría hermana del Master Chocolatier 70 % — pedir en shop CAÚA; Zurych publica 70 % bean-to-bar.",
-    href: "https://caua-colombia.myshopify.com/products/cobertura-cacao-70-panela-santander-1kg",
+    nodes: ["Zurych"],
+    role: "Categoría hermana del Master Chocolatier 70 % — Zurych publica 70 % bean-to-bar.",
+    href: `${COLAB_STORE_DOMAIN}/products/cobertura-70-panela`,
     askLabel: "Quiero cobertura 70 % panela",
   },
   {
@@ -81,9 +74,9 @@ export const cauaShopSkus: ShopSku[] = [
     sweetener: "Maltitol",
     origin: "Santander",
     format: "1 kg",
-    nodes: ["CAÚA", "Zurych"],
+    nodes: ["Zurych"],
     role: "Perfil de dulzor alternativo alineado a coberturas 60 % del nodo Zurych.",
-    href: "https://caua-colombia.myshopify.com/products/cobertura-cacao-60-maltitol-santander-1kg",
+    href: `${COLAB_STORE_DOMAIN}/products/cobertura-60-maltitol`,
     askLabel: "Quiero cobertura 60 % maltitol",
   },
   {
@@ -94,9 +87,9 @@ export const cauaShopSkus: ShopSku[] = [
     sweetener: "Según ficha de tienda",
     origin: "Santander",
     format: "1 kg",
-    nodes: ["CAÚA"],
-    role: "Línea blanca del catálogo CAÚA Santander — verifica ficha en shop antes de formular.",
-    href: "https://caua-colombia.myshopify.com/products/cobertura-cacao-blanca-40-santander-1kg",
+    nodes: [],
+    role: "Línea blanca de origen Santander — verifica ficha en shop antes de formular.",
+    href: `${COLAB_STORE_DOMAIN}/products/cobertura-blanca-40`,
     askLabel: "Quiero cobertura blanca 40 %",
   },
   {
@@ -105,9 +98,9 @@ export const cauaShopSkus: ShopSku[] = [
     kind: "nibs",
     origin: "Arauca",
     format: "100 g",
-    nodes: ["CAÚA", "Quara"],
+    nodes: ["Quara"],
     role: "Nibs de origen Arauca — puente al nodo Quara / FEAR 5 y al ritual Colab.",
-    href: "https://caua-colombia.myshopify.com/products/nibs%E2%84%A2-de-cacao-bioactvio-origen-arauca-100gr",
+    href: `${COLAB_STORE_DOMAIN}/products/nibs-bioactivo-arauca`,
     askLabel: "Quiero NIBS Arauca",
   },
   {
@@ -116,9 +109,9 @@ export const cauaShopSkus: ShopSku[] = [
     kind: "nibs",
     origin: "Santander",
     format: "100 g",
-    nodes: ["CAÚA", "Zurych"],
+    nodes: ["Zurych"],
     role: "Nibs tostados Santander — convergencia con nibs 100 % sin azúcar de Zurych (@tiendazurych).",
-    href: "https://caua-colombia.myshopify.com/products/nibs-cacao-tostado-santander-100gr",
+    href: `${COLAB_STORE_DOMAIN}/products/nibs-tostado-santander`,
     askLabel: "Quiero NIBS Santander",
   },
   {
@@ -127,9 +120,9 @@ export const cauaShopSkus: ShopSku[] = [
     kind: "kit",
     origin: "Santander + mix",
     format: "Kit 30 días",
-    nodes: ["CAÚA", "Zurych"],
+    nodes: ["Zurych"],
     role: "Kit completo para pedir coberturas + nibs en un solo gesto de shop.",
-    href: "https://caua-colombia.myshopify.com/products/ritual-pack-cacao-nibs-bebida-funcional",
+    href: `${COLAB_STORE_DOMAIN}/products/ritual-pack-cobertura-100-nibs`,
     askLabel: "Quiero el Ritual Pack coberturas × nibs",
   },
 ]
@@ -148,35 +141,25 @@ export type ContactPoint = {
 
 export const shopContactPoints: ContactPoint[] = [
   {
-    id: "shop-caua",
-    label: "Tienda CAÚA",
-    sub: "Coberturas y nibs · tienda fuera de línea, pide por WhatsApp",
-    href:
-      "https://wa.me/573102227848?text=" +
-      encodeURIComponent("Hola Cacao Colab — quiero ver el catálogo CAÚA (coberturas, nibs, kits)."),
-    external: true,
-    event: "sponsor_interest",
-  },
-  {
     id: "wa-coberturas",
-    label: "Pedir coberturas por WhatsApp",
-    sub: "Colab × CAÚA · te orientamos SKU y uso",
+    label: "Asesoría de coberturas por WhatsApp",
+    sub: "Colab · te orientamos SKU y uso (compra real en la tienda Shopify)",
     href:
       "https://wa.me/573102227848?text=" +
       encodeURIComponent(
-        "Hola Cacao Colab — quiero pedir coberturas CAÚA (Santander) / convergencia Zurych. ¿Me orientan?",
+        "Hola Cacao Colab — quiero orientación sobre coberturas (Santander) / convergencia Zurych.",
       ),
     external: true,
     event: "sponsor_interest",
   },
   {
     id: "wa-nibs",
-    label: "Pedir NIBS por WhatsApp",
-    sub: "Arauca o Santander · ritual y topping",
+    label: "Asesoría de NIBS por WhatsApp",
+    sub: "Arauca o Santander · ritual y topping (compra real en la tienda Shopify)",
     href:
       "https://wa.me/573102227848?text=" +
       encodeURIComponent(
-        "Hola Cacao Colab — quiero NIBS CAÚA (Arauca o Santander) y saber cómo conectar con Zurych.",
+        "Hola Cacao Colab — quiero orientación sobre NIBS (Arauca o Santander) y su conexión con Zurych.",
       ),
     external: true,
     event: "sponsor_interest",
@@ -209,6 +192,6 @@ export const shopContactPoints: ContactPoint[] = [
 export function waAskSku(sku: ShopSku) {
   return (
     "https://wa.me/573102227848?text=" +
-    encodeURIComponent(`Hola Cacao Colab — ${sku.askLabel} (${sku.format}). Vi el shop CAÚA / convergencia Zurych.`)
+    encodeURIComponent(`Hola Cacao Colab — ${sku.askLabel} (${sku.format}). Vi el shop en cacao-colab.myshopify.com.`)
   )
 }

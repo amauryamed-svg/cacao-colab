@@ -73,7 +73,8 @@ export default function ShopPage() {
           >
             cacao-colab.myshopify.com
           </a>
-          . Coberturas/nibs de nodos se confirman por WhatsApp.
+          . Coberturas y nibs ya tienen ficha y precio en la tienda — WhatsApp queda como asesoría,
+          no como único punto de pedido.
         </section>
 
         <section id="masters" className="scroll-mt-20 mb-16">
@@ -128,17 +129,8 @@ export default function ShopPage() {
             {
               n: "Shopify Colab",
               t: "cacao-colab.myshopify.com",
-              b: "Masters, Bars. y kits · checkout oficial.",
+              b: "Masters, Bars., coberturas, nibs y kits · checkout oficial.",
               href: COLAB_SHOPIFY_STOREFRONT,
-              event: "sponsor_interest" as const,
-            },
-            {
-              n: "CAÚA",
-              t: "Coberturas · WhatsApp",
-              b: "Santander + nibs Arauca — pedido asistido Colab.",
-              href:
-                "https://wa.me/573102227848?text=" +
-                encodeURIComponent("Hola Cacao Colab — quiero catálogo CAÚA (coberturas, nibs)."),
               event: "sponsor_interest" as const,
             },
             {
@@ -186,14 +178,24 @@ export default function ShopPage() {
                 </div>
                 <div className="rd-sku-actions">
                   <TrackedLink
+                    href={sku.href}
+                    event="sponsor_interest"
+                    targetName={`store-${sku.id}`}
+                    source="shop-coberturas"
+                    external
+                    className="rd-btn-shop"
+                  >
+                    Comprar en la tienda →
+                  </TrackedLink>
+                  <TrackedLink
                     href={waAskSku(sku)}
                     event="sponsor_interest"
                     targetName={`wa-${sku.id}`}
                     source="shop-coberturas"
                     external
-                    className="rd-btn-shop"
+                    className="rd-btn-wa"
                   >
-                    Pedir por WhatsApp →
+                    ¿Dudas? Escríbenos
                   </TrackedLink>
                 </div>
               </article>
@@ -212,14 +214,24 @@ export default function ShopPage() {
                 <p>{sku.role}</p>
                 <div className="rd-sku-actions">
                   <TrackedLink
+                    href={sku.href}
+                    event="sponsor_interest"
+                    targetName={`store-${sku.id}`}
+                    source="shop-nibs"
+                    external
+                    className="rd-btn-shop"
+                  >
+                    Comprar en la tienda →
+                  </TrackedLink>
+                  <TrackedLink
                     href={waAskSku(sku)}
                     event="sponsor_interest"
                     targetName={`wa-${sku.id}`}
                     source="shop-nibs"
                     external
-                    className="rd-btn-shop"
+                    className="rd-btn-wa"
                   >
-                    Pedir por WhatsApp →
+                    ¿Dudas? Escríbenos
                   </TrackedLink>
                 </div>
               </article>
