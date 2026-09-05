@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="70mm" height="50mm" viewBox="0 0 70 50" role="img" aria-label="Coberturas. L0 · sticker lean">
+  <title>Coberturas. L0 · sticker lean</title>
+  <desc>Chocolate Benevolo · plano lean→pro. Capas DIELINE non-printing. V0 diseño.</desc>
+  <g id="ARTWORK">
+    <rect x="-2" y="-2" width="74" height="54" fill="#140e0a"/>
+    <rect x="-2" y="-2" width="22" height="54" fill="#F05A28"/>
+  <g id="LOCKUP_CB" transform="translate(2,2.5) scale(0.55)">
+    <circle cx="7" cy="7" r="6.6" fill="none" stroke="#FFFFFF" stroke-width="0.65"/>
+    <text x="7" y="9.3" text-anchor="middle" font-family="Georgia, serif" font-size="6.2" font-weight="700" fill="#FFFFFF">CB</text>
+    <text x="17" y="5.8" font-family="Georgia, serif" font-size="3.3" font-weight="700" fill="#FFFFFF" letter-spacing="0.55">CHOCOLATE</text>
+    <text x="17" y="10.5" font-family="Georgia, serif" font-size="3.3" font-weight="700" fill="#E8C9A0" letter-spacing="0.55">BENEVOLO</text>
+  </g>
+
+    <text x="30" y="22" font-family="Bodoni Moda, Georgia, serif" font-size="18" font-style="italic" font-weight="900" fill="#FF6A3D">70%</text>
+    <text x="30" y="30" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="3" fill="#E8C9A0" letter-spacing="0.6">COBERTURA</text>
+  <g id="WORDMARK">
+    <text x="30.7" y="40.7" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="6" font-style="italic" font-weight="900" fill="#C43A18">Coberturas.</text>
+    <text x="30" y="40" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="6" font-style="italic" font-weight="900" fill="#F7F1EE">Coberturas.</text>
+  </g>
+
+    <text x="30" y="46" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="2.2" fill="#F7F1EE">1 kg · obrador</text>
+    <g transform="translate(3,28)">
+      <rect width="16" height="14" rx="1" fill="#15243F"/>
+      <text x="8" y="6" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="2" fill="#E8C9A0">FLEX</text>
+      <text x="8" y="11" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="2.4" fill="#FFFFFF">panela</text>
+    </g>
+  </g>
+  <g id="BLEED" fill="none" stroke="#00AEEF" stroke-width="0.2" stroke-dasharray="0.8 0.8">
+    <rect x="-2" y="-2" width="74" height="54"/>
+  </g>
+  <g id="SAFE" fill="none" stroke="#39B54A" stroke-width="0.2" stroke-dasharray="1.2 0.8">
+    <rect x="3" y="3" width="64" height="44"/>
+  </g>
+  <g id="DIELINE_CUT" fill="none" stroke="#FF00FF" stroke-width="0.3">
+    <rect x="0" y="0" width="70" height="50" rx="1.2"/>
+  </g>
+
+
+</svg>

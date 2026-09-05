@@ -30,14 +30,18 @@
 
 | Familia | Dieline base | Bleed | Safe |
 |---------|--------------|-------|------|
-| Bars. wrap | 180 × 95 mm | 3 mm | 4 mm |
-| Bons. label | 70 × 50 mm (frente caja/manga) | 3 mm | 3 mm |
-| Bons. sleeve | 220 × 80 mm (desarrollo manga) | 3 mm | 4 mm |
-| Nibs. pouch face | 120 × 180 mm (cara frontal) | 3 mm | 5 mm |
-| Cobertura block | 140 × 90 mm (cara 1 kg) | 3 mm | 4 mm |
-| Display counter | 300 × 200 mm (frente) | 3 mm | 5 mm |
+| Bars. wrap / carton | Arte impreso PDF (referencia) | 3 mm | 4 mm |
+| Bons. L0 sticker | Frente 50 × 45 · tapa 50 × 50 (caja blanca) | 2 mm | 3 mm |
+| Bons. L1 sleeve | 200 × 45 mm (wrap 4 caras) | 2 mm | 3 mm |
+| Bons. L2 carton | Tuck-box plano ~220 × 120 mm | 3 mm | 3 mm |
+| Nibs. L0 sticker | 60 × 80 mm | 2 mm | 3 mm |
+| Cobertura L0 sticker | 70 × 50 mm | 2 mm | 3 mm |
+| Nibs. pouch face (pro) | 120 × 180 mm | 3 mm | 5 mm |
+| Cobertura block (pro) | 140 × 90 mm | 3 mm | 4 mm |
+| Display counter L3 | 300 × 200 mm | 3 mm | 5 mm |
 
-> **V0** = planos de diseño en repo. **V1** = dieline oficial del convertidor. No mandar V0 a troquel sin validar fábrica.
+> **V0** = planos de diseño en repo. **V1** = dieline oficial del convertidor. No mandar V0 a troquel sin validar fábrica.  
+> Escalera completa: `LEAN-TO-PRO.md`.
 
 ---
 

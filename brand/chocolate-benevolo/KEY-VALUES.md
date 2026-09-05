@@ -18,6 +18,7 @@
 | Formato Bars. | Neto 80 g |
 | Casa | Marca acelerada cacaotier · R&D Cacao Colab |
 | Relación Colab | Hermana del Master Chocolatier 70 % — no su capstone |
+| Impreso (Bars. carton) | Leche FEAR5 **60 %** Trinitario · leche en polvo avellanada · marañón salado · Zurych SAS NSA-0011242-2021 |
 
 ---
 
@@ -27,9 +28,9 @@
 
 > Benevolencia del oficio, en formato de antojo.
 
-**Promesa**
+**Promesa (dorso impreso)**
 
-> El cacao fino no tiene por qué ser una lección. Puede ser un antojo.
+> Buen chocolate indulgente.
 
 **Lectura bilingüe**
 
@@ -43,25 +44,28 @@
 
 ## 3. Arquitectura de portafolio
 
-| Línea | Audiencia | Job to be done |
-|-------|-----------|----------------|
-| **Bars.** | Amantes del cacao / retail deseo | Antojo sugar free con origen legible |
-| **Bons.** | Pastelería / regalo fino | Piezas de chocolatería profesional |
-| **Nibs.** | Cocina / snack consciente | Grano tostado con tipicidad |
-| **Coberturas.** | Chef / obrador | Temperar y formular con % y origen claros |
+| Línea | Audiencia | Job to be done | Firma visual |
+|-------|-----------|----------------|--------------|
+| **Bars.** | Retail deseo | Antojo 80 g con origen legible | Swirls + mazorca + deboss Bars. |
+| **Bons.** | Pastelería / regalo | Pieza individual · molde mazorca | Tapa naranja pod-ridge |
+| **Nibs.** | Cocina / snack | Grano tostado | Header orange / body navy |
+| **Coberturas.** | Chef / obrador | Temperar · % hero | Franja orange + % coral |
 
-Orígenes seleccionados (Trinitario colombiano): **Arauca · Cundinamarca · Meta** (y nodos de transformación CAÚA × Zurych en coberturas/nibs de red).
+### Escalera de empaque
+Ver `LEAN-TO-PRO.md`: **L0 sticker → L1 sleeve → L2 carton → L3 display**.
 
 ---
 
 ## 4. Claims
 
-### Permitidos
-- Chocolate de leche con marañón, sugar free (Bars.)
-- Cacao colombiano Trinitario · orígenes seleccionados
-- FEAR 5 cuando el SKU lo use de verdad
-- Preventa / preorden
-- Lectura de % cacao y endulzante en coberturas (ficha real)
+### Permitidos (alineados a lo impreso)
+- Bars. By Benevolo · Buen chocolate indulgente
+- Chocolate de leche FEAR5 60 % Cacao Trinitario · fermentación controlada
+- Leche en polvo avellanada y marañón salado
+- Elaborado por Chocolate Zurych SAS · NSA-0011242-2021
+- Contacto +57 310 222 7848 · chocolatebenevolo.co
+- Cacao colombiano de origen · FEAR 5 (sello)
+- Bons. · chocolatería profesional · molde mazorca
 
 ### Prohibidos
 - Medallas CoEx inventadas
@@ -73,5 +77,8 @@ Orígenes seleccionados (Trinitario colombiano): **Arauca · Cundinamarca · Met
 
 ## 5. Empaque
 
-Ver `SYSTEM-PACKAGING.md` y skill `.cursor/skills/benevolo-packaging-dieline/`.
-Lineamientos de calidad alineados a [The Dieline](https://thedieline.com/): sistema multi-SKU, dielines bloqueados, retail craft.
+- Sistema: `SYSTEM-PACKAGING.md` · `LEAN-TO-PRO.md`
+- Referencias físicas: `references/`
+- Skill: `.cursor/skills/benevolo-packaging-dieline/`
+- Calidad: [The Dieline](https://thedieline.com/)
+

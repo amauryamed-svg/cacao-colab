@@ -30,7 +30,9 @@ No improvises medallas CoEx, stock, checkout fingido ni certificaciones no docum
 | Recurso | Ruta |
 |---------|------|
 | Key values | `brand/chocolate-benevolo/KEY-VALUES.md` |
+| Lean → Pro | `brand/chocolate-benevolo/LEAN-TO-PRO.md` |
 | Sistema empaque multi-SKU | `brand/chocolate-benevolo/SYSTEM-PACKAGING.md` |
+| Referencias impresas / fotos | `brand/chocolate-benevolo/references/` |
 | Tokens color/tipo | `brand/chocolate-benevolo/type/tokens.json` |
 | Bars. Bodoni | `brand/chocolate-benevolo/type/BARS-BODONI.md` |
 | Wordmark Bars. | `brand/chocolate-benevolo/logos/bars-wordmark.svg` |
@@ -110,11 +112,25 @@ Entregar en `brand/chocolate-benevolo/packaging/<linea>/` **y** espejo web en `a
 - [ ] QR / URL: `chocolatebenevolo.co` o `cacaocolab.org/benevolo`
 - [ ] Versión: `V0` diseño · `V1` dieline de fábrica · `V2` aprobado print
 
+## Escalera Lean → Pro
+
+| Nivel | Uso | Archivos típicos |
+|-------|-----|------------------|
+| **L0** | Sticker sobre caja blanca / pouch | `*-l0-front.svg` · `*-l0-sticker.svg` |
+| **L1** | Sleeve / faja sin re-troquelar | `*-l1-sleeve.svg` |
+| **L2** | Cartón full-print (como Bars. PDF) | `*-l2-carton.svg` |
+| **L3** | Display POS | `shared/display-*.svg` |
+
+Anclar siempre en `LEAN-TO-PRO.md` + `references/` (PDF impreso + caja blanca + packshot).
+
 ## Generación de assets en este repo
 
 ```bash
-# Regenerar flats SVG de referencia (si existe script)
+# Flats base (Bons label / Nibs pouch / Coberturas / display)
 python3 brand/chocolate-benevolo/packaging/build_flats.py
+
+# Lean → Pro (Bons L0–L2 + Nibs/Coberturas L0 stickers)
+python3 brand/chocolate-benevolo/packaging/build_lean_pro.py
 ```
 
 Para mockups fotográficos usa el packshot canónico Bars. y atmósfera Colab — no stock genérico de chocolate.
