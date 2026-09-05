@@ -41,7 +41,7 @@ export default function ShopPage() {
             <strong className="text-colab-cream">cacao-colab.myshopify.com</strong>: Masters
             digitales, antojo Benevolo y kits. Aquí el hub Colab enlaza checkout, campus y nodos.
           </p>
-          <div className="flex flex-wrap gap-3 mt-8">
+          <div className="flex flex-wrap items-center gap-4 mt-8">
             <TrackedLink
               href={COLAB_SHOPIFY_STOREFRONT}
               event="sponsor_interest"
@@ -52,21 +52,11 @@ export default function ShopPage() {
             >
               Abrir cacao-colab.myshopify.com →
             </TrackedLink>
-            <TrackedLink
-              href={COLAB_SHOPIFY_COLLECTION}
-              event="sponsor_interest"
-              targetName="colab-shopify-all"
-              source="shop-hero"
-              external
-              className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold"
-            >
-              Ver colección →
-            </TrackedLink>
             <Link
               href="/export"
-              className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold"
+              className="text-sm font-bold text-colab-cream/70 underline decoration-white/20 underline-offset-4 hover:text-colab-yellow"
             >
-              App FOB export →
+              App FOB
             </Link>
           </div>
         </div>

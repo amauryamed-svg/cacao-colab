@@ -1393,12 +1393,12 @@ body {
 }
 
 .map-panel {
-  border-radius: 1.4rem;
+  border-radius: 0;
   display: flex;
   flex-direction: column;
   min-height: 0;
   overflow: visible;
-  padding: clamp(1.1rem, 2.8vw, 1.85rem);
+  padding: clamp(1.1rem, 2.8vw, 1.85rem) 0;
 }
 
 .map-panel-head {
@@ -1438,6 +1438,7 @@ body {
     radial-gradient(circle at 78% 28%, rgba(255, 106, 61, .1), transparent 24%),
     radial-gradient(circle at 50% 50%, rgba(61, 122, 44, .12), transparent 42%),
     linear-gradient(160deg, #0c1609, #101d0b 55%, #140e0a);
+  border-top: 1px solid rgba(242, 200, 48, .2);
 }
 
 @keyframes worldDash {
@@ -1529,7 +1530,8 @@ body {
     radial-gradient(circle at 52% 54%, rgba(242, 200, 48, .14), transparent 18%),
     radial-gradient(circle at 30% 30%, rgba(61, 122, 44, .06), transparent 28%),
     #ffffff;
-  border: 1px solid rgba(26, 46, 16, .08);
+  border: 0;
+  border-top: 1px solid rgba(26, 46, 16, .1);
 }
 
 .map-index {
