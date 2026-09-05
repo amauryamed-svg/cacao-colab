@@ -43,7 +43,9 @@ export function MasterCheckoutCard({
           external
           className="master-shopify-buy"
         >
-          {checkout.mode === "shopify" ? "Checkout Shopify →" : "Inscribirme por WhatsApp →"}
+          {checkout.mode === "shopify"
+            ? "Checkout Shopify →"
+            : "Abrir en cacao-colab.myshopify.com →"}
         </TrackedLink>
         <Link href={sku.campusHref} className="master-shopify-campus">
           Ver campus →

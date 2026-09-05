@@ -1,33 +1,28 @@
-# Exportación FOB · Cacao Colab (propietario)
+# Exportación FOB · App Cacao Colab
 
-> Cotizador de internacionalización Fine-Flavor. Criterio operativo heredado de CAÚA Cloud;
-> **Cacao Colab es el propietario** de la herramienta en `cacaocolab.org/export`.
+> **App completa** de cotización internacional. Propietario: Cacao Colab (`/export`).
+> Criterio operativo heredado de CAÚA Cloud.
 
-## Qué cotiza
+## Rutas de la app
 
-| Campo | Detalle |
-|-------|---------|
-| Incoterm ancla | **FOB Cartagena** (ex-works + inland + docs + stuffing) |
-| Destinos | **USA** · **UE** · **China** · **Japón** (Asia) |
-| Productos | Grano FF, nibs, licor, cobertura 70 %, cobertura 100 % |
-| Moneda | USD |
-| Salidas | FOB/kg, CIF estimado, landed (arancel + IVA tipificados) |
+| Tab | Función |
+|-----|---------|
+| **Cotizar** | Producto × destino × kg → FOB / CIF / Landed + proforma WA |
+| **Comparar mercados** | Misma SKU/cantidad en USA · UE · China · Japón |
+| **Guía export** | Lote, Incoterm, cumplimiento, tienda Shopify |
+| Presets | Sample USA · Pallet UE · FCL China · FCL Japón |
+
+Acciones: pedir proforma WhatsApp · copiar cotización · imprimir/PDF.
 
 ## Código
 
 | Recurso | Ruta |
 |---------|------|
-| Motor de precios | `apps/web/lib/export-fob.ts` |
-| UI | `apps/web/components/export/FobCotizador.tsx` |
+| Motor | `apps/web/lib/export-fob.ts` |
+| UI app | `apps/web/components/export/FobCotizador.tsx` |
 | Página | `apps/web/app/export/page.tsx` |
 
 ## Gobernanza
 
-- Cifras **indicativas** (tabla Fine-Flavor Q3 2026). No proforma legal.
-- Proforma real → WhatsApp con lote trazable.
-- EUDR / cadmio / certificados de origen se documentan en `/conocimiento`, no en el cotizador.
-- Actualizar `exWorksUsdPerKg` y `oceanBaseUsd20ft` cuando cambie el mercado o el flete.
-
-## Relación con marcas
-
-La plataforma de nodos (`/marketplace`, `/nodo`) da **visibilidad**. El cotizador FOB da **precio de salida** hacia compradores internacionales. Juntos sostienen la internacionalización sin fingir stock.
+- Cifras **indicativas** Fine-Flavor. No proforma legal.
+- Tienda digital: `cacao-colab.myshopify.com` (`/shop`).

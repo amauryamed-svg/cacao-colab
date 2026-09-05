@@ -294,14 +294,69 @@ export function formatUsd(n: number) {
   }).format(n)
 }
 
-export const fobWhatsappQuote = (quote: FobQuote) =>
-  "https://wa.me/573102227848?text=" +
-  encodeURIComponent(
-    [
-      "Hola Cacao Colab — quiero proforma FOB del cotizador.",
-      `${quote.product.label} · ${quote.quantityKg} kg`,
-      `Destino: ${quote.destination.label} (${quote.destination.port})`,
-      `FOB Cartagena ≈ ${formatUsd(quote.fobCartagenaUsd)} (${formatUsd(quote.fobPerKg)}/kg)`,
-      `CIF estimado ≈ ${formatUsd(quote.cifUsd)} · Landed ≈ ${formatUsd(quote.landedUsd)}`,
-    ].join("\n"),
+export type FobPresetId = "sample-usa" | "pallet-eu" | "fcl-china" | "fcl-japan"
+
+export const fobPresets: {
+  id: FobPresetId
+  label: string
+  productId: FobProductId
+  destinationId: FobDestinationId
+  quantityKg: number
+  blurb: string
+}[] = [
+  {
+    id: "sample-usa",
+    label: "Sample USA",
+    productId: "nibs",
+    destinationId: "usa",
+    quantityKg: 200,
+    blurb: "Nibs · Miami · pedido piloto",
+  },
+  {
+    id: "pallet-eu",
+    label: "Pallet UE",
+    productId: "cobertura-70",
+    destinationId: "eu",
+    quantityKg: 1_000,
+    blurb: "Cobertura 70 % · Rotterdam · EUDR",
+  },
+  {
+    id: "fcl-china",
+    label: "FCL China",
+    productId: "beans-ff",
+    destinationId: "china",
+    quantityKg: 16_000,
+    blurb: "Grano FF · Shanghái · contenedor 20'",
+  },
+  {
+    id: "fcl-japan",
+    label: "FCL Japón",
+    productId: "liquor",
+    destinationId: "japan",
+    quantityKg: 8_000,
+    blurb: "Licor · Yokohama · specialty",
+  },
+]
+
+export function compareDestinations(productId: FobProductId, quantityKg: number) {
+  return fobDestinations.map((d) =>
+    buildFobQuote({ productId, destinationId: d.id, quantityKg }),
   )
+}
+
+export function quoteSummaryText(quote: FobQuote) {
+  return [
+    `Cacao Colab · Cotizador FOB`,
+    `${quote.product.label} · ${quote.quantityKg} kg`,
+    `Destino: ${quote.destination.label} (${quote.destination.port})`,
+    `FOB Cartagena: ${formatUsd(quote.fobCartagenaUsd)} (${formatUsd(quote.fobPerKg)}/kg)`,
+    `CIF estimado: ${formatUsd(quote.cifUsd)} (${formatUsd(quote.cifPerKg)}/kg)`,
+    `Landed estimado: ${formatUsd(quote.landedUsd)} (${formatUsd(quote.landedPerKg)}/kg)`,
+    `Tránsito: ${quote.transitDays[0]}–${quote.transitDays[1]} días · ${quote.destination.tradeFrame}`,
+    quote.disclaimer,
+  ].join("\n")
+}
+
+export const fobWhatsappQuote = (quote: FobQuote) =>
+  "https://wa.me/573102227848?text=" + encodeURIComponent(quoteSummaryText(quote) + "\n\nQuiero proforma con lote real.")
+
