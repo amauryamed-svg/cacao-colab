@@ -125,42 +125,54 @@ export default function Home() {
                 Desde la mazorca hasta la barra: aprende, siembra y cocina con la misma emoción de
                 abrir un chocolate.
               </p>
+              <div className="mt-7">
+                <Button href="/unete">Unirme al Colab →</Button>
+              </div>
             </div>
-            <div className="grid sm:grid-cols-2 gap-3">
+            <div className="grid sm:grid-cols-2 gap-x-8 gap-y-1">
               {[
                 {
                   step: "01",
                   title: "Master Cacaotier",
                   body: "Fermentación, finca y tipicidad — el sabor nace en el bioproceso.",
+                  href: "/aprende/cacaotier",
                   tone: "yellow" as const,
                 },
                 {
                   step: "02",
                   title: "Master Chocolatier",
                   body: "Tostión y barra 70 %: el oficio que convierte origen en deseo.",
+                  href: "/aprende/chocolatier",
                   tone: "coral" as const,
                 },
                 {
                   step: "03",
                   title: "Sembrar",
                   body: "Plántulas, bitácora y cuidado — heredar la tierra con criterio.",
+                  href: "/juega",
                   tone: "pod" as const,
                 },
                 {
                   step: "04",
-                  title: "Foro + R&D",
-                  body: "Comparte avances, prueba Benevolo y coberturas de los nodos.",
+                  title: "Foro + Tienda",
+                  body: "Comparte avances y prueba Bars. Benevolo en Shopify Colab.",
+                  href: "/shop",
                   tone: "cocoa" as const,
                 },
               ].map((item) => (
-                <article key={item.step} className="colab-desire-card">
+                <Link key={item.step} href={item.href} className="colab-desire-card group block">
                   <div className="flex items-start justify-between gap-3">
                     <span className="font-serif italic text-3xl text-colab-yellow/40">{item.step}</span>
                     <MazorcaSVG tone={item.tone} size={36} />
                   </div>
-                  <h3 className="font-serif font-bold text-xl text-colab-cream mt-5">{item.title}</h3>
+                  <h3 className="font-serif font-bold text-xl text-colab-cream mt-4 group-hover:text-colab-yellow transition-colors">
+                    {item.title}
+                  </h3>
                   <p className="text-xs text-colab-cream/50 leading-relaxed mt-2">{item.body}</p>
-                </article>
+                  <span className="inline-block mt-3 text-xs font-bold text-colab-champagne group-hover:text-colab-yellow">
+                    Entrar →
+                  </span>
+                </Link>
               ))}
             </div>
           </div>

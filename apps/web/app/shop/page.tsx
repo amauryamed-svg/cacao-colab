@@ -41,7 +41,7 @@ export default function ShopPage() {
             <strong className="text-colab-cream">cacao-colab.myshopify.com</strong>: Masters
             digitales, antojo Benevolo y kits. Aquí el hub Colab enlaza checkout, campus y nodos.
           </p>
-          <div className="flex flex-wrap gap-3 mt-8">
+          <div className="flex flex-wrap items-center gap-4 mt-8">
             <TrackedLink
               href={COLAB_SHOPIFY_STOREFRONT}
               event="sponsor_interest"
@@ -52,35 +52,58 @@ export default function ShopPage() {
             >
               Abrir cacao-colab.myshopify.com →
             </TrackedLink>
-            <TrackedLink
-              href={COLAB_SHOPIFY_COLLECTION}
-              event="sponsor_interest"
-              targetName="colab-shopify-all"
-              source="shop-hero"
-              external
-              className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold"
-            >
-              Ver colección →
-            </TrackedLink>
             <Link
               href="/export"
-              className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold"
+              className="text-sm font-bold text-colab-cream/70 underline decoration-white/20 underline-offset-4 hover:text-colab-yellow"
             >
-              App FOB export →
+              App FOB
             </Link>
           </div>
         </div>
       </header>
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 pb-24">
-        <section className="mb-16">
-          <p className="eyebrow text-colab-yellow">Vitrina · storefront Colab</p>
-          <h2 className="font-serif text-3xl md:text-4xl font-bold mt-3">Catálogo en Shopify</h2>
+        <section className="mb-10 border-l-2 border-colab-yellow pl-5 text-sm text-colab-cream/70 leading-relaxed">
+          <strong className="text-colab-yellow">Checkout oficial:</strong>{" "}
+          <a
+            href={COLAB_SHOPIFY_STOREFRONT}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-colab-yellow"
+          >
+            cacao-colab.myshopify.com
+          </a>
+          . Coberturas/nibs de nodos se confirman por WhatsApp.
+        </section>
+
+        <section id="masters" className="scroll-mt-20 mb-16">
+          <p className="eyebrow text-colab-yellow">Empezar aquí · producto digital</p>
+          <h2 className="font-serif text-3xl md:text-4xl font-bold mt-3">Los tres Masters</h2>
           <p className="mt-3 max-w-2xl text-sm text-colab-cream/55 leading-relaxed">
-            Handles alineados a la tienda. Si el SKU aún no está publicado, la ficha abre en Shopify
-            o cae a preventa WhatsApp desde el campus.
+            Un solo checkout en Shopify. También puedes abrir el campus ganando rango con Mazorcas
+            Doradas.
           </p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+          <div className="mt-8">
+            <MastersShopifyGrid />
+          </div>
+          <div className="mt-8">
+            <TrackedLink
+              href={COLAB_SHOPIFY_STOREFRONT}
+              event="sponsor_interest"
+              targetName="shop-primary-cta"
+              source="shop-masters"
+              external
+              className="inline-flex bg-colab-yellow text-colab-forest rounded-full px-7 py-3.5 text-sm font-bold"
+            >
+              Ir a checkout Shopify →
+            </TrackedLink>
+          </div>
+        </section>
+
+        <section className="mb-16">
+          <p className="eyebrow text-colab-yellow">También en la tienda</p>
+          <h2 className="font-serif text-3xl font-bold mt-3">Vitrina Colab</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-1 mt-6">
             {colabStorefrontCatalog.map((item) => (
               <TrackedLink
                 key={item.id}
@@ -100,25 +123,7 @@ export default function ShopPage() {
           </div>
         </section>
 
-        <section id="masters" className="scroll-mt-20 mb-16">
-          <p className="eyebrow text-colab-yellow">Producto digital · checkout</p>
-          <h2 className="font-serif text-3xl md:text-4xl font-bold mt-3">Los tres Masters</h2>
-          <p className="mt-3 max-w-2xl text-sm text-colab-cream/55 leading-relaxed">
-            Inscripción vía cacao-colab.myshopify.com. También puedes abrir el campus ganando rango
-            con Mazorcas Doradas.
-          </p>
-          <div className="mt-8">
-            <MastersShopifyGrid />
-          </div>
-        </section>
-
-        <section className="rounded-2xl border border-colab-yellow/25 bg-colab-yellow/10 px-6 py-5 mb-14 text-sm text-colab-cream/70 leading-relaxed">
-          <strong className="text-colab-yellow">Nodos físicos.</strong> Coberturas y nibs CAÚA ×
-          Zurych se confirman por WhatsApp mientras estabilizan sus tiendas. El carrito digital Colab
-          es Shopify.
-        </section>
-
-        <section className="grid md:grid-cols-3 gap-4 mb-14">
+        <section className="grid md:grid-cols-3 gap-x-8 gap-y-1 mb-14">
           {[
             {
               n: "Shopify Colab",
@@ -222,31 +227,31 @@ export default function ShopPage() {
           </div>
         </section>
 
-        <section className="mt-16 rounded-3xl bg-colab-yellow text-colab-forest p-8 md:p-12 grid lg:grid-cols-[1.2fr_.8fr] gap-8 items-center">
+        <section className="mt-16 border-t-2 border-colab-yellow pt-8 md:pt-10 grid lg:grid-cols-[1.2fr_.8fr] gap-8 items-end text-colab-cream">
           <div>
-            <p className="eyebrow opacity-55">Checkout oficial</p>
-            <h2 className="font-serif text-3xl md:text-4xl font-black mt-3">
+            <p className="eyebrow text-colab-yellow">Checkout oficial</p>
+            <h2 className="font-serif text-3xl md:text-4xl font-black mt-3 text-colab-yellow">
               cacao-colab.myshopify.com
             </h2>
-            <p className="text-sm opacity-70 mt-4 leading-relaxed max-w-xl">
+            <p className="text-sm text-colab-cream/55 mt-4 leading-relaxed max-w-xl">
               Carrito y pago en la tienda Shopify Colab. Exportación FOB y nodos físicos se atienden
               desde la app /export y WhatsApp.
             </p>
           </div>
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 sm:items-start lg:items-end">
             <TrackedLink
               href={COLAB_SHOPIFY_STOREFRONT}
               event="sponsor_interest"
               targetName="shop-cta-store"
               source="shop-cta"
               external
-              className="bg-colab-forest text-colab-yellow text-center rounded-full px-6 py-4 text-sm font-bold"
+              className="bg-colab-yellow text-colab-forest text-center rounded-full px-6 py-4 text-sm font-bold"
             >
               Ir a la tienda Shopify →
             </TrackedLink>
             <Link
               href="/export"
-              className="border border-colab-forest/25 text-center rounded-full px-6 py-4 text-sm font-bold"
+              className="text-sm font-bold text-colab-cream/70 underline decoration-white/20 underline-offset-4 hover:text-colab-yellow"
             >
               Abrir app FOB →
             </Link>

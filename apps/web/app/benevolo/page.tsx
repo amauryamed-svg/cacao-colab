@@ -48,16 +48,10 @@ export default function BenevoloPage() {
                   Preordenar Bars. →
                 </TrackedLink>
                 <Link
-                  href="/campus/benevolo"
+                  href="/shop#masters"
                   className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold text-white/80"
                 >
-                  Track Dualita Benevolo →
-                </Link>
-                <Link
-                  href="/rd/coberturas"
-                  className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold text-white/80"
-                >
-                  Coberturas CAÚA × Zurych →
+                  Ver Masters →
                 </Link>
               </div>
             </div>
@@ -76,7 +70,7 @@ export default function BenevoloPage() {
       </header>
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-        <section className="grid md:grid-cols-4 gap-3">
+        <section className="grid md:grid-cols-4 gap-x-6 gap-y-1">
           {benevoloProduct.claims.map((claim) => (
             <article key={claim.label} className="benevolo-claim">
               <span>{claim.label}</span>

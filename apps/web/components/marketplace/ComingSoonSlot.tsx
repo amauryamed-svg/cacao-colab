@@ -3,11 +3,8 @@ const WA_MARCA =
 
 export default function ComingSoonSlot({ hint }: { hint: string }) {
   return (
-    <div className="rounded-2xl border-2 border-dashed border-colab-yellow/40 flex flex-col items-center justify-center min-h-[280px] gap-4 px-6 py-8 hover:border-colab-yellow/70 transition-colors">
-      <div className="w-10 h-10 rounded-full border-2 border-colab-yellow/40 flex items-center justify-center">
-        <span className="text-colab-yellow/60 text-xl leading-none">+</span>
-      </div>
-      <p className="text-xs text-colab-ink/50 font-sans text-center">{hint}</p>
+    <div className="border-t border-dashed border-colab-yellow/45 flex flex-col justify-center min-h-[8rem] gap-3 py-5">
+      <p className="text-xs text-colab-ink/50 font-sans">{hint}</p>
       <a
         href={WA_MARCA}
         target="_blank"
