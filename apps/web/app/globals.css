@@ -1596,25 +1596,27 @@ body {
 
 .open-circle-card {
   background: #1a2e10;
-  border-radius: 1.4rem;
-  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border: 0;
+  border-radius: 0;
+  padding: clamp(1.35rem, 3vw, 2rem) clamp(1.1rem, 2.5vw, 1.75rem);
 }
 
 .open-slot {
   align-items: center;
-  border: 1px dashed rgba(242, 200, 48, .3);
-  border-radius: .75rem;
+  border: 0;
+  border-bottom: 1px dashed rgba(242, 200, 48, .28);
+  border-radius: 0;
   color: rgba(247, 241, 238, .65);
   display: flex;
   font-size: .7rem;
   font-weight: 700;
   gap: .65rem;
-  padding: .8rem;
-  transition: all .2s;
+  padding: .75rem 0;
+  transition: color .2s ease, border-color .2s ease;
 }
 
 .open-slot:hover {
-  background: rgba(242, 200, 48, .08);
+  background: transparent;
   border-color: #f2c830;
   color: #f2c830;
 }
@@ -2026,32 +2028,23 @@ body {
 
 .audience-card {
   --audience-color: #F2C830;
-  background: white;
-  border: 1px solid rgba(26, 46, 16, .08);
-  border-radius: 1.2rem;
+  background: transparent;
+  border: 0;
+  border-top: 2px solid var(--audience-color);
+  border-radius: 0;
+  color: inherit;
   display: flex;
   flex-direction: column;
-  min-height: 18rem;
-  padding: 1.4rem;
-  transition: all .25s;
+  min-height: 0;
+  padding: 1.1rem 0 1.4rem;
+  text-decoration: none;
+  transition: border-color .2s ease;
 }
 
 .audience-card:hover {
   border-color: var(--audience-color);
-  box-shadow: 0 18px 45px rgba(26, 46, 16, .08);
-  transform: translateY(-4px);
-}
-
-.audience-icon {
-  align-items: center;
-  background: color-mix(in srgb, var(--audience-color) 16%, transparent);
-  border-radius: 50%;
-  color: var(--audience-color);
-  display: flex;
-  font-size: 1.25rem;
-  height: 3rem;
-  justify-content: center;
-  width: 3rem;
+  box-shadow: none;
+  transform: none;
 }
 
 .audience-card h3 {
@@ -2059,7 +2052,20 @@ body {
   font-family: var(--font-display);
   font-size: 1.35rem;
   font-weight: 800;
-  margin-top: 2rem;
+  margin-top: 1rem;
+}
+
+.audience-icon {
+  align-items: center;
+  background: transparent;
+  border-radius: 0;
+  color: var(--audience-color);
+  display: flex;
+  font-size: 1.25rem;
+  height: auto;
+  justify-content: flex-start;
+  width: auto;
+  margin-bottom: .35rem;
 }
 
 .audience-card p {
@@ -2069,6 +2075,7 @@ body {
   margin-top: .55rem;
 }
 
+.audience-card-cta,
 .audience-card a {
   color: #1A2E10;
   font-size: .68rem;
@@ -2078,10 +2085,11 @@ body {
 }
 
 .builder-card {
-  background: rgba(247, 241, 238, .05);
-  border: 1px solid rgba(247, 241, 238, .09);
-  border-radius: 1rem;
-  padding: 1.1rem;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid rgba(247, 241, 238, .14);
+  border-radius: 0;
+  padding: 1rem 0 1.15rem;
 }
 
 .builder-card > span {
@@ -2860,10 +2868,11 @@ button.diploma-li {
 }
 
 .learning-sync-card {
-  background: rgba(247, 241, 238, .035);
-  border: 1px solid rgba(247, 241, 238, .08);
-  border-radius: 1rem;
-  padding: 1.15rem;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid rgba(247, 241, 238, .12);
+  border-radius: 0;
+  padding: 1rem 0 1.15rem;
 }
 
 .learning-sync-card > div {
@@ -3680,35 +3689,36 @@ button.diploma-li {
 .benefits-hero > div > p:not(.eyebrow) { color: rgba(247, 241, 238, .5); font-size: .75rem; line-height: 1.6; margin-top: 1.2rem; max-width: 38rem; }
 .benefits-hero a { background: #F2C830; border-radius: 99px; color: #1A2E10; display: inline-block; font-size: .7rem; font-weight: 900; margin-top: 1.5rem; padding: .8rem 1.2rem; }
 
-.dualita-benefits-guide { align-items: center; background: white; border: 1px solid rgba(26, 46, 16, .08); border-radius: 1.2rem; display: grid; gap: 1rem; grid-template-columns: auto 1fr auto; padding: 1.2rem; }
-.dualita-orb { align-items: center; background: #F2C830; border-radius: 50%; color: #1A2E10; display: flex; font-family: var(--font-display); font-size: 1.5rem; font-weight: 900; height: 3.5rem; justify-content: center; width: 3.5rem; }
+.dualita-benefits-guide { align-items: center; background: transparent; border: 0; border-top: 2px solid #F2C830; border-radius: 0; display: grid; gap: 1rem; grid-template-columns: auto 1fr auto; padding: 1.1rem 0 1.25rem; }
+.dualita-orb { align-items: center; background: transparent; border-radius: 0; color: #F2C830; display: flex; font-family: var(--font-display); font-size: 1.5rem; font-weight: 900; height: auto; justify-content: flex-start; width: auto; }
 .dualita-benefits-guide h2 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 800; margin-top: .2rem; }
 .dualita-benefits-guide p:not(.eyebrow) { color: rgba(26, 46, 16, .48); font-size: .65rem; line-height: 1.5; margin-top: .3rem; }
-.dualita-benefits-guide > span { background: #F7F1EE; border-radius: 99px; color: #B9583B; font-size: .55rem; font-weight: 800; padding: .5rem .7rem; }
+.dualita-benefits-guide > span { background: transparent; border-radius: 0; color: #B9583B; font-size: .55rem; font-weight: 800; padding: 0; }
 
 .dualita-agent-card {
   align-items: start;
-  background: white;
-  border: 1px solid rgba(26, 46, 16, .08);
-  border-radius: 1.2rem;
+  background: transparent;
+  border: 0;
+  border-top: 2px solid #F2C830;
+  border-radius: 0;
   display: grid;
   gap: 1rem;
   grid-template-columns: auto 1fr .55fr;
-  padding: 1.2rem;
+  padding: 1.1rem 0 1.25rem;
 }
 
 .dualita-agent-avatar {
   align-items: center;
-  background: #F2C830;
-  border-radius: 50%;
+  background: transparent;
+  border-radius: 0;
   color: #1A2E10;
   display: flex;
   font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 900;
-  height: 3.5rem;
-  justify-content: center;
-  width: 3.5rem;
+  height: auto;
+  justify-content: flex-start;
+  width: auto;
 }
 
 .dualita-agent-copy h2 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; margin-top: .2rem; }
@@ -3717,11 +3727,11 @@ button.diploma-li {
 .dualita-agent-actions button.active { background: #1A2E10; border-color: #1A2E10; color: #F2C830; }
 .dualita-agent-response { color: rgba(26, 46, 16, .58); font-size: .68rem; line-height: 1.55; margin-top: .8rem; }
 .dualita-agent-copy > a { color: #3D7A2C; display: inline-block; font-size: .62rem; font-weight: 900; margin-top: .7rem; }
-.dualita-agent-card aside { background: #F7F1EE; border-radius: .8rem; padding: .8rem; }
+.dualita-agent-card aside { background: transparent; border-left: 1px solid rgba(26, 46, 16, .12); border-radius: 0; padding: 0 0 0 .9rem; }
 .dualita-agent-card aside strong { color: #1A2E10; font-size: .6rem; }
 .dualita-agent-card aside p { color: rgba(26, 46, 16, .45); font-size: .55rem; line-height: 1.5; margin-top: .3rem; }
 
-.benefit-card { background: white; border: 1px solid rgba(26, 46, 16, .08); border-radius: 1rem; display: flex; flex-direction: column; min-height: 24rem; padding: 1.2rem; }
+.benefit-card { background: transparent; border: 0; border-top: 1px solid rgba(26, 46, 16, .12); border-radius: 0; display: flex; flex-direction: column; min-height: 0; padding: 1.1rem 0 1.25rem; }
 .benefit-brand { color: #3D7A2C; font-size: .6rem; font-weight: 900; text-transform: uppercase; }
 .benefit-status { background: #FFF2D9; border-radius: 99px; color: #8A5D0A; font-size: .52rem; font-weight: 800; padding: .3rem .5rem; }
 .benefit-card h3 { color: #1A2E10; font-family: var(--font-display); font-size: 1.35rem; font-weight: 800; margin-top: 2rem; }
@@ -3755,10 +3765,11 @@ button.diploma-li {
   grid-template-columns: repeat(4, 1fr);
 }
 .economy-flow article {
-  background: rgba(247, 241, 238, .04);
-  border: 1px solid rgba(247, 241, 238, .1);
-  border-radius: 1rem;
-  padding: 1rem;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid rgba(247, 241, 238, .12);
+  border-radius: 0;
+  padding: 1rem 0;
 }
 .economy-flow span { color: #F2C830; font-size: .7rem; font-weight: 900; }
 .economy-flow h3 { color: #F7F1EE; font-family: var(--font-display); font-size: 1.1rem; margin-top: .4rem; }
@@ -3767,10 +3778,11 @@ button.diploma-li {
 .rank-ceiling { color: rgba(242, 200, 48, .7); font-size: .52rem; margin-top: .7rem; }
 
 .scorecard-panel {
-  background: linear-gradient(145deg, rgba(26, 46, 16, .95), rgba(16, 29, 11, .98));
-  border: 1px solid rgba(242, 200, 48, .2);
-  border-radius: 1.2rem;
-  padding: 1.4rem;
+  background: transparent;
+  border: 0;
+  border-top: 2px solid rgba(242, 200, 48, .35);
+  border-radius: 0;
+  padding: 1.25rem 0 0;
 }
 .scorecard-panel-head {
   display: flex;
@@ -3999,10 +4011,11 @@ button.diploma-li {
 }
 
 .benevolo-claim {
-  background: rgba(232, 201, 160, .06);
-  border: 1px solid rgba(232, 201, 160, .14);
-  border-radius: .9rem;
-  padding: 1rem;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(232, 201, 160, .16);
+  border-radius: 0;
+  padding: .85rem 0;
 }
 
 .benevolo-claim span {
@@ -4020,15 +4033,16 @@ button.diploma-li {
 }
 
 .benevolo-panel {
-  background: rgba(232, 201, 160, .07);
-  border: 1px solid rgba(232, 201, 160, .14);
-  border-radius: 1rem;
-  padding: 1.2rem;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid rgba(232, 201, 160, .16);
+  border-radius: 0;
+  padding: 1.2rem 0;
 }
 
 .benevolo-panel.muted {
-  background: rgba(247, 241, 238, .03);
-  border-color: rgba(247, 241, 238, .08);
+  background: transparent;
+  border-color: rgba(247, 241, 238, .12);
 }
 
 .benevolo-panel ul { margin-top: .8rem; }
@@ -4055,18 +4069,19 @@ button.diploma-li {
 }
 
 .benevolo-ally {
-  background: rgba(232, 201, 160, .05);
-  border: 1px solid rgba(232, 201, 160, .14);
-  border-radius: 1rem;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid rgba(232, 201, 160, .18);
+  border-radius: 0;
   display: block;
-  padding: 1.15rem 1.2rem;
-  transition: border-color .2s ease, transform .2s ease, background .2s ease;
+  padding: 1rem 0 1.15rem;
+  transition: border-color .2s ease;
 }
 
 .benevolo-ally:hover {
-  background: rgba(255, 106, 61, .08);
-  border-color: rgba(255, 106, 61, .35);
-  transform: translateY(-2px);
+  background: transparent;
+  border-color: rgba(255, 106, 61, .45);
+  transform: none;
 }
 
 .benevolo-ally span {
@@ -4777,24 +4792,28 @@ button.diploma-li {
 
 .rd-panel {
   display: block;
-  padding: 1.6rem 1.5rem 1.4rem;
-  border-radius: 1.25rem;
-  border: 1px solid rgba(247, 241, 238, .1);
-  background: rgba(247, 241, 238, .04);
-  transition: transform .25s ease, border-color .25s ease, background .25s ease;
-  animation: rdRise .8s ease both;
-  animation-delay: .08s;
+  padding: 1.25rem 0 1.35rem;
+  border-radius: 0;
+  border: 0;
+  border-top: 2px solid rgba(242, 200, 48, .35);
+  background: transparent;
+  transition: border-color .2s ease;
+  animation: none;
 }
 
 .rd-panel:hover {
-  transform: translateY(-3px);
-  border-color: rgba(242, 200, 48, .35);
-  background: rgba(242, 200, 48, .06);
+  transform: none;
+  border-color: #f2c830;
+  background: transparent;
+}
+
+.rd-panel--benevolo {
+  border-top-color: rgba(255, 106, 61, .4);
 }
 
 .rd-panel--benevolo:hover {
-  border-color: rgba(255, 106, 61, .4);
-  background: rgba(255, 106, 61, .07);
+  border-color: #ff6a3d;
+  background: transparent;
 }
 
 .rd-panel h2 {
@@ -4823,16 +4842,17 @@ button.diploma-li {
 .rd-panel--benevolo span { color: #FF6A3D; }
 
 .rd-sku {
-  background: rgba(247, 241, 238, .04);
-  border: 1px solid rgba(247, 241, 238, .1);
-  border-radius: 1rem;
-  padding: 1.15rem 1.2rem;
-  transition: border-color .2s ease, transform .2s ease;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(247, 241, 238, .1);
+  border-radius: 0;
+  padding: 1rem 0 1.15rem;
+  transition: border-color .2s ease;
 }
 
 .rd-sku:hover {
-  border-color: rgba(242, 200, 48, .3);
-  transform: translateY(-2px);
+  border-color: rgba(242, 200, 48, .35);
+  transform: none;
 }
 
 .rd-sku--row {
@@ -4936,19 +4956,17 @@ button.diploma-li {
 
 .rd-node-card {
   display: block;
-  padding: 1.25rem 1.2rem;
-  border-radius: 1.1rem;
-  border: 1px solid rgba(247, 241, 238, .1);
-  background:
-    linear-gradient(135deg, rgba(242, 200, 48, .06), transparent 55%),
-    rgba(247, 241, 238, .03);
-  background-size: 200% 200%;
-  animation: rdSheen 8s ease infinite alternate, rdRise .75s ease both;
-  transition: transform .25s ease, border-color .25s ease;
+  padding: 1rem 0 1.15rem;
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1px solid rgba(247, 241, 238, .1);
+  background: transparent;
+  animation: none;
+  transition: border-color .2s ease;
 }
 
 .rd-node-card:hover {
-  transform: translateY(-3px);
+  transform: none;
   border-color: rgba(242, 200, 48, .4);
 }
 
@@ -5111,21 +5129,17 @@ button.diploma-li {
 }
 
 .colab-desire-card {
-  background:
-    linear-gradient(145deg, rgba(232,201,160,.08), transparent 50%),
-    rgba(247,241,238,.04);
-  border: 1px solid rgba(232,201,160,.16);
-  border-radius: 1.25rem;
-  padding: 1.35rem 1.3rem;
-  transition: transform .25s ease, border-color .25s ease, background .25s ease;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid rgba(232, 201, 160, .18);
+  border-radius: 0;
+  padding: 1.1rem 0 1.25rem;
+  transition: color .2s ease;
 }
 
 .colab-desire-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(255,106,61,.4);
-  background:
-    linear-gradient(145deg, rgba(255,106,61,.1), transparent 55%),
-    rgba(247,241,238,.05);
+  transform: none;
+  border-color: rgba(255, 106, 61, .45);
 }
 
 .colab-desire-strip {
@@ -6198,14 +6212,15 @@ button.diploma-li {
 }
 
 .cuenta-wallet {
-  background: linear-gradient(135deg, rgba(26, 46, 16, .9), rgba(16, 29, 11, .95));
-  border: 1px solid rgba(242, 200, 48, .22);
-  border-radius: 1.25rem;
+  background: transparent;
+  border: 0;
+  border-top: 2px solid rgba(242, 200, 48, .35);
+  border-radius: 0;
   display: grid;
   gap: 1.5rem;
   grid-template-columns: 1.3fr .7fr;
   margin-top: 2rem;
-  padding: 1.5rem;
+  padding: 1.35rem 0 0;
 }
 .cuenta-wallet-copy h2 {
   font-family: var(--font-display);
@@ -6227,9 +6242,11 @@ button.diploma-li {
   margin-top: 1.2rem;
 }
 .cuenta-wallet-balance {
-  background: rgba(242, 200, 48, .1);
-  border-radius: 1rem;
-  padding: 1.2rem;
+  background: transparent;
+  border: 0;
+  border-left: 1px solid rgba(242, 200, 48, .28);
+  border-radius: 0;
+  padding: .25rem 0 .25rem 1.25rem;
   text-align: right;
 }
 .cuenta-wallet-balance span,
@@ -6295,14 +6312,15 @@ button.diploma-li {
 
 .cuenta-canjes-list li {
   align-items: center;
-  background: rgba(16, 29, 11, .55);
-  border: 1px solid rgba(247, 241, 238, .08);
-  border-radius: .9rem;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid rgba(247, 241, 238, .1);
+  border-radius: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: space-between;
-  padding: 1rem 1.1rem;
+  padding: 1rem 0;
 }
 
 .cuenta-canjes-status {
@@ -6441,13 +6459,14 @@ button.diploma-li {
   max-width: 32rem;
 }
 .cuenta-bio-card {
-  background: rgba(247, 241, 238, .04);
-  border: 1px solid rgba(247, 241, 238, .1);
-  border-radius: 1.2rem;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid rgba(247, 241, 238, .12);
+  border-radius: 0;
   display: grid;
   gap: 1.25rem;
   grid-template-columns: auto 1fr;
-  padding: 1.25rem;
+  padding: 1.25rem 0 0;
 }
 .cuenta-bio-card--solo { margin-top: 1.5rem; }
 .cuenta-bio-visual {
@@ -6613,17 +6632,18 @@ button.diploma-li {
   grid-template-columns: repeat(3, 1fr);
 }
 .cuenta-manage-grid a {
-  background: rgba(247, 241, 238, .04);
-  border: 1px solid rgba(247, 241, 238, .08);
-  border-radius: 1rem;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid rgba(247, 241, 238, .12);
+  border-radius: 0;
   display: block;
-  min-height: 9.5rem;
-  padding: 1.1rem;
-  transition: border-color .2s ease, transform .2s ease;
+  min-height: 0;
+  padding: 1rem 0 1.15rem;
+  transition: border-color .2s ease;
 }
 .cuenta-manage-grid a:hover {
-  border-color: rgba(242, 200, 48, .3);
-  transform: translateY(-2px);
+  border-color: rgba(242, 200, 48, .45);
+  transform: none;
 }
 .cuenta-manage-grid h3 {
   font-family: var(--font-display);
@@ -6708,19 +6728,18 @@ button.diploma-li {
   grid-template-columns: repeat(3, 1fr);
 }
 .cuenta-course-card {
-  background: rgba(247, 241, 238, .04);
-  border: 1px solid rgba(247, 241, 238, .1);
-  border-radius: 1.15rem;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid rgba(247, 241, 238, .12);
+  border-radius: 0;
   display: flex;
   flex-direction: column;
-  min-height: 18rem;
-  padding: 1.15rem;
+  min-height: 0;
+  padding: 1.1rem 0 1.25rem;
 }
 .cuenta-course-card--certified {
-  border-color: rgba(242, 200, 48, .35);
-  background:
-    radial-gradient(circle at 90% 10%, rgba(242, 200, 48, .12), transparent 40%),
-    rgba(247, 241, 238, .04);
+  border-color: rgba(242, 200, 48, .4);
+  background: transparent;
 }
 .cuenta-course-status {
   color: #f2c830;
@@ -6760,9 +6779,11 @@ button.diploma-li {
   grid-template-columns: repeat(2, 1fr);
 }
 .cuenta-course-stats div {
-  background: rgba(16, 29, 11, .35);
-  border-radius: .55rem;
-  padding: .45rem .55rem;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid rgba(247, 241, 238, .08);
+  border-radius: 0;
+  padding: .45rem 0;
 }
 .cuenta-course-stats dt {
   color: rgba(247, 241, 238, .35);
@@ -7913,12 +7934,13 @@ button.diploma-li {
   grid-template-columns: 1.05fr .95fr;
 }
 .fob-cotizador-controls {
-  background: rgba(247, 241, 238, .03);
-  border: 1px solid rgba(247, 241, 238, .1);
-  border-radius: 1.25rem;
+  background: transparent;
+  border: 0;
+  border-right: 1px solid rgba(247, 241, 238, .1);
+  border-radius: 0;
   display: grid;
   gap: 1.1rem;
-  padding: 1.25rem;
+  padding: 0 1.25rem 0 0;
 }
 .fob-cotizador-controls label {
   display: grid;
@@ -7975,14 +7997,15 @@ button.diploma-li {
   text-transform: uppercase;
 }
 .fob-dest-col button {
-  background: rgba(247, 241, 238, .04);
-  border: 1px solid rgba(247, 241, 238, .12);
-  border-radius: .85rem;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(247, 241, 238, .1);
+  border-radius: 0;
   color: #f7f1ee;
   display: grid;
   gap: .15rem;
-  margin-bottom: .4rem;
-  padding: .7rem .75rem;
+  margin-bottom: .15rem;
+  padding: .65rem 0;
   text-align: left;
   width: 100%;
 }
@@ -7993,14 +8016,16 @@ button.diploma-li {
   font-style: normal;
 }
 .fob-dest-col button.active {
-  background: rgba(242, 200, 48, .12);
-  border-color: rgba(242, 200, 48, .55);
+  background: transparent;
+  border-color: #f2c830;
+  color: #f2c830;
 }
 .fob-cotizador-result {
-  background: linear-gradient(160deg, rgba(242, 200, 48, .08), rgba(247, 241, 238, .02));
-  border: 1px solid rgba(242, 200, 48, .22);
-  border-radius: 1.25rem;
-  padding: 1.35rem;
+  background: transparent;
+  border: 0;
+  border-left: 2px solid #f2c830;
+  border-radius: 0;
+  padding: 0 0 0 1.25rem;
 }
 .fob-cotizador-result h3 {
   font-family: var(--font-fraunces), serif;
@@ -8093,12 +8118,13 @@ button.diploma-li {
   grid-template-columns: repeat(3, 1fr);
 }
 .master-shopify-card {
-  background: rgba(247, 241, 238, .04);
-  border: 1px solid rgba(242, 200, 48, .22);
-  border-radius: 1.15rem;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid rgba(242, 200, 48, .28);
+  border-radius: 0;
   display: grid;
   gap: .55rem;
-  padding: 1.15rem;
+  padding: 1.1rem 0 1.25rem;
 }
 .master-shopify-card.compact { margin-top: .25rem; }
 .master-shopify-card h3 {
@@ -8232,13 +8258,14 @@ button.diploma-li {
   grid-template-columns: repeat(4, 1fr);
 }
 .fob-presets button {
-  background: rgba(247, 241, 238, .04);
-  border: 1px solid rgba(247, 241, 238, .12);
-  border-radius: .9rem;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(247, 241, 238, .14);
+  border-radius: 0;
   color: #f7f1ee;
   display: grid;
   gap: .2rem;
-  padding: .75rem .85rem;
+  padding: .7rem 0;
   text-align: left;
 }
 .fob-presets strong { font-size: .82rem; }
@@ -8295,10 +8322,11 @@ button.diploma-li {
   grid-template-columns: repeat(4, 1fr);
 }
 .fob-compare-grid article {
-  background: rgba(247, 241, 238, .04);
-  border: 1px solid rgba(247, 241, 238, .12);
-  border-radius: 1rem;
-  padding: 1rem;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid rgba(247, 241, 238, .14);
+  border-radius: 0;
+  padding: 1rem 0;
 }
 .fob-compare-grid h3 {
   font-family: var(--font-fraunces), serif;
@@ -8329,10 +8357,11 @@ button.diploma-li {
   grid-template-columns: repeat(2, 1fr);
 }
 .fob-guide article {
-  background: rgba(247, 241, 238, .04);
-  border: 1px solid rgba(247, 241, 238, .1);
-  border-radius: 1rem;
-  padding: 1.1rem;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid rgba(247, 241, 238, .14);
+  border-radius: 0;
+  padding: 1rem 0 1.15rem;
 }
 .fob-guide h3 {
   font-family: var(--font-fraunces), serif;
@@ -8361,18 +8390,19 @@ button.diploma-li {
 
 /* —— Tienda Colab vitrina —— */
 .colab-store-card {
-  background: rgba(247, 241, 238, .04);
-  border: 1px solid rgba(242, 200, 48, .2);
-  border-radius: 1.1rem;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid rgba(242, 200, 48, .22);
+  border-radius: 0;
   color: #f7f1ee;
   display: grid;
   gap: .4rem;
-  padding: 1.1rem;
-  transition: border-color .2s ease, transform .2s ease;
+  padding: 1rem 0 1.2rem;
+  transition: border-color .2s ease;
 }
 .colab-store-card:hover {
   border-color: rgba(242, 200, 48, .55);
-  transform: translateY(-2px);
+  transform: none;
 }
 .colab-store-badge {
   color: #f2c830;

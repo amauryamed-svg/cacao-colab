@@ -67,26 +67,31 @@ export default function MarketplacePage() {
               No todos llegan por la misma necesidad. Elige qué quieres construir y entra por la ruta correcta.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-2">
             {[
               { icon: "♧", title: "Soy agricultor", body: "Quiero mejorar mi lote, documentar calidad y conectar con compradores.", cta: "Entrar al laboratorio", href: "/aprende/cacaotier", color: "#86B66B" },
               { icon: "◆", title: "Soy chocolatier", body: "Quiero encontrar origen, dominar transformación y crear mejores aplicaciones.", cta: "Ver la ruta profesional", href: "/aprende", color: "#B9583B" },
               { icon: "♡", title: "Amo el cacao", body: "Quiero aprender, sembrar, catar y conocer a quienes hacen posible cada chocolate.", cta: "Abrir Sembrar", href: "/juega", color: "#E3A12B" },
               { icon: "↗", title: "Tengo una marca", body: "Quiero abrir un nodo, pautar con transparencia y aportar valor a la comunidad.", cta: "Pautar o postular", href: WA_MARCA, color: "#3D7A2C", external: true },
             ].map((audience) => (
-              <article key={audience.title} className="audience-card" style={{ "--audience-color": audience.color } as React.CSSProperties}>
+              <a
+                key={audience.title}
+                href={audience.href}
+                target={audience.external ? "_blank" : undefined}
+                rel={audience.external ? "noopener noreferrer" : undefined}
+                className="audience-card group"
+                style={{ "--audience-color": audience.color } as React.CSSProperties}
+              >
                 <span className="audience-icon">{audience.icon}</span>
                 <h3>{audience.title}</h3>
                 <p>{audience.body}</p>
-                <a href={audience.href} target={audience.external ? "_blank" : undefined} rel={audience.external ? "noopener noreferrer" : undefined}>
-                  {audience.cta} →
-                </a>
-              </article>
+                <span className="audience-card-cta">{audience.cta} →</span>
+              </a>
             ))}
           </div>
         </section>
 
-        <section className="mt-16 bg-colab-forest rounded-3xl p-7 md:p-10 grid lg:grid-cols-[.7fr_1.3fr] gap-10">
+        <section className="mt-16 bg-colab-forest px-0 md:px-0 py-10 md:py-12 grid lg:grid-cols-[.7fr_1.3fr] gap-10 border-y border-colab-cream/10">
           <div>
             <SectionKicker className="mb-3">Ownership claro</SectionKicker>
             <h2 className="font-serif text-3xl font-bold text-colab-cream">Tres builders.<br />Un círculo abierto.</h2>
@@ -94,7 +99,7 @@ export default function MarketplacePage() {
               cacaotier y sus Masterclasses son creación de Amaury Amed. Cacao Colab se construye con capacidades complementarias y no reclama propiedad sobre las marcas regionales.
             </p>
           </div>
-          <div className="grid sm:grid-cols-3 gap-3">
+          <div className="grid sm:grid-cols-3 gap-x-8 gap-y-2">
             {[
               {
                 initials: "AA",
@@ -144,7 +149,7 @@ export default function MarketplacePage() {
           <p className="text-colab-ink/55 font-sans max-w-2xl mb-8 text-sm leading-relaxed">
             Este directorio es exploratorio. No implica membresía, alianza ni propiedad: identifica actores que podrían aportar al ecosistema y mantiene explícito su estado de contacto.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-1">
             {directoryCandidates.map((c) => (
               <DirectoryCard key={c.id} candidate={c} />
             ))}
@@ -160,7 +165,7 @@ export default function MarketplacePage() {
               { n: "02", title: "Evidencia", desc: "Origen, procesos y claims deben poder explicarse y verificarse." },
               { n: "03", title: "Reciprocidad", desc: "Cada nodo aprende, comparte o abre una oportunidad real para la red." },
             ].map(({ n, title, desc }) => (
-              <div key={n} className="bg-white rounded-xl p-6">
+              <div key={n} className="border-t border-colab-ink/15 pt-4">
                 <p className="font-serif font-black text-colab-yellow text-4xl leading-none mb-2">{n}</p>
                 <h3 className="font-bold text-colab-ink font-sans mb-1">{title}</h3>
                 <p className="text-sm text-colab-ink/60 font-sans leading-relaxed">{desc}</p>

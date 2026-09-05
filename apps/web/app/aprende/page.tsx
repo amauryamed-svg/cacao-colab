@@ -43,7 +43,7 @@ export default async function AprendePage() {
                 Fermentación, catación y chocolate para quien hereda la tierra y el saber hacer.
                 Entra por rango (Mazorcas Doradas) o por checkout Shopify del producto digital.
               </p>
-              <div className="flex flex-wrap gap-3 mt-6">
+              <div className="flex flex-wrap items-center gap-4 mt-6">
                 <Link
                   href="/shop#masters"
                   className="rounded-full bg-colab-yellow px-5 py-2.5 text-sm font-bold text-colab-forest"
@@ -52,15 +52,15 @@ export default async function AprendePage() {
                 </Link>
                 <Link
                   href="/colab"
-                  className="rounded-full border border-white/20 px-5 py-2.5 text-sm font-bold text-colab-cream"
+                  className="text-sm font-bold text-colab-cream/70 underline decoration-white/20 underline-offset-4 hover:text-colab-yellow"
                 >
-                  Foro Colab →
+                  Foro Colab
                 </Link>
               </div>
             </div>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-3 gap-x-4 gap-y-1 border-t border-white/10 pt-4">
               {[["6", "rangos"], ["MD", "fidelidad"], ["Dualita", "guía"]].map(([value, label]) => (
-                <div key={label} className="bg-white/[.05] border border-white/10 rounded-xl p-3 text-center">
+                <div key={label} className="text-center sm:text-left">
                   <strong className="block font-serif text-xl text-colab-yellow">{value}</strong>
                   <small className="text-[9px] uppercase tracking-wider text-colab-cream/35">{label}</small>
                 </div>
@@ -77,42 +77,60 @@ export default async function AprendePage() {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-20">
-        <div className="grid md:grid-cols-3 gap-5 mt-10 mb-10">
-          <Link href="/campus/arquitecto-fermentacion" className="group rounded-3xl bg-colab-yellow p-7 md:p-9 min-h-72 flex flex-col text-colab-forest transition-transform hover:-translate-y-1">
-            <div className="flex justify-between">
-              <span className="eyebrow">Ruta de finca</span><span className="text-2xl">↗</span>
-            </div>
-            <div className="mt-auto">
-              <p className="text-xs font-bold uppercase tracking-wider opacity-55">Brote+ · fermentación</p>
-              <h2 className="font-serif text-3xl font-black mt-3">Master<br />Cacaotier</h2>
-              <p className="text-sm opacity-65 mt-4 max-w-sm">Fermentación de precisión y tipicidad. Empieza con FEAR 5.</p>
-            </div>
+        <div className="grid md:grid-cols-3 gap-x-10 gap-y-2 mt-10 mb-10">
+          <Link
+            href="/campus/arquitecto-fermentacion"
+            className="group border-t-2 border-colab-yellow pt-6 pb-8 flex flex-col min-h-56 text-colab-cream transition-[border-color] hover:border-colab-cream"
+          >
+            <span className="eyebrow text-colab-yellow">Ruta de finca</span>
+            <p className="text-xs font-bold uppercase tracking-wider text-colab-cream/40 mt-6">
+              Brote+ · fermentación
+            </p>
+            <h2 className="font-serif text-3xl font-black mt-2 group-hover:text-colab-yellow transition-colors">
+              Master
+              <br />
+              Cacaotier
+            </h2>
+            <p className="text-sm text-colab-cream/55 mt-4 max-w-sm">
+              Fermentación de precisión y tipicidad. Empieza con FEAR 5.
+            </p>
+            <span className="mt-auto pt-6 text-sm font-bold text-colab-yellow">Entrar →</span>
           </Link>
-          <Link href="/campus/catador-cacao" className="group rounded-3xl bg-[#1f3a24] border border-colab-yellow/30 p-7 md:p-9 min-h-72 flex flex-col text-colab-cream transition-transform hover:-translate-y-1">
-            <div className="flex justify-between">
-              <span className="eyebrow text-colab-yellow">Ruta sensorial</span><span className="text-2xl">↗</span>
-            </div>
-            <div className="mt-auto">
-              <p className="text-xs font-bold uppercase tracking-wider text-colab-cream/45">
-                Labrador+ · {catadorTotalXp} XP · rueda Colab
-              </p>
-              <h2 className="font-serif text-3xl font-black mt-3">Master<br />Catador</h2>
-              <p className="text-sm text-colab-cream/55 mt-4 max-w-sm">
-                Lente CoEx, puente Callebaut y Set Catación Colombia 10.
-              </p>
-            </div>
+          <Link
+            href="/campus/catador-cacao"
+            className="group border-t-2 border-colab-yellow/50 pt-6 pb-8 flex flex-col min-h-56 text-colab-cream transition-[border-color] hover:border-colab-yellow"
+          >
+            <span className="eyebrow text-colab-yellow">Ruta sensorial</span>
+            <p className="text-xs font-bold uppercase tracking-wider text-colab-cream/40 mt-6">
+              Labrador+ · {catadorTotalXp} XP · rueda Colab
+            </p>
+            <h2 className="font-serif text-3xl font-black mt-2 group-hover:text-colab-yellow transition-colors">
+              Master
+              <br />
+              Catador
+            </h2>
+            <p className="text-sm text-colab-cream/55 mt-4 max-w-sm">
+              Lente CoEx, puente Callebaut y Set Catación Colombia 10.
+            </p>
+            <span className="mt-auto pt-6 text-sm font-bold text-colab-yellow">Entrar →</span>
           </Link>
-          <Link href="/campus/maestro-chocolatier" className="group rounded-3xl bg-[#7b3729] border border-white/10 p-7 md:p-9 min-h-72 flex flex-col text-colab-cream transition-transform hover:-translate-y-1">
-            <div className="flex justify-between">
-              <span className="eyebrow text-colab-cream/70">Ruta de transformación</span><span className="text-2xl">↗</span>
-            </div>
-            <div className="mt-auto">
-              <p className="text-xs font-bold uppercase tracking-wider text-colab-cream/45">Labrador+ · barra 70 %</p>
-              <h2 className="font-serif text-3xl font-black mt-3">Master<br />Chocolatier</h2>
-              <p className="text-sm text-colab-cream/55 mt-4 max-w-sm">
-                CoEx/Awards en barra. Benevolo duja es marca acelerada hermana.
-              </p>
-            </div>
+          <Link
+            href="/campus/maestro-chocolatier"
+            className="group border-t-2 border-[#FF6A3D]/55 pt-6 pb-8 flex flex-col min-h-56 text-colab-cream transition-[border-color] hover:border-[#FF6A3D]"
+          >
+            <span className="eyebrow text-colab-cream/70">Ruta de transformación</span>
+            <p className="text-xs font-bold uppercase tracking-wider text-colab-cream/40 mt-6">
+              Labrador+ · barra 70 %
+            </p>
+            <h2 className="font-serif text-3xl font-black mt-2 group-hover:text-[#FF6A3D] transition-colors">
+              Master
+              <br />
+              Chocolatier
+            </h2>
+            <p className="text-sm text-colab-cream/55 mt-4 max-w-sm">
+              CoEx/Awards en barra. Benevolo duja es marca acelerada hermana.
+            </p>
+            <span className="mt-auto pt-6 text-sm font-bold text-[#FF6A3D]">Entrar →</span>
           </Link>
         </div>
 
@@ -120,7 +138,7 @@ export default async function AprendePage() {
           <MasteryCurveStrip compact />
         </div>
 
-        <section className="mt-4 grid md:grid-cols-4 gap-3 mb-16">
+        <section className="mt-4 grid md:grid-cols-4 gap-x-8 gap-y-2 mb-16">
           {[
             { step: "01", owner: "Zurych", title: "MOOC bean-to-bar", body: "Territorio Santander, agroecología y portafolio real — @tiendazurych." },
             { step: "02", owner: "CAÚA", title: "Protocolo diario", body: "Cacao funcional, orígenes Huila/Santander y hábito de 7 días." },
@@ -147,10 +165,12 @@ export default async function AprendePage() {
       </section>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-20 pt-16">
-        <section className="rounded-3xl border border-colab-yellow/25 bg-colab-yellow/[.07] p-7 md:p-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+        <section className="border-t border-colab-yellow/30 pt-8 md:pt-10 flex flex-col lg:flex-row lg:items-end justify-between gap-8">
           <div>
             <p className="eyebrow text-colab-yellow">El círculo se está formando ahora</p>
-            <h2 className="font-serif text-3xl font-bold text-colab-cream mt-3">Tu marca puede enseñar, retar o activar un territorio.</h2>
+            <h2 className="font-serif text-3xl font-bold text-colab-cream mt-3">
+              Tu marca puede enseñar, retar o activar un territorio.
+            </h2>
             <p className="text-sm text-colab-cream/50 leading-relaxed mt-3 max-w-2xl">
               La pauta no compra una credencial científica: financia una experiencia claramente identificada.
               Los primeros aliados definen retos, becas y presencia antes de cerrar cada cohorte.

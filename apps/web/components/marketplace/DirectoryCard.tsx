@@ -1,17 +1,15 @@
 import { type DirectoryCandidate } from "@/lib/directory-candidates"
 
 /**
- * Tarjeta de una marca CANDIDATA del directorio — deliberadamente distinta
- * de BrandCard (colores planos de marca, botón "Conocer X →"). Esta usa
- * borde punteado y sin CTA de marca porque nada de esto está confirmado
- * todavía: ninguna de estas marcas fue contactada. Solo mostramos su
- * `publicBlurb` (copy corto y honesto) — nunca `notes` (research interno).
+ * Entrada de marca CANDIDATA del directorio — deliberadamente distinta
+ * de BrandCard. Hairline, sin caja anidada: nada de esto está confirmado
+ * todavía. Solo `publicBlurb` — nunca `notes` (research interno).
  */
 export default function DirectoryCard({ candidate }: { candidate: DirectoryCandidate }) {
   return (
-    <div className="rounded-2xl border-2 border-dashed border-colab-ink/12 bg-white/60 p-5 flex flex-col gap-3">
+    <div className="border-t border-colab-ink/15 pt-4 pb-5 flex flex-col gap-2">
       <div>
-        <p className="text-[9px] font-bold tracking-[2px] uppercase font-sans text-colab-ink/35 mb-1.5">
+        <p className="text-[9px] font-bold tracking-[2px] uppercase font-sans text-colab-ink/35 mb-1">
           {candidate.city}
         </p>
         <h4 className="font-serif text-lg font-bold text-colab-ink leading-tight">{candidate.name}</h4>
@@ -25,14 +23,12 @@ export default function DirectoryCard({ candidate }: { candidate: DirectoryCandi
           href={candidate.website}
           target="_blank"
           rel="noopener noreferrer"
-          className="block text-center text-xs font-bold py-2.5 px-4 rounded-full font-sans border-2 border-dashed border-colab-ink/25 text-colab-ink/70 hover:border-colab-ink/50 hover:text-colab-ink transition-colors"
+          className="mt-1 text-xs font-bold font-sans text-colab-ink underline decoration-colab-ink/25 underline-offset-4 hover:decoration-colab-ink/60"
         >
           Visitar sitio ↗
         </a>
       ) : (
-        <span className="block text-center text-xs font-sans py-2.5 px-4 text-colab-ink/30">
-          Sin sitio verificado
-        </span>
+        <span className="mt-1 text-xs font-sans text-colab-ink/30">Sin sitio verificado</span>
       )}
     </div>
   )
