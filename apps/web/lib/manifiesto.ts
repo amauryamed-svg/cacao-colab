@@ -34,7 +34,7 @@ export const manifiesto = {
     {
       kicker: "05",
       title: "Heritage generacional",
-      body: "Damos razones para que quienes heredan la tierra continúen. El Colab es puente entre tradición, ciencia y marcas globales de cacao.",
+      body: "Damos razones para que quienes heredan la tierra y el saber hacer continúen. El Colab es puente entre tradición, ciencia y marcas visibles hacia la internacionalización.",
     },
     {
       kicker: "06",

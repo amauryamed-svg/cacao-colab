@@ -537,6 +537,7 @@ export default function CatadorCoursePlayer({
               practiceHref="/rd/set-catacion"
               practiceLabel="Abrir Set Catación 10 →"
               forumHref={`/colab?share=catador-cacao&grade=${grade}`}
+              courseSlug="catador-cacao"
               sisterHref="/aprende/chocolatier"
               sisterLabel="Master Chocolatier →"
             />

@@ -37,7 +37,7 @@ export default async function MaestroChocolatierCampusPage() {
     Array.isArray((saved.state as { completed?: unknown }).completed) &&
     ((saved.state as { completed: unknown[] }).completed.length > 0)
   if (!access.unlocked && !hasProgress) {
-    return <MasterAccessGate title="Master Chocolatier" access={access} />
+    return <MasterAccessGate title="Master Chocolatier" access={access} courseSlug="maestro-chocolatier" />
   }
 
   const learnerName = user.user_metadata?.full_name ?? user.email?.split("@")[0] ?? "Learner"

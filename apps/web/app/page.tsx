@@ -31,7 +31,7 @@ export default function Home() {
 
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-16 md:pt-24 pb-20 flex flex-col lg:flex-row items-end gap-10 lg:gap-14">
           <div className="flex-1 text-center lg:text-left colab-hero-copy">
-            <p className="eyebrow text-colab-champagne mb-4">Cacao Colab · universo Fine-Flavor</p>
+            <p className="eyebrow text-colab-champagne mb-4">Cacao Colab · herencia Fine-Flavor</p>
             <h1 className="font-serif font-black text-colab-cream leading-[.9] mb-5">
               <span className="block" style={{ fontSize: "clamp(3.2rem, 10vw, 6.8rem)" }}>
                 Cacao Colab
@@ -40,17 +40,17 @@ export default function Home() {
                 className="block text-colab-yellow mt-2"
                 style={{ fontSize: "clamp(1.6rem, 4vw, 2.6rem)", fontWeight: 600 }}
               >
-                El sabor que mueve la industria.
+                La tierra y el oficio, para quien hereda.
               </span>
             </h1>
             <p className="text-colab-cream/70 font-sans leading-relaxed mb-8 max-w-md mx-auto lg:mx-0 text-base md:text-lg">
-              Un universo de mazorcas, coberturas y marcas generacionales — rigor de oficio con
-              la emoción de abrir un chocolate. Aprende, siembra, cocina y acelera.
+              Aceleramos la cultura del cacao hacia la generación que recibe la finca y el saber
+              hacer — y visibilizamos marcas colombianas listas para el mundo.
             </p>
             <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
-              <Button href="/aprende">Entrar al campus →</Button>
-              <Button variant="outline" href="/benevolo">
-                Probar Bars. Benevolo
+              <Button href="/aprende">Tres Masters →</Button>
+              <Button variant="outline" href="/export">
+                Cotizador FOB →
               </Button>
             </div>
           </div>
@@ -66,7 +66,7 @@ export default function Home() {
               className="relative w-full h-auto"
             />
             <span className="colab-hero-packshot-label">
-              Bars. · Duja de Marañón sugar free →
+              Bars. · leche + marañón sugar free →
             </span>
           </Link>
         </div>
@@ -104,12 +104,12 @@ export default function Home() {
                 className="font-serif font-bold text-colab-cream leading-[1.02]"
                 style={{ fontSize: "clamp(2.3rem, 5vw, 4rem)" }}
               >
-                De la finca<br />
-                <em className="text-colab-coral not-italic">al deseo</em> del cacao.
+                De la herencia<br />
+                <em className="text-colab-coral not-italic">al mercado</em> global.
               </h2>
               <p className="text-colab-cream/55 text-sm leading-relaxed mt-5 max-w-sm">
-                Formación, experimentación y comercio en un mismo ciclo — con la misma emoción que
-                un chocolate que se parte en la mesa.
+                Formación, marcas y exportación en un mismo ciclo: la generación nueva recibe el
+                oficio; Colab abre la ventana internacional.
               </p>
             </div>
             <div className="grid sm:grid-cols-2 gap-3">
@@ -190,22 +190,28 @@ export default function Home() {
               </Button>
             </div>
           </div>
-          <SectionKicker className="mb-3 text-colab-ink/50">Mapa vivo · Colombia al mundo</SectionKicker>
+          <SectionKicker className="mb-3 text-colab-ink/50">Plataforma de marcas · internacionalización</SectionKicker>
           <h2
             className="font-serif font-bold text-colab-ink mb-3"
             style={{ fontSize: "clamp(1.8rem, 4.5vw, 3rem)" }}
           >
-            Seis nodos.
+            Visibilidad de nodos.
             <br />
-            Un círculo abierto.
+            Cotización FOB al mundo.
           </h2>
           <p
-            className="text-colab-ink/60 font-sans max-w-xl mb-10"
+            className="text-colab-ink/60 font-sans max-w-xl mb-6"
             style={{ fontSize: "clamp(0.9rem, 2vw, 1rem)" }}
           >
-            cacaotier conecta Bogotá con Landázuri, Arbeláez, Paicol, Tame y Guamal. Cada marca
-            conserva su identidad mientras comparte conocimiento y abre oportunidades.
+            Cada marca conserva su identidad. Cacao Colab las conecta a compradores en USA, UE y
+            Asia con criterio Fine-Flavor y proforma honesta.
           </p>
+          <div className="flex flex-wrap gap-3 mb-10">
+            <Button href="/export">Abrir cotizador FOB →</Button>
+            <Button variant="outline" href="/marketplace">
+              Ver marketplace
+            </Button>
+          </div>
           <BrandNetwork
             founders={founderBrands}
             collaborators={collaboratorBrands}
@@ -241,8 +247,8 @@ export default function Home() {
             <span className="text-colab-coral">Más chocolate que late.</span>
           </h2>
           <p className="text-colab-cream/65 max-w-xl mx-auto mt-5 text-sm leading-relaxed">
-            El rigor del cacao generacional — fermentación, temperado, origen — con la dopamina de
-            un universo Wonka aterrizado a finca colombiana.
+            El rigor del cacao que se hereda — fermentación, temperado, origen — con la emoción de
+            un chocolate que la nueva generación lleva al mundo.
           </p>
           <div className="flex flex-wrap gap-3 justify-center mt-8">
             <Button href="/rd">R&D · coberturas y Benevolo</Button>

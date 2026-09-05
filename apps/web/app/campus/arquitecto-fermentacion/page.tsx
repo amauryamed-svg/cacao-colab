@@ -38,7 +38,7 @@ export default async function ArchitectCoursePage() {
     ((saved.state as { completed: unknown[] }).completed.length > 0)
   // Rango abre el Master; quien ya empezó no queda fuera por el cambio de modelo.
   if (!access.unlocked && !hasProgress) {
-    return <MasterAccessGate title="Arquitecto de Fermentación" access={access} />
+    return <MasterAccessGate title="Arquitecto de Fermentación" access={access} courseSlug="arquitecto-fermentacion" />
   }
 
   const learnerName = user.user_metadata?.full_name ?? user.email?.split("@")[0] ?? "Learner"
