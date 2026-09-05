@@ -2,7 +2,8 @@
 
 > **Prompt operativo para Claude Code.** Ejecuta este documento de punta a punta.
 > Fuente de verdad: monorepo `cacaocolab.org` (marca acelerada cacaotier · R&D Colab).
-> Dominio de marca: **ChocolateBenevolo.co** · Producto: **Bars.** (Duja de Marañón sugar free · 80 g · FEAR 5 Quara).
+> Dominio de marca: **ChocolateBenevolo.co** · Producto: **Bars.** (chocolate de leche con marañón, sugar free · 80 g · Trinitario Arauca · Cundinamarca · Meta).
+> Key values: `brand/chocolate-benevolo/KEY-VALUES.md` (Brand Book V1).
 
 ---
 
@@ -26,22 +27,29 @@ No improvises medallas CoEx, stock, ni checkout inventado. Benevolo es **prevent
 
 | Recurso | Ruta |
 |---------|------|
+| **Key values Brand Book V1** | `brand/chocolate-benevolo/KEY-VALUES.md` |
 | Producto + claims | `apps/web/lib/knowledge-base.ts` → `benevoloProduct` |
 | Formulación / misiones Dualita | `apps/web/lib/benevolo-brand.ts` |
+| Nodo marcas | `apps/web/lib/brands.ts` → `benevolo` |
 | Landing Colab actual | `apps/web/app/benevolo/page.tsx` |
+| Tipografía Bars. | `brand/chocolate-benevolo/type/BARS-BODONI.md` |
 | Packshot oficial | `apps/web/public/benevolo/bars-fear5.png` |
 | Etiqueta print (arte exacto) | `apps/web/public/benevolo/packaging/` |
 | Tokens Colab (coral/cocoa) | `packages/ui-tokens/src/index.ts` |
 | Spec producto | `docs/00-SPEC.md` (D39 Benevolo) · `docs/17-ECOSISTEMA-CONOCIMIENTO.md` |
 
-### 1.2 Identidad verbal (no negociable)
+### 1.2 Identidad verbal (no negociable · Brand Book V1)
 
 - **Marca:** Chocolate Benevolo  
 - **Wordmark producto:** Bars. (con punto)  
-- **Categoría:** Duja de Marañón sugar free  
-- **Tagline:** *Duja de Marañón sugar free. FEAR 5 de Quara. Se lee igual en español y en italiano.*  
+- **Tipografía Bars.:** Bodoni Ultra Black Italic  
+- **Categoría:** Chocolate de leche con marañón · sugar free  
+- **Manifiesto:** *El cacao fino no tiene por qué ser una lección. Puede ser un antojo.*  
+- **Propósito:** *Benevolencia del oficio, en formato de antojo.*  
+- **Valores:** *Trazabilidad antes que relato. Placer antes que sermón. Precisión antes que promesa.*  
+- **Tagline:** *Chocolate de leche con marañón, sugar free. Cacao colombiano Trinitario de orígenes seleccionados: Arauca, Cundinamarca y Meta. Se lee igual en español y en italiano.*  
 - **Juego de marca:** *Benevolo sin tilde. Chocolate Benevolo le pone las tildes a la e.*  
-- **Origen:** FEAR 5 · Quara Cacao · Tame · Arauca  
+- **Orígenes:** Arauca · Cundinamarca · Meta (Trinitario); ancla FEAR 5 · Quara · Tame · Arauca  
 - **Transformación:** Zurych  
 - **Casa:** marca acelerada cacaotier / R&D Cacao Colab (hermana del Master Chocolatier 70 %, **no** su capstone)  
 - **Formato:** Bars. · Neto 80 g  
@@ -52,10 +60,13 @@ No improvises medallas CoEx, stock, ni checkout inventado. Benevolo es **prevent
 
 **Permitidos**
 
-- Duja de Marañón sugar free  
-- FEAR 5 Quara · Arauca · fermentación controlada  
+- Chocolate de leche con marañón, sugar free  
+- Cacao colombiano Trinitario · Arauca, Cundinamarca y Meta  
+- FEAR 5 Quara · fermentación controlada (ancla Arauca)  
 - Leche en polvo orgánica  
-- Preventa / preorden  
+- Preventa / preorden · Bars. 80 g  
+- Benevolencia del oficio en formato de antojo  
+- Fermentación controlada · Arauca, Cundinamarca, Meta  
 - Output R&D Colab · criterio de origen  
 
 **Prohibidos**
@@ -64,6 +75,7 @@ No improvises medallas CoEx, stock, ni checkout inventado. Benevolo es **prevent
 - Stock o envío inmediato sin lote real  
 - Certificación orgánica del producto terminado (aún no)  
 - Confundir Benevolo con la barra 70 % Master Chocolatier  
+- Reducir Benevolo a “curso” o lección — es **antojo con rigor**  
 
 ### 1.4 Paleta (packshot + Colab)
 
@@ -180,14 +192,17 @@ Idioma principal: **ES**. Opcional toggle IT para el juego “se lee igual en es
 
 ### 3.4 Copy hero sugerido (editable)
 
-- Eyebrow: `Bars. · Duja de Marañón sugar free`  
-- H1: `Chocolate Benevolo`  
-- Sub: tagline canónico  
+- Eyebrow: `Bars. · chocolate de leche con marañón sugar free`  
+- H1: `Chocolate Benevolo` (marca hero; no subtítulo que la opaque)  
+- Manifiesto: *El cacao fino no tiene por qué ser una lección. Puede ser un antojo.*  
+- Propósito: *Benevolencia del oficio, en formato de antojo.*  
+- Tagline: canónico desde `benevoloProduct.tagline`  
+- Packshot full-bleed / dominante (arte exacto, no recreación)  
 - CTA primario: `Preordenar Bars. →` (WhatsApp)  
-- CTA secundario: `Ver el oficio →` (`/historia` o cacaocolab.org/campus/benevolo)  
+- CTA secundario: Track Dualita / Coberturas  
 
-WhatsApp base (Colab):  
-`https://wa.me/573102227848?text=Hola%20Chocolate%20Benevolo%2C%20quiero%20preordenar%20Bars.%20Duja%20de%20Mara%C3%B1%C3%B3n%20sugar%20free%20FEAR%205%20Quara%20(80g).`
+WhatsApp canónico (Colab):  
+`https://wa.me/573102227848?text=Hola%20Chocolate%20Benevolo%2C%20quiero%20preordenar%20Bars.%20Chocolate%20de%20leche%20con%20mara%C3%B1%C3%B3n%20sugar%20free%20(80g).`
 
 ### 3.5 Criterios de aceptación Web
 
