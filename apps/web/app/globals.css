@@ -7662,10 +7662,11 @@ button.diploma-li {
 
 /* —— Mastery curve + Fine-Flavor wheel —— */
 .mastery-curve {
-  background: rgba(247, 241, 238, .03);
-  border: 1px solid rgba(242, 200, 48, .18);
-  border-radius: 1.15rem;
-  padding: 1.35rem 1.4rem 1.5rem;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid rgba(242, 200, 48, .28);
+  border-radius: 0;
+  padding: 1.25rem 0 0;
 }
 .mastery-curve-head h2 {
   color: #f7f1ee;
@@ -7683,24 +7684,25 @@ button.diploma-li {
 }
 .mastery-curve-phases {
   display: grid;
-  gap: .65rem;
+  gap: .85rem;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   list-style: none;
   margin: 1.1rem 0 0;
   padding: 0;
 }
 .mastery-curve-phases li {
-  background: rgba(16, 29, 11, .45);
-  border: 1px solid rgba(247, 241, 238, .08);
-  border-radius: .85rem;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid rgba(247, 241, 238, .12);
+  border-radius: 0;
   display: flex;
   flex-direction: column;
   gap: .35rem;
-  padding: .85rem .8rem;
+  padding: .85rem 0;
 }
 .mastery-curve-phases li.is-current {
-  border-color: rgba(242, 200, 48, .45);
-  box-shadow: 0 0 0 1px rgba(242, 200, 48, .15);
+  border-color: rgba(242, 200, 48, .55);
+  box-shadow: none;
 }
 .mastery-curve-phases span {
   color: #f2c830;
@@ -7736,12 +7738,16 @@ button.diploma-li {
   gap: .45rem;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   margin-top: 1rem;
+  border-top: 1px solid rgba(247, 241, 238, .1);
+  padding-top: .85rem;
 }
 .mastery-curve-path a {
-  background: rgba(242, 200, 48, .08);
-  border-radius: .65rem;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid rgba(242, 200, 48, .22);
+  border-radius: 0;
   color: #f7f1ee;
-  padding: .55rem .5rem;
+  padding: .55rem 0;
   text-decoration: none;
 }
 .mastery-curve-path small {
