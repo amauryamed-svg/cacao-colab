@@ -24,74 +24,87 @@ export default function Home() {
 
   return (
     <>
-      {/* ══════════ HERO — universo cacao ══════════ */}
-      <section className="colab-hero relative overflow-hidden">
+      {/* ══════════ HERO — amante del cacao ══════════ */}
+      <section className="colab-hero colab-hero-lover relative overflow-hidden">
         <AtmospherePlane src={heroShot.src} alt={heroShot.alt} overlay="cocoa" priority />
         <FloatingPods variant="hero" />
 
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-16 md:pt-24 pb-20 flex flex-col lg:flex-row items-end gap-10 lg:gap-14">
-          <div className="flex-1 text-center lg:text-left colab-hero-copy">
-            <p className="eyebrow text-colab-champagne mb-4">Cacao Colab · herencia Fine-Flavor</p>
-            <h1 className="font-serif font-black text-colab-cream leading-[.9] mb-5">
-              <span className="block" style={{ fontSize: "clamp(3.2rem, 10vw, 6.8rem)" }}>
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-20 md:pt-28 pb-24 md:pb-28">
+          <div className="max-w-2xl text-center mx-auto lg:text-left lg:mx-0 colab-hero-copy">
+            <p className="eyebrow text-colab-champagne mb-5">Para quien ama el cacao</p>
+            <h1 className="font-serif font-black text-colab-cream leading-[0.9]">
+              <span className="block" style={{ fontSize: "clamp(3.4rem, 11vw, 7rem)" }}>
                 Cacao Colab
               </span>
-              <span
-                className="block text-colab-yellow mt-2"
-                style={{ fontSize: "clamp(1.6rem, 4vw, 2.6rem)", fontWeight: 600 }}
-              >
-                La tierra y el oficio, para quien hereda.
-              </span>
             </h1>
-            <p className="text-colab-cream/70 font-sans leading-relaxed mb-8 max-w-md mx-auto lg:mx-0 text-base md:text-lg">
-              Aceleramos la cultura del cacao hacia la generación que recibe la finca y el saber
-              hacer — y visibilizamos marcas colombianas listas para el mundo.
+            <p
+              className="font-serif text-colab-yellow mt-5 leading-snug"
+              style={{ fontSize: "clamp(1.55rem, 3.8vw, 2.35rem)", fontWeight: 600 }}
+            >
+              El chocolate que se prueba.
+              <br className="hidden sm:block" /> El oficio que se hereda.
             </p>
-            <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
-              <Button href="/aprende">Tres Masters →</Button>
-              <Button variant="outline" href="/export">
-                Cotizador FOB →
+            <p className="mt-6 text-colab-cream/70 font-sans leading-relaxed max-w-md mx-auto lg:mx-0 text-base md:text-lg">
+              Casa de amantes del cacao Fine-Flavor: catar, aprender y pertenecer a la cultura que
+              pasa de finca a mesa.
+            </p>
+            <div className="flex flex-wrap gap-3 justify-center lg:justify-start mt-9">
+              <Button href="/unete">Unirme al Colab →</Button>
+              <Button variant="outline" href="/benevolo">
+                Probar Bars. →
               </Button>
             </div>
           </div>
+        </div>
 
-          <Link href="/benevolo" className="colab-hero-packshot group">
+        <div className="relative border-t border-white/10 bg-gradient-to-t from-black/50 to-transparent">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-wrap items-center justify-between gap-3 text-[11px] uppercase tracking-[0.14em] text-colab-cream/45 font-sans">
+            <span>Origen · fermentación · temperado</span>
+            <Link href="/colab" className="text-colab-champagne hover:text-colab-yellow transition-colors">
+              Foro de amantes →
+            </Link>
+            <Link href="/aprende" className="text-colab-champagne hover:text-colab-yellow transition-colors">
+              Tres Masters →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════ DESEO — Bars. como ancla sensorial ══════════ */}
+      <section className="colab-lover-desire relative overflow-hidden border-t border-white/5">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-20 grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-14 items-center">
+          <div>
+            <SectionKicker className="mb-4">El antojo con rigor</SectionKicker>
+            <h2
+              className="font-serif font-bold text-colab-cream leading-[1.05]"
+              style={{ fontSize: "clamp(2.1rem, 4.8vw, 3.6rem)" }}
+            >
+              Primero se prueba.
+              <br />
+              <em className="text-colab-coral not-italic">Después se entiende.</em>
+            </h2>
+            <p className="text-colab-cream/55 text-sm md:text-base leading-relaxed mt-5 max-w-md">
+              Bars. Benevolo es el chocolate de leche con marañón sugar free que acerca el Fine-Flavor
+              a tu mesa — sin sermón, con oficio.
+            </p>
+            <div className="flex flex-wrap gap-3 mt-8">
+              <Button href="/benevolo">Preordenar Bars. →</Button>
+              <Button variant="outline" href="/shop#masters">
+                Aprender el oficio →
+              </Button>
+            </div>
+          </div>
+          <Link href="/benevolo" className="colab-hero-packshot group mx-auto lg:mx-0">
             <div className="colab-hero-packshot-glow" />
             <Image
               src={bars.src}
               alt={bars.alt}
               width={720}
               height={480}
-              priority
               className="relative w-full h-auto"
             />
-            <span className="colab-hero-packshot-label">
-              Bars. · leche + marañón sugar free →
-            </span>
+            <span className="colab-hero-packshot-label">Bars. · leche + marañón sugar free →</span>
           </Link>
-        </div>
-
-        <div className="relative border-t border-white/10 bg-black/25 backdrop-blur-sm">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-5 grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {[
-              { num: "FEAR 5", label: "genética viva" },
-              { num: "70 %", label: "excelencia dark" },
-              { num: "6", label: "nodos en red" },
-              { num: "MD", label: "Mazorcas Doradas" },
-            ].map(({ num, label }) => (
-              <div key={label} className="text-center">
-                <p
-                  className="font-serif font-black text-colab-yellow"
-                  style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.4rem)" }}
-                >
-                  {num}
-                </p>
-                <p className="text-[11px] font-sans text-colab-cream/50 uppercase tracking-wider mt-0.5">
-                  {label}
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -99,17 +112,18 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-[.75fr_1.25fr] gap-12">
             <div>
-              <SectionKicker className="mb-4">El núcleo builder</SectionKicker>
+              <SectionKicker className="mb-4">Tu camino en el Colab</SectionKicker>
               <h2
                 className="font-serif font-bold text-colab-cream leading-[1.02]"
                 style={{ fontSize: "clamp(2.3rem, 5vw, 4rem)" }}
               >
-                De la herencia<br />
-                <em className="text-colab-coral not-italic">al mercado</em> global.
+                Amar el cacao
+                <br />
+                <em className="text-colab-coral not-italic">es practicarlo.</em>
               </h2>
               <p className="text-colab-cream/55 text-sm leading-relaxed mt-5 max-w-sm">
-                Formación, marcas y exportación en un mismo ciclo: la generación nueva recibe el
-                oficio; Colab abre la ventana internacional.
+                Desde la mazorca hasta la barra: aprende, siembra y cocina con la misma emoción de
+                abrir un chocolate.
               </p>
             </div>
             <div className="grid sm:grid-cols-2 gap-3">
@@ -117,25 +131,25 @@ export default function Home() {
                 {
                   step: "01",
                   title: "Master Cacaotier",
-                  body: "Fermentación, finca y calidad Fine-Flavor con sabor de territorio.",
+                  body: "Fermentación, finca y tipicidad — el sabor nace en el bioproceso.",
                   tone: "yellow" as const,
                 },
                 {
                   step: "02",
                   title: "Master Chocolatier",
-                  body: "Tostión, barra 70 % y aplicaciones que se desean preordenar.",
+                  body: "Tostión y barra 70 %: el oficio que convierte origen en deseo.",
                   tone: "coral" as const,
                 },
                 {
                   step: "03",
                   title: "Sembrar",
-                  body: "Plántulas Ecoyuma, bitácora y agroforestería para tu finca idónea.",
+                  body: "Plántulas, bitácora y cuidado — heredar la tierra con criterio.",
                   tone: "pod" as const,
                 },
                 {
                   step: "04",
-                  title: "R&D Colab",
-                  body: "Benevolo + coberturas CAÚA × Zurych — del lab a la cobertura.",
+                  title: "Foro + R&D",
+                  body: "Comparte avances, prueba Benevolo y coberturas de los nodos.",
                   tone: "cocoa" as const,
                 },
               ].map((item) => (
@@ -237,21 +251,21 @@ export default function Home() {
       <section className="colab-desire-strip">
         <AtmospherePlane src={shotById("drizzle").src} alt="" overlay="coral" />
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-16 md:py-20 text-center">
-          <p className="eyebrow text-colab-champagne">Universo Colab</p>
+          <p className="eyebrow text-colab-champagne">Si el cacao te mueve</p>
           <h2
             className="font-serif font-black text-colab-cream mt-4 leading-tight"
             style={{ fontSize: "clamp(2rem, 5vw, 3.8rem)" }}
           >
-            Menos laboratorio frío.
+            Menos industria fría.
             <br />
             <span className="text-colab-coral">Más chocolate que late.</span>
           </h2>
           <p className="text-colab-cream/65 max-w-xl mx-auto mt-5 text-sm leading-relaxed">
-            El rigor del cacao que se hereda — fermentación, temperado, origen — con la emoción de
-            un chocolate que la nueva generación lleva al mundo.
+            Fermentación, temperado y origen — con la emoción de quien ama el cacao y quiere
+            pertenecer a su cultura.
           </p>
           <div className="flex flex-wrap gap-3 justify-center mt-8">
-            <Button href="/rd">R&D · coberturas y Benevolo</Button>
+            <Button href="/unete">Unirme al Colab →</Button>
             <Button variant="outline" href="/juega">
               Sembrar mazorcas →
             </Button>
@@ -264,22 +278,23 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="colab-join-panel px-8 md:px-14 py-14 flex flex-col md:flex-row items-center gap-10 relative overflow-hidden">
             <div className="relative flex-1 text-center md:text-left">
-              <SectionKicker className="mb-4">Cacao con propósito · HoReCa</SectionKicker>
+              <SectionKicker className="mb-4">Cacao con propósito</SectionKicker>
               <h2
                 className="font-serif font-black text-colab-cream leading-tight mb-4"
                 style={{ fontSize: "clamp(1.8rem, 4.5vw, 3.4rem)" }}
               >
-                ¿Listo para llevar
+                ¿Listo para vivir
                 <br />
-                cacao colombiano
+                el cacao
                 <br />
-                <span className="text-colab-yellow">a tu cocina?</span>
+                <span className="text-colab-yellow">de cerca?</span>
               </h2>
               <p
                 className="text-colab-cream/55 font-sans max-w-md mb-8"
                 style={{ fontSize: "clamp(0.9rem, 2vw, 1rem)" }}
               >
-                Cuéntanos sobre tu operación. En 3 minutos sabemos si somos la combinación perfecta.
+                Amantes, cocina y oficio: cuéntanos quién eres. En minutos vemos cómo encajas en el
+                Colab.
               </p>
               <a
                 href="/unete"
@@ -292,7 +307,7 @@ export default function Home() {
             <div className="relative flex-shrink-0 w-full md:w-auto flex flex-col items-center gap-4">
               <DualitaMascot size={172} />
               <div className="flex flex-wrap justify-center gap-2">
-                {["Restaurante", "Hotel", "Cafetería", "Pastelería"].map((t) => (
+                {["Amante", "Cocina", "Finca", "Marca"].map((t) => (
                   <span key={t} className="colab-chip">
                     {t}
                   </span>

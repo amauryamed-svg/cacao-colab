@@ -22,11 +22,11 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   metadataBase: new URL("https://cacaocolab.org"),
   title: {
-    default: "Cacao Colab · herencia Fine-Flavor",
+    default: "Cacao Colab · para quien ama el cacao",
     template: "%s · Cacao Colab",
   },
   description:
-    "Herencia de la cultura del cacao para la generación que recibe la tierra y el saber hacer. Campus Masters, red de marcas e internacionalización FOB.",
+    "Casa de amantes del cacao Fine-Flavor: catar, aprender y pertenecer. Herencia de oficio, Masters y marcas colombianas.",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -37,9 +37,9 @@ export const metadata: Metadata = {
     shortcut: "/favicon.ico",
   },
   openGraph: {
-    title: "Cacao Colab · herencia Fine-Flavor",
+    title: "Cacao Colab · para quien ama el cacao",
     description:
-      "Herencia de la cultura del cacao, campus Masters y plataforma de marcas para internacionalización FOB.",
+      "Casa de amantes del cacao Fine-Flavor: catar, aprender y pertenecer a la cultura que se hereda.",
     siteName: "Cacao Colab",
     locale: "es_CO",
     type: "website",

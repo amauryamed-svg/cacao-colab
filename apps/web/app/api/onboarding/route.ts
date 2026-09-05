@@ -18,6 +18,7 @@ const TIPO_LABEL: Record<string, string> = {
   pasteleria: "Pastelería & Chocolatería",
   marca: "Marca / comercio",
   "nueva-generacion": "Nueva generación",
+  amante: "Amante del cacao",
   otra: "Otra vía",
 }
 const INTERES_LABEL: Record<string, string> = {
