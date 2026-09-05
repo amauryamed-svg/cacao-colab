@@ -3,26 +3,22 @@ import Link from "next/link"
 import TrackedLink from "@/components/analytics/TrackedLink"
 import { MastersShopifyGrid } from "@/components/commerce/MasterShopifyCheckout"
 import {
+  COLAB_SHOPIFY_COLLECTION,
   COLAB_SHOPIFY_STOREFRONT,
+  colabStorefrontCatalog,
 } from "@/lib/shopify-colab"
 import {
   ZURYCH_INSTAGRAM,
-  cauaShopSkus,
   coberturasConvergence,
   nibsConvergence,
-  shopContactPoints,
   waAskSku,
 } from "@/lib/caua-shop"
 
 export const metadata: Metadata = {
-  title: "Tienda · Masters + nodos",
+  title: "Tienda · cacao-colab.myshopify.com",
   description:
-    "Checkout Shopify de los tres Masters (producto digital) y venta cruzada a coberturas y nibs de los nodos CAÚA × Zurych.",
+    "Tienda Shopify de Cacao Colab: Masters digitales, Bars. Benevolo y venta cruzada a nodos. Checkout en cacao-colab.myshopify.com.",
 }
-
-const waGeneral =
-  "https://wa.me/573102227848?text=" +
-  encodeURIComponent("Hola Cacao Colab — quiero ver el catálogo CAÚA (coberturas, nibs, kits).")
 
 export default function ShopPage() {
   return (
@@ -32,55 +28,84 @@ export default function ShopPage() {
           <Link href="/" className="eyebrow text-colab-cream/40 hover:text-colab-yellow">
             ← Cacao Colab
           </Link>
-          <p className="eyebrow text-colab-yellow mt-6">Tienda Colab · Shopify + nodos</p>
+          <p className="eyebrow text-colab-yellow mt-6">
+            Shopify · cacao-colab.myshopify.com
+          </p>
           <h1 className="display-title mt-4 max-w-3xl">
-            Masters digitales.
+            Tienda Colab.
             <br />
-            <em>Productos de los nodos.</em>
+            <em>Checkout en Shopify.</em>
           </h1>
           <p className="mt-6 max-w-2xl text-colab-cream/55 leading-relaxed">
-            Checkout Shopify para los tres Masters (producto digital) y venta cruzada a coberturas,
-            nibs y kits de CAÚA × Zurych. La herencia del oficio se compra, se practica y se lleva a
-            la mesa.
+            La tienda oficial vive en{" "}
+            <strong className="text-colab-cream">cacao-colab.myshopify.com</strong>: Masters
+            digitales, antojo Benevolo y kits. Aquí el hub Colab enlaza checkout, campus y nodos.
           </p>
           <div className="flex flex-wrap gap-3 mt-8">
-            <Link
-              href="#masters"
-              className="bg-colab-yellow text-colab-forest rounded-full px-7 py-3.5 text-sm font-bold"
-            >
-              Ver Masters →
-            </Link>
             <TrackedLink
               href={COLAB_SHOPIFY_STOREFRONT}
               event="sponsor_interest"
               targetName="colab-shopify-home"
               source="shop-hero"
               external
-              className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold"
+              className="bg-colab-yellow text-colab-forest rounded-full px-7 py-3.5 text-sm font-bold"
             >
-              Abrir Shopify Colab →
+              Abrir cacao-colab.myshopify.com →
             </TrackedLink>
             <TrackedLink
-              href={waGeneral}
+              href={COLAB_SHOPIFY_COLLECTION}
               event="sponsor_interest"
-              targetName="wa-shop-hero"
+              targetName="colab-shopify-all"
               source="shop-hero"
               external
               className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold"
             >
-              Pedir nodos por WhatsApp →
+              Ver colección →
             </TrackedLink>
+            <Link
+              href="/export"
+              className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold"
+            >
+              App FOB export →
+            </Link>
           </div>
         </div>
       </header>
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 pb-24">
+        <section className="mb-16">
+          <p className="eyebrow text-colab-yellow">Vitrina · storefront Colab</p>
+          <h2 className="font-serif text-3xl md:text-4xl font-bold mt-3">Catálogo en Shopify</h2>
+          <p className="mt-3 max-w-2xl text-sm text-colab-cream/55 leading-relaxed">
+            Handles alineados a la tienda. Si el SKU aún no está publicado, la ficha abre en Shopify
+            o cae a preventa WhatsApp desde el campus.
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
+            {colabStorefrontCatalog.map((item) => (
+              <TrackedLink
+                key={item.id}
+                href={item.href}
+                event="sponsor_interest"
+                targetName={`store-${item.handle}`}
+                source="shop-vitrina"
+                external
+                className="colab-store-card"
+              >
+                {item.badge && <span className="colab-store-badge">{item.badge}</span>}
+                <strong>{item.title}</strong>
+                <p>{item.blurb}</p>
+                <em>{item.priceLabel}</em>
+              </TrackedLink>
+            ))}
+          </div>
+        </section>
+
         <section id="masters" className="scroll-mt-20 mb-16">
-          <p className="eyebrow text-colab-yellow">Producto digital · Shopify checkout</p>
+          <p className="eyebrow text-colab-yellow">Producto digital · checkout</p>
           <h2 className="font-serif text-3xl md:text-4xl font-bold mt-3">Los tres Masters</h2>
           <p className="mt-3 max-w-2xl text-sm text-colab-cream/55 leading-relaxed">
-            Inscripción pagada vía tienda Shopify Colab. También puedes abrir el campus ganando rango
-            con Mazorcas Doradas. Tras el Master, pide coberturas y nibs de los nodos.
+            Inscripción vía cacao-colab.myshopify.com. También puedes abrir el campus ganando rango
+            con Mazorcas Doradas.
           </p>
           <div className="mt-8">
             <MastersShopifyGrid />
@@ -88,35 +113,35 @@ export default function ShopPage() {
         </section>
 
         <section className="rounded-2xl border border-colab-yellow/25 bg-colab-yellow/10 px-6 py-5 mb-14 text-sm text-colab-cream/70 leading-relaxed">
-          <strong className="text-colab-yellow">Nodos físicos.</strong> Mientras las tiendas propias
-          de CAÚA / Zurych se estabilizan, el pedido de coberturas y nibs se confirma por WhatsApp con
-          criterio Colab. Los Masters digitales viven en Shopify.
+          <strong className="text-colab-yellow">Nodos físicos.</strong> Coberturas y nibs CAÚA ×
+          Zurych se confirman por WhatsApp mientras estabilizan sus tiendas. El carrito digital Colab
+          es Shopify.
         </section>
 
         <section className="grid md:grid-cols-3 gap-4 mb-14">
           {[
             {
+              n: "Shopify Colab",
+              t: "cacao-colab.myshopify.com",
+              b: "Masters, Bars. y kits · checkout oficial.",
+              href: COLAB_SHOPIFY_STOREFRONT,
+              event: "sponsor_interest" as const,
+            },
+            {
               n: "CAÚA",
-              t: "Shop + protocolo",
-              b: "Coberturas Santander y nibs Arauca/Santander — tienda fuera de línea, pide por WhatsApp.",
+              t: "Coberturas · WhatsApp",
+              b: "Santander + nibs Arauca — pedido asistido Colab.",
               href:
                 "https://wa.me/573102227848?text=" +
-                encodeURIComponent("Hola Cacao Colab — quiero ver el catálogo CAÚA (coberturas, nibs, kits)."),
+                encodeURIComponent("Hola Cacao Colab — quiero catálogo CAÚA (coberturas, nibs)."),
               event: "sponsor_interest" as const,
             },
             {
               n: "Zurych",
-              t: "Bean-to-bar · Landázuri",
-              b: "Coberturas 60–100 %, chocolatinas y nibs 100 % sin azúcar — @tiendazurych en Instagram.",
+              t: "@tiendazurych",
+              b: "Bean-to-bar Landázuri · Instagram.",
               href: ZURYCH_INSTAGRAM,
               event: "zurych_shop_clicked" as const,
-            },
-            {
-              n: "Colab",
-              t: "Punto de pedido",
-              b: "WhatsApp confirma SKU, uso HoReCa/pastelería y conexión entre nodos hoy mismo.",
-              href: waGeneral,
-              event: "sponsor_interest" as const,
             },
           ].map((card) => (
             <TrackedLink
@@ -136,12 +161,8 @@ export default function ShopPage() {
         </section>
 
         <section>
-          <p className="eyebrow text-colab-yellow">Catálogo · coberturas</p>
-          <h2 className="font-serif text-3xl font-bold mt-3">Santander en el shop</h2>
-          <p className="text-sm text-colab-cream/45 mt-3 max-w-xl leading-relaxed">
-            Precios y stock los define la tienda. Aquí enlazamos cada SKU y un WhatsApp para pedir
-            con contexto Colab.
-          </p>
+          <p className="eyebrow text-colab-yellow">Cross-sell · coberturas</p>
+          <h2 className="font-serif text-3xl font-bold mt-3">Nodos a tu mesa</h2>
           <div className="grid md:grid-cols-2 gap-4 mt-8">
             {coberturasConvergence.map((sku) => (
               <article key={sku.id} className="rd-sku rd-sku--row">
@@ -150,7 +171,8 @@ export default function ShopPage() {
                     {sku.nodes.join(" × ")} · {sku.origin}
                   </p>
                   <h3>
-                    {sku.title} <small className="text-colab-cream/35 font-sans font-normal">{sku.format}</small>
+                    {sku.title}{" "}
+                    <small className="text-colab-cream/35 font-sans font-normal">{sku.format}</small>
                   </h3>
                   <p>
                     {sku.cacaoPct}
@@ -175,8 +197,8 @@ export default function ShopPage() {
         </section>
 
         <section className="mt-16">
-          <p className="eyebrow text-colab-pod">NIBS y kits · Arauca × Santander</p>
-          <h2 className="font-serif text-3xl font-bold mt-3">Pedir nibs y kits con los nodos</h2>
+          <p className="eyebrow text-colab-pod">NIBS y kits</p>
+          <h2 className="font-serif text-3xl font-bold mt-3">Pedir con los nodos</h2>
           <div className="grid md:grid-cols-3 gap-4 mt-8">
             {nibsConvergence.map((sku) => (
               <article key={sku.id} className="rd-sku">
@@ -202,42 +224,34 @@ export default function ShopPage() {
 
         <section className="mt-16 rounded-3xl bg-colab-yellow text-colab-forest p-8 md:p-12 grid lg:grid-cols-[1.2fr_.8fr] gap-8 items-center">
           <div>
-            <p className="eyebrow opacity-55">Checkout</p>
+            <p className="eyebrow opacity-55">Checkout oficial</p>
             <h2 className="font-serif text-3xl md:text-4xl font-black mt-3">
-              El carrito llega cuando haya tienda propia
+              cacao-colab.myshopify.com
             </h2>
             <p className="text-sm opacity-70 mt-4 leading-relaxed max-w-xl">
-              Mientras no hay checkout en línea, el Colab confirma cada pedido por WhatsApp con el
-              mismo criterio de industria: SKU correcto, uso (temperado, 70 %, topping) y conexión con
-              Zurych cuando el camino es bean-to-bar.
+              Carrito y pago en la tienda Shopify Colab. Exportación FOB y nodos físicos se atienden
+              desde la app /export y WhatsApp.
             </p>
           </div>
           <div className="flex flex-col gap-3">
             <TrackedLink
-              href="/rd"
-              event="knowledge_link_clicked"
-              targetName="shop-checkout"
-              source="shop-cta"
-              className="bg-colab-forest text-colab-yellow text-center rounded-full px-6 py-4 text-sm font-bold"
-            >
-              Ver hub R&D completo →
-            </TrackedLink>
-            <TrackedLink
-              href={shopContactPoints.find((p) => p.id === "wa-coberturas")!.href}
+              href={COLAB_SHOPIFY_STOREFRONT}
               event="sponsor_interest"
-              targetName="shop-wa-cta"
+              targetName="shop-cta-store"
               source="shop-cta"
               external
+              className="bg-colab-forest text-colab-yellow text-center rounded-full px-6 py-4 text-sm font-bold"
+            >
+              Ir a la tienda Shopify →
+            </TrackedLink>
+            <Link
+              href="/export"
               className="border border-colab-forest/25 text-center rounded-full px-6 py-4 text-sm font-bold"
             >
-              Pedir por WhatsApp →
-            </TrackedLink>
+              Abrir app FOB →
+            </Link>
           </div>
         </section>
-
-        <p className="mt-10 text-center text-xs text-colab-cream/30">
-          {cauaShopSkus.length} SKUs activos en el protocolo Colab · datos verificados por nodo, no por góndola.
-        </p>
       </main>
     </div>
   )

@@ -8194,3 +8194,205 @@ button.diploma-li {
 @media (max-width: 900px) {
   .masters-shopify-grid { grid-template-columns: 1fr; }
 }
+
+/* —— App FOB completa —— */
+.fob-app { display: grid; gap: 1.25rem; }
+.fob-app-tabs {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+}
+.fob-app-tabs button {
+  background: rgba(247, 241, 238, .05);
+  border: 1px solid rgba(247, 241, 238, .14);
+  border-radius: 999px;
+  color: rgba(247, 241, 238, .65);
+  font-size: .75rem;
+  font-weight: 700;
+  padding: .5rem 1rem;
+}
+.fob-app-tabs button.active {
+  background: #f2c830;
+  border-color: #f2c830;
+  color: #101d0b;
+}
+.fob-app-shop-link {
+  border: 1px solid rgba(242, 200, 48, .35);
+  border-radius: 999px;
+  color: #f2c830;
+  font-size: .75rem;
+  font-weight: 700;
+  margin-left: auto;
+  padding: .5rem 1rem;
+}
+.fob-presets {
+  display: grid;
+  gap: .55rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+.fob-presets button {
+  background: rgba(247, 241, 238, .04);
+  border: 1px solid rgba(247, 241, 238, .12);
+  border-radius: .9rem;
+  color: #f7f1ee;
+  display: grid;
+  gap: .2rem;
+  padding: .75rem .85rem;
+  text-align: left;
+}
+.fob-presets strong { font-size: .82rem; }
+.fob-presets em {
+  color: rgba(247, 241, 238, .45);
+  font-size: .68rem;
+  font-style: normal;
+}
+.fob-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem;
+  margin-top: 1rem;
+}
+.fob-secondary {
+  background: transparent;
+  border: 1px solid rgba(247, 241, 238, .22);
+  border-radius: 999px;
+  color: #f7f1ee;
+  font-size: .78rem;
+  font-weight: 700;
+  padding: .75rem 1.1rem;
+}
+.fob-compare-controls {
+  display: grid;
+  gap: .85rem;
+  grid-template-columns: 1.2fr .8fr;
+  margin-bottom: 1rem;
+}
+.fob-compare-controls label {
+  display: grid;
+  gap: .35rem;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: rgba(247, 241, 238, .45);
+}
+.fob-compare-controls select,
+.fob-compare-controls input {
+  background: #101d0b;
+  border: 1px solid rgba(247, 241, 238, .18);
+  border-radius: .75rem;
+  color: #f7f1ee;
+  font-size: .95rem;
+  font-weight: 600;
+  padding: .7rem .85rem;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.fob-compare-grid {
+  display: grid;
+  gap: .85rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+.fob-compare-grid article {
+  background: rgba(247, 241, 238, .04);
+  border: 1px solid rgba(247, 241, 238, .12);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+.fob-compare-grid h3 {
+  font-family: var(--font-fraunces), serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin: .2rem 0;
+}
+.fob-compare-grid dl { display: grid; gap: .35rem; margin: .85rem 0; }
+.fob-compare-grid dl div {
+  display: flex;
+  justify-content: space-between;
+  font-size: .78rem;
+}
+.fob-compare-grid dt { color: rgba(247, 241, 238, .45); }
+.fob-compare-grid .landed { color: #f2c830; font-weight: 800; }
+.fob-compare-grid button {
+  background: #f2c830;
+  border-radius: 999px;
+  color: #101d0b;
+  font-size: .72rem;
+  font-weight: 800;
+  padding: .5rem .85rem;
+  width: 100%;
+}
+.fob-guide {
+  display: grid;
+  gap: .85rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+.fob-guide article {
+  background: rgba(247, 241, 238, .04);
+  border: 1px solid rgba(247, 241, 238, .1);
+  border-radius: 1rem;
+  padding: 1.1rem;
+}
+.fob-guide h3 {
+  font-family: var(--font-fraunces), serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #f2c830;
+}
+.fob-guide p {
+  color: rgba(247, 241, 238, .55);
+  font-size: .85rem;
+  line-height: 1.5;
+  margin-top: .45rem;
+}
+.fob-guide a { color: #f2c830; text-decoration: underline; }
+@media (max-width: 900px) {
+  .fob-presets { grid-template-columns: 1fr 1fr; }
+  .fob-compare-grid { grid-template-columns: 1fr 1fr; }
+  .fob-compare-controls { grid-template-columns: 1fr; }
+  .fob-guide { grid-template-columns: 1fr; }
+}
+@media print {
+  .fob-app-tabs, .fob-presets, .fob-actions, nav, footer { display: none !important; }
+  .fob-cotizador { grid-template-columns: 1fr; }
+  .fob-cotizador-result { border: 1px solid #222; }
+}
+
+/* —— Tienda Colab vitrina —— */
+.colab-store-card {
+  background: rgba(247, 241, 238, .04);
+  border: 1px solid rgba(242, 200, 48, .2);
+  border-radius: 1.1rem;
+  color: #f7f1ee;
+  display: grid;
+  gap: .4rem;
+  padding: 1.1rem;
+  transition: border-color .2s ease, transform .2s ease;
+}
+.colab-store-card:hover {
+  border-color: rgba(242, 200, 48, .55);
+  transform: translateY(-2px);
+}
+.colab-store-badge {
+  color: #f2c830;
+  font-size: .65rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.colab-store-card strong {
+  font-family: var(--font-fraunces), serif;
+  font-size: 1.15rem;
+}
+.colab-store-card p {
+  color: rgba(247, 241, 238, .5);
+  font-size: .8rem;
+  line-height: 1.4;
+}
+.colab-store-card em {
+  color: #f2c830;
+  font-size: .85rem;
+  font-style: normal;
+  font-weight: 800;
+}
