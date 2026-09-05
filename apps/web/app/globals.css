@@ -5025,7 +5025,30 @@ button.diploma-li {
   min-height: min(92vh, 860px);
 }
 
+.colab-hero-lover {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.colab-hero-lover .atmosphere-plane-veil {
+  background: linear-gradient(
+    105deg,
+    rgba(20, 14, 10, 0.82) 0%,
+    rgba(20, 14, 10, 0.55) 42%,
+    rgba(20, 14, 10, 0.28) 100%
+  ) !important;
+}
+
 .colab-hero-copy { animation: fadeUp .7s ease both; }
+
+.colab-lover-desire {
+  background: #140e0a;
+}
+
+.colab-lover-desire .colab-hero-packshot {
+  animation: packshotDrift .9s .1s ease both;
+}
 
 .colab-hero-packshot {
   position: relative;
