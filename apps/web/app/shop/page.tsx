@@ -1,6 +1,10 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import TrackedLink from "@/components/analytics/TrackedLink"
+import { MastersShopifyGrid } from "@/components/commerce/MasterShopifyCheckout"
+import {
+  COLAB_SHOPIFY_STOREFRONT,
+} from "@/lib/shopify-colab"
 import {
   ZURYCH_INSTAGRAM,
   cauaShopSkus,
@@ -11,9 +15,9 @@ import {
 } from "@/lib/caua-shop"
 
 export const metadata: Metadata = {
-  title: "Tienda · Cacao Colab",
+  title: "Tienda · Masters + nodos",
   description:
-    "Coberturas, nibs y kits CAÚA × Zurych. Las tiendas de los nodos están fuera de línea — pedidos confirmados hoy por WhatsApp.",
+    "Checkout Shopify de los tres Masters (producto digital) y venta cruzada a coberturas y nibs de los nodos CAÚA × Zurych.",
 }
 
 const waGeneral =
@@ -28,47 +32,65 @@ export default function ShopPage() {
           <Link href="/" className="eyebrow text-colab-cream/40 hover:text-colab-yellow">
             ← Cacao Colab
           </Link>
-          <p className="eyebrow text-colab-yellow mt-6">Tienda · CAÚA × Zurych</p>
+          <p className="eyebrow text-colab-yellow mt-6">Tienda Colab · Shopify + nodos</p>
           <h1 className="display-title mt-4 max-w-3xl">
-            Coberturas y nibs
+            Masters digitales.
             <br />
-            <em>de los nodos, a tu mesa.</em>
+            <em>Productos de los nodos.</em>
           </h1>
           <p className="mt-6 max-w-2xl text-colab-cream/55 leading-relaxed">
-            Santander es el territorio compartido: CAÚA formula coberturas y nibs, Zurych los
-            transforma bean-to-bar desde Landázuri. Las tiendas propias de los nodos están fuera de
-            línea hoy — el pedido se confirma directo por WhatsApp, sin intermediarios.
+            Checkout Shopify para los tres Masters (producto digital) y venta cruzada a coberturas,
+            nibs y kits de CAÚA × Zurych. La herencia del oficio se compra, se practica y se lleva a
+            la mesa.
           </p>
           <div className="flex flex-wrap gap-3 mt-8">
+            <Link
+              href="#masters"
+              className="bg-colab-yellow text-colab-forest rounded-full px-7 py-3.5 text-sm font-bold"
+            >
+              Ver Masters →
+            </Link>
+            <TrackedLink
+              href={COLAB_SHOPIFY_STOREFRONT}
+              event="sponsor_interest"
+              targetName="colab-shopify-home"
+              source="shop-hero"
+              external
+              className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold"
+            >
+              Abrir Shopify Colab →
+            </TrackedLink>
             <TrackedLink
               href={waGeneral}
               event="sponsor_interest"
               targetName="wa-shop-hero"
               source="shop-hero"
               external
-              className="bg-colab-yellow text-colab-forest rounded-full px-7 py-3.5 text-sm font-bold"
-            >
-              Pedir por WhatsApp →
-            </TrackedLink>
-            <TrackedLink
-              href={ZURYCH_INSTAGRAM}
-              event="zurych_shop_clicked"
-              targetName="zurych-instagram"
-              source="shop-hero"
-              external
               className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold"
             >
-              Ver @tiendazurych →
+              Pedir nodos por WhatsApp →
             </TrackedLink>
           </div>
         </div>
       </header>
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 pb-24">
-        <section className="rounded-2xl border border-colab-yellow/25 bg-colab-yellow/10 px-6 py-5 -mt-2 mb-14 text-sm text-colab-cream/70 leading-relaxed">
-          <strong className="text-colab-yellow">Tiendas de los nodos fuera de línea.</strong> Ni CAÚA
-          ni Zurych tienen hoy una tienda propia disponible para comprar en línea. Mientras se resuelve,
-          cada pedido se confirma por WhatsApp con el mismo criterio Colab.
+        <section id="masters" className="scroll-mt-20 mb-16">
+          <p className="eyebrow text-colab-yellow">Producto digital · Shopify checkout</p>
+          <h2 className="font-serif text-3xl md:text-4xl font-bold mt-3">Los tres Masters</h2>
+          <p className="mt-3 max-w-2xl text-sm text-colab-cream/55 leading-relaxed">
+            Inscripción pagada vía tienda Shopify Colab. También puedes abrir el campus ganando rango
+            con Mazorcas Doradas. Tras el Master, pide coberturas y nibs de los nodos.
+          </p>
+          <div className="mt-8">
+            <MastersShopifyGrid />
+          </div>
+        </section>
+
+        <section className="rounded-2xl border border-colab-yellow/25 bg-colab-yellow/10 px-6 py-5 mb-14 text-sm text-colab-cream/70 leading-relaxed">
+          <strong className="text-colab-yellow">Nodos físicos.</strong> Mientras las tiendas propias
+          de CAÚA / Zurych se estabilizan, el pedido de coberturas y nibs se confirma por WhatsApp con
+          criterio Colab. Los Masters digitales viven en Shopify.
         </section>
 
         <section className="grid md:grid-cols-3 gap-4 mb-14">

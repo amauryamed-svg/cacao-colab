@@ -534,6 +534,7 @@ export default function ChocolatierCoursePlayer({
               practiceHref="/juega"
               practiceLabel="Practicar en Sembrar →"
               forumHref={`/colab?share=maestro-chocolatier&grade=${grade}`}
+              courseSlug="maestro-chocolatier"
               sisterHref="/benevolo"
               sisterLabel="Marca Benevolo →"
             />

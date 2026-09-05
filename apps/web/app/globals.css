@@ -7846,3 +7846,328 @@ button.diploma-li {
 @media (max-width: 800px) {
   .ff-wheel { grid-template-columns: 1fr; }
 }
+
+/* —— Foro filters + hero links —— */
+.colab-forum-hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin-top: 1.1rem;
+}
+.colab-forum-hero-links a {
+  border: 1px solid rgba(242, 200, 48, .35);
+  border-radius: 999px;
+  color: #f2c830;
+  font-size: .72rem;
+  font-weight: 700;
+  padding: .45rem .9rem;
+}
+.colab-forum-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin: .2rem 0 1rem;
+}
+.colab-forum-filters button {
+  background: rgba(247, 241, 238, .05);
+  border: 1px solid rgba(247, 241, 238, .12);
+  border-radius: 999px;
+  color: rgba(247, 241, 238, .55);
+  font-size: .68rem;
+  font-weight: 700;
+  padding: .35rem .85rem;
+}
+.colab-forum-filters button.active {
+  background: #f2c830;
+  border-color: #f2c830;
+  color: #101d0b;
+}
+
+/* —— FOB cotizador —— */
+.fob-cotizador {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1.05fr .95fr;
+}
+.fob-cotizador-controls {
+  background: rgba(247, 241, 238, .03);
+  border: 1px solid rgba(247, 241, 238, .1);
+  border-radius: 1.25rem;
+  display: grid;
+  gap: 1.1rem;
+  padding: 1.25rem;
+}
+.fob-cotizador-controls label {
+  display: grid;
+  gap: .35rem;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: rgba(247, 241, 238, .45);
+}
+.fob-cotizador-controls select,
+.fob-cotizador-controls input {
+  background: #101d0b;
+  border: 1px solid rgba(247, 241, 238, .18);
+  border-radius: .75rem;
+  color: #f7f1ee;
+  font-size: .95rem;
+  font-weight: 600;
+  padding: .7rem .85rem;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.fob-cotizador-controls small {
+  color: rgba(247, 241, 238, .4);
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.fob-cotizador-controls fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.fob-cotizador-controls legend {
+  color: rgba(247, 241, 238, .45);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  margin-bottom: .6rem;
+  text-transform: uppercase;
+}
+.fob-dest-grid {
+  display: grid;
+  gap: .75rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+.fob-dest-region {
+  color: #f2c830;
+  font-size: .65rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  margin-bottom: .4rem;
+  text-transform: uppercase;
+}
+.fob-dest-col button {
+  background: rgba(247, 241, 238, .04);
+  border: 1px solid rgba(247, 241, 238, .12);
+  border-radius: .85rem;
+  color: #f7f1ee;
+  display: grid;
+  gap: .15rem;
+  margin-bottom: .4rem;
+  padding: .7rem .75rem;
+  text-align: left;
+  width: 100%;
+}
+.fob-dest-col button strong { font-size: .82rem; }
+.fob-dest-col button em {
+  color: rgba(247, 241, 238, .4);
+  font-size: .68rem;
+  font-style: normal;
+}
+.fob-dest-col button.active {
+  background: rgba(242, 200, 48, .12);
+  border-color: rgba(242, 200, 48, .55);
+}
+.fob-cotizador-result {
+  background: linear-gradient(160deg, rgba(242, 200, 48, .08), rgba(247, 241, 238, .02));
+  border: 1px solid rgba(242, 200, 48, .22);
+  border-radius: 1.25rem;
+  padding: 1.35rem;
+}
+.fob-cotizador-result h3 {
+  font-family: var(--font-fraunces), serif;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-top: .4rem;
+}
+.fob-cotizador-result h3 span {
+  color: #f2c830;
+  display: block;
+  font-size: .85em;
+  font-weight: 600;
+  margin-top: .25rem;
+}
+.fob-meta {
+  color: rgba(247, 241, 238, .45);
+  font-size: .75rem;
+  margin-top: .55rem;
+}
+.fob-totals {
+  display: grid;
+  gap: .65rem;
+  margin: 1.1rem 0;
+}
+.fob-totals div {
+  align-items: baseline;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.fob-totals dt {
+  color: rgba(247, 241, 238, .5);
+  font-size: .75rem;
+}
+.fob-totals dd {
+  font-family: var(--font-fraunces), serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  text-align: right;
+}
+.fob-totals dd small {
+  color: rgba(247, 241, 238, .45);
+  display: block;
+  font-family: var(--font-outfit), sans-serif;
+  font-size: .68rem;
+  font-weight: 600;
+}
+.fob-totals .landed dd { color: #f2c830; }
+.fob-lines {
+  border-top: 1px solid rgba(247, 241, 238, .1);
+  display: grid;
+  gap: .4rem;
+  list-style: none;
+  margin: 0;
+  padding: .9rem 0 0;
+}
+.fob-lines li {
+  display: flex;
+  font-size: .75rem;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.fob-lines span { color: rgba(247, 241, 238, .5); }
+.fob-notes, .fob-disclaimer, .fob-updated {
+  color: rgba(247, 241, 238, .4);
+  font-size: .7rem;
+  line-height: 1.45;
+  margin-top: .75rem;
+}
+.fob-cta {
+  background: #f2c830;
+  border-radius: 999px;
+  color: #101d0b;
+  display: inline-flex;
+  font-size: .85rem;
+  font-weight: 800;
+  margin-top: 1.1rem;
+  padding: .85rem 1.25rem;
+}
+@media (max-width: 900px) {
+  .fob-cotizador { grid-template-columns: 1fr; }
+  .fob-dest-grid { grid-template-columns: 1fr; }
+}
+
+/* —— Masters Shopify —— */
+.masters-shopify-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+}
+.master-shopify-card {
+  background: rgba(247, 241, 238, .04);
+  border: 1px solid rgba(242, 200, 48, .22);
+  border-radius: 1.15rem;
+  display: grid;
+  gap: .55rem;
+  padding: 1.15rem;
+}
+.master-shopify-card.compact { margin-top: .25rem; }
+.master-shopify-card h3 {
+  font-family: var(--font-fraunces), serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+.master-shopify-card > p {
+  color: rgba(247, 241, 238, .55);
+  font-size: .8rem;
+  line-height: 1.45;
+}
+.master-shopify-price {
+  align-items: baseline;
+  display: flex;
+  gap: .55rem;
+}
+.master-shopify-price strong {
+  color: #f2c830;
+  font-size: 1.05rem;
+}
+.master-shopify-price span {
+  color: rgba(247, 241, 238, .4);
+  font-size: .72rem;
+}
+.master-shopify-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-top: .35rem;
+}
+.master-shopify-buy {
+  background: #f2c830;
+  border-radius: 999px;
+  color: #101d0b;
+  font-size: .78rem;
+  font-weight: 800;
+  padding: .6rem 1rem;
+}
+.master-shopify-campus {
+  border: 1px solid rgba(247, 241, 238, .2);
+  border-radius: 999px;
+  color: #f7f1ee;
+  font-size: .78rem;
+  font-weight: 700;
+  padding: .6rem 1rem;
+}
+.master-cross-sell {
+  border-top: 1px solid rgba(247, 241, 238, .12);
+  margin: 1.5rem auto 0;
+  max-width: 36rem;
+  padding-top: 1.25rem;
+  text-align: left;
+}
+.master-cross-sell h3 {
+  font-family: var(--font-fraunces), serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin: .35rem 0 .8rem;
+}
+.master-cross-sell ul {
+  display: grid;
+  gap: .55rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.master-cross-sell li {
+  align-items: center;
+  background: rgba(247, 241, 238, .04);
+  border: 1px solid rgba(247, 241, 238, .1);
+  border-radius: .9rem;
+  display: flex;
+  gap: .75rem;
+  justify-content: space-between;
+  padding: .75rem .9rem;
+}
+.master-cross-sell strong { display: block; font-size: .85rem; }
+.master-cross-sell p {
+  color: rgba(247, 241, 238, .45);
+  font-size: .7rem;
+  margin: .15rem 0 0;
+}
+.master-cross-sell-cta {
+  background: #f2c830;
+  border-radius: 999px;
+  color: #101d0b;
+  flex-shrink: 0;
+  font-size: .72rem;
+  font-weight: 800;
+  padding: .45rem .8rem;
+}
+@media (max-width: 900px) {
+  .masters-shopify-grid { grid-template-columns: 1fr; }
+}

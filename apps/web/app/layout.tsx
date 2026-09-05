@@ -22,11 +22,11 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   metadataBase: new URL("https://cacaocolab.org"),
   title: {
-    default: "cacaotier · Cacao Fine-Flavor",
-    template: "%s · cacaotier",
+    default: "Cacao Colab · herencia Fine-Flavor",
+    template: "%s · Cacao Colab",
   },
   description:
-    "Escuela futurista y marketplace del cacao Fine-Flavor: Master Cacaotier, Master Chocolatier y aprendizaje aplicado de finca a chocolate.",
+    "Herencia de la cultura del cacao para la generación que recibe la tierra y el saber hacer. Campus Masters, red de marcas e internacionalización FOB.",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -37,9 +37,10 @@ export const metadata: Metadata = {
     shortcut: "/favicon.ico",
   },
   openGraph: {
-    title: "cacaotier · Cultiva conocimiento. Cosecha sabor.",
-    description: "Formación profesional, experimentación y mercado para el cacao Fine-Flavor.",
-    siteName: "cacaotier · Cacao Colab",
+    title: "Cacao Colab · herencia Fine-Flavor",
+    description:
+      "Herencia de la cultura del cacao, campus Masters y plataforma de marcas para internacionalización FOB.",
+    siteName: "Cacao Colab",
     locale: "es_CO",
     type: "website",
   },
@@ -61,6 +62,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link href="/manifiesto">Manifiesto</Link>
+              <Link href="/export">Export FOB</Link>
+              <Link href="/shop">Tienda</Link>
+              <Link href="/colab">Foro</Link>
               <Link href="/nodo">Nodos</Link>
               <Link href="/amauryamed">Amaury · perfil</Link>
               <Link href="/aprende/cacaotier">Master Cacaotier</Link>

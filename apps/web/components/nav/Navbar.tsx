@@ -13,6 +13,12 @@ export default function Navbar() {
 
         <div className="flex items-center gap-3">
           <Link
+            href="/export"
+            className="hidden sm:inline text-xs font-bold text-colab-cream/70 hover:text-colab-yellow font-sans tracking-wide transition-colors"
+          >
+            Export FOB
+          </Link>
+          <Link
             href="/marketplace"
             className="hidden sm:inline text-xs font-bold text-colab-cream/70 hover:text-colab-yellow font-sans tracking-wide transition-colors"
           >
@@ -23,6 +29,12 @@ export default function Navbar() {
             className="hidden sm:inline text-xs font-bold text-colab-cream/70 hover:text-colab-yellow font-sans tracking-wide transition-colors"
           >
             Tienda
+          </Link>
+          <Link
+            href="/colab"
+            className="hidden md:inline text-xs font-bold text-colab-cream/70 hover:text-colab-yellow font-sans tracking-wide transition-colors"
+          >
+            Foro
           </Link>
           <Link
             href="/nodo"

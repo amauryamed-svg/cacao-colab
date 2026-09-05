@@ -37,7 +37,7 @@ export default async function CatadorCampusPage() {
     Array.isArray((saved.state as { completed?: unknown }).completed) &&
     ((saved.state as { completed: unknown[] }).completed.length > 0)
   if (!access.unlocked && !hasProgress) {
-    return <MasterAccessGate title="Master Catador de Cacao" access={access} />
+    return <MasterAccessGate title="Master Catador de Cacao" access={access} courseSlug="catador-cacao" />
   }
 
   const learnerName = user.user_metadata?.full_name ?? user.email?.split("@")[0] ?? "Learner"

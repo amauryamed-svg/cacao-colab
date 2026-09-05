@@ -16,8 +16,9 @@ import MasteryCurveStrip from "@/components/funnel/MasteryCurveStrip"
 import { catadorTotalXp } from "@/lib/catador-course"
 
 export const metadata: Metadata = {
-  title: "Campus · Master Cacaotier + Master Chocolatier",
-  description: "Formación dual gamificada para dominar cacao Fine-Flavor desde el bioproceso hasta el chocolate.",
+  title: "Campus · tres Masters + herencia",
+  description:
+    "Master Cacaotier, Catador y Chocolatier: hereda el saber hacer del cacao. Checkout Shopify o rango con Mazorcas Doradas.",
 }
 
 export default async function AprendePage() {
@@ -30,18 +31,32 @@ export default async function AprendePage() {
         <AtmospherePlane src={shotById("coex-home").src} alt={shotById("coex-home").alt} overlay="forest" />
         <FloatingPods variant="stage" />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-[1]">
-          <p className="eyebrow text-colab-yellow">cacaotier campus · formación dual</p>
+          <p className="eyebrow text-colab-yellow">cacaotier campus · herencia + oficio</p>
           <div className="grid lg:grid-cols-[1fr_.65fr] gap-10 items-end mt-4">
             <div>
               <h1 className="display-title text-colab-cream">
-                Aprende haciendo.
+                Tres Masters.
                 <br />
-                <em>Sube de rango.</em>
+                <em>Una generación.</em>
               </h1>
               <p className="text-colab-cream/65 max-w-xl mt-6 leading-relaxed">
-                Contexto, hábitos, oficio y territorio sincronizados — con la emoción de un chocolate
-                que se gana. Conserva XP, racha, Sembrar y evidencia de tus misiones.
+                Fermentación, catación y chocolate para quien hereda la tierra y el saber hacer.
+                Entra por rango (Mazorcas Doradas) o por checkout Shopify del producto digital.
               </p>
+              <div className="flex flex-wrap gap-3 mt-6">
+                <Link
+                  href="/shop#masters"
+                  className="rounded-full bg-colab-yellow px-5 py-2.5 text-sm font-bold text-colab-forest"
+                >
+                  Checkout Shopify →
+                </Link>
+                <Link
+                  href="/colab"
+                  className="rounded-full border border-white/20 px-5 py-2.5 text-sm font-bold text-colab-cream"
+                >
+                  Foro Colab →
+                </Link>
+              </div>
             </div>
             <div className="grid grid-cols-3 gap-2">
               {[["6", "rangos"], ["MD", "fidelidad"], ["Dualita", "guía"]].map(([value, label]) => (

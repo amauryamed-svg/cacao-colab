@@ -28,11 +28,11 @@ export const masterRankGate: Record<MasterCourseSlug, RankSlug> = {
 
 export const masterAccessCopy = {
   principle:
-    "Los Masters se abren con tu rango (MD históricas). Gánalas en Sembrar y en Dualita (micro CAÚA + MOOC Zurych) — no canjeando saldo por «aceleración».",
+    "Dos puertas al Master: (1) rango con MD históricas ganadas en Sembrar y Dualita, o (2) checkout Shopify del producto digital en la tienda Colab — con venta cruzada a coberturas y nibs de los nodos.",
   earnCtas: [
     { label: "Sembrar", href: "/juega" },
-    { label: "Micro CAÚA", href: "/aprende" },
-    { label: "MOOC Zurych", href: "/aprende" },
+    { label: "Campus Dualita", href: "/aprende" },
+    { label: "Tienda Masters", href: "/shop#masters" },
   ],
 } as const
 

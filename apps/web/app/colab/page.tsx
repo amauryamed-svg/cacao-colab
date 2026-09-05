@@ -7,9 +7,9 @@ import ForumFeed from "@/components/colab/ForumFeed"
 import { ensureForumSeed, loadForumFeed } from "./actions"
 
 export const metadata: Metadata = {
-  title: "Foro Colab · anuncios y avances",
+  title: "Foro Colab · red de herencia y oficio",
   description:
-    "Foro interno de Cacao Colab: comparte progreso de maestría, anuncios y sincronicidades con likes 🍫.",
+    "Red social interna de Cacao Colab: avances de maestría, sincronicidades de finca y anuncios del colectivo.",
   robots: { index: false, follow: false },
 }
 
@@ -37,14 +37,19 @@ export default async function ColabForumPage({
           ← Mi cuenta
         </Link>
         <header className="colab-forum-hero">
-          <p className="eyebrow text-colab-yellow">Red interna · foro</p>
+          <p className="eyebrow text-colab-yellow">Red interna · herencia viva</p>
           <h1>
-            Sincronicidades <em>del Colab</em>
+            Foro del <em>Colab</em>
           </h1>
           <p>
-            Anuncios del colectivo, avances de maestría y likes en chocolate. Aquí celebramos el
-            rigor — no medallas inventadas.
+            Comparte avances de maestría, sincronicidades de finca y lo que heredas del oficio.
+            Aquí la generación nueva se ve — con rigor, no con medallas inventadas.
           </p>
+          <div className="colab-forum-hero-links">
+            <Link href="/aprende">Tres Masters →</Link>
+            <Link href="/export">Cotizador FOB →</Link>
+            <Link href="/shop#masters">Checkout Shopify →</Link>
+          </div>
         </header>
 
         <div className="colab-forum-grid">

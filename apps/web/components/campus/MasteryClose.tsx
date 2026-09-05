@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import DiplomaLinkedInShare from "@/components/campus/DiplomaLinkedInShare"
+import { MasterCrossSellRail } from "@/components/commerce/MasterShopifyCheckout"
 import {
   gradeBlurb,
   gradeLabel,
@@ -37,6 +38,7 @@ export default function MasteryClose({
   cuentaHref = "/cuenta",
   sisterHref,
   sisterLabel,
+  courseSlug,
 }: {
   courseTitle: string
   learnerName: string
@@ -56,6 +58,7 @@ export default function MasteryClose({
   cuentaHref?: string
   sisterHref?: string
   sisterLabel?: string
+  courseSlug?: string
 }) {
   const doneCount = missions.filter((m) => m.passed).length
   const linkedInCopy =
@@ -152,6 +155,8 @@ export default function MasteryClose({
         <Link href={cuentaHref}>Mi cuenta · progreso</Link>
         {sisterHref && sisterLabel && <Link href={sisterHref}>{sisterLabel}</Link>}
       </div>
+
+      {courseSlug && <MasterCrossSellRail courseSlug={courseSlug} />}
     </div>
   )
 }

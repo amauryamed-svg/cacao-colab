@@ -579,6 +579,7 @@ export default function ArchitectCoursePlayer({
               practiceHref="/juega"
               practiceLabel="Aplicar en Sembrar →"
               forumHref={`/colab?share=arquitecto-fermentacion&grade=${grade}`}
+              courseSlug="arquitecto-fermentacion"
               sisterHref="/campus/maestro-chocolatier"
               sisterLabel="Master Chocolatier →"
             />
