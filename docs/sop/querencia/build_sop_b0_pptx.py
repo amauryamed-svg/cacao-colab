@@ -19,9 +19,13 @@ POD = RGBColor(0x86, 0xB6, 0x6B)
 
 W = Inches(13.333)
 H = Inches(7.5)
-OUT = Path(__file__).resolve().parent / "SOP-V0-V3-FEAR5-La-Querencia.pptx"
-OUT_LEGACY = Path(__file__).resolve().parent / "SOP-B0-V0-FEAR5-La-Querencia.pptx"
-ART = Path("/opt/cursor/artifacts/SOP-V0-V3-FEAR5-La-Querencia.pptx")
+ROOT = Path(__file__).resolve().parent
+ASSETS = ROOT / "assets"
+OUT = ROOT / "SOP-V0-V3-FEAR5-La-Querencia.pptx"
+OUT_LEGACY = ROOT / "SOP-B0-V0-FEAR5-La-Querencia.pptx"
+ART_DIR = Path("/opt/cursor/artifacts")
+DOWNLOADS = Path("/home/ubuntu/Downloads")
+WS_DOWNLOADS = Path("/workspace/Downloads")
 
 
 def set_run(run, *, size=18, bold=False, color=FOREST, font="Georgia"):
@@ -49,21 +53,41 @@ def add_textbox(slide, left, top, width, height, text, *, size=18, bold=False, c
     return box
 
 
+def add_picture(slide, path: Path, left, top, *, height=None, width=None):
+    if not path.exists():
+        return None
+    kwargs = {}
+    if height is not None:
+        kwargs["height"] = height
+    if width is not None:
+        kwargs["width"] = width
+    return slide.shapes.add_picture(str(path), left, top, **kwargs)
+
+
 def letterhead(slide):
-    bar = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, 0, 0, W, Inches(0.72))
+    """Membrete con ardilla + wordmark nominativo Cacao Colab."""
+    bar = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, 0, 0, W, Inches(0.85))
     bar.fill.solid()
     bar.fill.fore_color.rgb = FOREST
     bar.line.fill.background()
-    accent = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, 0, Inches(0.72), W, Inches(0.08))
+    accent = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, 0, Inches(0.85), W, Inches(0.08))
     accent.fill.solid()
     accent.fill.fore_color.rgb = YELLOW
     accent.line.fill.background()
-    add_textbox(slide, Inches(0.55), Inches(0.14), Inches(6), Inches(0.45), "CACAO COLAB", size=20, bold=True, color=YELLOW, font="Georgia")
+
+    # Key visual lockup: squirrel + CACAO COLAB
+    lockup = ASSETS / "lockup-yellow.png"
+    if lockup.exists():
+        add_picture(slide, lockup, Inches(0.4), Inches(0.12), height=Inches(0.62))
+    else:
+        add_picture(slide, ASSETS / "squirrel-cacao.png", Inches(0.4), Inches(0.1), height=Inches(0.62))
+        add_picture(slide, ASSETS / "wordmark-yellow.png", Inches(1.2), Inches(0.22), height=Inches(0.4))
+
     add_textbox(
         slide,
-        Inches(6.8),
-        Inches(0.18),
-        Inches(5.9),
+        Inches(7.4),
+        Inches(0.28),
+        Inches(5.5),
         Inches(0.4),
         "SOP · FEAR 5 · Escalera V0–V3  ·  Confidencial nodo",
         size=12,
@@ -74,13 +98,15 @@ def letterhead(slide):
 
 
 def footer(slide, page: int, total: int):
+    # Mini squirrel mark
+    add_picture(slide, ASSETS / "squirrel-cacao.png", Inches(0.45), Inches(6.98), height=Inches(0.32))
     add_textbox(
         slide,
-        Inches(0.55),
+        Inches(0.9),
         Inches(7.05),
-        Inches(9),
+        Inches(8.5),
         Inches(0.3),
-        "La Querencia · FEAR 5 · V0→V3  ·  cacaocolab.org",
+        "Cacao Colab  ·  La Querencia · FEAR 5 · V0→V3  ·  cacaocolab.org",
         size=11,
         color=MUTED,
         font="Calibri",
@@ -139,7 +165,7 @@ def build():
     prs.slide_height = H
     total = 14
 
-    # 1 Portada
+    # 1 Portada — key visuals: ardilla + wordmark nominativo
     s = blank_slide(prs)
     bg = s.shapes.add_shape(MSO_SHAPE.RECTANGLE, 0, 0, W, H)
     bg.fill.solid()
@@ -149,20 +175,26 @@ def build():
     yellow_bar.fill.solid()
     yellow_bar.fill.fore_color.rgb = YELLOW
     yellow_bar.line.fill.background()
-    add_textbox(s, Inches(0.7), Inches(0.55), Inches(11), Inches(0.35), "CACAO COLAB  ×  LA QUERENCIA", size=14, bold=True, color=YELLOW, font="Calibri")
-    add_textbox(s, Inches(0.7), Inches(1.35), Inches(12), Inches(1.0), "SOP FEAR 5 · Escalera V0 → V3", size=40, bold=True, color=CREAM, font="Georgia")
-    add_textbox(s, Inches(0.7), Inches(2.45), Inches(12), Inches(0.55), "Micro-lote → control térmico → tanque → bioreactor", size=22, color=YELLOW, font="Georgia")
+
+    # Lockup grande (ardilla + CACAO COLAB)
+    add_picture(s, ASSETS / "lockup-yellow.png", Inches(0.65), Inches(0.45), height=Inches(0.85))
+    # Ardilla hero a la derecha
+    add_picture(s, ASSETS / "squirrel-cacao.png", Inches(10.2), Inches(1.55), height=Inches(3.6))
+
+    add_textbox(s, Inches(0.7), Inches(1.5), Inches(9), Inches(0.4), "×  LA QUERENCIA", size=16, bold=True, color=YELLOW, font="Calibri")
+    add_textbox(s, Inches(0.7), Inches(2.05), Inches(9.5), Inches(1.0), "SOP FEAR 5 · Escalera V0 → V3", size=36, bold=True, color=CREAM, font="Georgia")
+    add_textbox(s, Inches(0.7), Inches(3.05), Inches(9), Inches(0.5), "Micro-lote → control térmico → tanque → bioreactor", size=18, color=YELLOW, font="Georgia")
     add_textbox(
         s,
         Inches(0.7),
-        Inches(3.3),
-        Inches(11.5),
+        Inches(3.7),
+        Inches(9),
         Inches(1.6),
         "Programa de experimentación en fermentación de precisión.\n"
         "Validamos curvas de temperatura (45 °C) y pH (≤ 4,5), y luego\n"
         "la acumulación / decaimiento de precursores de sabor del FEAR 5\n"
         "(referencia paper Santander 2025 · 7 biomarcadores).",
-        size=17,
+        size=16,
         color=CREAM,
         font="Calibri",
     )
@@ -172,7 +204,7 @@ def build():
     # 2 Objetivo del programa
     s = blank_slide(prs)
     letterhead(s)
-    add_textbox(s, Inches(0.55), Inches(1.05), Inches(12), Inches(0.5), "1. Qué buscamos en todo el programa", size=28, bold=True, color=FOREST, font="Georgia")
+    add_textbox(s, Inches(0.55), Inches(1.15), Inches(12), Inches(0.5), "1. Qué buscamos en todo el programa", size=28, bold=True, color=FOREST, font="Georgia")
     bullet_block(
         s,
         Inches(0.55),
@@ -195,7 +227,7 @@ def build():
     # 3 Mapa V0-V3
     s = blank_slide(prs)
     letterhead(s)
-    add_textbox(s, Inches(0.55), Inches(1.05), Inches(12), Inches(0.45), "2. Mapa de versiones", size=28, bold=True, color=FOREST, font="Georgia")
+    add_textbox(s, Inches(0.55), Inches(1.15), Inches(12), Inches(0.45), "2. Mapa de versiones", size=28, bold=True, color=FOREST, font="Georgia")
     add_textbox(s, Inches(0.55), Inches(1.55), Inches(12), Inches(0.35), "Cada versión valida una cosa. No saltar etapas.", size=15, color=MUTED, font="Calibri")
 
     stages = [
@@ -215,7 +247,7 @@ def build():
     # 4 V0 qué valida
     s = blank_slide(prs)
     letterhead(s)
-    add_textbox(s, Inches(0.55), Inches(1.05), Inches(12), Inches(0.5), "3. V0 · Qué validamos (solo esto)", size=28, bold=True, color=FOREST, font="Georgia")
+    add_textbox(s, Inches(0.55), Inches(1.15), Inches(12), Inches(0.5), "3. V0 · Qué validamos (solo esto)", size=28, bold=True, color=FOREST, font="Georgia")
     card(s, Inches(0.55), Inches(1.75), Inches(12.2), Inches(1.3), YELLOW)
     add_textbox(
         s,
@@ -250,7 +282,7 @@ def build():
     # 5 V0 materiales + prep
     s = blank_slide(prs)
     letterhead(s)
-    add_textbox(s, Inches(0.55), Inches(1.05), Inches(12), Inches(0.45), "4. V0 · Materiales y preparación", size=28, bold=True, color=FOREST, font="Georgia")
+    add_textbox(s, Inches(0.55), Inches(1.15), Inches(12), Inches(0.45), "4. V0 · Materiales y preparación", size=28, bold=True, color=FOREST, font="Georgia")
     card(s, Inches(0.55), Inches(1.65), Inches(6.0), Inches(4.7), CREAM)
     add_textbox(s, Inches(0.75), Inches(1.85), Inches(5.5), Inches(0.35), "Equipo", size=17, bold=True, color=FOREST, font="Georgia")
     bullet_block(
@@ -296,7 +328,7 @@ def build():
     # 6 V0 protocolo fermentación
     s = blank_slide(prs)
     letterhead(s)
-    add_textbox(s, Inches(0.55), Inches(1.05), Inches(12), Inches(0.45), "5. V0 · Protocolo de fermentación", size=28, bold=True, color=FOREST, font="Georgia")
+    add_textbox(s, Inches(0.55), Inches(1.15), Inches(12), Inches(0.45), "5. V0 · Protocolo de fermentación", size=28, bold=True, color=FOREST, font="Georgia")
     card(s, Inches(0.55), Inches(1.65), Inches(6.0), Inches(4.7), CREAM)
     add_textbox(s, Inches(0.75), Inches(1.85), Inches(5.5), Inches(0.4), "Fase A · Aeróbica 0–48 h", size=18, bold=True, color=FOREST, font="Georgia")
     bullet_block(
@@ -339,7 +371,7 @@ def build():
     # 7 V0 checklist
     s = blank_slide(prs)
     letterhead(s)
-    add_textbox(s, Inches(0.55), Inches(1.05), Inches(12), Inches(0.45), "6. V0 · Checklist de cierre", size=28, bold=True, color=FOREST, font="Georgia")
+    add_textbox(s, Inches(0.55), Inches(1.15), Inches(12), Inches(0.45), "6. V0 · Checklist de cierre", size=28, bold=True, color=FOREST, font="Georgia")
     numbered_steps(
         s,
         [
@@ -357,7 +389,7 @@ def build():
     # 8 V1 qué valida
     s = blank_slide(prs)
     letterhead(s)
-    add_textbox(s, Inches(0.55), Inches(1.05), Inches(12), Inches(0.45), "7. V1 · Temperatura constante con agua", size=28, bold=True, color=FOREST, font="Georgia")
+    add_textbox(s, Inches(0.55), Inches(1.15), Inches(12), Inches(0.45), "7. V1 · Temperatura constante con agua", size=28, bold=True, color=FOREST, font="Georgia")
     card(s, Inches(0.55), Inches(1.7), Inches(12.2), Inches(1.2), YELLOW)
     add_textbox(
         s,
@@ -393,7 +425,7 @@ def build():
     # 9 V1 paso a paso
     s = blank_slide(prs)
     letterhead(s)
-    add_textbox(s, Inches(0.55), Inches(1.05), Inches(12), Inches(0.45), "8. V1 · Paso a paso para Rafael", size=28, bold=True, color=FOREST, font="Georgia")
+    add_textbox(s, Inches(0.55), Inches(1.15), Inches(12), Inches(0.45), "8. V1 · Paso a paso para Rafael", size=28, bold=True, color=FOREST, font="Georgia")
     numbered_steps(
         s,
         [
@@ -411,7 +443,7 @@ def build():
     # 10 V2
     s = blank_slide(prs)
     letterhead(s)
-    add_textbox(s, Inches(0.55), Inches(1.05), Inches(12), Inches(0.45), "9. V2 · Tanque tipo brewing / yogur", size=28, bold=True, color=FOREST, font="Georgia")
+    add_textbox(s, Inches(0.55), Inches(1.15), Inches(12), Inches(0.45), "9. V2 · Tanque tipo brewing / yogur", size=28, bold=True, color=FOREST, font="Georgia")
     card(s, Inches(0.55), Inches(1.7), Inches(12.2), Inches(1.2), YELLOW)
     add_textbox(
         s,
@@ -447,7 +479,7 @@ def build():
     # 11 V3
     s = blank_slide(prs)
     letterhead(s)
-    add_textbox(s, Inches(0.55), Inches(1.05), Inches(12), Inches(0.45), "10. V3 · Bioreactor ~150 kg (Agrosavia-style)", size=26, bold=True, color=FOREST, font="Georgia")
+    add_textbox(s, Inches(0.55), Inches(1.15), Inches(12), Inches(0.45), "10. V3 · Bioreactor ~150 kg (Agrosavia-style)", size=26, bold=True, color=FOREST, font="Georgia")
     card(s, Inches(0.55), Inches(1.7), Inches(12.2), Inches(1.2), YELLOW)
     add_textbox(
         s,
@@ -483,7 +515,7 @@ def build():
     # 12 Biomarcadores
     s = blank_slide(prs)
     letterhead(s)
-    add_textbox(s, Inches(0.55), Inches(1.05), Inches(12), Inches(0.45), "11. Precursores · qué medimos entre versiones", size=26, bold=True, color=FOREST, font="Georgia")
+    add_textbox(s, Inches(0.55), Inches(1.15), Inches(12), Inches(0.45), "11. Precursores · qué medimos entre versiones", size=26, bold=True, color=FOREST, font="Georgia")
     bullet_block(
         s,
         Inches(0.55),
@@ -533,7 +565,7 @@ def build():
     # 13 Bitácora
     s = blank_slide(prs)
     letterhead(s)
-    add_textbox(s, Inches(0.55), Inches(1.05), Inches(12), Inches(0.45), "12. Bitácora común (todas las versiones)", size=26, bold=True, color=FOREST, font="Georgia")
+    add_textbox(s, Inches(0.55), Inches(1.15), Inches(12), Inches(0.45), "12. Bitácora común (todas las versiones)", size=26, bold=True, color=FOREST, font="Georgia")
     rows_n, cols_n = 6, 7
     table = s.shapes.add_table(rows_n, cols_n, Inches(0.4), Inches(1.7), Inches(12.5), Inches(4.5)).table
     headers = ["Versión", "Hora", "T °C", "pH", "Fase", "Observación", "Iniciales"]
@@ -569,7 +601,7 @@ def build():
     # 14 Cierre
     s = blank_slide(prs)
     letterhead(s)
-    add_textbox(s, Inches(0.55), Inches(1.05), Inches(12), Inches(0.45), "13. Orden de trabajo para Rafael", size=28, bold=True, color=FOREST, font="Georgia")
+    add_textbox(s, Inches(0.55), Inches(1.15), Inches(12), Inches(0.45), "13. Orden de trabajo para Rafael", size=28, bold=True, color=FOREST, font="Georgia")
     numbered_steps(
         s,
         [
@@ -595,12 +627,30 @@ def build():
     )
     footer(s, 14, total)
 
+    from datetime import datetime
+
+    stamp = datetime.utcnow().strftime("%Y%m%d-%H%M")
+    art_name = f"sop_fear5_v0_v3_branded_{stamp}.pptx"
+    art_path = ART_DIR / art_name
+    dl_path = DOWNLOADS / art_name
+    ws_dl = WS_DOWNLOADS / "SOP-V0-V3-FEAR5-La-Querencia.pptx"
+
     prs.save(OUT)
-    prs.save(OUT_LEGACY)  # mantener nombre previo accesible
-    prs.save(ART)
+    prs.save(OUT_LEGACY)
+    ART_DIR.mkdir(parents=True, exist_ok=True)
+    DOWNLOADS.mkdir(parents=True, exist_ok=True)
+    WS_DOWNLOADS.mkdir(parents=True, exist_ok=True)
+    prs.save(art_path)
+    prs.save(dl_path)
+    prs.save(ws_dl)
+    # Also a stable Downloads name for the user
+    prs.save(DOWNLOADS / "SOP-V0-V3-FEAR5-La-Querencia.pptx")
     print(f"Wrote {OUT}")
     print(f"Wrote {OUT_LEGACY}")
-    print(f"Wrote {ART}")
+    print(f"Wrote {art_path}")
+    print(f"Wrote {dl_path}")
+    print(f"Wrote {ws_dl}")
+    print(f"Wrote {DOWNLOADS / 'SOP-V0-V3-FEAR5-La-Querencia.pptx'}")
 
 
 if __name__ == "__main__":
