@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="220mm" height="80mm"
+  viewBox="0 0 220 80" role="img" aria-label="Benevolo Bons. · manga / sleeve V0">
+  <title>Benevolo Bons. · manga / sleeve V0</title>
+  <desc>Chocolate Benevolo · plano V0 diseño. Sustituir DIELINE por archivo de fábrica antes de troquel.</desc>
+  <g id="ARTWORK">
+    <rect x="-3" y="-3" width="226" height="86" fill="#F05A28"/>
+  <g id="MOTIF_SWIRLS" fill="none" stroke="#15243F" stroke-width="2.2" opacity="0.3">
+    <path d="M -5,56.0 C 55.0,16.0 121.00000000000001,88.0 231.0,28.0"/>
+    <path d="M -8,68.0 C 66.0,28.0 154.0,92.0 242.00000000000003,44.0"/>
+  </g>
+
+  <g id="LOCKUP_CB" transform="translate(8,8) scale(1.1)">
+    <circle cx="8" cy="8" r="7.2" fill="none" stroke="#FFFFFF" stroke-width="0.7"/>
+    <text x="8" y="10.2" text-anchor="middle" font-family="Georgia, serif" font-size="6.5" font-weight="700" fill="#FFFFFF">CB</text>
+    <text x="20" y="7" font-family="Georgia, serif" font-size="4.2" font-weight="700" fill="#FFFFFF" letter-spacing="0.8">CHOCOLATE</text>
+    <text x="20" y="12.2" font-family="Georgia, serif" font-size="4.2" font-weight="700" fill="#E8C9A0" letter-spacing="0.8">BENEVOLO</text>
+  </g>
+
+  <g id="WORDMARK">
+    <text x="8.8" y="48.8" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="28" font-style="italic" font-weight="900" fill="#C43A18">Bons.</text>
+    <text x="8" y="48" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="28" font-style="italic" font-weight="900" fill="#FFFFFF">Bons.</text>
+  </g>
+
+    <text x="8" y="58" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="5" fill="#F7F1EE" letter-spacing="1">CAJA 6–9 · CHOCOLATERÍA PROFESIONAL</text>
+    <text x="8" y="66" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="4" fill="#E8C9A0">Benevolencia del oficio, en formato de antojo.</text>
+    <g id="PANEL_VARIANT" transform="translate(160,18)">
+      <rect width="50" height="44" rx="2" fill="#15243F"/>
+      <text x="25" y="18" text-anchor="middle" font-family="Georgia, serif" font-size="7" fill="#E8C9A0">VARIANTE</text>
+      <text x="25" y="32" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="5" fill="#FFFFFF">FEAR 5</text>
+    </g>
+  <g id="LEGAL">
+    <text x="110.0" y="76.5" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="2.4" fill="#F7F1EE" opacity="0.85">Neto según ficha · chocolatebenevolo.co · R&amp;D Cacao Colab</text>
+  </g>
+
+  </g>
+  <g id="DIELINE_CREASE" fill="none" stroke="#00FFFF" stroke-width="0.3" stroke-dasharray="2 1.5">
+    <line x1="73" y1="0" x2="73" y2="80"/>
+    <line x1="147" y1="0" x2="147" y2="80"/>
+  </g>
+  <g id="BLEED" fill="none" stroke="#00AEEF" stroke-width="0.25" stroke-dasharray="1 1">
+    <rect x="-3" y="-3" width="226" height="86"/>
+  </g>
+  <g id="SAFE" fill="none" stroke="#39B54A" stroke-width="0.25" stroke-dasharray="1.5 1">
+    <rect x="4" y="4" width="212" height="72"/>
+  </g>
+  <g id="DIELINE_CUT" fill="none" stroke="#FF00FF" stroke-width="0.35">
+    <rect x="0" y="0" width="220" height="80"/>
+  </g>
+
+
+</svg>
