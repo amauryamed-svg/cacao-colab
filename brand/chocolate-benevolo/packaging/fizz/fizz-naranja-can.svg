@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="70mm" height="120mm" viewBox="0 0 700 1200"
+  role="img" aria-label="Fizz. CACAO &amp; NARANJA">
+  <title>Fizz. · CACAO &amp; NARANJA</title>
+  <desc>Gaseosa de cacao Benevolo · lata blanca patrón DAYDRINK (sistema, no copia).</desc>
+
+  <g id="ARTWORK">
+    <rect width="700" height="1200" fill="#FFFFFF"/>
+    <!-- soft top wash -->
+    <rect width="700" height="80" fill="#F7F1EE"/>
+
+    <!-- CB lockup -->
+    <g id="LOCKUP_CB" transform="translate(40,36)">
+      <circle cx="22" cy="22" r="20" fill="none" stroke="#15243F" stroke-width="2.5"/>
+      <text x="22" y="28" text-anchor="middle" font-family="Georgia, serif" font-size="18" font-weight="700" fill="#15243F">CB</text>
+      <text x="52" y="18" font-family="Georgia, serif" font-size="14" font-weight="700" fill="#15243F" letter-spacing="1.2">CHOCOLATE</text>
+      <text x="52" y="36" font-family="Georgia, serif" font-size="14" font-weight="700" fill="#F05A28" letter-spacing="1.2">BENEVOLO</text>
+    </g>
+
+    <!-- Wordmark Fizz. -->
+    <g id="WORDMARK">
+      <text x="44" y="148" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="72" font-style="italic" font-weight="900" fill="#C43A18">Fizz.</text>
+      <text x="40" y="144" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="72" font-style="italic" font-weight="900" fill="#15243F">Fizz.</text>
+    </g>
+    <text x="44" y="178" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="16" fill="#F05A28" letter-spacing="2">GASEOSA DE CACAO</text>
+
+  <g id="DUO" transform="translate(20,95)">
+    <!-- scooter / tandem frame -->
+    <g id="VEHICLE" fill="none" stroke="#15243F" stroke-width="3.2" stroke-linecap="round">
+      <circle cx="48" cy="168" r="18"/>
+      <circle cx="148" cy="168" r="18"/>
+      <path d="M48 168 L78 120 L120 120 L148 168"/>
+      <path d="M78 120 L78 100"/>
+      <path d="M120 120 L120 100"/>
+      <path d="M70 100 H130"/>
+    </g>
+    <!-- front rider: cacao pod head -->
+    <g id="CACAO_RIDER">
+      <path d="M78 100 L70 128 L86 128 Z" fill="#F05A28"/>
+      <ellipse cx="78" cy="72" rx="20" ry="28" fill="#F05A28"/>
+      <path d="M66 58 Q78 52 90 58" fill="none" stroke="#3D2314" stroke-width="2"/>
+      <path d="M64 72 Q78 68 92 72" fill="none" stroke="#3D2314" stroke-width="1.6"/>
+      <path d="M64 86 Q78 82 92 86" fill="none" stroke="#3D2314" stroke-width="1.6"/>
+      <circle cx="72" cy="70" r="2.2" fill="#15243F"/>
+      <circle cx="84" cy="70" r="2.2" fill="#15243F"/>
+      <path d="M72 82 Q78 86 84 82" fill="none" stroke="#15243F" stroke-width="2"/>
+      <rect x="70" y="98" width="16" height="28" rx="4" fill="#15243F"/>
+    </g>
+    <!-- rear rider: flavor head -->
+    <g id="FLAVOR_RIDER">
+      <path d="M120 100 L112 128 L128 128 Z" fill="#F05A28"/>
+      <rect x="112" y="98" width="16" height="28" rx="4" fill="#15243F"/>
+
+      <circle cx="132" cy="78" r="24" fill="#F05A28"/>
+      <circle cx="132" cy="78" r="18" fill="#B33A12" opacity="0.2"/>
+      <circle cx="126" cy="74" r="2.2" fill="#15243F"/>
+      <circle cx="138" cy="74" r="2.2" fill="#15243F"/>
+      <path d="M126 86 Q132 91 138 86" fill="none" stroke="#15243F" stroke-width="2"/>
+
+    </g>
+  </g>
+
+
+    <!-- Product pair name -->
+    <text x="350" y="720" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="48" font-weight="800" fill="#15243F" letter-spacing="2">CACAO &amp; NARANJA</text>
+    <rect x="200" y="740" width="300" height="8" rx="4" fill="#F05A28"/>
+
+    <text x="350" y="800" text-anchor="middle" font-family="Georgia, serif" font-size="18" font-style="italic" fill="#15243F">Burbujas de oficio · cacao &amp; cítrico colombiano.</text>
+
+    <text x="350" y="1080" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#15243F">355 ml · 12 FL OZ</text>
+    <text x="350" y="1120" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="16" fill="#F05A28">chocolatebenevolo.co</text>
+  </g>
+
+  <g id="DIELINE_CUT" fill="none" stroke="#FF00FF" stroke-width="1.5" opacity="0.5">
+    <rect x="4" y="4" width="692" height="1192" rx="40"/>
+  </g>
+</svg>

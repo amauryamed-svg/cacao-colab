@@ -1,7 +1,7 @@
 ---
 name: benevolo-packaging-dieline
 description: >-
-  Diseño profesional de empaque Chocolate Benevolo (Bars., Bons., Nibs., Coberturas)
+  Diseño profesional de empaque Chocolate Benevolo (Bars., Bons., Nibs., Coberturas, Fizz.)
   con sistema de marca, dielines planos print-ready y lineamientos tipo The Dieline.
   Usar cuando el usuario pida empaques, etiquetas, displays, brand book de Benevolo,
   planos industriales, dielines, print files, Bons, Nibs o Coberturas.
@@ -30,7 +30,9 @@ No improvises medallas CoEx, stock, checkout fingido ni certificaciones no docum
 | Recurso | Ruta |
 |---------|------|
 | Key values | `brand/chocolate-benevolo/KEY-VALUES.md` |
+| Sistema marca | `brand/chocolate-benevolo/SYSTEM-BRAND.md` |
 | Lean → Pro | `brand/chocolate-benevolo/LEAN-TO-PRO.md` |
+| Fizz. latas | `brand/chocolate-benevolo/packaging/fizz/SYSTEM.md` |
 | Sistema empaque multi-SKU | `brand/chocolate-benevolo/SYSTEM-PACKAGING.md` |
 | Referencias impresas / fotos | `brand/chocolate-benevolo/references/` |
 | Tokens color/tipo | `brand/chocolate-benevolo/type/tokens.json` |
@@ -134,6 +136,9 @@ python3 brand/chocolate-benevolo/packaging/build_lean_pro.py
 
 # Fiel al PDF Bars. · Bons. × 3 rellenos (Caramelo/Dubai/Tiramisú)
 python3 brand/chocolate-benevolo/packaging/build_faithful.py
+
+# Fizz. gaseosa (lata blanca · CACAO & X)
+python3 brand/chocolate-benevolo/packaging/build_fizz_cans.py
 ```
 
 Para mockups fotográficos usa el packshot canónico Bars. y atmósfera Colab — no stock genérico de chocolate.

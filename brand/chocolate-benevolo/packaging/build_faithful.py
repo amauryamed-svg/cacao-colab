@@ -39,22 +39,22 @@ BONS_SKUS = [
     {
         "id": "caramelo",
         "name": "Caramelo",
-        "layers_short": "Caramelo · malvavisco · galleta",
-        "layers_lines": ["Tres capas:", "caramelo, malvavisco", "y galleta"],
+        "nombre_largo": "Bons. con caramelo, malvavisco y galleta",
+        "ingredientes": ["Caramelo", "Malvavisco", "Galleta"],
         "bottom": "Bombón grande · Caramelo · malvavisco · galleta",
     },
     {
         "id": "dubai",
         "name": "Dubai",
-        "layers_short": "Pistacho · crocante · mantequilla",
-        "layers_lines": ["Tres capas:", "pistacho, crocante", "y mantequilla"],
+        "nombre_largo": "Bons. con pistacho, crocante y mantequilla",
+        "ingredientes": ["Pistacho", "Crocante", "Mantequilla"],
         "bottom": "Bombón grande · Dubai · pistacho · crocante",
     },
     {
         "id": "tiramisu",
         "name": "Tiramisú",
-        "layers_short": "Soletilla · café · crema cacao",
-        "layers_lines": ["Bizcocho soletilla,", "café, crema", "y cacao en polvo"],
+        "nombre_largo": "Bons. con soletilla, café y cacao",
+        "ingredientes": ["Bizcocho soletilla", "Café", "Crema", "Cacao en polvo"],
         "bottom": "Bombón grande · Tiramisú · soletilla · café",
     },
 ]
@@ -153,15 +153,20 @@ def draw_extruded_wordmark(im: Image.Image, text: str, xy: tuple[int, int], size
     im.paste(rotated, xy, rotated)
 
 
-def compose_front(art: Image.Image, wordmark: str, flavor: str, layers: str, bottom: str) -> Image.Image:
-    """Single plane: swirls + soft pod + type only on the left (no ghost / no hard card)."""
+def compose_front(
+    art: Image.Image,
+    wordmark: str,
+    flavor: str,
+    ingredientes: list[str],
+    bottom: str,
+) -> Image.Image:
+    """Deit-style: categoría fija + sabor + ingredientes apilados. Arte Bars. limpio."""
     w, h = art.size
     split = int(w * 0.56)
 
     canvas = Image.new("RGB", (w, h), ORANGE)
     paint_swirls(ImageDraw.Draw(canvas), int(w * 0.70), h)
 
-    # Pod first — heavy wipe of Bars. text zones, soft left fade
     right_src = art.crop((int(w * 0.52), 0, w, h)).convert("RGBA")
     rw, rh = right_src.size
     rd = ImageDraw.Draw(right_src)
@@ -172,7 +177,6 @@ def compose_front(art: Image.Image, wordmark: str, flavor: str, layers: str, bot
     ramp = int(rw * 0.28)
     for i in range(ramp):
         ad.line([(i, 0), (i, rh)], fill=int(255 * (i / max(1, ramp))))
-    # also fade bottom into footer
     bramp = int(rh * 0.12)
     for j in range(bramp):
         y = rh - bramp + j
@@ -188,17 +192,25 @@ def compose_front(art: Image.Image, wordmark: str, flavor: str, layers: str, bot
     canvas_rgba.paste(right, (split - int(w * 0.06), 0), right)
     canvas = canvas_rgba.convert("RGB")
 
-    # Type AFTER pod, constrained to left field
-    draw_cb_lockup(canvas, int(w * 0.03), int(h * 0.05), scale=max(0.85, h / 1000))
-    wm_size = int(min(h * 0.30, (split - int(w * 0.08)) * 0.55))
-    draw_extruded_wordmark(canvas, wordmark, (int(w * 0.04), int(h * 0.32)), size=wm_size, angle=-3)
+    draw_cb_lockup(canvas, int(w * 0.03), int(h * 0.04), scale=max(0.8, h / 1050))
 
     d = ImageDraw.Draw(canvas)
-    f_name = sans(max(22, h // 32), bold=True)
-    f_layers = sans(max(18, h // 40))
-    fy = int(h * 0.70)
+    # Categoría fija (como "Bolitas de dátil")
+    f_cat = sans(max(16, h // 48), bold=True)
+    d.text((int(w * 0.04), int(h * 0.22)), "BOMBÓN GRANDE", font=f_cat, fill=CREAM)
+
+    wm_size = int(min(h * 0.28, (split - int(w * 0.08)) * 0.52))
+    draw_extruded_wordmark(canvas, wordmark, (int(w * 0.04), int(h * 0.26)), size=wm_size, angle=-3)
+
+    # Sabor + ingredientes principales (patrón Deit)
+    f_name = sans(max(24, h // 30), bold=True)
+    f_ing = sans(max(18, h // 42))
+    fy = int(h * 0.58)
     d.text((int(w * 0.04), fy), flavor.upper(), font=f_name, fill=WHITE)
-    d.text((int(w * 0.04), fy + max(28, h // 28)), layers, font=f_layers, fill=CREAM)
+    iy = fy + max(32, h // 26)
+    for ing in ingredientes:
+        d.text((int(w * 0.04), iy), f"·  {ing}", font=f_ing, fill=CREAM)
+        iy += max(26, h // 36)
 
     band_y = int(h * 0.90)
     d.rectangle((0, band_y, w, h), fill=COCOA)
@@ -214,14 +226,14 @@ def compose_front(art: Image.Image, wordmark: str, flavor: str, layers: str, bot
 def make_line_front(
     art: Image.Image,
     wordmark: str,
-    sub1: str,
-    sub2: str,
+    flavor: str,
+    ingredientes: list[str],
     bottom: str,
     out_path: Path,
     size: tuple[int, int] | None = None,
-    wm_size_ratio: float = 0.42,  # kept for call-site compat
+    wm_size_ratio: float = 0.42,
 ):
-    base = compose_front(art, wordmark, sub1, sub2, bottom)
+    base = compose_front(art, wordmark, flavor, ingredientes, bottom)
     if size:
         base = base.resize(size, Image.Resampling.LANCZOS)
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -318,9 +330,14 @@ def main():
         l0 = ASSETS / f"bons-{sid}-l0.jpg"
         back = ASSETS / f"bons-{sid}-back.jpg"
 
-        make_line_front(art, "Bons.", sku["name"], sku["layers_short"], sku["bottom"], front)
+        make_line_front(art, "Bons.", sku["name"], sku["ingredientes"], sku["bottom"], front)
         make_l0_sticker(Image.open(front), l0)
-        navy_back_panel(back, "Bons.", sku["name"], sku["layers_lines"])
+        navy_back_panel(
+            back,
+            "Bons.",
+            sku["name"],
+            ["Ingredientes principales:"] + sku["ingredientes"],
+        )
 
         write_both(Path(f"bons/bons-{sid}-front.jpg"), binary=front)
         write_both(Path(f"bons/bons-{sid}-l0.jpg"), binary=l0)
@@ -350,12 +367,12 @@ def main():
 
     nibs = ASSETS / "nibs-front-faithful.jpg"
     cob = ASSETS / "coberturas-front-faithful.jpg"
-    make_line_front(art, "Nibs.", "100% cacao", "Tostados · origen seleccionado", "Nibs de origen · Neto 150–250 g", nibs)
+    make_line_front(art, "Nibs.", "Tostados", ["100% cacao", "Origen seleccionado"], "Nibs de origen · Neto 150–250 g", nibs)
     make_line_front(
         art,
         "Coberturas.",
-        "70% cacao",
-        "1 kg · obrador · temperar",
+        "70%",
+        ["1 kg", "Obrador", "Temperar"],
         "Cobertura profesional · temperar",
         cob,
         size=(1800, 900),
@@ -371,15 +388,17 @@ def main():
     if (ASSETS / "bars-fear5-front-art.jpg").exists():
         write_both(Path("shared/assets/bars-fear5-front-art.jpg"), binary=ASSETS / "bars-fear5-front-art.jpg")
 
-    readme = """# Bons. · composición limpia (sin sobreposición)
+    readme = """# Bons. · familia Deit-style · arte Bars.
 
-Izquierda reconstruida · derecha mazorca del PDF Bars. · footer único.
+Categoría fija: **Bombón grande**. Flex: sabor + ingredientes principales.
 
-| SKU | Relleno |
-|-----|---------|
-| Caramelo | caramelo · malvavisco · galleta |
-| Dubai | pistacho · crocante · mantequilla |
-| Tiramisú | soletilla · café · crema · cacao |
+| SKU | Nombre largo | Ingredientes |
+|-----|--------------|--------------|
+| Caramelo | Bons. con caramelo, malvavisco y galleta | Caramelo · Malvavisco · Galleta |
+| Dubai | Bons. con pistacho, crocante y mantequilla | Pistacho · Crocante · Mantequilla |
+| Tiramisú | Bons. con soletilla, café y cacao | Soletilla · Café · Crema · Cacao |
+
+Ver `FAMILY-FLAVORS.md`.
 
 ```bash
 python3 brand/chocolate-benevolo/packaging/build_faithful.py

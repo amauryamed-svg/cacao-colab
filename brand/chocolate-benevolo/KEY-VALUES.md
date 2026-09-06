@@ -12,7 +12,7 @@
 | Marca | Chocolate Benevolo |
 | Monograma | CB |
 | Producto ancla | **Bars.** (con punto) |
-| Líneas profesionales | **Bons.** · **Nibs.** · **Coberturas.** |
+| Líneas profesionales | **Bons.** · **Nibs.** · **Coberturas.** · **Fizz.** |
 | Tipografía producto | Bodoni Ultra Black Italic |
 | Categoría Bars. | Chocolate de leche con marañón · sugar free |
 | Formato Bars. | Neto 80 g |
@@ -47,19 +47,31 @@
 | Línea | Audiencia | Job to be done | Firma visual |
 |-------|-----------|----------------|--------------|
 | **Bars.** | Retail deseo | Antojo 80 g con origen legible | Swirls + mazorca + deboss Bars. |
-| **Bons.** | Pastelería / regalo | **Bombón grande** · molde mazorca · 3 rellenos | Tapa naranja pod-ridge + descriptor de relleno |
+| **Bons.** | Pastelería / regalo | **Bombón grande** · molde mazorca · 3 rellenos | Tapa naranja pod-ridge · patrón Deit (ingredientes) |
 | **Nibs.** | Cocina / snack | Grano tostado | Header orange / body navy |
 | **Coberturas.** | Chef / obrador | Temperar · % hero | Franja orange + % coral |
+| **Fizz.** | Retail / on-trade | **Gaseosa de cacao** · lata 355 ml | Lata blanca · dúo · `CACAO & X` (patrón DAYDRINK) |
 
-### Bons. — SKUs de relleno (flex)
+### Bons. — SKUs de relleno (flex · patrón Deit)
 
-Bombones grandes (pieza individual). Locked: wordmark `Bons.` · molde mazorca · lenguaje Bars. PDF. Flex: **solo el relleno**.
+Bombones grandes. Locked: `Bons.` · mazorca. Flex: sabor + ingredientes principales.
 
-| SKU | Nombre en empaque | Relleno (3 capas) |
-|-----|-------------------|-------------------|
-| `bons-caramelo` | **Bons. Caramelo** | Caramelo · malvavisco · galleta |
-| `bons-dubai` | **Bons. Dubai** | Pistacho · crocante · mantequilla |
-| `bons-tiramisu` | **Bons. Tiramisú** | Bizcocho soletilla · café · crema · cacao en polvo |
+| SKU | Nombre largo | Ingredientes principales |
+|-----|--------------|--------------------------|
+| `bons-caramelo` | Bons. con caramelo, malvavisco y galleta | Caramelo · Malvavisco · Galleta |
+| `bons-dubai` | Bons. con pistacho, crocante y mantequilla | Pistacho · Crocante · Mantequilla |
+| `bons-tiramisu` | Bons. con soletilla, café y cacao | Soletilla · Café · Crema · Cacao |
+
+### Fizz. — SKUs gaseosa (flex · patrón DAYDRINK)
+
+| SKU | Producto en lata | Dúo |
+|-----|------------------|-----|
+| `fizz-limon` | CACAO & LIMÓN | Mazorca + limón |
+| `fizz-naranja` | CACAO & NARANJA | Mazorca + naranja |
+| `fizz-maracuya` | CACAO & MARACUYÁ | Mazorca + maracuyá |
+| `fizz-jamaica` | CACAO & JAMAICA | Mazorca + jamaica |
+
+Sistema unificado: `SYSTEM-BRAND.md`.
 
 ### Escalera de empaque
 Ver `LEAN-TO-PRO.md`: **L0 sticker → L1 sleeve → L2 carton → L3 display**.
@@ -76,7 +88,8 @@ Ver `LEAN-TO-PRO.md`: **L0 sticker → L1 sleeve → L2 carton → L3 display**.
 - Contacto +57 310 222 7848 · chocolatebenevolo.co
 - Cacao colombiano de origen · FEAR 5 (sello)
 - Bons. · bombón grande · molde mazorca · chocolatería profesional
-- Rellenos: Caramelo (caramelo · malvavisco · galleta) · Dubai (pistacho · crocante · mantequilla) · Tiramisú (soletilla · café · crema · cacao)
+- Rellenos: Caramelo · Dubai · Tiramisú (ingredientes en empaque)
+- Fizz. · gaseosa de cacao · CACAO & LIMÓN / NARANJA / MARACUYÁ / JAMAICA · 355 ml
 
 ### Prohibidos
 - Medallas CoEx inventadas
@@ -88,7 +101,7 @@ Ver `LEAN-TO-PRO.md`: **L0 sticker → L1 sleeve → L2 carton → L3 display**.
 
 ## 5. Empaque
 
-- Sistema: `SYSTEM-PACKAGING.md` · `LEAN-TO-PRO.md`
+- Sistema: `SYSTEM-BRAND.md` · `SYSTEM-PACKAGING.md` · `LEAN-TO-PRO.md`
 - Referencias físicas: `references/`
 - Skill: `.cursor/skills/benevolo-packaging-dieline/`
 - Calidad: [The Dieline](https://thedieline.com/)
