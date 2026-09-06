@@ -70,3 +70,4 @@ supabase/.temp
 chrome-headless-shell/
 apps/video/**/out/
 apps/video/**/*.mp4
+Downloads/

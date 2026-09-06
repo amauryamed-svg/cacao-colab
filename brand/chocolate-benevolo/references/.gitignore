@@ -1,0 +1,14 @@
+# Originales pesados (HEIC convert / PDF renders full-res)
+IMG_*.jpg
+!IMG_*_web.jpg
+*_2036.jpg
+*_59bc.jpg
+af3fbb8f*
+c718d09a*.png
+!c718d09a*_web.jpg
+1fd83388*.jpg
+!1fd83388*_web.jpg
+2e076d03*.jpg
+bars_benevolo_pdf_p1.png
+*_caja_blanca_web.jpg
+*_bars_packshot_web.jpg
