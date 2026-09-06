@@ -52,11 +52,15 @@
 - Wordmark: `logos/bars-wordmark.svg`
 - Categoría: duja de marañón sugar free · 80 g
 
-### 3.2 Bons. (chocolatería profesional)
-- Piezas / bombones Benevolo
-- Caja o manga con etiqueta frontal + faja
+### 3.2 Bons. (bombón grande · 3 rellenos)
+- Bombones grandes Benevolo · molde mazorca (pod-ridge)
+- Caja blanca L0 / sleeve L1 / carton L2 (arte fiel a Bars. PDF)
 - Claim: *chocolatería profesional · oficio snackable*
-- Flex: sabor (FEAR 5 · marañón · dark) vía acento + descriptor
+- Flex (una variable): relleno — **Caramelo** · **Dubai** · **Tiramisú**
+  - Caramelo = caramelo + malvavisco + galleta
+  - Dubai = pistacho + crocante + mantequilla
+  - Tiramisú = bizcocho soletilla + café + crema + cacao en polvo
+- Archivos: `packaging/bons/bons-*-caramelo|dubai|tiramisu-*`
 
 ### 3.3 Nibs.
 - Nibs tostados para cocina y mesa

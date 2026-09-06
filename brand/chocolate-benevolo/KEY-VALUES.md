@@ -47,9 +47,19 @@
 | Línea | Audiencia | Job to be done | Firma visual |
 |-------|-----------|----------------|--------------|
 | **Bars.** | Retail deseo | Antojo 80 g con origen legible | Swirls + mazorca + deboss Bars. |
-| **Bons.** | Pastelería / regalo | Pieza individual · molde mazorca | Tapa naranja pod-ridge |
+| **Bons.** | Pastelería / regalo | **Bombón grande** · molde mazorca · 3 rellenos | Tapa naranja pod-ridge + descriptor de relleno |
 | **Nibs.** | Cocina / snack | Grano tostado | Header orange / body navy |
 | **Coberturas.** | Chef / obrador | Temperar · % hero | Franja orange + % coral |
+
+### Bons. — SKUs de relleno (flex)
+
+Bombones grandes (pieza individual). Locked: wordmark `Bons.` · molde mazorca · lenguaje Bars. PDF. Flex: **solo el relleno**.
+
+| SKU | Nombre en empaque | Relleno (3 capas) |
+|-----|-------------------|-------------------|
+| `bons-caramelo` | **Bons. Caramelo** | Caramelo · malvavisco · galleta |
+| `bons-dubai` | **Bons. Dubai** | Pistacho · crocante · mantequilla |
+| `bons-tiramisu` | **Bons. Tiramisú** | Bizcocho soletilla · café · crema · cacao en polvo |
 
 ### Escalera de empaque
 Ver `LEAN-TO-PRO.md`: **L0 sticker → L1 sleeve → L2 carton → L3 display**.
@@ -65,7 +75,8 @@ Ver `LEAN-TO-PRO.md`: **L0 sticker → L1 sleeve → L2 carton → L3 display**.
 - Elaborado por Chocolate Zurych SAS · NSA-0011242-2021
 - Contacto +57 310 222 7848 · chocolatebenevolo.co
 - Cacao colombiano de origen · FEAR 5 (sello)
-- Bons. · chocolatería profesional · molde mazorca
+- Bons. · bombón grande · molde mazorca · chocolatería profesional
+- Rellenos: Caramelo (caramelo · malvavisco · galleta) · Dubai (pistacho · crocante · mantequilla) · Tiramisú (soletilla · café · crema · cacao)
 
 ### Prohibidos
 - Medallas CoEx inventadas

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
   width="50mm" height="45mm" viewBox="0 0 500 450"
-  role="img" aria-label="Bons. Caramelo L0 · default">
-  <title>Bons. Caramelo L0 · default</title>
+  role="img" aria-label="Bons. Caramelo · dorso navy PDF">
+  <title>Bons. Caramelo · dorso navy PDF</title>
   <desc>Arte derivado del cartón impreso Bars Benevolo.pdf. Capas guides ocultas.</desc>
   <g id="layer-guides" display="none">
     <rect id="bleed" x="-30" y="-30" width="560" height="510" fill="none" stroke="#00AEEF" stroke-width="2" stroke-dasharray="8 6"/>
@@ -11,6 +11,6 @@
   </g>
   <g id="layer-artwork">
     <image x="0" y="0" width="500" height="450" preserveAspectRatio="xMidYMid slice"
-      href="bons-caramelo-l0.jpg" xlink:href="bons-caramelo-l0.jpg"/>
+      href="bons-caramelo-back.jpg" xlink:href="bons-caramelo-back.jpg"/>
   </g>
 </svg>

@@ -1,43 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="70mm" height="50mm"
-  viewBox="0 0 70 50" role="img" aria-label="Benevolo Bons. · etiqueta frente V0">
-  <title>Benevolo Bons. · etiqueta frente V0</title>
-  <desc>Chocolate Benevolo · plano V0 diseño. Sustituir DIELINE por archivo de fábrica antes de troquel.</desc>
-  <g id="ARTWORK">
-    <rect x="-3" y="-3" width="76" height="56" fill="#F05A28"/>
-  <g id="MOTIF_SWIRLS" fill="none" stroke="#15243F" stroke-width="2.2" opacity="0.4">
-    <path d="M -5,35.0 C 17.5,10.0 38.5,55.00000000000001 73.5,17.5"/>
-    <path d="M -8,42.5 C 21.0,17.5 49.0,57.49999999999999 77.0,27.500000000000004"/>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="90mm" height="50mm" viewBox="0 0 900 500"
+  role="img" aria-label="Bons. Caramelo · frente">
+  <title>Bons. Caramelo · frente</title>
+  <desc>Arte derivado del cartón impreso Bars Benevolo.pdf. Capas guides ocultas.</desc>
+  <g id="layer-guides" display="none">
+    <rect id="bleed" x="-30" y="-30" width="960" height="560" fill="none" stroke="#00AEEF" stroke-width="2" stroke-dasharray="8 6"/>
+    <rect id="trim" x="0" y="0" width="900" height="500" fill="none" stroke="#FF00AA" stroke-width="2"/>
+    <rect id="safe" x="30" y="30" width="840" height="440" fill="none" stroke="#00FF88" stroke-width="1" stroke-dasharray="4 4"/>
   </g>
-
-  <g id="LOCKUP_CB" transform="translate(4,4) scale(0.85)">
-    <circle cx="8" cy="8" r="7.2" fill="none" stroke="#FFFFFF" stroke-width="0.7"/>
-    <text x="8" y="10.2" text-anchor="middle" font-family="Georgia, serif" font-size="6.5" font-weight="700" fill="#FFFFFF">CB</text>
-    <text x="20" y="7" font-family="Georgia, serif" font-size="4.2" font-weight="700" fill="#FFFFFF" letter-spacing="0.8">CHOCOLATE</text>
-    <text x="20" y="12.2" font-family="Georgia, serif" font-size="4.2" font-weight="700" fill="#E8C9A0" letter-spacing="0.8">BENEVOLO</text>
+  <g id="layer-artwork">
+    <image x="0" y="0" width="900" height="500" preserveAspectRatio="xMidYMid slice"
+      href="bons-caramelo-front.jpg" xlink:href="bons-caramelo-front.jpg"/>
   </g>
-
-  <g id="WORDMARK">
-    <text x="6.8" y="30.8" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="16" font-style="italic" font-weight="900" fill="#C43A18">Bons.</text>
-    <text x="6" y="30" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="16" font-style="italic" font-weight="900" fill="#FFFFFF">Bons.</text>
-  </g>
-
-    <text x="6" y="38" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="3.2" fill="#F7F1EE" letter-spacing="0.6">CHOCOLATERÍA PROFESIONAL</text>
-    <text x="6" y="43" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="2.8" fill="#E8C9A0">FEAR 5 · pieza de oficio</text>
-  <g id="LEGAL">
-    <text x="35.0" y="46.5" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="2.4" fill="#F7F1EE" opacity="0.85">chocolatebenevolo.co · preventa</text>
-  </g>
-
-  </g>
-  <g id="BLEED" fill="none" stroke="#00AEEF" stroke-width="0.25" stroke-dasharray="1 1">
-    <rect x="-3" y="-3" width="76" height="56"/>
-  </g>
-  <g id="SAFE" fill="none" stroke="#39B54A" stroke-width="0.25" stroke-dasharray="1.5 1">
-    <rect x="3" y="3" width="64" height="44"/>
-  </g>
-  <g id="DIELINE_CUT" fill="none" stroke="#FF00FF" stroke-width="0.35">
-    <rect x="0" y="0" width="70" height="50"/>
-  </g>
-
-
 </svg>

@@ -57,7 +57,7 @@ Duja de Marañón sugar free. FEAR 5 de Quara. Se lee igual en español y en ita
 | Línea | Audiencia | Job to be done | Firma visual |
 |---|---|---|---|
 | **Bars.** | Retail deseo | Antojo 80 g con origen legible | Swirls + mazorca + deboss `Bars.` |
-| **Bons.** | Pastelería / regalo | Pieza individual · molde mazorca | Tapa naranja pod-ridge |
+| **Bons.** | Pastelería / regalo | Bombón grande · molde mazorca · 3 rellenos | Tapa naranja pod-ridge + descriptor relleno |
 | **Nibs.** | Cocina / snack | Grano tostado | Header orange / body navy |
 | **Coberturas.** | Chef / obrador | Temperar · % hero | Franja orange + % coral |
 
@@ -120,7 +120,7 @@ Duja de Marañón sugar free. FEAR 5 de Quara. Se lee igual en español y en ita
 - **Bars.** — cartón pro ya troquelado: frente naranja + swirls navy + mazorca + sello FEAR 5 + monograma CB; dorso navy con *"Bars. By Benévolo · Buen Chocolate Indulgente."*; barra con `Bars.` debossed.
   - Copy legal impreso (OCR verbatim, `references/bars_benevolo_pdf_text.txt`): *"Contiene: Chocolate de leche FEAR5 60% Cacao Trinitario con fermentación controlada. Leche en polvo avellanada y marañón salado. Elaborado por: Chocolate Zurych SAS · NSA-0011242-2021. Contacto: +573102227848."*
   - Dominio impreso: `ChocolaBenevolo.co` / `ChocolateBenevolo.co` (dos variantes en el arte — confirmar cuál es la canónica).
-- **Bons.** — bombón dark físico con tapa textura "pod-ridge" naranja/coral jaspeado (firma visual de la línea).
+- **Bons.** — bombón grande dark con tapa textura "pod-ridge" naranja/coral jaspeado. Tres rellenos: **Caramelo** (caramelo · malvavisco · galleta), **Dubai** (pistacho · crocante · mantequilla), **Tiramisú** (bizcocho soletilla · café · crema · cacao en polvo).
 - **Caja lean (prototipo)** — tuck-top blanca ~50×50×45 mm, notch semicircular, sin arte propio → candidata a etiqueta L0.
 
 ### 9.2 Escalera Lean → Pro
@@ -159,7 +159,7 @@ Duja de Marañón sugar free. FEAR 5 de Quara. Se lee igual en español y en ita
 | Línea | Flex |
 |---|---|
 | Bars. | Ya cerrado (80 g · leche 60 % · marañón) |
-| Bons. | Sabor/relleno · acento de tapa (naranja pod) · uds por caja |
+| Bons. | Relleno: Caramelo / Dubai / Tiramisú · uds por caja |
 | Nibs. | Origen · neto 150–250 g |
 | Coberturas. | % · endulzante · 1 kg |
 
@@ -219,7 +219,7 @@ Un SKU hero por display (nunca collage de 6 productos en primer plano). Mismo lo
 - Elaborado por Chocolate Zurych SAS · NSA-0011242-2021
 - Contacto +57 310 222 7848 · chocolatebenevolo.co
 - Cacao colombiano de origen · FEAR 5 (sello)
-- Bons. · chocolatería profesional · molde mazorca
+- Bons. · bombón grande · molde mazorca · Caramelo / Dubai / Tiramisú
 - Preventa / preorden (Bars. hoy)
 
 **Prohibido**

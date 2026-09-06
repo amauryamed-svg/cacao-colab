@@ -1,50 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="60mm" height="80mm" viewBox="0 0 60 80" role="img" aria-label="Nibs. L0 · sticker lean">
-  <title>Nibs. L0 · sticker lean</title>
-  <desc>Chocolate Benevolo · plano lean→pro. Capas DIELINE non-printing. V0 diseño.</desc>
-  <g id="ARTWORK">
-    <rect x="-2" y="-2" width="64" height="84" fill="#15243F"/>
-    <rect x="-2" y="-2" width="64" height="28" fill="#F05A28"/>
-  <g id="MOTIF_SWIRLS" fill="none" stroke="#15243F" stroke-width="2.4" opacity="0.45" stroke-linecap="round">
-    <path d="M -6,21.0 C 12.0,4.2 30.0,29.400000000000002 64.80000000000001,7.840000000000001"/>
-    <path d="M -4,26.599999999999998 C 16.8,9.799999999999999 39.0,31.360000000000003 66.0,14.0"/>
-    <path d="M 3.0,30.800000000000004 C 24.0,15.400000000000002 45.0,29.400000000000002 63.0,19.599999999999998"/>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="70mm" height="40mm" viewBox="0 0 700 400"
+  role="img" aria-label="Nibs. · fiel Bars.">
+  <title>Nibs. · fiel Bars.</title>
+  <desc>Arte derivado del cartón impreso Bars Benevolo.pdf. Capas guides ocultas.</desc>
+  <g id="layer-guides" display="none">
+    <rect id="bleed" x="-30" y="-30" width="760" height="460" fill="none" stroke="#00AEEF" stroke-width="2" stroke-dasharray="8 6"/>
+    <rect id="trim" x="0" y="0" width="700" height="400" fill="none" stroke="#FF00AA" stroke-width="2"/>
+    <rect id="safe" x="30" y="30" width="640" height="340" fill="none" stroke="#00FF88" stroke-width="1" stroke-dasharray="4 4"/>
   </g>
-
-  <g id="LOCKUP_CB" transform="translate(3,3) scale(0.75)">
-    <circle cx="7" cy="7" r="6.6" fill="none" stroke="#FFFFFF" stroke-width="0.65"/>
-    <text x="7" y="9.3" text-anchor="middle" font-family="Georgia, serif" font-size="6.2" font-weight="700" fill="#FFFFFF">CB</text>
-    <text x="17" y="5.8" font-family="Georgia, serif" font-size="3.3" font-weight="700" fill="#FFFFFF" letter-spacing="0.55">CHOCOLATE</text>
-    <text x="17" y="10.5" font-family="Georgia, serif" font-size="3.3" font-weight="700" fill="#E8C9A0" letter-spacing="0.55">BENEVOLO</text>
+  <g id="layer-artwork">
+    <image x="0" y="0" width="700" height="400" preserveAspectRatio="xMidYMid slice"
+      href="nibs-front-faithful.jpg" xlink:href="nibs-front-faithful.jpg"/>
   </g>
-
-  <g id="WORDMARK">
-    <text x="3.7" y="22.7" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="12" font-style="italic" font-weight="900" fill="#C43A18">Nibs.</text>
-    <text x="3" y="22" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="12" font-style="italic" font-weight="900" fill="#FFFFFF">Nibs.</text>
-  </g>
-
-    <text x="4" y="40" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="3.2" fill="#E8C9A0" letter-spacing="0.5">100 % CACAO</text>
-    <text x="4" y="48" font-family="Georgia, serif" font-size="4" fill="#F7F1EE">Tostados</text>
-    <text x="4" y="58" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="2.6" fill="#F7F1EE">Origen seleccionado</text>
-    <text x="4" y="68" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="2.4" fill="#E8C9A0">150–250 g</text>
-  <g id="SEAL_ORIGIN" transform="translate(48,68) scale(0.7)">
-    <circle r="9.5" fill="#15243F" stroke="#FFFFFF" stroke-width="0.55"/>
-    <circle r="8.2" fill="none" stroke="#FF6A3D" stroke-width="0.35"/>
-    <text y="-3.2" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="1.7" fill="#F7F1EE" letter-spacing="0.3">CACAO COLOMBIANO</text>
-    <text y="1.6" text-anchor="middle" font-family="Georgia, serif" font-size="3.6" font-weight="700" fill="#FFFFFF">FEAR 5</text>
-    <text y="5.2" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="1.7" fill="#E8C9A0" letter-spacing="0.3">DE ORIGEN</text>
-  </g>
-
-  </g>
-  <g id="BLEED" fill="none" stroke="#00AEEF" stroke-width="0.2" stroke-dasharray="0.8 0.8">
-    <rect x="-2" y="-2" width="64" height="84"/>
-  </g>
-  <g id="SAFE" fill="none" stroke="#39B54A" stroke-width="0.2" stroke-dasharray="1.2 0.8">
-    <rect x="3" y="3" width="54" height="74"/>
-  </g>
-  <g id="DIELINE_CUT" fill="none" stroke="#FF00FF" stroke-width="0.3">
-    <rect x="0" y="0" width="60" height="80" rx="1.2"/>
-  </g>
-
-
 </svg>

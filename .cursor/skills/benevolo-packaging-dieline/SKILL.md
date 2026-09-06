@@ -131,6 +131,9 @@ python3 brand/chocolate-benevolo/packaging/build_flats.py
 
 # Lean → Pro (Bons L0–L2 + Nibs/Coberturas L0 stickers)
 python3 brand/chocolate-benevolo/packaging/build_lean_pro.py
+
+# Fiel al PDF Bars. · Bons. × 3 rellenos (Caramelo/Dubai/Tiramisú)
+python3 brand/chocolate-benevolo/packaging/build_faithful.py
 ```
 
 Para mockups fotográficos usa el packshot canónico Bars. y atmósfera Colab — no stock genérico de chocolate.
