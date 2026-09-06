@@ -24,7 +24,7 @@ SKUS = [
         "pair": "LIMÓN",
         "accent": "#C6D600",
         "accent_dark": "#7A8A00",
-        "tagline": "Como un half &amp; half... pero con cacao en vez de té.",
+        "tagline": "Como un half and half... pero con cacao en vez de té.",
         "partner": "lemon",
     },
     {
