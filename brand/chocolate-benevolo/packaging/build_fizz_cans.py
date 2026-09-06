@@ -160,13 +160,13 @@ def can_front(sku: dict) -> str:
     </g>
     <text x="44" y="178" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="16" fill="{ORANGE}" letter-spacing="2">GASEOSA DE CACAO</text>
 
-{duo_illustration(sku["partner"], accent, sku["accent_dark"])}
+{duo_illustration(sku["partner"], accent, sku["accent_dark"]).replace('transform="translate(20,95)"', 'transform="translate(20,185)"')}
 
     <!-- Product pair name -->
-    <text x="350" y="720" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="48" font-weight="800" fill="{NAVY}" letter-spacing="2">CACAO &amp; {pair}</text>
-    <rect x="200" y="740" width="300" height="8" rx="4" fill="{accent}"/>
+    <text x="350" y="780" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="48" font-weight="800" fill="{NAVY}" letter-spacing="2">CACAO &amp; {pair}</text>
+    <rect x="200" y="800" width="300" height="8" rx="4" fill="{accent}"/>
 
-    <text x="350" y="800" text-anchor="middle" font-family="Georgia, serif" font-size="18" font-style="italic" fill="{NAVY}">{html.escape(sku["tagline"])}</text>
+    <text x="350" y="860" text-anchor="middle" font-family="Georgia, serif" font-size="18" font-style="italic" fill="{NAVY}">{html.escape(sku["tagline"])}</text>
 
     <text x="350" y="1080" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="{NAVY}">355 ml · 12 FL OZ</text>
     <text x="350" y="1120" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="16" fill="{ORANGE}">chocolatebenevolo.co</text>
