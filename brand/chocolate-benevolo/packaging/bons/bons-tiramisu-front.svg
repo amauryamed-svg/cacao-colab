@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
   width="90mm" height="50mm" viewBox="0 0 900 500"
-  role="img" aria-label="Bons. Tiramisú · frente fiel">
-  <title>Bons. Tiramisú · frente fiel</title>
+  role="img" aria-label="Bons. Tiramisú frente">
+  <title>Bons. Tiramisú frente</title>
   <desc>Arte derivado del cartón impreso Bars Benevolo.pdf. Capas guides ocultas.</desc>
   <g id="layer-guides" display="none">
     <rect id="bleed" x="-30" y="-30" width="960" height="560" fill="none" stroke="#00AEEF" stroke-width="2" stroke-dasharray="8 6"/>

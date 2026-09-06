@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
   width="50mm" height="45mm" viewBox="0 0 500 450"
-  role="img" aria-label="Bons. Tiramisú · dorso navy PDF">
-  <title>Bons. Tiramisú · dorso navy PDF</title>
+  role="img" aria-label="Bons. Tiramisú dorso">
+  <title>Bons. Tiramisú dorso</title>
   <desc>Arte derivado del cartón impreso Bars Benevolo.pdf. Capas guides ocultas.</desc>
   <g id="layer-guides" display="none">
     <rect id="bleed" x="-30" y="-30" width="560" height="510" fill="none" stroke="#00AEEF" stroke-width="2" stroke-dasharray="8 6"/>

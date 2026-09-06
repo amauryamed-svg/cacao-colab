@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
   width="70mm" height="40mm" viewBox="0 0 700 400"
-  role="img" aria-label="Nibs. · fiel Bars.">
-  <title>Nibs. · fiel Bars.</title>
+  role="img" aria-label="Nibs.">
+  <title>Nibs.</title>
   <desc>Arte derivado del cartón impreso Bars Benevolo.pdf. Capas guides ocultas.</desc>
   <g id="layer-guides" display="none">
     <rect id="bleed" x="-30" y="-30" width="760" height="460" fill="none" stroke="#00AEEF" stroke-width="2" stroke-dasharray="8 6"/>
