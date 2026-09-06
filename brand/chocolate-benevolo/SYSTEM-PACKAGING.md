@@ -1,6 +1,6 @@
 # Chocolate Benevolo · Sistema de empaque multi-SKU
 
-> Brand system para **Bars. · Bons. · Nibs. · Coberturas. · Fizz.**
+> Brand system para **Bars. · Bons. · Nibs. · Coberturas. · Brus.**
 > Vista unificada: `SYSTEM-BRAND.md`.  
 > Criterio de calidad: [The Dieline](https://thedieline.com/) (packaging systems, retail & POS, print craft).  
 > Skill agente: `.cursor/skills/benevolo-packaging-dieline/SKILL.md`
@@ -40,7 +40,7 @@
 | Nibs. pouch face (pro) | 120 × 180 mm | 3 mm | 5 mm |
 | Cobertura block (pro) | 140 × 90 mm | 3 mm | 4 mm |
 | Display counter L3 | 300 × 200 mm | 3 mm | 5 mm |
-| Fizz. can face | 70 × 120 mm (frente lata) | 2 mm | 3 mm |
+| Brus. can face | 70 × 120 mm (frente lata) | 2 mm | 3 mm |
 
 > **V0** = planos de diseño en repo. **V1** = dieline oficial del convertidor. No mandar V0 a troquel sin validar fábrica.  
 > Escalera completa: `LEAN-TO-PRO.md`.
@@ -74,11 +74,11 @@
 - Hero tipográfico del `%` (70 · 85 · 100) + endulzante
 - Ficha técnica en dorso (origen, nodos, uso: temperar / barra / cobertura)
 
-### 3.5 Fizz. (gaseosa de cacao)
+### 3.5 Brus. (gaseosa de cacao)
 - Lata 355 ml · fondo blanco (patrón DAYDRINK)
 - Producto tipográfico `CACAO & {par}` · dúo ilustrado mazorca + sabor
 - Flex: par (Limón · Naranja · Maracuyá · Jamaica) + acento
-- Planos: `packaging/fizz/fizz-*-can.svg`
+- Planos: `packaging/brus/brus-*-can.svg`
 
 ---
 

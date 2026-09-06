@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="70mm" height="120mm" viewBox="0 0 700 1200"
-  role="img" aria-label="Fizz. CACAO &amp; LIMÓN">
-  <title>Fizz. · CACAO &amp; LIMÓN</title>
+  role="img" aria-label="Brus. CACAO &amp; NARANJA">
+  <title>Brus. · CACAO &amp; NARANJA</title>
   <desc>Gaseosa de cacao Benevolo · lata blanca patrón DAYDRINK (sistema, no copia).</desc>
 
   <g id="ARTWORK">
@@ -17,14 +17,14 @@
       <text x="52" y="36" font-family="Georgia, serif" font-size="14" font-weight="700" fill="#F05A28" letter-spacing="1.2">BENEVOLO</text>
     </g>
 
-    <!-- Wordmark Fizz. -->
+    <!-- Wordmark Brus. -->
     <g id="WORDMARK">
-      <text x="44" y="148" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="72" font-style="italic" font-weight="900" fill="#C43A18">Fizz.</text>
-      <text x="40" y="144" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="72" font-style="italic" font-weight="900" fill="#15243F">Fizz.</text>
+      <text x="44" y="148" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="72" font-style="italic" font-weight="900" fill="#C43A18">Brus.</text>
+      <text x="40" y="144" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="72" font-style="italic" font-weight="900" fill="#15243F">Brus.</text>
     </g>
     <text x="44" y="178" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="16" fill="#F05A28" letter-spacing="2">GASEOSA DE CACAO</text>
 
-  <g id="DUO" transform="translate(20,95)">
+  <g id="DUO" transform="translate(20,185)">
     <!-- scooter / tandem frame -->
     <g id="VEHICLE" fill="none" stroke="#15243F" stroke-width="3.2" stroke-linecap="round">
       <circle cx="48" cy="168" r="18"/>
@@ -48,25 +48,24 @@
     </g>
     <!-- rear rider: flavor head -->
     <g id="FLAVOR_RIDER">
-      <path d="M120 100 L112 128 L128 128 Z" fill="#C6D600"/>
+      <path d="M120 100 L112 128 L128 128 Z" fill="#F05A28"/>
       <rect x="112" y="98" width="16" height="28" rx="4" fill="#15243F"/>
 
-      <ellipse cx="132" cy="78" rx="22" ry="28" fill="#C6D600"/>
-      <ellipse cx="132" cy="78" rx="16" ry="22" fill="#7A8A00" opacity="0.25"/>
-      <path d="M132 48 C138 52 140 58 138 62" fill="none" stroke="#7A8A00" stroke-width="3"/>
+      <circle cx="132" cy="78" r="24" fill="#F05A28"/>
+      <circle cx="132" cy="78" r="18" fill="#B33A12" opacity="0.2"/>
       <circle cx="126" cy="74" r="2.2" fill="#15243F"/>
       <circle cx="138" cy="74" r="2.2" fill="#15243F"/>
-      <path d="M126 86 Q132 90 138 86" fill="none" stroke="#15243F" stroke-width="2"/>
+      <path d="M126 86 Q132 91 138 86" fill="none" stroke="#15243F" stroke-width="2"/>
 
     </g>
   </g>
 
 
     <!-- Product pair name -->
-    <text x="350" y="720" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="48" font-weight="800" fill="#15243F" letter-spacing="2">CACAO &amp; LIMÓN</text>
-    <rect x="200" y="740" width="300" height="8" rx="4" fill="#C6D600"/>
+    <text x="350" y="780" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="48" font-weight="800" fill="#15243F" letter-spacing="2">CACAO &amp; NARANJA</text>
+    <rect x="200" y="800" width="300" height="8" rx="4" fill="#F05A28"/>
 
-    <text x="350" y="800" text-anchor="middle" font-family="Georgia, serif" font-size="18" font-style="italic" fill="#15243F">Como un half &amp;amp; half... pero con cacao en vez de té.</text>
+    <text x="350" y="860" text-anchor="middle" font-family="Georgia, serif" font-size="18" font-style="italic" fill="#15243F">Burbujas de oficio · cacao &amp; cítrico colombiano.</text>
 
     <text x="350" y="1080" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#15243F">355 ml · 12 FL OZ</text>
     <text x="350" y="1120" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="16" fill="#F05A28">chocolatebenevolo.co</text>
