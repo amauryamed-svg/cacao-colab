@@ -70,9 +70,10 @@ def wordmark(name: str, x, y, size=22, fill=WHITE, shadow=True):
 '''
 
 
-def legal(w, h, line: str):
+def legal(w, h, line: str, fill=CREAM):
+    """Footer URL/legal. Pass `fill` when panel background is cream/light (e.g. Coberturas dorso)."""
     return f'''  <g id="LEGAL">
-    <text x="{w/2}" y="{h-3.5}" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="2.4" fill="{CREAM}" opacity="0.85">{line}</text>
+    <text x="{w/2}" y="{h-3.5}" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="2.4" fill="{fill}" opacity="0.9">{line}</text>
   </g>
 '''
 
@@ -185,7 +186,7 @@ def cobertura_back():
       <text x="8" y="58">Claims: solo ficha real del lote — sin medallas inventadas</text>
     </g>
     <text x="8" y="78" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="3" fill="{NAVY}">CHOCOLATE BENEVOLO · R&amp;D Cacao Colab</text>
-{legal(w, h, "chocolatebenevolo.co")}
+{legal(w, h, "chocolatebenevolo.co", NAVY)}
   </g>
 {guides(w, h, 3, 4)}
 '''

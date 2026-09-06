@@ -29,9 +29,10 @@
     <text x="3" y="27" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="14" font-style="italic" font-weight="900" fill="#FFFFFF">Bons.</text>
   </g>
 
-    <text x="3" y="33.5" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="2.4" fill="#F7F1EE" letter-spacing="0.45">CHOCOLATERÍA PROFESIONAL</text>
-    <text x="3" y="37.5" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="2.1" fill="#E8C9A0">Molde mazorca · 1 pieza</text>
-  <g id="SEAL_ORIGIN" transform="translate(40,34) scale(0.72)">
+    <!-- Copy stays left of FEAR 5 seal (~x&lt;32) to avoid overlap on 50×45 sticker -->
+    <text x="3" y="33.2" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="2.2" fill="#F7F1EE" letter-spacing="0.25">CHOCOLATERÍA</text>
+    <text x="3" y="37.2" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="2.0" fill="#E8C9A0">Molde mazorca · 1 ud</text>
+  <g id="SEAL_ORIGIN" transform="translate(41,34.5) scale(0.62)">
     <circle r="9.5" fill="#15243F" stroke="#FFFFFF" stroke-width="0.55"/>
     <circle r="8.2" fill="none" stroke="#FF6A3D" stroke-width="0.35"/>
     <text y="-3.2" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="1.7" fill="#F7F1EE" letter-spacing="0.3">CACAO COLOMBIANO</text>
