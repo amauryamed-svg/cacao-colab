@@ -6,8 +6,8 @@
   <defs>
     <linearGradient id="wash" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#C41E6A"/>
-      <stop offset="42%" stop-color="#E85A9A"/>
-      <stop offset="72%" stop-color="#F7D0E2"/>
+      <stop offset="38%" stop-color="#E85A9A"/>
+      <stop offset="68%" stop-color="#F7D0E2"/>
       <stop offset="100%" stop-color="#FFFFFF"/>
     </linearGradient>
   </defs>
@@ -15,7 +15,6 @@
   <g id="ARTWORK">
     <rect width="700" height="1200" fill="url(#wash)"/>
 
-    <!-- CB lockup -->
     <g id="LOCKUP_CB" transform="translate(36,32)">
       <circle cx="20" cy="20" r="18" fill="none" stroke="#FFFFFF" stroke-width="2.4"/>
       <text x="20" y="26" text-anchor="middle" font-family="Georgia, serif" font-size="16" font-weight="700" fill="#FFFFFF">CB</text>
@@ -23,29 +22,59 @@
       <text x="48" y="34" font-family="Georgia, serif" font-size="13" font-weight="700" fill="#F7F1EE" letter-spacing="1.2">BENEVOLO</text>
     </g>
 
-    <!-- Wordmark Brew. -->
     <g id="WORDMARK">
-      <text x="40" y="130" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="78" font-style="italic" font-weight="900" fill="#C43A18" opacity="0.55">Brew.</text>
+      <text x="40" y="130" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="78" font-style="italic" font-weight="900" fill="#C43A18" opacity="0.5">Brew.</text>
       <text x="36" y="126" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="78" font-style="italic" font-weight="900" fill="#FFFFFF">Brew.</text>
     </g>
     <text x="40" y="162" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="15" fill="#FFFFFF" letter-spacing="3">SPARKLING CACAO</text>
 
 
-    <g id="FRUIT" transform="translate(160,320)">
-      <g transform="translate(200,160)">
-        <circle r="18" fill="#7A1242"/>
-        <ellipse cx="0" cy="-48" rx="18" ry="42" fill="#C41E6A"/>
-        <ellipse cx="42" cy="-18" rx="18" ry="42" fill="#E85A9A" transform="rotate(60)"/>
-        <ellipse cx="42" cy="30" rx="18" ry="42" fill="#C41E6A" transform="rotate(120)"/>
-        <ellipse cx="0" cy="48" rx="18" ry="42" fill="#E85A9A" transform="rotate(180)"/>
-        <ellipse cx="-42" cy="30" rx="18" ry="42" fill="#C41E6A" transform="rotate(240)"/>
-        <ellipse cx="-42" cy="-18" rx="18" ry="42" fill="#E85A9A" transform="rotate(300)"/>
+    <g id="FRUIT" transform="translate(110,270)">
+      
+      <g transform="translate(110,70) rotate(-48) scale(1.45)">
+        <path d="M0 0 Q28 -18 52 0 Q28 20 0 0 Z" fill="#3D7A2C"/>
+        <path d="M0 0 Q28 -10 48 0" fill="none" stroke="#1E5014" stroke-width="1.5"/>
+        <path d="M12 -4 Q22 -12 30 -2" fill="none" stroke="#5FAF44" stroke-width="1" opacity="0.7"/>
       </g>
-      <ellipse cx="380" cy="240" rx="26" ry="38" fill="#F05A28"/>
-      <path d="M368 222 Q380 216 392 222" fill="none" stroke="#3D2314" stroke-width="2"/>
+      
+      <g transform="translate(380,90) rotate(32) scale(1.25)">
+        <path d="M0 0 Q28 -18 52 0 Q28 20 0 0 Z" fill="#3D7A2C"/>
+        <path d="M0 0 Q28 -10 48 0" fill="none" stroke="#1E5014" stroke-width="1.5"/>
+        <path d="M12 -4 Q22 -12 30 -2" fill="none" stroke="#5FAF44" stroke-width="1" opacity="0.7"/>
+      </g>
+      <ellipse cx="115" cy="230" rx="20" ry="30" fill="#E85A9A" transform="rotate(-25 115 230)"/>
+      <ellipse cx="420" cy="210" rx="18" ry="26" fill="#C41E6A" transform="rotate(22 420 210)"/>
+      <g transform="translate(260,175)">
+        <ellipse cx="0" cy="-66" rx="30" ry="72" fill="#C41E6A"/>
+        <ellipse cx="57" cy="-33" rx="30" ry="72" fill="#E85A9A" transform="rotate(60)"/>
+        <ellipse cx="57" cy="33" rx="30" ry="72" fill="#C41E6A" transform="rotate(120)"/>
+        <ellipse cx="0" cy="66" rx="30" ry="72" fill="#E85A9A" transform="rotate(180)"/>
+        <ellipse cx="-57" cy="33" rx="30" ry="72" fill="#C41E6A" transform="rotate(240)"/>
+        <ellipse cx="-57" cy="-33" rx="30" ry="72" fill="#E85A9A" transform="rotate(300)"/>
+        <circle r="30" fill="#7A1242"/>
+        <circle r="17" fill="#C41E6A"/>
+        <circle cx="-5" cy="-5" r="7" fill="#FFFFFF" opacity="0.28"/>
+        <g fill="#C41E6A">
+          <circle cx="0" cy="-12" r="3.2"/><circle cx="9" cy="5" r="2.8"/><circle cx="-9" cy="5" r="2.8"/>
+          <circle cx="0" cy="10" r="2.4"/>
+        </g>
+      </g>
+      
+      <g transform="translate(480,285) scale(0.88)">
+        <ellipse cx="0" cy="8" rx="34" ry="48" fill="#F05A28"/>
+        <ellipse cx="-10" cy="0" rx="14" ry="34" fill="#FF8A55" opacity="0.35"/>
+        <path d="M0 -38 Q-28 -10 -30 10 Q-28 34 0 52" fill="none" stroke="#3D2314" stroke-width="2.2" opacity="0.75"/>
+        <path d="M0 -38 Q-14 -8 -14 12 Q-12 36 0 52" fill="none" stroke="#3D2314" stroke-width="1.6" opacity="0.55"/>
+        <path d="M0 -38 Q14 -8 14 12 Q12 36 0 52" fill="none" stroke="#3D2314" stroke-width="1.6" opacity="0.55"/>
+        <path d="M0 -38 Q28 -10 30 10 Q28 34 0 52" fill="none" stroke="#3D2314" stroke-width="2.2" opacity="0.75"/>
+        <rect x="-5" y="-52" width="10" height="16" rx="4" fill="#154010"/>
+        <path d="M0 -48 Q22 -62 28 -48 Q14 -40 0 -48 Z" fill="#3D7A2C"/>
+        <path d="M0 -48 Q-20 -64 -26 -50 Q-12 -40 0 -48 Z" fill="#4E8C38"/>
+        <ellipse cx="-12" cy="-8" rx="8" ry="5" fill="#FFFFFF" opacity="0.28"/>
+      </g>
+      <ellipse cx="270" cy="380" rx="200" ry="16" fill="#15243F" opacity="0.07"/>
     </g>
 
-    <!-- Flavor hero (Waterloo stacked name) -->
     <text x="40" y="760" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="58" font-weight="900" fill="#15243F" letter-spacing="1">CACAO</text>
     <text x="40" y="820" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="58" font-weight="900" fill="#15243F" letter-spacing="1">&amp; JAMAICA</text>
     <text x="40" y="860" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="16" fill="#15243F" opacity="0.7" letter-spacing="1">NATURALLY FLAVORED · GASEOSA DE CACAO</text>
@@ -53,19 +82,19 @@
 
 
       <g transform="translate(95,980)">
-        <rect width="150" height="90" rx="16" fill="#FFFFFF" fill-opacity="0.92" stroke="#15243F" stroke-width="2"/>
+        <rect width="150" height="90" rx="16" fill="#FFFFFF" fill-opacity="0.94" stroke="#15243F" stroke-width="2"/>
         <text x="75" y="42" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="36" font-weight="900" fill="#15243F">0</text>
         <text x="75" y="70" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#15243F" letter-spacing="2">CAL</text>
       </g>
 
       <g transform="translate(265,980)">
-        <rect width="150" height="90" rx="16" fill="#FFFFFF" fill-opacity="0.92" stroke="#15243F" stroke-width="2"/>
+        <rect width="150" height="90" rx="16" fill="#FFFFFF" fill-opacity="0.94" stroke="#15243F" stroke-width="2"/>
         <text x="75" y="42" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="36" font-weight="900" fill="#15243F">0</text>
         <text x="75" y="70" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#15243F" letter-spacing="2">AZÚCAR</text>
       </g>
 
       <g transform="translate(435,980)">
-        <rect width="150" height="90" rx="16" fill="#FFFFFF" fill-opacity="0.92" stroke="#15243F" stroke-width="2"/>
+        <rect width="150" height="90" rx="16" fill="#FFFFFF" fill-opacity="0.94" stroke="#15243F" stroke-width="2"/>
         <text x="75" y="42" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="36" font-weight="900" fill="#15243F">0</text>
         <text x="75" y="70" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#15243F" letter-spacing="2">SODIO</text>
       </g>
@@ -74,7 +103,7 @@
     <text x="350" y="1155" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="14" fill="#F05A28">chocolatebenevolo.co · FEAR 5</text>
   </g>
 
-  <g id="DIELINE_CUT" fill="none" stroke="#FF00FF" stroke-width="1.5" opacity="0.45">
+  <g id="DIELINE_CUT" fill="none" stroke="#FF00FF" stroke-width="1.5" opacity="0.4">
     <rect x="4" y="4" width="692" height="1192" rx="40"/>
   </g>
 </svg>

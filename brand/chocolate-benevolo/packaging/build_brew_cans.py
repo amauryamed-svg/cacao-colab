@@ -3,7 +3,7 @@
 
 Referencia estructural (Waterloo Sparkling Water):
 - degradado de sabor → blanco
-- ilustración de fruta (dúo)
+- ilustración de fruta (dúo) con oficio
 - nombre de sabor hero
 - claims nutricionales 0 / 0 / 0
 - categoría sparkling + pack 355 ml
@@ -26,8 +26,10 @@ CREAM = "#F7F1EE"
 SHADOW = "#C43A18"
 WHITE = "#FFFFFF"
 COCOA = "#3D2314"
+LEAF = "#3D7A2C"
+LEAF2 = "#4E8C38"
+STEM = "#154010"
 
-# Waterloo-style SKUs: flavor gradient + fruit duo + 0/0/0
 SKUS = [
     {
         "id": "frambuesa-nectarina",
@@ -102,113 +104,207 @@ SKUS = [
 ]
 
 
+def cacao_pod(cx: float, cy: float, scale: float = 1.0) -> str:
+    return f"""
+      <g transform="translate({cx},{cy}) scale({scale})">
+        <ellipse cx="0" cy="8" rx="34" ry="48" fill="{ORANGE}"/>
+        <ellipse cx="-10" cy="0" rx="14" ry="34" fill="#FF8A55" opacity="0.35"/>
+        <path d="M0 -38 Q-28 -10 -30 10 Q-28 34 0 52" fill="none" stroke="{COCOA}" stroke-width="2.2" opacity="0.75"/>
+        <path d="M0 -38 Q-14 -8 -14 12 Q-12 36 0 52" fill="none" stroke="{COCOA}" stroke-width="1.6" opacity="0.55"/>
+        <path d="M0 -38 Q14 -8 14 12 Q12 36 0 52" fill="none" stroke="{COCOA}" stroke-width="1.6" opacity="0.55"/>
+        <path d="M0 -38 Q28 -10 30 10 Q28 34 0 52" fill="none" stroke="{COCOA}" stroke-width="2.2" opacity="0.75"/>
+        <rect x="-5" y="-52" width="10" height="16" rx="4" fill="{STEM}"/>
+        <path d="M0 -48 Q22 -62 28 -48 Q14 -40 0 -48 Z" fill="{LEAF}"/>
+        <path d="M0 -48 Q-20 -64 -26 -50 Q-12 -40 0 -48 Z" fill="{LEAF2}"/>
+        <ellipse cx="-12" cy="-8" rx="8" ry="5" fill="{WHITE}" opacity="0.28"/>
+      </g>"""
+
+
+def leaf(cx: float, cy: float, rot: float = -30, scale: float = 1.0) -> str:
+    return f"""
+      <g transform="translate({cx},{cy}) rotate({rot}) scale({scale})">
+        <path d="M0 0 Q28 -18 52 0 Q28 20 0 0 Z" fill="{LEAF}"/>
+        <path d="M0 0 Q28 -10 48 0" fill="none" stroke="#1E5014" stroke-width="1.5"/>
+        <path d="M12 -4 Q22 -12 30 -2" fill="none" stroke="#5FAF44" stroke-width="1" opacity="0.7"/>
+      </g>"""
+
+
+def raspberry(cx: float, cy: float, r: float, a: str, am: str, ad: str) -> str:
+    spots = [
+        (0, -0.55), (0.48, -0.28), (-0.48, -0.28),
+        (0.48, 0.28), (-0.48, 0.28), (0, 0.55),
+        (0, 0), (0.78, 0), (-0.78, 0),
+        (0.28, -0.78), (-0.28, -0.78), (0.28, 0.78), (-0.28, 0.78),
+        (0.65, -0.55), (-0.65, -0.55), (0.65, 0.55), (-0.65, 0.55),
+    ]
+    beads = []
+    for i, (dx, dy) in enumerate(spots):
+        fill = am if i % 3 == 0 else (ad if i % 2 == 0 else a)
+        rr = r * (0.26 if i else 0.3)
+        bx = cx + dx * r
+        by = cy + dy * r
+        beads.append(f'<circle cx="{bx}" cy="{by}" r="{rr}" fill="{fill}"/>')
+        beads.append(
+            f'<circle cx="{bx - rr * 0.25}" cy="{by - rr * 0.3}" r="{rr * 0.28}" fill="{WHITE}" opacity="0.32"/>'
+        )
+    return f"""
+      <g>
+        <circle cx="{cx}" cy="{cy}" r="{r * 0.9}" fill="{a}"/>
+        {''.join(beads)}
+        <path d="M{cx - r * 0.15} {cy - r * 0.95} Q{cx} {cy - r * 1.32} {cx + r * 0.35} {cy - r * 1.02}" fill="{ad}"/>
+        <path d="M{cx} {cy - r * 1.02} Q{cx + r * 0.55} {cy - r * 1.38} {cx + r * 0.72} {cy - r * 1.02} Q{cx + r * 0.35} {cy - r * 0.92} {cx} {cy - r * 1.02} Z" fill="{LEAF}"/>
+        <path d="M{cx} {cy - r * 1.02} Q{cx - r * 0.5} {cy - r * 1.32} {cx - r * 0.58} {cy - r * 0.98} Q{cx - r * 0.2} {cy - r * 0.92} {cx} {cy - r * 1.02} Z" fill="{LEAF2}"/>
+      </g>"""
+
+
+def nectarine_wedge(cx: float, cy: float, nect: str, flesh: str, ad: str) -> str:
+    return f"""
+      <g transform="translate({cx},{cy})">
+        <path d="M0 0 A135 135 0 0 1 -155 -155 L-22 -22 Z" fill="{nect}"/>
+        <path d="M-10 -10 A105 105 0 0 1 -132 -132 L-22 -22 Z" fill="{flesh}"/>
+        <ellipse cx="-30" cy="-30" rx="24" ry="30" fill="#C47A3A" opacity="0.55" transform="rotate(-40 -30 -30)"/>
+        <ellipse cx="-30" cy="-30" rx="14" ry="18" fill="#8A4A18" opacity="0.72" transform="rotate(-40 -30 -30)"/>
+        <path d="M-75 -95 Q-52 -72 -42 -48" fill="none" stroke="{WHITE}" stroke-width="7" stroke-linecap="round" opacity="0.42"/>
+        <path d="M-115 -62 Q-92 -42 -72 -30" fill="none" stroke="{WHITE}" stroke-width="3.5" stroke-linecap="round" opacity="0.28"/>
+        <path d="M0 0 L-22 -22" stroke="{ad}" stroke-width="2.5" opacity="0.4"/>
+      </g>"""
+
+
 def fruit_art(sku: dict) -> str:
-    """Flat fruit/cacao illustration — Waterloo spirit (produce hero), Benevolo IP."""
     fruit = sku["fruit"]
     a, am, ad = sku["accent"], sku["accent_mid"], sku["accent_dark"]
     nect, flesh = sku["nectarine"], sku["nectarine_flesh"]
 
     if fruit == "raspberry_nectarine":
-        return f'''
-    <g id="FRUIT" transform="translate(90,320)">
-      <!-- nectarine wedge -->
-      <path d="M320 180 A120 120 0 0 1 180 40 L250 180 Z" fill="{nect}"/>
-      <path d="M320 180 A120 120 0 0 1 180 40 L250 180 Z" fill="{flesh}" opacity="0.45"/>
-      <path d="M250 180 L320 180" stroke="{ad}" stroke-width="3"/>
-      <ellipse cx="285" cy="110" rx="18" ry="8" fill="{WHITE}" opacity="0.35"/>
-      <!-- raspberries cluster -->
-      <g transform="translate(40,40)">
-        <circle cx="70" cy="90" r="38" fill="{a}"/>
-        <circle cx="48" cy="78" r="14" fill="{am}"/>
-        <circle cx="78" cy="70" r="14" fill="{am}"/>
-        <circle cx="96" cy="92" r="14" fill="{ad}" opacity="0.55"/>
-        <circle cx="58" cy="104" r="13" fill="{ad}" opacity="0.45"/>
-        <circle cx="82" cy="108" r="12" fill="{am}"/>
-        <path d="M70 52 Q78 40 88 48" fill="{ad}"/>
-      </g>
-      <g transform="translate(20,150)">
-        <circle cx="60" cy="70" r="32" fill="{a}"/>
-        <circle cx="44" cy="60" r="11" fill="{am}"/>
-        <circle cx="70" cy="54" r="11" fill="{am}"/>
-        <circle cx="80" cy="74" r="11" fill="{ad}" opacity="0.5"/>
-        <circle cx="52" cy="82" r="10" fill="{am}"/>
-      </g>
-      <!-- tiny cacao pod cue -->
-      <ellipse cx="420" cy="220" rx="28" ry="40" fill="{ORANGE}"/>
-      <path d="M406 200 Q420 194 434 200" fill="none" stroke="{COCOA}" stroke-width="2"/>
-      <path d="M404 220 Q420 214 436 220" fill="none" stroke="{COCOA}" stroke-width="1.6"/>
-      <path d="M406 240 Q420 234 434 240" fill="none" stroke="{COCOA}" stroke-width="1.6"/>
-    </g>'''
+        return f"""
+    <g id="FRUIT" transform="translate(55,270)">
+      {leaf(420, 70, -18, 1.45)}
+      {leaf(470, 110, 28, 1.15)}
+      {nectarine_wedge(430, 230, nect, flesh, ad)}
+      {raspberry(155, 145, 82, a, am, ad)}
+      {raspberry(95, 265, 60, a, am, ad)}
+      {raspberry(245, 275, 50, am, a, ad)}
+      {cacao_pod(520, 295, 0.9)}
+      <ellipse cx="290" cy="380" rx="210" ry="18" fill="{NAVY}" opacity="0.07"/>
+    </g>"""
 
     if fruit == "lemon":
-        return f'''
-    <g id="FRUIT" transform="translate(140,340)">
-      <ellipse cx="220" cy="160" rx="110" ry="130" fill="{a}"/>
-      <ellipse cx="220" cy="160" rx="90" ry="108" fill="{am}" opacity="0.35"/>
-      <path d="M220 40 C250 70 255 100 245 120" fill="none" stroke="{ad}" stroke-width="6"/>
-      <ellipse cx="160" cy="200" rx="70" ry="90" fill="{a}" opacity="0.9"/>
-      <ellipse cx="380" cy="210" rx="26" ry="38" fill="{ORANGE}"/>
-      <path d="M368 192 Q380 186 392 192" fill="none" stroke="{COCOA}" stroke-width="2"/>
-    </g>'''
+        return f"""
+    <g id="FRUIT" transform="translate(95,290)">
+      {leaf(370, 55, 12, 1.35)}
+      {leaf(305, 40, -42, 1.05)}
+      <ellipse cx="225" cy="175" rx="122" ry="148" fill="{a}"/>
+      <ellipse cx="190" cy="140" rx="52" ry="72" fill="{am}" opacity="0.42"/>
+      <path d="M225 32 C262 58 275 98 262 130" fill="none" stroke="{ad}" stroke-width="5.5" stroke-linecap="round"/>
+      <ellipse cx="225" cy="28" rx="11" ry="7" fill="{ad}"/>
+      <g fill="{ad}" opacity="0.22">
+        <circle cx="160" cy="120" r="2.6"/><circle cx="255" cy="95" r="2.2"/><circle cx="290" cy="175" r="2.6"/>
+        <circle cx="170" cy="205" r="2.2"/><circle cx="215" cy="245" r="2.6"/><circle cx="270" cy="225" r="2"/>
+        <circle cx="145" cy="165" r="2"/><circle cx="240" cy="150" r="2.4"/>
+      </g>
+      <g transform="translate(35,215)">
+        <ellipse cx="0" cy="0" rx="82" ry="94" fill="{a}"/>
+        <ellipse cx="0" cy="0" rx="66" ry="76" fill="{flesh}"/>
+        <ellipse cx="0" cy="0" rx="15" ry="17" fill="{am}"/>
+        <path d="M0 0 L0 -74 M0 0 L62 -30 M0 0 L62 30 M0 0 L0 74 M0 0 L-62 30 M0 0 L-62 -30" stroke="{a}" stroke-width="3.2"/>
+        <path d="M0 0 L42 -58 M0 0 L42 58" stroke="{a}" stroke-width="2" opacity="0.55"/>
+      </g>
+      {cacao_pod(450, 265, 0.85)}
+      <ellipse cx="250" cy="380" rx="190" ry="16" fill="{NAVY}" opacity="0.07"/>
+    </g>"""
 
     if fruit == "orange":
-        return f'''
-    <g id="FRUIT" transform="translate(120,330)">
-      <circle cx="240" cy="170" r="120" fill="{a}"/>
-      <circle cx="240" cy="170" r="95" fill="{am}" opacity="0.25"/>
-      <path d="M240 50 L240 290 M120 170 L360 170" stroke="{ad}" stroke-width="2" opacity="0.35"/>
-      <path d="M155 95 L325 245 M325 95 L155 245" stroke="{ad}" stroke-width="2" opacity="0.25"/>
-      <ellipse cx="400" cy="230" rx="26" ry="38" fill="{ORANGE}"/>
-      <path d="M388 212 Q400 206 412 212" fill="none" stroke="{COCOA}" stroke-width="2"/>
-    </g>'''
+        return f"""
+    <g id="FRUIT" transform="translate(85,280)">
+      {leaf(370, 50, 8, 1.4)}
+      {leaf(415, 95, 38, 1.05)}
+      <circle cx="235" cy="175" r="132" fill="{a}"/>
+      <circle cx="200" cy="130" r="58" fill="{am}" opacity="0.35"/>
+      <g fill="{ad}" opacity="0.2">
+        <circle cx="170" cy="105" r="3.2"/><circle cx="270" cy="85" r="2.6"/><circle cx="310" cy="160" r="3"/>
+        <circle cx="175" cy="205" r="2.6"/><circle cx="245" cy="240" r="3.2"/><circle cx="290" cy="215" r="2.2"/>
+        <circle cx="145" cy="160" r="2.4"/><circle cx="225" cy="135" r="2.8"/><circle cx="260" cy="175" r="2"/>
+      </g>
+      <g transform="translate(55,220) rotate(-22)">
+        <path d="M0 0 A95 95 0 0 1 95 -12 L0 0 Z" fill="{a}"/>
+        <path d="M10 -5 A72 72 0 0 1 76 -10 L0 0 Z" fill="{flesh}"/>
+        <path d="M0 0 L42 -42 M0 0 L74 -6 M0 0 L58 22" stroke="{a}" stroke-width="2.8"/>
+      </g>
+      <path d="M235 45 Q252 30 262 45" fill="{ad}"/>
+      {cacao_pod(455, 275, 0.85)}
+      <ellipse cx="250" cy="380" rx="200" ry="16" fill="{NAVY}" opacity="0.07"/>
+    </g>"""
 
     if fruit == "passion":
-        return f'''
-    <g id="FRUIT" transform="translate(150,340)">
-      <ellipse cx="220" cy="170" rx="100" ry="120" fill="{a}"/>
-      <ellipse cx="220" cy="185" rx="55" ry="60" fill="{ad}"/>
-      <circle cx="200" cy="175" r="6" fill="{flesh}"/>
-      <circle cx="230" cy="190" r="5" fill="{flesh}"/>
-      <circle cx="245" cy="170" r="5" fill="{flesh}"/>
-      <ellipse cx="380" cy="220" rx="26" ry="38" fill="{ORANGE}"/>
-      <path d="M368 202 Q380 196 392 202" fill="none" stroke="{COCOA}" stroke-width="2"/>
-    </g>'''
-
-    # jamaica
-    return f'''
-    <g id="FRUIT" transform="translate(160,320)">
-      <g transform="translate(200,160)">
-        <circle r="18" fill="{ad}"/>
-        <ellipse cx="0" cy="-48" rx="18" ry="42" fill="{a}"/>
-        <ellipse cx="42" cy="-18" rx="18" ry="42" fill="{am}" transform="rotate(60)"/>
-        <ellipse cx="42" cy="30" rx="18" ry="42" fill="{a}" transform="rotate(120)"/>
-        <ellipse cx="0" cy="48" rx="18" ry="42" fill="{am}" transform="rotate(180)"/>
-        <ellipse cx="-42" cy="30" rx="18" ry="42" fill="{a}" transform="rotate(240)"/>
-        <ellipse cx="-42" cy="-18" rx="18" ry="42" fill="{am}" transform="rotate(300)"/>
+        return f"""
+    <g id="FRUIT" transform="translate(100,290)">
+      {leaf(390, 70, -12, 1.25)}
+      <ellipse cx="205" cy="155" rx="108" ry="128" fill="{a}"/>
+      <ellipse cx="178" cy="120" rx="42" ry="58" fill="{am}" opacity="0.42"/>
+      <ellipse cx="205" cy="38" rx="13" ry="9" fill="{ad}"/>
+      <g transform="translate(55,220)">
+        <ellipse cx="0" cy="0" rx="92" ry="104" fill="{a}"/>
+        <ellipse cx="0" cy="0" rx="74" ry="84" fill="{ad}"/>
+        <ellipse cx="0" cy="0" rx="24" ry="28" fill="{flesh}" opacity="0.88"/>
+        <g fill="{flesh}">
+          <ellipse cx="-30" cy="-22" rx="8" ry="5.5" transform="rotate(-28 -30 -22)"/>
+          <ellipse cx="12" cy="-38" rx="8" ry="5.5" transform="rotate(18 12 -38)"/>
+          <ellipse cx="36" cy="-12" rx="8" ry="5.5" transform="rotate(42 36 -12)"/>
+          <ellipse cx="28" cy="28" rx="8" ry="5.5" transform="rotate(-8 28 28)"/>
+          <ellipse cx="-18" cy="34" rx="8" ry="5.5" transform="rotate(16 -18 34)"/>
+          <ellipse cx="-38" cy="6" rx="8" ry="5.5" transform="rotate(-38 -38 6)"/>
+          <ellipse cx="6" cy="6" rx="7" ry="4.5"/>
+          <ellipse cx="-6" cy="-16" rx="7" ry="4.5" transform="rotate(48 -6 -16)"/>
+          <ellipse cx="20" cy="-22" rx="6.5" ry="4" transform="rotate(-15 20 -22)"/>
+        </g>
+        <g fill="{COCOA}">
+          <circle cx="-30" cy="-22" r="2.4"/><circle cx="12" cy="-38" r="2.2"/><circle cx="36" cy="-12" r="2.4"/>
+          <circle cx="28" cy="28" r="2.2"/><circle cx="-18" cy="34" r="2.4"/><circle cx="-38" cy="6" r="2.2"/>
+          <circle cx="6" cy="6" r="2"/><circle cx="-6" cy="-16" r="2"/><circle cx="20" cy="-22" r="1.8"/>
+        </g>
       </g>
-      <ellipse cx="380" cy="240" rx="26" ry="38" fill="{ORANGE}"/>
-      <path d="M368 222 Q380 216 392 222" fill="none" stroke="{COCOA}" stroke-width="2"/>
-    </g>'''
+      {cacao_pod(445, 265, 0.85)}
+      <ellipse cx="240" cy="380" rx="190" ry="16" fill="{NAVY}" opacity="0.07"/>
+    </g>"""
+
+    return f"""
+    <g id="FRUIT" transform="translate(110,270)">
+      {leaf(110, 70, -48, 1.45)}
+      {leaf(380, 90, 32, 1.25)}
+      <ellipse cx="115" cy="230" rx="20" ry="30" fill="{am}" transform="rotate(-25 115 230)"/>
+      <ellipse cx="420" cy="210" rx="18" ry="26" fill="{a}" transform="rotate(22 420 210)"/>
+      <g transform="translate(260,175)">
+        <ellipse cx="0" cy="-66" rx="30" ry="72" fill="{a}"/>
+        <ellipse cx="57" cy="-33" rx="30" ry="72" fill="{am}" transform="rotate(60)"/>
+        <ellipse cx="57" cy="33" rx="30" ry="72" fill="{a}" transform="rotate(120)"/>
+        <ellipse cx="0" cy="66" rx="30" ry="72" fill="{am}" transform="rotate(180)"/>
+        <ellipse cx="-57" cy="33" rx="30" ry="72" fill="{a}" transform="rotate(240)"/>
+        <ellipse cx="-57" cy="-33" rx="30" ry="72" fill="{am}" transform="rotate(300)"/>
+        <circle r="30" fill="{ad}"/>
+        <circle r="17" fill="{a}"/>
+        <circle cx="-5" cy="-5" r="7" fill="{WHITE}" opacity="0.28"/>
+        <g fill="{nect}">
+          <circle cx="0" cy="-12" r="3.2"/><circle cx="9" cy="5" r="2.8"/><circle cx="-9" cy="5" r="2.8"/>
+          <circle cx="0" cy="10" r="2.4"/>
+        </g>
+      </g>
+      {cacao_pod(480, 285, 0.88)}
+      <ellipse cx="270" cy="380" rx="200" ry="16" fill="{NAVY}" opacity="0.07"/>
+    </g>"""
 
 
 def nutrition_strip() -> str:
-    """0 / 0 / 0 callouts — Waterloo layout language."""
-    cells = [
-        ("0", "CAL"),
-        ("0", "AZÚCAR"),
-        ("0", "SODIO"),
-    ]
+    cells = [("0", "CAL"), ("0", "AZÚCAR"), ("0", "SODIO")]
     parts = []
-    x0 = 95
     for i, (n, lab) in enumerate(cells):
-        x = x0 + i * 170
+        x = 95 + i * 170
         parts.append(
-            f'''
+            f"""
       <g transform="translate({x},980)">
-        <rect width="150" height="90" rx="16" fill="{WHITE}" fill-opacity="0.92" stroke="{NAVY}" stroke-width="2"/>
+        <rect width="150" height="90" rx="16" fill="{WHITE}" fill-opacity="0.94" stroke="{NAVY}" stroke-width="2"/>
         <text x="75" y="42" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="36" font-weight="900" fill="{NAVY}">{n}</text>
         <text x="75" y="70" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="{NAVY}" letter-spacing="2">{lab}</text>
-      </g>'''
+      </g>"""
         )
     return "\n".join(parts)
 
@@ -216,8 +312,9 @@ def nutrition_strip() -> str:
 def can_front(sku: dict) -> str:
     w, h = 700, 1200
     a, am, al = sku["accent"], sku["accent_mid"], sku["accent_light"]
-    f1, f2 = html.escape(sku["flavor_line1"]), html.escape(sku["flavor_line2"])
-    return f'''<?xml version="1.0" encoding="UTF-8"?>
+    f1 = html.escape(sku["flavor_line1"])
+    f2 = html.escape(sku["flavor_line2"])
+    return f"""<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="70mm" height="120mm" viewBox="0 0 {w} {h}"
   role="img" aria-label="Brew. {html.escape(sku['pair_label'])}">
   <title>Brew. · {html.escape(sku["pair_label"])}</title>
@@ -225,8 +322,8 @@ def can_front(sku: dict) -> str:
   <defs>
     <linearGradient id="wash" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="{a}"/>
-      <stop offset="42%" stop-color="{am}"/>
-      <stop offset="72%" stop-color="{al}"/>
+      <stop offset="38%" stop-color="{am}"/>
+      <stop offset="68%" stop-color="{al}"/>
       <stop offset="100%" stop-color="{WHITE}"/>
     </linearGradient>
   </defs>
@@ -234,7 +331,6 @@ def can_front(sku: dict) -> str:
   <g id="ARTWORK">
     <rect width="{w}" height="{h}" fill="url(#wash)"/>
 
-    <!-- CB lockup -->
     <g id="LOCKUP_CB" transform="translate(36,32)">
       <circle cx="20" cy="20" r="18" fill="none" stroke="{WHITE}" stroke-width="2.4"/>
       <text x="20" y="26" text-anchor="middle" font-family="Georgia, serif" font-size="16" font-weight="700" fill="{WHITE}">CB</text>
@@ -242,16 +338,14 @@ def can_front(sku: dict) -> str:
       <text x="48" y="34" font-family="Georgia, serif" font-size="13" font-weight="700" fill="{CREAM}" letter-spacing="1.2">BENEVOLO</text>
     </g>
 
-    <!-- Wordmark Brew. -->
     <g id="WORDMARK">
-      <text x="40" y="130" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="78" font-style="italic" font-weight="900" fill="{SHADOW}" opacity="0.55">Brew.</text>
+      <text x="40" y="130" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="78" font-style="italic" font-weight="900" fill="{SHADOW}" opacity="0.5">Brew.</text>
       <text x="36" y="126" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="78" font-style="italic" font-weight="900" fill="{WHITE}">Brew.</text>
     </g>
     <text x="40" y="162" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="15" fill="{WHITE}" letter-spacing="3">SPARKLING CACAO</text>
 
 {fruit_art(sku)}
 
-    <!-- Flavor hero (Waterloo stacked name) -->
     <text x="40" y="760" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="58" font-weight="900" fill="{NAVY}" letter-spacing="1">{f1}</text>
     <text x="40" y="820" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="58" font-weight="900" fill="{NAVY}" letter-spacing="1">{f2}</text>
     <text x="40" y="860" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="16" fill="{NAVY}" opacity="0.7" letter-spacing="1">NATURALLY FLAVORED · GASEOSA DE CACAO</text>
@@ -263,14 +357,14 @@ def can_front(sku: dict) -> str:
     <text x="350" y="1155" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="14" fill="{ORANGE}">chocolatebenevolo.co · FEAR 5</text>
   </g>
 
-  <g id="DIELINE_CUT" fill="none" stroke="#FF00FF" stroke-width="1.5" opacity="0.45">
-    <rect x="4" y="4" width="{w-8}" height="{h-8}" rx="40"/>
+  <g id="DIELINE_CUT" fill="none" stroke="#FF00FF" stroke-width="1.5" opacity="0.4">
+    <rect x="4" y="4" width="{w - 8}" height="{h - 8}" rx="40"/>
   </g>
 </svg>
-'''
+"""
 
 
-def write_both(rel: Path, content: str):
+def write_both(rel: Path, content: str) -> None:
     dest = OUT / rel
     pub = PUBLIC / "brew" / rel
     dest.parent.mkdir(parents=True, exist_ok=True)
@@ -280,8 +374,7 @@ def write_both(rel: Path, content: str):
     print("wrote", rel)
 
 
-def main():
-    # drop old DAYDRINK-only files that we replace
+def main() -> None:
     for old in OUT.glob("brew-*-can.svg"):
         old.unlink(missing_ok=True)
     for old in (PUBLIC / "brew").glob("brew-*-can.svg"):
@@ -292,35 +385,12 @@ def main():
 
     system = """# Brew. · gaseosa de cacao (patrón WATERLOO)
 
-> Inspiración **estructural** de Waterloo Sparkling Water (degradado de sabor → blanco, fruta hero, nombre stacked, claims 0/0/0).  
+> Inspiración **estructural** de Waterloo Sparkling Water (degradado de sabor → blanco, fruta hero, nombre stacked, claims 0/0/0).
 > **No** copiamos tipografía, wordmark ni ilustraciones Waterloo. IP propia: **CB · Brew. · cacao**.
 
-Referencia de briefing (Frambuesa · Nectarina):
+Ilustraciones: produce-hero con capas (drupelets, tajada con hueso, hojas, mazorca FEAR 5).
 
-```json
-{
-  "categoria": "SPARKLING WATER → SPARKLING CACAO",
-  "sabor": "RASPBERRY NECTARINE → FRAMBUESA NECTARINA",
-  "nutricion": { "calorias": 0, "azucar": 0, "sodio": 0 },
-  "lata": { "degradado": "magenta → blanco", "ilustracion": "frambuesas + tajada nectarina + cue mazorca" }
-}
-```
-
----
-
-## 1. Producto
-
-| Clave | Valor |
-|-------|--------|
-| Línea | **Brew.** |
-| Categoría | Sparkling cacao / gaseosa de cacao |
-| Formato | Lata 355 ml (12 FL OZ) |
-| Fondo | Degradado de sabor → blanco |
-| Casa | Chocolate Benevolo · R&D Cacao Colab |
-
----
-
-## 2. SKUs
+## SKUs
 
 | id | Sabor hero | Acento |
 |----|------------|--------|
@@ -330,27 +400,6 @@ Referencia de briefing (Frambuesa · Nectarina):
 | `maracuya` | CACAO & MARACUYÁ | `#F5C518` |
 | `jamaica` | CACAO & JAMAICA | `#C41E6A` |
 
-Locked: CB, Brew., claims 0 CAL / 0 AZÚCAR / 0 SODIO, 355 ml, FEAR 5.  
-Flex: par de fruta + acento del degradado.
-
----
-
-## 3. Layout (frente)
-
-```
-[ CB · CHOCOLATE BENEVOLO ]
-[ Brew. ]
-[ SPARKLING CACAO ]
-[ ilustración fruta + cue mazorca ]
-[ SABOR LÍNEA 1 ]
-[ SABOR LÍNEA 2 ]
-[ naturally flavored · gaseosa de cacao ]
-[ 0 CAL | 0 AZÚCAR | 0 SODIO ]
-[ 355 ml · chocolatebenevolo.co ]
-```
-
-## 4. Regen
-
 ```bash
 python3 brand/chocolate-benevolo/packaging/build_brew_cans.py
 ```
@@ -358,12 +407,10 @@ python3 brand/chocolate-benevolo/packaging/build_brew_cans.py
     (OUT / "SYSTEM.md").write_text(system, encoding="utf-8")
     (PUBLIC / "brew" / "SYSTEM.md").write_text(system, encoding="utf-8")
 
-    rows = "\n".join(
-        f"| {s['pair_label']} | `brew-{s['id']}-can.svg` |" for s in SKUS
-    )
+    rows = "\n".join(f"| {s['pair_label']} | `brew-{s['id']}-can.svg` |" for s in SKUS)
     readme = f"""# Brew. · gaseosa de cacao
 
-Patrón **Waterloo** (degradado · fruta · 0/0/0) · marca Chocolate Benevolo.
+Patrón **Waterloo** (degradado · fruta con oficio · 0/0/0) · Chocolate Benevolo.
 
 Ver `SYSTEM.md`.
 
@@ -377,34 +424,6 @@ python3 brand/chocolate-benevolo/packaging/build_brew_cans.py
 """
     (OUT / "README.md").write_text(readme, encoding="utf-8")
     (PUBLIC / "brew" / "README.md").write_text(readme, encoding="utf-8")
-
-    # stash reference brief
-    ref = OUT / "references"
-    ref.mkdir(exist_ok=True)
-    (ref / "waterloo-raspberry-nectarine.brief.json").write_text(
-        """{
-  "marca": "WATERLOO",
-  "categoria": "SPARKLING WATER",
-  "sabor": "RASPBERRY NECTARINE",
-  "detalles_sabor": "NATURALLY FLAVORED WITH OTHER NATURAL FLAVORS",
-  "informacion_nutricional_destacada": { "calorias": 0, "azucar": 0, "sodio": 0 },
-  "empaque": {
-    "caja": {
-      "cantidad": "8 CANS",
-      "volumen_total": "8-12 FL OZ CANS (96 FL OZ) / 8-355 ML CANS",
-      "certificaciones": ["NON GMO Project VERIFIED"]
-    },
-    "lata": {
-      "tipo": "Lata de aluminio",
-      "color_dominante": "Magenta / Magenta degradado a blanco",
-      "ilustracion": "Frambuesas y una tajada de nectarina"
-    }
-  },
-  "uso_benevolo": "Referencia estructural para Brew. · no copiar IP Waterloo"
-}
-""",
-        encoding="utf-8",
-    )
     print("done")
 
 

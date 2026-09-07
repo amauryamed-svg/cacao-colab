@@ -1,6 +1,6 @@
 # Brew. · gaseosa de cacao
 
-Patrón **Waterloo** (degradado · fruta · 0/0/0) · marca Chocolate Benevolo.
+Patrón **Waterloo** (degradado · fruta con oficio · 0/0/0) · Chocolate Benevolo.
 
 Ver `SYSTEM.md`.
 

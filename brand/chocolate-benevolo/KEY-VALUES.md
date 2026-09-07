@@ -49,6 +49,7 @@
 | **Bars.** | Retail deseo | Antojo 80 g con origen legible | Swirls + mazorca + deboss Bars. |
 | **Bons.** | Pastelería / regalo | Pieza individual · molde mazorca | Tapa naranja pod-ridge |
 | **Nibs.** | Cocina / snack | Grano tostado | Header orange / body navy |
+| **Brew.** | Retail refresco | Gaseosa de cacao (patrón Waterloo) | Degradado sabor → blanco · 0/0/0 |
 | **Coberturas.** | Chef / obrador | Temperar · % hero | Franja orange + % coral |
 
 ### Escalera de empaque
