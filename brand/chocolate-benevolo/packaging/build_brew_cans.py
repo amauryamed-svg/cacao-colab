@@ -293,37 +293,51 @@ def fruit_art(sku: dict) -> str:
     </g>"""
 
 
-def nutrition_strip() -> str:
-    cells = [("0", "CAL"), ("0", "AZÚCAR"), ("0", "SODIO")]
-    parts = []
-    for i, (n, lab) in enumerate(cells):
-        x = 95 + i * 170
-        parts.append(
-            f"""
-      <g transform="translate({x},980)">
-        <rect width="150" height="90" rx="16" fill="{WHITE}" fill-opacity="0.94" stroke="{NAVY}" stroke-width="2"/>
-        <text x="75" y="42" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="36" font-weight="900" fill="{NAVY}">{n}</text>
-        <text x="75" y="70" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="{NAVY}" letter-spacing="2">{lab}</text>
-      </g>"""
-        )
-    return "\n".join(parts)
+def nutrition_inline() -> str:
+    """Claims 0/0/0 — línea limpia, sin cajas pesadas."""
+    return f"""
+    <g id="NUTRITION" transform="translate(40,940)">
+      <text x="0" y="0" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="28" font-weight="900" fill="{NAVY}">0</text>
+      <text x="28" y="0" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="{NAVY}" letter-spacing="1.5">CAL</text>
+      <circle cx="95" cy="-6" r="3" fill="{ORANGE}"/>
+      <text x="115" y="0" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="28" font-weight="900" fill="{NAVY}">0</text>
+      <text x="143" y="0" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="{NAVY}" letter-spacing="1.5">AZÚCAR</text>
+      <circle cx="250" cy="-6" r="3" fill="{ORANGE}"/>
+      <text x="270" y="0" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="28" font-weight="900" fill="{NAVY}">0</text>
+      <text x="298" y="0" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="{NAVY}" letter-spacing="1.5">SODIO</text>
+    </g>"""
 
 
 def can_front(sku: dict) -> str:
+    """Layout V2: Waterloo fruit hero + franja naranja Benevolo locked abajo."""
     w, h = 700, 1200
+    band = 118  # franja naranja Benevolo
     a, am, al = sku["accent"], sku["accent_mid"], sku["accent_light"]
     f1 = html.escape(sku["flavor_line1"])
     f2 = html.escape(sku["flavor_line2"])
+    # Fruit sits in flavor wash; scale up composition
+    fruit = fruit_art(sku).replace(
+        'transform="translate(55,270)"', 'transform="translate(40,175) scale(1.08)"'
+    ).replace(
+        'transform="translate(95,290)"', 'transform="translate(70,185) scale(1.06)"'
+    ).replace(
+        'transform="translate(85,280)"', 'transform="translate(60,180) scale(1.06)"'
+    ).replace(
+        'transform="translate(100,290)"', 'transform="translate(75,185) scale(1.05)"'
+    ).replace(
+        'transform="translate(110,270)"', 'transform="translate(80,175) scale(1.06)"'
+    )
     return f"""<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="70mm" height="120mm" viewBox="0 0 {w} {h}"
   role="img" aria-label="Brew. {html.escape(sku['pair_label'])}">
   <title>Brew. · {html.escape(sku["pair_label"])}</title>
-  <desc>Gaseosa de cacao Benevolo · patrón Waterloo (degradado + fruta + 0/0/0). Sistema propio, no copia IP.</desc>
+  <desc>Brew. Benevolo · Waterloo structure + franja naranja CB. No copia IP Waterloo.</desc>
   <defs>
     <linearGradient id="wash" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="{a}"/>
-      <stop offset="38%" stop-color="{am}"/>
-      <stop offset="68%" stop-color="{al}"/>
+      <stop offset="32%" stop-color="{am}"/>
+      <stop offset="55%" stop-color="{al}"/>
+      <stop offset="72%" stop-color="{CREAM}"/>
       <stop offset="100%" stop-color="{WHITE}"/>
     </linearGradient>
   </defs>
@@ -331,33 +345,41 @@ def can_front(sku: dict) -> str:
   <g id="ARTWORK">
     <rect width="{w}" height="{h}" fill="url(#wash)"/>
 
-    <g id="LOCKUP_CB" transform="translate(36,32)">
-      <circle cx="20" cy="20" r="18" fill="none" stroke="{WHITE}" stroke-width="2.4"/>
-      <text x="20" y="26" text-anchor="middle" font-family="Georgia, serif" font-size="16" font-weight="700" fill="{WHITE}">CB</text>
-      <text x="48" y="16" font-family="Georgia, serif" font-size="13" font-weight="700" fill="{WHITE}" letter-spacing="1.2">CHOCOLATE</text>
-      <text x="48" y="34" font-family="Georgia, serif" font-size="13" font-weight="700" fill="{CREAM}" letter-spacing="1.2">BENEVOLO</text>
+    <!-- CB lockup -->
+    <g id="LOCKUP_CB" transform="translate(36,28)">
+      <circle cx="20" cy="20" r="18" fill="{ORANGE}"/>
+      <text x="20" y="26" text-anchor="middle" font-family="Georgia, serif" font-size="15" font-weight="700" fill="{WHITE}">CB</text>
+      <text x="50" y="16" font-family="Georgia, serif" font-size="13" font-weight="700" fill="{WHITE}" letter-spacing="1.4">CHOCOLATE</text>
+      <text x="50" y="34" font-family="Georgia, serif" font-size="13" font-weight="700" fill="{WHITE}" letter-spacing="1.4">BENEVOLO</text>
     </g>
 
+    <!-- Brew. wordmark -->
     <g id="WORDMARK">
-      <text x="40" y="130" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="78" font-style="italic" font-weight="900" fill="{SHADOW}" opacity="0.5">Brew.</text>
-      <text x="36" y="126" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="78" font-style="italic" font-weight="900" fill="{WHITE}">Brew.</text>
+      <text x="40" y="128" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="92" font-style="italic" font-weight="900" fill="{SHADOW}" opacity="0.45">Brew.</text>
+      <text x="34" y="122" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="92" font-style="italic" font-weight="900" fill="{WHITE}">Brew.</text>
     </g>
-    <text x="40" y="162" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="15" fill="{WHITE}" letter-spacing="3">SPARKLING CACAO</text>
+    <text x="40" y="158" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="14" fill="{WHITE}" letter-spacing="3.5">SPARKLING CACAO</text>
 
-{fruit_art(sku)}
+{fruit}
 
-    <text x="40" y="760" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="58" font-weight="900" fill="{NAVY}" letter-spacing="1">{f1}</text>
-    <text x="40" y="820" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="58" font-weight="900" fill="{NAVY}" letter-spacing="1">{f2}</text>
-    <text x="40" y="860" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="16" fill="{NAVY}" opacity="0.7" letter-spacing="1">NATURALLY FLAVORED · GASEOSA DE CACAO</text>
-    <text x="40" y="890" font-family="Georgia, serif" font-size="18" font-style="italic" fill="{NAVY}">{html.escape(sku["tagline"])}</text>
+    <!-- Flavor block on cream zone -->
+    <text x="40" y="780" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="62" font-weight="900" fill="{NAVY}" letter-spacing="0.5">{f1}</text>
+    <text x="40" y="848" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="62" font-weight="900" fill="{NAVY}" letter-spacing="0.5">{f2}</text>
+    <rect x="40" y="868" width="120" height="8" rx="4" fill="{ORANGE}"/>
+    <text x="40" y="910" font-family="Georgia, serif" font-size="20" font-style="italic" fill="{NAVY}">{html.escape(sku["tagline"])}</text>
 
-{nutrition_strip()}
+{nutrition_inline()}
 
-    <text x="350" y="1125" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="{NAVY}">355 ml · 12 FL OZ</text>
-    <text x="350" y="1155" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="14" fill="{ORANGE}">chocolatebenevolo.co · FEAR 5</text>
+    <!-- FRANJA NARANJA BENEVOLO (locked abajo) -->
+    <g id="ORANGE_BAND">
+      <rect x="0" y="{h - band}" width="{w}" height="{band}" fill="{ORANGE}"/>
+      <rect x="0" y="{h - band}" width="{w}" height="6" fill="{SHADOW}" opacity="0.35"/>
+      <text x="350" y="{h - band + 48}" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="22" font-weight="800" fill="{WHITE}" letter-spacing="2">355 ml · 12 FL OZ</text>
+      <text x="350" y="{h - band + 82}" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="{WHITE}" letter-spacing="1.5">chocolatebenevolo.co · FEAR 5</text>
+    </g>
   </g>
 
-  <g id="DIELINE_CUT" fill="none" stroke="#FF00FF" stroke-width="1.5" opacity="0.4">
+  <g id="DIELINE_CUT" fill="none" stroke="#FF00FF" stroke-width="1.5" opacity="0.35">
     <rect x="4" y="4" width="{w - 8}" height="{h - 8}" rx="40"/>
   </g>
 </svg>
@@ -383,22 +405,36 @@ def main() -> None:
     for sku in SKUS:
         write_both(Path(f"brew-{sku['id']}-can.svg"), can_front(sku))
 
-    system = """# Brew. · gaseosa de cacao (patrón WATERLOO)
+    system = """# Brew. · gaseosa de cacao (patrón WATERLOO + franja Benevolo)
 
-> Inspiración **estructural** de Waterloo Sparkling Water (degradado de sabor → blanco, fruta hero, nombre stacked, claims 0/0/0).
-> **No** copiamos tipografía, wordmark ni ilustraciones Waterloo. IP propia: **CB · Brew. · cacao**.
+> Estructura Waterloo (degradado sabor → cream, fruta hero, claims 0/0/0) + **franja naranja `#F05A28` locked abajo** (sistema Bars./Benevolo).
+> No copiamos IP Waterloo.
 
-Ilustraciones: produce-hero con capas (drupelets, tajada con hueso, hojas, mazorca FEAR 5).
+## Layout
+
+```
+[ CB filled orange · CHOCOLATE BENEVOLO ]
+[ Brew. ]
+[ SPARKLING CACAO ]
+[ fruta hero + mazorca ]
+—— cream zone ——
+[ SABOR L1 / L2 ]
+[ regla naranja ]
+[ tagline ]
+[ 0 CAL · 0 AZÚCAR · 0 SODIO ]
+████ FRANJA NARANJA ████
+[ 355 ml · chocolatebenevolo.co · FEAR 5 ]
+```
 
 ## SKUs
 
-| id | Sabor hero | Acento |
-|----|------------|--------|
-| `frambuesa-nectarina` | FRAMBUESA / NECTARINA | `#C41E6A` |
-| `limon` | CACAO & LIMÓN | `#C6D600` |
-| `naranja` | CACAO & NARANJA | `#F05A28` |
-| `maracuya` | CACAO & MARACUYÁ | `#F5C518` |
-| `jamaica` | CACAO & JAMAICA | `#C41E6A` |
+| id | Sabor | Acento wash |
+|----|-------|-------------|
+| `frambuesa-nectarina` | FRAMBUESA / NECTARINA | magenta |
+| `limon` | CACAO & LIMÓN | lima |
+| `naranja` | CACAO & NARANJA | naranja |
+| `maracuya` | CACAO & MARACUYÁ | amarillo |
+| `jamaica` | CACAO & JAMAICA | magenta |
 
 ```bash
 python3 brand/chocolate-benevolo/packaging/build_brew_cans.py

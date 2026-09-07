@@ -1,19 +1,33 @@
-# Brew. · gaseosa de cacao (patrón WATERLOO)
+# Brew. · gaseosa de cacao (patrón WATERLOO + franja Benevolo)
 
-> Inspiración **estructural** de Waterloo Sparkling Water (degradado de sabor → blanco, fruta hero, nombre stacked, claims 0/0/0).
-> **No** copiamos tipografía, wordmark ni ilustraciones Waterloo. IP propia: **CB · Brew. · cacao**.
+> Estructura Waterloo (degradado sabor → cream, fruta hero, claims 0/0/0) + **franja naranja `#F05A28` locked abajo** (sistema Bars./Benevolo).
+> No copiamos IP Waterloo.
 
-Ilustraciones: produce-hero con capas (drupelets, tajada con hueso, hojas, mazorca FEAR 5).
+## Layout
+
+```
+[ CB filled orange · CHOCOLATE BENEVOLO ]
+[ Brew. ]
+[ SPARKLING CACAO ]
+[ fruta hero + mazorca ]
+—— cream zone ——
+[ SABOR L1 / L2 ]
+[ regla naranja ]
+[ tagline ]
+[ 0 CAL · 0 AZÚCAR · 0 SODIO ]
+████ FRANJA NARANJA ████
+[ 355 ml · chocolatebenevolo.co · FEAR 5 ]
+```
 
 ## SKUs
 
-| id | Sabor hero | Acento |
-|----|------------|--------|
-| `frambuesa-nectarina` | FRAMBUESA / NECTARINA | `#C41E6A` |
-| `limon` | CACAO & LIMÓN | `#C6D600` |
-| `naranja` | CACAO & NARANJA | `#F05A28` |
-| `maracuya` | CACAO & MARACUYÁ | `#F5C518` |
-| `jamaica` | CACAO & JAMAICA | `#C41E6A` |
+| id | Sabor | Acento wash |
+|----|-------|-------------|
+| `frambuesa-nectarina` | FRAMBUESA / NECTARINA | magenta |
+| `limon` | CACAO & LIMÓN | lima |
+| `naranja` | CACAO & NARANJA | naranja |
+| `maracuya` | CACAO & MARACUYÁ | amarillo |
+| `jamaica` | CACAO & JAMAICA | magenta |
 
 ```bash
 python3 brand/chocolate-benevolo/packaging/build_brew_cans.py

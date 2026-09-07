@@ -2,12 +2,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="70mm" height="120mm" viewBox="0 0 700 1200"
   role="img" aria-label="Brew. CACAO &amp; LIMÓN">
   <title>Brew. · CACAO &amp; LIMÓN</title>
-  <desc>Gaseosa de cacao Benevolo · patrón Waterloo (degradado + fruta + 0/0/0). Sistema propio, no copia IP.</desc>
+  <desc>Brew. Benevolo · Waterloo structure + franja naranja CB. No copia IP Waterloo.</desc>
   <defs>
     <linearGradient id="wash" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#C6D600"/>
-      <stop offset="38%" stop-color="#DCE84A"/>
-      <stop offset="68%" stop-color="#F2F7B8"/>
+      <stop offset="32%" stop-color="#DCE84A"/>
+      <stop offset="55%" stop-color="#F2F7B8"/>
+      <stop offset="72%" stop-color="#F7F1EE"/>
       <stop offset="100%" stop-color="#FFFFFF"/>
     </linearGradient>
   </defs>
@@ -15,21 +16,23 @@
   <g id="ARTWORK">
     <rect width="700" height="1200" fill="url(#wash)"/>
 
-    <g id="LOCKUP_CB" transform="translate(36,32)">
-      <circle cx="20" cy="20" r="18" fill="none" stroke="#FFFFFF" stroke-width="2.4"/>
-      <text x="20" y="26" text-anchor="middle" font-family="Georgia, serif" font-size="16" font-weight="700" fill="#FFFFFF">CB</text>
-      <text x="48" y="16" font-family="Georgia, serif" font-size="13" font-weight="700" fill="#FFFFFF" letter-spacing="1.2">CHOCOLATE</text>
-      <text x="48" y="34" font-family="Georgia, serif" font-size="13" font-weight="700" fill="#F7F1EE" letter-spacing="1.2">BENEVOLO</text>
+    <!-- CB lockup -->
+    <g id="LOCKUP_CB" transform="translate(36,28)">
+      <circle cx="20" cy="20" r="18" fill="#F05A28"/>
+      <text x="20" y="26" text-anchor="middle" font-family="Georgia, serif" font-size="15" font-weight="700" fill="#FFFFFF">CB</text>
+      <text x="50" y="16" font-family="Georgia, serif" font-size="13" font-weight="700" fill="#FFFFFF" letter-spacing="1.4">CHOCOLATE</text>
+      <text x="50" y="34" font-family="Georgia, serif" font-size="13" font-weight="700" fill="#FFFFFF" letter-spacing="1.4">BENEVOLO</text>
     </g>
 
+    <!-- Brew. wordmark -->
     <g id="WORDMARK">
-      <text x="40" y="130" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="78" font-style="italic" font-weight="900" fill="#C43A18" opacity="0.5">Brew.</text>
-      <text x="36" y="126" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="78" font-style="italic" font-weight="900" fill="#FFFFFF">Brew.</text>
+      <text x="40" y="128" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="92" font-style="italic" font-weight="900" fill="#C43A18" opacity="0.45">Brew.</text>
+      <text x="34" y="122" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="92" font-style="italic" font-weight="900" fill="#FFFFFF">Brew.</text>
     </g>
-    <text x="40" y="162" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="15" fill="#FFFFFF" letter-spacing="3">SPARKLING CACAO</text>
+    <text x="40" y="158" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="14" fill="#FFFFFF" letter-spacing="3.5">SPARKLING CACAO</text>
 
 
-    <g id="FRUIT" transform="translate(95,290)">
+    <g id="FRUIT" transform="translate(70,185) scale(1.06)">
       
       <g transform="translate(370,55) rotate(12) scale(1.35)">
         <path d="M0 0 Q28 -18 52 0 Q28 20 0 0 Z" fill="#3D7A2C"/>
@@ -74,35 +77,34 @@
       <ellipse cx="250" cy="380" rx="190" ry="16" fill="#15243F" opacity="0.07"/>
     </g>
 
-    <text x="40" y="760" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="58" font-weight="900" fill="#15243F" letter-spacing="1">CACAO</text>
-    <text x="40" y="820" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="58" font-weight="900" fill="#15243F" letter-spacing="1">&amp; LIMÓN</text>
-    <text x="40" y="860" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="16" fill="#15243F" opacity="0.7" letter-spacing="1">NATURALLY FLAVORED · GASEOSA DE CACAO</text>
-    <text x="40" y="890" font-family="Georgia, serif" font-size="18" font-style="italic" fill="#15243F">Cítrico efervescente con alma de mazorca.</text>
+    <!-- Flavor block on cream zone -->
+    <text x="40" y="780" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="62" font-weight="900" fill="#15243F" letter-spacing="0.5">CACAO</text>
+    <text x="40" y="848" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="62" font-weight="900" fill="#15243F" letter-spacing="0.5">&amp; LIMÓN</text>
+    <rect x="40" y="868" width="120" height="8" rx="4" fill="#F05A28"/>
+    <text x="40" y="910" font-family="Georgia, serif" font-size="20" font-style="italic" fill="#15243F">Cítrico efervescente con alma de mazorca.</text>
 
 
-      <g transform="translate(95,980)">
-        <rect width="150" height="90" rx="16" fill="#FFFFFF" fill-opacity="0.94" stroke="#15243F" stroke-width="2"/>
-        <text x="75" y="42" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="36" font-weight="900" fill="#15243F">0</text>
-        <text x="75" y="70" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#15243F" letter-spacing="2">CAL</text>
-      </g>
+    <g id="NUTRITION" transform="translate(40,940)">
+      <text x="0" y="0" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="28" font-weight="900" fill="#15243F">0</text>
+      <text x="28" y="0" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#15243F" letter-spacing="1.5">CAL</text>
+      <circle cx="95" cy="-6" r="3" fill="#F05A28"/>
+      <text x="115" y="0" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="28" font-weight="900" fill="#15243F">0</text>
+      <text x="143" y="0" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#15243F" letter-spacing="1.5">AZÚCAR</text>
+      <circle cx="250" cy="-6" r="3" fill="#F05A28"/>
+      <text x="270" y="0" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="28" font-weight="900" fill="#15243F">0</text>
+      <text x="298" y="0" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#15243F" letter-spacing="1.5">SODIO</text>
+    </g>
 
-      <g transform="translate(265,980)">
-        <rect width="150" height="90" rx="16" fill="#FFFFFF" fill-opacity="0.94" stroke="#15243F" stroke-width="2"/>
-        <text x="75" y="42" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="36" font-weight="900" fill="#15243F">0</text>
-        <text x="75" y="70" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#15243F" letter-spacing="2">AZÚCAR</text>
-      </g>
-
-      <g transform="translate(435,980)">
-        <rect width="150" height="90" rx="16" fill="#FFFFFF" fill-opacity="0.94" stroke="#15243F" stroke-width="2"/>
-        <text x="75" y="42" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="36" font-weight="900" fill="#15243F">0</text>
-        <text x="75" y="70" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#15243F" letter-spacing="2">SODIO</text>
-      </g>
-
-    <text x="350" y="1125" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="18" font-weight="700" fill="#15243F">355 ml · 12 FL OZ</text>
-    <text x="350" y="1155" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="14" fill="#F05A28">chocolatebenevolo.co · FEAR 5</text>
+    <!-- FRANJA NARANJA BENEVOLO (locked abajo) -->
+    <g id="ORANGE_BAND">
+      <rect x="0" y="1082" width="700" height="118" fill="#F05A28"/>
+      <rect x="0" y="1082" width="700" height="6" fill="#C43A18" opacity="0.35"/>
+      <text x="350" y="1130" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="22" font-weight="800" fill="#FFFFFF" letter-spacing="2">355 ml · 12 FL OZ</text>
+      <text x="350" y="1164" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF" letter-spacing="1.5">chocolatebenevolo.co · FEAR 5</text>
+    </g>
   </g>
 
-  <g id="DIELINE_CUT" fill="none" stroke="#FF00FF" stroke-width="1.5" opacity="0.4">
+  <g id="DIELINE_CUT" fill="none" stroke="#FF00FF" stroke-width="1.5" opacity="0.35">
     <rect x="4" y="4" width="692" height="1192" rx="40"/>
   </g>
 </svg>
