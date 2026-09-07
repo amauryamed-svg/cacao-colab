@@ -291,8 +291,8 @@ export default async function CuentaPage() {
               <p className="eyebrow text-colab-coral">Certificaciones · progreso guardado</p>
               <h2 id="cuenta-courses-title">Tus Masters</h2>
               <p>
-                Se abren con tu rango: Arquitecto desde Brote; Chocolatier y Benevolo desde Labrador.
-                Cultiva MD en Sembrar y Dualita. El diploma se gana con rigor — no se compra.
+                Se abren con rango, canje MD o checkout Shopify (mismo email). El diploma se gana
+                con rigor — no se compra.
               </p>
             </div>
             {home.courses.micro && (

@@ -4,6 +4,7 @@ import ArchitectCoursePlayer from "@/components/campus/ArchitectCoursePlayer"
 import MasterAccessGate from "@/components/campus/MasterAccessGate"
 import { ARCHITECT_COURSE_SLUG } from "@/lib/architect-course"
 import { resolveMasterAccess } from "@/lib/campus-access"
+import { canEnterMasterCampus } from "@/lib/campus-entitlement"
 
 export const metadata = {
   title: "Arquitecto de Fermentación · Master Cacaotier",
@@ -31,14 +32,14 @@ export default async function ArchitectCoursePage() {
   ])
 
   const access = resolveMasterAccess(wallet?.lifetime_earned ?? 0, ARCHITECT_COURSE_SLUG)
-  const hasProgress =
-    saved?.state &&
-    typeof saved.state === "object" &&
-    Array.isArray((saved.state as { completed?: unknown }).completed) &&
-    ((saved.state as { completed: unknown[] }).completed.length > 0)
-  // Rango abre el Master; quien ya empezó no queda fuera por el cambio de modelo.
-  if (!access.unlocked && !hasProgress) {
-    return <MasterAccessGate title="Arquitecto de Fermentación" access={access} courseSlug="arquitecto-fermentacion" />
+  if (!canEnterMasterCampus({ rankUnlocked: access.unlocked, state: saved?.state })) {
+    return (
+      <MasterAccessGate
+        title="Arquitecto de Fermentación"
+        access={access}
+        courseSlug="arquitecto-fermentacion"
+      />
+    )
   }
 
   const learnerName = user.user_metadata?.full_name ?? user.email?.split("@")[0] ?? "Learner"

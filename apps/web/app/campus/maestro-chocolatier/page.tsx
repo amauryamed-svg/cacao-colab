@@ -4,6 +4,7 @@ import ChocolatierCoursePlayer from "@/components/campus/ChocolatierCoursePlayer
 import MasterAccessGate from "@/components/campus/MasterAccessGate"
 import { CHOCOLATIER_COURSE_SLUG } from "@/lib/chocolatier-course"
 import { resolveMasterAccess } from "@/lib/campus-access"
+import { canEnterMasterCampus } from "@/lib/campus-entitlement"
 
 export const metadata = {
   title: "Master Chocolatier · Campus",
@@ -31,13 +32,10 @@ export default async function MaestroChocolatierCampusPage() {
   ])
 
   const access = resolveMasterAccess(wallet?.lifetime_earned ?? 0, CHOCOLATIER_COURSE_SLUG)
-  const hasProgress =
-    saved?.state &&
-    typeof saved.state === "object" &&
-    Array.isArray((saved.state as { completed?: unknown }).completed) &&
-    ((saved.state as { completed: unknown[] }).completed.length > 0)
-  if (!access.unlocked && !hasProgress) {
-    return <MasterAccessGate title="Master Chocolatier" access={access} courseSlug="maestro-chocolatier" />
+  if (!canEnterMasterCampus({ rankUnlocked: access.unlocked, state: saved?.state })) {
+    return (
+      <MasterAccessGate title="Master Chocolatier" access={access} courseSlug="maestro-chocolatier" />
+    )
   }
 
   const learnerName = user.user_metadata?.full_name ?? user.email?.split("@")[0] ?? "Learner"

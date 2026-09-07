@@ -4,6 +4,7 @@ import CatadorCoursePlayer from "@/components/campus/CatadorCoursePlayer"
 import MasterAccessGate from "@/components/campus/MasterAccessGate"
 import { CATADOR_COURSE_SLUG } from "@/lib/catador-course"
 import { resolveMasterAccess } from "@/lib/campus-access"
+import { canEnterMasterCampus } from "@/lib/campus-entitlement"
 
 export const metadata = {
   title: "Master Catador de Cacao · Campus",
@@ -31,13 +32,14 @@ export default async function CatadorCampusPage() {
   ])
 
   const access = resolveMasterAccess(wallet?.lifetime_earned ?? 0, CATADOR_COURSE_SLUG)
-  const hasProgress =
-    saved?.state &&
-    typeof saved.state === "object" &&
-    Array.isArray((saved.state as { completed?: unknown }).completed) &&
-    ((saved.state as { completed: unknown[] }).completed.length > 0)
-  if (!access.unlocked && !hasProgress) {
-    return <MasterAccessGate title="Master Catador de Cacao" access={access} courseSlug="catador-cacao" />
+  if (!canEnterMasterCampus({ rankUnlocked: access.unlocked, state: saved?.state })) {
+    return (
+      <MasterAccessGate
+        title="Master Catador de Cacao"
+        access={access}
+        courseSlug="catador-cacao"
+      />
+    )
   }
 
   const learnerName = user.user_metadata?.full_name ?? user.email?.split("@")[0] ?? "Learner"
