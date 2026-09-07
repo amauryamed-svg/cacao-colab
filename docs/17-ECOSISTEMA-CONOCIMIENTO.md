@@ -11,7 +11,7 @@ Traducir conocimiento especializado (biotecnología de fermentación, regulació
 | `/conocimiento` | Hub de rutas con nivel de evidencia |
 | `/conocimiento/[slug]` | EUDR, orgánico/cooperación, DO, COEX, Ecoyuma/FEAR 5, Benevolo |
 | `/aprende/chocolatier` | Master Chocolatier · bean-to-bar con lente COEX · capstone Benevolo |
-| `/benevolo` | Chocolate Benevolo Bars. · FEAR 5 Quara × Zurych · preventa WhatsApp |
+| `/benevolo` | Chocolate Benevolo Bars. · FEAR 5 Quara × Zurych · preventa Shopify Colab (`benevolo.shop`) |
 | Ecoyuma (externo) | Plántulas FEAR-5, TCS-19, TCS-06 |
 
 ## 3. Reglas de honestidad
@@ -23,7 +23,7 @@ Traducir conocimiento especializado (biotecnología de fermentación, regulació
 - **Cacao of Excellence** (oficial: [cacaoofexcellence.org](https://www.cacaoofexcellence.org/)) y el trabajo de Sebastián Escobar se enlazan como referencia de calidad/investigación (Awards, Training & Lab, Research).
 - **Ecoyuma** es catálogo externo: stock y precio viven en `tienda.ecoyuma.com.co`.
 - En Ecoyuma los códigos son **TCS-19** y **TCS-06**; en campo a veces se dicen TSS.
-- **Benevolo** es preventa: no se simula checkout ni stock.
+- **Benevolo** es preventa en la tienda Shopify Colab (`bars-benevolo` / `benevolo.shop`): no se simula otro checkout ni stock.
 - **CoEx lens**: usamos criterios de Cacao of Excellence (ciego, tipicidad, cero defectos negociables); no atribuimos medalla CoEx a la SKU ni afiliación institucional.
 - **Quara Cacao** (Tame · Arauca) es el nodo FEAR 5 del Colab para Benevolo.
 

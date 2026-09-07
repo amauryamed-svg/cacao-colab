@@ -3,10 +3,11 @@ import Link from "next/link"
 import TrackedLink from "@/components/analytics/TrackedLink"
 import { MastersShopifyGrid } from "@/components/commerce/MasterShopifyCheckout"
 import {
-  COLAB_SHOPIFY_COLLECTION,
   COLAB_SHOPIFY_STOREFRONT,
   colabStorefrontCatalog,
+  BENEVOLO_SHOP_BRAND_HOST,
 } from "@/lib/shopify-colab"
+import { BenevoloShopifyCheckout } from "@/components/commerce/BenevoloShopifyCheckout"
 import {
   ZURYCH_INSTAGRAM,
   coberturasConvergence,
@@ -17,7 +18,7 @@ import {
 export const metadata: Metadata = {
   title: "Tienda · cacao-colab.myshopify.com",
   description:
-    "Tienda Shopify de Cacao Colab: Masters digitales, Bars. Benevolo y venta cruzada a nodos. Checkout en cacao-colab.myshopify.com.",
+    "Tienda Shopify de Cacao Colab: Masters digitales, Bars. Benevolo (Benevolo.shop) y venta cruzada a nodos. Checkout en cacao-colab.myshopify.com.",
 }
 
 export default function ShopPage() {
@@ -39,7 +40,9 @@ export default function ShopPage() {
           <p className="mt-6 max-w-2xl text-colab-cream/55 leading-relaxed">
             La tienda oficial vive en{" "}
             <strong className="text-colab-cream">cacao-colab.myshopify.com</strong>: Masters
-            digitales, antojo Benevolo y kits. Aquí el hub Colab enlaza checkout, campus y nodos.
+            digitales, antojo Benevolo y kits. Bars. usa el dominio de marca{" "}
+            <strong className="text-colab-cream">{BENEVOLO_SHOP_BRAND_HOST}</strong> sobre la misma
+            caja Shopify. Aquí el hub Colab enlaza checkout, campus y nodos.
           </p>
           <div className="flex flex-wrap items-center gap-4 mt-8">
             <TrackedLink
@@ -73,8 +76,8 @@ export default function ShopPage() {
           >
             cacao-colab.myshopify.com
           </a>
-          . Coberturas y nibs ya tienen ficha y precio en la tienda — WhatsApp queda como asesoría,
-          no como único punto de pedido.
+          . Coberturas, nibs y Bars. Benevolo ya tienen ficha en la tienda — WhatsApp queda como
+          asesoría de lote, no como único punto de pedido.
         </section>
 
         <section id="masters" className="scroll-mt-20 mb-16">
@@ -98,6 +101,18 @@ export default function ShopPage() {
             >
               Ir a checkout Shopify →
             </TrackedLink>
+          </div>
+        </section>
+
+        <section id="benevolo" className="scroll-mt-20 mb-16">
+          <p className="eyebrow text-colab-yellow">Antojo · {BENEVOLO_SHOP_BRAND_HOST}</p>
+          <h2 className="font-serif text-3xl md:text-4xl font-bold mt-3">Bars. Benevolo</h2>
+          <p className="mt-3 max-w-2xl text-sm text-colab-cream/55 leading-relaxed">
+            Misma tienda Shopify que los Masters. Benevolo.shop es el dominio de marca; la ficha
+            canónica es <code className="text-colab-yellow">/products/bars-benevolo</code>.
+          </p>
+          <div className="mt-8">
+            <BenevoloShopifyCheckout source="shop-benevolo" />
           </div>
         </section>
 
@@ -129,7 +144,7 @@ export default function ShopPage() {
             {
               n: "Shopify Colab",
               t: "cacao-colab.myshopify.com",
-              b: "Masters, Bars., coberturas, nibs y kits · checkout oficial.",
+              b: "Masters, Bars. (Benevolo.shop), coberturas, nibs y kits · checkout oficial.",
               href: COLAB_SHOPIFY_STOREFRONT,
               event: "sponsor_interest" as const,
             },

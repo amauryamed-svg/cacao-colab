@@ -16,7 +16,7 @@ Eres un director de marca + product designer + implementador front.
 2. **Sitio web** `ChocolateBenevolo.co` (landing + producto + preorden), visualmente fiel al packshot Bars. y coherente con Cacao Colab.
 3. **Kit por capas** importable a **Adobe Express** y **Canva** (plantillas sociales, empaque, stories, ads).
 
-No improvises medallas CoEx, stock, ni checkout inventado. Benevolo es **preventa / preorden**.
+No improvises medallas CoEx, stock, ni un checkout distinto al de Cacao Colab. Benevolo es **preventa / preorden** en la tienda Shopify Colab (`cacao-colab.myshopify.com`, dominio de marca `benevolo.shop`).
 
 ---
 
@@ -32,7 +32,7 @@ No improvises medallas CoEx, stock, ni checkout inventado. Benevolo es **prevent
 | Packshot oficial | `apps/web/public/benevolo/bars-fear5.png` |
 | Etiqueta print (arte exacto) | `apps/web/public/benevolo/packaging/` |
 | Tokens Colab (coral/cocoa) | `packages/ui-tokens/src/index.ts` |
-| Spec producto | `docs/00-SPEC.md` (D39 Benevolo) · `docs/17-ECOSISTEMA-CONOCIMIENTO.md` |
+| Checkout Shopify | `apps/web/lib/shopify-colab.ts` → `benevoloShopifySku` · `docs/33-SHOPIFY-MASTERS-CHECKOUT.md` |
 
 ### 1.2 Identidad verbal (no negociable)
 
@@ -46,7 +46,7 @@ No improvises medallas CoEx, stock, ni checkout inventado. Benevolo es **prevent
 - **Casa:** marca acelerada cacaotier / R&D Cacao Colab (hermana del Master Chocolatier 70 %, **no** su capstone)  
 - **Formato:** Bars. · Neto 80 g  
 - **Dulzor:** alulosa + stevia · sin azúcar añadida  
-- **CTA:** Preordenar por WhatsApp (no checkout fingido)
+- **CTA:** Preordenar en Shopify Colab (`bars-benevolo`); WhatsApp confirma el lote (no checkout fingido)
 
 ### 1.3 Claims permitidos / prohibidos
 
@@ -166,7 +166,7 @@ brand/chocolate-benevolo/
 | `/` | Hero aspiracional + Bars. + preorden WhatsApp |
 | `/bars` | Ficha producto 80 g · ingredientes · origen FEAR 5 · aliados |
 | `/historia` | Oficio · Quara × Zurych · Colab (sin inventar premios) |
-| `/preorden` | CTA WhatsApp + qué incluye preventa + qué aún no |
+| `/preorden` | CTA Shopify Colab (`bars-benevolo` / Benevolo.shop) + WhatsApp confirma lote + qué aún no |
 | `/legal` | Privacidad / términos mínimos |
 
 Idioma principal: **ES**. Opcional toggle IT para el juego “se lee igual en español y en italiano”.
@@ -183,10 +183,15 @@ Idioma principal: **ES**. Opcional toggle IT para el juego “se lee igual en es
 - Eyebrow: `Bars. · Duja de Marañón sugar free`  
 - H1: `Chocolate Benevolo`  
 - Sub: tagline canónico  
-- CTA primario: `Preordenar Bars. →` (WhatsApp)  
-- CTA secundario: `Ver el oficio →` (`/historia` o cacaocolab.org/campus/benevolo)  
+- CTA primario: `Preordenar en Shopify →` (ficha `bars-benevolo` en tienda Colab / Benevolo.shop)  
+- CTA secundario: `Confirmar lote por WhatsApp` + `Ver el oficio →` (`/historia` o cacaocolab.org/campus/benevolo)  
 
-WhatsApp base (Colab):  
+Shopify (canónico, misma tienda):  
+`https://cacao-colab.myshopify.com/products/bars-benevolo`  
+Cuando DNS esté live: `https://benevolo.shop/products/bars-benevolo`  
+Carrito 1×: `https://cacao-colab.myshopify.com/cart/51232297222396:1`
+
+WhatsApp (confirmación de lote):  
 `https://wa.me/573102227848?text=Hola%20Chocolate%20Benevolo%2C%20quiero%20preordenar%20Bars.%20Duja%20de%20Mara%C3%B1%C3%B3n%20sugar%20free%20FEAR%205%20Quara%20(80g).`
 
 ### 3.5 Criterios de aceptación Web
@@ -194,8 +199,9 @@ WhatsApp base (Colab):
 - [ ] Mobile + desktop  
 - [ ] Hero = composición única brand-first  
 - [ ] Packshot fiel (no mock genérico)  
-- [ ] Preorden WhatsApp funciona  
-- [ ] Sin medalla CoEx / sin stock fingido  
+- [ ] Preorden Shopify (ficha `bars-benevolo` / Benevolo.shop) funciona  
+- [ ] WhatsApp de confirmación de lote funciona  
+- [ ] Sin medalla CoEx / sin stock fingido / sin checkout fuera de la tienda Colab  
 - [ ] Link cruzado a cacaocolab.org (Colab / Dualita) sin diluir Benevolo  
 
 ---
@@ -353,7 +359,8 @@ Claude Code solo cierra cuando:
 Lee docs/31-CHOCOLATE-BENEVOLO-CLAUDE-CODE.md y ejecuta las Fases 1–5.
 Prioridad: (1) Brand Book, (2) capas Canva/Adobe Express con nombres §4.2,
 (3) web MVP ChocolateBenevolo.co fiel al packshot apps/web/public/benevolo/bars-fear5.png.
-No inventes medallas CoEx ni checkout. Preorden = WhatsApp canónico del brief.
+No inventes medallas CoEx ni un checkout propio. Preorden = ficha Shopify Colab
+(`bars-benevolo` / benevolo.shop) + WhatsApp para confirmar lote. Ver docs/33.
 Entrega en chocolate-benevolo/ (o ruta acordada) + README de handoff.
 ```
 
@@ -361,7 +368,20 @@ Entrega en chocolate-benevolo/ (o ruta acordada) + README de handoff.
 
 ## 9. Contacto / canales
 
-- Preorden WA: `+57 310 222 7848`  
+- Preorden Shopify: `https://cacao-colab.myshopify.com/products/bars-benevolo` (marca: `benevolo.shop`)  
+- Confirmación WA: `+57 310 222 7848`  
 - Colab: `https://www.cacaocolab.org/benevolo`  
 - Etiqueta print R&D: `https://www.cacaocolab.org/rd/bars-etiqueta`  
 - Campus Dualita: `https://www.cacaocolab.org/campus/benevolo`  
+- SOP tienda: `docs/33-SHOPIFY-MASTERS-CHECKOUT.md`
+
+---
+
+## 10. Addendum 2026-09-07 — Benevolo.shop = tienda Shopify Colab
+
+Claude Code ya publicó Bars. en **la misma tienda** `cacao-colab.myshopify.com` (`products/bars-benevolo`, colección `bars-benevolo`, variant `51232297222396`). **No abras una segunda tienda Shopify.**
+
+`benevolo.shop` es el dominio de marca de esa caja. Hoy el DNS sigue en GoDaddy parking; el handoff para Amaury (Shopify Admin → Connect domain + registros A/CNAME) está en `docs/33`. Mientras tanto, todos los CTA del sitio de marca y de `/preorden` deben usar las URLs `cacao-colab.myshopify.com` de la tabla de §3.4.
+
+El Colab ya enlaza así en `/benevolo` y `/shop#benevolo` (`BenevoloShopifyCheckout`). Replicar el mismo patrón en `chocolate-benevolo-web`: CTA primario = ficha/carrito Shopify; WhatsApp secundario = “confirmar lote”. No vender cobro de inventario como si el lote ya saliera mañana.
+

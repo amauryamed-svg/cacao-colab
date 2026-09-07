@@ -439,10 +439,10 @@ export const benevoloProduct = {
     "Track Dualita Benevolo (marca acelerada separada del Master 70 %)",
     "Alianza Zurych × Quara (nodo FEAR 5)",
     "Fórmula: FEAR 5, duja de marañón, leche orgánica, alulosa, stevia",
-    "Canal de preorden / preventa + diploma compartible",
+    "Canal de preorden Shopify (ficha bars-benevolo en tienda Colab) + diploma compartible",
   ],
   whatIsNotReady: [
-    "Checkout automático con inventario confirmado",
+    "Checkout automático con inventario confirmado (la ficha Shopify es preventa)",
     "Medalla COEX atribuida a esta SKU (usamos el lente, no el premio)",
     "Certificación orgánica del producto terminado completa",
   ],
