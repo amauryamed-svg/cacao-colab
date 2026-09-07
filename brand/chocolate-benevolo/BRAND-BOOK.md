@@ -1,7 +1,7 @@
 # Chocolate Benevolo · Brand Book
 
 > Marca acelerada cacaotier · R&D Cacao Colab. Hermana del Master Chocolatier 70 % — **no** su capstone.
-> Producto ancla: **Bars.** · Portafolio: **Bars. · Bons. · Nibs. · Coberturas.**
+> Producto ancla: **Bars.** · Portafolio: **Bars. · Bons. · Nibs. · Brew. · Coberturas.**
 > Fuente de verdad de empaque: `SYSTEM-PACKAGING.md` + `LEAN-TO-PRO.md` + `references/` (este documento los resume, no los reemplaza).
 
 ---
@@ -44,7 +44,7 @@ Duja de Marañón sugar free. FEAR 5 de Quara. Se lee igual en español y en ita
 | Marca | Chocolate Benevolo |
 | Monograma | CB |
 | Producto ancla | **Bars.** (con punto) |
-| Líneas profesionales | **Bons.** · **Nibs.** · **Coberturas.** |
+| Líneas profesionales | **Bons.** · **Nibs.** · **Brew.** · **Coberturas.** |
 | Categoría Bars. | Chocolate de leche con marañón · sugar free (brief) |
 | Formato Bars. | Neto 80 g |
 | Origen | FEAR 5 · Quara Cacao · Tame · Arauca |
@@ -59,6 +59,7 @@ Duja de Marañón sugar free. FEAR 5 de Quara. Se lee igual en español y en ita
 | **Bars.** | Retail deseo | Antojo 80 g con origen legible | Swirls + mazorca + deboss `Bars.` |
 | **Bons.** | Pastelería / regalo | Pieza individual · molde mazorca | Tapa naranja pod-ridge |
 | **Nibs.** | Cocina / snack | Grano tostado | Header orange / body navy |
+| **Brew.** | Retail refresco | Gaseosa de cacao sparkling (patrón Waterloo) | Degradado sabor → blanco · fruta · 0/0/0 |
 | **Coberturas.** | Chef / obrador | Temperar · % hero | Franja orange + % coral |
 
 ⚠️ **Reconciliar:** el brief original (`lib/benevolo-brand.ts`, `docs/31-…`) describe Bars. como *sugar free* con alulosa + stevia. El copy OCR del cartón ya impreso (`references/bars_benevolo_pdf_text.txt`) no menciona alulosa/stevia ni "sugar free" — solo "chocolate de leche FEAR5 60 % Cacao Trinitario, leche en polvo avellanada y marañón salado". No se resuelve aquí cuál es la versión vigente; verificar con el equipo antes de repetir el claim "sugar free" en canales nuevos.

@@ -1,6 +1,7 @@
 # Chocolate Benevolo · Sistema de empaque multi-SKU
 
-> Brand system para **Bars. · Bons. · Nibs. · Coberturas.**  
+> Brand system para **Bars. · Bons. · Nibs. · Brew. · Coberturas.**  
+> Brew. (sparkling cacao): ver `packaging/brew/SYSTEM.md` — patrón Waterloo (degradado · fruta · 0/0/0), IP propia CB.  
 > Criterio de calidad: [The Dieline](https://thedieline.com/) (packaging systems, retail & POS, print craft).  
 > Skill agente: `.cursor/skills/benevolo-packaging-dieline/SKILL.md`
 

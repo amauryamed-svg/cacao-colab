@@ -12,7 +12,7 @@
 | Marca | Chocolate Benevolo |
 | Monograma | CB |
 | Producto ancla | **Bars.** (con punto) |
-| Líneas profesionales | **Bons.** · **Nibs.** · **Coberturas.** |
+| Líneas profesionales | **Bons.** · **Nibs.** · **Brew.** · **Coberturas.** |
 | Tipografía producto | Bodoni Ultra Black Italic |
 | Categoría Bars. | Chocolate de leche con marañón · sugar free |
 | Formato Bars. | Neto 80 g |
