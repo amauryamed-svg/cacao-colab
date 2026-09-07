@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react"
 import Link from "next/link"
 import DualitaCompanion from "@/components/aprende/DualitaCompanion"
+import { BenevoloLockup } from "@/components/brand/BenevoloLockup"
 import { benevoloMissions, benevoloTotalXp, BENEVOLO_COURSE_SLUG } from "@/lib/benevolo-brand"
 import { saveBenevoloProgress } from "@/app/campus/actions"
 import {
@@ -167,11 +168,7 @@ export default function BenevoloCoursePlayer({
       <div className="architect-layout">
         <aside className="architect-map">
           <p className="eyebrow text-[#FF6A3D]">Marca acelerada · cacaotier</p>
-          <h1>
-            Chocolate
-            <br />
-            Benevolo
-          </h1>
+          <BenevoloLockup as="h1" compact />
           <p className="architect-welcome">
             {learnerName} · {progress.completed.length}/3 · {benevoloTotalXp} XP · {gradeLabel(grade)}
           </p>
