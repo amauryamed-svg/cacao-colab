@@ -108,9 +108,10 @@ def bons_l0_front():
 {ripples(38, 16, 22)}
 {cb_mark(2.5, 2.5, 0.78)}
 {wordmark("Bons.", 3, 27, 14)}
-    <text x="3" y="33.5" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="2.4" fill="{CREAM}" letter-spacing="0.45">CHOCOLATERÍA PROFESIONAL</text>
-    <text x="3" y="37.5" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="2.1" fill="{CHAMP}">Molde mazorca · 1 pieza</text>
-{seal(40, 34, 0.72)}
+    <!-- Copy stays left of FEAR 5 seal (~x&lt;32) to avoid overlap on 50×45 sticker -->
+    <text x="3" y="33.2" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="2.2" fill="{CREAM}" letter-spacing="0.25">CHOCOLATERÍA</text>
+    <text x="3" y="37.2" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="2.0" fill="{CHAMP}">Molde mazorca · 1 ud</text>
+{seal(41, 34.5, 0.62)}
   </g>
 {guides(w, h, 2, 3)}
 '''
