@@ -20,6 +20,7 @@ import {
   resolveMasterAccess,
   type MasterAccess,
 } from "@/lib/campus-access"
+import { hasMasterEntitlement } from "@/lib/campus-entitlement"
 
 export type CourseTrackSnapshot = {
   slug: string
@@ -77,7 +78,7 @@ function trackFromRigor(input: {
       ? "in_progress"
       : "not_started"
   const left = Math.max(0, input.missionCount - completedCount)
-  const playable = canContinueMaster(access, status)
+  const playable = canContinueMaster(access, status, hasMasterEntitlement(input.state))
   const nextHint = certified
     ? null
     : playable

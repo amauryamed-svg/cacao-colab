@@ -88,8 +88,8 @@ export default function MasterChocolatierPage() {
                     </p>
                   </div>
                   <Image
-                    src="/benevolo/bars-fear5.png"
-                    alt="Bars. FEAR 5"
+                    src="/masters/master-chocolatier.png"
+                    alt="Master Chocolatier · Dualita"
                     width={96}
                     height={96}
                     className="rounded-xl object-cover shrink-0"

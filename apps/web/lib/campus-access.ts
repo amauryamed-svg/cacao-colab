@@ -28,12 +28,14 @@ export const masterRankGate: Record<MasterCourseSlug, RankSlug> = {
 
 export const masterAccessCopy = {
   principle:
-    "Dos puertas al Master: (1) rango con MD históricas ganadas en Sembrar y Dualita, o (2) checkout Shopify del producto digital en la tienda Colab — con venta cruzada a coberturas y nibs de los nodos.",
+    "Tres puertas al Master: (1) rango con MD históricas en Sembrar y Dualita, (2) canje digital con Mazorcas, o (3) checkout Shopify del producto digital — el pago acredita la cuenta con el mismo email.",
   earnCtas: [
     { label: "Sembrar", href: "/juega" },
     { label: "Campus Dualita", href: "/aprende" },
     { label: "Tienda Masters", href: "/shop#masters" },
   ],
+  shopifyNote:
+    "Tras pagar en Shopify, entra a Mi cuenta con el mismo email de la compra. El webhook acredita el Master automáticamente.",
 } as const
 
 const RANK_ORDER = communityRanks.map((r) => r.slug)
@@ -69,12 +71,13 @@ export function resolveMasterAccess(lifetimeMd: number, courseSlug: MasterCourse
 
 export type MasterAccess = ReturnType<typeof resolveMasterAccess>
 
-/** Igual que el gate de /campus: rango O sesión ya empezada (Coursera-style). */
+/** Igual que el gate de /campus: rango, entitlement (MD/Shopify) o sesión ya empezada. */
 export function canContinueMaster(
   access: Pick<MasterAccess, "unlocked">,
   status: "not_started" | "in_progress" | "certified",
+  entitlement = false,
 ) {
-  return access.unlocked || status !== "not_started"
+  return access.unlocked || entitlement || status !== "not_started"
 }
 
 export function masterPrimaryCtaLabel(input: {

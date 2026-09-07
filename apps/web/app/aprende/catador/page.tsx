@@ -84,7 +84,7 @@ export default function MasterCatadorPage() {
                   title: "El campus te espera. Catar es oficio.",
                   dualitaLine: "Dualita: tipicidad se defiende en panel, no en el storytelling.",
                   packLabel: "Master Catador",
-                  poster: "/atmosphere/chocolate-broken.jpg",
+                  poster: "/masters/master-catador.png",
                 }}
                 source="master-catador-hero"
               />

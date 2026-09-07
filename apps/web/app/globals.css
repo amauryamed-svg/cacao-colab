@@ -8134,6 +8134,23 @@ button.diploma-li {
   gap: .55rem;
   padding: 1.1rem 0 1.25rem;
 }
+.master-shopify-thumb {
+  border: 1px solid rgba(242, 200, 48, .28);
+  border-radius: .85rem;
+  height: 7.5rem;
+  overflow: hidden;
+  width: 7.5rem;
+}
+.master-shopify-card.compact .master-shopify-thumb {
+  height: 4.5rem;
+  width: 4.5rem;
+}
+.master-shopify-thumb img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
 .master-shopify-card.compact { margin-top: .25rem; }
 .master-shopify-card h3 {
   font-family: var(--font-fraunces), serif;

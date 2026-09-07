@@ -4,6 +4,7 @@ import BenevoloCoursePlayer from "@/components/campus/BenevoloCoursePlayer"
 import MasterAccessGate from "@/components/campus/MasterAccessGate"
 import { BENEVOLO_COURSE_SLUG } from "@/lib/benevolo-brand"
 import { resolveMasterAccess } from "@/lib/campus-access"
+import { canEnterMasterCampus } from "@/lib/campus-entitlement"
 
 export const metadata = {
   title: "Benevolo · Aceleración de marca",
@@ -30,12 +31,7 @@ export default async function BenevoloCampusPage() {
   ])
 
   const access = resolveMasterAccess(wallet?.lifetime_earned ?? 0, BENEVOLO_COURSE_SLUG)
-  const hasProgress =
-    saved?.state &&
-    typeof saved.state === "object" &&
-    Array.isArray((saved.state as { completed?: unknown }).completed) &&
-    ((saved.state as { completed: unknown[] }).completed.length > 0)
-  if (!access.unlocked && !hasProgress) {
+  if (!canEnterMasterCampus({ rankUnlocked: access.unlocked, state: saved?.state })) {
     return <MasterAccessGate title="Benevolo (capstone)" access={access} />
   }
 

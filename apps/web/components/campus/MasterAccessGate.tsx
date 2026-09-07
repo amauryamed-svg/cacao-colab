@@ -9,12 +9,12 @@ type Props = {
   courseSlug?: string
 }
 
-/** Pantalla cuando el Master aún no está abierto por rango — con checkout Shopify. */
+/** Pantalla cuando el Master aún no está abierto — rango, canje MD o checkout Shopify. */
 export default function MasterAccessGate({ title, access, courseSlug }: Props) {
   return (
     <div className="min-h-screen bg-[#101d0b] text-colab-cream px-4 py-16">
       <main className="max-w-xl mx-auto">
-        <p className="eyebrow text-colab-yellow">Master · rango o checkout</p>
+        <p className="eyebrow text-colab-yellow">Master · rango · MD · Shopify</p>
         <h1 className="font-serif text-4xl font-black mt-3">{title}</h1>
         <p className="mt-4 text-colab-cream/70 leading-relaxed">{masterAccessCopy.principle}</p>
         <div className="mt-8 rounded-2xl border border-colab-yellow/25 bg-colab-yellow/10 p-5">
@@ -28,6 +28,9 @@ export default function MasterAccessGate({ title, access, courseSlug }: Props) {
         {courseSlug && (
           <div className="mt-6">
             <MasterShopifyCheckout courseSlug={courseSlug} />
+            <p className="mt-3 text-xs text-colab-cream/45 leading-relaxed">
+              {masterAccessCopy.shopifyNote}
+            </p>
           </div>
         )}
         <div className="mt-8 flex flex-wrap gap-3">
