@@ -1,0 +1,31 @@
+{
+  "marca": "CHOCOLATE BENEVOLO",
+  "sitio_web": "Chocolate Benevolo.co",
+  "producto": {
+    "nombre": "DUJA DE MARAÑON",
+    "caracteristicas_destacadas": [
+      "SUGAR FREE"
+    ],
+    "categoria_linea": "Bars.",
+    "descripcion": "Chocolatina de leche con frutos secos.",
+    "peso_neto": "80gr",
+    "sellos_insignias": [
+      "CACAO COLOMBIANO DE ORIGEN",
+      "FEAR5"
+    ],
+    "eslogan": "By Benévolo - Buen Chocolate Indulgente."
+  },
+  "detalles_ingredientes_contenido": {
+    "cacao": "60% Cacao Trinitario con fermentación controlada",
+    "base": "Chocolate de leche FEAR5",
+    "adicionales": [
+      "Leche en polvo avellanada",
+      "marañón salado"
+    ]
+  },
+  "informacion_fabricante_y_registro": {
+    "elaborado_por": "Chocolate Zurych SAS",
+    "registro_sanitario": "NSA-0011242-2021",
+    "contacto": "+573102227848"
+  }
+}

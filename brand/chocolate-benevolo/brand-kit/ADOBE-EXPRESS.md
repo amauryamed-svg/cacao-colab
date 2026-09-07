@@ -1,5 +1,9 @@
 # Adobe Express · 4 minutos · Chocolate Benevolo
 
+Copy impreso para pegar: [`copy/ADOBE-EXPRESS-PASTE.md`](copy/ADOBE-EXPRESS-PASTE.md)  
+JSON: [`copy/bars-printed.json`](copy/bars-printed.json)  
+Capas frente / dorso: `copy/bars-frente-live.svg` · `copy/bars-dorso-live.svg` · `copy/bars-copy-board.svg`
+
 ## 1. Brand
 
 Adobe Express → Brand → Your brand (o Brands):
@@ -18,6 +22,9 @@ Create → Custom size. File → Upload from device:
 | Story | `templates/social-story-1080x1920.svg` |
 | OG | `templates/og-1200x630.svg` |
 | Key values | `key-values/kv-*-live.svg` |
+| Copy frente | `copy/bars-frente-live.svg` |
+| Copy dorso | `copy/bars-dorso-live.svg` |
+| Copy board | `copy/bars-copy-board.svg` |
 
 Si Express rasteriza el SVG, usa las PNG del zip de artefactos (misma carpeta `png/` cuando existan) y pon el texto encima con Bodoni.
 

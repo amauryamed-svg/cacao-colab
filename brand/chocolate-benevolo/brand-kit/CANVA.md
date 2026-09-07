@@ -51,6 +51,9 @@ Create design → Custom size:
 | Story | 1080×1920 | `templates/social-story-1080x1920.svg` |
 | Key value | 1080×1080 | `key-values/kv-*-live.svg` |
 | Board | 1920×1200 | `key-values/kv-board-1920.svg` |
+| Copy Express | 1920×1080 | `copy/bars-copy-board.svg` |
+
+Textos para pegar: `copy/ADOBE-EXPRESS-PASTE.md`
 
 Después: Ungroup (si aparece) → deja bloqueados `logo-cb` y swirls; edita solo `type-*`.
 

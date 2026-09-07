@@ -15,6 +15,7 @@ No es un archivo en tu nube de Canva / Figma / Adobe Express. Yo no puedo entrar
 | `motifs/` | Swirls navy + halo mazorca |
 | `templates/` | Post 1080, story 1080×1920, OG 1200×630 |
 | `png/` | Mismos assets rasterizados (Canva a veces prefiere PNG) |
+| `copy/` | Textos impresos Bars. para pegar en Express (frente / dorso / JSON) |
 
 ## Dos familias de archivo (elige según la app)
 

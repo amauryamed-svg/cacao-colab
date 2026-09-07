@@ -59,12 +59,13 @@ Ver `LEAN-TO-PRO.md`: **L0 sticker → L1 sleeve → L2 carton → L3 display**.
 ## 4. Claims
 
 ### Permitidos (alineados a lo impreso)
-- Bars. By Benevolo · Buen chocolate indulgente
+- Bars. By Benévolo · Buen Chocolate Indulgente. (verbatim del cartón)
 - Chocolate de leche FEAR5 60 % Cacao Trinitario · fermentación controlada
 - Leche en polvo avellanada y marañón salado
 - Elaborado por Chocolate Zurych SAS · NSA-0011242-2021
-- Contacto +57 310 222 7848 · chocolatebenevolo.co
-- Cacao colombiano de origen · FEAR 5 (sello)
+- Contacto +573102227848 · Chocolate Benevolo.co
+- Cacao colombiano de origen · FEAR5 (sello)
+- DUJA DE MARAÑON · SUGAR FREE · Chocolatina de leche con frutos secos. Neto 80gr.
 - Bons. · chocolatería profesional · molde mazorca
 
 ### Prohibidos
