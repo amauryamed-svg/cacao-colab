@@ -35,7 +35,7 @@ By Benévolo - Buen Chocolate Indulgente.
 
 ### type-contents
 Contiene:
-Chocolate de leche FEAR5 60% Cacao Trinitario con fermentación controlada.
+Cacao FEAR5 45% Trinitario con fermentación controlada.
 Leche en polvo avellanada y marañón salado.
 
 ### type-manufacturer
@@ -85,7 +85,7 @@ By Benévolo - Buen Chocolate Indulgente.
 ### Contenido
 ```
 Contiene:
-Chocolate de leche FEAR5 60% Cacao Trinitario con fermentación controlada.
+Cacao FEAR5 45% Trinitario con fermentación controlada.
 Leche en polvo avellanada y marañón salado.
 ```
 

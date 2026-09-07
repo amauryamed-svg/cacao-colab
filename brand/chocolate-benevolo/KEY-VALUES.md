@@ -18,7 +18,7 @@
 | Formato Bars. | Neto 80 g |
 | Casa | Marca acelerada cacaotier · R&D Cacao Colab |
 | Relación Colab | Hermana del Master Chocolatier 70 % — no su capstone |
-| Impreso (Bars. carton) | Leche FEAR5 **60 %** Trinitario · leche en polvo avellanada · marañón salado · Zurych SAS NSA-0011242-2021 |
+| Impreso (Bars. carton) | Cacao FEAR5 **45 %** Trinitario · leche en polvo avellanada · marañón salado · Zurych SAS NSA-0011242-2021 |
 
 ---
 
@@ -60,7 +60,7 @@ Ver `LEAN-TO-PRO.md`: **L0 sticker → L1 sleeve → L2 carton → L3 display**.
 
 ### Permitidos (alineados a lo impreso)
 - Bars. By Benévolo · Buen Chocolate Indulgente. (verbatim del cartón)
-- Chocolate de leche FEAR5 60 % Cacao Trinitario · fermentación controlada
+- Cacao FEAR5 45 % Trinitario · fermentación controlada
 - Leche en polvo avellanada y marañón salado
 - Elaborado por Chocolate Zurych SAS · NSA-0011242-2021
 - Contacto +573102227848 · Chocolate Benevolo.co

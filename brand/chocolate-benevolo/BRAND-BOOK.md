@@ -61,7 +61,7 @@ Duja de Marañón sugar free. FEAR 5 de Quara. Se lee igual en español y en ita
 | **Nibs.** | Cocina / snack | Grano tostado | Header orange / body navy |
 | **Coberturas.** | Chef / obrador | Temperar · % hero | Franja orange + % coral |
 
-⚠️ **Reconciliar:** el brief original (`lib/benevolo-brand.ts`, `docs/31-…`) describe Bars. como *sugar free* con alulosa + stevia. El copy OCR del cartón ya impreso (`references/bars_benevolo_pdf_text.txt`) no menciona alulosa/stevia ni "sugar free" — solo "chocolate de leche FEAR5 60 % Cacao Trinitario, leche en polvo avellanada y marañón salado". No se resuelve aquí cuál es la versión vigente; verificar con el equipo antes de repetir el claim "sugar free" en canales nuevos.
+⚠️ **% cacao definitivo:** **45 %** (`Bars Benevolo (2).pdf`). El OCR viejo de `references/bars_benevolo_pdf_text.txt` decía 60 % — ya no se usa. El brief (`lib/benevolo-brand.ts`) sigue con sugar free / alulosa + stevia; el cartón (2) no lo escribe en el dorso. Sugar free sí va en el frente (DUJA DE MARAÑON / SUGAR FREE).
 
 ---
 
@@ -119,7 +119,7 @@ Duja de Marañón sugar free. FEAR 5 de Quara. Se lee igual en español y en ita
 ### 9.1 Qué ya existe de verdad (imprenta real, no mock)
 
 - **Bars.** — cartón pro ya troquelado: frente naranja + swirls navy + mazorca + sello FEAR 5 + monograma CB; dorso navy con *"Bars. By Benévolo · Buen Chocolate Indulgente."*; barra con `Bars.` debossed.
-  - Copy legal impreso (OCR verbatim, `references/bars_benevolo_pdf_text.txt`): *"Contiene: Chocolate de leche FEAR5 60% Cacao Trinitario con fermentación controlada. Leche en polvo avellanada y marañón salado. Elaborado por: Chocolate Zurych SAS · NSA-0011242-2021. Contacto: +573102227848."*
+  - Copy legal definitivo (`Bars Benevolo (2).pdf`): *"Contiene: Cacao FEAR5 45% Trinitario con fermentación controlada. Leche en polvo avellanada y marañón salado."*
   - Dominio impreso: `ChocolaBenevolo.co` / `ChocolateBenevolo.co` (dos variantes en el arte — confirmar cuál es la canónica).
 - **Bons.** — bombón dark físico con tapa textura "pod-ridge" naranja/coral jaspeado (firma visual de la línea).
 - **Caja lean (prototipo)** — tuck-top blanca ~50×50×45 mm, notch semicircular, sin arte propio → candidata a etiqueta L0.
@@ -159,7 +159,7 @@ Duja de Marañón sugar free. FEAR 5 de Quara. Se lee igual en español y en ita
 
 | Línea | Flex |
 |---|---|
-| Bars. | Ya cerrado (80 g · leche 60 % · marañón) |
+| Bars. | Ya cerrado (80 g · cacao 45 % · marañón) |
 | Bons. | Sabor/relleno · acento de tapa (naranja pod) · uds por caja |
 | Nibs. | Origen · neto 150–250 g |
 | Coberturas. | % · endulzante · 1 kg |
@@ -215,7 +215,7 @@ Un SKU hero por display (nunca collage de 6 productos en primer plano). Mismo lo
 
 **Permitido**
 - Bars. By Benevolo · Buen chocolate indulgente
-- Chocolate de leche FEAR5 60 % Cacao Trinitario · fermentación controlada
+- Cacao FEAR5 45 % Trinitario · fermentación controlada
 - Leche en polvo avellanada y marañón salado
 - Elaborado por Chocolate Zurych SAS · NSA-0011242-2021
 - Contacto +57 310 222 7848 · chocolatebenevolo.co

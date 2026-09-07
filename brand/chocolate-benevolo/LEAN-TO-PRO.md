@@ -12,7 +12,7 @@
 - Dieline multi-panel: frente naranja + swirls navy + mazorca + sello FEAR 5 + monograma CB
 - Costado URL `ChocolaBenevolo.co` / `ChocolateBenevolo.co`
 - Dorso navy: *Bars. By Benévolo · Buen Chocolate Indulgente.*
-- Contiene (copy impreso): leche FEAR5 **60 %** Trinitario · fermentación controlada · leche en polvo avellanada · marañón salado
+- Contiene (copy impreso, definitivo): Cacao FEAR5 **45 %** Trinitario · fermentación controlada · leche en polvo avellanada · marañón salado
 - Elaborado: Chocolate Zurych SAS · NSA-0011242-2021 · WhatsApp +57 310 222 7848
 - Barra con **Bars.** debossed
 
@@ -57,7 +57,7 @@
 ### Flex por línea
 | Línea | Flex |
 |-------|------|
-| Bars. | Ya definido (80 g · leche 60 % · marañón) |
+| Bars. | Ya definido (80 g · cacao 45 % · marañón) |
 | Bons. | Sabor / relleno · acento de tapa (naranja pod) · uds por caja |
 | Nibs. | Origen · neto 150–250 g |
 | Coberturas. | % · endulzante · 1 kg |

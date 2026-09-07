@@ -271,12 +271,12 @@ def build_key_values(font500: TTFont, font900: TTFont) -> None:
     kv_card(font500, font900, "kv-manifiesto", "Propósito", "Benevolencia del oficio, en formato de antojo.", "Línea madre · Brand Book V1", ORANGE, WHITE)
     kv_card(font500, font900, "kv-promesa", "Promesa", "Buen chocolate indulgente.", "Dorso impreso Bars.", NAVY, WHITE)
     kv_card(font500, font900, "kv-juego", "Juego de marca", "Benevolo sin tilde. Chocolate Benevolo le pone las tildes a la e.", "Se lee igual en español y en italiano.", COCOA, CREAM)
-    kv_card(font500, font900, "kv-producto", "Producto ancla", "Bars. Duja de marañón. Sugar free. 80 g.", "FEAR 5 · 60 % Trinitario · Zurych SAS", ORANGE, WHITE)
+    kv_card(font500, font900, "kv-producto", "Producto ancla", "Bars. Duja de marañón. Sugar free. 80 g.", "FEAR 5 · 45 % Trinitario · Zurych SAS", ORANGE, WHITE)
 
     claims_ok = [
         "Bars. By Benevolo",
         "Buen chocolate indulgente",
-        "Leche FEAR5 60 % Trinitario",
+        "Cacao FEAR5 45 % Trinitario",
         "Marañón salado · leche avellanada",
         "Cacao colombiano de origen",
         "chocolatebenevolo.co · benevolo.shop",
