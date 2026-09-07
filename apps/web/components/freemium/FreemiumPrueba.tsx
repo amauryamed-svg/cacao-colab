@@ -91,7 +91,7 @@ export default function FreemiumPrueba() {
             Landing Cacaotier →
           </Link>
           <Link
-            href="/cuenta/entrar?next=/campus/arquitecto-fermentacion"
+            href="/campus/arquitecto-fermentacion"
             className="rounded-full border border-white/20 px-6 py-3 text-sm font-bold text-colab-cream"
           >
             Empezar certificación →
