@@ -13,4 +13,4 @@ No usar packshots Benevolo ni fotos `atmosphere/` como identidad de Masters.
 | `*-wide.png` | OG / Shopify landscape |
 | `shopify-tres-masters.png` | Banner tienda Tres Masters |
 
-Fuente vectorial: `*.svg` (ardilla = `/brand/squirrel-cacao.svg`).
+Ardilla definitiva: `/brand/squirrel-cacao.svg` (+ PNG/badge). Forma: cola en S, cuerpo cohesivo, mazorca al pecho.
