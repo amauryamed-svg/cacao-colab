@@ -1,0 +1,20 @@
+{
+  "marca": "WATERLOO",
+  "categoria": "SPARKLING WATER",
+  "sabor": "RASPBERRY NECTARINE",
+  "detalles_sabor": "NATURALLY FLAVORED WITH OTHER NATURAL FLAVORS",
+  "informacion_nutricional_destacada": { "calorias": 0, "azucar": 0, "sodio": 0 },
+  "empaque": {
+    "caja": {
+      "cantidad": "8 CANS",
+      "volumen_total": "8-12 FL OZ CANS (96 FL OZ) / 8-355 ML CANS",
+      "certificaciones": ["NON GMO Project VERIFIED"]
+    },
+    "lata": {
+      "tipo": "Lata de aluminio",
+      "color_dominante": "Magenta / Magenta degradado a blanco",
+      "ilustracion": "Frambuesas y una tajada de nectarina"
+    }
+  },
+  "uso_benevolo": "Referencia estructural para Brew. · no copiar IP Waterloo"
+}

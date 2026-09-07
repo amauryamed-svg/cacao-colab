@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="70mm" height="120mm" viewBox="0 0 700 1200"
+  role="img" aria-label="Brew. CACAO · FRAMBUESA NECTARINA">
+  <title>Brew. · CACAO · FRAMBUESA NECTARINA</title>
+  <desc>Brew. Benevolo · Waterloo structure + franja naranja CB. No copia IP Waterloo.</desc>
+  <defs>
+    <linearGradient id="wash" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#C41E6A"/>
+      <stop offset="32%" stop-color="#E85A9A"/>
+      <stop offset="55%" stop-color="#F7D0E2"/>
+      <stop offset="72%" stop-color="#F7F1EE"/>
+      <stop offset="100%" stop-color="#FFFFFF"/>
+    </linearGradient>
+  </defs>
+
+  <g id="ARTWORK">
+    <rect width="700" height="1200" fill="url(#wash)"/>
+
+    <!-- CB lockup -->
+    <g id="LOCKUP_CB" transform="translate(36,28)">
+      <circle cx="20" cy="20" r="18" fill="#F05A28"/>
+      <text x="20" y="26" text-anchor="middle" font-family="Georgia, serif" font-size="15" font-weight="700" fill="#FFFFFF">CB</text>
+      <text x="50" y="16" font-family="Georgia, serif" font-size="13" font-weight="700" fill="#FFFFFF" letter-spacing="1.4">CHOCOLATE</text>
+      <text x="50" y="34" font-family="Georgia, serif" font-size="13" font-weight="700" fill="#FFFFFF" letter-spacing="1.4">BENEVOLO</text>
+    </g>
+
+    <!-- Brew. wordmark -->
+    <g id="WORDMARK">
+      <text x="40" y="128" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="92" font-style="italic" font-weight="900" fill="#C43A18" opacity="0.45">Brew.</text>
+      <text x="34" y="122" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="92" font-style="italic" font-weight="900" fill="#FFFFFF">Brew.</text>
+    </g>
+    <text x="40" y="158" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="14" fill="#FFFFFF" letter-spacing="3.5">SPARKLING CACAO</text>
+
+
+    <g id="FRUIT" transform="translate(40,175) scale(1.08)">
+      
+      <g transform="translate(420,70) rotate(-18) scale(1.45)">
+        <path d="M0 0 Q28 -18 52 0 Q28 20 0 0 Z" fill="#3D7A2C"/>
+        <path d="M0 0 Q28 -10 48 0" fill="none" stroke="#1E5014" stroke-width="1.5"/>
+        <path d="M12 -4 Q22 -12 30 -2" fill="none" stroke="#5FAF44" stroke-width="1" opacity="0.7"/>
+      </g>
+      
+      <g transform="translate(470,110) rotate(28) scale(1.15)">
+        <path d="M0 0 Q28 -18 52 0 Q28 20 0 0 Z" fill="#3D7A2C"/>
+        <path d="M0 0 Q28 -10 48 0" fill="none" stroke="#1E5014" stroke-width="1.5"/>
+        <path d="M12 -4 Q22 -12 30 -2" fill="none" stroke="#5FAF44" stroke-width="1" opacity="0.7"/>
+      </g>
+      
+      <g transform="translate(430,230)">
+        <path d="M0 0 A135 135 0 0 1 -155 -155 L-22 -22 Z" fill="#F5A24B"/>
+        <path d="M-10 -10 A105 105 0 0 1 -132 -132 L-22 -22 Z" fill="#FFD4A8"/>
+        <ellipse cx="-30" cy="-30" rx="24" ry="30" fill="#C47A3A" opacity="0.55" transform="rotate(-40 -30 -30)"/>
+        <ellipse cx="-30" cy="-30" rx="14" ry="18" fill="#8A4A18" opacity="0.72" transform="rotate(-40 -30 -30)"/>
+        <path d="M-75 -95 Q-52 -72 -42 -48" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" opacity="0.42"/>
+        <path d="M-115 -62 Q-92 -42 -72 -30" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" opacity="0.28"/>
+        <path d="M0 0 L-22 -22" stroke="#7A1242" stroke-width="2.5" opacity="0.4"/>
+      </g>
+      
+      <g>
+        <circle cx="155" cy="145" r="73.8" fill="#C41E6A"/>
+        <circle cx="155" cy="99.9" r="24.599999999999998" fill="#E85A9A"/><circle cx="148.85" cy="92.52000000000001" r="6.888" fill="#FFFFFF" opacity="0.32"/><circle cx="194.36" cy="122.03999999999999" r="21.32" fill="#C41E6A"/><circle cx="189.03" cy="115.64399999999999" r="5.969600000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="115.64" cy="122.03999999999999" r="21.32" fill="#7A1242"/><circle cx="110.31" cy="115.64399999999999" r="5.969600000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="194.36" cy="167.96" r="21.32" fill="#E85A9A"/><circle cx="189.03" cy="161.56400000000002" r="5.969600000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="115.64" cy="167.96" r="21.32" fill="#7A1242"/><circle cx="110.31" cy="161.56400000000002" r="5.969600000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="155" cy="190.1" r="21.32" fill="#C41E6A"/><circle cx="149.67" cy="183.704" r="5.969600000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="155" cy="145" r="21.32" fill="#E85A9A"/><circle cx="149.67" cy="138.604" r="5.969600000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="218.96" cy="145" r="21.32" fill="#C41E6A"/><circle cx="213.63" cy="138.604" r="5.969600000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="91.03999999999999" cy="145" r="21.32" fill="#7A1242"/><circle cx="85.71" cy="138.604" r="5.969600000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="177.96" cy="81.03999999999999" r="21.32" fill="#E85A9A"/><circle cx="172.63" cy="74.64399999999999" r="5.969600000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="132.04" cy="81.03999999999999" r="21.32" fill="#7A1242"/><circle cx="126.71" cy="74.64399999999999" r="5.969600000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="177.96" cy="208.96" r="21.32" fill="#C41E6A"/><circle cx="172.63" cy="202.56400000000002" r="5.969600000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="132.04" cy="208.96" r="21.32" fill="#E85A9A"/><circle cx="126.71" cy="202.56400000000002" r="5.969600000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="208.3" cy="99.9" r="21.32" fill="#C41E6A"/><circle cx="202.97" cy="93.504" r="5.969600000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="101.69999999999999" cy="99.9" r="21.32" fill="#7A1242"/><circle cx="96.36999999999999" cy="93.504" r="5.969600000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="208.3" cy="190.1" r="21.32" fill="#E85A9A"/><circle cx="202.97" cy="183.704" r="5.969600000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="101.69999999999999" cy="190.1" r="21.32" fill="#7A1242"/><circle cx="96.36999999999999" cy="183.704" r="5.969600000000001" fill="#FFFFFF" opacity="0.32"/>
+        <path d="M142.7 67.10000000000001 Q155 36.75999999999999 183.7 61.36" fill="#7A1242"/>
+        <path d="M155 61.36 Q200.1 31.840000000000003 214.04 61.36 Q183.7 69.56 155 61.36 Z" fill="#3D7A2C"/>
+        <path d="M155 61.36 Q114.0 36.75999999999999 107.44 64.64 Q138.6 69.56 155 61.36 Z" fill="#4E8C38"/>
+      </g>
+      
+      <g>
+        <circle cx="95" cy="265" r="54.0" fill="#C41E6A"/>
+        <circle cx="95" cy="232.0" r="18.0" fill="#E85A9A"/><circle cx="90.5" cy="226.6" r="5.040000000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="123.8" cy="248.2" r="15.600000000000001" fill="#C41E6A"/><circle cx="119.89999999999999" cy="243.51999999999998" r="4.368000000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="66.2" cy="248.2" r="15.600000000000001" fill="#7A1242"/><circle cx="62.300000000000004" cy="243.51999999999998" r="4.368000000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="123.8" cy="281.8" r="15.600000000000001" fill="#E85A9A"/><circle cx="119.89999999999999" cy="277.12" r="4.368000000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="66.2" cy="281.8" r="15.600000000000001" fill="#7A1242"/><circle cx="62.300000000000004" cy="277.12" r="4.368000000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="95" cy="298.0" r="15.600000000000001" fill="#C41E6A"/><circle cx="91.1" cy="293.32" r="4.368000000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="95" cy="265" r="15.600000000000001" fill="#E85A9A"/><circle cx="91.1" cy="260.32" r="4.368000000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="141.8" cy="265" r="15.600000000000001" fill="#C41E6A"/><circle cx="137.9" cy="260.32" r="4.368000000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="48.199999999999996" cy="265" r="15.600000000000001" fill="#7A1242"/><circle cx="44.3" cy="260.32" r="4.368000000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="111.8" cy="218.2" r="15.600000000000001" fill="#E85A9A"/><circle cx="107.89999999999999" cy="213.51999999999998" r="4.368000000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="78.2" cy="218.2" r="15.600000000000001" fill="#7A1242"/><circle cx="74.3" cy="213.51999999999998" r="4.368000000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="111.8" cy="311.8" r="15.600000000000001" fill="#C41E6A"/><circle cx="107.89999999999999" cy="307.12" r="4.368000000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="78.2" cy="311.8" r="15.600000000000001" fill="#E85A9A"/><circle cx="74.3" cy="307.12" r="4.368000000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="134.0" cy="232.0" r="15.600000000000001" fill="#C41E6A"/><circle cx="130.1" cy="227.32" r="4.368000000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="56.0" cy="232.0" r="15.600000000000001" fill="#7A1242"/><circle cx="52.1" cy="227.32" r="4.368000000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="134.0" cy="298.0" r="15.600000000000001" fill="#E85A9A"/><circle cx="130.1" cy="293.32" r="4.368000000000001" fill="#FFFFFF" opacity="0.32"/><circle cx="56.0" cy="298.0" r="15.600000000000001" fill="#7A1242"/><circle cx="52.1" cy="293.32" r="4.368000000000001" fill="#FFFFFF" opacity="0.32"/>
+        <path d="M86.0 208.0 Q95 185.8 116.0 203.8" fill="#7A1242"/>
+        <path d="M95 203.8 Q128.0 182.2 138.2 203.8 Q116.0 209.8 95 203.8 Z" fill="#3D7A2C"/>
+        <path d="M95 203.8 Q65.0 185.8 60.2 206.2 Q83.0 209.8 95 203.8 Z" fill="#4E8C38"/>
+      </g>
+      
+      <g>
+        <circle cx="245" cy="275" r="45.0" fill="#E85A9A"/>
+        <circle cx="245" cy="247.5" r="15.0" fill="#C41E6A"/><circle cx="241.25" cy="243.0" r="4.2" fill="#FFFFFF" opacity="0.32"/><circle cx="269.0" cy="261.0" r="13.0" fill="#E85A9A"/><circle cx="265.75" cy="257.1" r="3.6400000000000006" fill="#FFFFFF" opacity="0.32"/><circle cx="221.0" cy="261.0" r="13.0" fill="#7A1242"/><circle cx="217.75" cy="257.1" r="3.6400000000000006" fill="#FFFFFF" opacity="0.32"/><circle cx="269.0" cy="289.0" r="13.0" fill="#C41E6A"/><circle cx="265.75" cy="285.1" r="3.6400000000000006" fill="#FFFFFF" opacity="0.32"/><circle cx="221.0" cy="289.0" r="13.0" fill="#7A1242"/><circle cx="217.75" cy="285.1" r="3.6400000000000006" fill="#FFFFFF" opacity="0.32"/><circle cx="245" cy="302.5" r="13.0" fill="#E85A9A"/><circle cx="241.75" cy="298.6" r="3.6400000000000006" fill="#FFFFFF" opacity="0.32"/><circle cx="245" cy="275" r="13.0" fill="#C41E6A"/><circle cx="241.75" cy="271.1" r="3.6400000000000006" fill="#FFFFFF" opacity="0.32"/><circle cx="284.0" cy="275" r="13.0" fill="#E85A9A"/><circle cx="280.75" cy="271.1" r="3.6400000000000006" fill="#FFFFFF" opacity="0.32"/><circle cx="206.0" cy="275" r="13.0" fill="#7A1242"/><circle cx="202.75" cy="271.1" r="3.6400000000000006" fill="#FFFFFF" opacity="0.32"/><circle cx="259.0" cy="236.0" r="13.0" fill="#C41E6A"/><circle cx="255.75" cy="232.1" r="3.6400000000000006" fill="#FFFFFF" opacity="0.32"/><circle cx="231.0" cy="236.0" r="13.0" fill="#7A1242"/><circle cx="227.75" cy="232.1" r="3.6400000000000006" fill="#FFFFFF" opacity="0.32"/><circle cx="259.0" cy="314.0" r="13.0" fill="#E85A9A"/><circle cx="255.75" cy="310.1" r="3.6400000000000006" fill="#FFFFFF" opacity="0.32"/><circle cx="231.0" cy="314.0" r="13.0" fill="#C41E6A"/><circle cx="227.75" cy="310.1" r="3.6400000000000006" fill="#FFFFFF" opacity="0.32"/><circle cx="277.5" cy="247.5" r="13.0" fill="#E85A9A"/><circle cx="274.25" cy="243.6" r="3.6400000000000006" fill="#FFFFFF" opacity="0.32"/><circle cx="212.5" cy="247.5" r="13.0" fill="#7A1242"/><circle cx="209.25" cy="243.6" r="3.6400000000000006" fill="#FFFFFF" opacity="0.32"/><circle cx="277.5" cy="302.5" r="13.0" fill="#C41E6A"/><circle cx="274.25" cy="298.6" r="3.6400000000000006" fill="#FFFFFF" opacity="0.32"/><circle cx="212.5" cy="302.5" r="13.0" fill="#7A1242"/><circle cx="209.25" cy="298.6" r="3.6400000000000006" fill="#FFFFFF" opacity="0.32"/>
+        <path d="M237.5 227.5 Q245 209.0 262.5 224.0" fill="#7A1242"/>
+        <path d="M245 224.0 Q272.5 206.0 281.0 224.0 Q262.5 229.0 245 224.0 Z" fill="#3D7A2C"/>
+        <path d="M245 224.0 Q220.0 209.0 216.0 226.0 Q235.0 229.0 245 224.0 Z" fill="#4E8C38"/>
+      </g>
+      
+      <g transform="translate(520,295) scale(0.9)">
+        <ellipse cx="0" cy="8" rx="34" ry="48" fill="#F05A28"/>
+        <ellipse cx="-10" cy="0" rx="14" ry="34" fill="#FF8A55" opacity="0.35"/>
+        <path d="M0 -38 Q-28 -10 -30 10 Q-28 34 0 52" fill="none" stroke="#3D2314" stroke-width="2.2" opacity="0.75"/>
+        <path d="M0 -38 Q-14 -8 -14 12 Q-12 36 0 52" fill="none" stroke="#3D2314" stroke-width="1.6" opacity="0.55"/>
+        <path d="M0 -38 Q14 -8 14 12 Q12 36 0 52" fill="none" stroke="#3D2314" stroke-width="1.6" opacity="0.55"/>
+        <path d="M0 -38 Q28 -10 30 10 Q28 34 0 52" fill="none" stroke="#3D2314" stroke-width="2.2" opacity="0.75"/>
+        <rect x="-5" y="-52" width="10" height="16" rx="4" fill="#154010"/>
+        <path d="M0 -48 Q22 -62 28 -48 Q14 -40 0 -48 Z" fill="#3D7A2C"/>
+        <path d="M0 -48 Q-20 -64 -26 -50 Q-12 -40 0 -48 Z" fill="#4E8C38"/>
+        <ellipse cx="-12" cy="-8" rx="8" ry="5" fill="#FFFFFF" opacity="0.28"/>
+      </g>
+      <ellipse cx="290" cy="380" rx="210" ry="18" fill="#15243F" opacity="0.07"/>
+    </g>
+
+    <!-- Flavor block on cream zone -->
+    <text x="40" y="780" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="62" font-weight="900" fill="#15243F" letter-spacing="0.5">FRAMBUESA</text>
+    <text x="40" y="848" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="62" font-weight="900" fill="#15243F" letter-spacing="0.5">NECTARINA</text>
+    <rect x="40" y="868" width="120" height="8" rx="4" fill="#F05A28"/>
+    <text x="40" y="910" font-family="Georgia, serif" font-size="20" font-style="italic" fill="#15243F">Naturally flavored sparkling cacao.</text>
+
+
+    <g id="NUTRITION" transform="translate(40,940)">
+      <text x="0" y="0" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="28" font-weight="900" fill="#15243F">0</text>
+      <text x="28" y="0" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#15243F" letter-spacing="1.5">CAL</text>
+      <circle cx="95" cy="-6" r="3" fill="#F05A28"/>
+      <text x="115" y="0" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="28" font-weight="900" fill="#15243F">0</text>
+      <text x="143" y="0" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#15243F" letter-spacing="1.5">AZÚCAR</text>
+      <circle cx="250" cy="-6" r="3" fill="#F05A28"/>
+      <text x="270" y="0" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="28" font-weight="900" fill="#15243F">0</text>
+      <text x="298" y="0" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#15243F" letter-spacing="1.5">SODIO</text>
+    </g>
+
+    <!-- FRANJA NARANJA BENEVOLO (locked abajo) -->
+    <g id="ORANGE_BAND">
+      <rect x="0" y="1082" width="700" height="118" fill="#F05A28"/>
+      <rect x="0" y="1082" width="700" height="6" fill="#C43A18" opacity="0.35"/>
+      <text x="350" y="1130" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="22" font-weight="800" fill="#FFFFFF" letter-spacing="2">355 ml · 12 FL OZ</text>
+      <text x="350" y="1164" text-anchor="middle" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF" letter-spacing="1.5">chocolatebenevolo.co · FEAR 5</text>
+    </g>
+  </g>
+
+  <g id="DIELINE_CUT" fill="none" stroke="#FF00FF" stroke-width="1.5" opacity="0.35">
+    <rect x="4" y="4" width="692" height="1192" rx="40"/>
+  </g>
+</svg>
