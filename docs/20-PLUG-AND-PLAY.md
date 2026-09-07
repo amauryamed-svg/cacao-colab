@@ -115,6 +115,10 @@ NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_ROLE_KEY=
 HUBSPOT_ACCESS_TOKEN=
+# Shopify Colab (docs/33) — Benevolo.shop es la misma tienda
+# NEXT_PUBLIC_COLAB_SHOPIFY_DOMAIN=cacao-colab.myshopify.com
+# NEXT_PUBLIC_BENEVOLO_SHOP_DOMAIN=benevolo.shop
+# NEXT_PUBLIC_SHOPIFY_VARIANT_BARS_BENEVOLO=
 ```
 
 Sin Supabase, marketing + Dualita estática siguen sirviendo; login `/equipo` y CRM requieren las keys.

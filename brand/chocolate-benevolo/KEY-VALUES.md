@@ -1,7 +1,7 @@
 # Chocolate Benevolo · Key values (Brand Book V1)
 
 > Tipografía producto: **Bodoni Ultra Black Italic** (`Bars.` / extensión de línea)  
-> Dominio: **chocolatebenevolo.co** · Casa: R&D Cacao Colab
+> Dominio de marca: **chocolatebenevolo.co** · Comercio: **benevolo.shop** (tienda Shopify Colab) · Casa: R&D Cacao Colab
 
 ---
 

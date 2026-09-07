@@ -181,7 +181,9 @@ Ver `14-CRM-INTERNO.md` para el detalle completo, incluyendo por qué Oscar no t
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Vercel env vars | Anon key del proyecto Supabase |
 | `NEXT_PUBLIC_SITE_URL` | Vercel env vars | Usado para el `emailRedirectTo` del magic link |
 | `SENTRY_DSN` / `NEXT_PUBLIC_SENTRY_DSN` | Vercel env vars | Pendiente de crear el proyecto Sentry |
-| `ANTHROPIC_API_KEY` | Vercel env vars | Para `packages/ai-companion` (Dualita IA) |
+| `NEXT_PUBLIC_COLAB_SHOPIFY_DOMAIN` | Vercel env vars | Host Shopify Colab (default `cacao-colab.myshopify.com`) |
+| `NEXT_PUBLIC_BENEVOLO_SHOP_DOMAIN` | Vercel env vars | Host de marca Benevolo; vacío = mismo host Colab. Poner `benevolo.shop` cuando el DNS esté Verified. |
+| `NEXT_PUBLIC_SHOPIFY_VARIANT_BARS_BENEVOLO` | Vercel env vars | Variant ID Bars.; hay fallback público en código |
 
 Archivo local: `.env.local` (en `.gitignore`, no commitear).
 

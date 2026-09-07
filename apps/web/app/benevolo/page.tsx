@@ -2,12 +2,14 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import TrackedLink from "@/components/analytics/TrackedLink"
+import { BenevoloShopifyCheckout } from "@/components/commerce/BenevoloShopifyCheckout"
 import { benevoloProduct, priorityVarieties } from "@/lib/knowledge-base"
+import { BENEVOLO_SHOP_BRAND_HOST, benevoloProductUrl } from "@/lib/shopify-colab"
 
 export const metadata: Metadata = {
   title: "Chocolate Benevolo · marca acelerada cacaotier",
   description:
-    "Bars. · categoría Duja de Marañón sugar free. FEAR 5 Quara × Zurych. Marca acelerada separada del Master Chocolatier 70 %.",
+    "Bars. · Duja de Marañón sugar free. Preventa en Shopify Colab (Benevolo.shop). Marca acelerada separada del Master Chocolatier 70 %.",
 }
 
 export default function BenevoloPage() {
@@ -34,24 +36,35 @@ export default function BenevoloPage() {
               <p className="mt-5 text-sm font-bold text-[#E8C9A0]">{benevoloProduct.accentLine}</p>
               <p className="mt-5 max-w-md text-base leading-relaxed text-white/55">
                 {benevoloProduct.tagline} {benevoloProduct.format}. Vive en el laboratorio R&D junto a
-                coberturas CAÚA × Zurych.
+                coberturas CAÚA × Zurych. Preorden en la tienda Shopify Colab — dominio de marca{" "}
+                {BENEVOLO_SHOP_BRAND_HOST}.
               </p>
               <div className="flex flex-wrap gap-3 mt-8">
                 <TrackedLink
-                  href={benevoloProduct.preorderWhatsapp}
+                  href={benevoloProductUrl()}
                   event="benevolo_interest"
-                  targetName="benevolo-preorder"
+                  targetName="benevolo-shopify-product"
                   source="benevolo-hero"
                   external
                   className="bg-[#FF6A3D] text-[#140e0a] rounded-full px-7 py-3.5 text-sm font-bold"
                 >
-                  Preordenar Bars. →
+                  Preordenar en Shopify →
                 </TrackedLink>
-                <Link
-                  href="/shop#masters"
+                <TrackedLink
+                  href={benevoloProduct.preorderWhatsapp}
+                  event="benevolo_interest"
+                  targetName="benevolo-preorder-wa"
+                  source="benevolo-hero"
+                  external
                   className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold text-white/80"
                 >
-                  Ver Masters →
+                  WhatsApp
+                </TrackedLink>
+                <Link
+                  href="/shop#benevolo"
+                  className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold text-white/80"
+                >
+                  Tienda Colab →
                 </Link>
               </div>
             </div>
@@ -116,6 +129,21 @@ export default function BenevoloPage() {
           </div>
         </section>
 
+        <section id="preorden" className="mt-16">
+          <p className="eyebrow text-[#FF6A3D]">Preorden · tienda Shopify Colab</p>
+          <h2 className="font-serif text-3xl md:text-4xl font-bold mt-3">
+            Benevolo.shop vive en la misma caja.
+          </h2>
+          <p className="mt-4 max-w-2xl text-white/55 leading-relaxed">
+            Una sola tienda Shopify (cacao-colab.myshopify.com). {BENEVOLO_SHOP_BRAND_HOST} es el
+            dominio de marca de Bars. — ficha, carrito y preventa, sin checkout inventado fuera de
+            Colab.
+          </p>
+          <div className="mt-8">
+            <BenevoloShopifyCheckout source="benevolo-preorden" />
+          </div>
+        </section>
+
         <section className="mt-16 grid lg:grid-cols-2 gap-5">
           <div className="benevolo-panel">
             <p className="eyebrow text-[#E8C9A0]">Listo para preorden</p>
@@ -171,17 +199,17 @@ export default function BenevoloPage() {
             <p className="eyebrow text-[#FF6A3D]">03 · Preorden</p>
             <h3 className="font-serif text-2xl font-bold mt-3">Aspiracional máximo</h3>
             <p className="text-sm text-white/45 mt-3 leading-relaxed">
-              Reserva Bars. y ayúdanos a dimensionar el primer lote real. Sin stock inventado.
+              Reserva Bars. en Shopify Colab y confirma el lote por WhatsApp. Sin stock inventado.
             </p>
             <TrackedLink
-              href={benevoloProduct.preorderWhatsapp}
+              href={benevoloProductUrl()}
               event="benevolo_interest"
-              targetName="benevolo-preorder"
+              targetName="benevolo-shopify-product"
               source="benevolo-route"
               external
               className="inline-block mt-5 text-sm font-bold text-[#FF6A3D]"
             >
-              Quiero preordenar →
+              Abrir ficha Shopify →
             </TrackedLink>
           </article>
         </section>

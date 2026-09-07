@@ -191,8 +191,8 @@ Un SKU hero por display (nunca collage de 6 productos en primer plano). Mismo lo
 ## 10. Aplicaciones
 
 - **Web:** `apps/web/app/benevolo/page.tsx` (landing Colab), packshot y packaging espejados en `apps/web/public/benevolo/`.
-- **WhatsApp:** CTA de preorden — *"Preordenar Bars. →"* — nunca checkout inventado (ver §12).
-- **Shopify:** producto `bars-benevolo` en `cacao-colab.myshopify.com`, estado **DRAFT/preventa**, sin precio de cobro real, mismas imágenes/copy de este documento.
+- **Shopify (cta primario):** producto `bars-benevolo` y colección `bars-benevolo` en `cacao-colab.myshopify.com`. Dominio de marca **`benevolo.shop`** = la misma tienda (DNS en `docs/33`). Preventa: ficha + carrito reales; el cobro/fulfillment del lote se confirma — no se afirma stock inmediato.
+- **WhatsApp:** CTA secundario — *"Confirmar lote por WhatsApp"* — nunca un checkout paralelo inventado (ver §12).
 - **Stories / diploma Dualita:** pendiente de plantillas — usar paleta y wordmark de este documento cuando se produzcan.
 
 ---
@@ -227,7 +227,7 @@ Un SKU hero por display (nunca collage de 6 productos en primer plano). Mismo lo
 - Stock o envío inmediato sin lote real
 - Certificación orgánica del producto terminado (aún no)
 - Confundir Benevolo con la barra 70 % Master Chocolatier (no es su capstone)
-- Checkout de cobro real para Bars. mientras siga en preventa
+- Checkout de cobro real **con inventario confirmado** para Bars. mientras siga en preventa (la ficha Shopify Colab sí existe; no se afirma envío inmediato)
 
 ---
 

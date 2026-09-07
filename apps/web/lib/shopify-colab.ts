@@ -1,6 +1,7 @@
 /**
  * Shopify · Cacao Colab storefront
- * Dominio canónico: cacao-colab.myshopify.com
+ * Dominio canónico Colab: cacao-colab.myshopify.com
+ * Dominio de marca Benevolo: benevolo.shop (misma tienda; ver docs/33)
  */
 
 import { cauaShopSkus, type ShopSku } from "@/lib/caua-shop"
@@ -8,13 +9,29 @@ import { ARCHITECT_COURSE_SLUG } from "@/lib/architect-course"
 import { CATADOR_COURSE_SLUG } from "@/lib/catador-course"
 import { CHOCOLATIER_COURSE_SLUG } from "@/lib/chocolatier-course"
 
+const envTrim = (key: string) =>
+  (typeof process !== "undefined" && process.env[key]?.trim()) || ""
+
 export const COLAB_SHOPIFY_DOMAIN =
-  (typeof process !== "undefined" && process.env.NEXT_PUBLIC_COLAB_SHOPIFY_DOMAIN?.trim()) ||
-  "cacao-colab.myshopify.com"
+  envTrim("NEXT_PUBLIC_COLAB_SHOPIFY_DOMAIN") || "cacao-colab.myshopify.com"
 
 export const COLAB_SHOPIFY_STOREFRONT = `https://${COLAB_SHOPIFY_DOMAIN}`
 export const COLAB_SHOPIFY_COLLECTION = `${COLAB_SHOPIFY_STOREFRONT}/collections/all`
 export const COLAB_SHOPIFY_CART = `${COLAB_SHOPIFY_STOREFRONT}/cart`
+
+/** Dominio de marca Chocolate Benevolo — alias de la misma tienda Shopify Colab. */
+export const BENEVOLO_SHOP_BRAND_HOST = "benevolo.shop"
+
+/**
+ * Host para fichas/carrito Benevolo.
+ * Default = tienda Colab (funciona hoy). Tras conectar DNS en Shopify Admin,
+ * setear `NEXT_PUBLIC_BENEVOLO_SHOP_DOMAIN=benevolo.shop`.
+ */
+export const BENEVOLO_SHOPIFY_DOMAIN =
+  envTrim("NEXT_PUBLIC_BENEVOLO_SHOP_DOMAIN") || COLAB_SHOPIFY_DOMAIN
+
+export const BENEVOLO_SHOPIFY_STOREFRONT = `https://${BENEVOLO_SHOPIFY_DOMAIN}`
+export const BENEVOLO_SHOP_BRAND_URL = `https://${BENEVOLO_SHOP_BRAND_HOST}`
 
 export type MasterShopifySku = {
   courseSlug: string
@@ -41,8 +58,33 @@ export type ColabStoreProduct = {
   badge?: string
 }
 
-const envVariant = (key: string) =>
-  (typeof process !== "undefined" && process.env[key]?.trim()) || ""
+const envVariant = (key: string) => envTrim(key)
+
+/** Variant ID público de Bars. (products.json storefront). Override con env. */
+const BARS_BENEVOLO_VARIANT_FALLBACK = "51232297222396"
+
+export type BenevoloShopifySku = {
+  handle: string
+  collectionHandle: string
+  title: string
+  priceCopLabel: string
+  variantId: string
+  blurb: string
+  campusHref: string
+  marketingHref: string
+}
+
+export const benevoloShopifySku: BenevoloShopifySku = {
+  handle: "bars-benevolo",
+  collectionHandle: "bars-benevolo",
+  title: "Bars. Benevolo · 80 g",
+  priceCopLabel: "COP 20.000 · preventa",
+  variantId: envVariant("NEXT_PUBLIC_SHOPIFY_VARIANT_BARS_BENEVOLO") || BARS_BENEVOLO_VARIANT_FALLBACK,
+  blurb:
+    "Duja de marañón sugar free · 80 g. Ficha oficial en la tienda Shopify Colab; WhatsApp confirma el lote. Sin stock fingido.",
+  campusHref: "/campus/benevolo",
+  marketingHref: "/benevolo",
+}
 
 /** Tres Masters · producto digital en cacao-colab.myshopify.com */
 export const masterShopifySkus: MasterShopifySku[] = [
@@ -121,9 +163,9 @@ export const colabStorefrontCatalog: ColabStoreProduct[] = [
     handle: "bars-benevolo",
     title: "Bars. Benevolo · 80 g",
     kind: "physical",
-    blurb: "Chocolate de leche con marañón · sugar free · preventa.",
+    blurb: "Chocolate de leche con marañón · sugar free · preventa · Benevolo.shop.",
     priceLabel: "Preventa",
-    href: `${COLAB_SHOPIFY_STOREFRONT}/products/bars-benevolo`,
+    href: `${BENEVOLO_SHOPIFY_STOREFRONT}/products/bars-benevolo`,
     badge: "Antojo",
   },
   {
@@ -143,9 +185,41 @@ export function getMasterShopifySku(courseSlug: string) {
 }
 
 /** Permalink cart Shopify (1 unidad). */
-export function shopifyCartCheckoutUrl(variantId: string, quantity = 1) {
+export function shopifyCartCheckoutUrl(
+  variantId: string,
+  quantity = 1,
+  storefront = COLAB_SHOPIFY_STOREFRONT,
+) {
   if (!variantId) return null
-  return `${COLAB_SHOPIFY_STOREFRONT}/cart/${variantId}:${quantity}`
+  return `${storefront}/cart/${variantId}:${quantity}`
+}
+
+export function benevoloProductUrl() {
+  return `${BENEVOLO_SHOPIFY_STOREFRONT}/products/${benevoloShopifySku.handle}`
+}
+
+export function benevoloCollectionUrl() {
+  return `${BENEVOLO_SHOPIFY_STOREFRONT}/collections/${benevoloShopifySku.collectionHandle}`
+}
+
+export function benevoloCartUrl(quantity = 1) {
+  return shopifyCartCheckoutUrl(
+    benevoloShopifySku.variantId,
+    quantity,
+    BENEVOLO_SHOPIFY_STOREFRONT,
+  )
+}
+
+export function benevoloCheckoutUrl() {
+  const cart = benevoloCartUrl()
+  if (cart) {
+    return { href: cart, mode: "shopify" as const, productHref: benevoloProductUrl() }
+  }
+  return {
+    href: benevoloProductUrl(),
+    mode: "shopify-product" as const,
+    productHref: benevoloProductUrl(),
+  }
 }
 
 export function masterCheckoutUrl(sku: MasterShopifySku) {
