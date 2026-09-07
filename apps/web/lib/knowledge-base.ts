@@ -407,7 +407,7 @@ export const benevoloProduct = {
   brand: "Chocolate Benevolo",
   wordmark: "Benevolo",
   owner: "master-chocolatier",
-  domain: "ChocolateBenevolo.co",
+  domain: "Benevolo.shop",
   category: "Duja de Marañón sugar free",
   format: "Bars. · Duja de Marañón sugar free · Neto 80 g",
   tagline: "Duja de Marañón sugar free. FEAR 5 de Quara. Se lee igual en español y en italiano.",
@@ -439,7 +439,7 @@ export const benevoloProduct = {
     "Track Dualita Benevolo (marca acelerada separada del Master 70 %)",
     "Alianza Zurych × Quara (nodo FEAR 5)",
     "Fórmula: FEAR 5, duja de marañón, leche orgánica, alulosa, stevia",
-    "Canal de preorden Shopify (ficha bars-benevolo en tienda Colab) + diploma compartible",
+    "Canal de preorden Benevolo.shop (ficha bars-benevolo, tienda Shopify Colab) + diploma compartible",
   ],
   whatIsNotReady: [
     "Checkout automático con inventario confirmado (la ficha Shopify es preventa)",

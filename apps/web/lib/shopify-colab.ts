@@ -24,11 +24,11 @@ export const BENEVOLO_SHOP_BRAND_HOST = "benevolo.shop"
 
 /**
  * Host para fichas/carrito Benevolo.
- * Default = tienda Colab (funciona hoy). Tras conectar DNS en Shopify Admin,
- * setear `NEXT_PUBLIC_BENEVOLO_SHOP_DOMAIN=benevolo.shop`.
+ * Default = benevolo.shop (misma tienda que cacao-colab.myshopify.com).
+ * Override: `NEXT_PUBLIC_BENEVOLO_SHOP_DOMAIN`.
  */
 export const BENEVOLO_SHOPIFY_DOMAIN =
-  envTrim("NEXT_PUBLIC_BENEVOLO_SHOP_DOMAIN") || COLAB_SHOPIFY_DOMAIN
+  envTrim("NEXT_PUBLIC_BENEVOLO_SHOP_DOMAIN") || BENEVOLO_SHOP_BRAND_HOST
 
 export const BENEVOLO_SHOPIFY_STOREFRONT = `https://${BENEVOLO_SHOPIFY_DOMAIN}`
 export const BENEVOLO_SHOP_BRAND_URL = `https://${BENEVOLO_SHOP_BRAND_HOST}`
@@ -81,7 +81,7 @@ export const benevoloShopifySku: BenevoloShopifySku = {
   priceCopLabel: "COP 20.000 · preventa",
   variantId: envVariant("NEXT_PUBLIC_SHOPIFY_VARIANT_BARS_BENEVOLO") || BARS_BENEVOLO_VARIANT_FALLBACK,
   blurb:
-    "Duja de marañón sugar free · 80 g. Ficha oficial en la tienda Shopify Colab; WhatsApp confirma el lote. Sin stock fingido.",
+    "Duja de marañón sugar free · 80 g. Ficha oficial en Benevolo.shop (tienda Shopify Colab); WhatsApp confirma el lote. Sin stock fingido.",
   campusHref: "/campus/benevolo",
   marketingHref: "/benevolo",
 }
@@ -163,7 +163,7 @@ export const colabStorefrontCatalog: ColabStoreProduct[] = [
     handle: "bars-benevolo",
     title: "Bars. Benevolo · 80 g",
     kind: "physical",
-    blurb: "Chocolate de leche con marañón · sugar free · preventa · Benevolo.shop.",
+    blurb: "Chocolate de leche con marañón · sugar free · preventa en Benevolo.shop.",
     priceLabel: "Preventa",
     href: `${BENEVOLO_SHOPIFY_STOREFRONT}/products/bars-benevolo`,
     badge: "Antojo",

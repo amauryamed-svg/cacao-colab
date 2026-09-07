@@ -7,19 +7,13 @@
 | Campo | Valor |
 |-------|--------|
 | Storefront Colab | `https://cacao-colab.myshopify.com` |
-| Dominio de marca Benevolo | `benevolo.shop` (misma tienda; DNS pendiente — ver §Benevolo.shop) |
+| Dominio de marca Benevolo | `https://benevolo.shop` (misma tienda; default en Colab) |
 | Colección Colab | `/collections/all` |
 | Colección Bars. | `/collections/bars-benevolo` |
 | Override host Colab | `NEXT_PUBLIC_COLAB_SHOPIFY_DOMAIN` |
-| Override host Benevolo | `NEXT_PUBLIC_BENEVOLO_SHOP_DOMAIN` (vacío = usa el host Colab) |
+| Override host Benevolo | `NEXT_PUBLIC_BENEVOLO_SHOP_DOMAIN` (vacío = `benevolo.shop`) |
 
-Hasta que Shopify Admin + DNS apunten `benevolo.shop` a esta tienda, los links de producto/carrito salen por `cacao-colab.myshopify.com`. Tras verificar el dominio, setear en Vercel:
-
-```bash
-NEXT_PUBLIC_BENEVOLO_SHOP_DOMAIN=benevolo.shop
-```
-
-Los permalinks (`/products/bars-benevolo`, `/cart/{variantId}:1`) son los mismos en ambos hosts.
+El Colab enlaza Bars. a `benevolo.shop`. Los permalinks (`/products/bars-benevolo`, `/cart/{variantId}:1`) son los mismos que en `cacao-colab.myshopify.com`. Si el DNS aún no está Verified en Shopify, Connect domain + registros A/CNAME (abajo) o temporalmente `NEXT_PUBLIC_BENEVOLO_SHOP_DOMAIN=cacao-colab.myshopify.com`.
 
 ## Productos
 
@@ -39,11 +33,11 @@ Sin variant env en Masters se abre la ficha `/products/{handle}`. Bars. trae el 
 ## Hub Colab
 
 - `/shop` — vitrina + Masters + **Bars. Benevolo** (`#benevolo`) + cross-sell nodos + FOB `/export`
-- `/benevolo` — marca acelerada: CTA primario = ficha Shopify; WhatsApp confirma lote
+- `/benevolo` — marca acelerada: CTA primario = `benevolo.shop/products/bars-benevolo`; WhatsApp confirma lote
 
 ## Benevolo.shop · conectar a la tienda Colab
 
-`benevolo.shop` está registrado (GoDaddy, NS `ns13.domaincontrol.com` / `ns14.domaincontrol.com`) y **aún no** apunta a Shopify (A records de parking). No es una tienda aparte: es un dominio extra de `cacao-colab.myshopify.com`.
+`benevolo.shop` está registrado (GoDaddy). El Colab ya usa ese host por default. No es una tienda aparte: es un dominio extra de `cacao-colab.myshopify.com`. Hasta Connect + DNS, el apex puede seguir en parking (A `3.33.130.190` / `15.197.148.33`).
 
 ### En Shopify Admin (Amaury)
 
@@ -76,11 +70,11 @@ Sin Shopify Plus, ambos hosts sirven el mismo theme Colab. Para que `benevolo.sh
 
 El storytelling puede seguir en Vercel (`chocolate-benevolo-web.vercel.app` / `chocolatebenevolo.co`). Los CTA de `/bars`, `/preorden` y `/bons` deben apuntar a esta tienda, no a un checkout inventado:
 
-| Uso | URL viva hoy | URL cuando DNS esté live |
-|-----|----------------|--------------------------|
-| Ficha Bars. | `https://cacao-colab.myshopify.com/products/bars-benevolo` | `https://benevolo.shop/products/bars-benevolo` |
-| Colección | `https://cacao-colab.myshopify.com/collections/bars-benevolo` | `https://benevolo.shop/collections/bars-benevolo` |
-| Carrito 1× | `https://cacao-colab.myshopify.com/cart/51232297222396:1` | `https://benevolo.shop/cart/51232297222396:1` |
+| Uso | URL canónica Colab | Equivalente myshopify |
+|-----|--------------------|------------------------|
+| Ficha Bars. | `https://benevolo.shop/products/bars-benevolo` | `https://cacao-colab.myshopify.com/products/bars-benevolo` |
+| Colección | `https://benevolo.shop/collections/bars-benevolo` | `https://cacao-colab.myshopify.com/collections/bars-benevolo` |
+| Carrito 1× | `https://benevolo.shop/cart/51232297222396:1` | `https://cacao-colab.myshopify.com/cart/51232297222396:1` |
 
 WhatsApp (`+57 310 222 7848`) queda como **confirmación de lote / preventa**, no como único CTA.
 

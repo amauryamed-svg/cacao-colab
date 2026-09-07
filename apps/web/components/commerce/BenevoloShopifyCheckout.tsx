@@ -26,7 +26,7 @@ export function BenevoloShopifyCheckout({ source, compact = false }: Props) {
       <p>{benevoloShopifySku.blurb}</p>
       <p className="benevolo-shopify-price">
         <strong>{benevoloShopifySku.priceCopLabel}</strong>
-        <span>Misma caja que cacao-colab.myshopify.com</span>
+        <span>Checkout en Benevolo.shop · misma caja Colab</span>
       </p>
       <div className="benevolo-shopify-actions">
         <TrackedLink
@@ -37,7 +37,7 @@ export function BenevoloShopifyCheckout({ source, compact = false }: Props) {
           external
           className="benevolo-shopify-buy"
         >
-          Preordenar en Shopify →
+          Preordenar en Benevolo.shop →
         </TrackedLink>
         <TrackedLink
           href={checkout.href}
@@ -62,8 +62,8 @@ export function BenevoloShopifyCheckout({ source, compact = false }: Props) {
       </div>
       {!compact && (
         <p className="benevolo-shopify-note">
-          Preventa honesta: la ficha y el carrito viven en la tienda Colab. WhatsApp confirma el primer
-          lote — no hay stock ni envío inmediato inventado. Colección{" "}
+          Preventa honesta: ficha y carrito en Benevolo.shop (tienda Shopify Colab). WhatsApp confirma
+          el primer lote — no hay stock ni envío inmediato inventado. Colección{" "}
           <TrackedLink
             href={collectionHref}
             event="benevolo_interest"

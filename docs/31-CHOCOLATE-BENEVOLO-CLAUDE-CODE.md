@@ -187,9 +187,9 @@ Idioma principal: **ES**. Opcional toggle IT para el juego “se lee igual en es
 - CTA secundario: `Confirmar lote por WhatsApp` + `Ver el oficio →` (`/historia` o cacaocolab.org/campus/benevolo)  
 
 Shopify (canónico, misma tienda):  
-`https://cacao-colab.myshopify.com/products/bars-benevolo`  
-Cuando DNS esté live: `https://benevolo.shop/products/bars-benevolo`  
-Carrito 1×: `https://cacao-colab.myshopify.com/cart/51232297222396:1`
+`https://benevolo.shop/products/bars-benevolo`  
+Equivalente myshopify: `https://cacao-colab.myshopify.com/products/bars-benevolo`  
+Carrito 1×: `https://benevolo.shop/cart/51232297222396:1`
 
 WhatsApp (confirmación de lote):  
 `https://wa.me/573102227848?text=Hola%20Chocolate%20Benevolo%2C%20quiero%20preordenar%20Bars.%20Duja%20de%20Mara%C3%B1%C3%B3n%20sugar%20free%20FEAR%205%20Quara%20(80g).`
@@ -368,7 +368,7 @@ Entrega en chocolate-benevolo/ (o ruta acordada) + README de handoff.
 
 ## 9. Contacto / canales
 
-- Preorden Shopify: `https://cacao-colab.myshopify.com/products/bars-benevolo` (marca: `benevolo.shop`)  
+- Preorden Shopify: `https://benevolo.shop/products/bars-benevolo` (caja: `cacao-colab.myshopify.com`)  
 - Confirmación WA: `+57 310 222 7848`  
 - Colab: `https://www.cacaocolab.org/benevolo`  
 - Etiqueta print R&D: `https://www.cacaocolab.org/rd/bars-etiqueta`  
@@ -381,7 +381,7 @@ Entrega en chocolate-benevolo/ (o ruta acordada) + README de handoff.
 
 Claude Code ya publicó Bars. en **la misma tienda** `cacao-colab.myshopify.com` (`products/bars-benevolo`, colección `bars-benevolo`, variant `51232297222396`). **No abras una segunda tienda Shopify.**
 
-`benevolo.shop` es el dominio de marca de esa caja. Hoy el DNS sigue en GoDaddy parking; el handoff para Amaury (Shopify Admin → Connect domain + registros A/CNAME) está en `docs/33`. Mientras tanto, todos los CTA del sitio de marca y de `/preorden` deben usar las URLs `cacao-colab.myshopify.com` de la tabla de §3.4.
+`benevolo.shop` es el dominio de marca de esa caja. El Colab (`/benevolo`, `/shop#benevolo`) ya apunta ficha y carrito a `https://benevolo.shop/...`. El handoff DNS (Shopify Admin → Connect domain + A/CNAME GoDaddy) está en `docs/33`.
 
-El Colab ya enlaza así en `/benevolo` y `/shop#benevolo` (`BenevoloShopifyCheckout`). Replicar el mismo patrón en `chocolate-benevolo-web`: CTA primario = ficha/carrito Shopify; WhatsApp secundario = “confirmar lote”. No vender cobro de inventario como si el lote ya saliera mañana.
+Replicar el mismo patrón en `chocolate-benevolo-web`: CTA primario = Benevolo.shop; WhatsApp secundario = “confirmar lote”. No vender cobro de inventario como si el lote ya saliera mañana.
 
