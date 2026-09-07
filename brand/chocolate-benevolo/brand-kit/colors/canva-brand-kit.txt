@@ -1,0 +1,12 @@
+Chocolate Benevolo · colores para Brand Kit (Canva / Adobe Express / Figma)
+
+Pega cada hex en Brand colors. Nombres sugeridos:
+
+orange      #F05A28
+coral       #FF6A3D
+navy        #15243F
+champagne   #E8C9A0
+cream       #F7F1EE
+cocoa       #140e0a
+shadow      #C43A18
+white       #FFFFFF

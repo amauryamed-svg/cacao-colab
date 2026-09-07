@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-labelledby="title">
+  <title id="title">Bars. · wordmark live text · Bodoni Ultra Black Italic</title>
+  <defs>
+    <style type="text/css"><![CDATA[
+      @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@1,900&display=swap');
+      .bars {
+        font-family: 'Bodoni Ultra Black Italic', 'Bodoni Moda', 'Bodoni MT', Didot, serif;
+        font-style: italic;
+        font-weight: 900;
+        font-size: 280px;
+        letter-spacing: -0.02em;
+      }
+    ]]></style>
+  </defs>
+  <g id="type-bars">
+    <text class="bars" x="48" y="310" fill="#C43A18">Bars.</text>
+    <text class="bars" x="40" y="298" fill="#FFFFFF">Bars.</text>
+  </g>
+</svg>

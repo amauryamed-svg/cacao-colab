@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="560" viewBox="0 0 1180 560" role="img">
+  <rect width="1180" height="560" fill="#F7F1EE"/>
+  <text x="40" y="48" fill="#15243F" font-family="Georgia, serif" font-size="28">Chocolate Benevolo · paleta Bars.</text>
+  <g id="swatch-orange">
+    <rect x="40" y="80" width="250" height="180" rx="18" fill="#F05A28" stroke="#15243F" stroke-width="1"/>
+    <text x="60" y="130" fill="#FFFFFF" font-family="Georgia, serif" font-size="22">orange</text>
+    <text x="60" y="166" fill="#FFFFFF" font-family="ui-monospace, monospace" font-size="18">#F05A28</text>
+    <text x="60" y="210" fill="#FFFFFF" font-family="Georgia, serif" font-size="14">Empaque / hero</text>
+  </g>
+  <g id="swatch-coral">
+    <rect x="320" y="80" width="250" height="180" rx="18" fill="#FF6A3D" stroke="#15243F" stroke-width="1"/>
+    <text x="340" y="130" fill="#FFFFFF" font-family="Georgia, serif" font-size="22">coral</text>
+    <text x="340" y="166" fill="#FFFFFF" font-family="ui-monospace, monospace" font-size="18">#FF6A3D</text>
+    <text x="340" y="210" fill="#FFFFFF" font-family="Georgia, serif" font-size="14">CTA</text>
+  </g>
+  <g id="swatch-navy">
+    <rect x="600" y="80" width="250" height="180" rx="18" fill="#15243F" stroke="#15243F" stroke-width="1"/>
+    <text x="620" y="130" fill="#FFFFFF" font-family="Georgia, serif" font-size="22">navy</text>
+    <text x="620" y="166" fill="#FFFFFF" font-family="ui-monospace, monospace" font-size="18">#15243F</text>
+    <text x="620" y="210" fill="#FFFFFF" font-family="Georgia, serif" font-size="14">Swirls / dorso</text>
+  </g>
+  <g id="swatch-champagne">
+    <rect x="880" y="80" width="250" height="180" rx="18" fill="#E8C9A0" stroke="#15243F" stroke-width="1"/>
+    <text x="900" y="130" fill="#140e0a" font-family="Georgia, serif" font-size="22">champagne</text>
+    <text x="900" y="166" fill="#140e0a" font-family="ui-monospace, monospace" font-size="18">#E8C9A0</text>
+    <text x="900" y="210" fill="#140e0a" font-family="Georgia, serif" font-size="14">Nominativo / eyebrows</text>
+  </g>
+  <g id="swatch-cream">
+    <rect x="40" y="300" width="250" height="180" rx="18" fill="#F7F1EE" stroke="#15243F" stroke-width="1"/>
+    <text x="60" y="350" fill="#140e0a" font-family="Georgia, serif" font-size="22">cream</text>
+    <text x="60" y="386" fill="#140e0a" font-family="ui-monospace, monospace" font-size="18">#F7F1EE</text>
+    <text x="60" y="430" fill="#140e0a" font-family="Georgia, serif" font-size="14">Texto / fondos claros</text>
+  </g>
+  <g id="swatch-cocoa">
+    <rect x="320" y="300" width="250" height="180" rx="18" fill="#140e0a" stroke="#15243F" stroke-width="1"/>
+    <text x="340" y="350" fill="#FFFFFF" font-family="Georgia, serif" font-size="22">cocoa</text>
+    <text x="340" y="386" fill="#FFFFFF" font-family="ui-monospace, monospace" font-size="18">#140e0a</text>
+    <text x="340" y="430" fill="#FFFFFF" font-family="Georgia, serif" font-size="14">Fondos oscuros</text>
+  </g>
+  <g id="swatch-shadow">
+    <rect x="600" y="300" width="250" height="180" rx="18" fill="#C43A18" stroke="#15243F" stroke-width="1"/>
+    <text x="620" y="350" fill="#FFFFFF" font-family="Georgia, serif" font-size="22">shadow</text>
+    <text x="620" y="386" fill="#FFFFFF" font-family="ui-monospace, monospace" font-size="18">#C43A18</text>
+    <text x="620" y="430" fill="#FFFFFF" font-family="Georgia, serif" font-size="14">Extrusión Bars.</text>
+  </g>
+  <g id="swatch-white">
+    <rect x="880" y="300" width="250" height="180" rx="18" fill="#FFFFFF" stroke="#15243F" stroke-width="1"/>
+    <text x="900" y="350" fill="#140e0a" font-family="Georgia, serif" font-size="22">white</text>
+    <text x="900" y="386" fill="#140e0a" font-family="ui-monospace, monospace" font-size="18">#FFFFFF</text>
+    <text x="900" y="430" fill="#140e0a" font-family="Georgia, serif" font-size="14">Tipo sobre naranja</text>
+  </g>
+</svg>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080" role="img">
+  <title>Claims prohibidos</title>
+  <defs>
+    <style type="text/css"><![CDATA[
+      @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@1,500;1,900&display=swap');
+      text { font-family: 'Bodoni Moda', Didot, Georgia, serif; font-style: italic; fill: #F7F1EE; }
+      .kicker { font-weight: 500; letter-spacing: 0.28em; fill: #FF6A3D; }
+      .line { font-weight: 500; }
+    ]]></style>
+  </defs>
+  <rect id="bg-cocoa" width="1080" height="1080" fill="#140e0a"/>
+  <g id="type-kicker"><text class="kicker" x="72" y="140" font-size="22">CLAIMS PROHIBIDOS</text></g>
+  <g id="type-list">
+    <text class="line" x="72" y="280" font-size="28">Medallas CoEx inventadas</text>
+    <text class="line" x="72" y="350" font-size="28">Stock / envío inmediato fingido</text>
+    <text class="line" x="72" y="420" font-size="28">Orgánico del producto terminado</text>
+    <text class="line" x="72" y="490" font-size="28">Confundir con Master 70 %</text>
+  </g>
+</svg>

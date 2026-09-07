@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img">
+  <rect id="BG" width="800" height="500" fill="#F05A28"/>
+  <g id="MOTIF_SWIRLS" fill="none" stroke="#15243F" stroke-linecap="round">
+    <path stroke-width="38" d="M-20 420 C 80 380, 140 260, 240 250 C 360 236, 400 360, 520 340 C 640 320, 700 180, 840 160"/>
+    <path stroke-width="28" d="M-10 200 C 120 160, 180 80, 300 90 C 430 102, 470 210, 600 190"/>
+    <path stroke-width="18" d="M 80 480 C 200 450, 260 390, 380 400"/>
+  </g>
+</svg>

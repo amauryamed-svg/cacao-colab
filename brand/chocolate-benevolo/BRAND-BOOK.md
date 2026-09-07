@@ -67,12 +67,13 @@ Duja de Marañón sugar free. FEAR 5 de Quara. Se lee igual en español y en ita
 
 ## 5. Logo system
 
-- Monograma **CB** en círculo (locked).
-- Lockup **CHOCOLATE BENEVOLO** (serif display, Fraunces/Georgia).
+- Monograma **CB** en círculo (locked, trazo fluido — no Georgia block). SVG: `logos/cb-monogram.svg`.
+- Lockup vertical **CB + CHOCOLATE + BenevolO** en Bodoni: `CHOCOLATE` 500 italic tracked; **B** y **O** 900 italic más altas que `enevol`. SVG: `logos/chocolate-benevolo-lockup.svg` (texto vivo) y `logos/chocolate-benevolo-lockup-paths.svg` (outlined).
 - Wordmarks de línea — `Bars.` `Bons.` `Nibs.` `Coberturas.` — en **Bodoni Ultra Black Italic**, con punto, fill blanco + sombra/extrusión `#C43A18`. Nunca para body ni UI.
   - Fallback web: Bodoni Moda 900 italic.
   - Spec: `type/BARS-BODONI.md` · SVG: `logos/bars-wordmark.svg`.
   - Prohibido: Arial Black, Impact, scripts redondeados genéricos, versalitas `BARS.`.
+- **Brand Kit editable (Canva / Figma / Adobe Express):** `brand-kit/README.md`.
 
 **Coexistencia con Cacao Colab:** el lockup CB + Chocolate Benevolo va **locked** en el empaque retail. La ardilla/wordmark Cacao Colab es **opcional**, solo en la cara Colab o en un display compartido — nunca reemplaza el CB.
 
@@ -98,7 +99,7 @@ Duja de Marañón sugar free. FEAR 5 de Quara. Se lee igual en español y en ita
 ## 7. Tipografía
 
 - **Wordmark de producto (obligatorio):** Bodoni Ultra Black Italic / 900 italic. Ver `type/tokens.json`.
-- **Marca Chocolate Benevolo:** serif display (Georgia / Fraunces).
+- **Marca Chocolate Benevolo:** Bodoni (misma familia que Bars.; B y O ópticas). No Fraunces.
 - **UI web:** Outfit o equivalente geométrico clean.
 - **Legal / ingredientes:** sans compacta, alta legibilidad.
 
@@ -240,7 +241,13 @@ brand/chocolate-benevolo/
   SYSTEM-PACKAGING.md              # sistema de empaque completo (fuente §9)
   LEAN-TO-PRO.md                   # qué existe impreso + escalera (fuente §9.1-9.2)
   logos/
+    cb-monogram.svg
+    chocolate-benevolo-lockup.svg
+    chocolate-benevolo-lockup-paths.svg
     bars-wordmark.svg
+  brand-kit/                       # Canva / Figma / Adobe Express
+    README.md · CANVA.md · FIGMA.md · ADOBE-EXPRESS.md
+    logos/ · key-values/ · colors/ · type/fonts/ · templates/ · png/
   type/
     tokens.json                    # colores, tipografía, refs de empaque
     BARS-BODONI.md
