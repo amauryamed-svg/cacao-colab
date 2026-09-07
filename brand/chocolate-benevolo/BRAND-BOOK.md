@@ -1,7 +1,7 @@
 # Chocolate Benevolo · Brand Book
 
 > Marca acelerada cacaotier · R&D Cacao Colab. Hermana del Master Chocolatier 70 % — **no** su capstone.
-> Producto ancla: **Bars.** · Portafolio: **Bars. · Bons. · Nibs. · Coberturas. · Brus.**
+> Producto ancla: **Bars.** · Portafolio: **Bars. · Bons. · Nibs. · Coberturas. · Brew.**
 > Sistema unificado: `SYSTEM-BRAND.md`.
 > Fuente de verdad de empaque: `SYSTEM-PACKAGING.md` + `LEAN-TO-PRO.md` + `references/` (este documento los resume, no los reemplaza).
 
@@ -61,7 +61,7 @@ Duja de Marañón sugar free. FEAR 5 de Quara. Se lee igual en español y en ita
 | **Bons.** | Pastelería / regalo | Bombón grande · 3 rellenos (patrón Deit) | Pod-ridge + ingredientes principales |
 | **Nibs.** | Cocina / snack | Grano tostado | Header orange / body navy |
 | **Coberturas.** | Chef / obrador | Temperar · % hero | Franja orange + % coral |
-| **Brus.** | Retail / on-trade | Gaseosa de cacao 355 ml (patrón DAYDRINK) | Lata blanca · dúo · `CACAO & X` |
+| **Brew.** | Retail / on-trade | Gaseosa de cacao 355 ml (patrón DAYDRINK) | Lata blanca · dúo · `CACAO & X` |
 
 ⚠️ **Reconciliar:** el brief original (`lib/benevolo-brand.ts`, `docs/31-…`) describe Bars. como *sugar free* con alulosa + stevia. El copy OCR del cartón ya impreso (`references/bars_benevolo_pdf_text.txt`) no menciona alulosa/stevia ni "sugar free" — solo "chocolate de leche FEAR5 60 % Cacao Trinitario, leche en polvo avellanada y marañón salado". No se resuelve aquí cuál es la versión vigente; verificar con el equipo antes de repetir el claim "sugar free" en canales nuevos.
 

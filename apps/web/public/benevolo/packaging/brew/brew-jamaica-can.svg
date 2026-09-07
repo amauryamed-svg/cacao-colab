@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="70mm" height="120mm" viewBox="0 0 700 1200"
-  role="img" aria-label="Brus. CACAO &amp; JAMAICA">
-  <title>Brus. · CACAO &amp; JAMAICA</title>
+  role="img" aria-label="Brew. CACAO &amp; JAMAICA">
+  <title>Brew. · CACAO &amp; JAMAICA</title>
   <desc>Gaseosa de cacao Benevolo · lata blanca patrón DAYDRINK (sistema, no copia).</desc>
 
   <g id="ARTWORK">
@@ -17,10 +17,10 @@
       <text x="52" y="36" font-family="Georgia, serif" font-size="14" font-weight="700" fill="#F05A28" letter-spacing="1.2">BENEVOLO</text>
     </g>
 
-    <!-- Wordmark Brus. -->
+    <!-- Wordmark Brew. -->
     <g id="WORDMARK">
-      <text x="44" y="148" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="72" font-style="italic" font-weight="900" fill="#C43A18">Brus.</text>
-      <text x="40" y="144" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="72" font-style="italic" font-weight="900" fill="#15243F">Brus.</text>
+      <text x="44" y="148" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="72" font-style="italic" font-weight="900" fill="#C43A18">Brew.</text>
+      <text x="40" y="144" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="72" font-style="italic" font-weight="900" fill="#15243F">Brew.</text>
     </g>
     <text x="44" y="178" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="16" fill="#F05A28" letter-spacing="2">GASEOSA DE CACAO</text>
 

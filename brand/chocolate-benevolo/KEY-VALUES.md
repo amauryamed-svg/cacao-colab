@@ -12,7 +12,7 @@
 | Marca | Chocolate Benevolo |
 | Monograma | CB |
 | Producto ancla | **Bars.** (con punto) |
-| Portafolio ancla | **Bars.** · **Bons.** · **Nibs.** · **Brus.** |
+| Portafolio ancla | **Bars.** · **Bons.** · **Nibs.** · **Brew.** |
 | Línea obrador | **Coberturas.** |
 | Tipografía producto | Bodoni Ultra Black Italic |
 | Categoría Bars. | Chocolate de leche con marañón · sugar free |
@@ -51,7 +51,7 @@
 | **Bons.** | Pastelería / regalo | **Bombón grande** · molde mazorca · 3 rellenos | Tapa naranja pod-ridge · patrón Deit (ingredientes) |
 | **Nibs.** | Cocina / snack | Grano tostado | Header orange / body navy |
 | **Coberturas.** | Chef / obrador | Temperar · % hero | Franja orange + % coral |
-| **Brus.** | Retail / on-trade | **Gaseosa de cacao** · lata 355 ml | Lata blanca · dúo · `CACAO & X` (patrón DAYDRINK) |
+| **Brew.** | Retail / on-trade | **Gaseosa de cacao** · lata 355 ml | Lata blanca · dúo · `CACAO & X` (patrón DAYDRINK) |
 
 ### Bons. — SKUs de relleno (flex · patrón Deit)
 
@@ -63,14 +63,14 @@ Bombones grandes. Locked: `Bons.` · mazorca. Flex: sabor + ingredientes princip
 | `bons-dubai` | Bons. con pistacho, crocante y mantequilla | Pistacho · Crocante · Mantequilla |
 | `bons-tiramisu` | Bons. con soletilla, café y cacao | Soletilla · Café · Crema · Cacao |
 
-### Brus. — SKUs gaseosa de cacao (flex · patrón DAYDRINK)
+### Brew. — SKUs gaseosa de cacao (flex · patrón DAYDRINK)
 
 | SKU | Producto en lata | Dúo |
 |-----|------------------|-----|
-| `brus-limon` | CACAO & LIMÓN | Mazorca + limón |
-| `brus-naranja` | CACAO & NARANJA | Mazorca + naranja |
-| `brus-maracuya` | CACAO & MARACUYÁ | Mazorca + maracuyá |
-| `brus-jamaica` | CACAO & JAMAICA | Mazorca + jamaica |
+| `brew-limon` | CACAO & LIMÓN | Mazorca + limón |
+| `brew-naranja` | CACAO & NARANJA | Mazorca + naranja |
+| `brew-maracuya` | CACAO & MARACUYÁ | Mazorca + maracuyá |
+| `brew-jamaica` | CACAO & JAMAICA | Mazorca + jamaica |
 
 Sistema unificado: `SYSTEM-BRAND.md`.
 
@@ -90,7 +90,7 @@ Ver `LEAN-TO-PRO.md`: **L0 sticker → L1 sleeve → L2 carton → L3 display**.
 - Cacao colombiano de origen · FEAR 5 (sello)
 - Bons. · bombón grande · molde mazorca · chocolatería profesional
 - Rellenos: Caramelo · Dubai · Tiramisú (ingredientes en empaque)
-- Brus. · gaseosa de cacao · CACAO & LIMÓN / NARANJA / MARACUYÁ / JAMAICA · 355 ml
+- Brew. · gaseosa de cacao · CACAO & LIMÓN / NARANJA / MARACUYÁ / JAMAICA · 355 ml
 
 ### Prohibidos
 - Medallas CoEx inventadas

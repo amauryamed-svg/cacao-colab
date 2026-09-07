@@ -1,4 +1,4 @@
-# Brus. · gaseosa de cacao (patrón DAYDRINK)
+# Brew. · gaseosa de cacao (patrón DAYDRINK)
 
 > Inspiración estructural de **DAYDRINK** (Coffee & Lemonade): lata blanca, dúo ilustrado, nombre `A & B`, wit.  
 > No copiamos su IP (bicicleta/caras). Adaptamos el **sistema** a Benevolo + cacao colombiano.
@@ -9,7 +9,7 @@
 
 | Clave | Valor |
 |-------|--------|
-| Línea | **Brus.** |
+| Línea | **Brew.** |
 | Categoría | Gaseosa de cacao |
 | Formato | Lata 355 ml (12 FL OZ) |
 | Fondo | Blanco |
@@ -30,7 +30,7 @@
 | `maracuya` | **CACAO & MARACUYÁ** | Mazorca + maracuyá | `#F5C518` |
 | `jamaica` | **CACAO & JAMAICA** | Mazorca + flor jamaica | `#C41E6A` |
 
-Flex: solo el par + acento. Locked: CB, Brus., lata blanca, layout.
+Flex: solo el par + acento. Locked: CB, Brew., lata blanca, layout.
 
 ---
 
@@ -38,7 +38,7 @@ Flex: solo el par + acento. Locked: CB, Brus., lata blanca, layout.
 
 ```
 [ CB · CHOCOLATE BENEVOLO ]
-[ Brus. ]          ← Bodoni italic + punto
+[ Brew. ]          ← Bodoni italic + punto
 [ ilustración dúo ]
 [ CACAO & LIMÓN ]  ← display bold
 [ tagline wit ]
@@ -49,10 +49,10 @@ Flex: solo el par + acento. Locked: CB, Brus., lata blanca, layout.
 
 | Archivo | Qué |
 |---------|-----|
-| `brus-limon-can.svg` | Frente lata Limón |
-| `brus-naranja-can.svg` | Naranja |
-| `brus-maracuya-can.svg` | Maracuyá |
-| `brus-jamaica-can.svg` | Jamaica |
-| `brus-can-dieline.svg` | Wrap 360° V0 (frente + costados) |
+| `brew-limon-can.svg` | Frente lata Limón |
+| `brew-naranja-can.svg` | Naranja |
+| `brew-maracuya-can.svg` | Maracuyá |
+| `brew-jamaica-can.svg` | Jamaica |
+| `brew-can-dieline.svg` | Wrap 360° V0 (frente + costados) |
 
-Regen: `python3 brand/chocolate-benevolo/packaging/build_brus_cans.py`
+Regen: `python3 brand/chocolate-benevolo/packaging/build_brew_cans.py`

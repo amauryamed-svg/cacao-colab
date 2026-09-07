@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Brus. · latas gaseosa de cacao (patrón DAYDRINK: blanco + dúo + CACAO & X)."""
+"""Brew. · latas gaseosa de cacao (patrón DAYDRINK: blanco + dúo + CACAO & X)."""
 
 from __future__ import annotations
 
@@ -8,7 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 PUBLIC = Path(__file__).resolve().parents[3] / "apps/web/public/benevolo/packaging"
-OUT = ROOT / "brus"
+OUT = ROOT / "brew"
 
 ORANGE = "#F05A28"
 NAVY = "#15243F"
@@ -136,8 +136,8 @@ def can_front(sku: dict) -> str:
     accent = sku["accent"]
     return f'''<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="{w}mm" height="{h}mm" viewBox="0 0 {w*10} {h*10}"
-  role="img" aria-label="Brus. CACAO &amp; {pair}">
-  <title>Brus. · CACAO &amp; {pair}</title>
+  role="img" aria-label="Brew. CACAO &amp; {pair}">
+  <title>Brew. · CACAO &amp; {pair}</title>
   <desc>Gaseosa de cacao Benevolo · lata blanca patrón DAYDRINK (sistema, no copia).</desc>
 
   <g id="ARTWORK">
@@ -153,10 +153,10 @@ def can_front(sku: dict) -> str:
       <text x="52" y="36" font-family="Georgia, serif" font-size="14" font-weight="700" fill="{ORANGE}" letter-spacing="1.2">BENEVOLO</text>
     </g>
 
-    <!-- Wordmark Brus. -->
+    <!-- Wordmark Brew. -->
     <g id="WORDMARK">
-      <text x="44" y="148" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="72" font-style="italic" font-weight="900" fill="{SHADOW}">Brus.</text>
-      <text x="40" y="144" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="72" font-style="italic" font-weight="900" fill="{NAVY}">Brus.</text>
+      <text x="44" y="148" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="72" font-style="italic" font-weight="900" fill="{SHADOW}">Brew.</text>
+      <text x="40" y="144" font-family="Bodoni Moda, Didot, Georgia, serif" font-size="72" font-style="italic" font-weight="900" fill="{NAVY}">Brew.</text>
     </g>
     <text x="44" y="178" font-family="Outfit, Helvetica, Arial, sans-serif" font-size="16" fill="{ORANGE}" letter-spacing="2">GASEOSA DE CACAO</text>
 
@@ -181,7 +181,7 @@ def can_front(sku: dict) -> str:
 
 def write_both(rel: Path, content: str):
     dest = OUT / rel
-    pub = PUBLIC / "brus" / rel
+    pub = PUBLIC / "brew" / rel
     dest.parent.mkdir(parents=True, exist_ok=True)
     pub.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(content, encoding="utf-8")
@@ -191,9 +191,9 @@ def write_both(rel: Path, content: str):
 
 def main():
     for sku in SKUS:
-        write_both(Path(f"brus-{sku['id']}-can.svg"), can_front(sku))
+        write_both(Path(f"brew-{sku['id']}-can.svg"), can_front(sku))
 
-    readme = """# Brus. · gaseosa de cacao
+    readme = """# Brew. · gaseosa de cacao
 
 Patrón DAYDRINK (lata blanca · dúo · `CACAO & X`) · marca Chocolate Benevolo.
 
@@ -201,17 +201,17 @@ Ver `SYSTEM.md`.
 
 | SKU | Archivo |
 |-----|---------|
-| Limón | `brus-limon-can.svg` |
-| Naranja | `brus-naranja-can.svg` |
-| Maracuyá | `brus-maracuya-can.svg` |
-| Jamaica | `brus-jamaica-can.svg` |
+| Limón | `brew-limon-can.svg` |
+| Naranja | `brew-naranja-can.svg` |
+| Maracuyá | `brew-maracuya-can.svg` |
+| Jamaica | `brew-jamaica-can.svg` |
 
 ```bash
-python3 brand/chocolate-benevolo/packaging/build_brus_cans.py
+python3 brand/chocolate-benevolo/packaging/build_brew_cans.py
 ```
 """
     (OUT / "README.md").write_text(readme, encoding="utf-8")
-    (PUBLIC / "brus" / "README.md").write_text(readme, encoding="utf-8")
+    (PUBLIC / "brew" / "README.md").write_text(readme, encoding="utf-8")
     print("done")
 
 
