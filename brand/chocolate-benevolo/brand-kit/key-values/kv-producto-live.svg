@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080" role="img">
-  <title>Key value · Producto ancla</title>
+  <title>Key value Â· Producto ancla</title>
   <defs>
     <style type="text/css"><![CDATA[
       @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@1,500;1,900&display=swap');
@@ -18,8 +18,8 @@
   </g>
   <g id="type-kicker"><text class="kicker" x="72" y="140" font-size="22">PRODUCTO ANCLA</text></g>
   <g id="type-line">
-    <text class="line" x="72" y="280" font-size="58">Bars. Duja de marañón.</text>
+    <text class="line" x="72" y="280" font-size="58">Bars. Duja de maraÃ±Ã³n.</text>
     <text class="line" x="72" y="370" font-size="58">Sugar free. 80 g.</text>
   </g>
-  <g id="type-note"><text class="note" x="72" y="980" font-size="20">FEAR 5 · 60 % Trinitario · Zurych SAS · benevolo.shop</text></g>
+  <g id="type-note"><text class="note" x="72" y="980" font-size="20">FEAR 5 Â· 60 % Trinitario Â· Zurych SAS Â· benevolo.shop</text></g>
 </svg>

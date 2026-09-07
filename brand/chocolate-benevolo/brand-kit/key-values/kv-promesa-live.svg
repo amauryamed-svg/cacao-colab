@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080" role="img">
-  <title>Key value · Promesa</title>
+  <title>Key value Â· Promesa</title>
   <defs>
     <style type="text/css"><![CDATA[
       @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@1,500;1,900&display=swap');
@@ -21,5 +21,5 @@
     <text class="line" x="72" y="300" font-size="64">Buen chocolate</text>
     <text class="line" x="72" y="390" font-size="64">indulgente.</text>
   </g>
-  <g id="type-note"><text class="note" x="72" y="980" font-size="20">Dorso impreso Bars. · no inventar stock ni CoEx</text></g>
+  <g id="type-note"><text class="note" x="72" y="980" font-size="20">Dorso impreso Bars. Â· no inventar stock ni CoEx</text></g>
 </svg>

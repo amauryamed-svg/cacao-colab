@@ -2,7 +2,7 @@
 <svg xmlns="http://www.w3.org/2000/svg"
   width="1200" height="420" viewBox="0 0 1200 420"
   role="img" aria-labelledby="title">
-  <title id="title">Bars. · Chocolate Benevolo wordmark · Bodoni Ultra Black Italic</title>
+  <title id="title">Bars. Â· Chocolate Benevolo wordmark Â· Bodoni Ultra Black Italic</title>
   <defs>
     <style type="text/css"><![CDATA[
       @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@1,900&amp;display=swap');
@@ -15,7 +15,7 @@
       }
     ]]></style>
   </defs>
-  <!-- Extrusión / sombra de marca (packshot) -->
+  <!-- ExtrusiÃ³n / sombra de marca (packshot) -->
   <text class="bars" x="48" y="310" fill="#C43A18">Bars.</text>
   <text class="bars" x="40" y="298" fill="#FFFFFF">Bars.</text>
 </svg>

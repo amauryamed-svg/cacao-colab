@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080" role="img">
-  <title>Key value · Juego de marca</title>
+  <title>Key value Â· Juego de marca</title>
   <defs>
     <style type="text/css"><![CDATA[
       @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@1,500;1,900&display=swap');
@@ -22,5 +22,5 @@
     <text class="line" x="72" y="360" font-size="48">Chocolate Benevolo</text>
     <text class="line" x="72" y="440" font-size="48">le pone las tildes a la e.</text>
   </g>
-  <g id="type-note"><text class="note" x="72" y="980" font-size="20">Se lee igual en español y en italiano.</text></g>
+  <g id="type-note"><text class="note" x="72" y="980" font-size="20">Se lee igual en espaÃ±ol y en italiano.</text></g>
 </svg>
