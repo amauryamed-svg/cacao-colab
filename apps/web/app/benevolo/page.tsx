@@ -9,7 +9,7 @@ import { BENEVOLO_SHOP_BRAND_HOST, benevoloProductUrl } from "@/lib/shopify-cola
 export const metadata: Metadata = {
   title: "Chocolate Benevolo · marca acelerada cacaotier",
   description:
-    "Bars. · Duja de Marañón sugar free. Preventa en Shopify Colab (Benevolo.shop). Marca acelerada separada del Master Chocolatier 70 %.",
+    "Bars. · Duja de Marañón sugar free. Preventa en Benevolo.shop (tienda Shopify Colab). Marca acelerada separada del Master Chocolatier 70 %.",
 }
 
 export default function BenevoloPage() {
@@ -36,8 +36,9 @@ export default function BenevoloPage() {
               <p className="mt-5 text-sm font-bold text-[#E8C9A0]">{benevoloProduct.accentLine}</p>
               <p className="mt-5 max-w-md text-base leading-relaxed text-white/55">
                 {benevoloProduct.tagline} {benevoloProduct.format}. Vive en el laboratorio R&D junto a
-                coberturas CAÚA × Zurych. Preorden en la tienda Shopify Colab — dominio de marca{" "}
-                {BENEVOLO_SHOP_BRAND_HOST}.
+                coberturas CAÚA × Zurych. Preorden en{" "}
+                <strong className="text-white/80">{BENEVOLO_SHOP_BRAND_HOST}</strong>
+                {" "}— misma tienda Shopify Colab.
               </p>
               <div className="flex flex-wrap gap-3 mt-8">
                 <TrackedLink
@@ -48,7 +49,7 @@ export default function BenevoloPage() {
                   external
                   className="bg-[#FF6A3D] text-[#140e0a] rounded-full px-7 py-3.5 text-sm font-bold"
                 >
-                  Preordenar en Shopify →
+                  Preordenar en Benevolo.shop →
                 </TrackedLink>
                 <TrackedLink
                   href={benevoloProduct.preorderWhatsapp}
@@ -130,14 +131,13 @@ export default function BenevoloPage() {
         </section>
 
         <section id="preorden" className="mt-16">
-          <p className="eyebrow text-[#FF6A3D]">Preorden · tienda Shopify Colab</p>
+          <p className="eyebrow text-[#FF6A3D]">Preorden · Benevolo.shop</p>
           <h2 className="font-serif text-3xl md:text-4xl font-bold mt-3">
             Benevolo.shop vive en la misma caja.
           </h2>
           <p className="mt-4 max-w-2xl text-white/55 leading-relaxed">
-            Una sola tienda Shopify (cacao-colab.myshopify.com). {BENEVOLO_SHOP_BRAND_HOST} es el
-            dominio de marca de Bars. — ficha, carrito y preventa, sin checkout inventado fuera de
-            Colab.
+            Ficha, carrito y preventa en {BENEVOLO_SHOP_BRAND_HOST}. Es la misma tienda Shopify que
+            cacao-colab.myshopify.com — sin checkout inventado fuera de Colab.
           </p>
           <div className="mt-8">
             <BenevoloShopifyCheckout source="benevolo-preorden" />
@@ -199,7 +199,7 @@ export default function BenevoloPage() {
             <p className="eyebrow text-[#FF6A3D]">03 · Preorden</p>
             <h3 className="font-serif text-2xl font-bold mt-3">Aspiracional máximo</h3>
             <p className="text-sm text-white/45 mt-3 leading-relaxed">
-              Reserva Bars. en Shopify Colab y confirma el lote por WhatsApp. Sin stock inventado.
+              Reserva Bars. en Benevolo.shop y confirma el lote por WhatsApp. Sin stock inventado.
             </p>
             <TrackedLink
               href={benevoloProductUrl()}
@@ -209,7 +209,7 @@ export default function BenevoloPage() {
               external
               className="inline-block mt-5 text-sm font-bold text-[#FF6A3D]"
             >
-              Abrir ficha Shopify →
+              Abrir Benevolo.shop →
             </TrackedLink>
           </article>
         </section>

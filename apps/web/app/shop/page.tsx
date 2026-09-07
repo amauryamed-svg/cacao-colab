@@ -18,7 +18,7 @@ import {
 export const metadata: Metadata = {
   title: "Tienda · cacao-colab.myshopify.com",
   description:
-    "Tienda Shopify de Cacao Colab: Masters digitales, Bars. Benevolo (Benevolo.shop) y venta cruzada a nodos. Checkout en cacao-colab.myshopify.com.",
+    "Tienda Shopify de Cacao Colab: Masters digitales, Bars. Benevolo en Benevolo.shop y venta cruzada a nodos.",
 }
 
 export default function ShopPage() {
@@ -108,8 +108,8 @@ export default function ShopPage() {
           <p className="eyebrow text-colab-yellow">Antojo · {BENEVOLO_SHOP_BRAND_HOST}</p>
           <h2 className="font-serif text-3xl md:text-4xl font-bold mt-3">Bars. Benevolo</h2>
           <p className="mt-3 max-w-2xl text-sm text-colab-cream/55 leading-relaxed">
-            Misma tienda Shopify que los Masters. Benevolo.shop es el dominio de marca; la ficha
-            canónica es <code className="text-colab-yellow">/products/bars-benevolo</code>.
+            Misma tienda Shopify que los Masters. La ficha canónica es{" "}
+            <code className="text-colab-yellow">benevolo.shop/products/bars-benevolo</code>.
           </p>
           <div className="mt-8">
             <BenevoloShopifyCheckout source="shop-benevolo" />

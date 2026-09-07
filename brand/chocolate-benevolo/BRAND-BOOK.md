@@ -191,7 +191,7 @@ Un SKU hero por display (nunca collage de 6 productos en primer plano). Mismo lo
 ## 10. Aplicaciones
 
 - **Web:** `apps/web/app/benevolo/page.tsx` (landing Colab), packshot y packaging espejados en `apps/web/public/benevolo/`.
-- **Shopify (cta primario):** producto `bars-benevolo` y colección `bars-benevolo` en `cacao-colab.myshopify.com`. Dominio de marca **`benevolo.shop`** = la misma tienda (DNS en `docs/33`). Preventa: ficha + carrito reales; el cobro/fulfillment del lote se confirma — no se afirma stock inmediato.
+- **Shopify (cta primario):** `https://benevolo.shop/products/bars-benevolo` (colección `bars-benevolo`). Misma tienda que `cacao-colab.myshopify.com`. Preventa: ficha + carrito reales; el cobro/fulfillment del lote se confirma — no se afirma stock inmediato.
 - **WhatsApp:** CTA secundario — *"Confirmar lote por WhatsApp"* — nunca un checkout paralelo inventado (ver §12).
 - **Stories / diploma Dualita:** pendiente de plantillas — usar paleta y wordmark de este documento cuando se produzcan.
 
