@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import TrackedLink from "@/components/analytics/TrackedLink"
+import { BenevoloLockup } from "@/components/brand/BenevoloLockup"
 import { BenevoloShopifyCheckout } from "@/components/commerce/BenevoloShopifyCheckout"
 import { benevoloProduct, priorityVarieties } from "@/lib/knowledge-base"
 import { BENEVOLO_SHOP_BRAND_HOST, benevoloProductUrl } from "@/lib/shopify-colab"
@@ -26,13 +27,7 @@ export default function BenevoloPage() {
           <div className="grid lg:grid-cols-[1fr_1.15fr] gap-8 lg:gap-12 items-end mt-6">
             <div className="pb-10 md:pb-16">
               <p className="text-[11px] font-bold tracking-[0.22em] uppercase text-[#E8C9A0]">{benevoloProduct.domain}</p>
-              <h1
-                className="font-serif font-black leading-[0.88] mt-4"
-                style={{ fontSize: "clamp(3.2rem, 9vw, 6.5rem)", letterSpacing: "-0.05em" }}
-              >
-                Chocolate<br />
-                <em className="text-[#FF6A3D] not-italic">Benevolo</em>
-              </h1>
+              <BenevoloLockup as="h1" className="mt-5" />
               <p className="mt-5 text-sm font-bold text-[#E8C9A0]">{benevoloProduct.accentLine}</p>
               <p className="mt-5 max-w-md text-base leading-relaxed text-white/55">
                 {benevoloProduct.tagline} {benevoloProduct.format}. Vive en el laboratorio R&D junto a

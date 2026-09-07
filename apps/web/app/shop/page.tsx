@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import TrackedLink from "@/components/analytics/TrackedLink"
+import { BenevoloLockup } from "@/components/brand/BenevoloLockup"
 import { MastersShopifyGrid } from "@/components/commerce/MasterShopifyCheckout"
 import {
   COLAB_SHOPIFY_STOREFRONT,
@@ -106,7 +107,10 @@ export default function ShopPage() {
 
         <section id="benevolo" className="scroll-mt-20 mb-16">
           <p className="eyebrow text-colab-yellow">Antojo · {BENEVOLO_SHOP_BRAND_HOST}</p>
-          <h2 className="font-serif text-3xl md:text-4xl font-bold mt-3">Bars. Benevolo</h2>
+          <div className="mt-4">
+            <BenevoloLockup compact />
+          </div>
+          <h2 className="font-serif text-3xl md:text-4xl font-bold mt-5">Bars.</h2>
           <p className="mt-3 max-w-2xl text-sm text-colab-cream/55 leading-relaxed">
             Misma tienda Shopify que los Masters. Benevolo.shop es el dominio de marca; la ficha
             canónica es <code className="text-colab-yellow">/products/bars-benevolo</code>.

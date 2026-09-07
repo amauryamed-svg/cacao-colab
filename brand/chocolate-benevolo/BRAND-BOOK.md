@@ -67,8 +67,8 @@ Duja de Marañón sugar free. FEAR 5 de Quara. Se lee igual en español y en ita
 
 ## 5. Logo system
 
-- Monograma **CB** en círculo (locked).
-- Lockup **CHOCOLATE BENEVOLO** (serif display, Fraunces/Georgia).
+- Monograma **CB fluido** en círculo (locked) — trazo calligráfico, no `CB` en Georgia/sans. SVG: `logos/cb-monogram.svg`.
+- Lockup **Chocolate** (nominativo, itálica, tracking) **arriba** de **BenevolO** en **Bodoni** Ultra / Moda 900 italic. La **B** inicial y la **O** final van en mayúscula y un cuerpo más alto. SVG: `logos/chocolate-benevolo-lockup.svg`. No usar BENEVOLO en versales rígidas ni el H1 Fraunces del Colab como logo.
 - Wordmarks de línea — `Bars.` `Bons.` `Nibs.` `Coberturas.` — en **Bodoni Ultra Black Italic**, con punto, fill blanco + sombra/extrusión `#C43A18`. Nunca para body ni UI.
   - Fallback web: Bodoni Moda 900 italic.
   - Spec: `type/BARS-BODONI.md` · SVG: `logos/bars-wordmark.svg`.
@@ -240,7 +240,10 @@ brand/chocolate-benevolo/
   SYSTEM-PACKAGING.md              # sistema de empaque completo (fuente §9)
   LEAN-TO-PRO.md                   # qué existe impreso + escalera (fuente §9.1-9.2)
   logos/
+    cb-monogram.svg
+    chocolate-benevolo-lockup.svg
     bars-wordmark.svg
+    README.md
   type/
     tokens.json                    # colores, tipografía, refs de empaque
     BARS-BODONI.md
