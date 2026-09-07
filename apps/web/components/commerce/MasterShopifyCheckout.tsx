@@ -1,7 +1,9 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 import TrackedLink from "@/components/analytics/TrackedLink"
+import { masterInviteFor } from "@/lib/colab-foro"
 import { waAskSku } from "@/lib/caua-shop"
 import {
   crossSellForMaster,
@@ -25,8 +27,19 @@ export function MasterCheckoutCard({
   compact?: boolean
 }) {
   const checkout = masterCheckoutUrl(sku)
+  const invite = masterInviteFor(sku.courseSlug)
   return (
     <article className={compact ? "master-shopify-card compact" : "master-shopify-card"}>
+      {invite && (
+        <div className="master-shopify-thumb">
+          <Image
+            src={invite.poster}
+            alt=""
+            width={compact ? 72 : 120}
+            height={compact ? 72 : 120}
+          />
+        </div>
+      )}
       <p className="eyebrow text-colab-yellow">Shopify · producto digital</p>
       <h3>{sku.title}</h3>
       <p>{sku.blurb}</p>
