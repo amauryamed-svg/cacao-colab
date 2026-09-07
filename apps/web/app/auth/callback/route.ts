@@ -1,6 +1,7 @@
 import { createSupabaseServerClient } from "@cacao-colab/supabase-client/server"
 import { NextResponse, type NextRequest } from "next/server"
 import { persistUserConsent } from "@/lib/legal/consent"
+import { landingAfterAuth } from "@/lib/team-access"
 
 /**
  * Callback del magic link de Supabase Auth.
@@ -23,6 +24,10 @@ export async function GET(request: NextRequest) {
     "/benevolo",
     "/rd",
     "/credencial",
+    "/prueba",
+    "/export",
+    "/shop",
+    "/conocimiento",
   ]
   const next = allowedPrefixes.some((prefix) => requestedNext.startsWith(prefix))
     ? requestedNext
@@ -54,9 +59,8 @@ export async function GET(request: NextRequest) {
         .select("id,access_level")
         .eq("user_id", user.id)
         .maybeSingle()
-      if (teamMember?.access_level === "superadmin") {
-        return NextResponse.redirect(`${origin}/equipo`)
-      }
+      const dest = landingAfterAuth(next, teamMember?.access_level === "superadmin")
+      return NextResponse.redirect(`${origin}${dest}`)
     }
     return NextResponse.redirect(`${origin}${next}`)
   }

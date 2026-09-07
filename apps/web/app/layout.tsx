@@ -67,6 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/colab">Foro</Link>
               <Link href="/nodo">Nodos</Link>
               <Link href="/amauryamed">Amaury · perfil</Link>
+              <Link href="/prueba">Prueba freemium</Link>
               <Link href="/aprende/cacaotier">Master Cacaotier</Link>
               <Link href="/legal/privacidad">Privacidad</Link>
               <Link href="/legal/terminos">Términos</Link>

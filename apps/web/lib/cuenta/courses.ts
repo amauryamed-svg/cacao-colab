@@ -20,6 +20,7 @@ import {
   resolveMasterAccess,
   type MasterAccess,
 } from "@/lib/campus-access"
+import { isSuperadminUser } from "@/lib/team-access"
 
 export type CourseTrackSnapshot = {
   slug: string
@@ -60,6 +61,7 @@ function trackFromRigor(input: {
   xpColumn: number
   completedAt: string | null
   lifetimeMd: number
+  bypass?: boolean
 }): CourseTrackSnapshot {
   const rigor = normalizeRigorState(input.state)
   const completedCount = rigor.completed.length
@@ -69,8 +71,8 @@ function trackFromRigor(input: {
   const grade = certified || completedCount > 0 ? gradeFromFirstTry(firstTry, input.missionCount) : null
   const diplomaCode = rigor.diplomaCode ?? null
   const access = isMasterCourseSlug(input.slug)
-    ? resolveMasterAccess(input.lifetimeMd, input.slug)
-    : resolveMasterAccess(input.lifetimeMd, ARCHITECT_COURSE_SLUG)
+    ? resolveMasterAccess(input.lifetimeMd, input.slug, { bypass: input.bypass })
+    : resolveMasterAccess(input.lifetimeMd, ARCHITECT_COURSE_SLUG, { bypass: input.bypass })
   const status: CourseTrackSnapshot["status"] = certified
     ? "certified"
     : completedCount > 0
@@ -143,6 +145,7 @@ export async function loadCourseTracks(userId: string): Promise<{
   ])
 
   const lifetimeMd = wallet?.lifetime_earned ?? 0
+  const bypass = await isSuperadminUser(supabase, userId)
   const bySlug = new Map((rows ?? []).map((row) => [row.course_slug, row]))
 
   const architectRow = bySlug.get(ARCHITECT_COURSE_SLUG)
@@ -154,7 +157,7 @@ export async function loadCourseTracks(userId: string): Promise<{
     trackFromRigor({
       slug: ARCHITECT_COURSE_SLUG,
       title: "Master Cacaotier",
-      subtitle: "Arquitecto · se abre con rango Brote (120 MD históricas)",
+      subtitle: "Arquitecto · freemium (Semilla) · fermentación de precisión",
       href: "/campus/arquitecto-fermentacion",
       diplomaPathPrefix: "/credencial/arquitecto-fermentacion",
       missionCount: architectMissions.length,
@@ -163,11 +166,12 @@ export async function loadCourseTracks(userId: string): Promise<{
       xpColumn: architectRow?.xp_total ?? 0,
       completedAt: architectRow?.completed_at ?? null,
       lifetimeMd,
+      bypass,
     }),
     trackFromRigor({
       slug: CATADOR_COURSE_SLUG,
       title: "Master Catador",
-      subtitle: "Rueda Fine-Flavor Colab · Labrador (400 MD) · lente CoEx",
+      subtitle: "Rueda Fine-Flavor Colab · freemium · lente CoEx",
       href: "/campus/catador-cacao",
       diplomaPathPrefix: "/credencial/catador-cacao",
       missionCount: catadorMissions.length,
@@ -176,11 +180,12 @@ export async function loadCourseTracks(userId: string): Promise<{
       xpColumn: catadorRow?.xp_total ?? 0,
       completedAt: catadorRow?.completed_at ?? null,
       lifetimeMd,
+      bypass,
     }),
     trackFromRigor({
       slug: CHOCOLATIER_COURSE_SLUG,
       title: "Master Chocolatier",
-      subtitle: "Barra 70 % · se abre con rango Labrador (400 MD históricas)",
+      subtitle: "Barra 70 % · freemium · lente CoEx/Awards",
       href: "/campus/maestro-chocolatier",
       diplomaPathPrefix: "/credencial/maestro-chocolatier",
       missionCount: chocolatierMissions.length,
@@ -189,11 +194,12 @@ export async function loadCourseTracks(userId: string): Promise<{
       xpColumn: chocolatierRow?.xp_total ?? 0,
       completedAt: chocolatierRow?.completed_at ?? null,
       lifetimeMd,
+      bypass,
     }),
     trackFromRigor({
       slug: BENEVOLO_COURSE_SLUG,
       title: "Benevolo (capstone)",
-      subtitle: "Marca acelerada · se abre con rango Labrador (400 MD históricas)",
+      subtitle: "Marca acelerada · freemium · duja FEAR 5",
       href: "/campus/benevolo",
       diplomaPathPrefix: "/credencial/benevolo",
       missionCount: benevoloMissions.length,
@@ -202,6 +208,7 @@ export async function loadCourseTracks(userId: string): Promise<{
       xpColumn: benevoloRow?.xp_total ?? 0,
       completedAt: benevoloRow?.completed_at ?? null,
       lifetimeMd,
+      bypass,
     }),
   ]
 

@@ -14,11 +14,11 @@ export default function MasterAccessGate({ title, access, courseSlug }: Props) {
   return (
     <div className="min-h-screen bg-[#101d0b] text-colab-cream px-4 py-16">
       <main className="max-w-xl mx-auto">
-        <p className="eyebrow text-colab-yellow">Master · rango o checkout</p>
+        <p className="eyebrow text-colab-yellow">Master · Colab abierto</p>
         <h1 className="font-serif text-4xl font-black mt-3">{title}</h1>
         <p className="mt-4 text-colab-cream/70 leading-relaxed">{masterAccessCopy.principle}</p>
         <div className="mt-8 rounded-2xl border border-colab-yellow/25 bg-colab-yellow/10 p-5">
-          <p className="text-sm font-bold text-colab-yellow">Aún no disponible por rango</p>
+          <p className="text-sm font-bold text-colab-yellow">Puerta de acceso</p>
           <p className="mt-2 text-sm text-colab-cream/80 leading-relaxed">{access.message}</p>
           <p className="mt-3 text-xs text-colab-cream/45">
             Tu rango hoy: {access.currentRankName} · {access.lifetimeMd.toLocaleString("es-CO")} MD

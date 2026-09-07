@@ -125,6 +125,24 @@ export default async function EquipoPage() {
           </div>
         </div>
 
+        <nav className="mt-8 flex flex-wrap gap-3 text-sm font-bold">
+          <a href="/cuenta" className="rounded-full bg-colab-forest text-colab-yellow px-4 py-2">
+            Mi cuenta + certificaciones →
+          </a>
+          <a href="/campus/arquitecto-fermentacion" className="rounded-full border border-colab-forest/20 px-4 py-2 text-colab-forest">
+            Master Cacaotier
+          </a>
+          <a href="/campus/catador-cacao" className="rounded-full border border-colab-forest/20 px-4 py-2 text-colab-forest">
+            Catador
+          </a>
+          <a href="/campus/maestro-chocolatier" className="rounded-full border border-colab-forest/20 px-4 py-2 text-colab-forest">
+            Chocolatier
+          </a>
+          <a href="/prueba" className="rounded-full border border-colab-forest/20 px-4 py-2 text-colab-forest">
+            Prueba freemium
+          </a>
+        </nav>
+
         <div className="mt-10">
           <CrmConversionDashboard
             metrics={metrics}

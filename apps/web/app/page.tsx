@@ -31,7 +31,7 @@ export default function Home() {
 
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-20 md:pt-28 pb-24 md:pb-28">
           <div className="max-w-2xl text-center mx-auto lg:text-left lg:mx-0 colab-hero-copy">
-            <p className="eyebrow text-colab-champagne mb-5">Para quien ama el cacao</p>
+            <p className="eyebrow text-colab-champagne mb-5">Colab abierto · Colombia Fine-Flavor al mundo</p>
             <h1 className="font-serif font-black text-colab-cream leading-[0.9]">
               <span className="block" style={{ fontSize: "clamp(3.4rem, 11vw, 7rem)" }}>
                 Cacao Colab
@@ -45,13 +45,16 @@ export default function Home() {
               <br className="hidden sm:block" /> El oficio que se hereda.
             </p>
             <p className="mt-6 text-colab-cream/70 font-sans leading-relaxed max-w-md mx-auto lg:mx-0 text-base md:text-lg">
-              Casa de amantes del cacao Fine-Flavor: catar, aprender y pertenecer a la cultura que
-              pasa de finca a mesa.
+              Casa abierta de cacao Fine-Flavor: pruebas freemium para quien llega desde Secretaría,
+              Cancillería o un nodo — y para quien ama el oficio. De Colombia al mundo.
             </p>
             <div className="flex flex-wrap gap-3 justify-center lg:justify-start mt-9">
-              <Button href="/unete">Unirme al Colab →</Button>
-              <Button variant="outline" href="/benevolo">
-                Probar Bars. →
+              <Button href="/prueba">Prueba freemium →</Button>
+              <Button variant="outline" href="/aprende/cacaotier">
+                Master Cacaotier →
+              </Button>
+              <Button variant="outline" href="/unete">
+                Unirme →
               </Button>
             </div>
           </div>
@@ -59,13 +62,43 @@ export default function Home() {
 
         <div className="relative border-t border-white/10 bg-gradient-to-t from-black/50 to-transparent">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-wrap items-center justify-between gap-3 text-[11px] uppercase tracking-[0.14em] text-colab-cream/45 font-sans">
-            <span>Origen · fermentación · temperado</span>
-            <Link href="/colab" className="text-colab-champagne hover:text-colab-yellow transition-colors">
-              Foro de amantes →
+            <span>Secretaría · Cancillería · nodos · amantes</span>
+            <Link href="/prueba" className="text-colab-champagne hover:text-colab-yellow transition-colors">
+              Prueba freemium →
+            </Link>
+            <Link href="/export" className="text-colab-champagne hover:text-colab-yellow transition-colors">
+              Cotizador FOB →
             </Link>
             <Link href="/aprende" className="text-colab-champagne hover:text-colab-yellow transition-colors">
-              Tres Masters →
+              Campus abierto →
             </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="colab-open-band border-t border-white/5">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-14 grid lg:grid-cols-[1.15fr_.85fr] gap-8 items-end">
+          <div>
+            <p className="eyebrow text-colab-yellow">Grupos de interés · mesa abierta</p>
+            <h2
+              className="font-serif font-bold text-colab-cream leading-[1.05] mt-3"
+              style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)" }}
+            >
+              Quien llega desde Secretaría o Cancillería
+              <br />
+              <em className="text-colab-yellow not-italic">prueba el Colab hoy.</em>
+            </h2>
+            <p className="text-sm text-colab-cream/55 leading-relaxed mt-4 max-w-xl">
+              Tres preguntas de criterio, landing pública de Cacaotier y cotizador FOB. No somos un
+              programa oficial de esas entidades: somos la casa de oficio para internacionalizar
+              Fine-Flavor desde Colombia.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Button href="/prueba">Hacer la prueba →</Button>
+            <Button variant="outline" href="/export">
+              FOB al mundo →
+            </Button>
           </div>
         </div>
       </section>
