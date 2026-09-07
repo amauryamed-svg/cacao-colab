@@ -17,8 +17,12 @@
 - Barra con **Bars.** debossed
 
 ### Bons. (producto físico)
-- Bombón dark + tapa textura mazorca en naranja/coral jaspeado
+- **Bombón grande** dark + tapa textura mazorca en naranja/coral jaspeado
 - Molde “pod-ridge” = firma visual de la línea Bons.
+- Tres rellenos (flex por SKU):
+  1. **Caramelo** — caramelo · malvavisco · galleta
+  2. **Dubai** — pistacho · crocante · mantequilla
+  3. **Tiramisú** — bizcocho soletilla · café · crema · cacao en polvo
 
 ### Caja lean (prototipo)
 - Tuck-top blanca ~**50 × 50 × 45 mm**, notch semicircular
@@ -58,7 +62,7 @@
 | Línea | Flex |
 |-------|------|
 | Bars. | Ya definido (80 g · leche 60 % · marañón) |
-| Bons. | Sabor / relleno · acento de tapa (naranja pod) · uds por caja |
+| Bons. | Nombre de relleno (Caramelo / Dubai / Tiramisú) · descriptor de 3 capas · uds por caja |
 | Nibs. | Origen · neto 150–250 g |
 | Coberturas. | % · endulzante · 1 kg |
 
@@ -81,10 +85,16 @@ Bleed etiqueta L0: **2 mm** (sticker) · Safe: **3 mm**
 
 ## 5. Copy canónico Bons. (V0, coherente con Bars. impreso)
 
-**Frente:** `Bons.` · CHOCOLATE BENEVOLO · pieza de oficio  
-**Sub:** FEAR 5 · molde mazorca · chocolatería profesional  
-**Dorso lean:** Buen chocolate indulgente. Elaborado con criterio Zurych / R&D Colab.  
+**Frente (locked):** `Bons.` · CHOCOLATE BENEVOLO · molde mazorca  
+**Frente (flex):** nombre del relleno + 3 capas  
+**Dorso lean:** Buen chocolate indulgente. · Contiene: [relleno] · Elaborado Zurych / R&D Colab.  
 **Contacto:** +57 310 222 7848 · chocolatebenevolo.co  
+
+| SKU | Sub frente | Contiene (dorso) |
+|-----|------------|------------------|
+| Caramelo | Caramelo · malvavisco · galleta | Tres capas: caramelo, malvavisco y galleta |
+| Dubai | Pistacho · crocante · mantequilla | Tres capas: pistacho, crocante y mantequilla |
+| Tiramisú | Soletilla · café · crema cacao | Bizcocho soletilla, café, crema y cacao en polvo |
 
 Claims solo verificables; no inventar medallas.
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="210mm" height="297mm" viewBox="0 0 2100 2970"
+  role="img" aria-label="Bars. · dieline PDF impreso">
+  <title>Bars. · dieline PDF impreso</title>
+  <desc>Arte derivado del cartón impreso Bars Benevolo.pdf. Capas guides ocultas.</desc>
+  <g id="layer-guides" display="none">
+    <rect id="bleed" x="-30" y="-30" width="2160" height="3030" fill="none" stroke="#00AEEF" stroke-width="2" stroke-dasharray="8 6"/>
+    <rect id="trim" x="0" y="0" width="2100" height="2970" fill="none" stroke="#FF00AA" stroke-width="2"/>
+    <rect id="safe" x="30" y="30" width="2040" height="2910" fill="none" stroke="#00FF88" stroke-width="1" stroke-dasharray="4 4"/>
+  </g>
+  <g id="layer-artwork">
+    <image x="0" y="0" width="2100" height="2970" preserveAspectRatio="xMidYMid slice"
+      href="assets/bars-carton-dieline.png" xlink:href="assets/bars-carton-dieline.png"/>
+  </g>
+</svg>

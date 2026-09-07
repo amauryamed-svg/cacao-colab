@@ -1,6 +1,7 @@
 # Chocolate Benevolo · Sistema de empaque multi-SKU
 
-> Brand system para **Bars. · Bons. · Nibs. · Coberturas.**  
+> Brand system para **Bars. · Bons. · Nibs. · Coberturas. · Brew.**
+> Vista unificada: `SYSTEM-BRAND.md`.  
 > Criterio de calidad: [The Dieline](https://thedieline.com/) (packaging systems, retail & POS, print craft).  
 > Skill agente: `.cursor/skills/benevolo-packaging-dieline/SKILL.md`
 
@@ -39,6 +40,7 @@
 | Nibs. pouch face (pro) | 120 × 180 mm | 3 mm | 5 mm |
 | Cobertura block (pro) | 140 × 90 mm | 3 mm | 4 mm |
 | Display counter L3 | 300 × 200 mm | 3 mm | 5 mm |
+| Brew. can face | 70 × 120 mm (frente lata) | 2 mm | 3 mm |
 
 > **V0** = planos de diseño en repo. **V1** = dieline oficial del convertidor. No mandar V0 a troquel sin validar fábrica.  
 > Escalera completa: `LEAN-TO-PRO.md`.
@@ -52,11 +54,15 @@
 - Wordmark: `logos/bars-wordmark.svg`
 - Categoría: duja de marañón sugar free · 80 g
 
-### 3.2 Bons. (chocolatería profesional)
-- Piezas / bombones Benevolo
-- Caja o manga con etiqueta frontal + faja
+### 3.2 Bons. (bombón grande · 3 rellenos)
+- Bombones grandes Benevolo · molde mazorca (pod-ridge)
+- Caja blanca L0 / sleeve L1 / carton L2 (arte fiel a Bars. PDF)
 - Claim: *chocolatería profesional · oficio snackable*
-- Flex: sabor (FEAR 5 · marañón · dark) vía acento + descriptor
+- Flex (una variable): relleno — **Caramelo** · **Dubai** · **Tiramisú**
+  - Caramelo = caramelo + malvavisco + galleta
+  - Dubai = pistacho + crocante + mantequilla
+  - Tiramisú = bizcocho soletilla + café + crema + cacao en polvo
+- Archivos: `packaging/bons/bons-*-caramelo|dubai|tiramisu-*`
 
 ### 3.3 Nibs.
 - Nibs tostados para cocina y mesa
@@ -67,6 +73,12 @@
 - Blocks / mangas 1 kg para obrador
 - Hero tipográfico del `%` (70 · 85 · 100) + endulzante
 - Ficha técnica en dorso (origen, nodos, uso: temperar / barra / cobertura)
+
+### 3.5 Brew. (gaseosa de cacao)
+- Lata 355 ml · fondo blanco (patrón DAYDRINK)
+- Producto tipográfico `CACAO & {par}` · dúo ilustrado mazorca + sabor
+- Flex: par (Limón · Naranja · Maracuyá · Jamaica) + acento
+- Planos: `packaging/brew/brew-*-can.svg`
 
 ---
 

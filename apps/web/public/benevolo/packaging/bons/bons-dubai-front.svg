@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="90mm" height="50mm" viewBox="0 0 900 500"
+  role="img" aria-label="Bons. Dubai frente">
+  <title>Bons. Dubai frente</title>
+  <desc>Arte derivado del cartón impreso Bars Benevolo.pdf. Capas guides ocultas.</desc>
+  <g id="layer-guides" display="none">
+    <rect id="bleed" x="-30" y="-30" width="960" height="560" fill="none" stroke="#00AEEF" stroke-width="2" stroke-dasharray="8 6"/>
+    <rect id="trim" x="0" y="0" width="900" height="500" fill="none" stroke="#FF00AA" stroke-width="2"/>
+    <rect id="safe" x="30" y="30" width="840" height="440" fill="none" stroke="#00FF88" stroke-width="1" stroke-dasharray="4 4"/>
+  </g>
+  <g id="layer-artwork">
+    <image x="0" y="0" width="900" height="500" preserveAspectRatio="xMidYMid slice"
+      href="bons-dubai-front.jpg" xlink:href="bons-dubai-front.jpg"/>
+  </g>
+</svg>
