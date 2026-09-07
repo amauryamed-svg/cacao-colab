@@ -18,7 +18,7 @@ import { catadorTotalXp } from "@/lib/catador-course"
 export const metadata: Metadata = {
   title: "Campus · tres Masters + herencia",
   description:
-    "Master Cacaotier, Catador y Chocolatier: hereda el saber hacer del cacao. Checkout Shopify o rango con Mazorcas Doradas.",
+    "Campus abierto: Master Cacaotier, Catador y Chocolatier en freemium. Colombia Fine-Flavor al mundo — Secretaría, Cancillería, nodos y amantes.",
 }
 
 export default async function AprendePage() {
@@ -40,15 +40,27 @@ export default async function AprendePage() {
                 <em>Una generación.</em>
               </h1>
               <p className="text-colab-cream/65 max-w-xl mt-6 leading-relaxed">
-                Fermentación, catación y chocolate para quien hereda la tierra y el saber hacer.
-                Entra por rango (Mazorcas Doradas) o por checkout Shopify del producto digital.
+                Fermentación, catación y chocolate — campus abierto. Prueba freemium (Semilla),
+                landing pública de Cacaotier y cotizador FOB para llevar origen colombiano al mundo.
               </p>
               <div className="flex flex-wrap items-center gap-4 mt-6">
                 <Link
-                  href="/shop#masters"
+                  href="/prueba"
                   className="rounded-full bg-colab-yellow px-5 py-2.5 text-sm font-bold text-colab-forest"
                 >
-                  Checkout Shopify →
+                  Prueba freemium →
+                </Link>
+                <Link
+                  href="/aprende/cacaotier"
+                  className="rounded-full border border-white/20 px-5 py-2.5 text-sm font-bold text-colab-cream"
+                >
+                  Landing Cacaotier →
+                </Link>
+                <Link
+                  href="/shop#masters"
+                  className="text-sm font-bold text-colab-cream/70 underline decoration-white/20 underline-offset-4 hover:text-colab-yellow"
+                >
+                  Checkout Shopify
                 </Link>
                 <Link
                   href="/colab"
@@ -84,7 +96,7 @@ export default async function AprendePage() {
           >
             <span className="eyebrow text-colab-yellow">Ruta de finca</span>
             <p className="text-xs font-bold uppercase tracking-wider text-colab-cream/40 mt-6">
-              Brote+ · fermentación
+              Freemium · fermentación
             </p>
             <h2 className="font-serif text-3xl font-black mt-2 group-hover:text-colab-yellow transition-colors">
               Master
@@ -102,7 +114,7 @@ export default async function AprendePage() {
           >
             <span className="eyebrow text-colab-yellow">Ruta sensorial</span>
             <p className="text-xs font-bold uppercase tracking-wider text-colab-cream/40 mt-6">
-              Labrador+ · {catadorTotalXp} XP · rueda Colab
+              Freemium · {catadorTotalXp} XP · rueda Colab
             </p>
             <h2 className="font-serif text-3xl font-black mt-2 group-hover:text-colab-yellow transition-colors">
               Master
@@ -120,7 +132,7 @@ export default async function AprendePage() {
           >
             <span className="eyebrow text-colab-cream/70">Ruta de transformación</span>
             <p className="text-xs font-bold uppercase tracking-wider text-colab-cream/40 mt-6">
-              Labrador+ · barra 70 %
+              Freemium · barra 70 %
             </p>
             <h2 className="font-serif text-3xl font-black mt-2 group-hover:text-[#FF6A3D] transition-colors">
               Master

@@ -27,9 +27,10 @@ export default function ExportPage() {
             <em className="text-colab-yellow not-italic">Exportación Fine-Flavor.</em>
           </h1>
           <p className="mt-6 max-w-2xl text-colab-cream/60 leading-relaxed">
-            Herramienta completa de internacionalización propiedad de Cacao Colab: cotiza, compara
-            mercados USA / UE / Asia, copia o imprime la orientación y pide proforma con lote real.
-            Criterio heredado de CAÚA Cloud — MoR comercial en Colab.
+            Herramienta de internacionalización del Colab abierto: cotiza, compara mercados USA / UE
+            / Asia y pide proforma con lote real. Pensada para quien lleva origen colombiano al mundo
+            — Cancillería, comprador o nodo — sin fingir cupo diplomático. Criterio heredado de CAÚA
+            Cloud; MoR comercial en Colab.
           </p>
           <div className="flex flex-wrap gap-3 mt-8">
             <a
@@ -40,6 +41,12 @@ export default function ExportPage() {
             >
               Tienda cacao-colab.myshopify.com →
             </a>
+            <Link
+              href="/prueba"
+              className="rounded-full border border-white/20 px-6 py-3 text-sm font-bold"
+            >
+              Prueba freemium →
+            </Link>
             <Link
               href="/shop"
               className="rounded-full border border-white/20 px-6 py-3 text-sm font-bold"

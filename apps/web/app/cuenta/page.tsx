@@ -40,7 +40,7 @@ export default async function CuentaPage() {
     .select("access_level")
     .eq("user_id", user.id)
     .maybeSingle()
-  if (teamMember?.access_level === "superadmin") redirect("/equipo")
+  const isSuperadmin = teamMember?.access_level === "superadmin"
 
   const home = await loadCuentaHome(
     user.id,
@@ -57,7 +57,7 @@ export default async function CuentaPage() {
     },
     {
       title: "Beneficios MD",
-      body: "Mentoría y sinks reales. Los Masters no se compran: se abren por rango.",
+      body: "Mentoría y sinks reales. Las certificaciones se prueban en freemium.",
       href: "/marketplace/beneficios",
       cta: "Abrir catálogo",
     },
@@ -101,6 +101,18 @@ export default async function CuentaPage() {
         <header className="cuenta-hub-hero">
           <div>
             <p className="eyebrow text-colab-yellow">Mi espacio en el Colab</p>
+            {isSuperadmin && (
+              <p className="cuenta-superadmin-banner">
+                Superadmin · las certificaciones están abiertas.{" "}
+                <Link href="/equipo" className="underline underline-offset-4">
+                  Portal CRM
+                </Link>
+                {" · "}
+                <Link href="/campus/arquitecto-fermentacion" className="underline underline-offset-4">
+                  Master Cacaotier
+                </Link>
+              </p>
+            )}
             <h1>
               Hola, <em>{home.displayName}</em>
             </h1>
@@ -124,8 +136,8 @@ export default async function CuentaPage() {
             <p className="eyebrow text-colab-yellow">Wallet · Mazorcas Doradas</p>
             <h2 id="cuenta-wallet-title">Tu economía interna</h2>
             <p>
-              El rango (MD históricas) abre los Masters. Gánalas en Sembrar y Dualita (CAÚA + Zurych).
-              El saldo sirve para mentoría y sinks reales — no para comprar la llave del campus.
+              El Colab está abierto: las certificaciones se prueban en freemium (Semilla). El rango
+              mide oficio en Sembrar y Dualita; el saldo sirve para mentoría y sinks reales.
             </p>
             <div className="cuenta-wallet-actions">
               <Link href="/cuenta/mazorcas" className="cuenta-btn-primary">
@@ -291,8 +303,8 @@ export default async function CuentaPage() {
               <p className="eyebrow text-colab-coral">Certificaciones · progreso guardado</p>
               <h2 id="cuenta-courses-title">Tus Masters</h2>
               <p>
-                Se abren con tu rango: Arquitecto desde Brote; Chocolatier y Benevolo desde Labrador.
-                Cultiva MD en Sembrar y Dualita. El diploma se gana con rigor — no se compra.
+                El campus está abierto en freemium. El diploma se gana con rigor — no se compra. El
+                rango celebra oficio comunitario; no es un muro.
               </p>
             </div>
             {home.courses.micro && (

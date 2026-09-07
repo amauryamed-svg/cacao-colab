@@ -70,8 +70,8 @@ export default async function BenefitsPage() {
           <p className="eyebrow text-colab-yellow">Economía MD · cursos y aceleraciones</p>
           <h1>Lo que cultivas<br /><em>vuelve a la comunidad.</em></h1>
           <p>
-            Los <strong>Masters se abren con tu rango</strong> (MD históricas de Sembrar + Dualita CAÚA/Zurych).
-            Aquí canjeas <strong>saldo</strong> solo por sinks reales (p. ej. mentoría) — no por la llave del campus.
+            Los <strong>Masters se prueban en freemium</strong> (campus abierto). El rango celebra oficio
+            de Sembrar + Dualita. Aquí canjeas <strong>saldo</strong> solo por sinks reales (p. ej. mentoría).
             Los packs no suben rango. Sin multinivel.
           </p>
           {walletSnap && (

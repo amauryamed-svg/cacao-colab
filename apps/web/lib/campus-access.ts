@@ -1,11 +1,10 @@
 /**
- * Acceso a Masters: por rango (MD históricas ganadas cultivando),
- * no por canjear saldo. Sembrar + Dualita (CAÚA / Zurych) suben lifetime.
+ * Acceso a Masters: Colab abierto / freemium.
+ * El rango (MD históricas) sigue midiendo oficio comunitario;
+ * no es un muro para probar las certificaciones.
  */
 import { communityRanks, resolveRank } from "@/lib/loyalty"
-import {
-  ARCHITECT_COURSE_SLUG,
-} from "@/lib/architect-course"
+import { ARCHITECT_COURSE_SLUG } from "@/lib/architect-course"
 import { CHOCOLATIER_COURSE_SLUG } from "@/lib/chocolatier-course"
 import { CATADOR_COURSE_SLUG } from "@/lib/catador-course"
 import { BENEVOLO_COURSE_SLUG } from "@/lib/benevolo-brand"
@@ -18,21 +17,22 @@ export type MasterCourseSlug =
 
 type RankSlug = (typeof communityRanks)[number]["slug"]
 
-/** Umbral de rango para abrir cada Master. */
+/** Umbral mínimo. Semilla = freemium: cualquier cuenta entra a probar. */
 export const masterRankGate: Record<MasterCourseSlug, RankSlug> = {
-  [ARCHITECT_COURSE_SLUG]: "brote",
-  [CATADOR_COURSE_SLUG]: "labrador",
-  [CHOCOLATIER_COURSE_SLUG]: "labrador",
-  [BENEVOLO_COURSE_SLUG]: "labrador",
+  [ARCHITECT_COURSE_SLUG]: "semilla",
+  [CATADOR_COURSE_SLUG]: "semilla",
+  [CHOCOLATIER_COURSE_SLUG]: "semilla",
+  [BENEVOLO_COURSE_SLUG]: "semilla",
 }
 
 export const masterAccessCopy = {
   principle:
-    "Dos puertas al Master: (1) rango con MD históricas ganadas en Sembrar y Dualita, o (2) checkout Shopify del producto digital en la tienda Colab — con venta cruzada a coberturas y nibs de los nodos.",
+    "El Colab está abierto. Las certificaciones se prueban en freemium (rango Semilla). El rango sigue midiendo oficio en Sembrar y Dualita; no cierra la puerta. Shopify es otra vía, no la única.",
   earnCtas: [
-    { label: "Sembrar", href: "/juega" },
+    { label: "Prueba freemium", href: "/prueba" },
+    { label: "Landing Cacaotier", href: "/aprende/cacaotier" },
     { label: "Campus Dualita", href: "/aprende" },
-    { label: "Tienda Masters", href: "/shop#masters" },
+    { label: "Cotizador FOB", href: "/export" },
   ],
 } as const
 
@@ -46,14 +46,20 @@ export function isMasterCourseSlug(slug: string): slug is MasterCourseSlug {
   return slug in masterRankGate
 }
 
-export function resolveMasterAccess(lifetimeMd: number, courseSlug: MasterCourseSlug) {
+export function resolveMasterAccess(
+  lifetimeMd: number,
+  courseSlug: MasterCourseSlug,
+  options: { bypass?: boolean } = {},
+) {
   const requiredSlug = masterRankGate[courseSlug]
   const required = communityRanks.find((r) => r.slug === requiredSlug)!
   const current = resolveRank(lifetimeMd)
-  const unlocked = rankIndex(current.slug) >= rankIndex(requiredSlug)
+  const byRank = rankIndex(current.slug) >= rankIndex(requiredSlug)
+  const unlocked = Boolean(options.bypass) || byRank
   const mdToUnlock = unlocked ? 0 : Math.max(0, required.threshold - lifetimeMd)
   return {
     unlocked,
+    bypassed: Boolean(options.bypass),
     requiredRankSlug: required.slug,
     requiredRankName: required.name,
     requiredThreshold: required.threshold,
@@ -61,9 +67,11 @@ export function resolveMasterAccess(lifetimeMd: number, courseSlug: MasterCourse
     currentRankName: current.name,
     lifetimeMd,
     mdToUnlock,
-    message: unlocked
-      ? `Disponible con tu rango ${current.name}.`
-      : `Necesitas rango ${required.name} (${required.threshold.toLocaleString("es-CO")} MD históricas). Te faltan ${mdToUnlock.toLocaleString("es-CO")} MD — gánalas en Sembrar y Dualita.`,
+    message: options.bypass
+      ? "Acceso superadmin · todas las certificaciones están abiertas."
+      : unlocked
+        ? `Disponible en freemium · tu rango hoy es ${current.name}.`
+        : `Necesitas rango ${required.name} (${required.threshold.toLocaleString("es-CO")} MD históricas). Te faltan ${mdToUnlock.toLocaleString("es-CO")} MD — o entra por la prueba freemium / Shopify.`,
   }
 }
 
@@ -87,5 +95,5 @@ export function masterPrimaryCtaLabel(input: {
     const left = Math.max(0, input.missionCount - input.completedCount)
     return left <= 1 ? "Terminar sesión →" : "Continuar sesión →"
   }
-  return "Empezar certificación →"
+  return "Empezar prueba freemium →"
 }

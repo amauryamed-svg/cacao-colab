@@ -8506,3 +8506,87 @@ button.diploma-li {
   font-style: normal;
   font-weight: 800;
 }
+
+.colab-open-band {
+  background:
+    radial-gradient(ellipse 55% 60% at 90% 10%, rgba(242, 200, 48, .14), transparent 50%),
+    linear-gradient(165deg, #140e0a, #101d0b 70%);
+}
+
+.cuenta-superadmin-banner {
+  color: #e8c9a0;
+  font-size: .78rem;
+  line-height: 1.5;
+  margin: .65rem 0 0;
+}
+
+.freemium-prueba h2 { max-width: 36rem; }
+.freemium-audience-grid {
+  display: grid;
+  gap: .7rem;
+  margin-top: 1.5rem;
+}
+@media (min-width: 640px) {
+  .freemium-audience-grid { grid-template-columns: 1fr 1fr; }
+}
+.freemium-audience-grid button {
+  background: rgba(247, 241, 238, .04);
+  border: 1px solid rgba(247, 241, 238, .12);
+  border-radius: 1rem;
+  color: #f7f1ee;
+  padding: 1rem 1.05rem;
+  text-align: left;
+}
+.freemium-audience-grid button:hover { border-color: #f2c830; }
+.freemium-audience-grid strong {
+  display: block;
+  font-size: .92rem;
+}
+.freemium-audience-grid span {
+  color: rgba(247, 241, 238, .5);
+  display: block;
+  font-size: .75rem;
+  line-height: 1.45;
+  margin-top: .35rem;
+}
+.freemium-options {
+  display: grid;
+  gap: .65rem;
+  margin-top: 1.4rem;
+}
+.freemium-options button {
+  background: rgba(247, 241, 238, .05);
+  border: 1px solid rgba(247, 241, 238, .14);
+  border-radius: .9rem;
+  color: #f7f1ee;
+  font-size: .92rem;
+  line-height: 1.4;
+  padding: .9rem 1rem;
+  text-align: left;
+}
+.freemium-options button.ok { border-color: #87aa27; color: #87aa27; }
+.freemium-options button.bad { border-color: #e05555; color: #e08080; }
+.freemium-explain {
+  margin-top: 1.1rem;
+}
+.freemium-explain p {
+  color: rgba(247, 241, 238, .65);
+  font-size: .88rem;
+  line-height: 1.5;
+}
+.freemium-explain button,
+.freemium-reset {
+  background: #f2c830;
+  border: 0;
+  border-radius: 999px;
+  color: #1a2e10;
+  font-size: .82rem;
+  font-weight: 800;
+  margin-top: 1rem;
+  padding: .65rem 1.2rem;
+}
+.freemium-reset {
+  background: transparent;
+  border: 1px solid rgba(247, 241, 238, .2);
+  color: #f7f1ee;
+}

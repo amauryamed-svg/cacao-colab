@@ -13,6 +13,12 @@ export default function Navbar() {
 
         <div className="flex items-center gap-3">
           <Link
+            href="/prueba"
+            className="hidden sm:inline text-xs font-bold text-colab-cream/70 hover:text-colab-yellow font-sans tracking-wide transition-colors"
+          >
+            Prueba
+          </Link>
+          <Link
             href="/export"
             className="hidden sm:inline text-xs font-bold text-colab-cream/70 hover:text-colab-yellow font-sans tracking-wide transition-colors"
           >

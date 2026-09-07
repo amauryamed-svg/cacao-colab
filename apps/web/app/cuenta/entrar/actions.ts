@@ -8,6 +8,7 @@ import {
   stashAuthConsentCookie,
 } from "@/lib/legal/consent"
 import { getSiteUrl } from "@/lib/site"
+import { landingAfterAuth } from "@/lib/team-access"
 
 export type CampusAuthResult =
   | { ok: true; redirectedTo?: string }
@@ -29,6 +30,10 @@ function safeNext(value: FormDataEntryValue | null) {
     "/cuenta/mazorcas",
     "/credencial",
     "/equipo",
+    "/prueba",
+    "/export",
+    "/shop",
+    "/conocimiento",
   ]
   return allowed.some((prefix) => next.startsWith(prefix)) ? next : "/aprende"
 }
@@ -113,7 +118,7 @@ export async function verifyCampusEmailOtp(formData: FormData): Promise<CampusAu
       .eq("user_id", data.user.id)
       .maybeSingle()
 
-    const redirectedTo = teamMember?.access_level === "superadmin" ? "/equipo" : next
+    const redirectedTo = landingAfterAuth(next, teamMember?.access_level === "superadmin")
     return { ok: true, redirectedTo }
   } catch (error) {
     return {

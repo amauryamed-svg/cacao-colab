@@ -71,13 +71,17 @@ export default function CacaotierCoursePage() {
                 Del biomarcador<br />a la <em>taza internacional.</em>
               </h1>
               <p className="mt-7 max-w-2xl text-base md:text-lg leading-relaxed text-colab-cream/60">
-                Fermentación controlada como maestría: lee temperatura, pH y péptidos precursores
-                que abren floral, nuez y frutal limpio — el perfil que buscan bean-to-bar en Japón
-                y alta gastronomía en Europa.
+                Landing abierta: prueba el criterio sin muro de rango. Fermentación controlada como
+                maestría — temperatura, pH y péptidos precursores que abren floral, nuez y frutal
+                limpio para bean-to-bar en Japón y alta gastronomía en Europa. Colombia Fine-Flavor
+                al mundo.
               </p>
               <div className="flex flex-wrap gap-3 mt-8">
+                <Link href="/prueba" className="border border-white/20 text-colab-cream rounded-full px-7 py-3.5 text-sm font-bold">
+                  Prueba freemium →
+                </Link>
                 <Link href="/campus/arquitecto-fermentacion" className="bg-colab-yellow text-colab-forest rounded-full px-7 py-3.5 text-sm font-bold">
-                  Empezar campaña con Dualita →
+                  Empezar certificación →
                 </Link>
                 <a href="#atlas-precursores" className="border border-white/20 text-colab-cream rounded-full px-7 py-3.5 text-sm font-bold">
                   Ver atlas péptido → aroma
