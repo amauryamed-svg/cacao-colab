@@ -44,6 +44,9 @@ cacaocolab.org/benevolo/noviembre
 
 Visual: fondo `#140e0a`, crema, naranja `#FF6A3D`. Wordmark `Bars.` en Bodoni italic. No inventar pack en góndola US ni medalla CoEx.
 
+Piezas 1:1 (HTML listo para captura): `/benevolo/ig/<id>.html` — `prensa` · `quote` · `fear5` · `bars` · `benevolente` · `entender` · `noviembre`.  
+Story 9:16: `/benevolo/ig/noviembre-story.html`. PNG al lado, mismo nombre. Regenerar: `python3 brand/chocolate-benevolo/copy/build_ig_frames.py`.
+
 ## Pies (pegar en Instagram / Express / Canva)
 
 ### 1. Salió la nota

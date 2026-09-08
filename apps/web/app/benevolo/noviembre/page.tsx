@@ -4,10 +4,14 @@ import TrackedLink from "@/components/analytics/TrackedLink"
 import BenevoloLaunchCountdown from "@/components/benevolo/BenevoloLaunchCountdown"
 import { BenevoloShopifyCheckout } from "@/components/commerce/BenevoloShopifyCheckout"
 import BenevoloCaptionCopy from "@/components/benevolo/BenevoloCaptionCopy"
+import BenevoloIgFrame from "@/components/benevolo/BenevoloIgFrame"
 import {
   BENEVOLO_INSTAGRAM_HANDLE,
   BENEVOLO_INSTAGRAM_URL,
   benevolo360,
+  benevoloIgFeedPath,
+  benevoloIgPngPath,
+  benevoloIgStoryPath,
   benevoloInstagram,
   benevoloLaunchCopy,
   benevoloPress,
@@ -230,11 +234,48 @@ export default function BenevoloNoviembrePage() {
           <div className="benevolo-ig-grid mt-10">
             {benevoloInstagram.posts.map((post) => (
               <article key={post.id} id={`ig-${post.id}`} className="benevolo-ig-card">
-                <span>{post.format}</span>
+                <BenevoloIgFrame frame={post.frame} />
+                <span className="mt-5">{post.format}</span>
                 <strong>{post.title}</strong>
                 <p>{post.hook}</p>
                 <pre className="benevolo-ig-caption">{post.caption}</pre>
                 <BenevoloCaptionCopy text={post.caption} />
+                <a
+                  href={benevoloIgPngPath(post.id)}
+                  download
+                  className="inline-block mt-3 mr-4 text-sm font-bold text-[#FF6A3D]"
+                >
+                  PNG 1:1
+                </a>
+                <TrackedLink
+                  href={benevoloIgFeedPath(post.id)}
+                  event="benevolo_interest"
+                  targetName={`noviembre-ig-frame-${post.id}`}
+                  source="noviembre-comunidad"
+                  className="inline-block mt-3 mr-4 text-sm font-bold text-[#FF6A3D]"
+                >
+                  HTML →
+                </TrackedLink>
+                {post.id === "noviembre" ? (
+                  <>
+                    <a
+                      href="/benevolo/ig/noviembre-story.png"
+                      download
+                      className="inline-block mt-3 mr-4 text-sm font-bold text-[#FF6A3D]"
+                    >
+                      Story PNG
+                    </a>
+                    <TrackedLink
+                      href={benevoloIgStoryPath()}
+                      event="benevolo_interest"
+                      targetName="noviembre-ig-story"
+                      source="noviembre-comunidad"
+                      className="inline-block mt-3 text-sm font-bold text-[#FF6A3D]"
+                    >
+                      Story HTML →
+                    </TrackedLink>
+                  </>
+                ) : null}
               </article>
             ))}
           </div>

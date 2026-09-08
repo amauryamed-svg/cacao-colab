@@ -4345,6 +4345,7 @@ button.diploma-li {
 
 .benevolo-ig-copy {
   margin-top: 0.85rem;
+  margin-right: 0.5rem;
   border: 1px solid rgba(255, 106, 61, 0.45);
   border-radius: 999px;
   background: transparent;
@@ -4353,6 +4354,71 @@ button.diploma-li {
   font-weight: 700;
   padding: 0.45rem 0.9rem;
   cursor: pointer;
+}
+
+.benevolo-ig-frame {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  aspect-ratio: 1;
+  overflow: hidden;
+  padding: 8%;
+  background:
+    radial-gradient(circle at 88% 12%, rgba(232, 201, 160, 0.2), transparent 32%),
+    radial-gradient(circle at 8% 88%, rgba(255, 106, 61, 0.16), transparent 36%),
+    #140e0a;
+  color: #f7f1ee;
+  border: 1px solid rgba(232, 201, 160, 0.18);
+}
+
+.benevolo-ig-frame.story {
+  aspect-ratio: 9 / 16;
+}
+
+.benevolo-ig-frame header,
+.benevolo-ig-frame footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: baseline;
+}
+
+.benevolo-ig-frame header span,
+.benevolo-ig-frame header em,
+.benevolo-ig-frame footer span,
+.benevolo-ig-frame footer em {
+  font-style: normal;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(232, 201, 160, 0.7);
+}
+
+.benevolo-ig-wordmark {
+  font-family: var(--font-bodoni-bars), "Bodoni Moda", Didot, Georgia, serif;
+  font-style: italic;
+  font-weight: 900;
+  font-size: clamp(3rem, 12vw, 5.5rem);
+  letter-spacing: -0.04em;
+  line-height: 0.85;
+  color: #fff;
+}
+
+.benevolo-ig-frame h3 {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-top: 0.45rem;
+}
+
+.benevolo-ig-frame > div > p {
+  margin-top: 0.75rem;
+  max-width: 22rem;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: rgba(247, 241, 238, 0.62);
 }
 
 .benevolo-shopify-card {

@@ -88,6 +88,12 @@ export const benevoloInstagram = {
       format: "Feed",
       title: "Salió la nota",
       hook: "Hoy nos leyeron en Infonegocios.",
+      frame: {
+        kicker: "Infonegocios · 8 sep",
+        wordmark: "Bars.",
+        display: "Hoy nos leyeron.",
+        support: "Prelanzamiento noviembre. No es mercado abierto.",
+      },
       caption: `Hoy Infonegocios Colombia publicó la historia de Benevolo: una chocolatina de origen que busca llegar a Estados Unidos en noviembre.
 
 No es mercado abierto todavía. Es prelanzamiento. Bars. se hace en Colombia, en small batch. WhatsApp confirma el lote.
@@ -102,6 +108,13 @@ Prelanzamiento → cacaocolab.org/benevolo/noviembre
       format: "Feed · cita",
       title: "Comprar contexto",
       hook: "Que sepa a chocolate. Que detrás haya origen.",
+      frame: {
+        kicker: "Amaury Amed",
+        display: "Antojo, no pretensión.",
+        quote:
+          "Que sepa a una barra de chocolate. Que detrás haya origen, fermentación e historia.",
+        support: "Infonegocios Colombia",
+      },
       caption: `“Quiero que sea una chocolatina que cuando la pruebes digas: esto es una barra de chocolate, pero detrás hay un origen, una fermentación y un cacao colombiano que tienen una historia.”
 
 — Amaury Amed, Infonegocios Colombia
@@ -115,6 +128,12 @@ Eso es Benevolo: antojo, no pretensión.
       format: "Carrusel",
       title: "FEAR 5 + fermentación",
       hook: "El cacao de especialidad se parece más al café de especialidad de lo que creemos.",
+      frame: {
+        kicker: "Origen · Fedecacao",
+        display: "FEAR 5",
+        quote: "Federación Arauquita 5. Cerca del 80 % del fine flavor nace en fermentación.",
+        support: "Trinitario colombiano · microlotes",
+      },
       caption: `FEAR 5 = Federación Arauquita 5. Cacao trinitario colombiano de Fedecacao.
 
 Amaury lo pone al centro por sabor, aroma y apariencia — y porque la fermentación controlada, no tanto la tostión, carga cerca del 80 % del fine flavor.
@@ -128,6 +147,13 @@ Microlotes. Pequeños productores. Historia en la barra.
       format: "Feed",
       title: "Bars. y Bons.",
       hook: "El comienzo es una chocolatina. Después, el bombón.",
+      frame: {
+        kicker: "Línea",
+        wordmark: "Bars.",
+        display: "El comienzo es una chocolatina.",
+        quote: "Bons. anunciado. Todavía no es SKU de tienda.",
+        support: "Marañón salado · preventa Benevolo.shop",
+      },
       caption: `Bars. · cacao colombiano · chocolatina de leche · marañón salado.
 
 Bons. · bombones rellenos de dátil con marañón salado — anunciado, todavía no es SKU de tienda.
@@ -143,6 +169,12 @@ Preventa Bars. en Benevolo.shop. Noviembre es la ventana.
       format: "Feed",
       title: "Bueno para todos",
       hook: "Benevolente: el cacao para quien lo come, quien lo produce y el territorio.",
+      frame: {
+        kicker: "Benevolente",
+        display: "Bueno para todos.",
+        quote: "Para quien lo come, quien lo produce y el territorio.",
+        support: "Cacao Colab · conocimiento y oficio",
+      },
       caption: `“Si utilizas todos los residuos del cacao y les metes tecnología, puedes generar nuevos productos. Para mí eso también es parte de lo benevolente.”
 
 No es solo una barra más sofisticada. Es Cacao Colab: conocimiento, formación y una forma de mirar el cacao colombiano.
@@ -156,6 +188,12 @@ Comprar contexto, no solamente chocolate.
       format: "Feed · cita",
       title: "Entender el cacao",
       hook: "No solamente una marca de chocolate.",
+      frame: {
+        kicker: "Tesis",
+        display: "Comprar contexto.",
+        quote: "No solamente chocolate. Una manera de entender el cacao.",
+        support: "Link in bio · noviembre",
+      },
       caption: `“No quiero que Benevolo sea solamente una marca de chocolate. Quiero que sea una manera de entender el cacao. Que cuando alguien vea el producto pueda preguntarse de dónde viene, qué cacao es, cómo fue fermentado y qué hay detrás de esa barra.”
 
 Si la gente empieza a comprar contexto y no solamente chocolate, cambia la conversación alrededor del cacao colombiano.
@@ -168,6 +206,13 @@ Prelanzamiento → cacaocolab.org/benevolo/noviembre
       format: "Story + feed",
       title: "Cuenta atrás",
       hook: "Noviembre. Preventa ahora.",
+      frame: {
+        kicker: "Ventana publicada",
+        wordmark: "Bars.",
+        display: "Noviembre.",
+        quote: "Preventa ahora. WhatsApp confirma el lote.",
+        support: "Intención: Estados Unidos — no tienda abierta",
+      },
       caption: `Lanzamiento previsto para noviembre. Primera apuesta: Estados Unidos. También se exploran Madrid, China y Japón — son intenciones, no tiendas abiertas.
 
 Small batch: de 250 a 500 kg al inicio, con techo aliado de 1 t/mes.
@@ -179,6 +224,22 @@ cacaocolab.org/benevolo/noviembre
     },
   ],
 } as const
+
+export function getBenevoloIgPost(id: string) {
+  return benevoloInstagram.posts.find((post) => post.id === id) ?? null
+}
+
+export function benevoloIgFeedPath(id: string) {
+  return `/benevolo/ig/${id}.html`
+}
+
+export function benevoloIgPngPath(id: string) {
+  return `/benevolo/ig/${id}.png`
+}
+
+export function benevoloIgStoryPath() {
+  return "/benevolo/ig/noviembre-story.html"
+}
 
 export const benevolo360 = [
   {
