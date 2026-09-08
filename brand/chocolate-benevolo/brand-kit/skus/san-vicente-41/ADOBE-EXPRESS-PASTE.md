@@ -1,7 +1,9 @@
 # Bars. · San Vicente 41 · pegar en Express
 
-Acento: morado intenso #4A0D6B
+Acento: morado intenso #4A0D6B · swirls #1A0528
 41 = clon FSV41, no porcentaje de cacao.
+
+Arte listo: `pack-frente.png` (wrap Fear5) · `frente-live.svg` (capas editables) · `story-1080x1920.png`.
 
 ## Frente
 ### type-category

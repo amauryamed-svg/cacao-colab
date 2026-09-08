@@ -52,8 +52,8 @@
 - Wordmark: `logos/bars-wordmark.svg`
 - Categoría ancla: duja de marañón sugar free · 80 g · **FEAR5 45 %**
 - SKU flex (mismo lockup CB + Bars.; cambia acento + descriptor):
-  - **San Vicente 41** — morado `#4A0D6B` · clon **FSV41** (no es 41 % de cacao) · `brand-kit/skus/san-vicente-41/`
-  - **70 % panela** — cocoa `#2A140C` · dark endulzado con panela · **no** es el capstone Master 70 % · `brand-kit/skus/70-panela/`
+  - **San Vicente 41** — morado `#4A0D6B` · swirls `#1A0528` · clon **FSV41** (no es 41 % de cacao) · wrap Fear5 en `brand-kit/skus/san-vicente-41/pack-frente.png`
+  - **70 % panela** — campo panela `#C17A2A` · swirls cocoa `#2A140C` · dark endulzado con panela · **no** es el capstone Master 70 % · `brand-kit/skus/70-panela/pack-frente.png`
 - Fotos de SKU flex: Commons (ver `brand-kit/skus/SOURCES.md`). No son packshot de fábrica.
 
 ### 3.2 Bons. (chocolatería profesional)

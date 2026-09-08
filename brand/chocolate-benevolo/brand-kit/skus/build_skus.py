@@ -323,44 +323,12 @@ No es el Master Chocolatier 70 %. Preventa. Foto de referencia Commons.
         ),
     )
 
-    compose_png(
-        ROOT / "san-vicente-41" / "frente.png",
-        PURPLE,
-        SRC / "cacao-pod-purple-commons.jpg",
-        "pod",
-        [
-            ("CHOCOLATE BENEVOLO", 80, "small"),
-            ("SAN VICENTE 41", 280, "title"),
-            ("CLON FSV41", 370, "small"),
-            ("Bars.", 520, "hero"),
-            ("80gr · preventa", 1720, "small"),
-        ],
-    )
-    compose_png(
-        ROOT / "70-panela" / "frente.png",
-        COCOA,
-        SRC / "dark-chocolate-blanxart-commons.jpg",
-        "bar",
-        [
-            ("CHOCOLATE BENEVOLO", 80, "small"),
-            ("70 % CACAO", 280, "title"),
-            ("ENDULZADO CON PANELA", 370, "gold"),
-            ("Bars.", 520, "hero"),
-            ("80gr · preventa · no es Master 70 %", 1720, "small"),
-        ],
-    )
+    import sys
 
-    PUB.mkdir(parents=True, exist_ok=True)
-    for rel in (
-        "san-vicente-41/frente.png",
-        "70-panela/frente.png",
-        "san-vicente-41/frente-live.svg",
-        "70-panela/frente-live.svg",
-    ):
-        dest = PUB / Path(rel).name.replace("frente", Path(rel).parent.name + "-frente")
-        data = (ROOT / rel).read_bytes()
-        dest.write_bytes(data)
-        print("public", dest.name)
+    sys.path.insert(0, str(ROOT))
+    from compose_pack import main as compose_packs
+
+    compose_packs()
 
 
 if __name__ == "__main__":

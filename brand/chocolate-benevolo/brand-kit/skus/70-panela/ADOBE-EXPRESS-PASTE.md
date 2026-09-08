@@ -1,7 +1,9 @@
 # Bars. · 70 % panela · pegar en Express
 
-Acento: cocoa #2A140C · panela #C17A2A
+Acento: panela #C17A2A · swirls cocoa #2A140C
 Foto: barra dark Commons (CC BY 2.0 · John Loo) — referencia, no el producto.
+
+Arte listo: `pack-frente.png` (wrap Fear5) · `frente-live.svg` (capas editables) · `story-1080x1920.png`.
 
 ## Frente
 ### type-category
