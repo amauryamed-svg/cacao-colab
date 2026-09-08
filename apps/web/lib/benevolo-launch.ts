@@ -45,7 +45,151 @@ export const benevoloLaunchCopy = {
   ],
 } as const
 
+export const benevoloInstagram = {
+  handle: BENEVOLO_INSTAGRAM_HANDLE,
+  url: BENEVOLO_INSTAGRAM_URL,
+  linkInBio: "https://cacaocolab.org/benevolo/noviembre",
+  outletNote:
+    "Infonegocios titula Benévolo. En voz de marca el nombre es Benevolo, sin tilde.",
+  bio: [
+    "Chocolate Benevolo",
+    "Bars. · cacao colombiano de origen",
+    "Prelanzamiento noviembre",
+    "Preventa · WhatsApp confirma el lote",
+    "cacaocolab.org/benevolo/noviembre",
+  ].join("\n"),
+  highlights: [
+    { name: "Origen", body: "FEAR 5 · Federación Arauquita 5 · Trinitario Fedecacao" },
+    { name: "Fermenta", body: "Cerca del 80 % del fine flavor nace en fermentación, no en la tostión." },
+    { name: "Bars.", body: "Chocolatina de leche con marañón salado. Preventa." },
+    { name: "Prensa", body: "Infonegocios Colombia · 8 sep 2026" },
+    { name: "Noviembre", body: "Ventana de lanzamiento publicada. No es un día de planta." },
+    { name: "Colab", body: "Conocimiento y formación. Comprar contexto, no solamente chocolate." },
+  ],
+  rules: [
+    "Benevolo sin tilde en pies propios. El titular de Infonegocios puede citarse con tilde.",
+    "FEAR 5 por nombre y origen — no restar % de cacao en este copy.",
+    "Bons. está anunciado; todavía no es SKU de tienda.",
+    "Estados Unidos, Madrid, China y Japón son intenciones, no tiendas abiertas.",
+    "Preventa + WhatsApp de lote. Sin stock, CoEx ni seguidores inventados.",
+  ],
+  calendar: [
+    { when: "Hoy", channel: "Feed + stories", postId: "prensa" as const },
+    { when: "Día 2", channel: "Feed cita", postId: "quote" as const },
+    { when: "Día 3", channel: "Carrusel", postId: "fear5" as const },
+    { when: "Día 4", channel: "Feed producto", postId: "bars" as const },
+    { when: "Día 5", channel: "Feed manifiesto", postId: "benevolente" as const },
+    { when: "Día 6", channel: "Feed tesis", postId: "entender" as const },
+    { when: "Cada lunes", channel: "Stories countdown", postId: "noviembre" as const },
+  ],
+  posts: [
+    {
+      id: "prensa",
+      format: "Feed",
+      title: "Salió la nota",
+      hook: "Hoy nos leyeron en Infonegocios.",
+      caption: `Hoy Infonegocios Colombia publicó la historia de Benevolo: una chocolatina de origen que busca llegar a Estados Unidos en noviembre.
+
+No es mercado abierto todavía. Es prelanzamiento. Bars. se hace en Colombia, en small batch. WhatsApp confirma el lote.
+
+Leer: ${benevoloPress.url}
+
+Prelanzamiento → cacaocolab.org/benevolo/noviembre
+@${BENEVOLO_INSTAGRAM_HANDLE}`,
+    },
+    {
+      id: "quote",
+      format: "Feed · cita",
+      title: "Comprar contexto",
+      hook: "Que sepa a chocolate. Que detrás haya origen.",
+      caption: `“Quiero que sea una chocolatina que cuando la pruebes digas: esto es una barra de chocolate, pero detrás hay un origen, una fermentación y un cacao colombiano que tienen una historia.”
+
+— Amaury Amed, Infonegocios Colombia
+
+Eso es Benevolo: antojo, no pretensión.
+
+@${BENEVOLO_INSTAGRAM_HANDLE}`,
+    },
+    {
+      id: "fear5",
+      format: "Carrusel",
+      title: "FEAR 5 + fermentación",
+      hook: "El cacao de especialidad se parece más al café de especialidad de lo que creemos.",
+      caption: `FEAR 5 = Federación Arauquita 5. Cacao trinitario colombiano de Fedecacao.
+
+Amaury lo pone al centro por sabor, aroma y apariencia — y porque la fermentación controlada, no tanto la tostión, carga cerca del 80 % del fine flavor.
+
+Microlotes. Pequeños productores. Historia en la barra.
+
+@${BENEVOLO_INSTAGRAM_HANDLE}`,
+    },
+    {
+      id: "bars",
+      format: "Feed",
+      title: "Bars. y Bons.",
+      hook: "El comienzo es una chocolatina. Después, el bombón.",
+      caption: `Bars. · cacao colombiano · chocolatina de leche · marañón salado.
+
+Bons. · bombones rellenos de dátil con marañón salado — anunciado, todavía no es SKU de tienda.
+
+El marañón también es territorio.
+
+Preventa Bars. en Benevolo.shop. Noviembre es la ventana.
+
+@${BENEVOLO_INSTAGRAM_HANDLE}`,
+    },
+    {
+      id: "benevolente",
+      format: "Feed",
+      title: "Bueno para todos",
+      hook: "Benevolente: el cacao para quien lo come, quien lo produce y el territorio.",
+      caption: `“Si utilizas todos los residuos del cacao y les metes tecnología, puedes generar nuevos productos. Para mí eso también es parte de lo benevolente.”
+
+No es solo una barra más sofisticada. Es Cacao Colab: conocimiento, formación y una forma de mirar el cacao colombiano.
+
+Comprar contexto, no solamente chocolate.
+
+@${BENEVOLO_INSTAGRAM_HANDLE}`,
+    },
+    {
+      id: "entender",
+      format: "Feed · cita",
+      title: "Entender el cacao",
+      hook: "No solamente una marca de chocolate.",
+      caption: `“No quiero que Benevolo sea solamente una marca de chocolate. Quiero que sea una manera de entender el cacao. Que cuando alguien vea el producto pueda preguntarse de dónde viene, qué cacao es, cómo fue fermentado y qué hay detrás de esa barra.”
+
+Si la gente empieza a comprar contexto y no solamente chocolate, cambia la conversación alrededor del cacao colombiano.
+
+Prelanzamiento → cacaocolab.org/benevolo/noviembre
+@${BENEVOLO_INSTAGRAM_HANDLE}`,
+    },
+    {
+      id: "noviembre",
+      format: "Story + feed",
+      title: "Cuenta atrás",
+      hook: "Noviembre. Preventa ahora.",
+      caption: `Lanzamiento previsto para noviembre. Primera apuesta: Estados Unidos. También se exploran Madrid, China y Japón — son intenciones, no tiendas abiertas.
+
+Small batch: de 250 a 500 kg al inicio, con techo aliado de 1 t/mes.
+
+Cuenta atrás y preorden:
+cacaocolab.org/benevolo/noviembre
+
+@${BENEVOLO_INSTAGRAM_HANDLE}`,
+    },
+  ],
+} as const
+
 export const benevolo360 = [
+  {
+    id: "prensa",
+    kicker: "Prensa",
+    title: "Infonegocios, 8 sep",
+    body: "El artículo del día: chocolatina de origen, fermentación y la apuesta de salir de Colombia con Bars.",
+    href: benevoloPress.url,
+    cta: "Leer la nota",
+    external: true,
+  },
   {
     id: "preorden",
     kicker: "Producto",
@@ -59,10 +203,19 @@ export const benevolo360 = [
     id: "instagram",
     kicker: "Comunidad",
     title: "@chocolate.benevolo",
-    body: "El 360 de prelanzamiento vive en Instagram: contexto, origen y antojo — no solo la barra.",
+    body: "Seguir la conversación ahí. El guion de la semana (prensa → origen → preventa) está en esta página.",
     href: BENEVOLO_INSTAGRAM_URL,
     cta: "Seguir en Instagram",
     external: true,
+  },
+  {
+    id: "guion",
+    kicker: "Editorial",
+    title: "Guion de prelanzamiento",
+    body: "Siete piezas listas para pegar: la nota de hoy, FEAR 5, fermentación ~80 %, Bars. y el cierre de comprar contexto.",
+    href: "#comunidad",
+    cta: "Abrir el 360",
+    external: false,
   },
   {
     id: "whatsapp",

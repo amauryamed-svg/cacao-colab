@@ -120,6 +120,10 @@ export default function ShopPage() {
             >
               @chocolate.benevolo
             </a>
+            {" · "}
+            <a href="/benevolo/noviembre#comunidad" className="text-colab-yellow underline underline-offset-4">
+              guion de la nota
+            </a>
             .
           </p>
           <div className="mt-4 max-w-2xl">

@@ -3,10 +3,12 @@ import { Bodoni_Moda } from "next/font/google"
 import TrackedLink from "@/components/analytics/TrackedLink"
 import BenevoloLaunchCountdown from "@/components/benevolo/BenevoloLaunchCountdown"
 import { BenevoloShopifyCheckout } from "@/components/commerce/BenevoloShopifyCheckout"
+import BenevoloCaptionCopy from "@/components/benevolo/BenevoloCaptionCopy"
 import {
   BENEVOLO_INSTAGRAM_HANDLE,
   BENEVOLO_INSTAGRAM_URL,
   benevolo360,
+  benevoloInstagram,
   benevoloLaunchCopy,
   benevoloPress,
 } from "@/lib/benevolo-launch"
@@ -74,6 +76,15 @@ export default function BenevoloNoviembrePage() {
               className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold text-white/80"
             >
               @{BENEVOLO_INSTAGRAM_HANDLE}
+            </TrackedLink>
+            <TrackedLink
+              href="#comunidad"
+              event="benevolo_interest"
+              targetName="noviembre-guion"
+              source="noviembre-hero"
+              className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold text-white/80"
+            >
+              Guion IG →
             </TrackedLink>
           </div>
         </div>
@@ -151,6 +162,91 @@ export default function BenevoloNoviembrePage() {
               Leer la nota →
             </TrackedLink>
           </aside>
+        </section>
+
+        <section id="comunidad" className="scroll-mt-20 mt-16">
+          <p className="eyebrow text-[#FF6A3D]">Comunidad · @{benevoloInstagram.handle}</p>
+          <h2 className="font-serif text-3xl md:text-4xl font-bold mt-3">
+            El 360 sale de la nota.
+          </h2>
+          <p className="mt-4 max-w-2xl text-white/55 leading-relaxed">
+            Misma historia que Infonegocios, en voz de prelanzamiento para Instagram. Link in bio:{" "}
+            {benevoloInstagram.linkInBio.replace("https://", "")}. {benevoloInstagram.outletNote}
+          </p>
+          <div className="flex flex-wrap gap-3 mt-6">
+            <TrackedLink
+              href={benevoloInstagram.url}
+              event="benevolo_interest"
+              targetName="noviembre-ig-follow"
+              source="noviembre-comunidad"
+              external
+              className="bg-[#FF6A3D] text-[#140e0a] rounded-full px-7 py-3.5 text-sm font-bold"
+            >
+              Seguir @{benevoloInstagram.handle} →
+            </TrackedLink>
+            <TrackedLink
+              href={benevoloPress.url}
+              event="knowledge_link_clicked"
+              targetName="infonegocios-benevolo"
+              source="noviembre-comunidad"
+              external
+              className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold text-white/80"
+            >
+              Abrir Infonegocios
+            </TrackedLink>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-10 mt-10">
+            <article className="benevolo-ig-bio">
+              <p className="eyebrow text-[#E8C9A0]">Bio</p>
+              <pre>{benevoloInstagram.bio}</pre>
+            </article>
+            <article>
+              <p className="eyebrow text-[#E8C9A0]">Highlights</p>
+              <ul className="benevolo-ig-highlights mt-4">
+                {benevoloInstagram.highlights.map((item) => (
+                  <li key={item.name}>
+                    <strong>{item.name}</strong>
+                    <span>{item.body}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          </div>
+
+          <ol className="benevolo-ig-week mt-10">
+            {benevoloInstagram.calendar.map((beat) => {
+              const post = benevoloInstagram.posts.find((item) => item.id === beat.postId)
+              return (
+                <li key={beat.postId}>
+                  <span>{beat.when}</span>
+                  <strong>{post?.title}</strong>
+                  <em>{beat.channel}</em>
+                </li>
+              )
+            })}
+          </ol>
+
+          <div className="benevolo-ig-grid mt-10">
+            {benevoloInstagram.posts.map((post) => (
+              <article key={post.id} id={`ig-${post.id}`} className="benevolo-ig-card">
+                <span>{post.format}</span>
+                <strong>{post.title}</strong>
+                <p>{post.hook}</p>
+                <pre className="benevolo-ig-caption">{post.caption}</pre>
+                <BenevoloCaptionCopy text={post.caption} />
+              </article>
+            ))}
+          </div>
+
+          <div className="benevolo-panel muted mt-10">
+            <p className="eyebrow text-white/35">Reglas del 360</p>
+            <ul>
+              {benevoloInstagram.rules.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
         </section>
 
         <section id="preorden" className="mt-16">

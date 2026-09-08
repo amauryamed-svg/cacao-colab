@@ -201,8 +201,17 @@ export default function BenevoloPage() {
             <h2 className="font-serif text-3xl font-bold mt-3">@{BENEVOLO_INSTAGRAM_HANDLE}</h2>
             <p className="text-white/55 leading-relaxed mt-4">
               El 360 de prelanzamiento: contexto, origen y antojo. La chocolatina en Shopify; la
-              conversación en Instagram.
+              conversación en Instagram — con el guion de la nota de Infonegocios.
             </p>
+            <TrackedLink
+              href="/benevolo/noviembre#comunidad"
+              event="benevolo_interest"
+              targetName="benevolo-ig-guion"
+              source="benevolo-community"
+              className="inline-block mt-5 mr-5 text-sm font-bold text-[#FF6A3D]"
+            >
+              Guion de prelanzamiento →
+            </TrackedLink>
             <TrackedLink
               href={BENEVOLO_INSTAGRAM_URL}
               event="benevolo_interest"

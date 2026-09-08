@@ -440,7 +440,7 @@ export const benevoloProduct = {
     "Alianza Zurych × Quara (nodo FEAR 5)",
     "Fórmula: FEAR 5, duja de marañón, leche orgánica, alulosa, stevia",
     "Canal de preorden Benevolo.shop (ficha bars-benevolo, tienda Shopify Colab) + diploma compartible",
-    "Prelanzamiento noviembre 2026 (Infonegocios Colombia) · comunidad Instagram @chocolate.benevolo",
+    "Prelanzamiento noviembre 2026 (Infonegocios Colombia) · comunidad Instagram @chocolate.benevolo · guion en /benevolo/noviembre#comunidad",
   ],
   whatIsNotReady: [
     "Checkout automático con inventario confirmado (la ficha Shopify es preventa)",

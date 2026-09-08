@@ -4225,6 +4225,136 @@ button.diploma-li {
   padding-top: 1.2rem;
 }
 
+.benevolo-ig-bio pre {
+  margin-top: 0.85rem;
+  white-space: pre-wrap;
+  font-family: inherit;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: rgba(247, 241, 238, 0.7);
+}
+
+.benevolo-ig-highlights {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.benevolo-ig-highlights li {
+  border-top: 1px solid rgba(232, 201, 160, 0.16);
+  padding-top: 0.65rem;
+}
+
+.benevolo-ig-highlights strong {
+  display: block;
+  font-size: 0.78rem;
+}
+
+.benevolo-ig-highlights span {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: rgba(247, 241, 238, 0.45);
+}
+
+.benevolo-ig-week {
+  display: grid;
+  gap: 0.65rem;
+  border-top: 1px solid rgba(232, 201, 160, 0.16);
+  padding-top: 1rem;
+}
+
+@media (min-width: 900px) {
+  .benevolo-ig-week {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .benevolo-ig-week {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+  }
+}
+
+.benevolo-ig-week li {
+  border-top: 1px solid rgba(232, 201, 160, 0.22);
+  padding-top: 0.65rem;
+}
+
+.benevolo-ig-week span,
+.benevolo-ig-week em {
+  display: block;
+  font-style: normal;
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(232, 201, 160, 0.55);
+}
+
+.benevolo-ig-week strong {
+  display: block;
+  margin: 0.35rem 0 0.25rem;
+  font-size: 0.82rem;
+}
+
+.benevolo-ig-grid {
+  display: grid;
+  gap: 1.35rem;
+}
+
+@media (min-width: 900px) {
+  .benevolo-ig-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.benevolo-ig-card {
+  border-top: 1px solid rgba(232, 201, 160, 0.22);
+  padding-top: 1rem;
+}
+
+.benevolo-ig-card span {
+  display: block;
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(232, 201, 160, 0.55);
+}
+
+.benevolo-ig-card strong {
+  display: block;
+  margin-top: 0.45rem;
+  font-size: 1.05rem;
+}
+
+.benevolo-ig-card > p {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: rgba(247, 241, 238, 0.5);
+}
+
+.benevolo-ig-caption {
+  margin-top: 0.85rem;
+  white-space: pre-wrap;
+  font-family: inherit;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: rgba(247, 241, 238, 0.58);
+}
+
+.benevolo-ig-copy {
+  margin-top: 0.85rem;
+  border: 1px solid rgba(255, 106, 61, 0.45);
+  border-radius: 999px;
+  background: transparent;
+  color: #ff6a3d;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+}
+
 .benevolo-shopify-card {
   background: transparent;
   border: 0;
