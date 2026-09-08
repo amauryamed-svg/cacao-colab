@@ -1,0 +1,14 @@
+{
+  "brand": "Chocolate Benevolo",
+  "product": "Bars.",
+  "colors": [
+    { "name": "orange", "hex": "#F05A28", "role": "Empaque / hero" },
+    { "name": "coral", "hex": "#FF6A3D", "role": "CTA" },
+    { "name": "navy", "hex": "#15243F", "role": "Swirls / dorso" },
+    { "name": "champagne", "hex": "#E8C9A0", "role": "Nominativo / eyebrows" },
+    { "name": "cream", "hex": "#F7F1EE", "role": "Texto / fondos claros" },
+    { "name": "cocoa", "hex": "#140e0a", "role": "Fondos oscuros" },
+    { "name": "shadow", "hex": "#C43A18", "role": "Extrusión Bars." },
+    { "name": "white", "hex": "#FFFFFF", "role": "Tipo sobre naranja" }
+  ]
+}

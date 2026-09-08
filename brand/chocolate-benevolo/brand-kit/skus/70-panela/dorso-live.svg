@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920" role="img">
+  <title>Bars. 70 panela · dorso</title>
+  <defs>
+    <style type="text/css"><![CDATA[
+      @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@1,500;1,900&display=swap');
+      text { font-family: 'Bodoni Moda', Didot, Georgia, serif; font-style: italic; fill: #FFFFFF; }
+      .kicker { font-weight: 500; letter-spacing: 0.28em; fill: #E8C9A0; }
+      .display { font-weight: 900; }
+      .body { font-weight: 500; }
+    ]]></style>
+  </defs>
+  <rect id="bg" width="1080" height="1920" fill="#1A0C08"/>
+  <g id="type-slogan">
+    <text class="kicker" x="80" y="220" font-size="22">ESLOGAN</text>
+    <text class="display" x="80" y="320" font-size="40">By Benévolo -</text>
+    <text class="display" x="80" y="390" font-size="40">Buen Chocolate Indulgente.</text>
+  </g>
+  <g id="type-contents">
+    <text class="kicker" x="80" y="560" font-size="22">CONTIENE</text>
+    <text class="body" x="80" y="640" font-size="26">Cacao 70 % colombiano.</text>
+    <text class="body" x="80" y="690" font-size="26">Endulzado con panela.</text>
+    <text class="body" x="80" y="740" font-size="26">Manteca de cacao.</text>
+  </g>
+  <g id="type-note">
+    <text class="body" x="80" y="1480" font-size="22">No es el Master Chocolatier 70 %. Preventa.</text>
+  </g>
+  <g id="type-manufacturer">
+    <text class="kicker" x="80" y="1600" font-size="22">LEGAL</text>
+    <text class="body" x="80" y="1660" font-size="24">Elaborado por: Chocolate Zurych SAS</text>
+    <text class="body" x="80" y="1710" font-size="24">NSA-0011242-2021 · +573102227848</text>
+    <text class="body" x="80" y="1760" font-size="24">Chocolate Benevolo.co · preventa</text>
+  </g>
+</svg>

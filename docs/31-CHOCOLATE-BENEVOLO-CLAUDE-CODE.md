@@ -84,7 +84,7 @@ No improvises medallas CoEx, stock, ni un checkout distinto al de Cacao Colab. B
   - Fallback web: [Bodoni Moda](https://fonts.google.com/specimen/Bodoni+Moda) 900 italic.  
   - Spec: `brand/chocolate-benevolo/type/BARS-BODONI.md` · SVG: `brand/chocolate-benevolo/logos/bars-wordmark.svg`.  
   - **Prohibido** en Bars.: Arial Black, Impact, scripts redondeados genéricos, caps BARS.  
-- **Marca Chocolate Benevolo:** serif display (Georgia / Fraunces family).  
+- **Marca Chocolate Benevolo:** Bodoni (CB + CHOCOLATE + BenevolO). Brand Kit: `brand/chocolate-benevolo/brand-kit/`.  
 - **UI web:** Outfit o equivalente geométrico clean.  
 - **Legal / ingredients:** sans compacta, alta legibilidad.  
 

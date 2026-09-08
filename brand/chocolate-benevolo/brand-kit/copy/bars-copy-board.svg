@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img">
+  <title>Bars. copy board · Adobe Express</title>
+  <defs>
+    <style type="text/css"><![CDATA[
+      @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@1,500;1,900&display=swap');
+      text { font-family: 'Bodoni Moda', Didot, Georgia, serif; font-style: italic; fill: #15243F; }
+      .kicker { font-weight: 500; letter-spacing: 0.28em; fill: #C43A18; }
+      .display { font-weight: 900; }
+      .accent { font-weight: 900; fill: #F05A28; }
+      .body { font-weight: 500; }
+    ]]></style>
+  </defs>
+  <rect id="bg-cream" width="1920" height="1080" fill="#F7F1EE"/>
+  <text class="display" x="60" y="70" font-size="36">Copy Bars. · Adobe Express</text>
+  <g id="type-brand"><text class="kicker" x="60" y="130" font-size="16">TYPE-BRAND</text>
+    <text class="display" x="60" y="180" font-size="28">CHOCOLATE BENEVOLO</text></g>
+  <g id="type-category"><text class="kicker" x="60" y="240" font-size="16">TYPE-CATEGORY</text>
+    <text class="accent" x="60" y="290" font-size="28">DUJA DE MARAÑON</text></g>
+  <g id="type-sugar"><text class="kicker" x="60" y="350" font-size="16">TYPE-SUGAR</text>
+    <text class="display" x="60" y="400" font-size="28">SUGAR FREE</text></g>
+  <g id="type-bars"><text class="kicker" x="60" y="460" font-size="16">TYPE-BARS</text>
+    <text class="accent" x="60" y="530" font-size="48">Bars.</text></g>
+  <g id="type-legal"><text class="kicker" x="60" y="600" font-size="16">TYPE-LEGAL</text>
+    <text class="body" x="60" y="650" font-size="22">Chocolatina de leche con frutos secos. Neto 80gr.</text></g>
+  <g id="seal-origen"><text class="kicker" x="60" y="720" font-size="16">SEAL-ORIGEN / SEAL-FEAR5</text>
+    <text class="body" x="60" y="770" font-size="22">CACAO COLOMBIANO DE ORIGEN · FEAR5</text></g>
+  <g id="type-slogan"><text class="kicker" x="980" y="130" font-size="16">TYPE-SLOGAN</text>
+    <text class="display" x="980" y="190" font-size="26">By Benévolo - Buen Chocolate Indulgente.</text></g>
+  <g id="type-contents"><text class="kicker" x="980" y="270" font-size="16">TYPE-CONTENTS</text>
+    <text class="body" x="980" y="320" font-size="20">Contiene:</text>
+    <text class="body" x="980" y="360" font-size="20">Cacao FEAR5 45% Trinitario</text>
+    <text class="body" x="980" y="400" font-size="20">con fermentación controlada.</text>
+    <text class="body" x="980" y="450" font-size="20">Leche en polvo avellanada y marañón salado.</text></g>
+  <g id="type-manufacturer"><text class="kicker" x="980" y="540" font-size="16">TYPE-MANUFACTURER</text>
+    <text class="body" x="980" y="590" font-size="20">Elaborado por: Chocolate Zurych SAS</text>
+    <text class="body" x="980" y="630" font-size="20">NSA-0011242-2021</text>
+    <text class="body" x="980" y="670" font-size="20">Contacto: +573102227848</text>
+    <text class="body" x="980" y="710" font-size="20">Chocolate Benevolo.co</text></g>
+</svg>

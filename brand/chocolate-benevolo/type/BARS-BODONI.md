@@ -44,4 +44,6 @@ Si no hay licencia de Bodoni Ultra Black Italic instalada:
 ## Assets
 
 - `brand/chocolate-benevolo/logos/bars-wordmark.svg`  
+- Lockup CB + CHOCOLATE BenevolO: `brand/chocolate-benevolo/logos/chocolate-benevolo-lockup.svg`  
+- Brand Kit (Canva / Figma / Express): `brand/chocolate-benevolo/brand-kit/`  
 - Portada corregida: `/opt/cursor/artifacts/assets/benevolo-brandbook-cover-bars-bodoni.png`  
