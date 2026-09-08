@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
     return [
       { source: "/amaury", destination: "/amauryamed", permanent: false },
       { source: "/perfil/amaury", destination: "/amauryamed", permanent: false },
+      // Puente reciproco benevolo.shop <-> cacaocolab.org: benevolo.shop
+      // ya tiene /cacao-colab -> /collections/all (redirect nativo de
+      // Shopify). Este es el sentido inverso, para entrar a ambas tiendas
+      // en sincronia desde cualquiera de los dos dominios.
+      { source: "/benevolo-shop", destination: "https://benevolo.shop", permanent: false },
       // *.vercel.app del mismo proyecto → dominio canónico (docs/24-DOMINIO-CACAOCOLAB-ORG.md).
       // cacao-colab-web.vercel.app / cacao-colab-api.vercel.app son proyectos Vercel
       // aparte del pivote, este redirect no los alcanza (ver Spec P-housekeeping).
