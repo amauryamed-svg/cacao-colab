@@ -50,7 +50,11 @@
 ### 3.1 Bars. (existente)
 - Arte canónico: `apps/web/public/benevolo/packaging/`
 - Wordmark: `logos/bars-wordmark.svg`
-- Categoría: duja de marañón sugar free · 80 g
+- Categoría ancla: duja de marañón sugar free · 80 g · **FEAR5 45 %**
+- SKU flex (mismo lockup CB + Bars.; cambia acento + descriptor):
+  - **San Vicente 41** — morado `#4A0D6B` · clon **FSV41** (no es 41 % de cacao) · `brand-kit/skus/san-vicente-41/`
+  - **70 % panela** — cocoa `#2A140C` · dark endulzado con panela · **no** es el capstone Master 70 % · `brand-kit/skus/70-panela/`
+- Fotos de SKU flex: Commons (ver `brand-kit/skus/SOURCES.md`). No son packshot de fábrica.
 
 ### 3.2 Bons. (chocolatería profesional)
 - Piezas / bombones Benevolo
