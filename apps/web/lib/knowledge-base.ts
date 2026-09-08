@@ -440,11 +440,13 @@ export const benevoloProduct = {
     "Alianza Zurych × Quara (nodo FEAR 5)",
     "Fórmula: FEAR 5, duja de marañón, leche orgánica, alulosa, stevia",
     "Canal de preorden Benevolo.shop (ficha bars-benevolo, tienda Shopify Colab) + diploma compartible",
+    "Prelanzamiento noviembre 2026 (Infonegocios Colombia) · comunidad Instagram @chocolate.benevolo",
   ],
   whatIsNotReady: [
     "Checkout automático con inventario confirmado (la ficha Shopify es preventa)",
     "Medalla COEX atribuida a esta SKU (usamos el lente, no el premio)",
     "Certificación orgánica del producto terminado completa",
+    "Mercado abierto en Estados Unidos, Madrid, China o Japón (son intenciones de la nota Infonegocios)",
   ],
   preorderWhatsapp:
     "https://wa.me/573102227848?text=Hola%20Chocolate%20Benevolo%2C%20quiero%20preordenar%20Bars.%20Duja%20de%20Mara%C3%B1%C3%B3n%20sugar%20free%20FEAR%205%20Quara%20(80g).",

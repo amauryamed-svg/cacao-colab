@@ -31,6 +31,12 @@ export default function Navbar() {
             Mercado
           </Link>
           <Link
+            href="/benevolo/noviembre"
+            className="hidden md:inline text-xs font-bold text-colab-cream/70 hover:text-colab-yellow font-sans tracking-wide transition-colors"
+          >
+            Noviembre
+          </Link>
+          <Link
             href="/shop"
             className="hidden sm:inline text-xs font-bold text-colab-cream/70 hover:text-colab-yellow font-sans tracking-wide transition-colors"
           >

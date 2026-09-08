@@ -64,6 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/manifiesto">Manifiesto</Link>
               <Link href="/export">Export FOB</Link>
               <Link href="/shop">Tienda</Link>
+              <Link href="/benevolo/noviembre">Benevolo · noviembre</Link>
               <Link href="/colab">Foro</Link>
               <Link href="/nodo">Nodos</Link>
               <Link href="/amauryamed">Amaury · perfil</Link>
