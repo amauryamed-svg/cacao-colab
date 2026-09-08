@@ -66,6 +66,9 @@ Ver `LEAN-TO-PRO.md`: **L0 sticker → L1 sleeve → L2 carton → L3 display**.
 - Contacto +57 310 222 7848 · chocolatebenevolo.co
 - Cacao colombiano de origen · FEAR 5 (sello)
 - Bons. · chocolatería profesional · molde mazorca
+- Prelanzamiento **noviembre 2026** (ventana publicada en Infonegocios Colombia, 8 sep 2026)
+- Comunidad Instagram [@chocolate.benevolo](https://www.instagram.com/chocolate.benevolo/)
+- Editorial IG: `copy/INSTAGRAM-NOVIEMBRE.md` (link in bio → `/benevolo/noviembre`). FEAR 5 por nombre, sin % de cacao en ese copy. Bons. anunciado, no SKU. US/Madrid/China/Japón = intenciones.
 
 ### Prohibidos
 - Medallas CoEx inventadas

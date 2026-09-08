@@ -2,7 +2,9 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import TrackedLink from "@/components/analytics/TrackedLink"
+import BenevoloLaunchCountdown from "@/components/benevolo/BenevoloLaunchCountdown"
 import { BenevoloShopifyCheckout } from "@/components/commerce/BenevoloShopifyCheckout"
+import { BENEVOLO_INSTAGRAM_HANDLE, BENEVOLO_INSTAGRAM_URL, benevoloPress } from "@/lib/benevolo-launch"
 import { benevoloProduct, priorityVarieties } from "@/lib/knowledge-base"
 import { BENEVOLO_SHOP_BRAND_HOST, benevoloProductUrl } from "@/lib/shopify-colab"
 
@@ -19,6 +21,7 @@ export default function BenevoloPage() {
     <div className="bg-[#140e0a] min-h-screen text-colab-cream">
       <header className="benevolo-hero">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-10 md:pt-14 pb-0">
+          <BenevoloLaunchCountdown variant="strip" />
           <Link href="/rd" className="eyebrow text-[#E8C9A0]/40 hover:text-[#FF6A3D]">
             ← R&D Colab
           </Link>
@@ -67,6 +70,16 @@ export default function BenevoloPage() {
                 >
                   Tienda Colab →
                 </Link>
+                <TrackedLink
+                  href={BENEVOLO_INSTAGRAM_URL}
+                  event="benevolo_interest"
+                  targetName="benevolo-instagram"
+                  source="benevolo-hero"
+                  external
+                  className="border border-white/20 rounded-full px-7 py-3.5 text-sm font-bold text-white/80"
+                >
+                  @{BENEVOLO_INSTAGRAM_HANDLE}
+                </TrackedLink>
               </div>
             </div>
             <div className="benevolo-packshot">
@@ -161,6 +174,55 @@ export default function BenevoloPage() {
               ))}
             </ul>
           </div>
+        </section>
+
+        <section className="mt-16 grid lg:grid-cols-2 gap-10">
+          <article className="benevolo-press">
+            <p className="eyebrow text-[#E8C9A0]">Prensa · hoy</p>
+            <h2 className="font-serif text-3xl font-bold mt-3">{benevoloPress.outlet}</h2>
+            <p className="text-white/55 leading-relaxed mt-4">{benevoloPress.title}</p>
+            <p className="text-white/40 text-sm leading-relaxed mt-3">
+              Lanzamiento previsto para {benevoloPress.launchedWindow}. Primera apuesta:{" "}
+              {benevoloPress.firstMarket}.
+            </p>
+            <TrackedLink
+              href={benevoloPress.url}
+              event="knowledge_link_clicked"
+              targetName="infonegocios-benevolo"
+              source="benevolo-press"
+              external
+              className="inline-block mt-5 text-sm font-bold text-[#FF6A3D]"
+            >
+              Leer en Infonegocios →
+            </TrackedLink>
+          </article>
+          <article className="benevolo-press">
+            <p className="eyebrow text-[#FF6A3D]">Comunidad</p>
+            <h2 className="font-serif text-3xl font-bold mt-3">@{BENEVOLO_INSTAGRAM_HANDLE}</h2>
+            <p className="text-white/55 leading-relaxed mt-4">
+              El 360 de prelanzamiento: contexto, origen y antojo. La chocolatina en Shopify; la
+              conversación en Instagram — con el guion de la nota de Infonegocios.
+            </p>
+            <TrackedLink
+              href="/benevolo/noviembre#comunidad"
+              event="benevolo_interest"
+              targetName="benevolo-ig-guion"
+              source="benevolo-community"
+              className="inline-block mt-5 mr-5 text-sm font-bold text-[#FF6A3D]"
+            >
+              Guion de prelanzamiento →
+            </TrackedLink>
+            <TrackedLink
+              href={BENEVOLO_INSTAGRAM_URL}
+              event="benevolo_interest"
+              targetName="benevolo-instagram-block"
+              source="benevolo-community"
+              external
+              className="inline-block mt-5 text-sm font-bold text-[#FF6A3D]"
+            >
+              Seguir en Instagram →
+            </TrackedLink>
+          </article>
         </section>
 
         <section className="mt-16 border-t border-white/10 pt-12 grid md:grid-cols-3 gap-6">

@@ -8,6 +8,7 @@ import {
   BENEVOLO_SHOP_BRAND_HOST,
 } from "@/lib/shopify-colab"
 import { BenevoloShopifyCheckout } from "@/components/commerce/BenevoloShopifyCheckout"
+import BenevoloLaunchCountdown from "@/components/benevolo/BenevoloLaunchCountdown"
 import {
   ZURYCH_INSTAGRAM,
   coberturasConvergence,
@@ -110,7 +111,24 @@ export default function ShopPage() {
           <p className="mt-3 max-w-2xl text-sm text-colab-cream/55 leading-relaxed">
             Misma tienda Shopify que los Masters. La ficha canónica es{" "}
             <code className="text-colab-yellow">benevolo.shop/products/bars-benevolo</code>.
+            Prelanzamiento noviembre — comunidad{" "}
+            <a
+              href="https://www.instagram.com/chocolate.benevolo/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-colab-yellow underline underline-offset-4"
+            >
+              @chocolate.benevolo
+            </a>
+            {" · "}
+            <a href="/benevolo/noviembre#comunidad" className="text-colab-yellow underline underline-offset-4">
+              guion de la nota
+            </a>
+            .
           </p>
+          <div className="mt-4 max-w-2xl">
+            <BenevoloLaunchCountdown variant="strip" />
+          </div>
           <div className="mt-8">
             <BenevoloShopifyCheckout source="shop-benevolo" />
           </div>

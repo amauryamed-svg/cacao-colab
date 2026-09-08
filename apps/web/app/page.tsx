@@ -118,12 +118,12 @@ export default function Home() {
             </h2>
             <p className="text-colab-cream/55 text-sm md:text-base leading-relaxed mt-5 max-w-md">
               Bars. Benevolo es el chocolate de leche con marañón sugar free que acerca el Fine-Flavor
-              a tu mesa — sin sermón, con oficio.
+              a tu mesa — sin sermón, con oficio. Prelanzamiento noviembre.
             </p>
             <div className="flex flex-wrap gap-3 mt-8">
               <Button href="/benevolo">Preordenar Bars. →</Button>
-              <Button variant="outline" href="/shop#masters">
-                Aprender el oficio →
+              <Button variant="outline" href="/benevolo/noviembre">
+                Noviembre →
               </Button>
             </div>
           </div>
