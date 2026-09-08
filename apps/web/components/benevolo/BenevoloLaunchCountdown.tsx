@@ -19,7 +19,9 @@ const UNITS: { key: keyof Omit<CountdownParts, "arrived">; label: string }[] = [
 ]
 
 export default function BenevoloLaunchCountdown({ variant = "hero" }: { variant?: Variant }) {
-  const [parts, setParts] = useState<CountdownParts | null>(null)
+  const [parts, setParts] = useState<CountdownParts>(() =>
+    remainingUntil(BENEVOLO_LAUNCH_AT.getTime(), Date.now()),
+  )
 
   useEffect(() => {
     const tick = () => setParts(remainingUntil(BENEVOLO_LAUNCH_AT.getTime(), Date.now()))
@@ -28,19 +30,17 @@ export default function BenevoloLaunchCountdown({ variant = "hero" }: { variant?
     return () => window.clearInterval(id)
   }, [])
 
-  const arrived = parts?.arrived ?? false
+  const arrived = parts.arrived
 
   if (variant === "strip") {
     return (
       <Link href="/benevolo/noviembre" className="benevolo-count-strip">
         <span className="benevolo-count-strip-kicker">Prelanzamiento</span>
         <strong>{arrived ? "Noviembre está aquí." : "Cuenta atrás a noviembre."}</strong>
-        <span className="benevolo-count-strip-digits" aria-live="polite">
-          {parts
-            ? arrived
-              ? "Preventa abierta"
-              : `${parts.days}d ${pad2(parts.hours)}:${pad2(parts.minutes)}:${pad2(parts.seconds)}`
-            : "noviembre 2026"}
+        <span className="benevolo-count-strip-digits" aria-live="polite" suppressHydrationWarning>
+          {arrived
+            ? "Preventa abierta"
+            : `${parts.days}d ${pad2(parts.hours)}:${pad2(parts.minutes)}:${pad2(parts.seconds)}`}
         </span>
         <em>Infonegocios · @chocolate.benevolo</em>
       </Link>
@@ -53,8 +53,8 @@ export default function BenevoloLaunchCountdown({ variant = "hero" }: { variant?
       <div className="benevolo-count-grid">
         {UNITS.map((unit) => (
           <div key={unit.key} className="benevolo-count-cell">
-            <strong className="benevolo-count-digit">
-              {parts ? (unit.key === "days" ? String(parts[unit.key]) : pad2(parts[unit.key])) : "—"}
+            <strong className="benevolo-count-digit" suppressHydrationWarning>
+              {unit.key === "days" ? String(parts[unit.key]) : pad2(parts[unit.key])}
             </strong>
             <span>{unit.label}</span>
           </div>
